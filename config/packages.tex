@@ -1,0 +1,82 @@
+% Erlaube einfaches copy & paste aus der generierten pdf
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% Deutsche Bezeichnungen wie etwa "Inhaltsverzeichnis", statt "Contents"
+\usepackage[german]{babel}
+
+% Deutsche Absätze
+\parindent 0pt
+
+% Dieses Package ermöglich einfügen von Bildern mittels \includegraphics
+\usepackage{graphicx}
+
+% Zwinge Latex zum einfügen von bildern dort wo man sie im tex 
+% Dokument hinterlegt mittels \begin{figure}[H]   
+\usepackage{float}
+
+% Syntax Highlighting
+\usepackage{minted}
+
+\usepackage[autostyle,german=quotes]{csquotes}
+
+% Für Hintergrundbilder mittels \AddToShipoutPicture
+\usepackage{eso-pic}
+
+% Bilder transparent machen
+\usepackage{transparent}
+
+% Fallunterscheidungen wie etwa gerade und ungerade Seiten
+\usepackage{ifthen}
+
+% Einfügen von Tabellen
+\usepackage{tabularx}
+
+% Literaturverzeichnisse verwenden
+% backref=true - referenziert von Literaturverzeichnis zurück auf die Seite wo zitiert wurde
+\usepackage[style=authortitle, natbib, backend=biber, backref=true]{biblatex}
+% Nummer der Zitation nicht hochgestellt, sondern sondern mit
+% normaler Textgröße und einem Punkt nach der Nummer
+% Beispiel: 1. Teller,”Visibility computations in densely occluded polyhedral environments.“, S. 19
+\makeatletter% 
+\long\def\@makefntext#1{% 
+  \parindent 1em\noindent \hb@xt@ 1.8em{\hss  \hbox {{\normalfont \@thefnmark }}. }#1}%
+\makeatother
+
+% Texte für die zurückreferenzierung definieren
+\DefineBibliographyStrings{german}{%
+  backrefpage = {Zitiert auf der Seite},% originally "cited on page"
+  backrefpages = {Zitiert auf den Seiten},% originally "cited on pages"
+}
+
+% Links mit Sprungmarken
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black, % Setz die Farbe von Links im 
+                   % Inhaltsverzeichnis zurück auf schwarz
+  citecolor=black, % Farbe von Literaturlinks = schwarz
+  urlcolor=blue    % Farbe von URLs = blau     
+}
+
+
+% Referezieren von Kapiteln mit ihrem Titel
+\usepackage{nameref}
+
+% Einfügen von PDFs
+\usepackage{pdfpages} 
+
+% Seitenränder
+\usepackage{geometry}
+\geometry{a4paper, top=20mm, left=40mm, right=20mm, bottom=20mm, headsep=12mm, footskip=12mm}
+
+% Package zum hinzufügen eines Glossars
+\usepackage{glossaries}  
+\setacronymstyle{long-short}  
+\newacronym{eler}{ELER}{Europäischer Landwirtschaftsfond für die Entwicklung des ländlichen Raum}  
+
+% Auf gleiche footnote erneut verweisen mit cleveref
+% Achtung: Wenn cleveref nicht zum ende geladen wird gibt es evtl. die Fehlermeldung: Package cleveref Error: cleveref must be loaded after amsmath!.
+\usepackage{cleveref}
+% Auf erneut verweisen
+\crefformat{footnote}{#2\footnotemark[#1]#3} 
