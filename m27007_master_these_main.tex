@@ -1,7 +1,7 @@
-\documentclass[12pt, twoside]{article}
+\documentclass[11pt, twoside]{article}
 
-\include{config/packages}
-
+\include{config/packages} 
+  
 \bibliography{lit/lit.bib}
 
 \begin{document}
@@ -12,13 +12,25 @@
 
 
 \include{misc/Inhaltsverzeichnis}
-\include{misc/Abbildungsverzeichnis.tex}
+\include{misc/Abbildungsverzeichnis.tex} 
 \include{misc/Listingverzeichnis}
 
+Abbildung zeigt die Trends der  Abbildung \ref{fig:Sheet} ist ein Sheet im sogenannten WebView von QlikView 11 zu sehen. Auf der linken Seite sind Objekte in einem Fenster aufgelistet, die dem Sheet hinzugefügt werden können. Die Objekte haben in QlikView den Namen Sheet Objects. Es handelt sich dabei um Textfelder, Listen, Tabellen und diverse Diagrammtypen. Per Drag-and-Drop können die Sheet Objects auf der Arbeitsfläche positioniert werden. Auf der rechten Seite der Abbildung sind eine Listbox und einige der Diagramme abgebildet. Im unteren Bereich des Fensters ist der Reiter \textit{Erweiterungsobjekte} zu sehen. Er öffnet eine Auflistung der sogenannten Extension Objects, die in der vorliegenden Arbeit näher thematisiert werden.
+
+\begin{figure}[htbp]
+	\centering
+    \includegraphics[width=1.0\textwidth]{images/charts/Google Trends/frameworks.pdf}
+	\caption[ Weltweit Ein QlikView Sheet mit diversen Sheet Objects]{Ein QlikView Sheet mit diversen Sheet Objects, Quelle: Eigene Abbildung}
+	\label{fig:Sheet}
+\end{figure}
 
 
-
-
+\begin{figure}[htbp]
+	\centering
+    \includegraphics[width=1.0\textwidth]{images/charts/Google Trends/frameworks_plot.pdf}
+	\caption[ Weltweit Ein QlikView Sheet mit diversen Sheet Objects]{Ein QlikView Sheet mit diversen Sheet Objects, Quelle: Eigene Abbildung}
+	\label{fig:Sheet}
+\end{figure}
 
 \include{content/01_einfuehrung} 
 
