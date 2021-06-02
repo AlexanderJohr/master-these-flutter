@@ -73,6 +73,10 @@
 \usepackage{geometry}
 \geometry{a4paper, top=20mm, left=40mm, right=20mm, bottom=20mm, headsep=12mm, footskip=12mm}
 
+% Absatzformat
+\parskip2ex		% Absatzabsstand	
+\parindent0ex		% Absatzeinzug
+
 % Package zum hinzufügen eines Glossars
 \usepackage{glossaries}  
 \setacronymstyle{long-short}  
@@ -83,3 +87,7 @@
 \usepackage{cleveref}
 % Auf erneut verweisen
 \crefformat{footnote}{#2\footnotemark[#1]#3} 
+
+% Abbildungsunterschrift anpassen
+% https://tex.stackexchange.com/questions/86120/font-size-of-figure-caption-header/86121
+\usepackage[font=small,labelfont=bf]{caption}
