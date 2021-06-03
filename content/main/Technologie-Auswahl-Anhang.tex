@@ -262,95 +262,97 @@ interface Props {
 \caption[Form.tsx]{Form.tsx Datei}
 \end{listing}
 
-\begin{listing}[H]
-	\label{lst:quelltext6}
-    \inputminted[lastline=23, linenos, numbersep=5pt, firstnumber=1, frame=lines, fontsize=\small, framesep=2mm, tabsize=4, breaklines, breakafter=_@|]
-    {typescript}
-    {source_code/flutter_vs_react_native/react_native/example_form_app/form-in-react-native-the-right-way/components/Form.tsx}
-\caption[Form.tsx]{Form.tsx Datei}
-\end{listing}
+
+
+% \begin{listing}[H]
+% 	\label{lst:quelltext6}
+%     \inputminted[lastline=23, linenos, numbersep=5pt, firstnumber=1, frame=lines, fontsize=\small, framesep=2mm, tabsize=4, breaklines, breakafter=_@|]
+%     {typescript}
+%     {source_code/flutter_vs_react_native/react_native/example_form_app/form-in-react-native-the-right-way/components/Form.tsx}
+% \caption[Form.tsx]{Form.tsx Datei}
+% \end{listing}
  
-\begin{listing}[H]
-	\label{lst:quelltext7}
-    \inputminted[firstline=24, linenos, numbersep=5pt, firstnumber=24, frame=lines, fontsize=\small, framesep=2mm, tabsize=4, breaklines, breakafter=_@|]
-    {typescript}
-    {source_code/flutter_vs_react_native/react_native/example_form_app/form-in-react-native-the-right-way/components/Form.tsx}
-\caption[Form.tsx]{Form.tsx Datei}
-\end{listing}
+% \begin{listing}[H]
+% 	\label{lst:quelltext7}
+%     \inputminted[firstline=24, linenos, numbersep=5pt, firstnumber=24, frame=lines, fontsize=\small, framesep=2mm, tabsize=4, breaklines, breakafter=_@|]
+%     {typescript}
+%     {source_code/flutter_vs_react_native/react_native/example_form_app/form-in-react-native-the-right-way/components/Form.tsx}
+% \caption[Form.tsx]{Form.tsx Datei}
+% \end{listing}
 
 
 
 
-\begin{listing}[H]
-	\label{lst:quelltext8}
-    \begin{minted}[
-        linenos, % Quelltextzeilen anzeigen
-        numbersep=5pt, %Abstand
-        firstnumber=1,
-        frame=lines,
-        fontsize=\small,
-        framesep=2mm,
-		tabsize=4,
-		breaklines,
-		breakafter=_@|
-        ]{javascript}
-import * as React from 'react';
-import {
-  View,
-  TextInput,
-  Text,
-  StyleSheet,
-  ViewStyle,
-  TextStyle,
-  TextInputProps,
-} from 'react-native';
-import { FieldError } from 'react-hook-form';
-interface Props extends TextInputProps {
-  name: string;
-  label?: string;
-  labelStyle?: TextStyle;
-  error?: FieldError | undefined;
-}
+% \begin{listing}[H]
+% 	\label{lst:quelltext8}
+%     \begin{minted}[
+%         linenos, % Quelltextzeilen anzeigen
+%         numbersep=5pt, %Abstand
+%         firstnumber=1,
+%         frame=lines,
+%         fontsize=\small,
+%         framesep=2mm,
+% 		tabsize=4,
+% 		breaklines,
+% 		breakafter=_@|
+%         ]{javascript}
+% import * as React from 'react';
+% import {
+%   View,
+%   TextInput,
+%   Text,
+%   StyleSheet,
+%   ViewStyle,
+%   TextStyle,
+%   TextInputProps,
+% } from 'react-native';
+% import { FieldError } from 'react-hook-form';
+% interface Props extends TextInputProps {
+%   name: string;
+%   label?: string;
+%   labelStyle?: TextStyle;
+%   error?: FieldError | undefined;
+% }
 
-export default React.forwardRef<any, Props>(
-  (props, ref): React.ReactElement => {
-	const { label, labelStyle, error, ...inputProps } = props;
+% export default React.forwardRef<any, Props>(
+%   (props, ref): React.ReactElement => {
+% 	const { label, labelStyle, error, ...inputProps } = props;
 
-	return (
-	  <View style={styles.container}>
-		{label && <Text style={[styles.label, labelStyle]}>{label}</Text>}
-		<TextInput
-		  autoCapitalize=\enquote{none}
-		  ref={ref}
-		  style={[styles.input, { borderColor: error ? '#fc6d47' : '#c0cbd3' }]}
-		  {...inputProps}
-		/>
-		<Text style={styles.textError}>{error && error.message}</Text>
-	  </View>
-	);
-  }
-);
+% 	return (
+% 	  <View style={styles.container}>
+% 		{label && <Text style={[styles.label, labelStyle]}>{label}</Text>}
+% 		<TextInput
+% 		  autoCapitalize=\enquote{none}
+% 		  ref={ref}
+% 		  style={[styles.input, { borderColor: error ? '#fc6d47' : '#c0cbd3' }]}
+% 		  {...inputProps}
+% 		/>
+% 		<Text style={styles.textError}>{error && error.message}</Text>
+% 	  </View>
+% 	);
+%   }
+% );
 
-const styles = StyleSheet.create({
-  container: {
-	marginVertical: 8,
-  },
-  input: {
-	borderWidth: 1,
-	paddingLeft: 5,
-  },
-  label: {
-	paddingVertical: 5,
-  },
-  textError: {
-	color: '#fc6d47',
-  },
-});	
-\end{minted}
+% const styles = StyleSheet.create({
+%   container: {
+% 	marginVertical: 8,
+%   },
+%   input: {
+% 	borderWidth: 1,
+% 	paddingLeft: 5,
+%   },
+%   label: {
+% 	paddingVertical: 5,
+%   },
+%   textError: {
+% 	color: '#fc6d47',
+%   },
+% });	
+% \end{minted}
 
 
-\caption[Input.tsx]{Input.tsx Datei}
-\end{listing}
+% \caption[Input.tsx]{Input.tsx Datei}
+% \end{listing}
 
 
  

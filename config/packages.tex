@@ -91,3 +91,12 @@
 % Abbildungsunterschrift anpassen
 % https://tex.stackexchange.com/questions/86120/font-size-of-figure-caption-header/86121
 \usepackage[font=small,labelfont=bf]{caption}
+
+% Nutze unterschiedliche fußnoten (1,2,3 und a,b,c)
+\usepackage[para]{manyfoot}
+% \footnoteL{https://google.com}
+\DeclareNewFootnote{L}[Roman]
+
+% fußnoten nacheinander mit Kommas
+% \footnote{Einz}\footnote{Zwei}
+\usepackage[multiple]{footmisc}
