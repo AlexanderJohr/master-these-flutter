@@ -1,0 +1,4 @@
+[submodule "conditional-form"]
+	path = .\\Quellcode\\Schritt-1
+	url = https://github.com/AlexanderJohr/conditional-form.git
+	branch = schritt-1

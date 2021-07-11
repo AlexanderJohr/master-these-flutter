@@ -1,5 +1,8 @@
 % Erlaube einfaches copy & paste aus der generierten pdf
 \usepackage[T1]{fontenc}
+% Erlaube überall underscore zu benutzen ohne \_ schreiben zu müssen
+% https://tex.stackexchange.com/questions/20890/define-an-escape-underscore-environment 
+\catcode`\_=12
 \usepackage[utf8]{inputenc}
 
 % Deutsche Bezeichnungen wie etwa "Inhaltsverzeichnis", statt "Contents"
@@ -18,7 +21,13 @@
 % Syntax Highlighting 
 \usepackage{minted}
 % Lösche rote Rahmen in minted Quelltext
-\usemintedstyle{xcode}
+\usemintedstyle{vs}
+\usepackage{minted}
+\setminted{autogobble=true, fontsize=\footnotesize, baselinestretch=1.0, frame=lines, mathescape, linenos, numbersep=5pt, framesep=2mm, breaklines, breakafter=_@|.}
+%\setminted[python]{python3=true, tabsize=4}
+%\usemintedstyle{trac}
+\renewcommand{\listingscaption}{Code Snippet}
+\AtEndEnvironment{listing}{\vspace{-14pt}} % <-
 
 
 \usepackage[autostyle,german=quotes]{csquotes}
@@ -90,12 +99,17 @@
 
 % Abbildungsunterschrift anpassen
 % https://tex.stackexchange.com/questions/86120/font-size-of-figure-caption-header/86121
-\usepackage[font=small,labelfont=bf]{caption}
+\usepackage[font=footnotesize,labelfont=bf]{caption}
+% Abstand anpassen
+% https://tex.stackexchange.com/questions/45990/how-can-i-modify-vertical-space-between-figure-and-caption
+\setlength{\abovecaptionskip}{10pt plus 3pt minus 2pt} 
 
 % Nutze unterschiedliche fußnoten (1,2,3 und a,b,c)
 \usepackage[para]{manyfoot}
 % \footnoteL{https://google.com}
 \DeclareNewFootnote{L}[Roman]
+% \footnoteI{https://google.com}
+\DeclareNewFootnote{I}[alph]
 
 % fußnoten nacheinander mit Kommas
 % \footnote{Einz}\footnote{Zwei}
