@@ -152,7 +152,7 @@ In Zeile 8 wird ein Objekt der Klasse Massnahme instanzieiert. Anders als bei ge
 
 
 \begin{listing}[h]
-    \inputminted[firstline=7, lastline=24] {dart}
+    \inputminted[firstline=6, lastline=23] {dart}
     {Quellcode/Schritt-1/conditional_form/test/data_model/massnahme_test.dart}
 
 \caption[Schritt 1 Maßnahme serialisiert ohne Fehler Unit-Test]{Ein automatisierter Testfall überprüft, ob die Maßnahme korrekt serialisiert wird, Quelle: Eigenes Listing, \newline Datei: Quellcode/Schritt-1/conditional_form/test/data_model/massnahme_test.dart}
@@ -162,7 +162,7 @@ In Zeile 8 wird ein Objekt der Klasse Massnahme instanzieiert. Anders als bei ge
 \end{listing}
 
 \begin{listing}[h]
-    \inputminted[firstline=37, lastline=58] {dart}
+    \inputminted[firstline=36, lastline=56] {dart}
     {Quellcode/Schritt-1/conditional_form/test/data_model/massnahme_test.dart}
 
 \caption[Schritt 1 Maßnahme deserialisiert ohne Fehler Unit-Test]{Ein automatisierter Testfall überprüft, ob die Maßnahme korrekt deserialisiert wird, Quelle: Eigenes Listing, \newline Datei: Quellcode/Schritt-1/conditional_form/test/data_model/massnahme_test.dart}
@@ -181,7 +181,7 @@ In Zeile 8 wird ein Objekt der Klasse Massnahme instanzieiert. Anders als bei ge
 
 \caption[Schritt 1 Werte-Typ Storage]{Der Werte-Typ Storage, Quelle: Eigenes Listing, \newline Datei: Quellcode/Schritt-1/conditional_form/lib/data_model/storage.dart}
 
-\label{lst:Schritt1WerteTypLetzteBearbeitung}
+\label{lst:Schritt1WerteTypStorage}
 
 \end{listing}
 
@@ -347,16 +347,235 @@ return SingleChildScrollView(
 \end{listing}
 
 \begin{listing}[h]
-\inputminted[firstline=5] {dart}
+\inputminted[firstline=4] {dart}
 {Quellcode/Schritt-1/conditional_form/lib/widgets/massnahmen_table.dart}
 
 \caption[Schritt 1 Klasse MassnahmenTable]{Die Klasse MassnahmenTable, Quelle: Eigenes Listing, \newline Datei: Quellcode/Schritt-1/conditional_form/lib/widgets/massnahmen_table.dart}
 
-\label{lst:Schritt1KlasseMassnahmenPool}
+\label{lst:Schritt1KlasseMassnahmenTable}
 
 \end{listing} 
 
 
     
 
-_
+
+\begin{listing}[h]
+\inputminted[firstline=5] {dart}
+{Quellcode/Schritt-1/conditional_form/lib/screens/massnahmen_detail/massnahmen_form_view_model.dart}
+
+\caption[Schritt 1 Klasse MassnahmenFormViewModel]{Die Klasse MassnahmenFormViewModel, Quelle: Eigenes Listing, \newline Datei: Quellcode/Schritt-1/conditional_form/lib/ \newline screens/massnahmen_detail/massnahmen_form_view_model.dart} 
+
+\label{lst:Schritt1KlasseMassnahmenFormViewModel}
+
+\end{listing} 
+
+
+
+
+
+
+
+\begin{listing}[htbp]
+    \begin{minted}[firstnumber=10]{dart}
+const saveMassnahmeTooltip = "Validiere und speichere Massnahme";
+
+class MassnahmenDetailScreen extends StatelessWidget {
+  static const routeName = '/massnahmen-detail';
+
+  const MassnahmenDetailScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final vm = Provider.of<MassnahmenFormViewModel>(context, listen: false);
+
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text('Maßnahmen Detail'),
+        ),
+        body: WillPopScope(
+          onWillPop: () => saveRecordAndGoBackToOverviewScreen(context),
+          child: Stack(
+            children: [
+              SingleChildScrollView(
+                child: Center(
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(...),
+                    ),
+                  ),
+                ),
+              ),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      FloatingActionButton(
+                        tooltip: saveMassnahmeTooltip,
+                        //if heroTag isn't set, then there can only be one [FloatingActionButton] per route
+                        heroTag: 'save_floating_action_button',
+                        child: const Icon(Icons.check, color: Colors.white),
+                        onPressed: () =>
+                            saveRecordAndGoBackToOverviewScreen(context),
+                      )
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
+        ));
+  }
+}
+\end{minted}
+\caption[Schritt 1 Klasse MassnahmenDetailScreen Struktur]{Die Struktur des Bildschirms MassnahmenDetailScreen, Quelle: Eigenes Listing, \newline Datei: Quellcode/Schritt-1/conditional_form/lib/\newline screens/massnahmen_detail/massnahmen_detail.dart}
+\label{lst:Schritt1KlasseMassnahmenDetailScreenStruktur}
+\end{listing}
+
+\begin{listing}[h]
+
+  \inputminted[firstline=34, lastline=52] {dart}
+  {Quellcode/Schritt-1/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
+
+  \caption[Schritt 1 Ausgabe der Formularfelder]{Die Ausgabe der Formularfelder, Quelle: Eigenes Listing, \newline Datei: Quellcode/Schritt-1/conditional_form/lib/\newline screens/massnahmen_detail/massnahmen_detail.dart} 
+
+  \label{lst:Schritt1AusgabeDerFormularfelder}
+
+\end{listing} 
+
+\begin{listing}[h]
+  \inputminted[firstline=3] {dart}
+  {Quellcode/Schritt-1/conditional_form/integration_test/driver.dart}
+
+  \caption[Schritt 1 Integration Test Driver]{Der Integration Test Driver, Quelle: Eigenes Listing, \newline Datei: Quellcode/Schritt-1/conditional_form/integration_test/driver.dart} 
+
+  \label{lst:Schritt1IntegrationTestDriver}
+
+\end{listing} 
+  
+
+\begin{listing}[h]
+  
+  \inputminted[firstline=18, lastline=28] {dart}
+  {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
+
+  \caption[Schritt 1 Integrations Test Initialisierung]{Initialisierung des Integrations Tests, Quelle: Eigenes Listing, \newline Datei: Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart} 
+
+  \label{lst:Schritt1IntegrationsTestInitialisierung}
+
+\end{listing}
+
+
+\begin{listing}[h]
+  
+  \inputminted[firstline=30, lastline=49] {dart}
+  {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
+
+  \caption[Schritt 1 Integrations Test Widget Initialisierung]{Initialisierung des Widgets für den Integrations Tests, Quelle: Eigenes Listing, \newline Datei: Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart} 
+
+  \label{lst:Schritt1IntegrationsTestWidgetInitialisierung}
+
+\end{listing}
+
+\begin{listing}[h]
+  
+  \inputminted[firstline=51, lastline=68] {dart}
+  {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
+
+  \caption[Schritt 1 Hilfsmethode tabSelectionCard]{Die Hilfsmethode tabSelectionCard, Quelle: Eigenes Listing, \newline Datei: Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart} 
+
+  \label{lst:Schritt1HilfsmethodeTabSelectionCard}
+
+\end{listing}
+
+
+
+\begin{listing}[h]
+  
+  \inputminted[firstline=76, lastline=97] {dart}
+  {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
+
+  \caption[Schritt 1 Hilfsmethode tabOption]{Die Hilfsmethode tabOption, Quelle: Eigenes Listing, \newline Datei: Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart} 
+
+  \label{lst:Schritt1HilfsmethodeTabOption}
+
+\end{listing}
+
+
+
+\begin{listing}[h]
+  
+  \inputminted[firstline=99, lastline=109] {dart}
+  {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
+
+  \caption[Schritt 1 Hilfsmethode fillTextFormField]{Die Hilfsmethode fillTextFormField, Quelle: Eigenes Listing, \newline Datei: Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart} 
+
+  \label{lst:Schritt1HilfsmethodeFillTextFormField}
+
+\end{listing}
+
+
+
+
+\begin{listing}[h]
+  
+  \inputminted[firstline=111, lastline=117] {dart}
+  {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
+
+  \caption[Schritt 1 Button zum Kreieren einer Maßnahme wird ausgelöst]{Der Button zum Kreieren einer Maßnahme wird ausgelöst, \newline Quelle: Eigenes Listing, Datei: Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart} 
+
+  \label{lst:Schritt1ButtonKreierenMaßnahmeAusgeloest}
+
+\end{listing}
+
+\begin{listing}[h]
+  
+  \inputminted[firstline=119, lastline=120] {dart}
+  {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
+
+  \caption[Schritt 1 Letzter Status wird ausgewählt]{Der letzte Status wird ausgewählt, Quelle: Eigenes Listing, \newline Datei: Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart} 
+
+  \label{lst:Schritt1LetzterStatusWirdAusgewählt}
+
+\end{listing}
+
+
+\begin{listing}[h]
+  
+  \inputminted[firstline=122, lastline=125] {dart}
+  {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
+
+  \caption[Schritt 1 Maßnahmentitel wird eingegeben]{Der Maßnahmentitel wird eingegeben, Quelle: Eigenes Listing, \newline Datei: Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart} 
+
+  \label{lst:Schritt1MaßnahmentitelWirdEingegeben}
+
+\end{listing}
+
+
+
+\begin{listing}[h]
+  
+  \inputminted[firstline=127, lastline=129] {dart}
+  {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
+
+  \caption[Schritt 1 Button zum Speichern wird ausgelöst]{Der Button zum Speichern wird ausgelöst, Quelle: Eigenes Listing, \newline Datei: Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart} 
+
+  \label{lst:Schritt1ButtonZumSpeichernWirdAusgelöst}
+
+\end{listing}
+
+\begin{listing}[h]
+  
+  \inputminted[firstline=131, lastline=143] {dart}
+  {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
+
+  \caption[Schritt 1 Ergebnis wird verglichen]{Der Button zum Speichern wird ausgelöst, Quelle: Eigenes Listing, \newline Datei: Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart} 
+
+  \label{lst:Schritt1ErgebnisWirdVerglichen}
+
+\end{listing}
+
