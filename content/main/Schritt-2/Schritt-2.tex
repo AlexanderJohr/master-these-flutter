@@ -1,29 +1,13 @@
-\begin{listing}[htbp]
-    \begin{minted}[firstnumber=129, highlightlines={1,2-3,5-10,129-132}]{dart}
-await tabSelectionCard(foerderklasseChoices);
-await tabOption(FoerderklasseChoice.aukm_ohne_vns, tabConfirm: true);
 
-await tabSelectionCard(kategorieChoices);
-await tabOption(KategorieChoice.extens, tabConfirm: true);
 
-await tabSelectionCard(zielflaecheChoices);
-await tabOption(ZielflaecheChoice.al, tabConfirm: true);
-
-await tabSelectionCard(zieleinheitChoices);
-await tabOption(ZieleinheitChoice.ha, tabConfirm: true);
-
-await tabSelectionCard(hauptzielsetzungLandChoices);
-await tabOption(ZielsetzungLandChoice.biodiv, tabConfirm: true);
-
-var saveMassnahmeButton = find.byTooltip(saveMassnahmeTooltip);
-await tester.tap(saveMassnahmeButton);
-await tester.pumpAndSettle(durationAfterEachStep);
-\end{minted}
-
-\caption[Schritt 2 XXXXX]{XXXXX, Quelle: Eigenes Listing, \newline Datei: Quellcode/Schritt-2/conditional_form/integration_test/app_test.dart} 
+\begin{listing}[h]
   
+    \inputminted[firstline=127, lastline=144, highlightlines={1,2-3,5-10,129-142}] {dart}
+    {Quellcode/Schritt-2/conditional_form/integration_test/app_test.dart}
+  
+    \caption[Schritt 2 Ergebnis wird verglichen]{Der Button zum Speichern wird ausgelöst, Quelle: Eigenes Listing, \newline Datei: Quellcode/Schritt-2/conditional_form/integration_test/app_test.dart} 
+  
+    \label{lst:Schritt2}
+  
+  \end{listing}
  
-\label{lst:Schritt2XXXXX}
-
-\end{listing}
-

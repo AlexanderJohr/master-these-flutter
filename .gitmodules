@@ -1,4 +1,12 @@
-[submodule "conditional-form"]
+[submodule "schritt-1"]
 	path = .\\Quellcode\\Schritt-1
 	url = https://github.com/AlexanderJohr/conditional-form.git
 	branch = schritt-1
+[submodule "schritt-2"]
+	path = .\\Quellcode\\Schritt-2
+	url = https://github.com/AlexanderJohr/conditional-form.git
+	branch = schritt-2
+[submodule "schritt-3"]
+	path = .\\Quellcode\\Schritt-3
+	url = https://github.com/AlexanderJohr/conditional-form.git
+	branch = schritt-3
