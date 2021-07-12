@@ -18,16 +18,19 @@
 % Dokument hinterlegt mittels \begin{figure}[H]   
 \usepackage{float}
 
+% Ändere Highlight Color
+\usepackage{color}
+\definecolor{insertedCode}{RGB}{190, 230, 190} 
+
 % Syntax Highlighting 
 \usepackage{minted}
-% Lösche rote Rahmen in minted Quelltext
+% Lösche rote Rahmen in minted Quelltext und nutze das Visual Studio Theme
 \usemintedstyle{vs}
-\usepackage{minted}
-\setminted{autogobble=true, fontsize=\footnotesize, baselinestretch=1.0, frame=lines, mathescape, linenos, numbersep=5pt, framesep=2mm, breaklines, breakafter=_@|.}
-%\setminted[python]{python3=true, tabsize=4}
-%\usemintedstyle{trac}
+\setminted{autogobble=true, fontsize=\footnotesize, baselinestretch=1.0, frame=lines, mathescape, linenos, numbersep=5pt, framesep=2mm, breaklines, highlightcolor=insertedCode, breakafter=_@|.}
 \renewcommand{\listingscaption}{Code Snippet}
+% Veringere Abstand zum Untertitel
 \AtEndEnvironment{listing}{\vspace{-14pt}} % <-
+
 
 
 \usepackage[autostyle,german=quotes]{csquotes}
