@@ -5,14 +5,14 @@ Im ersten Schritt soll die Formular-Anwendung  in ihrer Grundstruktur entwickelt
 %Dort ist auch zu sehen, dass die Anwendung ohne Anpassungen zunächst einmal im sogenannten Material Design\footnoteI{Material Design umfasst eine Reihe von Prinzipien zur Auszeichnung von Benutzeroberflächen. Das ist Design-System wurde von Google Inc. entwickelt.  Der Name leitet sich daher ab, dass Objekte mit der Nachahmung physikalischer Eigenschaften - wie etwa dem Werfen eines Schattens - den Eindruck von tatsächlichen Materialien erwecken. \footnote{\cite{MaterialDesignIntroduction}}} gestylt ist.
 \begin{figure}[H]
 	\centering
-    \includegraphics[width=1.0\textwidth]{content/main/Schritt-1/Übersicht.png}
+    \includegraphics[width=1.0\textwidth]{Inhalt/Hauptteil/Implementierung/Schritt-1/Übersicht.png}
 	\caption[Schritt 1 Übersicht]{Der Übersicht-Bildschirm zeigt in  Schritt 1 zunächst nur die Maßnahmen mit ihrem Titel und Bearbeitungsdatum in den Kategorien \enquote{Abgeschlossen} und \enquote{In Bearbeitung}. Quelle: Eigene Abbildung}
 	\label{fig:Schritt1Uebersicht}
 \end{figure} 
 Die Auflistung der Maßnahmen erfolgt in den Kategorien \enquote{In Bearbeitung} und \enquote{Abgeschlossen}. Innerhalb dieser Rubriken werden die Maßnahmen in einer Tabelle angezeigt. Mit einem Klick auf den Button unten rechts im Bild wird der Benutzer auf die zweite Ansicht weitergeleitet: die Eingabemaske. Sie ist in Abbildung \ref{fig:Schritt1Eingabemaske} zu sehen.
 \begin{figure}[H]
 	\centering
-    \includegraphics[width=1.0\textwidth]{content/main/Schritt-1/Eingabemaske.png}
+    \includegraphics[width=1.0\textwidth]{Inhalt/Hauptteil/Implementierung/Schritt-1/Eingabemaske.png}
 	\caption[Schritt 1 Eingabemaske]{Die Eingabemaske zeigt im Schritt 1 eine Karte zum Selektieren des Status und ein Eingabefeld für den Titel. Quelle: Eigene Abbildung}
 	\label{fig:Schritt1Eingabemaske}
 \end{figure} 
@@ -20,7 +20,7 @@ Sie ermöglicht die Eingabe des Maßnahmen-Titels über ein simples Eingabefeld.
 \ref{fig:Schritt1Uebersicht}
 \begin{figure}[H]
 	\centering
-    \includegraphics[width=1.0\textwidth]{content/main/Schritt-1/Status Auswahl.png}
+    \includegraphics[width=1.0\textwidth]{Inhalt/Hauptteil/Implementierung/Schritt-1/Status Auswahl.png}
 	\caption[Schritt 1 Selektions-Bildschirm für Status]{Der Selektions-Bildschirm für das Feld Status erlaubt die Auswahl der Optionen \enquote{in Bearbeitung} und \enquote{abgeschlossen}. Quelle: Eigene Abbildung}
 	\label{fig:Schritt1SelektionsBildschirmStatus}
 \end{figure}
@@ -44,17 +44,17 @@ Sie ermöglicht die Eingabe des Maßnahmen-Titels über ein simples Eingabefeld.
 \end{listing} 
 
 \begin{listing}[h]
-  \inputminted[firstline=21, 33] {dart}
+  \inputminted[firstline=13] {dart}
   {Quellcode/Schritt-1/conditional_form/lib/choices/choices.dart}
 \caption[Schritt 1 Die Menge letzterStatusChoices]{Die Menge letzterStatusChoices, Quelle: Eigenes Listing, \newline Datei: Quellcode/Schritt-1/conditional_form/lib/choices/choices.dart}
-\label{lst:Schritt1KlasseLetzterStatus}
+\label{lst:Schritt1DieMengeLetzterStatusChoices}
 \end{listing} 
 
 \begin{listing}[h]
-  \inputminted[firstline=9] {dart}
+  \inputminted[firstline=10] {dart}
   {Quellcode/Schritt-1/conditional_form/lib/choices/base/choice.dart}
-\caption[Schritt 1 Die nicht modifizierbare Menge Choice]{Die Klasse Choice, Quelle: Eigenes Listing, \newline Datei: Quellcode/Schritt-1/conditional_form/lib/choices/base/choice.dart}
-\label{lst:Schritt1KlasseChoice}
+\caption[Schritt 1 Klasse Choices]{Die Klasse Choices, Quelle: Eigenes Listing, \newline Datei: Quellcode/Schritt-1/conditional_form/lib/choices/base/choice.dart}
+\label{lst:Schritt1KlasseChoices}
 \end{listing} 
 
 \begin{listing}[h]
@@ -390,72 +390,99 @@ return SingleChildScrollView(
 
 \begin{listing}[htbp]
     \begin{minted}[firstnumber=10]{dart}
-const saveMassnahmeTooltip = "Validiere und speichere Massnahme";
+      const saveMassnahmeTooltip = "Validiere und speichere Massnahme";
 
-class MassnahmenDetailScreen extends StatelessWidget {
-  static const routeName = '/massnahmen-detail';
-
-  const MassnahmenDetailScreen({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final vm = Provider.of<MassnahmenFormViewModel>(context, listen: false);
-
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text('Maßnahmen Detail'),
-        ),
-        body: WillPopScope(
-          onWillPop: () => saveRecordAndGoBackToOverviewScreen(context),
-          child: Stack(
-            children: [
-              SingleChildScrollView(
-                child: Center(
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(...),
-                    ),
-                  ),
-                ),
+      class MassnahmenDetailScreen extends StatelessWidget {
+        static const routeName = '/massnahmen-detail';
+      
+        const MassnahmenDetailScreen({Key? key}) : super(key: key);
+      
+        @override
+        Widget build(BuildContext context) {
+          final vm = Provider.of<MassnahmenFormViewModel>(context, listen: false);
+          final massnahmenPool = Provider.of<MassnahmenPool>(context, listen: false);
+      
+          Future<bool> saveRecordAndGoBackToOverviewScreen() {...}
+      
+          Widget createMassnahmenTitelTextFormField(MassnahmenFormViewModel vm) {...}
+      
+          return Scaffold(
+              appBar: AppBar(
+                title: const Text('Maßnahmen Detail'),
               ),
-              Align(
-                alignment: Alignment.bottomRight,
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      FloatingActionButton(
-                        tooltip: saveMassnahmeTooltip,
-                        //if heroTag isn't set, then there can only be one [FloatingActionButton] per route
-                        heroTag: 'save_floating_action_button',
-                        child: const Icon(Icons.check, color: Colors.white),
-                        onPressed: () =>
-                            saveRecordAndGoBackToOverviewScreen(context),
-                      )
-                    ],
-                  ),
+              body: WillPopScope(
+                onWillPop: () => saveRecordAndGoBackToOverviewScreen(),
+                child: Stack(
+                  children: [
+                    SingleChildScrollView(
+                      child: Center(
+                        child: Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(...),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.bottomRight,
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            FloatingActionButton(
+                              tooltip: saveMassnahmeTooltip,
+                              heroTag: 'save_floating_action_button',
+                              child: const Icon(Icons.check, color: Colors.white),
+                              onPressed: () =>
+                                  saveRecordAndGoBackToOverviewScreen(),
+                            )
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
                 ),
-              )
-            ],
-          ),
-        ));
-  }
-}
+              ));
+        }
+      }
 \end{minted}
-\caption[Schritt 1 Klasse MassnahmenDetailScreen Struktur]{Die Struktur des Bildschirms MassnahmenDetailScreen, Quelle: Eigenes Listing, \newline Datei: Quellcode/Schritt-1/conditional_form/lib/\newline screens/massnahmen_detail/massnahmen_detail.dart}
+\caption[Schritt 1 Klasse MassnahmenDetailScreen Struktur]{Die Struktur des Bildschirms MassnahmenDetailScreen, Quelle: Eigenes Listing, Datei: Quellcode/Schritt-1/conditional_form/lib/\newline screens/massnahmen_detail/massnahmen_detail.dart}
 \label{lst:Schritt1KlasseMassnahmenDetailScreenStruktur}
 \end{listing}
 
+
 \begin{listing}[h]
 
-  \inputminted[firstline=34, lastline=52] {dart}
+  \inputminted[firstline=65, lastline=83] {dart}
   {Quellcode/Schritt-1/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
 
   \caption[Schritt 1 Ausgabe der Formularfelder]{Die Ausgabe der Formularfelder, Quelle: Eigenes Listing, \newline Datei: Quellcode/Schritt-1/conditional_form/lib/\newline screens/massnahmen_detail/massnahmen_detail.dart} 
 
   \label{lst:Schritt1AusgabeDerFormularfelder}
+
+\end{listing} 
+
+\begin{listing}[h]
+
+  \inputminted[firstline=34, lastline=50] {dart}
+  {Quellcode/Schritt-1/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
+
+  \caption[Schritt 1 Die Funktion createMassnahmenTitelTextFormField]{Die Funktion createMassnahmenTitelTextFormField, Quelle: Eigenes Listing, \newline Datei: Quellcode/Schritt-1/conditional_form/lib/\newline screens/massnahmen_detail/massnahmen_detail.dart} 
+
+  \label{lst:Schritt1DieFunktionCreateMassnahmenTitelTextFormField}
+
+\end{listing} 
+
+\begin{listing}[h]
+
+  \inputminted[firstline=22, lastline=32] {dart}
+  {Quellcode/Schritt-1/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
+
+  \caption[Schritt 1 Die Funktion saveRecordAndGoBackToOverviewScreen]{Die Funktion saveRecordAndGoBackToOverviewScreen, Quelle: Eigenes Listing, \newline Datei: Quellcode/Schritt-1/conditional_form/lib/\newline screens/massnahmen_detail/massnahmen_detail.dart} 
+
+  \label{lst:Schritt1SaveRecordAndGoBackToOverviewScreen}
 
 \end{listing} 
 

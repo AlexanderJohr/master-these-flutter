@@ -30,6 +30,16 @@
 \renewcommand{\listingscaption}{Code Snippet}
 % Veringere Abstand zum Untertitel
 \AtEndEnvironment{listing}{\vspace{-14pt}} % <-
+% Bei Syntaxfehler keine roten vierecke darum zeichnen
+% https://tex.stackexchange.com/questions/343494/minted-red-box-around-greek-characters 
+
+
+\usepackage{etoolbox}
+
+\makeatletter
+\AtBeginEnvironment{minted}{\dontdofcolorbox}
+\def\dontdofcolorbox{\renewcommand\fcolorbox[4][]{##4}}
+\makeatother
 
 
 
