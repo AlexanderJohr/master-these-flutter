@@ -10,3 +10,7 @@
 	path = .\\Quellcode\\Schritt-3
 	url = https://github.com/AlexanderJohr/conditional-form.git
 	branch = schritt-3
+[submodule "example-form-in-flutter"]
+	path = .\\Quellcode\\Vergleich\\form-in-flutter
+	url = https://github.com/AlexanderJohr/conditional-form.git
+	branch = form-in-flutter
