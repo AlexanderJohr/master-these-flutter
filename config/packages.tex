@@ -127,3 +127,36 @@
 % fußnoten nacheinander mit Kommas
 % \footnote{Einz}\footnote{Zwei}
 \usepackage[multiple]{footmisc}
+
+
+
+ % https://tex.stackexchange.com/questions/50654/how-to-allow-line-breaks-after-forward-slashes-in-context?rq=1
+% enables a break point after /, +, (, ) and -
+\usepackage{url}
+
+
+
+\newenvironment{alexlisting}[6]
+{
+    \begin{listing}[h]
+        \inputminted[firstline=#4, lastline=#5, highlightlines={#6}] {dart} {#3}
+
+        \caption[#1 #2]
+        {#2, Quelle: Eigenes Listing, Datei: \url{#3}}
+        }
+        {
+    \end{listing}
+}
+
+
+\newenvironment{alexlistingzwei}[4]
+{
+    \begin{listing}[h]
+        \inputminted[#4] {dart} {#3}
+
+        \caption[#1 #2]
+        {#2, Quelle: Eigenes Listing, Datei: \url{#3}}
+        }
+        {
+    \end{listing}
+}
