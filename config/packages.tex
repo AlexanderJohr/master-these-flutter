@@ -136,22 +136,12 @@
 
 
 
-\newenvironment{alexlisting}[6]
+% Code Snippet -> Listing
+\renewcommand{\listingscaption}{Listing}
+% Eigener Befehl für Listings
+\newenvironment{alexlisting}[4]
 {
-    \begin{listing}[h]
-        \inputminted[firstline=#4, lastline=#5, highlightlines={#6}] {dart} {#3}
-
-        \caption[#1 #2]
-        {#2, Quelle: Eigenes Listing, Datei: \url{#3}}
-        }
-        {
-    \end{listing}
-}
-
-
-\newenvironment{alexlistingzwei}[4]
-{
-    \begin{listing}[h]
+    \begin{listing}[ht]
         \inputminted[#4] {dart} {#3}
 
         \caption[#1 #2]
@@ -160,3 +150,34 @@
         {
     \end{listing}
 }
+
+% Eigener Befehl für Abbbildungsreferenz
+\newcommand{\Abb}[1]{(Abb. #1)}
+
+% Eigener Befehl für Listingreferenz
+\newcommand{\Lst}[1]{(Listing. #1)}
+
+% Eigener Befehl für Zeilenreferenz
+\newcommand{\Z}[1]{(Z. #1)}
+
+% Eigener Befehl für inline Code
+\newcommand{\IC}[1]{\mintinline{dart}{#1}}
+
+\newcommand{\DartSpec}[1]{\footcite[Vgl.][S. #1]{DartProgrammingLanguageSpecification5thedition}}
+
+
+% Abstand zwischen itemize Punkten verringern
+% https://stackoverflow.com/questions/2180567/change-parskip-only-inside-enumerate-itemize-environment
+
+\makeatletter
+
+\def\@listi{%
+  % default settings for base LaTeX classes at 10pt:
+  \parsep 4pt plus 2pt minus 1pt
+  \topsep 8pt plus 2pt minus 4pt
+  \itemsep 4pt plus 2pt minus 1pt
+  % your settings:
+  \parskip 0
+}
+
+\makeatother
