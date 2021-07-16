@@ -20,7 +20,7 @@
 
 % Ändere Highlight Color
 \usepackage{color}
-\definecolor{insertedCode}{RGB}{190, 230, 190} 
+\definecolor{insertedCode}{RGB}{190, 230, 190}
 
 % Syntax Highlighting 
 \usepackage{minted}
@@ -29,7 +29,7 @@
 \setminted{autogobble=true, fontsize=\footnotesize, baselinestretch=1.0, frame=lines, mathescape, linenos, numbersep=5pt, framesep=2mm, breaklines, highlightcolor=insertedCode, breakafter=_@|.}
 \renewcommand{\listingscaption}{Code Snippet}
 % Veringere Abstand zum Untertitel
-\AtEndEnvironment{listing}{\vspace{-14pt}} % <-
+%\AtEndEnvironment{listing}{\vspace{-14pt}} % <-
 % Bei Syntaxfehler keine roten vierecke darum zeichnen
 % https://tex.stackexchange.com/questions/343494/minted-red-box-around-greek-characters 
 
@@ -79,7 +79,7 @@
 \hypersetup{
   colorlinks=true,
   linkcolor=black, % Setz die Farbe von Links im 
-                   % Inhaltsverzeichnis zurück auf schwarz
+  % Inhaltsverzeichnis zurück auf schwarz
   citecolor=black, % Farbe von Literaturlinks = schwarz
   urlcolor=blue    % Farbe von URLs = blau     
 }
@@ -89,7 +89,7 @@
 \usepackage{nameref}
 
 % Einfügen von PDFs
-\usepackage{pdfpages} 
+\usepackage{pdfpages}
 
 % Seitenränder
 \usepackage{geometry}
@@ -100,22 +100,22 @@
 \parindent0ex		% Absatzeinzug
 
 % Package zum hinzufügen eines Glossars
-\usepackage{glossaries}  
-\setacronymstyle{long-short}  
-\newacronym{eler}{ELER}{Europäischer Landwirtschaftsfond für die Entwicklung des ländlichen Raum}  
+\usepackage{glossaries}
+\setacronymstyle{long-short}
+\newacronym{eler}{ELER}{Europäischer Landwirtschaftsfond für die Entwicklung des ländlichen Raum}
 
 % Auf gleiche footnote erneut verweisen mit cleveref
 % Achtung: Wenn cleveref nicht zum ende geladen wird gibt es evtl. die Fehlermeldung: Package cleveref Error: cleveref must be loaded after amsmath!.
 \usepackage{cleveref}
 % Auf erneut verweisen
-\crefformat{footnote}{#2\footnotemark[#1]#3} 
+\crefformat{footnote}{#2\footnotemark[#1]#3}
 
 % Abbildungsunterschrift anpassen
 % https://tex.stackexchange.com/questions/86120/font-size-of-figure-caption-header/86121
 \usepackage[font=footnotesize,labelfont=bf]{caption}
 % Abstand anpassen
 % https://tex.stackexchange.com/questions/45990/how-can-i-modify-vertical-space-between-figure-and-caption
-\setlength{\abovecaptionskip}{10pt plus 3pt minus 2pt} 
+\setlength{\abovecaptionskip}{10pt plus 3pt minus 2pt}
 
 % Nutze unterschiedliche fußnoten (1,2,3 und a,b,c)
 \usepackage[para]{manyfoot}
@@ -130,10 +130,12 @@
 
 
 
- % https://tex.stackexchange.com/questions/50654/how-to-allow-line-breaks-after-forward-slashes-in-context?rq=1
+% https://tex.stackexchange.com/questions/50654/how-to-allow-line-breaks-after-forward-slashes-in-context?rq=1
 % enables a break point after /, +, (, ) and -
 \usepackage{url}
 
+
+\newcommand{\alexlistingcaption}[3]{\caption[#1 #2]{#2, Quelle: Eigenes Listing, Datei: \url{#3}}}
 
 
 % Code Snippet -> Listing
@@ -141,14 +143,13 @@
 % Eigener Befehl für Listings
 \newenvironment{alexlisting}[4]
 {
-    \begin{listing}[ht]
-        \inputminted[#4] {dart} {#3}
+  \begin{listing}[ht]
+    \inputminted[#4] {dart} {#3}
 
-        \caption[#1 #2]
-        {#2, Quelle: Eigenes Listing, Datei: \url{#3}}
-        }
-        {
-    \end{listing}
+    \alexlistingcaption{#1}{#2}{#3}
+    }
+    {
+  \end{listing}
 }
 
 % Eigener Befehl für Abbbildungsreferenz
@@ -161,11 +162,12 @@
 \newcommand{\Z}[1]{(Z. #1)}
 
 % Eigener Befehl für inline Code
-\newcommand{\IC}[1]{\mintinline{dart}{#1}}
+\newcommand{\IC}[1]{\mintinline[breaklines, breakafter=_/.]{dart}{#1}}
+\newcommand{\C}[1]{\mintinline{dart}{#1}}
+
 
 \newcommand{\DartSpec}[1]{\footcite[Vgl.][S. #1]{DartProgrammingLanguageSpecification5thedition}}
-
-
+\newcommand{\JavaSpec}[1]{\footcite[Vgl.][S. #1]{TheJavaLanguageSpecificationJavaSE16Edition}}
 % Abstand zwischen itemize Punkten verringern
 % https://stackoverflow.com/questions/2180567/change-parskip-only-inside-enumerate-itemize-environment
 
