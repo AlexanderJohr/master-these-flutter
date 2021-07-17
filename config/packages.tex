@@ -21,6 +21,10 @@
 % Ändere Highlight Color
 \usepackage{color}
 \definecolor{insertedCode}{RGB}{190, 230, 190}
+\definecolor{inlineCodeColor}{RGB}{244, 246, 248}
+\definecolor{highPrioColor}{RGB}{255, 0, 0}
+\definecolor{mediumPrioColor}{RGB}{0, 255, 255}
+
 
 % Syntax Highlighting 
 \usepackage{minted}
@@ -142,14 +146,14 @@
 \renewcommand{\listingscaption}{Listing}
 % Eigener Befehl für Listings
 \newenvironment{alexlisting}[4]
-{
-  \begin{listing}[ht]
-    \inputminted[#4] {dart} {#3}
-
-    \alexlistingcaption{#1}{#2}{#3}
-    }
-    {
-  \end{listing}
+{%
+  \begin{listing}[ht]%
+    \inputminted[#4]{dart}{#3}%
+    \vspace{-18pt}
+    \alexlistingcaption{#1}{#2}{#3}%
+    }%
+    {%
+  \end{listing}%
 }
 
 % Eigener Befehl für Abbbildungsreferenz
@@ -161,15 +165,24 @@
 % Eigener Befehl für Zeilenreferenz
 \newcommand{\Z}[1]{(Z. #1)}
 
+% Eigener Befehl für Listingreferenz mit Zeilenreferenz
+\newcommand{\LstZ}[2]{(Listing. #1 Z. #2)}
+
+
 % Eigener Befehl für inline Code
-\newcommand{\IC}[1]{\mintinline[breaklines, breakafter=_/.]{dart}{#1}}
+\newcommand{\IC}[1]{\mintinline[breaklines, breakafter=_/.,bgcolor=inlineCodeColor]{dart}{#1}}
 \newcommand{\C}[1]{\mintinline{dart}{#1}}
+
+\newcommand{\HP}[1]{\mintinline[breaklines, breakafter=_/.,bgcolor=highPrioColor]{dart}{#1}}
+\newcommand{\MP}[1]{\mintinline[breaklines, breakafter=_/.,bgcolor=mediumPrioColor]{dart}{#1}}
 
 
 \newcommand{\DartSpec}[1]{\footcite[Vgl.][S. #1]{DartProgrammingLanguageSpecification5thedition}}
 \newcommand{\JavaSpec}[1]{\footcite[Vgl.][S. #1]{TheJavaLanguageSpecificationJavaSE16Edition}}
 % Abstand zwischen itemize Punkten verringern
 % https://stackoverflow.com/questions/2180567/change-parskip-only-inside-enumerate-itemize-environment
+
+
 
 \makeatletter
 
