@@ -1,4 +1,4 @@
-\subsection{Schritt 1 - Formular in Grundstruktur erstellen}
+\section{Schritt 1 - Formular in Grundstruktur erstellen}
 
 Im ersten Schritt soll die Formular-Anwendung in ihrer Grundstruktur entwickelt werden.  Das beinhaltet alle drei Oberflächen, welche in den darauf folgenden Schritten lediglich erweitert werden.  Das Formular erhält noch keine  Validierung. Somit sind alle Eingaben oder nicht kompatible Selektionen erlaubt.Die erste Ansicht, welche der Benutzer sieht, soll die Übersicht der bereits eingetragenen Maßnahmen sein \Abb{\ref{fig:Schritt1Uebersicht}}.
 
@@ -29,7 +29,7 @@ Sie ermöglicht die Eingabe des Maßnahmen-Titels über ein simples Eingabefeld.
 % TODO: rausgekürzt, doch wieder rein nehmen?
 %\footnoteI{Ein floating action button (FAB) ist im Material Design ein Button, der über der Benutzeroberfläche schwebt und daher dem Benutzer leicht ins Auge fällt. Aus diesem Grund wird er für primäre Aktionen genutzt - in diesem Fall dem Erstellen einer neuen Maßnahme. \footnote{\cite{MaterialDesignFloatingActionButton}}} ist in der unteren rechten Ecke der Ansicht zu finden. Mit einem Klick darauf wird der Benutzer auf die zweite Ansicht weitergeleitet: die Eingabemaske. 
 
-\subsubsection{Auswahloptionen hinzufügen}
+\subsection{Auswahloptionen hinzufügen}
 
 Dart verfügt – anders als beispielsweise Java\footcite[Vgl.][S. 321]{TheJavaLanguageSpecificationJavaSE16Edition} – nicht über Aufzählungstypen mit zusätzlichen Eigenschaften. Das Schlüsselwort \mintinline{dart}{enum} in Dart erlaubt lediglich die Auflistung konstanter Symbole\footcite[Vgl.][S. 74f.]{DartProgrammingLanguageSpecification5thedition}. Für die Auswahl Optionen ist es jedoch notwendig, dass es zwei Eigenschaften gibt:
 \begin{itemize}
@@ -121,7 +121,8 @@ Die Methode fromAbbreviation Soll für die Deserialisierung genutzt werden.  sol
   \label{lst:Schritt1KlasseChoices}
 \end{alexlisting}
 
-\subsubsection{Serialisierung einer Maßnahme}
+\clearpage
+\subsection{Serialisierung einer Maßnahme}
 
 Damit die Daten angezeigt und verändert werden können, müssen sie zunächst serialisierbar sein, sodass sie auf einen Datenträger geschrieben und von dort auch wieder gelesen werden können.
 % todo: Serialisierung erklären
@@ -132,7 +133,7 @@ Die zwei bekanntesten Bibliotheken zum Serialisieren in Dart heißen json_serial
 Beide haben gemeinsam, dass sie Quellcode generieren, welcher die Umwandlung der Objekte in JSON übernimmt.
 % todo: json_serializable erklären
 % todo: tree shaking erklären https://flutter.dev/docs/development/data-and-backend/json
-built_value bietet im Gegensatz zu JSON Serializable jedoch die Möglichkeit unveränderbare Werte-Typen -  sogenannte immutable value types -  zu erstellen. Da diese  unveränderbaren Werte noch bei der Erstellung des sogenannten ViewModels -  Mehr dazu im Kapitel XXX - hilfreich werden, wurde sich für diese Bibliothek entschieden.
+built_value bietet im Gegensatz zu JSON Serializable jedoch die Möglichkeit unveränderbare Werte-Typen -  sogenannte immutable value types -  zu erstellen. Da diese  unveränderbaren Werte noch bei der Erstellung des sogenannten ViewModels -  Mehr dazu im Kapitel \HP{Einfügen} - hilfreich werden, wurde sich für diese Bibliothek entschieden.
 % todo high: Kapitel Referenz einfügen
 
 Ein Werte-Typ für built_value erfordert etwas Boilerplate-Code,  um den generierten Quellcode mit der selbstgeschriebenen Klasse zu verknüpfen.  
@@ -230,7 +231,8 @@ Bevor die Werte-Typen serialisiert werden können, muss built_value jedoch noch 
 % Korrigieren (Unten)
 Wird nun der Befehl  \IC{flutter pub run build_runner build} ausgeführt, so wird der Quellcode generiert und die Werte-Typen können für die Serialisierung genutzt werden.
 
-\subsubsection{Test der Serialisierung einer Maßnahme}
+\clearpage
+\subsection{Test der Serialisierung einer Maßnahme}
 
 Das Ergebnis der Serialisierung wird im dazugehörigen Unit-Test ersichtlich \Lst{\ref{lst:SerialisierungEinerMassnahmeUnittest}}.
 In Zeile 8 wird ein Objekt der Klasse \IC{Massnahme} instanzieiert. Anders als bei gewöhnlichen Datentypen lassen sich bei diesem unveränderlichen Datentyp keine Attribute nach der Erstellung anpassen. Die einzige Möglichkeit besteht darin, ein neues Objekt  mit dem gewünschten Attributwert zu erstellen und die restlichen Werte des alten Objektes zu übernehmen. Dies ist mit Hilfe des sogenannten Builder-Entwurfsmuster es möglich, welches in built_value Anwendung findet. 
@@ -277,8 +279,8 @@ Ganz ähnlich wie bei der Serialisierung wird nun mit dem Befehl \IC{serializers
 
 Gibt man in der Kommandozeile den Befehl \IC{flutter} \IC{test} \IC{test}\IC{/data_model}\IC{/massnahme _test.dart} ein, so werden die Tests in der Testdatei ausgeführt. Die Ausgabe \IC{00:01 +2: All tests passed!} teilt mit, dass beide Tests ausgeführt und beide Ergebnisse mit den verglichenen Werten übereinstimmten.
 
-
-\subsubsection{Serialisierung der Maßnahmenliste}
+\clearpage
+\subsection{Serialisierung der Maßnahmenliste}
 
 Damit alle Maßnahmen - statt nur einer einzigen - in einer Datei zusammengefasst werden können, müssen die Maßnahmen zunächst zu einer Menge zusammengefasst werden, die ebenfalls serialisierbar ist.
 Der Werte-Typ Storage ist dafür vorgesehen \Lst{\ref{lst:Schritt1WerteTypStorage}}.
@@ -295,7 +297,8 @@ Die Übergabe des Typarguments \IC{<Massnahme>} gewährleistet, dass keine ander
 
 Der Befehl  \IC{flutter pub run build_runner build} stößt erneut die Quellcodegenerierung für den Werte-Typen \IC{Storage} an. 
 
-\subsubsection{Test der Serialisierung der Maßnahmenliste}
+\clearpage
+\subsection{Test der Serialisierung der Maßnahmenliste}
 
 Nun soll noch überprüft werden, ob die Menge von Maßnahmen mit genau einer eingetragenen Maßnahme korrekt serialisiert. Auch das wird von einem Unit Test überprüft \Lst{\ref{lst:Schritt1MaßnahmenSerialisierenOhneFehlerUnitTest}}. In Zeile 8 wird das leere Objekt \IC{storage} erstellt. In Zeile 9 wird es dann wiederverwendet, um aufbauend auf der Kopie Änderungen mithilfe der \IC{rebuild}-Methode durchzuführen.
 
@@ -319,14 +322,27 @@ Der \IC{SetBuilder} wiederum erlaubt es, Änderungen am Set vorzunehmen und stel
 Diesmal konstruiert die Methode \IC{serializers.serializeWith} mit dem Serialisierer \IC{Storage.serializer} ein weiteres JSON-Object \Z{12}. Genau wie zuvor wird ein Json-Dokument vorbereitet \Z{14-30}, welches der \IC{Matcher} \IC{equals} gegen das serialisierte Dokument des soeben konstruierten Objects \IC{storage} vergleicht \Z{31}. Das Json-Dokument unterscheidet sich nur darin, dass es einen Knoten namens \IC{'massnahmen'} enthält, der als Wert eine Liste hat. Die Liste hat nur ein Element.  Weil dieses Mal das Objeckt des Typs \IC{Massnahme} nicht direkt zugreifbar ist, muss es zunächst über die Liste der Maßnahmen aus dem \IC{storage}-Object abgerufen werden. Das ist mit dem Befehl \IC{first} möglich, der das erste Objekt - und in diesem Fall einzige Objekt - der Kollektion zurückgibt \Z{17, 21}. Darüber kann erneut die \IC{guid}  und  das \IC{letztesBearbeitungsDatum} abgerufen werden.
 
 Ein weiterer Unit-Test überprüft, ob auch die Deserialisierung eines \IC{storage}-Objects erfolgreich ist. Er ist in Listing {\ref{lst:Schritt1MaßnahmenDeserialisierenOhneFehlerUnitTest} im Anhang \ref{appendix:Schritt1Anhang} zu finden.
+Auch dieser Test ist der Deserialisierung des Objektes des Typs \IC{Massnahme} sehr ähnlich. Er unterscheidet sich nur darin, dass das \IC{Massnahme}-Objekt in der Liste \IC{massnahmen} des \IC{storage}-Objektes  enthalten ist.
 
+\clearpage
+\subsection{Der Haupteinstiegspunkt}
 
+\paragraph{Model View ViewModel} 
+\HP{Füllen}
 
+\paragraph{Dependency Inection}
+\HP{Füllen}
 
+\begin{alexlisting}{Schritt 1}{Der Haupteinstiegspunkt}
+  {Quellcode/Schritt-1/conditional_form/lib/main.dart}
+  {firstline=18}
+  \label{lst:Schritt1DerHaupteinstiegspunkt}
+\end{alexlisting}
 
-
-
-
+\clearpage
+\subsection{Abhängigkeiten zum verwalten der Maßnahmen}
+\paragraph{Model}
+\HP{Füllen}
 
 \begin{alexlisting}{Schritt 1}{Die Klasse MassnahmenJsonFile}
   {Quellcode/Schritt-1/conditional_form/lib/persistence/massnahmen_json_file.dart}
@@ -340,15 +356,21 @@ Ein weiterer Unit-Test überprüft, ob auch die Deserialisierung eines \IC{stora
   \label{lst:Schritt1KlasseMassnahmenPool}
 \end{alexlisting}
 
+\clearpage
+\subsection{Die Abhängigkeiten für das ViewModels}
+\paragraph{ViewModel} 
+\HP{Füllen}
 
+\begin{alexlisting}{Schritt 1}{Die Klasse MassnahmenFormViewModel}
+  {Quellcode/Schritt-1/conditional_form/lib/screens/massnahmen_detail/massnahmen_form_view_model.dart}
+  {firstline=5}
+  \label{lst:Schritt1KlasseMassnahmenFormViewModel}
+\end{alexlisting}
 
-
-
-
-
-
-
-
+\clearpage
+\subsection{Übersicht der Maßnahmen}
+\paragraph{Der erste View} 
+\HP{Füllen}
 
 
 
@@ -449,7 +471,6 @@ return SingleChildScrollView(
   \label{lst:Schritt1AusgabeDerFinalenMaßnahmen}
 \end{listing}
 
-
 \begin{listing}[htbp]
   \begin{minted}[firstnumber=48]{dart}
 .where((m) =>
@@ -459,27 +480,19 @@ return SingleChildScrollView(
   \label{lst:Schritt1BedingungDerEntwurfMaßnahmen}
 \end{listing}
 
+\clearpage
+\subsection{Widget MassnahmenTable}
+\paragraph{Der zweite View} 
+
 \begin{alexlisting}{Schritt 1}{Die Klasse MassnahmenTable}
   {Quellcode/Schritt-1/conditional_form/lib/widgets/massnahmen_table.dart}
   {firstline=4}
   \label{lst:Schritt1KlasseMassnahmenTable}
 \end{alexlisting}
 
-
-
-
-
-\begin{alexlisting}{Schritt 1}{Die Klasse MassnahmenFormViewModel}
-  {Quellcode/Schritt-1/conditional_form/lib/screens/massnahmen_detail/massnahmen_form_view_model.dart}
-  {firstline=5}
-  \label{lst:Schritt1KlasseMassnahmenFormViewModel}
-\end{alexlisting}
-
-
-
-
-
-
+\clearpage
+\subsection{Eingabeformular}
+\paragraph{Der zweite View} 
 
 \begin{listing}[htbp]
   \begin{minted}[firstnumber=10]{dart}
@@ -565,10 +578,17 @@ class MassnahmenDetailScreen extends StatelessWidget {
 
 
 
-\begin{alexlisting}{Schritt 1}{Die Funktion createMultipleChoiceSelectionScreen}
+
+\cleardoublepage
+\subsection{Widget SelectionCard}
+
+
+
+
+\begin{alexlisting}{Schritt 1}{Die Klasse SelectionCard}
   {Quellcode/Schritt-1/conditional_form/lib/widgets/selection_card.dart}
-  {firstline=69, lastline=126}
-  \label{lst:Schritt1FunktionCreateMultipleChoiceSelectionScreen}
+  {firstline=7, lastline=31}
+  \label{lst:Schritt1KlasseSelectionCard}
 \end{alexlisting}
 
 \begin{alexlisting}{Schritt 1}{Die Build Methode der SelectionCard}
@@ -577,12 +597,15 @@ class MassnahmenDetailScreen extends StatelessWidget {
   \label{lst:Schritt1BuildMethodeDerSelectionCard}
 \end{alexlisting}
 
-\begin{alexlisting}{Schritt 1}{Die Klasse SelectionCard}
+\begin{alexlisting}{Schritt 1}{Die Funktion createMultipleChoiceSelectionScreen}
   {Quellcode/Schritt-1/conditional_form/lib/widgets/selection_card.dart}
-  {firstline=7, lastline=31}
-  \label{lst:Schritt1KlasseSelectionCard}
+  {firstline=69, lastline=126}
+  \label{lst:Schritt1FunktionCreateMultipleChoiceSelectionScreen}
 \end{alexlisting}
 
+
+\cleardoublepage
+\subsection{Integration Test zum Test der Oberfläche}
 
 \begin{alexlisting}{Schritt 1}{Der Integration Test Driver}
   {Quellcode/Schritt-1/conditional_form/integration_test/driver.dart}
