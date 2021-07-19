@@ -4,28 +4,27 @@ Im ersten Schritt soll die Formular-Anwendung in ihrer Grundstruktur entwickelt 
 
 % TODO: rausgekürzt, doch wieder rein nehmen?
 %Dort ist auch zu sehen, dass die Anwendung ohne Anpassungen zunächst einmal im sogenannten Material Design\footnoteI{Material Design umfasst eine Reihe von Prinzipien zur Auszeichnung von Benutzeroberflächen. Das ist Design-System wurde von Google Inc. entwickelt.  Der Name leitet sich daher ab, dass Objekte mit der Nachahmung physikalischer Eigenschaften - wie etwa dem Werfen eines Schattens - den Eindruck von tatsächlichen Materialien erwecken. \footnote{\cite{MaterialDesignIntroduction}}} gestylt ist.
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=1.0\textwidth]{Inhalt/Hauptteil/Implementierung/Schritt-1/Übersicht.png}
-  \caption[Schritt 1 Übersicht]{Der Übersicht-Bildschirm zeigt in  Schritt 1 zunächst nur die Maßnahmen mit ihrem Titel und Bearbeitungsdatum in den Kategorien \enquote{Abgeschlossen} und \enquote{In Bearbeitung}. Quelle: Eigene Abbildung}
+\begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-1/Übersicht.png}
+	{Schritt 1 Übersicht}
+	{Der Übersicht-Bildschirm zeigt in  Schritt 1 zunächst nur die Maßnahmen mit ihrem Titel und Bearbeitungsdatum in den Kategorien \enquote{Abgeschlossen} und \enquote{In Bearbeitung}}
   \label{fig:Schritt1Uebersicht}
-\end{figure}
+\end{alexfigure}
 Die Auflistung der Maßnahmen erfolgt in den Kategorien \enquote{In Bearbeitung} und \enquote{Abgeschlossen}. Innerhalb dieser Rubriken werden die Maßnahmen in einer Tabelle angezeigt. Mit einem Klick auf den Button unten rechts im Bild wird der Benutzer auf die zweite Ansicht weitergeleitet: die Eingabemaske \Abb{\ref{fig:Schritt1Eingabemaske}}.
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=1.0\textwidth]{Inhalt/Hauptteil/Implementierung/Schritt-1/Eingabemaske.png}
-  \caption[Schritt 1 Eingabemaske]{Die Eingabemaske zeigt im Schritt 1 eine Karte zum Selektieren des Status und ein Eingabefeld für den Titel. Quelle: Eigene Abbildung}
+
+\begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-1/Eingabemaske.png}
+	{Schritt 1 Eingabemaske}
+	{Die Eingabemaske zeigt im Schritt 1 eine Karte zum Selektieren des Status und ein Eingabefeld für den Titel}
   \label{fig:Schritt1Eingabemaske}
-\end{figure}
+\end{alexfigure}
+
 Sie ermöglicht die Eingabe des Maßnahmen-Titels über ein simples Eingabefeld. Darüber hinaus ist die Selektions-Karte für den Status zu sehen. Mit einem Klick auf diese Karte öffnet sich der Selektions-Bildschirm. Er ermöglicht die Auswahl der Auswahloptionen, in diesem Fall die Optionen \enquote{in Bearbeitung} und \enquote{abgeschlossen}
 \Abb{\ref{fig:Schritt1SelektionsBildschirmStatus}}.
 
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=1.0\textwidth]{Inhalt/Hauptteil/Implementierung/Schritt-1/Status Auswahl.png}
-  \caption[Schritt 1 Selektions-Bildschirm für Status]{Der Selektions-Bildschirm für das Feld Status erlaubt die Auswahl der Optionen \enquote{in Bearbeitung} und \enquote{abgeschlossen}. Quelle: Eigene Abbildung}
+\begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-1/Status Auswahl.png}
+	{Schritt 1 Selektions-Bildschirm für Status}
+	{Der Selektions-Bildschirm für das Feld Status erlaubt die Auswahl der Optionen \enquote{in Bearbeitung} und \enquote{abgeschlossen}}
   \label{fig:Schritt1SelektionsBildschirmStatus}
-\end{figure}
+\end{alexfigure}
 
 % TODO: rausgekürzt, doch wieder rein nehmen?
 %\footnoteI{Ein floating action button (FAB) ist im Material Design ein Button, der über der Benutzeroberfläche schwebt und daher dem Benutzer leicht ins Auge fällt. Aus diesem Grund wird er für primäre Aktionen genutzt - in diesem Fall dem Erstellen einer neuen Maßnahme. \footnote{\cite{MaterialDesignFloatingActionButton}}} ist in der unteren rechten Ecke der Ansicht zu finden. Mit einem Klick darauf wird der Benutzer auf die zweite Ansicht weitergeleitet: die Eingabemaske. 
@@ -46,11 +45,15 @@ Das hat den Hintergrund, dass die Abkürzungen weniger Speicherplatz einnehmen u
 
 Die beiden Zustände \enquote{in Bearbeitung} und \enquote{abgeschlossen} werden daher in Listing \ref{Schritt1KlasseLetzterStatus} als statische Klassenvariablen deklariert \Z{6-7}. Die beiden Konstruktor-Aufrufe übergeben dabei als erstes Argument die Abkürzung und als zweites Argument die Beschreibung. Der Konstruktor selbst \Z{9-10} deklariert die beiden Parameter als positionale Parameter.
 
+
+
 \begin{alexlisting}{Schritt 1}{Die Klasse LetzterStatus}
   {Quellcode/Schritt-1/conditional_form/lib/choices/choices.dart}
   {firstline=5, lastline=11}
   \label{lst:Schritt1KlasseLetzterStatus}
 \end{alexlisting}
+
+
 
 \paragraph{Positionale Parameter}
 

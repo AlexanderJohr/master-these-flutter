@@ -156,6 +156,31 @@
   \end{listing}%
 }
 
+% Eigener Befehl für Bilder
+\newenvironment{alexfigure}[4]
+{%
+\begin{figure}[h]
+	\centering
+    \includegraphics[width=1.0\textwidth]{#1}
+	\caption[#2]{#3, Quelle: Eigene Abbildung}
+    }%
+    {%
+  \end{figure}%
+}
+
+% Eigener Befehl für Bilder
+\newenvironment{alexfigurewithnotebook}[5]
+{%
+\begin{figure}[ht]
+	\centering
+    \includegraphics[width=1.0\textwidth]{#1}
+	\caption[#2]{#3, Quelle: Eigene Abbildung, Notebook: \url{#4}, Daten-Quelle: #5}
+    }%
+    {%
+  \end{figure}
+}
+
+
 % Eigener Befehl für Abbbildungsreferenz
 \newcommand{\Abb}[1]{(Abb. #1)}
 
