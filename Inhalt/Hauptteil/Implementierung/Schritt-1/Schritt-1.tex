@@ -5,25 +5,32 @@ Im ersten Schritt soll die Formular-Anwendung in ihrer Grundstruktur entwickelt 
 % TODO: rausgekürzt, doch wieder rein nehmen?
 %Dort ist auch zu sehen, dass die Anwendung ohne Anpassungen zunächst einmal im sogenannten Material Design\footnoteI{Material Design umfasst eine Reihe von Prinzipien zur Auszeichnung von Benutzeroberflächen. Das ist Design-System wurde von Google Inc. entwickelt.  Der Name leitet sich daher ab, dass Objekte mit der Nachahmung physikalischer Eigenschaften - wie etwa dem Werfen eines Schattens - den Eindruck von tatsächlichen Materialien erwecken. \footnote{\cite{MaterialDesignIntroduction}}} gestylt ist.
 \begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-1/Übersicht.png}
-	{Schritt 1 Übersicht}
-	{Der Übersicht-Bildschirm zeigt in  Schritt 1 zunächst nur die Maßnahmen mit ihrem Titel und Bearbeitungsdatum in den Kategorien \enquote{Abgeschlossen} und \enquote{In Bearbeitung}}
+  {Schritt 1 Übersicht}
+  {Der Übersicht-Bildschirm zeigt in  Schritt 1 zunächst nur die Maßnahmen mit ihrem Titel und Bearbeitungsdatum in den Kategorien \enquote{Abgeschlossen} und \enquote{In Bearbeitung}}
+
   \label{fig:Schritt1Uebersicht}
+
 \end{alexfigure}
+
 Die Auflistung der Maßnahmen erfolgt in den Kategorien \enquote{In Bearbeitung} und \enquote{Abgeschlossen}. Innerhalb dieser Rubriken werden die Maßnahmen in einer Tabelle angezeigt. Mit einem Klick auf den Button unten rechts im Bild wird der Benutzer auf die zweite Ansicht weitergeleitet: die Eingabemaske \Abb{\ref{fig:Schritt1Eingabemaske}}.
 
 \begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-1/Eingabemaske.png}
-	{Schritt 1 Eingabemaske}
-	{Die Eingabemaske zeigt im Schritt 1 eine Karte zum Selektieren des Status und ein Eingabefeld für den Titel}
+  {Schritt 1 Eingabemaske}
+  {Die Eingabemaske zeigt im Schritt 1 eine Karte zum Selektieren des Status und ein Eingabefeld für den Titel}
+
   \label{fig:Schritt1Eingabemaske}
+
 \end{alexfigure}
 
 Sie ermöglicht die Eingabe des Maßnahmen-Titels über ein simples Eingabefeld. Darüber hinaus ist die Selektions-Karte für den Status zu sehen. Mit einem Klick auf diese Karte öffnet sich der Selektions-Bildschirm. Er ermöglicht die Auswahl der Auswahloptionen, in diesem Fall die Optionen \enquote{in Bearbeitung} und \enquote{abgeschlossen}
 \Abb{\ref{fig:Schritt1SelektionsBildschirmStatus}}.
 
 \begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-1/Status Auswahl.png}
-	{Schritt 1 Selektions-Bildschirm für Status}
-	{Der Selektions-Bildschirm für das Feld Status erlaubt die Auswahl der Optionen \enquote{in Bearbeitung} und \enquote{abgeschlossen}}
+  {Schritt 1 Selektions-Bildschirm für Status}
+  {Der Selektions-Bildschirm für das Feld Status erlaubt die Auswahl der Optionen \enquote{in Bearbeitung} und \enquote{abgeschlossen}}
+
   \label{fig:Schritt1SelektionsBildschirmStatus}
+
 \end{alexfigure}
 
 % TODO: rausgekürzt, doch wieder rein nehmen?
@@ -79,47 +86,44 @@ Dies erübrigt sowohl die Angabe des Parametertypes mittels \IC{(String abbrevia
   \label{lst:Schritt1DieMengeLetzterStatusChoices}
 \end{alexlisting}
 
-Die Variable \IC{letzterStatusChoices} fasst die beiden statischen Klassenvariablen als eine Kollektion zusammen. Da es sich um eine solche Kollektion handelt, in der jedes Element nur ein einziges Mal vorkommen darf, ist hier von einer Menge zu sprechen. Auffällig hier ist, dass das Schlüsselwort new fehlt. In Dart ist das Schlüsselwort für die Konstruktion von Instanzen optional.  Die Klasse, die zur Konstruktion dieser Menge verwendet wird, ist die selbst erstellte Klasse choices. Über das Typargument LetzterStatus wird erreicht, das ausschließlich Variablen  dieses Typs in der Menge eingefügt werden dürfen. Wird stattdessen eine Variable eingefügt, die weder vom selben Typ, noch von einem Typ, der von letzter Status erbt, so gibt es einen Compilerfehler. Dies dient einzig und allein dem Zweck, dem  Fehler vorzubeugen, dass aus Versehen falsche Optionen in der Menge eingetragen werden. Über den Parameter name ist es möglich dieser Menge die Beschriftung “Status” hinzuzufügen.  Es handelt sich hier um einen  benamten Parameter.
+Die Variable \IC{letzterStatusChoices} fasst die beiden statischen Klassenvariablen als eine Kollektion zusammen. Da es sich um eine solche Kollektion handelt, in der jedes Element nur ein einziges Mal vorkommen darf, ist hier von einer Menge zu sprechen. Auffällig hier ist, dass das Schlüsselwort new fehlt. In Dart ist das Schlüsselwort für die Konstruktion von Instanzen optional.  Die Klasse, die zur Konstruktion dieser Menge verwendet wird, ist die selbst erstellte Klasse choices. Über das Typargument LetzterStatus wird erreicht, das ausschließlich Variablen  dieses Typs in der Menge eingefügt werden dürfen. Wird stattdessen eine Variable eingefügt, die weder vom selben Typ, noch von einem Typ, der von letzter Status erbt, so gibt es einen Compilerfehler. Dies dient einzig und allein dem Zweck, dem  Fehler vorzubeugen, dass aus Versehen falsche Optionen in der Menge eingetragen werden. Über den Parameter name ist es möglich dieser Menge die Beschriftung “Status” hinzuzufügen.  Es handelt sich hier um einen  benannte Parameter.
 
-Listing 4 zeigt die Klasse choices. Sie erbt von UnmodifiableSetView und erlaubt damit die Erstellung  einer eigenen Menge - auch Set genannt. Methoden, die man von einem Set erwartet,  lassen sich somit direkt auf  Instanzen der Klasse Choices aufrufen. Darunter unter anderem die contains Methode,  welche erlaubt, das Vorhandensein eines Objektes im Set zu überprüfen.
-%   todo Referenz contains einfügen
-%    todo Referenz UnmodifiableSetView
-Instanzvariable name -  deklariert in Zeile 11 - wird im Konstruktor in Zeile 16 zugewiesen. Auffällig hierbei ist, dass der Parameter in geschweiften Klammern geschrieben steht und das Schlüsselwort required  vorangestellt ist. Das macht den Parameter zu einem vorgeschriebenen benannten Parameter.
-
-\paragraph{Vorgeschriebene benamte Parameter}
-
-Gewöhnlicher benannte Parameter sind optional. Wird ihnen das Schlüsselwort \IC{required} vorangestellt, so müssen sie gesetz werden, denn sonst gibt es einen Compilerfehler.  An dieser Stelle ist das \IC{required} Schlüsselwort sinnvoll, denn es handelt sich um den Datentyp String der nicht den  wert \IC{null} annehmender. Würde  der Parameter aber optional sein, so wäre es möglich, das programm zu kompilieren, auch wenn bei Aufrufen des Konstruktors kein Argument für den Parameter übergeben wurde. Doch in diesem Fall gäbe es keinen Initialwert für Name und somit müsste der  Instanzvariable null  zugewiesen werden. in der statischen Analyse wird daher sichergestellt, das Instanzvariablen durch benannte Parameter nur dann initialisiert werden dürfen, wenn dieser durch required  als vorgeschrieben gekennzeichnet sind und damit unter keinem Umstand ausgelassen werden können. Dürfte name den Wert Null annehmen, So würde es sich um den nullable Datentyp String  mit der Notation String? Handeln.
-
-\paragraph{Typen ohne NULL-Zulässigkeit} Im Vergleich zu vielen anderen Programmiersprachen wie beispielsweise in Java wird in Dart zwischen gewöhnlichen Typen und nullable Typen unterschieden. In Sprachen wie Beispielsweise Java ist es nur bei atomaren Datentypen wie int und float vorgeschrieben einen Wert anzugeben. Null ist bei diesen primitiven Datentypen nicht als Wert erlaubt. Doch nicht atomare Datentypen erlauben immer die Angabe von Null als wert. Null drückt dabei immer das Nichtvorhandensein von Daten aus. Ab Dart 2.12   kann allen Datentypen standardmäßig keinen neuen Wert zugewiesen werden.  das hat den Vorteil, dass der Compiler sich darauf verlassen kann, das eine Variable niemals den Wert 0 haben kann. Das ist besonders dann nützlich, wenn auf  Einem Objekt eine Methode aufgerufen wird. Ist die Referenz das Objekt ist in Wahrheit 0 so gibt es erst zur Laufzeit einen Fehler, dass die Methode auf der Referenz \IC{null}nicht aufgerufen werden kann. Damit  ein Laufzeitfehler geworfen werden kann, muss vor jedem Aufruf einer Methode auf einer Referenz überprüft werden, ob die Referenzen nicht \IC{null} sind. Würde diese Überprüfung nicht stattfinden, so  könnte kein Laufzeitfehler geworfen werden und das Programm würde ohne Fehlermeldung abstürzen. Handelt es sich allerdings um eine Referenz, die niemals den Wert 0 annehmen kann, so kann der Compiler die Überprüfung auf 0 Wörter für diese Referenzen überspringen. Damit hört zusätzlich die Ausführungsgeschwindigkeit erhöht, da die  Überprüfung auf \IC{null}Zeit in Anspruch nimmt. Vor allem aber ist das forderheft für den Wickler, da der Compiler  Fehlermeldungen und Warnungen mitteilen kann, wenn  Operationen  mit Variablen mit potenziellen \IC{null}  Werten verwendet werden.
-
-Neben Name wird mit  choiceByAbbreviation eine weitere Instanzvariable deklariert 12.
-es handelt sich um den Datentyp map -  eine Kollektion die Daten mittels Schlüssel Wertepaaren ablegen kann.   als Schlüssel wird  die Abkürzung mit dem Datentyp String verwendet. Als wert ist der  generische typ Parameter t angegeben.  der typ Parameter ist in Zeile zehn deklariert und muss  mindestens von der Klasse Joyce erben. In choiceByAbbreviation werden also die Auswahlmöglichkeiten über  ihre Abkürzung abgelegt und können über dieselbe wieder referenziert werden.  Da es sich auch hier um eine unveränderliche Instanzvariable handelt, muss sie schon in der Initialisierungsliste initialisiert werden 17 bis 19. Dabei wird zunächst mit der öffnenden geschweiften Klammer 17 ein sogenanntes Map Literal begonnen, welches mit  schließenden geschweiften Klammer 19 endet.
-
-\paragraph{Set und Map Literale}
-
-Dart erlaubt es  setz und Maps als sogenannte literale zu deklarieren. es entfällt also die Instanziierung eines Sets oder einer Map über den Klassennamen und der darauffolgenden Zuweisung der einzelnen Werte. Stattdessen startet das literal mit einer öffnenden geschweiften Klammer und endet mit einer  schließenden geschweiften Klammer Punkt innerhalb der Klammern werden die Werte im Fall eines Sets  mit, getrennt nacheinander aufgeführt. Im Fall einer Map werden der Schlüssel und der Wert durch einen : voneinander getrennt und die Schlüsse Wertepaare wiederum durch, getrennt nacheinander aufgelistet.
-
-Auffällig ist jedoch, dass In Zeile 18 dem Set lateral keine  einfache Auflistung von Werten übergeben wird. Stattdessen wird das mit dem sogenannte collection for eine wiederholung verwendet.
-
-\paragraph{Collection for} Dart erlaubt es Schleifen innerhalb von Listen-, Set- und Map-Literalen zu verwenden. Dabei darf die Schleife jedoch keinen steifen Körper besitzen. Ledig der Schleifenkopf wird dazu in das literal selbstgeschrieben gefolgt von dem Wert, der bei jedem Schleifendurchlauf  dem literal hinzugefügt werden soll. Da wir kann der Wert von der Schleifen variable abgeleitet werden.  In Zeile 18 wird beispielsweise durch die  Menge aller Auswahloptionen choices iteriert und dabei in jedem Schleifendurchlauf  die Ausweise Option in die Variablen choice gespeichert. Während des Schleifendurchlauf wird dann ein Wertepaar gebildet wobei choice.abbreviation der Schlüssel ist und Das Objekt choice selbst  der Wert.
-
-Die Map choiceByAbbreviation erlaubt es nach der Initialisierung mit Hilfe der Methode fromAbbreviation 14 über die Abkürzung das dazugehörigen Choice Objekt abzurufen. Beispielsweise gibt der Befehl letzterStatusChoices.fromAbbreviation(“fertig”) das Objekt LetzterStatus("fertig", "abgeschlossen")  zurück. Auffällig dabei ist das der Parameter abbreviation Mit dem Typen String? und der generische Rückgabetyp mit T? gekennzeichnet ist. Der Suffix ? macht beide zu Typen mit Null-Zulässigkeit.
-
-\paragraph{Typen mit NULL-Zulässigkeit}
-
-Wird in Dart hinter einem Typen ein \IC{?} Angegeben, so kann die Variable nicht nur  Werte annehmen, die dieser Datentyp zulässt sondern zusätzlich auch noch den Wert 0, der  ausdrückt, dass die Variable keinen Wert hat. Methoden auf Objekten mit nur Zulässigkeit aufzurufen ist nicht ohne weiteres möglich.  Der wird aus  solange nicht durch eine Fallunterscheidung zuvor überprüft wird, dass die Variable tatsächlich nicht \IC{null} ist oder der Aufruf der Methode  mit dem Suffix !  nach dem Objekt erzwungen wird.
-% Todo high prio rferenz einfügen
-
-Die Methode fromAbbreviation Soll für die Deserialisierung genutzt werden.  sollten in Formular Auswahlfelder leer gelassen worden sein, so haben  entsprechenden variablen den Wert \IC{null}. Wenn nun das Formular abgespeichert wird, so tauchen auch in der abgespeicherten json-datei keine  Werte für das fällt auf. Wird die Dateiendung gelesen wird die Methode fromAbbreviation  genutzt um aus der in der json-datei gespeicherten Abkürzung wieder die entsprechende Auswahl Option abzurufen.  Sollte jedoch kein Wert hinterlegt sein so wird \IC{letzterStatusChoices.fromAbbreviation(null)} aufgerufen werden. Dadurch wird klar, dass der Parameter \IC{null} zulassen muss. Es impliziert auch, dass potenziell \IC{null} zurückgeben werden kann, da für den Schlüssel \IC{null} kein Wert in der Map hinterlegt sein kann. Deshalb  erlaubt auch der Rückgabetyp \IC{null}-Werte.
-
-
-
+Listing \ref{lst:Schritt1KlasseChoices} zeigt die Klasse \IC{Choices}. Sie erbt von \IC{UnmodifiableSetView} und erlaubt damit die Erstellung  einer eigenen Menge - auch \IC{Set} genannt\HP{Referenz}. Methoden, die man von einem \IC{Set} erwartet,  lassen sich somit direkt auf  Instanzen der Klasse \IC{Choices} aufrufen. Darunter unter anderem die \IC{contains} Methode,  welche erlaubt, das Vorhandensein eines Objektes im \IC{Set} zu überprüfen\HP{Referenz}.
 
 \begin{alexlisting}{Schritt 1}{Die Klasse Choices}
   {Quellcode/Schritt-1/conditional_form/lib/choices/base/choice.dart}
   {firstline=10}
   \label{lst:Schritt1KlasseChoices}
 \end{alexlisting}
+
+%   todo Referenz contains einfügen
+%    todo Referenz UnmodifiableSetView
+Instanzvariable \IC{name} \Z{11} wird im Konstruktor \IC{16} zugewiesen. Auffällig hierbei ist, dass der Parameter in geschweiften Klammern geschrieben steht und das Schlüsselwort \IC{required}  vorangestellt ist. Das macht den Parameter zu einem vorgeschriebenen benannten Parameter.
+
+\paragraph{Vorgeschriebene benannte Parameter}
+
+Gewöhnlicher benannte Parameter sind optional. Wird ihnen das Schlüsselwort \IC{required} vorangestellt, so müssen sie gesetz werden, denn sonst gibt es einen Compilerfehler. An dieser Stelle ist das \IC{required} Schlüsselwort sinnvoll, denn es handelt sich um den Datentyp String der nicht den  wert \IC{null} annehmender. Würde  der Parameter aber optional sein, so wäre es möglich, das programm zu kompilieren, auch wenn bei Aufrufen des Konstruktors kein Argument für den Parameter übergeben wurde. Doch in diesem Fall gäbe es keinen Initialwert für Name und somit müsste der  Instanzvariable null  zugewiesen werden. in der statischen Analyse wird daher sichergestellt, das Instanzvariablen durch benannte Parameter nur dann initialisiert werden dürfen, wenn dieser durch required  als vorgeschrieben gekennzeichnet sind und damit unter keinem Umstand ausgelassen werden können. Dürfte name den Wert Null annehmen, So würde es sich um den nullable Datentyp String  mit der Notation String? Handeln.
+
+Neben \IC{name} wird mit \IC{choiceByAbbreviation} eine weitere Instanzvariable deklariert \Z{12}.
+Es handelt sich um den Datentyp \IC{Map} - eine Kollektion die Daten mittels Schlüssel Wertepaaren ablegen kann. Als Schlüssel wird die Abkürzung mit dem Datentyp \IC{String} verwendet. Als Wert ist der generische Typ-Parameter \IC{T} angegeben. Er ist in Zeile 10 deklariert und muss mindestens von der Klasse \IC{Choice} erben. In \IC{choiceByAbbreviation} werden also die Auswahlmöglichkeiten über  ihre Abkürzung abgelegt und können über dieselbe wieder referenziert werden.  Da es sich auch hier um eine unveränderliche Instanzvariable handelt, muss sie schon in der Initialisierungsliste initialisiert werden \Z{17-19}. Dabei wird zunächst mit der öffnenden geschweiften Klammer \Z{17} ein sogenanntes Literal einer Map  begonnen, welches mit schließenden geschweiften Klammer \Z{19} endet. Mehr zu \IC{Map} Literalen in dem Grundlagenkapitel \HP{Kapitel einfügen}.
+
+
+
+Auffällig ist jedoch, dass In Zeile 18 dem Set lateral keine einfache Auflistung von Werten übergeben wird. Stattdessen wird das mit dem sogenannte collection for eine wiederholung verwendet.
+
+
+
+In Zeile 18 wird durch die  Menge aller Auswahloptionen \IC{choices} iteriert und dabei in jedem Schleifendurchlauf die Auswahloption in die Variablen \IC{choice} gespeichert. Während des Schleifendurchlauf wird dann ein Schlüssel-Wertepaar gebildet wobei \IC{choice.abbreviation} der Schlüssel ist und das Objekt \IC{choice} selbst der Wert.
+
+Die Map \IC{choiceByAbbreviation} erlaubt es nach der Initialisierung mit Hilfe der Methode \IC{fromAbbreviation} \Z{14} über die Abkürzung das dazugehörige \IC{Choice}-Objekt abzurufen. Beispielsweise gibt der Befehl \IC{letzterStatusChoices.fromAbbreviation(“fertig”)} das Objekt \IC{LetzterStatus("fertig", "abgeschlossen")} zurück. Auffällig dabei ist das der Parameter abbreviation Mit dem Typen \IC{String?} und der generische Rückgabetyp mit \IC{T?} gekennzeichnet ist. Der Suffix \IC{?} macht beide zu Typen mit Null-Zulässigkeit.
+
+
+
+Die Methode \IC{fromAbbreviation} soll für die Deserialisierung genutzt werden.  Sollten im Formular Auswahlfelder leer gelassen worden sein, so haben  entsprechenden Variablen den Wert \IC{null}. Wenn nun das Formular abgespeichert wird, so tauchen auch in der abgespeicherten Json-Datei keine Werte für das Feld auf. Wird die Datei gelesen wird die Methode \IC{fromAbbreviation} genutzt um aus der in der Json-Datei gespeicherten Abkürzung wieder die entsprechende Auswahl Option abzurufen. Sollte jedoch kein Wert hinterlegt sein, so wird \IC{letzterStatusChoices.fromAbbreviation(null)} aufgerufen werden. Dadurch wird klar, dass der Parameter \IC{null} zulassen muss. Es impliziert auch, dass potenziell \IC{null} zurückgeben werden kann, da für den Schlüssel \IC{null} kein Wert in der Map hinterlegt sein kann. Deshalb  erlaubt auch der Rückgabetyp \IC{T?} Null-Werte.
+
+
+
+
 
 \clearpage
 \subsection{Serialisierung einer Maßnahme}
@@ -136,7 +140,7 @@ Beide haben gemeinsam, dass sie Quellcode generieren, welcher die Umwandlung der
 built_value bietet im Gegensatz zu JSON Serializable jedoch die Möglichkeit unveränderbare Werte-Typen -  sogenannte immutable value types -  zu erstellen. Da diese  unveränderbaren Werte noch bei der Erstellung des sogenannten ViewModels -  Mehr dazu im Kapitel \HP{Einfügen} - hilfreich werden, wurde sich für diese Bibliothek entschieden.
 % todo high: Kapitel Referenz einfügen
 
-Ein Werte-Typ für built_value erfordert etwas Boilerplate-Code,  um den generierten Quellcode mit der selbstgeschriebenen Klasse zu verknüpfen.  
+Ein Werte-Typ für built_value erfordert etwas Boilerplate-Code,  um den generierten Quellcode mit der selbstgeschriebenen Klasse zu verknüpfen.
 Entwicklungsumgebungen wie Visual Studio Code und Android Studio erlauben solchen Boilerplate Code generieren zu lassen und dabei nur die erforderlichen Platzhalter einzugeben.
 In Visual Studio Code werden diese Templates \enquote{Snippets} genannt, in Android Studio heißen sie \enquote{Live Templates}.  Listing \ref{lst:BuiltValueLiveTemplate} zeigt, wie das live Template für das Generieren eines Wertetyps  für built_value aussieht. Templates für built_value wie dieses und weitere müssen nicht vom Nutzer eingegeben werden, sondern existieren bereits als Plugin für die beiden Entwicklungsumgebungen\footnoteL{https://plugins.jetbrains.com/plugin/13786-built-value-snippets}, \footnoteL{https://marketplace.visualstudio.com/items?itemName=GiancarloCode.built-value-snippets}.
 
@@ -144,9 +148,9 @@ In Visual Studio Code werden diese Templates \enquote{Snippets} genannt, in Andr
 % todo medium: live template erklären
 % todo ask medium: Kein Autor, nur git Name
 % todo ask medium: Quelle nötig?
-
-\begin{listing}[h]
-  \begin{minted}[firstnumber=6]{dart}
+\ifincludeall
+  \begin{listing}[h]
+    \begin{minted}[firstnumber=6]{dart}
 part '$file_name$.g.dart';
 
 abstract class $ClassName$ implements Built<$ClassName$, $ClassName$Builder> {
@@ -155,10 +159,12 @@ abstract class $ClassName$ implements Built<$ClassName$, $ClassName$Builder> {
     $ClassName$._();
     factory $ClassName$([void Function($ClassName$Builder) updates]) = _$$$ClassName$;
 }
+
 \end{minted}
-  \caption[built_value Live Template]{Live Template für die Erstellung von built_value Boilerplate-Code in Android Studio, Quelle: Jetbrains Marketplace Built Value Snippets Plugin}
-  \label{lst:BuiltValueLiveTemplate}
-\end{listing}
+    \caption[built_value Live Template]{Live Template für die Erstellung von built_value Boilerplate-Code in Android Studio, Quelle: Jetbrains Marketplace Built Value Snippets Plugin}
+    \label{lst:BuiltValueLiveTemplate}
+  \end{listing}
+\fi
 
 \IC{\$ClassName\$} Wird dabei jeweils durch den gewünschten Klassennamen ersetzt. Android Studio erlaubt, dass bei Einfügen des live templates der Klassenname einmalig eingegeben werden muss.  Anschließend wird mithilfe des live templates der Boilerplate Code generiert.
 
@@ -170,7 +176,7 @@ In Listing \ref{lst:Schritt1WerteTypMassnahme} ist der Werte-Typ \IC{Massnahme} 
   \label{lst:Schritt1WerteTypMassnahme}
 \end{alexlisting}
 
-\paragraph{Globally Unique Identifier} 
+\paragraph{Globally Unique Identifier}
 Ein GUID – Kurzform von Globally Unique IDentifier – ist  eine Folge von 128 Bits, die zur Identifikation genutzt werden kann. Eine solche GUID hat einer textuelle Repräsentation wie beispielsweise die folgende: \IC{'f81d4fae-7dec-11d0-a765-00a0c91e6bf6'}
 
 
@@ -183,14 +189,14 @@ Die Klassen-Methode \IC{_initializeBuilder} kann in jedem Werte-Typ hinterlegt w
 % todo medium: Vgl. https://pub.dev/packages/built_value/changelog
 Die Methode wird intern von \enquote{built_value} aufgerufen. Bei dem Feld \enquote{guid} handelt es sich um einen String, der keine Null-Werte zulässt. Könnte das Feld auch Null-Werte annehmen, so wäre die Notation in Dart dafür stattdessen \IC{String? get guid;}. \enquote{built_value} erwartet also immer einen Wert für dieses Feld. Sollte die Datei gelesen werden, welche die Maßnahmen enthält, so enthält jede Maßnahme bei der Deserialisierung den abgespeicherten Wert für die \IC{guid} und somit wird das Feld gefüllt. Doch sollte eine leere Maßnahme über einen Konstruktor erstellt werden, so wäre das Feld \enquote{guid} leer und \enquote{built_value} würde einen Fehler auslösen. Aus diesem Grund wird in der Zeile 21 für das Feld \IC{guid} ein Standardwert festgelegt, nämlich eine zufällige generierte ID die dem Standard Uuid der Version 4 entspricht.
 % todo high:  https://www.ietf.org/rfc/rfc4122.txt
-Zu diesem Zweck wird das Builder-Objekt verwendet. Die Klasse \IC{MassnahmeBuilder} gehört dabei zu dem von \enquote{built_value} generierten Quellcode. Der Parametername wird hier – wie so häufig im builder pattern – mit einem b für Builder abgekürzt. Die Syntax \IC{=>} leitet  einen sogenannten \enquote{arrow function body} ein. Dabei handelt es sich schlicht um einen Funktions-Körper, der genau eine Anweisung ausführt und deshalb nicht in öffnenden und schließenden geschweiften Klammern gesetzt werden muss.\DartSpec{18f., 234} 
+Zu diesem Zweck wird das Builder-Objekt verwendet. Die Klasse \IC{MassnahmeBuilder} gehört dabei zu dem von \enquote{built_value} generierten Quellcode. Der Parametername wird hier – wie so häufig im builder pattern – mit einem b für Builder abgekürzt. Die Syntax \IC{=>} leitet  einen sogenannten \enquote{arrow function body} ein. Dabei handelt es sich schlicht um einen Funktions-Körper, der genau eine Anweisung ausführt und deshalb nicht in öffnenden und schließenden geschweiften Klammern gesetzt werden muss.\DartSpec{18f., 234}
 Auf dem Bilder-Objekt können dann die Eigenschaften so gesetzt werden, als wären sie die Eigenschaften von dem Objekt \IC{Massnahme}. In Wahrheit werden sie aber nur auf den Builder-Objekt angewendet.  Ebenfalls auffällig ist die Syntax \IC{b..guid}.  Statt dem Punkt zum Zugriff auf Attribute des Objektes wird hier der sogenannte Kaskadierungs-Operator benutzt.
 
 \paragraph{Der Kaskadierungs-Operator}
 
-Durch Eingabe von zwei aufeinanderfolgende Punkten \IC{..} statt nur einem \IC{.} können mehrere Operationen an einem Objekt ausgeführt werden, ohne  das Objekt zuvor einer Variable Zuzuweisen oder die Operationen über dessen Namen wiederholt aufzurufen.\DartSpec{149f.} Beispiel: die Aufrufe \IC{objekt.tueEtwas();} \IC{objekt.tueEtwasAnderes();} und \IC{objekt..tueEtwas()..tueEtwasAnderes();} sind äquivalent. 
+Durch Eingabe von zwei aufeinanderfolgende Punkten \IC{..} statt nur einem \IC{.} können mehrere Operationen an einem Objekt ausgeführt werden, ohne  das Objekt zuvor einer Variable Zuzuweisen oder die Operationen über dessen Namen wiederholt aufzurufen.\DartSpec{149f.} Beispiel: die Aufrufe \IC{objekt.tueEtwas();} \IC{objekt.tueEtwasAnderes();} und \IC{objekt..tueEtwas()..tueEtwasAnderes();} sind äquivalent.
 
-Da der Kaskadierung-Operator jedoch dazu verwendet wird, mehrere Operationen auf einem Objekt auszuführen, hat er in Zeile 16 keine Funktion. Doch bei Änderung eines Objektes über das builder pattern werden für gewöhnlich mehrere Operationen am gleichen Builder Objekt ausgeführt, weshalb - der Stringenz halber - der Kaskadierung-Operator immer  im Zusammenhang mit dem Bilder Objekt verwendet wird. 
+Da der Kaskadierung-Operator jedoch dazu verwendet wird, mehrere Operationen auf einem Objekt auszuführen, hat er in Zeile 16 keine Funktion. Doch bei Änderung eines Objektes über das builder pattern werden für gewöhnlich mehrere Operationen am gleichen Builder Objekt ausgeführt, weshalb - der Stringenz halber - der Kaskadierung-Operator immer  im Zusammenhang mit dem Bilder Objekt verwendet wird.
 
 Die Attribute \IC{letzteBearbeitung} und \IC{identifikatoren} \Z{11, 13} erhalten dagegen ganz automatisch Standardwerte in Form von Instanzen der dazugehörigen Klassen. Diese wiederum konfigurieren ihre eigenen Felder und deren initialen Werte.
 
@@ -217,7 +223,7 @@ Das Attribut \IC{letztesBearbeitungsDatum} ist dagegen nicht im Formular änderb
 
 Da diese Getter-Methode eine Implementierung besitzt, wird für sie von \enquote{built_value} kein Quellcode für die Serialisierung generiert.
 
-Bevor die Werte-Typen serialisiert werden können, muss built_value jedoch noch mitgeteilt werden, für welche Werte-Typen Serialisierungs-Funktionen generiert werden sollen. Dazu werden über die Annotation \IC{@SerializersFor} die gewünschten Klassen aufgelistet \LstZ{\ref{lst:Schritt1Serialisierer}}{10}. Die Zeilen 11 und 12 sind dabei immer gleich, es sei denn, es ist ein anderer Serialisierung Algorithmus gewünscht. In diesem Fall wird das \IC{StandardJsonPlugin}verwendet. 
+Bevor die Werte-Typen serialisiert werden können, muss built_value jedoch noch mitgeteilt werden, für welche Werte-Typen Serialisierungs-Funktionen generiert werden sollen. Dazu werden über die Annotation \IC{@SerializersFor} die gewünschten Klassen aufgelistet \LstZ{\ref{lst:Schritt1Serialisierer}}{10}. Die Zeilen 11 und 12 sind dabei immer gleich, es sei denn, es ist ein anderer Serialisierung Algorithmus gewünscht. In diesem Fall wird das \IC{StandardJsonPlugin}verwendet.
 
 \begin{alexlisting}{Schritt 1}{Der Serialisierer für Massnahme und Storage}
   {Quellcode/Schritt-1/conditional_form/lib/data_model/serializers.dart}
@@ -235,12 +241,12 @@ Wird nun der Befehl  \IC{flutter pub run build_runner build} ausgeführt, so wir
 \subsection{Test der Serialisierung einer Maßnahme}
 
 Das Ergebnis der Serialisierung wird im dazugehörigen Unit-Test ersichtlich \Lst{\ref{lst:SerialisierungEinerMassnahmeUnittest}}.
-In Zeile 8 wird ein Objekt der Klasse \IC{Massnahme} instanzieiert. Anders als bei gewöhnlichen Datentypen lassen sich bei diesem unveränderlichen Datentyp keine Attribute nach der Erstellung anpassen. Die einzige Möglichkeit besteht darin, ein neues Objekt  mit dem gewünschten Attributwert zu erstellen und die restlichen Werte des alten Objektes zu übernehmen. Dies ist mit Hilfe des sogenannten Builder-Entwurfsmuster es möglich, welches in built_value Anwendung findet. 
+In Zeile 8 wird ein Objekt der Klasse \IC{Massnahme} instanzieiert. Anders als bei gewöhnlichen Datentypen lassen sich bei diesem unveränderlichen Datentyp keine Attribute nach der Erstellung anpassen. Die einzige Möglichkeit besteht darin, ein neues Objekt  mit dem gewünschten Attributwert zu erstellen und die restlichen Werte des alten Objektes zu übernehmen. Dies ist mit Hilfe des sogenannten Builder-Entwurfsmuster es möglich, welches in built_value Anwendung findet.
 
 \paragraph{Erbauer-Entwurfsmuster} Das Erbauer-Entwurfsmuster - englisch builder pattern - ist ein Erzeugungsmuster, welches die Konstruktion komplexer Objekte von ihrer Repräsentation trennt. Es gehört zu der Serie von Entwurfsmustern der Gang of Four. \footcite[Vgl.][S. 119]{gamma2009entwurfsmuster}. Im Fall von built_value trennt es die unveränderlichen Objekte von ihrer Konstruktion. Über den Builder lassen sich Änderungen an diesen unveränderlichen Objekten vornehmen, wodurch eine Kopie dieses unveränderlichen Objekt mit der gewünschten Änderung, zurückgegeben wird.
 
-In den Zeilen 9 bis 10 wird so ein neues Objekt von der Klasse Maßnahme mit Hilfe der Methode \IC{rebuild} erzeugt und anschließend der Referenz \IC{massnahme} zugewiesen, wodurch sie ihren alten Wert verliert. Über die generiertet Methode \IC{serializers} \IC{.serializeWith} kann das Objekt in Json übersetzt werden. Der erste Parameter \IC{Massnahme.serializer} gibt dabei an, wie diese Serialisierung erfolgen soll und auch dieses Objekt wurde von \enquote{built_value} generiert. Der zweite Parameter ist die tatsächliche \IC{massnahme}, die in Json umgewandelt werden soll. Die Zeilen 13 bis 21 erstellen das Json Dokument, mit dem das serialisierte Ergebnis am Ende verglichen werden soll. Dabei werden die gleichen Eigenschaften eingetragen. So etwa die \IC{guid}\Z{14}, welcher bei der Initialisierung der Maßnahme automatisch und zufällig erstellt wurde. Außerdem das letzte Bearbeitungsdatum, welches den Zeitstempel erhält, zudem die Maßnahme generiert wurde. Da built_value bei der Serialisierung die Datumswerte in Mikrosekunden umwandelt, muss für das erwartete Json-Dokument das gleiche passieren \Z{16-17}. Der \IC{'letzterStatus'} \Z{18} wird hierbei auf den Standardwert \IC{'bearb'} gesetzt und der \IC{'massnahmenTitel'} \Z{20} auf den gleichen Wert, der in Zeile 9 übergeben wurde. 
-Schließlich vergleicht die Methode \IC{expect} das tatsächlich serialisierter Json-Dokument mit dem, welches zuvor zum Vergleich aufgebaut wurde. Der zweite Parameter ist ein sogenannter \IC{Matcher} und die Variante mit dem Namen \IC{equals} überprüft auf absolute Gleichheit. 
+In den Zeilen 9 bis 10 wird so ein neues Objekt von der Klasse Maßnahme mit Hilfe der Methode \IC{rebuild} erzeugt und anschließend der Referenz \IC{massnahme} zugewiesen, wodurch sie ihren alten Wert verliert. Über die generiertet Methode \IC{serializers} \IC{.serializeWith} kann das Objekt in Json übersetzt werden. Der erste Parameter \IC{Massnahme.serializer} gibt dabei an, wie diese Serialisierung erfolgen soll und auch dieses Objekt wurde von \enquote{built_value} generiert. Der zweite Parameter ist die tatsächliche \IC{massnahme}, die in Json umgewandelt werden soll. Die Zeilen 13 bis 21 erstellen das Json Dokument, mit dem das serialisierte Ergebnis am Ende verglichen werden soll. Dabei werden die gleichen Eigenschaften eingetragen. So etwa die \IC{guid}\Z{14}, welcher bei der Initialisierung der Maßnahme automatisch und zufällig erstellt wurde. Außerdem das letzte Bearbeitungsdatum, welches den Zeitstempel erhält, zudem die Maßnahme generiert wurde. Da built_value bei der Serialisierung die Datumswerte in Mikrosekunden umwandelt, muss für das erwartete Json-Dokument das gleiche passieren \Z{16-17}. Der \IC{'letzterStatus'} \Z{18} wird hierbei auf den Standardwert \IC{'bearb'} gesetzt und der \IC{'massnahmenTitel'} \Z{20} auf den gleichen Wert, der in Zeile 9 übergeben wurde.
+Schließlich vergleicht die Methode \IC{expect} das tatsächlich serialisierter Json-Dokument mit dem, welches zuvor zum Vergleich aufgebaut wurde. Der zweite Parameter ist ein sogenannter \IC{Matcher} und die Variante mit dem Namen \IC{equals} überprüft auf absolute Gleichheit.
 
 \begin{alexlisting}{Schritt 1}{Serialisierung einer Maßnahme Unittest}
   {Quellcode/Schritt-1/conditional_form/test/data_model/massnahme_test.dart}
@@ -248,7 +254,7 @@ Schließlich vergleicht die Methode \IC{expect} das tatsächlich serialisierter 
   \label{lst:SerialisierungEinerMassnahmeUnittest}
 \end{alexlisting}
 
-Analog zur Serialisierung testet der Unit-Test in Listing \ref{lst:DeserialisierungEinerMassnahmeUnittest} auch die Deserialisierung. Das Json-Dokument ist dabei sehr ähnlich und unterscheidet sich lediglich in zwei Details. Der \IC{'guid'} wird auf einen festen Wert festgelegt \Z{38}, statt - wie zuvor - durch den in dem Initialisierungs-Prozess der Maßnahme zufällig generiert zu werden. Außerdem wird auch das \IC{letztesBearbeitungsDatum} festgesetzt, nämlich auf die Microsekunde \IC{0} \Z{40}. 
+Analog zur Serialisierung testet der Unit-Test in Listing \ref{lst:DeserialisierungEinerMassnahmeUnittest} auch die Deserialisierung. Das Json-Dokument ist dabei sehr ähnlich und unterscheidet sich lediglich in zwei Details. Der \IC{'guid'} wird auf einen festen Wert festgelegt \Z{38}, statt - wie zuvor - durch den in dem Initialisierungs-Prozess der Maßnahme zufällig generiert zu werden. Außerdem wird auch das \IC{letztesBearbeitungsDatum} festgesetzt, nämlich auf die Microsekunde \IC{0} \Z{40}.
 
 \begin{alexlisting}{Schritt 1}{Deserialisierung einer Maßnahme Unittest}
   {Quellcode/Schritt-1/conditional_form/test/data_model/massnahme_test.dart}
@@ -257,25 +263,25 @@ Analog zur Serialisierung testet der Unit-Test in Listing \ref{lst:Deserialisier
 \end{alexlisting}
 
 
-Zum Vergleich wird in den Zeilen 46 bis 52 eine Maßnahme über das Builder-Entwurfsmuster generiert und die gleichen feste Werte werden für die Eigenschaften übergeben. 
+Zum Vergleich wird in den Zeilen 46 bis 52 eine Maßnahme über das Builder-Entwurfsmuster generiert und die gleichen feste Werte werden für die Eigenschaften übergeben.
 Dabei ist darauf zu achten, dass die Instanzvariable \IC{letzteBearbeitung} keinen Wert über den Zuweisungs-Operator \IC{=} erhält, sondern stattdessen die Methode \IC{update} darauf aufgerufen wird.
 
 Da es sich bei der Instanzvariable \IC{letzteBearbeitung} genauso um ein Object eines Wertetypen - handelt, ist sie ebenso unveränderlich. Deshalb kann sie nur über einen Builder manipuliert werden. Ein Blick in den generierten Quellcode offenbart, dass es sich in Wahrheit um einen Bilder handelt \LstZ{\label{lst:Schritt1InstanzvariableLetzteBearbeitungGibtEinenLetzteBearbeitungBuilderZurueck}}{224-225}.
 
 \begin{alexlisting}{Schritt 1}{Instanzvariable \IC{letzteBearbeitung} gibt einen \IC{LetzteBearbeitungBuilder} zurück}
   {Quellcode/Schritt-1/conditional_form/lib/data_model/massnahme.g.dart}
-  {firstline=216, lastline=227} 
+  {firstline=216, lastline=227}
   \label{lst:Schritt1InstanzvariableLetzteBearbeitungGibtEinenLetzteBearbeitungBuilderZurueck}
 \end{alexlisting}
 
-Außerdem müssen die Microsekunden für das Datum zunächst in ein Objekt von \IC{DateTime} umgewandelt werden muss. Dafür wird der benahmte Konstruktor \IC{DateTime} \IC{.fromMillisecondsSinceEpoch} \Z{51} aufgerufen.
+Außerdem müssen die Microsekunden für das Datum zunächst in ein Objekt von \IC{DateTime} umgewandelt werden muss. Dafür wird der benannte Konstruktor \IC{fromMillisecondsSinceEpoch} von \IC{DateTime} \Z{51} aufgerufen.
 
-\paragraph{Benanmte Konstruktoren} In Programmiersprachen wie beispielsweise Java können Methoden überladen werden, indem ihre Methodensignatur geändert wird. Beim Aufruf der Methode kann über die Anzahl und die Typen der übergebenen Argumente die gewünschte Methode gewählt werden. Das gleiche gilt für Konstruktoren. Wird ein weiterer Konstruktor für eine Klasse in Java benötigt, so besteht einzig und allein die Möglichkeit darin, den Konstruktor zu überladen. Sowohl überladene Methoden als auch überladene Konstruktoren existieren in Dart nicht. Wird also in dartein Alternative constructorgewünscht Komma so muss er einen Namen bekommen. Beim Aufruf des Konstruktors wird dieser Name dann mit einem \IC{.} nach dem Klassennamen angegeben, um den gewünschten Konstruktor zu benennen.
+\paragraph{Benannte Konstruktoren} In Programmiersprachen wie beispielsweise Java können Methoden überladen werden, indem ihre Methodensignatur geändert wird. Beim Aufruf der Methode kann über die Anzahl und die Typen der übergebenen Argumente die gewünschte Methode gewählt werden. Das gleiche gilt für Konstruktoren. Wird ein weiterer Konstruktor für eine Klasse in Java benötigt, so besteht einzig und allein die Möglichkeit darin, den Konstruktor zu überladen. Sowohl überladene Methoden als auch überladene Konstruktoren existieren in Dart nicht. Wird also in dartein Alternative constructorgewünscht Komma so muss er einen Namen bekommen. Beim Aufruf des Konstruktors wird dieser Name dann mit einem \IC{.} nach dem Klassennamen angegeben, um den gewünschten Konstruktor zu benennen.
 
 
 Ganz ähnlich wie bei der Serialisierung wird nun mit dem Befehl \IC{serializers} \IC{.} \IC{deserializeWith} unter Angabe des Objektes, welches die Deserialisierung übernehmen soll - nämlich wiederum \IC{Massnahme.serializer} - das Json-Dokument in ein Objekt das Werte-Typs \IC{Massnahme} deserialisiert \Z{53-54}. Schließlichh wird in Zeile 56 das Ergebnis der Deserialisierung mit dem gewünschten Ergebnis verglichen.
 
- 
+
 
 Gibt man in der Kommandozeile den Befehl \IC{flutter} \IC{test} \IC{test}\IC{/data_model}\IC{/massnahme _test.dart} ein, so werden die Tests in der Testdatei ausgeführt. Die Ausgabe \IC{00:01 +2: All tests passed!} teilt mit, dass beide Tests ausgeführt und beide Ergebnisse mit den verglichenen Werten übereinstimmten.
 
@@ -287,7 +293,7 @@ Der Werte-Typ Storage ist dafür vorgesehen \Lst{\ref{lst:Schritt1WerteTypStorag
 Er deklariert allein das \IC{BuiltSet massnahmen} \Z{10}.
 Ein BuiltSet ist die Abwandlung eines gewöhnlichen Sets, jedoch unter anderem mit der Möglichkeit, es mit einem Builder zu erstellen und das Set zu serialisieren.
 % todo high Referenz einfügen
-Die Übergabe des Typarguments \IC{<Massnahme>} gewährleistet, dass keine anderen Objekte Eingefügt werden können, die weder eine Instanz der Klasse \IC{Massnahme} sind, oder einer Klasse, die von \IC{Massnahmen} erbt.  
+Die Übergabe des Typarguments \IC{<Massnahme>} gewährleistet, dass keine anderen Objekte Eingefügt werden können, die weder eine Instanz der Klasse \IC{Massnahme} sind, oder einer Klasse, die von \IC{Massnahmen} erbt.
 
 \begin{alexlisting}{Schritt 1}{Der Werte-Typ Storage}
   {Quellcode/Schritt-1/conditional_form/lib/data_model/storage.dart}
@@ -295,7 +301,7 @@ Die Übergabe des Typarguments \IC{<Massnahme>} gewährleistet, dass keine ander
   \label{lst:Schritt1WerteTypStorage}
 \end{alexlisting}
 
-Der Befehl  \IC{flutter pub run build_runner build} stößt erneut die Quellcodegenerierung für den Werte-Typen \IC{Storage} an. 
+Der Befehl  \IC{flutter pub run build_runner build} stößt erneut die Quellcodegenerierung für den Werte-Typen \IC{Storage} an.
 
 \clearpage
 \subsection{Test der Serialisierung der Maßnahmenliste}
@@ -308,15 +314,15 @@ Nun soll noch überprüft werden, ob die Menge von Maßnahmen mit genau einer ei
   \label{lst:Schritt1MaßnahmenSerialisierenOhneFehlerUnitTest}
 \end{alexlisting}
 
-Bei der Instanzvariable \IC{massnahmen} der Klasse \IC{Storage} handelt es sich um ein \IC{BuiltSet}.  Der Aufruf von \IC{b.massnahmen}  gibt allerdings nicht dieses \IC{BuiltSet} zurück. Wäre es so, so könnte die Operation \IC{add} nicht  darauf angewendet werden. Ein \IC{BuiltSet} stellt keine Methoden zur Manipulation des Sets zur Verfügung. In Wahrheit gibt der Ausdruck \IC{b.massnahmen} einen \IC{SetBuilder} zurück. Das kann im generierten Quellcode nachgesehen werden \LstZ{\ref{lst:Schritt1InstanzvariableMassnahmenGibtEinenSetBuilderZurueck}}. 
+Bei der Instanzvariable \IC{massnahmen} der Klasse \IC{Storage} handelt es sich um ein \IC{BuiltSet}.  Der Aufruf von \IC{b.massnahmen}  gibt allerdings nicht dieses \IC{BuiltSet} zurück. Wäre es so, so könnte die Operation \IC{add} nicht  darauf angewendet werden. Ein \IC{BuiltSet} stellt keine Methoden zur Manipulation des Sets zur Verfügung. In Wahrheit gibt der Ausdruck \IC{b.massnahmen} einen \IC{SetBuilder} zurück. Das kann im generierten Quellcode nachgesehen werden \LstZ{\ref{lst:Schritt1InstanzvariableMassnahmenGibtEinenSetBuilderZurueck}}.
 
 \begin{alexlisting}{Schritt 1}{Instanzvariable \IC{massnahmen} gibt einen \IC{SetBuilder} zurück}
   {Quellcode/Schritt-1/conditional_form/lib/data_model/storage.g.dart}
-  {firstline=91, lastline=96} 
+  {firstline=91, lastline=96}
   \label{lst:Schritt1InstanzvariableMassnahmenGibtEinenSetBuilderZurueck}
 \end{alexlisting}
 
-Der \IC{SetBuilder} wiederum erlaubt es, Änderungen am Set vorzunehmen und stellt dafür die - für ein Set übliche - Methode \IC{add} bereit. Im Aufruf von \IC{add} wird dann ein Objekt des Werte-Typs Maßnahme konstruiert \Z{10}. Dazu wird dieses Mal die anonyme Funktion zum Konstruieren der Maßnahme gleich im Konstruktor übergeben. 
+Der \IC{SetBuilder} wiederum erlaubt es, Änderungen am Set vorzunehmen und stellt dafür die - für ein Set übliche - Methode \IC{add} bereit. Im Aufruf von \IC{add} wird dann ein Objekt des Werte-Typs Maßnahme konstruiert \Z{10}. Dazu wird dieses Mal die anonyme Funktion zum Konstruieren der Maßnahme gleich im Konstruktor übergeben.
 
 
 Diesmal konstruiert die Methode \IC{serializers.serializeWith} mit dem Serialisierer \IC{Storage.serializer} ein weiteres JSON-Object \Z{12}. Genau wie zuvor wird ein Json-Dokument vorbereitet \Z{14-30}, welches der \IC{Matcher} \IC{equals} gegen das serialisierte Dokument des soeben konstruierten Objects \IC{storage} vergleicht \Z{31}. Das Json-Dokument unterscheidet sich nur darin, dass es einen Knoten namens \IC{'massnahmen'} enthält, der als Wert eine Liste hat. Die Liste hat nur ein Element.  Weil dieses Mal das Objeckt des Typs \IC{Massnahme} nicht direkt zugreifbar ist, muss es zunächst über die Liste der Maßnahmen aus dem \IC{storage}-Object abgerufen werden. Das ist mit dem Befehl \IC{first} möglich, der das erste Objekt - und in diesem Fall einzige Objekt - der Kollektion zurückgibt \Z{17, 21}. Darüber kann erneut die \IC{guid}  und  das \IC{letztesBearbeitungsDatum} abgerufen werden.
@@ -324,14 +330,17 @@ Diesmal konstruiert die Methode \IC{serializers.serializeWith} mit dem Serialisi
 Ein weiterer Unit-Test überprüft, ob auch die Deserialisierung eines \IC{storage}-Objects erfolgreich ist. Er ist in Listing {\ref{lst:Schritt1MaßnahmenDeserialisierenOhneFehlerUnitTest} im Anhang \ref{appendix:Schritt1Anhang} zu finden.
 Auch dieser Test ist der Deserialisierung des Objektes des Typs \IC{Massnahme} sehr ähnlich. Er unterscheidet sich nur darin, dass das \IC{Massnahme}-Objekt in der Liste \IC{massnahmen} des \IC{storage}-Objektes  enthalten ist.
 
-\clearpage
 \subsection{Der Haupteinstiegspunkt}
 
-\paragraph{Model View ViewModel} 
-\HP{Füllen}
-
-\paragraph{Dependency Inection}
-\HP{Füllen}
+Das Listing \ref{lst:Schritt1DerHaupteinstiegspunkt} zeigt den Haupteinstiegspunkt des Programms. Darin ist erkennbar, dass sich die Applikation in drei Rubriken einteilen lässt:
+\begin{itemize}
+  \item das Model \Z{27-30}
+  \item der View \Z{41-44}
+  \item das ViewModel. \Z{25-26}
+\end{itemize}
+\paragraph{Model View ViewModel}
+Das ModelViewViewmodel Entwurfsmuster wurde zunächst von John Gossman für die Windows Presentation Foundation beschrieben.
+Das Model beschreibt die Datenzugriffs-Komponente welche die Daten in relationalen Datenbanken oder hierarchischen Datenstrukturen wie XML oder JSON ablegt. Der View beschreibt die Oberflächenelemente wie Texteingabefelder und Buttons. Diese beiden Komponenten sind auch aus dem ModelViewController Entwurfsmuster bekannt. Das ModelViewViewmodel Entwurfsmuster ist eine Weiterentwicklung davon und integriert das sogenannte ViewModel. Es ist dafür zuständig als Schnittstelle zwischen View und Model zu fungieren. Die Daten des Models lassen sich in der Regel nicht direkt mit Oberflächen Elementen verknüpfen. Denn es kann es notwendig sein, dass die Oberfläche weitere temporäre Daten benötigt, die aber nicht mit den Daten des Models gespeichert werden sollen. Das ViewModel übernimmt diese Arbeit, indem es die Daten des Models abruft und sie in veränderter Form den Oberflächen-Elementen zur Verfügung steht. Andersherum formt es die Eingaben in der Nutzeroberfläche so um, dass sie im strikten Datenmodell des Models Platz finden. \footcite[Vgl.][]{IntroductionToModelViewViewModelPatternForBuildingWPFApps}
 
 \begin{alexlisting}{Schritt 1}{Der Haupteinstiegspunkt}
   {Quellcode/Schritt-1/conditional_form/lib/main.dart}
@@ -339,10 +348,45 @@ Auch dieser Test ist der Deserialisierung des Objektes des Typs \IC{Massnahme} s
   \label{lst:Schritt1DerHaupteinstiegspunkt}
 \end{alexlisting}
 
+\IC{MassnahmenPool} \Z{29} verwaltet die eingegebenen Daten der Maßnahmen und nutzt \IC{MassnahmenJsonFile} \Z{27} um die Daten auf einem Datenträger als eine JSON-Datei zu speichern. Somit gehören diese beiden Klassen dem Model an.
+
+\IC{MassnahmenFormViewModel} \Z{25} greift die Daten des Models ab und formt diese um, sodass sie von dem View \IC{MassnahmenDetailScreen} \Z{43} verändert werden können. Sollen die Daten gespeichert werden, so stellt \IC{MassnahmenFormViewModel} ebenfalls Methoden zur Verfügung um die Daten wieder in das Format des Models einpflegen zu können.
+
+\IC{MassnahmenMasterScreen} \Z{41} stellt eine Ausnahme dar, denn dieser View präsentiert die Daten aus dem Model ohne eine Schnittstelle über ein ViewModel. Das ist möglich, weil die Daten nicht manipuliert, sondern nur angezeigt werden müssen.
+
+Damit sowohl ViewModel als auch Model von jedem View heraus abrufbar sind, werden sie als Service deklariert und von denen jeweiligen Views verwendet. Diese Vorgehensweise lässt sich auf das Service Locator Entwurfsmuster zurückführen.
+
+
+\paragraph{Service Locator und Dependency Inection}
+
+Das Service Locator Entwurfsmuster folgt dem Umsetzungsparadigma Inversion of Control – deutsch Umkehrung der Steuerung. Frameworks folgen diesem Muster, indem sie als erweiterbare Skelett-Applikationen fungieren. Anstatt, dass die Applikation den Programmfluss steuert und dabei selbst Funktionen aufruft, wird die Programmflusssteuerung an das Framework abgegeben und mit Hilfe von Ereignissen ermöglicht, dass das Framework Funktionen des Nutzers aufruft. \footcite[Vgl.][]{johnson1988designing}
+Das Entwurfsmuster ist auch unter dem Namen \enquote{hollywood pattern} bekannt , da es ähnlich wie die typische Antwort auf eine Bewerbung für einen Hollywood Film - don’t call us, we’ll call you - funktioniert.\footcite[Vgl.][]{fowler2005InversionOfControl}
+Im Service Locator Entwurfsmuster werden Komponenten darüber hinaus zentral registriert und über dieses Register anderen Komponenten zur Interaktion zur Verfügung gestellt.\footcite[Vgl.][]{fowler2004DependencyInjection}
+Anstatt die Komponenten direkt miteinander zu verknüpfen, werden Sie für den Zugriff von praktisch überall vorbereitet. Vor allem für automatisierte Tests ist dies von Vorteil, da solche Abhängigkeiten ausgetauscht werden können, um ganz spezieller Teil-Funktionalitäten eines Programms zu testen.  Mehr dazu im Kapitel \HP{Kapitel einfügen}.
+
+Die Services werden in den Zeilen 25 bis 30 in der Liste \IC{providers} \Z{24} registriert. Das Widget \IC{MultiProvider} \Z{23} erlaubt es mehrere \IC{Provider} dieser Liste hinzuzufügen und sie allen Widgets zur Verfügung zu stellen, welche durch die \IC{builder}-Methode \Z{32} gebaut werden.
+
+
+
+
+
+In der Hierarchie ist der \IC{MultiProvider} \Z{23} zwar an oberster Stelle, jedoch hat  das Widget keine eigene visuelle Repräsentation. Es zeigt lediglich den Inhalt, der durch die \IC{builder}-Methode erzeugt wird: Das Widget \IC{MaterialApp} \Z{32}. \IC{MaterialApp} Stellt einen \IC{Navigator} bereit und erlaubt -  ähnlich einer Webseite - über den Parameter \IC{routes} \Z{40-45} Die Angabe der  Unterseiten, die durch den Navigator besucht werden können. Über initialRoute \Z{39} kann die Startseite angegeben werden.
+
+
 \clearpage
 \subsection{Abhängigkeiten zum verwalten der Maßnahmen}
-\paragraph{Model}
-\HP{Füllen}
+Das Model des Model View ViewModel Entwurfmusters wird durch die Klasse \IC{MassnahmenJsonFile} in eine JSON-Datei gespeichert. Der Dateipfad wird dabei durch die Methode \IC{_localMassnahmenJsonFile} \Z{8-11} abgerufen. Die Hilfsmethode \IC{getApplicationSupportDirectory} \Z{9} gibt aus dem Nutzerverzeichnis des aktuellen Nutzers den zur Applikation zugeordneten Datei-Ordner zurück. Auf Windows-Betriebssystemen wäre das beispielsweise \url{C:\\Users\\AktuellerNutzer\\AppData\\Roaming\\com.example\\conditional_form}.
+
+Dadurch, dass dem Methoden-Bezeichner \IC{_localMassnahmenJsonFile} ein Unterstrich vorangestellt ist, ist die Methode privat und kann nur innerhalb der Klasse aufgerufen werden. Dart hat damit eine Konvention zum Standard werden lassen. In Programmiersprachen wie beispielsweise C++ wurde der Unterstrich zusätzlich den Bezeichnern von Instanz Attributen vorangestellt, die mit dem \IC{private} Schlüsselwort gekennzeichnet sind, damit sie überall im Quellcode als private Attribute identifizierbar sind, ohne dazu die Klassendefinition ansehen zu müssen. In Dart gibt es dagegen das \IC{private} Schlüsselwort nicht. Stattdessen wird der Unterstrich vor dem Bezeichner verwendet, um ein Instanzattribut privat zu deklarieren.
+
+Die Getter-Methode \IC{_localMassnahmenJsonFile} hat den Rückgabetyp \IC{Future<File>} und ist zudem mit dem Schlüsselwort \IC{async} gekennzeichnet. 
+
+Asynchron muss die Methode deshalb sein, weil sie auf den Aufruf \IC{getApplicationSupportDirectory} warten musst, der ebenfalls asynchron abläuft. Würde hier nicht das Schlüsselwort \IC{await} verwendet werden, so würde nicht das tatsächliche Verzeichnis zurückgegeben werden. Stattdessen würde ein Objekt geliefert, welches den Wert des Verzeichnisses erst dann erhält, sobald es ermittelt wurde. Solche Objekte sind beispielsweise in JavaScript als sogenannte Promise-Objekte bekannt. In Dart heißen diese Objekte \IC{Future}.  Auf einem \IC{Future} Objekt kann die Methode \IC{then} verwendet werden, um eine Funktion zu übergeben. Die Funktion würde dann aufgerufen werden, sobald der Wert bis \IC{Future} gesetzt wurde. Solche Funktion werden auch Callback-Funktionen genannt.
+
+Doch anstatt einen Callback zu verwenden, kann in Dart das Schlüsselwort \IC{await} genutzt werden, um den Wert abzuwarten. Die Notwendigkeit einer asynchronen Funktion ist dadurch gegeben, dass das Abrufen eines Verzeichnisses aus dem Dateisystem ein blockierender Vorgang ist. Während das Programm darauf wartet, dass das Betriebssystem eine Antwort zurück gibt, könnten auch andere Aufgaben abgearbeitet werden. Durch das \IC{await} Schlüsselwort erkennt die Dart-Laufzeitumgebung, dass sie andere Aufgaben aus dem sogenannten \HP{event loop} abarbeiten kann, bis der Wert verfügbar ist.
+
+ Die Funktion saveMassnahmen verwendet ... 
+
 
 \begin{alexlisting}{Schritt 1}{Die Klasse MassnahmenJsonFile}
   {Quellcode/Schritt-1/conditional_form/lib/persistence/massnahmen_json_file.dart}
@@ -358,7 +402,7 @@ Auch dieser Test ist der Deserialisierung des Objektes des Typs \IC{Massnahme} s
 
 \clearpage
 \subsection{Die Abhängigkeiten für das ViewModels}
-\paragraph{ViewModel} 
+\paragraph{ViewModel}
 \HP{Füllen}
 
 \begin{alexlisting}{Schritt 1}{Die Klasse MassnahmenFormViewModel}
@@ -369,23 +413,23 @@ Auch dieser Test ist der Deserialisierung des Objektes des Typs \IC{Massnahme} s
 
 \clearpage
 \subsection{Übersicht der Maßnahmen}
-\paragraph{Der erste View} 
+\paragraph{Der erste View}
 \HP{Füllen}
 
 
 
 
-
-\begin{listing}[htbp]
-  \renewcommand\theFancyVerbLine{%
-    \ifnum\value{FancyVerbLine}=32
-    \setcounter{FancyVerbLine}{94}
-    \tiny\ldots
-    \else
-    \tiny\arabic{FancyVerbLine}%
-    \fi
-  }
-  \begin{minted}[firstnumber=13]{dart}
+\ifincludeall
+  \begin{listing}[htbp]
+    \renewcommand\theFancyVerbLine{%
+      \ifnum\value{FancyVerbLine}=32
+      \setcounter{FancyVerbLine}{94}
+      \tiny\ldots
+      \else
+      \tiny\arabic{FancyVerbLine}%
+      \fi
+    }
+    \begin{minted}[firstnumber=13]{dart}
 final createNewMassnahmeButtonKey = GlobalKey();
 
 class MassnahmenMasterScreen extends StatelessWidget {
@@ -426,14 +470,15 @@ class MassnahmenMasterScreen extends StatelessWidget {
 }
 
 \end{minted}
-  \alexlistingcaption{Schritt 1}{Die Struktur der Klasse MassnahmenMasterScreen} {Quellcode/Schritt-1/conditional_form/lib/screens/massnahmen_master.dart}
-  \label{lst:Schritt1KlasseMassnahmenMasterScreenStruktur}
-\end{listing}
+    \alexlistingcaption{Schritt 1}{Die Struktur der Klasse MassnahmenMasterScreen} {Quellcode/Schritt-1/conditional_form/lib/screens/massnahmen_master.dart}
+    \label{lst:Schritt1KlasseMassnahmenMasterScreenStruktur}
+  \end{listing}
+\fi
 
 
-
-\begin{listing}[htbp]
-  \begin{minted}[firstnumber=31]{dart}
+\ifincludeall
+  \begin{listing}[htbp]
+    \begin{minted}[firstnumber=31]{dart}
 return SingleChildScrollView(
   child: Column(
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -466,11 +511,13 @@ return SingleChildScrollView(
             }),
           )),
         \end{minted}
-  \caption[Schritt 1 Ausgabe der finalen Maßnahmen]{Die Ausgabe der finalen Maßnahmen, Quelle: Eigenes Listing, \newline Datei: Quellcode/Schritt-1/conditional_form/lib/screens/massnahmen_master.dart}
+    \caption[Schritt 1 Ausgabe der finalen Maßnahmen]{Die Ausgabe der finalen Maßnahmen, Quelle: Eigenes Listing, \newline Datei: Quellcode/Schritt-1/conditional_form/lib/screens/massnahmen_master.dart}
 
-  \label{lst:Schritt1AusgabeDerFinalenMaßnahmen}
-\end{listing}
+    \label{lst:Schritt1AusgabeDerFinalenMaßnahmen}
+  \end{listing}
+\fi
 
+\ifincludeall
 \begin{listing}[htbp]
   \begin{minted}[firstnumber=48]{dart}
 .where((m) =>
@@ -479,23 +526,24 @@ return SingleChildScrollView(
   \caption[Schritt 1 Bedingung der Entwurf-Maßnahmen]{Die Bedingung der Entwurf-Maßnahmen, Quelle: Eigenes Listing, \newline Datei: Quellcode/Schritt-1/conditional_form/lib/screens/massnahmen_master.dart}
   \label{lst:Schritt1BedingungDerEntwurfMaßnahmen}
 \end{listing}
+\fi
 
 \clearpage
 \subsection{Widget MassnahmenTable}
-\paragraph{Der zweite View} 
+\paragraph{Der zweite View}
 
 \begin{alexlisting}{Schritt 1}{Die Klasse MassnahmenTable}
   {Quellcode/Schritt-1/conditional_form/lib/widgets/massnahmen_table.dart}
   {firstline=4}
   \label{lst:Schritt1KlasseMassnahmenTable}
 \end{alexlisting}
-
 \clearpage
 \subsection{Eingabeformular}
-\paragraph{Der zweite View} 
+\paragraph{Der zweite View}
 
-\begin{listing}[htbp]
-  \begin{minted}[firstnumber=10]{dart}
+\ifincludeall
+  \begin{listing}[htbp]
+    \begin{minted}[firstnumber=10]{dart}
 const saveMassnahmeTooltip = "Validiere und speichere Massnahme";
 
 class MassnahmenDetailScreen extends StatelessWidget {
@@ -551,10 +599,10 @@ class MassnahmenDetailScreen extends StatelessWidget {
   }
 }
 \end{minted}
-  \caption[Schritt 1 Klasse MassnahmenDetailScreen Struktur]{Die Struktur des Bildschirms MassnahmenDetailScreen, Quelle: Eigenes Listing, Datei: Quellcode/Schritt-1/conditional_form/lib/\newline screens/massnahmen_detail/massnahmen_detail.dart}
-  \label{lst:Schritt1KlasseMassnahmenDetailScreenStruktur}
-\end{listing}
-
+    \caption[Schritt 1 Klasse MassnahmenDetailScreen Struktur]{Die Struktur des Bildschirms MassnahmenDetailScreen, Quelle: Eigenes Listing, Datei: Quellcode/Schritt-1/conditional_form/lib/\newline screens/massnahmen_detail/massnahmen_detail.dart}
+    \label{lst:Schritt1KlasseMassnahmenDetailScreenStruktur}
+  \end{listing}
+\fi
 
 \begin{alexlisting}{Schritt 1}{Die Ausgabe der Formularfelder}
   {Quellcode/Schritt-1/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}

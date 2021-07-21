@@ -1,6 +1,10 @@
-%List of Listings umbenennen
-\renewcommand{\listoflistingscaption}{Listingsverzeichnis}
+\ifincludeall
 
-%Listingsverzeichnis
-\addcontentsline{toc}{section}{Listingsverzeichnis}
-\listoflistings
+    %List of Listings umbenennen
+    \renewcommand{\listoflistingscaption}{Listingsverzeichnis}
+
+    %Listingsverzeichnis
+    \addcontentsline{toc}{section}{Listingsverzeichnis}
+    \listoflistings
+
+\fi

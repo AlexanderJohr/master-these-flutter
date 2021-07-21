@@ -1,19 +1,20 @@
 
 
-
-\begin{listing}[h]
+\ifincludeall
+  \begin{listing}[h]
     \begin{minted}[]{dart}
 class MassnahmenFormViewModel {
     final letzterStatus = BehaviorSubject<LetzterStatus?>.seeded(null);
     // ...
 }
-\end{minted} 
-\caption[built_value Live Template]{Live Template für die Erstellung von built_value Boilerplate-Code in Android Studio, Quelle: Jetbrains Marketplace Built Value Snippets Plugin}
-\label{lst:BuiltValueLiveTemplate}
-\end{listing}
+\end{minted}
+    \caption[built_value Live Template]{Live Template für die Erstellung von built_value Boilerplate-Code in Android Studio, Quelle: Jetbrains Marketplace Built Value Snippets Plugin}
+    \label{lst:BuiltValueLiveTemplate}
+  \end{listing}
+\fi
 
-
-\begin{listing}[h]
+\ifincludeall
+  \begin{listing}[h]
     \begin{minted}[]{dart}
 class ChoiceChangeNotifier extends ChangeNotifier {
     BuiltSet<Choice> _choices = BuiltSet<Choice>();
@@ -26,14 +27,14 @@ class ChoiceChangeNotifier extends ChangeNotifier {
     }
 }
 class LetzterStatusViewModel extends ChoiceChangeNotifier {}
-\end{minted} 
-\caption[built_value Live Template]{Live Template für die Erstellung von built_value Boilerplate-Code in Android Studio, Quelle: Jetbrains Marketplace Built Value Snippets Plugin}
-\label{lst:BuiltValueLiveTemplate}
-\end{listing}
+\end{minted}
+    \caption[built_value Live Template]{Live Template für die Erstellung von built_value Boilerplate-Code in Android Studio, Quelle: Jetbrains Marketplace Built Value Snippets Plugin}
+    \label{lst:BuiltValueLiveTemplate}
+  \end{listing}
+\fi
 
-
-
-\begin{listing}[h]
+\ifincludeall
+  \begin{listing}[h]
     \begin{minted}[highlightlines={8}]{dart}
   providers: [
     Provider<MassnahmenFormViewModel>(
@@ -44,15 +45,15 @@ class LetzterStatusViewModel extends ChoiceChangeNotifier {}
             Provider.of<MassnahmenJsonFile>(context, listen: false))),
     ChangeNotifierProvider(create: (context) => LetzterStatusViewModel()))
   ],
-\end{minted} 
-\caption[built_value Live Template]{Live Template für die Erstellung von built_value Boilerplate-Code in Android Studio, Quelle: Jetbrains Marketplace Built Value Snippets Plugin}
-\label{lst:BuiltValueLiveTemplate}
-\end{listing}
+\end{minted}
+    \caption[built_value Live Template]{Live Template für die Erstellung von built_value Boilerplate-Code in Android Studio, Quelle: Jetbrains Marketplace Built Value Snippets Plugin}
+    \label{lst:BuiltValueLiveTemplate}
+  \end{listing}
+\fi
 
 
-
-
-\begin{listing}[h]
+\ifincludeall
+  \begin{listing}[h]
     \begin{minted}[highlightlines={1,2,3}]{dart}
   Consumer<ConsumerType>(
       builder: (context, choiceChangeNotifier, child) {
@@ -74,7 +75,8 @@ class LetzterStatusViewModel extends ChoiceChangeNotifier {}
         );
       },
     )
-\end{minted} 
-\caption[built_value Live Template]{Live Template für die Erstellung von built_value Boilerplate-Code in Android Studio, Quelle: Jetbrains Marketplace Built Value Snippets Plugin}
-\label{lst:BuiltValueLiveTemplate}
-\end{listing}
+\end{minted}
+    \caption[built_value Live Template]{Live Template für die Erstellung von built_value Boilerplate-Code in Android Studio, Quelle: Jetbrains Marketplace Built Value Snippets Plugin}
+    \label{lst:BuiltValueLiveTemplate}
+  \end{listing}
+\fi

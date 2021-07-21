@@ -1,0 +1,241 @@
+
+Für Form wurde Flutter gewählt
+
+\section{Flutter und Dart}
+
+Flutter ist ein Framework zur Entwicklung von Oberflächen von Google.
+Es unterstützt eine breite Anzahl an Ziel-System.  Dazu gehören:
+
+\begin{itemize}
+    \item Desktop:\footcite[Vgl.][]{DesktopSupportForFlutter}
+          \begin{itemize}
+              \item Windows:
+                    \begin{itemize}
+                        \item Win32,
+                        \item Universal Windows Platform,
+                    \end{itemize}
+              \item macOS,
+              \item Linux,
+          \end{itemize}
+    \item Mobile Endgeräte\footcite[Vgl.][]{FlutterBeautifulNativeAppsInRecordTime}:
+          \begin{itemize}
+              \item Android,
+              \item iOS,
+          \end{itemize}
+    \item und das Web\footcite[Vgl.][]{WebSupportForFlutter}.
+\end{itemize}
+
+Flutter ist inspiriert durch das Web-Framework react und deren Oberflächenelemente, die Components genannt werden \footcite[Vgl.][]{IntroductionToWidgets}. Die visuellen Oberflächen-Elemente in Flutter werden dagegen Widgets genannt. \enquote{react} \enquote{Components} verfügen über einen Zustand – \enquote{State} genannt – der bei Veränderung das neu zeichnen der visuellen Repräsentation erwirkt. Flutter unterscheidet allerdings zwischen zwei Arten von Widgets: denen, die einen Zustand pflegen – den \enquote{Stateful Widgets} – und solchen, die keinen Zustand haben – den \enquote{Stateless Widgets}.
+
+\enquote{Stateful Widgets} pflegen einen Zustand, der mittels der Methode \IC{setstate} gesetzt werden kann. Bei Aufrufen der Methode wird das gesamte Widget neu gezeichnet. Der Zustand selbst ist dabei im visuellen Baum als Vater der visuellen Elemente des Widgets verankert und bleibt erhalten, während die dazugehörigen Oberflächenelemente ausgetauscht werden.
+
+\enquote{Stateless Widgets} haben dagegen keinen solchen Mechanismus. Wie alle Widgets werden sie neu gezeichnet, wenn es durch das Framework angeordnet wurde. Das kann unter anderen der Fall sein, wenn das Widget zum ersten Mal in der Oberfläche auftaucht, oder das Vater-Element und damit alle Kinder Elemente neu gezeichnet werden.
+
+\enquote{StatefulWidgets} sind nur eine von vielen Möglichkeiten den Zustand des Programms zu verwalten. Die Formular-Anwendung verwendet ausschließlich \IC{StatelessWidget}s, da die Verwaltung des Zustands über das sogenannte BloC Pattern umgesetzt ist. Mehr dazu im Kapitel \HP{Kapitel einfügen}.
+
+ 
+\paragraph{Dart}
+
+Flutter-Anwendungen werden in der Programmiersprache Dart geschrieben. Nachfolgend soll auf eine Reihe von Besonderheiten von Dart im Vergleich zu anderen objektorientierten Programmiersprachen eingegangen werden.
+
+Dart ist eine Hochsprache, die hauptsächlich für die Entwicklung von Oberflächen entwickelt wurde, sich jedoch ebenso dazu eignet, Programme für das Back-End zu entwickeln.
+
+Ein Hauptaspekt bei dem Design der Sprache ist die Produktivität des Entwicklers. Mechanismen wie das \enquote{hot reload} verkürzen die Entwicklungszyklen erheblich. Das \enquote{hot reload} ermöglicht es, während eine Anwendung im Debug-Modus ausgeführt wird, Änderungen an dessen Quellcode vorzunehmen. Daraufhin werden nur die Teile der laufenden Applikation aktualisiert, die tatsächlich verändert wurden.  Währenddessen bleibt die Anwendung in der gleichen Ansicht, anstatt zum Hauptbildschirm zurückgesetzt werden, von der aus der Entwickler erneut zur gewünschten Ansicht zurücknavigieren müsste.
+
+\paragraph{AOT und JIT}
+Nicht nur für die reibungslose Entwicklung sondern auch für das Laufzeitverhalten der finalen Applikation wurde die Sprache optimiert.
+Für die Ziel-Architektouren ARM32, ARM64 und x86_64 wird Dart in Maschinencode kompiliert. \HP{\url{https://dart.dev/overview#native-platform}}
+
+Dementsprechend kommt während der Entwicklung eine virtuelle Maschine - die Dart VM - geschiet über Just-in-time-Kompilierung (JIT) zum Einsatz. Für die Kompilierung in Maschinencode wird dagegen Ahead-of-time-Kompilierung (AOT) eingesetz.
+
+\paragraph{tree shaking}
+Für die Minimierung der Dateigröße des resultierenden Kompilats wird das sogenannte \enquote{tree shaking} eingesetzt. Das Hauptprogramm importiert über das Schlüsselwort \IC{import} Funktionalitäten aus  weiteren .dart-Dateien oder sogar ganzen Bibliotheken. Diese Dateien importieren wieder Weitere. Dadurch wird ein Baum aufgespannt. Das \enquote{tree shaking} identifiziert, welche Funktionalitäten tatsächlich vom Programm verwendet werden und welche nicht. Dies bringt aber einer wichtige Einschränkung mit sich. Die Metaprogrammierung (der Zugriff auf sprachinterne Eigenschaften, wie etwa Klassen und ihre Attribute) ist damit stark eingeschränkt.
+
+\paragraph{Meta-Programmierung}
+Bei der Kompilierung werden die Original-Bezeichner durch Symbole ersetzt, welche minimalen Speicher-Bedarf haben. Aber nicht nur das, denn durch das \enquote{tree shaking} werden auch etwaige Eigenschaften und Funktionalitäten entfernt, die nicht verwendet werden. Die sogenannte \enquote{Reflexion} oder \enquote{Introspektion} versucht auf solche Meta-Informationen während der Laufzeit zuzugreifen. Da die Eigenschaften aber nicht mehr verfügbar sind, ist \enquote{Reflexion} nicht anwendbar. Dart greift daher auf eine andere Variante der Meta-Programmierung zurück: die Quellcode Generierung.
+
+\paragraph{Quellcode-Generierung}
+Das Package \enquote{source_gen} erlaubt das Auslesen der Meta-Informationen und ermöglicht das Generieren von Quellcode, der von diesen Eigenschaften abgeleitet werden kann. So verwendet beispielsweise das Package \enquote{built_value} die Quellcode-Generierung. Zunächst werden Eigenschaften wie Klassennamen, Instanzvariablen mit ihren Bezeichnern und Datentypen gelesen. Die Eigenschaften können dann genutzt werden, um unveränderliche Werte-Typen und dazugehörige sogenannte \enquote{Builder}-Objekte des Erbauer-Entwurfsmusters, sowie Funktionen zum Serialisieren und Deserialisieren von Objekten zu generieren. \HP{Referenzen}
+
+\paragraph{Set und Map Literale}
+
+Dart erlaubt es Listen (\IC{List}), Mengen (\IC{Set}) und Hashtabellen (\IC{Map}) als sogenannte Literale zu deklarieren. Ein Literal ist die textuelle Repräsentation eines Wertes eines speziellen Datentyps. Beispielsweise ist \IC{"Text"}  ein String-Literal für eine Zeichenkette mit den Elementen \enquote{T}, \enquote{e}, \enquote{x}, \enquote{t}. So ist auch \IC{\{"Text"\}}  ein Literal für eine Menge (\IC{Set}). Eine Menge mit den gleichen Werten könnte genauso auch wie in Listing \ref{lst:EinSet} erstellt werden.
+
+\ifincludeall
+    \begin{listing}[ht]
+        \begin{minted}[]{dart}
+var menge = Set();
+menge.add("Text");
+\end{minted}
+        \caption[Ein Set]{Ein Set, Quelle: Eigenes Listing}
+        \label{lst:EinSet}
+    \end{listing}
+\fi
+
+Es entfällt also die Instanziierung einer Liste, einer Menge oder einer Hashtabelle über den Klassennamen und der darauffolgenden Zuweisung der einzelnen Werte. Stattdessen startet das \IC{Set} und \IC{Map} Literal mit einer öffnenden geschweiften Klammer und endet mit einer schließenden geschweiften Klammer. Innerhalb der Klammern werden die Werte im Fall eines Sets mit \IC{,} getrennt nacheinander aufgeführt ( \IC{\{1,2\}} ). Im Fall einer Map werden der Schlüssel und der Wert durch einen \IC{:} voneinander getrennt und die Schlüsse-Wertepaare wiederum durch \IC{,} getrennt nacheinander aufgelistet (\IC{\{1: "erster Wert",2:"zweiter Wert"\}}). Eine Liste wiederum wird mit eckigen Klammern geöffnet und geschlossen. Die Werte werden erneut mit, getrennt voneinander angegeben (\IC{[1,2]}).
+
+\paragraph{Collection for} Dart erlaubt es Schleifen innerhalb von Listen-, Mengen- und Hashtabellen-Literalen zu verwenden. Dabei darf die Schleife jedoch keinen Schleifen-Körper besitzen. Ledig der Schleifen-Kopf wird dazu im Literal geschrieben. Darauf folgt der Wert, der bei jedem Schleifendurchlauf hinzugefügt werden soll. Dabei kann der Wert von der Schleifenvariable genutzt oder davon abgeleitet werden.
+Listing \ref{lst:CollectionForInEinerMenge} geht beispielsweise durch die Liste von der Temperatur-Angaben 97.7,105.8, die in Fahrenheit gelistet sind. Für jeden Schleifendurchlauf wird die Schleifen-Variable f mit der entsprechenden Formel in Grad Celsius umgewandelt. Das Ergebnis ist somit äquivalent mit dem \IC{Set}-Literal \IC{{36.5, 38.5, 41}}.
+
+
+\ifincludeall
+    \begin{listing}[ht]
+        \begin{minted}[]{dart}
+var gradCelsiusTemperaturen = {
+    for (var f in [97.7, 101.3, 105.8])
+        (f - 32) * 5 / 9
+};
+\end{minted}
+        \caption[Collection-for in einer Menge]{Collection-for in einer Menge, Quelle: Eigenes Listing}
+        \label{lst:CollectionForInEinerMenge}
+    \end{listing}
+\fi
+
+Gleiches gilt für Hashtabellen. Hierbei wird ein Schlüssel-Werte-Paar übergeben. Links vom einem \IC{:} ist der Schlüssel und rechts davon der Wert. In Listing \ref{lst:CollectionForInEinerHashtabelle}
+wird durch  die gleiche Liste von Temperaturen in Fahrenheit iteriert.  Für jede Schleifen variable f wird für das resultierende Schlüsselwörter paar das Ergebnis in Grad Celsius als Schlüssel und das Ergebnis als Wert eingetragen. Das Ergebnis von \IC{celsiusUndFahrenheit} ist dementsprechend eine \IC{Map} mit dem Wert: \IC{{36.5: 97.7, 38.5: 101.3, 41: 105.8}}
+
+\ifincludeall
+    \begin{listing}[ht]
+        \begin{minted}[]{dart}
+var celsiusUndFahrenheit = {
+    for (var f in [97.7, 101.3, 105.8])
+        (f - 32) * 5 / 9 :  f
+};
+\end{minted}
+        \caption[Collection-for in einer Hashtabelle]{Collection-for in einer Hashtabelle, Quelle: Eigenes Listing}
+        \label{lst:CollectionForInEinerHashtabelle}
+    \end{listing}
+\fi
+
+\paragraph{Collection-if}
+
+Neben dem Collection-for ist auch die Nutzung von Fallunterscheidungen in Kollektionen erlaubt. Vor dem Wert, der in die Kollektion aufgenommen werden soll oder nicht,  kann  das Schlüsselwort \IC{if} mit einer darauffolgenden Bedingung in Klammern gesetzt werden. Listing \ref{lst:CollectionIfInEinerListe} iteriert durch eine Anzahl von Temperaturen in Grad Celsius. Nur in dem Fall, dass die Temperatur der Schleifen-Variable \IC{c} größer oder gleich 38,5 ist, wird die Temperatur der Liste zugefügt. Das Ergebnis der Liste \IC{fieberTemperaturen} Ergibt also \IC{[38.5, 41]}.
+
+\ifincludeall
+    \begin{listing}[ht]
+        \begin{minted}[]{dart}
+var fieberTemperaturen = [
+    for (var c in [36.5, 38.5, 41])
+        if (c >= 38.5) c
+];
+\end{minted}
+        \caption[Collection-if in einer Liste]{Collection-if in einer Liste, Quelle: Eigenes Listing}
+        \label{lst:CollectionIfInEinerListe}
+    \end{listing}
+\fi
+
+\paragraph{Typen ohne NULL-Zulässigkeit} Im Vergleich zu vielen anderen Programmiersprachen wie beispielsweise in Java wird in Dart zwischen gewöhnlichen Typen und nullable Typen unterschieden. In Sprachen wie Beispielsweise Java ist es nur bei atomaren Datentypen wie \IC{int} und \IC{float} vorgeschrieben einen Wert anzugeben. \IC{null} ist bei diesen primitiven Datentypen nicht als Wert erlaubt. Doch nicht atomare Datentypen erlauben immer die Angabe von \IC{null} als Wert. \IC{null} drückt dabei immer das Nichtvorhandensein von Daten aus. Ab Dart 2.12   kann allen Datentypen standardmäßig kein Null-Wert zugewiesen werden. Das hat den Vorteil, dass der Compiler sich darauf verlassen kann, das eine Variable niemals den Wert \IC{null} haben kann. Das ist besonders dann nützlich, wenn auf  Einem Objekt eine Methode aufgerufen wird. Ist die Referenz das Objekt ist in Wahrheit \IC{null} so gibt es erst zur Laufzeit einen Fehler, da die Methode auf der Referenz \IC{null} nicht aufgerufen werden kann. Damit ein Laufzeitfehler geworfen werden kann, muss vor jedem Aufruf einer Methode auf einer Referenz überprüft werden, ob die Referenzen nicht \IC{null} sind. Würde diese Überprüfung nicht stattfinden, so könnte kein Laufzeitfehler geworfen werden und das Programm würde ohne Fehlermeldung abstürzen. Handelt es sich allerdings um eine Referenz, die niemals den Wert \IC{null} annehmen kann, so kann der Compiler die Überprüfung auf Null-Werte für diese Referenzen überspringen. Damit erhört sich zusätzlich die Ausführungsgeschwindigkeit, da die Überprüfung Zeit in Anspruch nimmt. Vor allem aber ist es vorteilhaft für den Entwickler, da der Compiler  Fehlermeldungen und Warnungen mitteilen kann, wenn Operationen auf Variablen mit potenziellen Null-Werten verwendet werden. Die Abwesenheit von Daten ist jedoch bei der Entwicklung sehr wichtig. Nicht alle Variablen können immer einen Wert haben. Aus diesem Grund gibt es in Dart auch die Typen, die auch Null-Werte zulassen. Allerdings gelten besondere Regeln für diese Typen.
+
+\paragraph{Typen mit Null-Zulässigkeit}
+
+Wird in Dart hinter einem Typen ein \IC{?} angegeben, so kann die Variable nicht nur  Werte annehmen, die dieser Datentyp zulässt sondern zusätzlich auch noch den Wert \IC{null}. Methoden auf Objekten mit Null-Zulässigkeit aufzurufen ist nicht ohne weiteres möglich.
+
+Im Listing \ref{lst:printTemperatureInCelsius}
+wird versucht die  auf die Variable \IC{fahrenheitTemperature} den Operator \IC{-} anzuwenden um sie mit \IC{32} zu subtrahieren. Der Compiler liefert jedoch einen Fehler, da der Wert der Variable \IC{null} sein kann, wie die Notation \IC{int?} anzeigt. Solange nicht feststeht, dass die Variable zur Laufzeit tatsächlich nicht \IC{null} ist, kann das Programm nicht kompiliert werden.
+
+\ifincludeall
+    \begin{listing}[ht]
+        \begin{minted}[]{dart}
+        void printTemperatureInCelsius(int? fahrenheitTemperature) {
+            print((fahrenheitTemperature - 32) * 5 / 9);
+        }
+\end{minted}
+        \caption[Collection-if in einer Liste]{Collection-if in einer Liste, Quelle: Eigenes Listing}
+        \label{lst:printTemperatureInCelsius}
+    \end{listing}
+\fi
+
+Zu diesem Zweck macht Dart von der sogenannten Type Promotion - deutsch Typ Beförderung - gebrauch. Mithilfe einer Fallunterscheidung kann vor Anwenden der Operation nachgesehen werden, ob der Wert der Variable nicht \IC{null} ist. Innerhalb des Körpers der Fallunterscheidung wird der Typ der Variable automatisch in einen Typ ohne Null-Zulässigkeit befördert. Der Code in Listing \ref{lst:printTemperatureInCelsiusWithIf} lässt sich daher wieder kompilieren.
+
+\ifincludeall
+    \begin{listing}[ht]
+        \begin{minted}[]{dart}
+void printTemperatureInCelsius(int? temperature) {
+  if (temperature != null) {
+    print((temperature - 32) * 5 / 9);
+  }
+}
+\end{minted}
+        \caption[Collection-if in einer Liste]{Collection-if in einer Liste, Quelle: Eigenes Listing}
+        \label{lst:printTemperatureInCelsiusWithIf}
+    \end{listing}
+\fi
+
+Eine Besonderheit stellen dabei allerdings Instanzvariablen dar. In Dart wird syntaktisch nicht zwischen dem Aufruf einer Getter-Methode oder einer Instanzvariable unterschieden. In Listing \label{lst:Patient}
+könnte sich hinter den Aufrufen von \IC{temperature} in den Zeilen 6 und 7 die Instanzvariable verbergen, die in Zeile 2 deklariert ist.
+
+\ifincludeall
+    \begin{listing}[ht]
+        \begin{minted}[]{dart}
+class Patient {
+  num? temperature;
+  Patient({this.temperature});
+
+  void printTemperatureInCelsius() {
+    if (temperature != null) {
+      print((temperature - 32) * 5 / 9);
+    }
+  }
+}
+    \end{minted}
+        \caption[Collection-if in einer Liste]{Collection-if in einer Liste, Quelle: Eigenes Listing}
+        \label{lst:PatientWithoutNullCheck}
+    \end{listing}
+\fi
+
+Genauso könnte es aber auch sein, das eine Klasse von Patient erbt und das Feld \IC{temperature} mit einer gleichnamigen Getter-Methode überschreibt. Auch wenn es sehr unwahrscheinlich ist, könnte es trotzdem vorkommen, dass der Aufruf von \IC{temperature} in Zeile 6 einen Wert zurückgibt, der nicht \IC{null} ist und der darauffolgende Aufruf in Zeile 7 \IC{null} liefert. So provoziert es die Klasse \IC{UnusualPatient} im Listing \ref{lst:UnusualPatient}. Beim ersten Aufruf von \IC{temperature} wird die Zähl-Variable \IC{counter} von \IC{0} auf \IC{1} erhöht. Die Abfrage, ob es sich bei dem Wert von Counter um eine ungerade Zahl handelt ist erfolgreich \Z{6}, weshalb mit \IC{97,7} ein valider Wert zurückgegeben wird. Beim zweiten Aufruf erhöht sich \IC{counter} allerdings auf \IC{2}. Die gleiche Abfrage schlägt dieses Mal fehl. Deshalb liefert die Getter-Methode nun \IC{null} \Z{9}. Ein solches Szenario ist schon sehr unwahrscheinlich, doch die Typ-Überprüfung des Compilers arbeitet mit Beweisen. Im Fall von Instanzvariablen kann nicht bewiesen werden, das zur Laufzeit ein solcher Fall ausgeschlossen werden kann.
+
+\ifincludeall
+    \begin{listing}[ht]
+        \begin{minted}[]{dart}
+class UnusualPatient extends Patient {
+  int counter = 0;
+
+  num? get temperature {
+    counter++;
+    if (counter.isOdd) {
+      return 97.7;
+    } else {
+      return null;
+    }
+  }
+}
+\end{minted}
+        \caption[Collection-if in einer Liste]{Collection-if in einer Liste, Quelle: Eigenes Listing}
+        \label{lst:UnusualPatient}
+    \end{listing}
+\fi
+
+
+Sollte sich der Entwickler sicher sein, dass die Variable nicht \IC{null} sein kann, so kann er mit einem nachgestellten \IC{!} erzwingen, dass die Variable als nicht \IC{null} angesehen wird \LstZ{\label{lst:printTemperatureInCelsiusLocalVariableForceNullCheck}}{3}. Sollte es dann dennoch passieren, dass die Variable \IC{null} ist, so wird eine Fehlermeldung beim Aufruf der Variable geworfen.
+
+\ifincludeall
+    \begin{listing}[ht]
+        \begin{minted}[]{dart}
+  void printTemperatureInCelsius() {
+    if (temperature != null) {
+      print((temperature! - 32) * 5 / 9);
+    }
+  }
+    \end{minted}
+        \caption[Collection-if in einer Liste]{Collection-if in einer Liste, Quelle: Eigenes Listing}
+        \label{lst:printTemperatureInCelsiusLocalVariableForceNullCheck}
+    \end{listing}
+\fi
+
+Eine noch sicherere Variante ist es, die Instanzvariable zuvor in eine lokale Variable zu speichern \LstZ{\ref{lst:printTemperatureInCelsiusLocalVariable}}{2}. Die lokale Variable hat keine Möglichkeit zwischen den zwei Aufrufen einen unterschiedlichen Wert anzunehmen. Somit kann auch das Suffix \IC{!} weggelassen werden \Z{4}.
+
+\ifincludeall
+    \begin{listing}[ht]
+        \begin{minted}[]{dart}
+  void printTemperatureInCelsius() {
+    num? temperature = this.temperature;
+    if (temperature != null) {
+      print((temperature - 32) * 5 / 9);
+    }
+  }
+    \end{minted}
+        \caption[Collection-if in einer Liste]{Collection-if in einer Liste, Quelle: Eigenes Listing}
+        \label{lst:printTemperatureInCelsiusLocalVariable}
+    \end{listing}
+\fi
