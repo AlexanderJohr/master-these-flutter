@@ -237,22 +237,23 @@ Bevor die Werte-Typen serialisiert werden können, muss built_value jedoch noch 
 % Korrigieren (Unten)
 Wird nun der Befehl  \IC{flutter pub run build_runner build} ausgeführt, so wird der Quellcode generiert und die Werte-Typen können für die Serialisierung genutzt werden.
 
-\clearpage
 \subsection{Test der Serialisierung einer Maßnahme}
 
 Das Ergebnis der Serialisierung wird im dazugehörigen Unit-Test ersichtlich \Lst{\ref{lst:SerialisierungEinerMassnahmeUnittest}}.
 In Zeile 8 wird ein Objekt der Klasse \IC{Massnahme} instanzieiert. Anders als bei gewöhnlichen Datentypen lassen sich bei diesem unveränderlichen Datentyp keine Attribute nach der Erstellung anpassen. Die einzige Möglichkeit besteht darin, ein neues Objekt  mit dem gewünschten Attributwert zu erstellen und die restlichen Werte des alten Objektes zu übernehmen. Dies ist mit Hilfe des sogenannten Builder-Entwurfsmuster es möglich, welches in built_value Anwendung findet.
-
-\paragraph{Erbauer-Entwurfsmuster} Das Erbauer-Entwurfsmuster - englisch builder pattern - ist ein Erzeugungsmuster, welches die Konstruktion komplexer Objekte von ihrer Repräsentation trennt. Es gehört zu der Serie von Entwurfsmustern der Gang of Four. \footcite[Vgl.][S. 119]{gamma2009entwurfsmuster}. Im Fall von built_value trennt es die unveränderlichen Objekte von ihrer Konstruktion. Über den Builder lassen sich Änderungen an diesen unveränderlichen Objekten vornehmen, wodurch eine Kopie dieses unveränderlichen Objekt mit der gewünschten Änderung, zurückgegeben wird.
-
-In den Zeilen 9 bis 10 wird so ein neues Objekt von der Klasse Maßnahme mit Hilfe der Methode \IC{rebuild} erzeugt und anschließend der Referenz \IC{massnahme} zugewiesen, wodurch sie ihren alten Wert verliert. Über die generiertet Methode \IC{serializers} \IC{.serializeWith} kann das Objekt in Json übersetzt werden. Der erste Parameter \IC{Massnahme.serializer} gibt dabei an, wie diese Serialisierung erfolgen soll und auch dieses Objekt wurde von \enquote{built_value} generiert. Der zweite Parameter ist die tatsächliche \IC{massnahme}, die in Json umgewandelt werden soll. Die Zeilen 13 bis 21 erstellen das Json Dokument, mit dem das serialisierte Ergebnis am Ende verglichen werden soll. Dabei werden die gleichen Eigenschaften eingetragen. So etwa die \IC{guid}\Z{14}, welcher bei der Initialisierung der Maßnahme automatisch und zufällig erstellt wurde. Außerdem das letzte Bearbeitungsdatum, welches den Zeitstempel erhält, zudem die Maßnahme generiert wurde. Da built_value bei der Serialisierung die Datumswerte in Mikrosekunden umwandelt, muss für das erwartete Json-Dokument das gleiche passieren \Z{16-17}. Der \IC{'letzterStatus'} \Z{18} wird hierbei auf den Standardwert \IC{'bearb'} gesetzt und der \IC{'massnahmenTitel'} \Z{20} auf den gleichen Wert, der in Zeile 9 übergeben wurde.
-Schließlich vergleicht die Methode \IC{expect} das tatsächlich serialisierter Json-Dokument mit dem, welches zuvor zum Vergleich aufgebaut wurde. Der zweite Parameter ist ein sogenannter \IC{Matcher} und die Variante mit dem Namen \IC{equals} überprüft auf absolute Gleichheit.
 
 \begin{alexlisting}{Schritt 1}{Serialisierung einer Maßnahme Unittest}
   {Quellcode/Schritt-1/conditional_form/test/data_model/massnahme_test.dart}
   {firstline=6, lastline=23}
   \label{lst:SerialisierungEinerMassnahmeUnittest}
 \end{alexlisting}
+
+\paragraph{Erbauer-Entwurfsmuster} Das Erbauer-Entwurfsmuster - englisch builder pattern - ist ein Erzeugungsmuster, welches die Konstruktion komplexer Objekte von ihrer Repräsentation trennt. Es gehört zu der Serie von Entwurfsmustern der Gang of Four. \footcite[Vgl.][S. 119]{gamma2009entwurfsmuster}. Im Fall von built_value trennt es die unveränderlichen Objekte von ihrer Konstruktion. Über den Builder lassen sich Änderungen an diesen unveränderlichen Objekten vornehmen, wodurch eine Kopie dieses unveränderlichen Objekt mit der gewünschten Änderung, zurückgegeben wird.
+
+In den Zeilen 9 bis 10 wird so ein neues Objekt von der Klasse Maßnahme mit Hilfe der Methode \IC{rebuild} erzeugt und anschließend der Referenz \IC{massnahme} zugewiesen, wodurch sie ihren alten Wert verliert. Über die generiertet Methode \IC{serializers} \IC{.serializeWith} kann das Objekt in Json übersetzt werden. Der erste Parameter \IC{Massnahme.serializer} gibt dabei an, wie diese Serialisierung erfolgen soll und auch dieses Objekt wurde von \enquote{built_value} generiert. Der zweite Parameter ist die tatsächliche \IC{massnahme}, die in Json umgewandelt werden soll. Die Zeilen 13 bis 21 erstellen das Json Dokument, mit dem das serialisierte Ergebnis am Ende verglichen werden soll. Dabei werden die gleichen Eigenschaften eingetragen. So etwa die \IC{guid}\Z{14}, welcher bei der Initialisierung der Maßnahme automatisch und zufällig erstellt wurde. Außerdem das letzte Bearbeitungsdatum, welches den Zeitstempel erhält, zudem die Maßnahme generiert wurde. Da built_value bei der Serialisierung die Datumswerte in Mikrosekunden umwandelt, muss für das erwartete Json-Dokument das gleiche passieren \Z{16-17}. Der \IC{'letzterStatus'} \Z{18} wird hierbei auf den Standardwert \IC{'bearb'} gesetzt und der \IC{'massnahmenTitel'} \Z{20} auf den gleichen Wert, der in Zeile 9 übergeben wurde.
+Schließlich vergleicht die Methode \IC{expect} das tatsächlich serialisierter Json-Dokument mit dem, welches zuvor zum Vergleich aufgebaut wurde. Der zweite Parameter ist ein sogenannter \IC{Matcher} und die Variante mit dem Namen \IC{equals} überprüft auf absolute Gleichheit.
+
+
 
 Analog zur Serialisierung testet der Unit-Test in Listing \ref{lst:DeserialisierungEinerMassnahmeUnittest} auch die Deserialisierung. Das Json-Dokument ist dabei sehr ähnlich und unterscheidet sich lediglich in zwei Details. Der \IC{'guid'} wird auf einen festen Wert festgelegt \Z{38}, statt - wie zuvor - durch den in dem Initialisierungs-Prozess der Maßnahme zufällig generiert zu werden. Außerdem wird auch das \IC{letztesBearbeitungsDatum} festgesetzt, nämlich auf die Microsekunde \IC{0} \Z{40}.
 
@@ -266,7 +267,7 @@ Analog zur Serialisierung testet der Unit-Test in Listing \ref{lst:Deserialisier
 Zum Vergleich wird in den Zeilen 46 bis 52 eine Maßnahme über das Builder-Entwurfsmuster generiert und die gleichen feste Werte werden für die Eigenschaften übergeben.
 Dabei ist darauf zu achten, dass die Instanzvariable \IC{letzteBearbeitung} keinen Wert über den Zuweisungs-Operator \IC{=} erhält, sondern stattdessen die Methode \IC{update} darauf aufgerufen wird.
 
-Da es sich bei der Instanzvariable \IC{letzteBearbeitung} genauso um ein Object eines Wertetypen - handelt, ist sie ebenso unveränderlich. Deshalb kann sie nur über einen Builder manipuliert werden. Ein Blick in den generierten Quellcode offenbart, dass es sich in Wahrheit um einen Bilder handelt \LstZ{\label{lst:Schritt1InstanzvariableLetzteBearbeitungGibtEinenLetzteBearbeitungBuilderZurueck}}{224-225}.
+Da es sich bei der Instanzvariable \IC{letzteBearbeitung} genauso um ein Object eines Wertetypen - handelt, ist sie ebenso unveränderlich. Deshalb kann sie nur über einen Builder manipuliert werden. Ein Blick in den generierten Quellcode offenbart, dass es sich in Wahrheit um einen Bilder handelt \LstZ{\ref{lst:Schritt1InstanzvariableLetzteBearbeitungGibtEinenLetzteBearbeitungBuilderZurueck}}{224-225}.
 
 \begin{alexlisting}{Schritt 1}{Instanzvariable \IC{letzteBearbeitung} gibt einen \IC{LetzteBearbeitungBuilder} zurück}
   {Quellcode/Schritt-1/conditional_form/lib/data_model/massnahme.g.dart}
@@ -285,7 +286,6 @@ Ganz ähnlich wie bei der Serialisierung wird nun mit dem Befehl \IC{serializers
 
 Gibt man in der Kommandozeile den Befehl \IC{flutter} \IC{test} \IC{test}\IC{/data_model}\IC{/massnahme _test.dart} ein, so werden die Tests in der Testdatei ausgeführt. Die Ausgabe \IC{00:01 +2: All tests passed!} teilt mit, dass beide Tests ausgeführt und beide Ergebnisse mit den verglichenen Werten übereinstimmten.
 
-\clearpage
 \subsection{Serialisierung der Maßnahmenliste}
 
 Damit alle Maßnahmen - statt nur einer einzigen - in einer Datei zusammengefasst werden können, müssen die Maßnahmen zunächst zu einer Menge zusammengefasst werden, die ebenfalls serialisierbar ist.
@@ -303,7 +303,6 @@ Die Übergabe des Typarguments \IC{<Massnahme>} gewährleistet, dass keine ander
 
 Der Befehl  \IC{flutter pub run build_runner build} stößt erneut die Quellcodegenerierung für den Werte-Typen \IC{Storage} an.
 
-\clearpage
 \subsection{Test der Serialisierung der Maßnahmenliste}
 
 Nun soll noch überprüft werden, ob die Menge von Maßnahmen mit genau einer eingetragenen Maßnahme korrekt serialisiert. Auch das wird von einem Unit Test überprüft \Lst{\ref{lst:Schritt1MaßnahmenSerialisierenOhneFehlerUnitTest}}. In Zeile 8 wird das leere Objekt \IC{storage} erstellt. In Zeile 9 wird es dann wiederverwendet, um aufbauend auf der Kopie Änderungen mithilfe der \IC{rebuild}-Methode durchzuführen.
@@ -348,7 +347,7 @@ Das Model beschreibt die Datenzugriffs-Komponente welche die Daten in relational
   \label{lst:Schritt1DerHaupteinstiegspunkt}
 \end{alexlisting}
 
-\IC{MassnahmenPool} \Z{29} verwaltet die eingegebenen Daten der Maßnahmen und nutzt \IC{MassnahmenJsonFile} \Z{27} um die Daten auf einem Datenträger als eine JSON-Datei zu speichern. Somit gehören diese beiden Klassen dem Model an.
+\IC{MassnahmenModel} \Z{29} verwaltet die eingegebenen Daten der Maßnahmen und nutzt die Abhängigkeit \IC{MassnahmenJsonFile} \Z{27} um die Daten auf einem Datenträger als eine JSON-Datei zu speichern. Somit gehören diese beiden Klassen dem Model an.
 
 \IC{MassnahmenFormViewModel} \Z{25} greift die Daten des Models ab und formt diese um, sodass sie von dem View \IC{MassnahmenDetailScreen} \Z{43} verändert werden können. Sollen die Daten gespeichert werden, so stellt \IC{MassnahmenFormViewModel} ebenfalls Methoden zur Verfügung um die Daten wieder in das Format des Models einpflegen zu können.
 
@@ -373,20 +372,8 @@ Die Services werden in den Zeilen 25 bis 30 in der Liste \IC{providers} \Z{24} r
 In der Hierarchie ist der \IC{MultiProvider} \Z{23} zwar an oberster Stelle, jedoch hat  das Widget keine eigene visuelle Repräsentation. Es zeigt lediglich den Inhalt, der durch die \IC{builder}-Methode erzeugt wird: Das Widget \IC{MaterialApp} \Z{32}. \IC{MaterialApp} Stellt einen \IC{Navigator} bereit und erlaubt -  ähnlich einer Webseite - über den Parameter \IC{routes} \Z{40-45} Die Angabe der  Unterseiten, die durch den Navigator besucht werden können. Über initialRoute \Z{39} kann die Startseite angegeben werden.
 
 
-\clearpage
-\subsection{Abhängigkeiten zum verwalten der Maßnahmen}
-Das Model des Model View ViewModel Entwurfmusters wird durch die Klasse \IC{MassnahmenJsonFile} in eine JSON-Datei gespeichert. Der Dateipfad wird dabei durch die Methode \IC{_localMassnahmenJsonFile} \Z{8-11} abgerufen. Die Hilfsmethode \IC{getApplicationSupportDirectory} \Z{9} gibt aus dem Nutzerverzeichnis des aktuellen Nutzers den zur Applikation zugeordneten Datei-Ordner zurück. Auf Windows-Betriebssystemen wäre das beispielsweise \url{C:\\Users\\AktuellerNutzer\\AppData\\Roaming\\com.example\\conditional_form}.
-
-Dadurch, dass dem Methoden-Bezeichner \IC{_localMassnahmenJsonFile} ein Unterstrich vorangestellt ist, ist die Methode privat und kann nur innerhalb der Klasse aufgerufen werden. Dart hat damit eine Konvention zum Standard werden lassen. In Programmiersprachen wie beispielsweise C++ wurde der Unterstrich zusätzlich den Bezeichnern von Instanz Attributen vorangestellt, die mit dem \IC{private} Schlüsselwort gekennzeichnet sind, damit sie überall im Quellcode als private Attribute identifizierbar sind, ohne dazu die Klassendefinition ansehen zu müssen. In Dart gibt es dagegen das \IC{private} Schlüsselwort nicht. Stattdessen wird der Unterstrich vor dem Bezeichner verwendet, um ein Instanzattribut privat zu deklarieren.
-
-Die Getter-Methode \IC{_localMassnahmenJsonFile} hat den Rückgabetyp \IC{Future<File>} und ist zudem mit dem Schlüsselwort \IC{async} gekennzeichnet. 
-
-Asynchron muss die Methode deshalb sein, weil sie auf den Aufruf \IC{getApplicationSupportDirectory} warten musst, der ebenfalls asynchron abläuft. Würde hier nicht das Schlüsselwort \IC{await} verwendet werden, so würde nicht das tatsächliche Verzeichnis zurückgegeben werden. Stattdessen würde ein Objekt geliefert, welches den Wert des Verzeichnisses erst dann erhält, sobald es ermittelt wurde. Solche Objekte sind beispielsweise in JavaScript als sogenannte Promise-Objekte bekannt. In Dart heißen diese Objekte \IC{Future}.  Auf einem \IC{Future} Objekt kann die Methode \IC{then} verwendet werden, um eine Funktion zu übergeben. Die Funktion würde dann aufgerufen werden, sobald der Wert bis \IC{Future} gesetzt wurde. Solche Funktion werden auch Callback-Funktionen genannt.
-
-Doch anstatt einen Callback zu verwenden, kann in Dart das Schlüsselwort \IC{await} genutzt werden, um den Wert abzuwarten. Die Notwendigkeit einer asynchronen Funktion ist dadurch gegeben, dass das Abrufen eines Verzeichnisses aus dem Dateisystem ein blockierender Vorgang ist. Während das Programm darauf wartet, dass das Betriebssystem eine Antwort zurück gibt, könnten auch andere Aufgaben abgearbeitet werden. Durch das \IC{await} Schlüsselwort erkennt die Dart-Laufzeitumgebung, dass sie andere Aufgaben aus dem sogenannten \HP{event loop} abarbeiten kann, bis der Wert verfügbar ist.
-
- Die Funktion saveMassnahmen verwendet ... 
-
+\subsection{Speichern der Maßnahmen in eine Json-Datei}
+Das Model wird durch die Klasse \IC{MassnahmenJsonFile} in eine JSON-Datei gespeichert \Lst{\ref{lst:Schritt1KlasseMassnahmenJsonFile}}. Der Dateipfad wird dabei durch die Methode \IC{_localMassnahmenJsonFile} \Z{8-11} abgerufen. Die Hilfsmethode \IC{getApplicationSupportDirectory} \Z{9} gibt aus dem Nutzerverzeichnis des aktuellen Nutzers den zur Applikation zugeordneten Datei-Ordner zurück. Auf Windows-Betriebssystemen wäre das beispielsweise \url{C:\\Users\\AktuellerNutzer\\AppData\\Roaming\\com.example\\conditional_form}.
 
 \begin{alexlisting}{Schritt 1}{Die Klasse MassnahmenJsonFile}
   {Quellcode/Schritt-1/conditional_form/lib/persistence/massnahmen_json_file.dart}
@@ -394,42 +381,50 @@ Doch anstatt einen Callback zu verwenden, kann in Dart das Schlüsselwort \IC{aw
   \label{lst:Schritt1KlasseMassnahmenJsonFile}
 \end{alexlisting}
 
+Dadurch, dass dem Methoden-Bezeichner \IC{_localMassnahmenJsonFile} ein Unterstrich vorangestellt ist, ist die Methode privat und kann nur innerhalb der Klasse aufgerufen werden. Dart hat damit eine Konvention zum Standard werden lassen. In Programmiersprachen wie beispielsweise C++ wurde der Unterstrich zusätzlich den Bezeichnern von Instanz Attributen vorangestellt, die mit dem \IC{private} Schlüsselwort gekennzeichnet sind, damit sie überall im Quellcode als private Attribute identifizierbar sind, ohne dazu die Klassendefinition ansehen zu müssen. In Dart gibt es dagegen das \IC{private} Schlüsselwort nicht. Stattdessen wird der Unterstrich vor dem Bezeichner verwendet, um ein Instanzattribut privat zu deklarieren.
+
+Die Getter-Methode \IC{_localMassnahmenJsonFile} hat den Rückgabetyp \IC{Future<File>} und ist zudem mit dem Schlüsselwort \IC{async} gekennzeichnet. Asynchron muss die Methode deshalb sein, weil sie auf den Aufruf \IC{getApplicationSupportDirectory} warten musst, der ebenfalls asynchron abläuft.
+
+Der Funktion \IC{saveMassnahmen} \Z{13-16} wird ein JSON Objekt in Form einer Hashtabelle übergeben. Sie ruft die Hilfs-Getter-Methode \IC{_localMassnahmenJsonFile} \Z{14} auf und schreib den Dateiinhalt in die Datei des abgefragten Pfades \Z{15}. Zuvor wird dazu das JSON-Object in eine textuelle Repräsentation überführt. Dazu dient die Funktion \IC{jsonEncode}.
+
+Das Äquivalent dazu stellt die Methode \IC{readMassnahmen} \Z{18-30} dar. Auch sie ruft den Dateipfad ab \Z{19}, überprüft allerdings im nächsten Schritt, ob die Datei bereits existiert \Z{21}. Sollte das der Fall sein, so wird die Datei eingelesen \Z{23}. Die textuelle Repräsentation aus der Datei wird mittels Methode \IC{jsonDecode} in ein Json-Objekt in der Form einer Hashtabelle gespeichert \Z{24} und schließlich zurückgegeben \Z{26}. Sollte die Dateien nicht existieren, führt das zu einer Ausnahme \Z{28}, welche von der aufrufenden Funktion behandelt werden kann.
+
+\subsection{ Abhängigkeit zum Verwalten der Maßnahmen}
+
+Die Maßnahmen sollen über einen Service zugreifbar sein. Die Art und Weise, wie die Maßnahmen abgerufen werden, sollte nach Möglichkeit abstrahiert werden. Das erlaubt, den Mechanismus in Zukunft auszutauschen, ohne dabei den Rest der Applikation verändern zu müssen. So wäre es beispielsweise denkbar, statt einer Json-Datei eine direkte Verbindung zu einer relationalen Datenbank herzustellen. Auch das Austauschen des Service mit einem Platzhalter, der lediglich die Aufrufe der Methoden überprüft, ist damit möglich. Ein solches Platzhalterobjekt wird \enquote{Mock} genannt und für automatisiertes Testen eingesetzt (siehe Kapitel  \HP{Kapitel einfügen}). Ebenso abstrahiert werden soll der Umgang mit Ausnahmen. Sollte die Datei nicht verfügbar sein, so muss die Oberfläche davon nicht zwingend betroffen sein. Stattdessen kann der Service sich entscheiden, eine leere Liste von Maßnahmen zurückzugeben. Sobald die Liste manipuliert wird, kann der Service eine neue Datei anlegen und sie mit den eingegebenen Daten beschreiben. Die Klasse MassnahmenPool \Lst{\ref{lst:Schritt1KlasseMassnahmenPool}} tut genau das. 
+ 
 \begin{alexlisting}{Schritt 1}{Die Klasse MassnahmenPool}
-  {Quellcode/Schritt-1/conditional_form/lib/data_access/massnahmen_pool.dart}
-  {firstline=8}
+  {Quellcode/Schritt-1/conditional_form/lib/data_access/massnahmen_model.dart}
+  {firstline=7}
   \label{lst:Schritt1KlasseMassnahmenPool}
 \end{alexlisting}
 
-\clearpage
-\subsection{Die Abhängigkeiten für das ViewModels}
-\paragraph{ViewModel}
-\HP{Füllen}
+Sie bekommt Maßnahmen json-file  im Konstruktor übergeben 11.  daraufhin ruft der Konstrukteur gleich die Inhalte Methode auf 12 Uhr, welche in den Zeilen 15-22 deklariert ist. Daran wird der Stream storage 9 initialisiert.  es handelt sich um eine Erweiterung eines  Podcast streams mit dem Namen behaviorsubject. Dieses aus dem Paket erixx.de hat importiert. Ein behaviorsubject hat die Besonderheit, dass es den  letzten Wert zwischenspeichern.  Podcast streams haben für gewöhnlich den Nachteil, das neue Zuhörer des Streams nur die neuen Events erhalten.  alle in der Vergangenheit erfolgten Events sind nicht mehr verfügbar. Vor allem dann, wenn in der Oberfläche der letzte Wert eines Streams verwendet werden soll, um Elemente zu zeichnen, ist das von einem besonderen Nachteil. Denn wenn der Stream zuvor initialisiert wurde, so gibt es keine daten zu dem Zeitpunkt, wenn die Oberfläche gezeichnet wird. Hier kommt das BfR subject ins Spiel.  sobald die Oberfläche gezeichnet wird und der Stream bereits initialisiert ist,  kann denn noch auf  den zuletzt übertragenen Wert zurückgerufen werden. Anschließend überträgt estream einen neuen Werte wie bei jedem anderen stream auch.
 
-\begin{alexlisting}{Schritt 1}{Die Klasse MassnahmenFormViewModel}
-  {Quellcode/Schritt-1/conditional_form/lib/screens/massnahmen_detail/massnahmen_form_view_model.dart}
-  {firstline=5}
-  \label{lst:Schritt1KlasseMassnahmenFormViewModel}
-\end{alexlisting}
+Der Stream kann nicht mit den Daten aus der JSON Datei bereits in der Initialisierungsliste gefällt werden. Das liegt daran, dass die JSON-Daten dazu zunächst gelesen werden müssen, was nur durch eine Reihe von asynchronen Operation möglich ist. In einer Initialisierungsliste können allerdings keiner asynchronen Operationen ausgeführt werden.
 
-\clearpage
-\subsection{Übersicht der Maßnahmen}
-\paragraph{Der erste View}
-\HP{Füllen}
+ Damit der Stream anfangs nicht lea ist, würde mit einem leeren storage object gefüllt 9.  sobald die Datei gelesen 17  und anschließend die serialisiert wurde 20,  wird der Wert aktualisiert 19.
 
+ die Initialisierung ist von einem tray Blog umgeben.  Sollte die Initialisierung verschlagen, weil die JSON Datei nicht existiert,  wird die entsprechende Fehlerbehandlung ausgeführt 21.  diese ist leer, da sich im Stream bereits ein leeres  storage Objekt  befindet.  mit diesem leeren Objekt kann die Oberfläche weiterarbeiten. In Zukunft könnte es sinnvoll sein innerhalb der Fehlerbehandlung eine Meldung an den Benutzer zu geben, um mich darüber zu informieren, dass eine neue Datei angelegt wurde.
 
+ Des Service stellt mit der Methode putMassnahmeIfAbsent Eine Methode bereit, um gleichzeitig  sowohl die Oberfläche,  als auch die json-datei  zu aktualisieren.  Sollte die eigen getragene Maßnahme schon existieren, wird sie zunächst gelöscht 26 Punkt in jedem Fall wird die neue Maßnahme dem streamen zugefügt 27. Durch Austauschen des gesamten Objektes mit der Zuweisung von storage.value  25 erhält der Stream ein neues Ereignis, worauf sich die Oberfläche neu zeichnen wird. Außerdem wird diese Serialisierung des storage Objektes angestoßen 29-30  und die neue Liste von Maßnahmen im darauffolgenden Schritt zurück in die JSON Datei gespeichert 32.
 
-
+ \subsection{Übersicht der Maßnahmen}
+ 
+ Der erste Bildschirm - die maßnahmenübersicht - kann auf den im letzten Schritt  erstellten Service MassnahmenPool zugreifen. Listing \ref{lst:Schritt1KlasseMassnahmenMasterScreenStruktur}  Zeigt die Struktur des Übersicht-Bildschirms. Über die Route /massnahmen_master Ist der Bildschirm erreichbar 16. Die Build Methode zeichnet die Oberfläche 21 bis 111.  Da ein Objekt des Typs 
+ MassnahmenPool im zentralen  Register der Provider hinterlegt wurde, kann mit der Methode Provider.of darauf zugegriffen werden.
+  
 \ifincludeall
   \begin{listing}[htbp]
     \renewcommand\theFancyVerbLine{%
-      \ifnum\value{FancyVerbLine}=32
-      \setcounter{FancyVerbLine}{94}
+      \ifnum\value{FancyVerbLine}=31
+      \setcounter{FancyVerbLine}{85}
       \tiny\ldots
       \else
       \tiny\arabic{FancyVerbLine}%
       \fi
     }
-    \begin{minted}[firstnumber=13]{dart}
+    \begin{minted}[firstnumber=11]{dart}
 final createNewMassnahmeButtonKey = GlobalKey();
 
 class MassnahmenMasterScreen extends StatelessWidget {
@@ -439,17 +434,18 @@ class MassnahmenMasterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final massnahmenPool = Provider.of<MassnahmenPool>(context, listen: false);
+    final model = AppState.of(context).model;
+    final vm = AppState.of(context).viewModel;
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Maßnahmen Master'),
       ),
       body: StreamBuilder<Storage>(
-          stream: massnahmenPool.storageSubject,
+          stream: model.storage,
           builder: (context, _) {
             return SingleChildScrollView(
-              
+              // ...
             );
           }),
       floatingActionButton: FloatingActionButton(
@@ -459,74 +455,23 @@ class MassnahmenMasterScreen extends StatelessWidget {
             color: Colors.white,
           ),
           onPressed: () {
-            final vm =
-                Provider.of<MassnahmenFormViewModel>(context, listen: false);
-
             vm.model = Massnahme();
             Navigator.of(context).pushNamed(MassnahmenDetailScreen.routeName);
           }),
     );
   }
 }
-
 \end{minted}
     \alexlistingcaption{Schritt 1}{Die Struktur der Klasse MassnahmenMasterScreen} {Quellcode/Schritt-1/conditional_form/lib/screens/massnahmen_master.dart}
     \label{lst:Schritt1KlasseMassnahmenMasterScreenStruktur}
   \end{listing}
 \fi
 
-
-\ifincludeall
-  \begin{listing}[htbp]
-    \begin{minted}[firstnumber=31]{dart}
-return SingleChildScrollView(
-  child: Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      const Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Text(
-          "Abgeschlossen",
-          style: TextStyle(fontSize: 20),
-        ),
-      ),
-      SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: MassnahmenTable(
-                massnahmenPool.storage.massnahmen
-                    .where((m) =>
-                        m.letzteBearbeitung.letzterStatus ==
-                        LetzterStatus.fertig.abbreviation)
-                    .toSet(), onSelect: (selectedMassnahme) {
-              final vm = Provider.of<MassnahmenFormViewModel>(
-                  context,
-                  listen: false);
-              vm.model = selectedMassnahme.rebuild((m) => m
-                ..letzteBearbeitung.letztesBearbeitungsDatum =
-                    DateTime.now().toUtc());
-              Navigator.of(context)
-                  .pushNamed(MassnahmenDetailScreen.routeName);
-            }),
-          )),
-        \end{minted}
-    \caption[Schritt 1 Ausgabe der finalen Maßnahmen]{Die Ausgabe der finalen Maßnahmen, Quelle: Eigenes Listing, \newline Datei: Quellcode/Schritt-1/conditional_form/lib/screens/massnahmen_master.dart}
-
-    \label{lst:Schritt1AusgabeDerFinalenMaßnahmen}
-  \end{listing}
-\fi
-
-\ifincludeall
-\begin{listing}[htbp]
-  \begin{minted}[firstnumber=48]{dart}
-.where((m) =>
-    m.letzteBearbeitung.letzterStatus == LetzterStatus.bearb.abbreviation)
-\end{minted}
-  \caption[Schritt 1 Bedingung der Entwurf-Maßnahmen]{Die Bedingung der Entwurf-Maßnahmen, Quelle: Eigenes Listing, \newline Datei: Quellcode/Schritt-1/conditional_form/lib/screens/massnahmen_master.dart}
-  \label{lst:Schritt1BedingungDerEntwurfMaßnahmen}
-\end{listing}
-\fi
+\begin{alexlisting}{Schritt 1}{Die Ausgabe der Maßnahmen}
+  {Quellcode/Schritt-1/conditional_form/lib/screens/massnahmen_master.dart}
+  {firstline=30, lastline=86}
+  \label{lst:Schritt1DieAusgabeDerMassnahmen}
+\end{alexlisting}
 
 \clearpage
 \subsection{Widget MassnahmenTable}
@@ -537,13 +482,51 @@ return SingleChildScrollView(
   {firstline=4}
   \label{lst:Schritt1KlasseMassnahmenTable}
 \end{alexlisting}
+
+
+
+\subsection{ Das View Model }
+
+
+
+
+
+
+Listing \ref{lst:Schritt1KlasseMassnahmenFormViewModel} Zeig das ViewModel. Im ersten Schritt enthält es nur drei Streams vom Typ BehaviorSubject. Eines für den letzten Status 6, wenn es für die id 8 und eines für den Titel der Maßnahme 10. 
+
+\begin{alexlisting}{Schritt 1}{Die Klasse MassnahmenFormViewModel}
+  {Quellcode/Schritt-1/conditional_form/lib/screens/massnahmen_detail/massnahmen_form_view_model.dart}
+  {firstline=5}
+  \label{lst:Schritt1KlasseMassnahmenFormViewModel}
+\end{alexlisting}
+
+Anhand dieser wird offensichtlich, warum ein ViewModel nötig ist. Die Daten die in der Oberfläche angezeigt werden sind Streams, die neue Werte annehmen können. Wann immer ein wert sich ändert, löst der stream ein neues Ereignis aus. Auf dieses Ereignis kann der few reagieren. Das Model bietet die Eigenschaften der Maßnahmen dagegen nicht als stream an. 
+
+Weil sich ich Model und ViewModel in ihrer Struktur unterscheiden, gibt es zwei Methoden, die die Konvertierung in beide Richtungen vornehmen. Die Setter Methode 12 bis 18 erhält  ein Objekt des Wert Typs Maßnahme des Models. Die einzelnen Eigenschaften werden dann den Streams über die Setter Methode value zugewiesen. Eine Besonderheit ist dabei bei Auswahloptionen zu beobachten. Der letzte Status wird im Model lediglich als Abkürzung abgelegt. Mit Hilfe der Methode fromAbbreviation kann Anhand der Abkürzung wieder in das entsprechende Objekt wiedergefunden werden 16. 
+
+ die Getter Methode dagegen wandert die streams in ein Objekt  des Werte Typs Maßnahme um.  die Auswahloption, die für den letzten Status hinterlegt wurde, wird dabei wiederum nur als Abkürzung eingetragen. Dementsprechend ist bloß die Eigenschaft abbreviation Abzufragen 22.  allerdings kann bei Auswahlfeldern auch keine Option gewählt sein.  die Götter Methode value kann daher also auch null zurück geben.  Der gibt's einen Fehler aus,  wenn versucht wird, of value  eine Operation auszuführen, so wie es bei der Getter Methode abbreviation Der Fall ist. Der Fehler kann nur damit behoben werden, indem das  prefix ?  der Operation vorangestellt wird. In diesem Fall wird die Methode aufgerufen, sollte value  nicht null sein.  Ist value dagegen 0, so wird die Operation nicht ausgeführt und direkt null zurückgegeben. 
+
+
 \clearpage
 \subsection{Eingabeformular}
 \paragraph{Der zweite View}
 
 \ifincludeall
   \begin{listing}[htbp]
-    \begin{minted}[firstnumber=10]{dart}
+  \renewcommand\theFancyVerbLine{%
+\ifnum\value{FancyVerbLine}=20 
+  \setcounter{FancyVerbLine}{28}\ldots
+\else\ifnum\value{FancyVerbLine}=32
+  \setcounter{FancyVerbLine}{46}\ldots
+\else\ifnum\value{FancyVerbLine}=62
+  \setcounter{FancyVerbLine}{78}\ldots
+\else
+\arabic{FancyVerbLine}%
+\fi
+\fi
+\fi
+}
+    \begin{minted}[firstnumber=7]{dart}
 const saveMassnahmeTooltip = "Validiere und speichere Massnahme";
 
 class MassnahmenDetailScreen extends StatelessWidget {
@@ -553,12 +536,16 @@ class MassnahmenDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final vm = Provider.of<MassnahmenFormViewModel>(context, listen: false);
-    final massnahmenPool = Provider.of<MassnahmenPool>(context, listen: false);
+    final vm = AppState.of(context).viewModel;
+    final model = AppState.of(context).model;
 
-    Future<bool> saveRecordAndGoBackToOverviewScreen() {...}
+    Future<bool> saveRecordAndGoBackToOverviewScreen() {
+      // ...
+    }
 
-    Widget createMassnahmenTitelTextFormField(MassnahmenFormViewModel vm) {...}
+    Widget createMassnahmenTitelTextFormField(MassnahmenFormViewModel vm) {
+      // ...
+    }
 
     return Scaffold(
         appBar: AppBar(
@@ -572,7 +559,9 @@ class MassnahmenDetailScreen extends StatelessWidget {
                 child: Center(
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Column(...),
+                    child: Column(
+                      // ...
+                    ),
                   ),
                 ),
               ),
@@ -606,19 +595,19 @@ class MassnahmenDetailScreen extends StatelessWidget {
 
 \begin{alexlisting}{Schritt 1}{Die Ausgabe der Formularfelder}
   {Quellcode/Schritt-1/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
-  {firstline=64, lastline=82}
+  {firstline=61, lastline=79}
   \label{lst:Schritt1AusgabeDerFormularfelder}
 \end{alexlisting}
 
 \begin{alexlisting}{Schritt 1}{Die Funktion createMassnahmenTitelTextFormField}
   {Quellcode/Schritt-1/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
-  {firstline=34, lastline=50}
+  {firstline=31, lastline=47}
   \label{lst:Schritt1DieFunktionCreateMassnahmenTitelTextFormField}
 \end{alexlisting}
 
 \begin{alexlisting}{Schritt 1}{Die Funktion saveRecordAndGoBackToOverviewScreen}
   {Quellcode/Schritt-1/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
-  {firstline=22, lastline=32}
+  {firstline=19, lastline=29}
   \label{lst:Schritt1SaveRecordAndGoBackToOverviewScreen}
 \end{alexlisting}
 
@@ -671,51 +660,32 @@ class MassnahmenDetailScreen extends StatelessWidget {
 
 \begin{alexlisting}{Schritt 1}{Initialisierung des Widgets für den Integrations Tests}
   {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
-  {firstline=30, lastline=49}
+  {firstline=30, lastline=47}
   \label{lst:Schritt1IntegrationsTestWidgetInitialisierung}
 \end{alexlisting}
 
 \begin{alexlisting}{Schritt 1}{Die Hilfsmethode tabSelectionCard}
   {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
-  {firstline=51, lastline=68}
+  {firstline=49, lastline=107}
   \label{lst:Schritt1HilfsmethodeTabSelectionCard}
 \end{alexlisting}
 
-
-
-\begin{alexlisting}{Schritt 1}{Die Hilfsmethode tabOption}
-  {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
-  {firstline=76, lastline=97}
-  \label{lst:Schritt1HilfsmethodeTabOption}
-\end{alexlisting}
-
-
-
-\begin{alexlisting}{Schritt 1}{Die Hilfsmethode fillTextFormField}
-  {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
-  {firstline=99, lastline=109}
-  \label{lst:Schritt1HilfsmethodeFillTextFormField}
-\end{alexlisting}
-
-
-
-
 \begin{alexlisting}{Schritt 1}{Der Button zum Kreieren einer Maßnahme wird ausgelöst}
   {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
-  {firstline=111, lastline=117}
+  {firstline=109, lastline=115}
   \label{lst:Schritt1ButtonKreierenMaßnahmeAusgeloest}
 \end{alexlisting}
 
 \begin{alexlisting}{Schritt 1}{Der letzte Status wird ausgewählt}
   {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
-  {firstline=119, lastline=120}
+  {firstline=117, lastline=118}
   \label{lst:Schritt1LetzterStatusWirdAusgewählt}
 \end{alexlisting}
 
 
 \begin{alexlisting}{Schritt 1}{Der Maßnahmentitel wird eingegeben}
   {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
-  {firstline=122, lastline=125}
+  {firstline=120, lastline=123}
   \label{lst:Schritt1MaßnahmentitelWirdEingegeben}
 \end{alexlisting}
 
@@ -723,13 +693,13 @@ class MassnahmenDetailScreen extends StatelessWidget {
 
 \begin{alexlisting}{Schritt 1}{Der Button zum Speichern wird ausgelöst}
   {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
-  {firstline=127, lastline=129}
+  {firstline=125, lastline=127}
   \label{lst:Schritt1ButtonZumSpeichernWirdAusgelöst}
 \end{alexlisting}
 
 \begin{alexlisting}{Schritt 1}{Der Button zum Speichern wird ausgelöst}
   {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
-  {firstline=131, lastline=143}
+  {firstline=129, lastline=141}
   \label{lst:Schritt1ErgebnisWirdVerglichen}
 \end{alexlisting}
 
