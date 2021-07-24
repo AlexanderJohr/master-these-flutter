@@ -1,0 +1,148 @@
+
+\clearpage
+\subsection{Eingabeformular}
+  
+Das soeben erstellte ViewModel kann nun für die Eingabemaske verwendet werden. Listing \ref{lst:Schritt1KlasseMassnahmenDetailScreenStruktur} zeig die grundlegende Struktur der Klasse \IC{MassnahmenDetailScreen}. 
+    
+Wiederum werden das ViewModel und das Model über das \enquote{InheritedWidget} \IC{AppState} abgerufen und in die jeweiligen lokalen Variablen gespeichert \Z{16, 17}. Nachfolgend werden zwei Hilfsfunktionen innerhalb der \IC{build}-Methode deklariert. Solche sogenannten nested functions - deutsch
+verschachtelten Funktionen - sind im Dart erlaubt, was zu einer weiteren Besonderheit führt. Der Sichtbarkeitsbereich von Variablen ist in Dart lexikalisch. Die Bindung der Variablen ist also durch den umgebenden Quelltext bestimmt. Die lokalen Variablen \IC{model} und \IC{vm} sind also im gesamten Bereich sichtbar, der durch die öffnenden und schließenden geschweiften Klammern der Methode \IC{build} aufgespannt wird \Z{15-103}. Damit sind sie auch innerhalb der beiden verschachtelten Funktionen verfügbar. Innerhalb der Funktionen kann auf model und vm zugegriffen werden, ohne sie über einen Parameter übergeben zu müssen. 
+
+Das erste Widget im Inhaltsbereich des Scaffold ist ein \IC{WillPopScope}. Es erlaubt das Verlassen einer Route an eine Abhängigkeit zu knüpfen. Bei dem Eingabeformular handelt es sich um eine Unterseite. Dadurch erscheint in der \IC{AppBar} \Z{47-48} links von der Überschrift ein Button, der ermöglicht, zur letzten Ansicht zurück zu navigieren \Abb{\ref{fig:Schritt1Eingabemaske}}. Dabei stellt sich jedoch die Frage, was mit der bis zu diesem Zeitpunkt eingetragenen Maßnahme passieren soll. Für die Formular-Anwendung soll in diesem Fall die Maßnahme im aktuellen Zustand abgespeichert werden. Dazu wird dem Parameter \IC{onWillPop} als Argument die Funktion \IC{saveRecord}. 
+
+% Wieder rein nehmen?
+% die einen Wahrheitswert in der Zukunft zurück gibt, also einen Future<bool>. Die verschachtelte Funktion saveRecordAndGoBackToOverviewScreen  sei dabei aufgerufen werden.
+
+Anders als im Übersicht-Bildschirm erhält das \IC{Scaffold} kein Argument für den Parameter \IC{floatingActionButton}. Der Hintergrund dafür ist, dass auf diesem Bildschirm in den nächsten Schritten nicht nur ein, sondern zwei solcher Buttons zur Verfügung stehen sollen.  Daher muss der Button manual angelegt werden. Das ist nur mit Hilfe eines \IC{Stack}-Widgets möglich, welcher als Kind des \IC{WillPopScope} eingetragen ist. Ein \IC{Stack} erlaubt es mehrere Ebenen in der Tiefe anzulegen. Das unterste Element soll die Auflistung der Eingabefelder sein. Der \IC{SingleChildScrollView} \Z{54-79} bietet einen vertikalen Scrollbereich an, in dem die Eingabefelder in einer \IC{Column} \Z{58-76} untereinander aufgelistet sind. Die Ebene, die  über den Eingabefeldern eingeblendet wird, soll die beiden Aktions-Buttons zeichnen. Das Widget \IC{Align} erlaubt in dieser Ebene festzulegen, wo die Elemente angeordnet sein sollen \Z{80-99}. Wie für den \IC{FloatingActionButton} üblich wurde die untere rechte Bildschirm-Ecke gewählt \Z{81}. Die Buttons sollen in Zukunft übereinander angeordnet sein, weshalb ein \IC{Column}-Widget zum Einsatz kommt. Zum ersten Mal taucht der Parameter \IC{mainAxisSizeAuf}. Mit dem Argument \IC{MainAxisSize.min} nimmt die \IC{Column} in der Höhe nur so viel Platz ein, wie durch die Kindelemente notwendig. Als bisher einziges Element in der \IC{Column}  taucht nun der \IC{FloatingActionButton} auf \Z{87-95}, der die aktuell eingetragenen Daten abspeichern \Z{92} und zur Übersicht zurückkehren soll \Z{93}. Wenn der Nutzer den Mauszeiger über diesen Button bewegt, wird ein Tooltip angezeigt: "Validiere und speichere Massnahme" \Z{88}. Der Tooltip ist als Konstante angelegt \Z{7}. Das hat vor allem den Grund, dass er auch für den folgenden Integrationstest genutzt wird. Elemente können darin über einen beinhaltenden Text oder Tooltip gefunden werden.
+
+
+
+\ifincludeall
+  \begin{listing}[htbp]
+  \renewcommand\theFancyVerbLine{%
+\ifnum\value{FancyVerbLine}=20 
+  \setcounter{FancyVerbLine}{27}\ldots
+\else\ifnum\value{FancyVerbLine}=31
+  \setcounter{FancyVerbLine}{43}\ldots
+\else\ifnum\value{FancyVerbLine}=59
+  \setcounter{FancyVerbLine}{75}\ldots
+\else
+\arabic{FancyVerbLine}%
+\fi
+\fi
+\fi
+}
+    \begin{minted}[firstnumber=7]{dart}
+const saveMassnahmeTooltip = "Validiere und speichere Massnahme";
+
+class MassnahmenDetailScreen extends StatelessWidget {
+  static const routeName = '/massnahmen-detail';
+
+  const MassnahmenDetailScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final vm = AppState.of(context).viewModel;
+    final model = AppState.of(context).model;
+
+    Future<bool> saveRecord() {
+      // ...
+    }
+
+    Widget createMassnahmenTitelTextFormField() {
+      // ...
+    }
+
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text('Maßnahmen Detail'),
+        ),
+        body: WillPopScope(
+          onWillPop: () => saveRecord(),
+          child: Stack(
+            children: [
+              SingleChildScrollView(
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      // ...
+                    ),
+                  ),
+                ),
+              ),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      FloatingActionButton(
+                        tooltip: saveMassnahmeTooltip,
+                        heroTag: 'save_floating_action_button',
+                        child: const Icon(Icons.check, color: Colors.white),
+                        onPressed: () {
+                          saveRecord();
+                          Navigator.of(context).pop();
+                        },
+                      )
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
+        ));
+  }
+}
+\end{minted}
+    \caption[Schritt 1 Klasse MassnahmenDetailScreen Struktur]{Die Struktur des Bildschirms MassnahmenDetailScreen, Quelle: Eigenes Listing, Datei: Quellcode/Schritt-1/conditional_form/lib/\newline screens/massnahmen_detail/massnahmen_detail.dart}
+    \label{lst:Schritt1KlasseMassnahmenDetailScreenStruktur}
+  \end{listing}
+\fi
+
+\clearpage
+
+\subsubsection{Ausgabe der Formularfelder}
+
+Listing \ref{lst:Schritt1AusgabeDerFormularfelder} zeigt die Ausgabe der Formularfelder in einer Column 58. Das Auswahlfeld für den letzten Status verwendet ein selbstgeschriebenes \IC{Widget} namens \IC{SelectionCard} \Z{61-72}. Da die Menge der Auswahloptionen auch den Namen der Liste enthält, kann er als Titel der Selektionskarte verwendet werden \Z{62} In diesem Fall ist das der Text \enquote{Status}. Die Auswahloptionen, welche  der Auswahlbildschirm anzeigen soll, sind dem Parameter \IC{allChoices} hinterlegt 63.
+
+Die Selektionskarte soll ihren eigenen Zustand pflegen. Sie erhält dazu lediglich den initialen Wert, der aktuellen im ViewModel gespeichert ist. Bei allen Änderungen, die innerhalb der Selektionskarte erfolgen, sollen die gleichen Änderungen auch im ViewModel nachgepflegt werden. Sollte also der Wert des letzten Status im ViewModel verfügbar sein \Z{65}, so wird er als Startwert dem Parameter \IC{initialValue} \Z{64-67} übergeben. Dabei ist zu beachten, dass das Argument eine Menge ist. Sie wird mit den  öffnenden und schließenden geschweiften Klammern erstellt. Das collection-if wird hier verwendet, um genau ein Element diesem \IC{Set}-Literal hinzuzufügen, sollte es nicht \IC{null} sein. Ist das Element allerdings \IC{null}, so bleibt das \IC{Set}-Literal einfach leer. Für mehr Informationen zum Set-Literal und dem collection-if siehe \HP{Kapitel einfügen}.
+
+
+Wenn der Benutzer einerAuswahloptionen selektiert, so  wird die dementsprechende anonyme Funktion aufgerufen. Sie ist für den Parameter \IC{onSelect} hinterlegt, \Z{68-69}. Das gleiche gilt für Auswahloptionen, welche deselektiert werden \Z{70-71}. Das Auswahlfeld erlaubt nur einen Wert. Deshalb reicht es aus, den Wert bei Selektion zu ersetzen und ihn bei Deselektion zu leeren, also ihn auf \IC{null} zu setzen. 
+
+\begin{alexlisting}{Schritt 1}{Die Ausgabe der Formularfelder}
+  {Quellcode/Schritt-1/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
+  {firstline=58, lastline=76}
+  \label{lst:Schritt1AusgabeDerFormularfelder}
+\end{alexlisting}
+
+
+\subsubsection{Eingabefeld für den Maßnahmentitel}
+
+
+Unterhalb der ersten Selektionskarte soll das Eingabefeld für den Maßnahmentitel erscheinen \Z{73}. Listing \ref{lst:Schritt1DieFunktionCreateMassnahmenTitelTextFormField} zeigt die Implementierung der verschachtelten Funktion zum Zeichnen dieses Eingabefeldes.  Es handelt sich um das Widget \IC{TextFormField} \Z{34-41}. 
+
+\begin{alexlisting}{Schritt 1}{Die Funktion createMassnahmenTitelTextFormField}
+  {Quellcode/Schritt-1/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
+  {firstline=30, lastline=44}
+  \label{lst:Schritt1DieFunktionCreateMassnahmenTitelTextFormField}
+\end{alexlisting}
+
+Hier wird klar, wovon die Selektionskarte inspiriert ist. Denn auch das \IC{TextFormField} erhält einen initialen Wert über den Parameter \IC{initialValue}. Sobald sich der Wert das Formularfeld das ändert, kann der neue Wert im ViewModel über die anonyme Funktion aktualisiert werden, welche dem Parameter \IC{onChanged} übergeben wurde. 
+
+\subsubsection{Speicher-Routine}
+
+
+Die Funktion die dem Parameter \IC{onWillPop} des \IC{WillPopScope} übergeben wurde, ist in Listing \ref{lst:Schritt1SaveRecord} zu sehen. Die Voraussetzung für diese Funktion ist, dass ihr Rückgabetyp ein \IC{Future<bool>} ist. Das erlaubt der Methode asynchron zu sein. Der \IC{Future}, der von der Funktion zurückgegeben werden soll, muss in der Zukunft den Wert \IC{true} zurückgeben, wenn den Navigator erlaubt  werden soll, zurück zu navigieren. Da die Implementierung der Methode allerdings nicht asynchron ist, soll der Wahrheitswert direkt zurückgegeben werden. Mit dem benannten Konstruktor \IC{value} der Klasse \IC{Future} ist es möglich, genau das zu tun \IC{27}.  Der Wahrheitswert ist damit in einem \IC{Future}-Objekt gekapselt und steht ohne Verzögerung zur Verfügung. Aktuell soll die Maßnahme lediglich abgespeichert werden \Z{25}, da noch keine Validierung erfolgt.
+
+Der Benutzer erhält noch eine Mitteilung, dass die Maßnahme erstellt wurde. Das aktuelle \IC{Scaffold}-Objekt kann über \IC{ScaffoldMessenger.of} adressiert werden \Z{20}. Sollte bereits eine Mitteilung vorliegen, wird diese wieder versteckt, um Platz für die neue zu machen \Z{21}. Anschließend wird eine sogenannte \IC{Snackbar} mit dem entsprechenden Text angezeigt \Z{22-23}.
+
+\begin{alexlisting}{Schritt 1}{Die Funktion saveRecordAndGoBackToOverviewScreen}
+  {Quellcode/Schritt-1/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
+  {firstline=19, lastline=28}
+  \label{lst:Schritt1SaveRecord}
+\end{alexlisting}
+
+\clearpage

@@ -1,0 +1,88 @@
+
+\subsection{Auswahloptionen hinzufügen}
+
+Dart verfügt – anders als beispielsweise Java\footcite[Vgl.][S. 321]{TheJavaLanguageSpecificationJavaSE16Edition} – nicht über Aufzählungstypen mit zusätzlichen Eigenschaften. Das Schlüsselwort \mintinline{dart}{enum} in Dart erlaubt lediglich die Auflistung konstanter Symbole\footcite[Vgl.][S. 74f.]{DartProgrammingLanguageSpecification5thedition}. Für die Auswahl Optionen ist es jedoch notwendig, dass es zwei Eigenschaften gibt:
+\begin{itemize}
+  \parsep 0pt
+  \topsep 0pt
+  \itemsep 0pt
+
+  \item die Abkürzung, die in der resultierendem Datei gespeichert werden soll
+  \item und der Beschreibungstext, welcher in der Oberfläche angezeigt wird.
+\end{itemize}
+Das hat den Hintergrund, dass die Abkürzungen weniger Speicherplatz einnehmen und die Beschreibung sich in Zukunft auch ändern darf. Würde anstatt der Abkürzung die Beschreibung als Schlüssel verwendet werden, so würde eine Datei, die mit einer älteren Version des Formulars erstellt wurde, nicht mehr von neueren Versionen der Applikationeingelesen werden können. Der alte Beschreibungstext würde nicht mehr mit dem Text übereinstimmen, der als Schlüssel in der Anwendung verwendet wird.
+
+
+Die beiden Zustände \enquote{in Bearbeitung} und \enquote{abgeschlossen} werden daher in Listing \ref{Schritt1KlasseLetzterStatus} als statische Klassenvariablen deklariert \Z{6-7}. Die beiden Konstruktor-Aufrufe übergeben dabei als erstes Argument die Abkürzung und als zweites Argument die Beschreibung. Der Konstruktor selbst \Z{9-10} deklariert die beiden Parameter als positionale Parameter.
+
+
+
+\begin{alexlisting}{Schritt 1}{Die Klasse LetzterStatus}
+  {Quellcode/Schritt-1/conditional_form/lib/choices/choices.dart}
+  {firstline=5, lastline=11}
+  \label{lst:Schritt1KlasseLetzterStatus}
+\end{alexlisting}
+
+
+
+\paragraph{Positionale Parameter}
+
+Im Vergleich zu den benannten Parametern ist bei den positionalen Parametern nur ihre Reihenfolge in der Parameterliste ausschlaggebend. Das Argument für die \IC{abbreviation} steht dabei also immer an erster Stelle und das Argument für \IC{description} immer an der zweiten \Z{6-7}. Positionale Parameter sind vorgeschrieben. Werden sie ausgelassen, so gibt es einen Compilerfehler. \DartSpec{74f.}
+
+Die Klasse \IC{LetzterStatus} erbt von der Basisklasse \IC{Choice} \Z{5}. Der Konstruktor der Klasse \Z{9} übergibt beide Parameter als Argumente an den Konstruktor der Klasse \IC{Choice}. Genau wie in Java wird mithilfe des Schlüsselwortes \IC{super}\Z{10} der Konstruktor der Basisklasse aufgerufen. Doch anders als in Java erfolgt der Aufruf des super Konstruktors nicht in der ersten Zeile des Konstruktor-Körpers \JavaSpec{310}. Weil das Aufrufen des Konstruktors der Basisklasse zum statischen Teil der Objekt-Instanziierung gehört, muss der Aufruf von \IC{super} in der Initialisierungsliste erfolgen. Die Initialisierungsliste wird mit dem \IC{:} nach der Parameterliste eingeleitet \Z{10}\DartSpec{42}.
+
+Die Basisklasse \IC{Choice} \Lst{\ref{lst:Schritt1KlasseChoice}} deklariert lediglich die beiden Felder \IC{description} und \IC{abbreviation} jeweils als \IC{String} \Z{4-5}. Beide sind mit \IC{final} gekennzeichnet, was sie zu unveränderlichen Instanzvariablen macht. Nach der Initialisierung, können sie keine anderen Werte annehmen. \DartSpec{S16} Die Initialisierung der beiden Variablen muss im statischen Kontext der Instanziierung erfolgen. Mit der abgekürzten Schreibweise \IC{this.abbreviation} und \IC{this} \IC{.description} im Konstruktor \Z{7} werden die Parameter den Feldern zugewiesen.
+
+\begin{alexlisting}{Schritt 1}{Die Klasse Choice}
+  {Quellcode/Schritt-1/conditional_form/lib/choices/base/choice.dart}
+  {firstline=3, lastline=7}
+  \label{lst:Schritt1KlasseChoice}
+\end{alexlisting}
+
+Dies erübrigt sowohl die Angabe des Parametertypes mittels \IC{(String abbreviation, String description)}, denn der Typ des Parameters kann bereits durch Angabe des Typs in der Instanzvariablen-Deklaration\Z{4-5} abgeleitet werden. Außerdem entfällt auch die Zuweisung, die man ansonstenin der Form \IC{this.abbreviation = abbreviation} und \IC{this.}\IC{description = description} in der Initialisierungsliste erreichen würde.\DartSpec{40f}
+% Auch String description wird gespart
+
+
+Die Variable \IC{letzterStatusChoices} \LstZ{\ref{lst:Schritt1DieMengeLetzterStatusChoices}}{13} fasst die beiden statischen Klassenvariablen als eine Kollektion zusammen. Da es sich um eine solche Kollektion handelt, in der jedes Element nur ein einziges Mal vorkommen darf, ist hier von einer Menge zu sprechen. Auffällig hier ist, dass das Schlüsselwort new fehlt. In Dart ist das Schlüsselwort für die Konstruktion von Instanzen optional.  Die Klasse, die zur Konstruktion dieser Menge verwendet wird, ist die selbst erstellte Klasse choices. Über das Typargument LetzterStatus wird erreicht, das ausschließlich Variablen  dieses Typs in der Menge eingefügt werden dürfen. Wird stattdessen eine Variable eingefügt, die weder vom selben Typ, noch von einem Typ, der von letzter Status erbt, so gibt es einen Compilerfehler. Dies dient einzig und allein dem Zweck, dem  Fehler vorzubeugen, dass aus Versehen falsche Optionen in der Menge eingetragen werden. Über den Parameter name ist es möglich dieser Menge die Beschriftung “Status” hinzuzufügen.  Es handelt sich hier um einen  benannte Parameter.
+
+
+\begin{alexlisting}{Schritt 1}{Die Menge letzterStatusChoices}
+  {Quellcode/Schritt-1/conditional_form/lib/choices/choices.dart}
+  {firstline=13}
+  \label{lst:Schritt1DieMengeLetzterStatusChoices}
+\end{alexlisting}
+
+\clearpage
+
+Listing \ref{lst:Schritt1KlasseChoices} zeigt die Klasse \IC{Choices}. Sie erbt von \IC{UnmodifiableSetView} und erlaubt damit die Erstellung  einer eigenen Menge - auch \IC{Set} genannt\HP{Referenz}. Methoden, die man von einem \IC{Set} erwartet,  lassen sich somit direkt auf  Instanzen der Klasse \IC{Choices} aufrufen. Darunter unter anderem die \IC{contains} Methode,  welche erlaubt, das Vorhandensein eines Objektes im \IC{Set} zu überprüfen\HP{Referenz}.
+
+\begin{alexlisting}{Schritt 1}{Die Klasse Choices}
+  {Quellcode/Schritt-1/conditional_form/lib/choices/base/choice.dart}
+  {firstline=10}
+  \label{lst:Schritt1KlasseChoices}
+\end{alexlisting}
+
+%   todo Referenz contains einfügen
+%    todo Referenz UnmodifiableSetView
+Instanzvariable \IC{name} \Z{11} wird im Konstruktor \IC{16} zugewiesen. Auffällig hierbei ist, dass der Parameter in geschweiften Klammern geschrieben steht und das Schlüsselwort \IC{required}  vorangestellt ist. Das macht den Parameter zu einem vorgeschriebenen benannten Parameter.
+
+\paragraph{Vorgeschriebene benannte Parameter}
+
+Gewöhnlicher benannte Parameter sind optional. Wird ihnen das Schlüsselwort \IC{required} vorangestellt, so müssen sie gesetz werden, denn sonst gibt es einen Compilerfehler. An dieser Stelle ist das \IC{required} Schlüsselwort sinnvoll, denn es handelt sich um den Datentyp String der nicht den  wert \IC{null} annehmender. Würde  der Parameter aber optional sein, so wäre es möglich, das programm zu kompilieren, auch wenn bei Aufrufen des Konstruktors kein Argument für den Parameter übergeben wurde. Doch in diesem Fall gäbe es keinen Initialwert für Name und somit müsste der  Instanzvariable null  zugewiesen werden. in der statischen Analyse wird daher sichergestellt, das Instanzvariablen durch benannte Parameter nur dann initialisiert werden dürfen, wenn dieser durch required  als vorgeschrieben gekennzeichnet sind und damit unter keinem Umstand ausgelassen werden können. Dürfte name den Wert Null annehmen, So würde es sich um den nullable Datentyp String  mit der Notation String? Handeln.
+
+Neben \IC{name} wird mit \IC{choiceByAbbreviation} eine weitere Instanzvariable deklariert \Z{12}.
+Es handelt sich um den Datentyp \IC{Map} - eine Kollektion die Daten mittels Schlüssel Wertepaaren ablegen kann. Als Schlüssel wird die Abkürzung mit dem Datentyp \IC{String} verwendet. Als Wert ist der generische Typ-Parameter \IC{T} angegeben. Er ist in Zeile 10 deklariert und muss mindestens von der Klasse \IC{Choice} erben. In \IC{choiceByAbbreviation} werden also die Auswahlmöglichkeiten über  ihre Abkürzung abgelegt und können über dieselbe wieder referenziert werden.  Da es sich auch hier um eine unveränderliche Instanzvariable handelt, muss sie schon in der Initialisierungsliste initialisiert werden \Z{17-19}. Dabei wird zunächst mit der öffnenden geschweiften Klammer \Z{17} ein sogenanntes Literal einer Map  begonnen, welches mit schließenden geschweiften Klammer \Z{19} endet. Mehr zu \IC{Map} Literalen in dem Grundlagenkapitel \HP{Kapitel einfügen}.
+
+
+
+Auffällig ist jedoch, dass In Zeile 18 dem Set lateral keine einfache Auflistung von Werten übergeben wird. Stattdessen wird das mit dem sogenannte collection for eine wiederholung verwendet.
+
+
+
+In Zeile 18 wird durch die  Menge aller Auswahloptionen \IC{choices} iteriert und dabei in jedem Schleifendurchlauf die Auswahloption in die Variablen \IC{choice} gespeichert. Während des Schleifendurchlauf wird dann ein Schlüssel-Wertepaar gebildet wobei \IC{choice.abbreviation} der Schlüssel ist und das Objekt \IC{choice} selbst der Wert.
+
+Die Map \IC{choiceByAbbreviation} erlaubt es nach der Initialisierung mit Hilfe der Methode \IC{fromAbbreviation} \Z{14} über die Abkürzung das dazugehörige \IC{Choice}-Objekt abzurufen. Beispielsweise gibt der Befehl \IC{letzterStatusChoices.fromAbbreviation(“fertig”)} das Objekt \IC{LetzterStatus("fertig", "abgeschlossen")} zurück. Auffällig dabei ist das der Parameter abbreviation Mit dem Typen \IC{String?} und der generische Rückgabetyp mit \IC{T?} gekennzeichnet ist. Der Suffix \IC{?} macht beide zu Typen mit Null-Zulässigkeit.
+
+
+
+Die Methode \IC{fromAbbreviation} soll für die Deserialisierung genutzt werden.  Sollten im Formular Auswahlfelder leer gelassen worden sein, so haben  entsprechenden Variablen den Wert \IC{null}. Wenn nun das Formular abgespeichert wird, so tauchen auch in der abgespeicherten Json-Datei keine Werte für das Feld auf. Wird die Datei gelesen wird die Methode \IC{fromAbbreviation} genutzt um aus der in der Json-Datei gespeicherten Abkürzung wieder die entsprechende Auswahl Option abzurufen. Sollte jedoch kein Wert hinterlegt sein, so wird \IC{letzterStatusChoices.fromAbbreviation(null)} aufgerufen werden. Dadurch wird klar, dass der Parameter \IC{null} zulassen muss. Es impliziert auch, dass potenziell \IC{null} zurückgeben werden kann, da für den Schlüssel \IC{null} kein Wert in der Map hinterlegt sein kann. Deshalb  erlaubt auch der Rückgabetyp \IC{T?} Null-Werte.

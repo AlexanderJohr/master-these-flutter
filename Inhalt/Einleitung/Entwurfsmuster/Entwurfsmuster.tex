@@ -1,0 +1,71 @@
+\subsection{Entwurfsmuster}
+
+\begin{tikzpicture}
+
+    \umlclass[x=-0.5, y=0]{Kontext}{
+    }{
+    KontextSchnittstelle()
+    }
+    
+    \umlclass[x=6,y=0]{Strategie}{
+      }{
+      \umlvirt{AlgorithmusSchnittstelle()}
+      }
+    \umlclass[x=0,y=-4]{KonkreteStrategieA}{
+      }{
+      AlgorithmusSchnittstelle()
+      }
+    \umlclass[x=5.0,y=-4]{KonkreteStrategieB}{
+      }{
+      AlgorithmusSchnittstelle()
+      }
+    \umlclass[x=10,y=-4]{KonkreteStrategieC}{
+      }{
+      AlgorithmusSchnittstelle()
+      }
+    
+    
+    
+    \umlinherit[geometry=|-|]{KonkreteStrategieA}{Strategie}
+    \umlinherit[geometry=-|]{KonkreteStrategieB}{Strategie}
+    \umlinherit[geometry=|-|]{KonkreteStrategieC}{Strategie}
+    
+    \umluniaggreg[arg1=strategie, pos1=0.4]{Kontext}{Strategie}
+    
+    \end{tikzpicture}
+
+
+
+    \begin{tikzpicture}
+
+        \umlclass[x=-0.5, y=0]{Direktor}{
+        }{
+        KontextSchnittstelle()
+        }
+        
+        \umlclass[x=6,y=0]{Erbauer}{
+          }{
+          \umlvirt{AlgorithmusSchnittstelle()}
+          }
+        \umlclass[x=0,y=-4]{KonkreteStrategieA}{
+          }{
+          AlgorithmusSchnittstelle()
+          }
+        \umlclass[x=5.0,y=-4]{KonkreterErbauer}{
+          }{
+          AlgorithmusSchnittstelle()
+          }
+        \umlclass[x=10,y=-4]{Produkt}{
+          }{
+          AlgorithmusSchnittstelle()
+          }
+        
+        
+        
+        \umlinherit[geometry=|-|]{KonkreteStrategieA}{Strategie}
+        \umlinherit[geometry=-|]{KonkreteStrategieB}{Strategie}
+        \umlinherit[geometry=|-|]{KonkreteStrategieC}{Strategie}
+        
+        \umluniaggreg[arg1=erbauer, pos1=0.4]{Kontext}{Strategie}
+        
+        \end{tikzpicture}

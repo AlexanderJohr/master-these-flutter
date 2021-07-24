@@ -1,0 +1,105 @@
+
+\clearpage
+\subsection{Der Haupteinstiegspunkt}
+
+Das Listing \ref{lst:Schritt1DerHaupteinstiegspunkt} zeigt den Haupteinstiegspunkt des Programms. Darin ist erkennbar, dass sich die Applikation in drei Rubriken einteilen lässt:
+\begin{itemize}
+  \item das Model \Z{27-30}
+  \item der View \Z{41-44}
+  \item das ViewModel. \Z{25-26}
+\end{itemize}
+\paragraph{Model View ViewModel}
+Das ModelViewViewmodel Entwurfsmuster wurde zunächst von John Gossman für die Windows Presentation Foundation beschrieben.
+Das Model beschreibt die Datenzugriffs-Komponente welche die Daten in relationalen Datenbanken oder hierarchischen Datenstrukturen wie XML oder JSON ablegt. Der View beschreibt die Oberflächenelemente wie Texteingabefelder und Buttons. Diese beiden Komponenten sind auch aus dem ModelViewController Entwurfsmuster bekannt. Das ModelViewViewmodel Entwurfsmuster ist eine Weiterentwicklung davon und integriert das sogenannte ViewModel. Es ist dafür zuständig als Schnittstelle zwischen View und Model zu fungieren. Die Daten des Models lassen sich in der Regel nicht direkt mit Oberflächen Elementen verknüpfen. Denn es kann es notwendig sein, dass die Oberfläche weitere temporäre Daten benötigt, die aber nicht mit den Daten des Models gespeichert werden sollen. Das ViewModel übernimmt diese Arbeit, indem es die Daten des Models abruft und sie in veränderter Form den Oberflächen-Elementen zur Verfügung steht. Andersherum formt es die Eingaben in der Nutzeroberfläche so um, dass sie im strikten Datenmodell des Models Platz finden. \footcite[Vgl.][]{IntroductionToModelViewViewModelPatternForBuildingWPFApps}
+
+\IC{MassnahmenModel} \Z{29} verwaltet die eingegebenen Daten der Maßnahmen und nutzt die Abhängigkeit \IC{MassnahmenJsonFile} \Z{27} um die Daten auf einem Datenträger als eine JSON-Datei zu speichern. Somit gehören diese beiden Klassen dem Model an.
+
+\IC{MassnahmenFormViewModel} \Z{25} greift die Daten des Models ab und formt diese um, sodass sie von dem View \IC{MassnahmenDetailScreen} \Z{43} verändert werden können. Sollen die Daten gespeichert werden, so stellt \IC{MassnahmenFormViewModel} ebenfalls Methoden zur Verfügung um die Daten wieder in das Format des Models einpflegen zu können.
+
+\IC{MassnahmenMasterScreen} \Z{41} stellt eine Ausnahme dar, denn dieser View präsentiert die Daten aus dem Model ohne eine Schnittstelle über ein ViewModel. Das ist möglich, weil die Daten nicht manipuliert, sondern nur angezeigt werden müssen.
+
+Damit sowohl ViewModel als auch Model von jedem View heraus abrufbar sind, werden sie in eine Art Service eingefügt \Z{23}. Das Widget AppState ist dieser Service.  Er erhält das Model \Z{24} und das ViewModel \Z{25}  im Konstruktor. Die Abhängigkeit zum Schreiben des Models in eine JSON Datei \IC{MassnahmenJsonFile} bekommt das Model ebenfalls im Konstruktor übergeben \Z{24}.
+\IC{AppState} ist das erste Element, welches im Widget-Baum auftaucht. Die gesamte restliche Applikation ist als Kind-Element hinterlegt \Z{26}. Damit können alle Widgets auf den Service zugreifen. 
+
+
+\paragraph{Service Locator und Dependency Inection}
+
+Das Service Locator Entwurfsmuster folgt dem Umsetzungsparadigma Inversion of Control – deutsch Umkehrung der Steuerung. Frameworks folgen diesem Muster, indem sie als erweiterbare Skelett-Applikationen fungieren. Anstatt, dass die Applikation den Programmfluss steuert und dabei selbst Funktionen aufruft, wird die Programmflusssteuerung an das Framework abgegeben und mit Hilfe von Ereignissen ermöglicht, dass das Framework Funktionen des Nutzers aufruft. \footcite[Vgl.][]{johnson1988designing}
+Das Entwurfsmuster ist auch unter dem Namen \enquote{hollywood pattern} bekannt , da es ähnlich wie die typische Antwort auf eine Bewerbung für einen Hollywood Film - don’t call us, we’ll call you - funktioniert.\footcite[Vgl.][]{fowler2005InversionOfControl}
+Im Service Locator Entwurfsmuster werden Komponenten darüber hinaus zentral registriert und über dieses Register anderen Komponenten zur Interaktion zur Verfügung gestellt.\footcite[Vgl.][]{fowler2004DependencyInjection}
+Anstatt die Komponenten direkt miteinander zu verknüpfen, werden Sie für den Zugriff von praktisch überall vorbereitet. Vor allem für automatisierte Tests ist dies von Vorteil, da solche Abhängigkeiten ausgetauscht werden können, um ganz spezielle Teil-Funktionalitäten eines Programms zu testen.  Mehr dazu im Kapitel \HP{Kapitel einfügen}.
+
+
+Anders als der Name vermuten lässt, steuert \IC{MaterialApp} nicht nur das Aussehen der Applikation im Material Design Look. Darüber hinaus stellt das Widget auch Grundfunktionalitäten einer App, wie etwa den Navigator bereit. Damit hat die Applikation die Möglichkeit – ähnlich wie bei einer Webside – auf Unterseiten zu navigieren. Hat der Benutzer die Arbeit in der Unterseite vollendet, so kann der Navigator gebeten werden, zur vorherigen Ansicht zurückzukehren.  Mit dem Parameter \IC{routes} \Z{34-39} erfolgt die Angabe der Unterseiten, die besucht werden können.
+Über \IC{initialRoute} \Z{39} kann die Startseite angegeben werden.
+
+\begin{alexlisting}{Schritt 1}{Der Haupteinstiegspunkt}
+  {Quellcode/Schritt-1/conditional_form/lib/main.dart}
+  {firstline=18}
+  \label{lst:Schritt1DerHaupteinstiegspunkt}
+\end{alexlisting}
+
+\clearpage
+\subsection{Der Service für den Applikations übergreifenden Zustand}
+
+Um Daten an alle Kind Elementen im Widgets mitzugeben, finden die sogenannten \enquote{InheritedWidgets} Anwendung. Der Service \IC{AppState} \Lst{\ref{lst:Schritt1DerServiceAppState}} ist genauso ein solches. 
+
+Im Konstruktor erhält er zunächst bei den Parameter des Typs \IC{Key} \Z{7}. Es ist gängige Praxis in Flutter, jedem Widget im Konstruktor zu ermöglichen, einen solchen Schlüssel zu übergeben. Es ist jedoch optional.  Ein solcher Schlüssel kann genutzt werden, um das Widget eindeutig zu identifizieren und es unter anderem über den Schlüssel wiederzufinden. In den Zeilen 8 und 9 werden das Model und das ViewModel dem Objekt  im Konstruktor übergeben. In den Zeilen 14 und 15 sind sie deklariert. Das letzte Element im Konstruktor ist das \IC{child}. Ihm muss der Widget-Baum übergeben werden, dem der Zustand verfügbar gemacht werden soll.
+
+Der Aufruf des Basis-Konstruktors mit den Argumenten \IC{key} und \IC{child} ist in Zeile 11 zu sehen. Die Basisklasse von \IC{InheritedWidget} ist \IC{ProxyWidget} und erhält exakt dieselben Argumente.  Das \IC{ProxyWidget} verwendet das Kindelement, um es im WidgetBaum unterhalb von sich selbst zu zeichnen.  Eine eigene Methode zum Zeichnen musst also nicht für das \IC{InheritedWidget} implementiert werden. Die einzige Methode, welche implementiert werden muss, ist \IC{updateShouldNotify} \Z{24}. Immer dann, wenn das \IC{InheritedWidget} selbst aktualisiert wird, kann es alle Widgets, die davon abhängig sind, benachrichtigen.  In dem Fall werden diese  Widgets ebenfalls neu gezeichnet. Für die Formular-Applikation ist das allerdings nicht gewünscht. Die Aktualisierung der Oberfläche soll in den nachfolgenden Schritten selbst kontrolliert werden. Deshalb erfolgt die Rückgabe \IC{false}, da in Zukunft nicht gewünscht ist, den Applikations-Zustand komplett auszutauschen.  Um die  Aktualisierung  der Oberfläche  kümmern sich sowohl Model als auch ViewModel.
+
+Damit ein Widget Abhängigkeit von dem \IC{AppState} anmelden kann, verwendet es in seiner eigenen \IC{build}-Methode die Methode \IC{dependOnInheritedWidgetOfExactType<AppState>()}. Der Aufruf der Methode erfolgt auf dem Objekt vom Typ \IC{BuildContext}. Weil dieser Kontext bei jedem Zeichnen allen Kindern übergeben wird, kann jedes Kind darüber die Vater-Elemente wiederfinden.
+
+Damit der Aufruf leichter lesbar und kürzer ist, empfiehlt das Flutter-Team eine eigene Klassenmethode zu erstellen, welche die Methode für den Benutzer aufruft \Z{16-17}. Auch eine Fehlermeldung kann bei dieser Auslagerung geworfen werden, sollte im Kontext kein Objekt des gewünschten Typs vorhanden sein \Z{18}. Das Widget, welches auf den \IC{AppState} zugreifen möchte, kann es mit der einfachen Schreibweise \IC{AppState.of(context)} abrufen.
+
+\begin{alexlisting}{Schritt 1}{Der Service AppState}
+  {Quellcode/Schritt-1/conditional_form/lib/widgets/app_state.dart}
+  {firstline=5}
+  \label{lst:Schritt1DerServiceAppState}
+\end{alexlisting}
+
+\clearpage
+\subsection{Speichern der Maßnahmen in eine Json-Datei}
+Das Model wird durch die Klasse \IC{MassnahmenJsonFile} in eine JSON-Datei gespeichert \Lst{\ref{lst:Schritt1KlasseMassnahmenJsonFile}}. Der Dateipfad wird dabei durch die Methode \IC{_localMassnahmenJsonFile} \Z{8-11} abgerufen. Die Hilfsmethode \IC{getApplicationSupportDirectory} \Z{9} gibt aus dem Nutzerverzeichnis des aktuellen Nutzers den zur Applikation zugeordneten Datei-Ordner zurück. Auf Windows-Betriebssystemen wäre das beispielsweise \url{C:\\Users\\AktuellerNutzer\\AppData\\Roaming\\com.example\\conditional_form}.
+
+Dadurch, dass dem Methoden-Bezeichner \IC{_localMassnahmenJsonFile} ein Unterstrich vorangestellt ist, ist die Methode privat und kann nur innerhalb der Klasse aufgerufen werden. Dart hat damit eine Konvention zum Standard werden lassen. In Programmiersprachen wie beispielsweise C++ wurde der Unterstrich zusätzlich den Bezeichnern von Instanz Attributen vorangestellt, die mit dem \IC{private} Schlüsselwort gekennzeichnet sind, damit sie überall im Quellcode als private Attribute identifizierbar sind, ohne dazu die Klassendefinition ansehen zu müssen. In Dart gibt es dagegen das \IC{private} Schlüsselwort nicht. Stattdessen wird der Unterstrich vor dem Bezeichner verwendet, um ein Instanzattribut privat zu deklarieren.
+
+Die Getter-Methode \IC{_localMassnahmenJsonFile} hat den Rückgabetyp \IC{Future<File>} und ist zudem mit dem Schlüsselwort \IC{async} gekennzeichnet. Asynchron muss die Methode deshalb sein, weil sie auf den Aufruf \IC{getApplicationSupportDirectory} warten musst, der ebenfalls asynchron abläuft.
+
+Der Funktion \IC{saveMassnahmen} \Z{13-16} wird ein JSON Objekt in Form einer Hashtabelle übergeben. Sie ruft die Hilfs-Getter-Methode \IC{_localMassnahmenJsonFile} \Z{14} auf und schreib den Dateiinhalt in die Datei des abgefragten Pfades \Z{15}. Zuvor wird dazu das JSON-Object in eine textuelle Repräsentation überführt. Dazu dient die Funktion \IC{jsonEncode}.
+
+Das Äquivalent dazu stellt die Methode \IC{readMassnahmen} \Z{18-30} dar. Auch sie ruft den Dateipfad ab \Z{19}, überprüft allerdings im nächsten Schritt, ob die Datei bereits existiert \Z{21}. Sollte das der Fall sein, so wird die Datei eingelesen \Z{23}. Die textuelle Repräsentation aus der Datei wird mittels Methode \IC{jsonDecode} in ein Json-Objekt in der Form einer Hashtabelle gespeichert \Z{24} und schließlich zurückgegeben \Z{26}. Sollte die Dateien nicht existieren, führt das zu einer Ausnahme \Z{28}, welche von der aufrufenden Funktion behandelt werden kann.
+
+\begin{alexlisting}{Schritt 1}{Die Klasse MassnahmenJsonFile}
+  {Quellcode/Schritt-1/conditional_form/lib/persistence/massnahmen_json_file.dart}
+  {firstline=7, lastline=31}
+  \label{lst:Schritt1KlasseMassnahmenJsonFile}
+\end{alexlisting}
+
+\clearpage
+\subsection{ Abhängigkeit zum Verwalten der Maßnahmen}
+
+Die Art und Weise, wie die Maßnahmen abgerufen werden, sollte nach Möglichkeit abstrahiert werden. Das erlaubt, den Mechanismus in Zukunft auszutauschen, ohne dabei den Rest der Applikation verändern zu müssen. So wäre es beispielsweise denkbar, statt einer Json-Datei eine direkte Verbindung zu einer relationalen Datenbank herzustellen. Auch das Austauschen der Abhängigkeit mit einem Platzhalter, der lediglich die Aufrufe der Methoden zählt, ist damit möglich. Ein solches Platzhalterobjekt wird \enquote{Mock} genannt und für automatisiertes Testen eingesetzt (siehe Kapitel  \HP{Kapitel einfügen}). Ebenso abstrahiert werden soll der Umgang mit Ausnahmen. Sollte die Datei nicht verfügbar sein, so muss die Oberfläche davon nicht zwingend betroffen sein. Stattdessen kann der Service sich entscheiden, eine leere Liste von Maßnahmen zurückzugeben. Sobald die Liste manipuliert wird, kann eine neue Datei angelegt werden und sie mit den eingegebenen Daten beschreiben. Die Klasse MassnahmenModel \Lst{\ref{lst:Schritt1KlasseMassnahmenModel}} tut genau das. 
+
+
+
+
+
+
+Sie bekommt \IC{MassnahmenJsonFile} im Konstruktor übergeben \Z{11}. Daraufhin ruft der Konstrukteur gleich die \IC{init} auf \Z{12}, welche in den Zeilen 15-22 deklariert ist. Darin wird der Stream \IC{storage} \Z{19} initialisiert. Es handelt sich um eine Erweiterung eines \enquote{broadcast streams} mit dem Namen \IC{BehaviorSubject} \Z{9}. Es entstammt dem Paket rx.dart, welches die Streams in Dart um eine Reihe von weiteren Funktionalitäten erweitert. Ein \IC{BehaviorSubject} hat die Besonderheit, dass es den Wert des letzten Ereignisses zwischenspeichern. Die \enquote{broadcast streams} haben für gewöhnlich den Nachteil, das neue Zuhörer des Streams nur die neuen Ereignisse erhalten. Alle in der Vergangenheit erfolgten Ereignisse sind nicht mehr verfügbar. Vor allem dann, wenn in der Oberfläche der letzte Wert eines Streams verwendet werden soll, um Elemente zu zeichnen, ist das von einem besonderen Nachteil. Denn wenn der Stream zuvor initialisiert wurde, so gibt es keine Daten zu dem Zeitpunkt, wenn die Oberfläche gezeichnet wird. Sollte die Oberfläche jedoch gezeichnet werden, bevor der Stream initialisiert wurde, so  existieren ebenfalls keine Daten. Hier kommt das \IC{BehaviorSubject} ins Spiel. Sobald die Oberfläche gezeichnet wird und der Stream bereits initialisiert ist, kann dennnoch auf den zuletzt übertragenen Wert zurückgegriffen werden. Anschließend überträgt der Stream die folgenden Aktualisierungen für die Oberfläche mit jedem neuen Ereignis, so wie es für Streams üblich ist.
+
+Der Stream kann nicht bereits in der Initialisierungsliste des Konstruktors mit den Daten aus der Json-Datei gefüllt werden. Das liegt daran, dass die Json-Daten dazu zunächst gelesen werden müssen, was nur durch eine Reihe von asynchronen Operation möglich ist. In einer Initialisierungsliste können allerdings keine asynchronen Operationen ausgeführt werden. Deshalb wird \IC{init} erst im Konstruktor-Körper aufgerufen \Z{7}. 
+
+Damit der Stream anfangs nicht leer ist, füllt ihn der benannte Konstruktor \IC{seeded} mit einem leeren Objekt des Typs \IC{Storage} \Z{9}. Sobald die Datei gelesen \Z{17} und anschließend deserialisiert wurde \Z{20}, erhält der Stream über die Setter-Methode \IC{value} ein neues Ereignis mit dem gelesenen Wert \Z{19}.
+
+Die Initialisierung ist von einem \IC{try}-Block umgeben. Sollte die Initialisierung verschlagen, weil die Json-Datei nicht existiert, wird die entsprechende Fehlerbehandlung ausgeführt \Z{21}. Diese ist leer, da sich im Stream bereits ein leeres \IC{Storage}-Objekt  befindet. Mit diesem leeren Objekt kann die Oberfläche weiterarbeiten. In Zukunft könnte es sinnvoll sein, innerhalb der Fehlerbehandlung eine Meldung an den Benutzer zu geben, um darüber zu informieren, dass eine neue Datei angelegt wurde.
+
+Mit \IC{putMassnahmeIfAbsent} \Z{24-33} steht eine Methode bereit, um gleichzeitig  sowohl die Oberfläche,  als auch die Json-Datei zu aktualisieren. Sollte die eigetragene Maßnahme schon existieren, wird sie zunächst gelöscht \Z{26}. In jedem Fall wird die neue Maßnahme dem Stream hinzugefügt \Z{27}. Durch Austauschen des gesamten Objektes mit der Zuweisung von \IC{storage.value} \Z{25} erhält der Stream erneut ein neues Ereignis, womit er die Oberfläche benachrichtigen kann, sich neu zu zeichnen. Außerdem wird die Serialisierung des \IC{Storage}-Objektes und angestoßen \Z{29-30} und die neue Liste von Maßnahmen im darauffolgenden Schritt zurück in die Json-Datei gespeichert \Z{32}.
+
+\begin{alexlisting}{Schritt 1}{Die Klasse MassnahmenModel}
+  {Quellcode/Schritt-1/conditional_form/lib/data_access/massnahmen_model.dart}
+  {firstline=7}
+  \label{lst:Schritt1KlasseMassnahmenModel}
+\end{alexlisting}
+
+\clearpage

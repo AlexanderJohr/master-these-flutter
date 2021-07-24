@@ -97,7 +97,7 @@
 
 % Seitenränder
 \usepackage{geometry}
-\geometry{a4paper, top=20mm, left=40mm, right=20mm, bottom=20mm, headsep=12mm, footskip=12mm}
+\geometry{a4paper, top=20mm, inner=40mm, outer=20mm, bottom=20mm, headsep=12mm, footskip=12mm}
 
 % Absatzformat
 \parskip2ex		% Absatzabsstand	
@@ -138,6 +138,15 @@
 % enables a break point after /, +, (, ) and -
 \usepackage{url}
 
+% Installation manuell: 
+% Download: https://perso.ensta-paris.fr/~kielbasi/tikzuml/index.php?lang=en&id=download
+% Kopieren nach texlive\texlive\2021\texmf-dist\tex\latex
+% texhash ausführen
+% uml diagramme mit tikz
+\usepackage{tikz-uml}
+
+% Blindtext einfügen
+\usepackage{blindtext}
 
 \newcommand{\alexlistingcaption}[3]{\caption[#1 #2]{#2, Quelle: Eigenes Listing, Datei: \url{#3}}}
 
