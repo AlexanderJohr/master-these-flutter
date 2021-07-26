@@ -19,13 +19,12 @@ Das Model beschreibt die Datenzugriffs-Komponente welche die Daten in relational
 \IC{MassnahmenMasterScreen} \Z{41} stellt eine Ausnahme dar, denn dieser View präsentiert die Daten aus dem Model ohne eine Schnittstelle über ein ViewModel. Das ist möglich, weil die Daten nicht manipuliert, sondern nur angezeigt werden müssen.
 
 Damit sowohl ViewModel als auch Model von jedem View heraus abrufbar sind, werden sie in eine Art Service eingefügt \Z{23}. Das Widget AppState ist dieser Service.  Er erhält das Model \Z{24} und das ViewModel \Z{25}  im Konstruktor. Die Abhängigkeit zum Schreiben des Models in eine JSON Datei \IC{MassnahmenJsonFile} bekommt das Model ebenfalls im Konstruktor übergeben \Z{24}.
-\IC{AppState} ist das erste Element, welches im Widget-Baum auftaucht. Die gesamte restliche Applikation ist als Kind-Element hinterlegt \Z{26}. Damit können alle Widgets auf den Service zugreifen. 
+\IC{AppState} ist das erste Element, welches im Widget-Baum auftaucht. Die gesamte restliche Applikation ist als Kind-Element hinterlegt \Z{26}. Damit können alle Widgets auf den Service zugreifen.
 
 
 \paragraph{Service Locator und Dependency Inection}
 
 Das Service Locator Entwurfsmuster folgt dem Umsetzungsparadigma Inversion of Control – deutsch Umkehrung der Steuerung. Frameworks folgen diesem Muster, indem sie als erweiterbare Skelett-Applikationen fungieren. Anstatt, dass die Applikation den Programmfluss steuert und dabei selbst Funktionen aufruft, wird die Programmflusssteuerung an das Framework abgegeben und mit Hilfe von Ereignissen ermöglicht, dass das Framework Funktionen des Nutzers aufruft. \footcite[Vgl.][]{johnson1988designing}
-Das Entwurfsmuster ist auch unter dem Namen \enquote{hollywood pattern} bekannt , da es ähnlich wie die typische Antwort auf eine Bewerbung für einen Hollywood Film - don’t call us, we’ll call you - funktioniert.\footcite[Vgl.][]{fowler2005InversionOfControl}
 Im Service Locator Entwurfsmuster werden Komponenten darüber hinaus zentral registriert und über dieses Register anderen Komponenten zur Interaktion zur Verfügung gestellt.\footcite[Vgl.][]{fowler2004DependencyInjection}
 Anstatt die Komponenten direkt miteinander zu verknüpfen, werden Sie für den Zugriff von praktisch überall vorbereitet. Vor allem für automatisierte Tests ist dies von Vorteil, da solche Abhängigkeiten ausgetauscht werden können, um ganz spezielle Teil-Funktionalitäten eines Programms zu testen.  Mehr dazu im Kapitel \HP{Kapitel einfügen}.
 
@@ -42,7 +41,10 @@ Anders als der Name vermuten lässt, steuert \IC{MaterialApp} nicht nur das Auss
 \clearpage
 \subsection{Der Service für den Applikations übergreifenden Zustand}
 
-Um Daten an alle Kind Elementen im Widgets mitzugeben, finden die sogenannten \enquote{InheritedWidgets} Anwendung. Der Service \IC{AppState} \Lst{\ref{lst:Schritt1DerServiceAppState}} ist genauso ein solches. 
+
+\ref{lst:UmlAppState}
+
+Um Daten an alle Kind Elementen im Widgets mitzugeben, finden die sogenannten \enquote{InheritedWidgets} Anwendung. Der Service \IC{AppState} \Lst{\ref{lst:Schritt1DerServiceAppState}} ist genauso ein solches.
 
 Im Konstruktor erhält er zunächst bei den Parameter des Typs \IC{Key} \Z{7}. Es ist gängige Praxis in Flutter, jedem Widget im Konstruktor zu ermöglichen, einen solchen Schlüssel zu übergeben. Es ist jedoch optional.  Ein solcher Schlüssel kann genutzt werden, um das Widget eindeutig zu identifizieren und es unter anderem über den Schlüssel wiederzufinden. In den Zeilen 8 und 9 werden das Model und das ViewModel dem Objekt  im Konstruktor übergeben. In den Zeilen 14 und 15 sind sie deklariert. Das letzte Element im Konstruktor ist das \IC{child}. Ihm muss der Widget-Baum übergeben werden, dem der Zustand verfügbar gemacht werden soll.
 
@@ -52,11 +54,64 @@ Damit ein Widget Abhängigkeit von dem \IC{AppState} anmelden kann, verwendet es
 
 Damit der Aufruf leichter lesbar und kürzer ist, empfiehlt das Flutter-Team eine eigene Klassenmethode zu erstellen, welche die Methode für den Benutzer aufruft \Z{16-17}. Auch eine Fehlermeldung kann bei dieser Auslagerung geworfen werden, sollte im Kontext kein Objekt des gewünschten Typs vorhanden sein \Z{18}. Das Widget, welches auf den \IC{AppState} zugreifen möchte, kann es mit der einfachen Schreibweise \IC{AppState.of(context)} abrufen.
 
+Abbildung \label{lst:UmlAppState} zeigt die Beziehung zwischen den Bildschirmen und dem AppState auf. Sowohl MassnahmenMasterScreen und MassnahmenDetailScreen müssen auf MassnahmenModel und MassnahmenFormViewModel zugreifen können. Zu diesem Zweck erstellt MassnahmenFormApp den AppState. Er enthält sowohl ViewModel als auch Model. Über ihn können beide Bildschirme auf Model und ViewModel zugreifen. 
+
+
 \begin{alexlisting}{Schritt 1}{Der Service AppState}
   {Quellcode/Schritt-1/conditional_form/lib/widgets/app_state.dart}
   {firstline=5}
   \label{lst:Schritt1DerServiceAppState}
 \end{alexlisting}
+
+
+\ifincludeall
+  \begin{figure}[h]
+    \centering
+
+    \begin{tikzpicture}
+
+      \umlclass[x=0, y=-2.7]{MassnahmenFormApp}{
+      }{
+      }
+
+      \umlclass[x=6,y=-2.7]{AppState}{
+      }{
+      }
+      \umlclass[x=0,y=0]{MassnahmenModel}{
+        jsonFile : MassnahmenJsonFile
+
+      }{
+      }
+      \umlclass[x=7.0,y=0]{MassnahmenFormViewModel}{
+      }{
+      }
+
+      \umlclass[x=0,y=-5.4]{MassnahmenMasterScreen}{
+      }{
+      }
+      \umlclass[x=7.0,y=-5.4]{MassnahmenDetailScreen}{
+      }{
+      }
+
+      \umluniassoc[]{MassnahmenFormApp}{AppState}
+
+      \umldep[geometry=|-|, anchors=60 and -60]{MassnahmenDetailScreen}{AppState}
+
+      \umldep[geometry=|-|, anchors=90 and -120]{MassnahmenMasterScreen}{AppState}
+
+      \umluniassoc[]{MassnahmenMasterScreen}{MassnahmenDetailScreen}
+
+      \umlaggreg[geometry=|-|, anchors=120 and -60]{AppState}{MassnahmenModel}
+      \umlaggreg[geometry=|-|, anchors=60 and -50]{AppState}{MassnahmenFormViewModel}
+
+    \end{tikzpicture}
+
+    \caption[UML Diagramme]{UML Diagramme, Quelle: Eigene Abbildung}
+    \label{lst:UmlAppState}
+
+  \end{figure}%
+\fi
+
 
 \clearpage
 \subsection{Speichern der Maßnahmen in eine Json-Datei}
@@ -79,7 +134,7 @@ Das Äquivalent dazu stellt die Methode \IC{readMassnahmen} \Z{18-30} dar. Auch 
 \clearpage
 \subsection{ Abhängigkeit zum Verwalten der Maßnahmen}
 
-Die Art und Weise, wie die Maßnahmen abgerufen werden, sollte nach Möglichkeit abstrahiert werden. Das erlaubt, den Mechanismus in Zukunft auszutauschen, ohne dabei den Rest der Applikation verändern zu müssen. So wäre es beispielsweise denkbar, statt einer Json-Datei eine direkte Verbindung zu einer relationalen Datenbank herzustellen. Auch das Austauschen der Abhängigkeit mit einem Platzhalter, der lediglich die Aufrufe der Methoden zählt, ist damit möglich. Ein solches Platzhalterobjekt wird \enquote{Mock} genannt und für automatisiertes Testen eingesetzt (siehe Kapitel  \HP{Kapitel einfügen}). Ebenso abstrahiert werden soll der Umgang mit Ausnahmen. Sollte die Datei nicht verfügbar sein, so muss die Oberfläche davon nicht zwingend betroffen sein. Stattdessen kann der Service sich entscheiden, eine leere Liste von Maßnahmen zurückzugeben. Sobald die Liste manipuliert wird, kann eine neue Datei angelegt werden und sie mit den eingegebenen Daten beschreiben. Die Klasse MassnahmenModel \Lst{\ref{lst:Schritt1KlasseMassnahmenModel}} tut genau das. 
+Die Art und Weise, wie die Maßnahmen abgerufen werden, sollte nach Möglichkeit abstrahiert werden. Das erlaubt, den Mechanismus in Zukunft auszutauschen, ohne dabei den Rest der Applikation verändern zu müssen. So wäre es beispielsweise denkbar, statt einer Json-Datei eine direkte Verbindung zu einer relationalen Datenbank herzustellen. Auch das Austauschen der Abhängigkeit mit einem Platzhalter, der lediglich die Aufrufe der Methoden zählt, ist damit möglich. Ein solches Platzhalterobjekt wird \enquote{Mock} genannt und für automatisiertes Testen eingesetzt (siehe Kapitel  \HP{Kapitel einfügen}). Ebenso abstrahiert werden soll der Umgang mit Ausnahmen. Sollte die Datei nicht verfügbar sein, so muss die Oberfläche davon nicht zwingend betroffen sein. Stattdessen kann der Service sich entscheiden, eine leere Liste von Maßnahmen zurückzugeben. Sobald die Liste manipuliert wird, kann eine neue Datei angelegt werden und sie mit den eingegebenen Daten beschreiben. Die Klasse MassnahmenModel \Lst{\ref{lst:Schritt1KlasseMassnahmenModel}} tut genau das.
 
 
 
@@ -88,7 +143,7 @@ Die Art und Weise, wie die Maßnahmen abgerufen werden, sollte nach Möglichkeit
 
 Sie bekommt \IC{MassnahmenJsonFile} im Konstruktor übergeben \Z{11}. Daraufhin ruft der Konstrukteur gleich die \IC{init} auf \Z{12}, welche in den Zeilen 15-22 deklariert ist. Darin wird der Stream \IC{storage} \Z{19} initialisiert. Es handelt sich um eine Erweiterung eines \enquote{broadcast streams} mit dem Namen \IC{BehaviorSubject} \Z{9}. Es entstammt dem Paket rx.dart, welches die Streams in Dart um eine Reihe von weiteren Funktionalitäten erweitert. Ein \IC{BehaviorSubject} hat die Besonderheit, dass es den Wert des letzten Ereignisses zwischenspeichern. Die \enquote{broadcast streams} haben für gewöhnlich den Nachteil, das neue Zuhörer des Streams nur die neuen Ereignisse erhalten. Alle in der Vergangenheit erfolgten Ereignisse sind nicht mehr verfügbar. Vor allem dann, wenn in der Oberfläche der letzte Wert eines Streams verwendet werden soll, um Elemente zu zeichnen, ist das von einem besonderen Nachteil. Denn wenn der Stream zuvor initialisiert wurde, so gibt es keine Daten zu dem Zeitpunkt, wenn die Oberfläche gezeichnet wird. Sollte die Oberfläche jedoch gezeichnet werden, bevor der Stream initialisiert wurde, so  existieren ebenfalls keine Daten. Hier kommt das \IC{BehaviorSubject} ins Spiel. Sobald die Oberfläche gezeichnet wird und der Stream bereits initialisiert ist, kann dennnoch auf den zuletzt übertragenen Wert zurückgegriffen werden. Anschließend überträgt der Stream die folgenden Aktualisierungen für die Oberfläche mit jedem neuen Ereignis, so wie es für Streams üblich ist.
 
-Der Stream kann nicht bereits in der Initialisierungsliste des Konstruktors mit den Daten aus der Json-Datei gefüllt werden. Das liegt daran, dass die Json-Daten dazu zunächst gelesen werden müssen, was nur durch eine Reihe von asynchronen Operation möglich ist. In einer Initialisierungsliste können allerdings keine asynchronen Operationen ausgeführt werden. Deshalb wird \IC{init} erst im Konstruktor-Körper aufgerufen \Z{7}. 
+Der Stream kann nicht bereits in der Initialisierungsliste des Konstruktors mit den Daten aus der Json-Datei gefüllt werden. Das liegt daran, dass die Json-Daten dazu zunächst gelesen werden müssen, was nur durch eine Reihe von asynchronen Operation möglich ist. In einer Initialisierungsliste können allerdings keine asynchronen Operationen ausgeführt werden. Deshalb wird \IC{init} erst im Konstruktor-Körper aufgerufen \Z{7}.
 
 Damit der Stream anfangs nicht leer ist, füllt ihn der benannte Konstruktor \IC{seeded} mit einem leeren Objekt des Typs \IC{Storage} \Z{9}. Sobald die Datei gelesen \Z{17} und anschließend deserialisiert wurde \Z{20}, erhält der Stream über die Setter-Methode \IC{value} ein neues Ereignis mit dem gelesenen Wert \Z{19}.
 
