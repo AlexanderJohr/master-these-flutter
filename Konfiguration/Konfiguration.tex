@@ -170,6 +170,21 @@
 }
 
 
+\newenvironment{alexyamllisting}[4]
+{%
+  \ifincludeall
+    \begin{listing}[ht]%
+      \inputminted[#4]{yaml}{#3}%
+      \vspace{-18pt}
+      \alexlistingcaption{#1}{#2}{#3}%
+      \fi
+      }%
+      {%
+      \ifincludeall
+    \end{listing}%
+  \fi
+}
+
 \newcommand{\fremdeslistingcaption}[4]{\caption[#1 #2]{#2, Quelle: #4, Datei: \url{#3}}}
 % Eigener Befehl für fremde Listings
 \newenvironment{fremdeslisting}[6]

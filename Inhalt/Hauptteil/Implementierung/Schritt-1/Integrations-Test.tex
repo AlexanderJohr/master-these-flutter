@@ -4,15 +4,25 @@
 \subsection{Integrations-Test zum Test der Oberfläche}
 
 
-\blindtext
+Ein automatisierter Integrationstest soll verifizieren, dass die Oberfläche wie vorgesehen funktioniert. Der Integrationstest simuliert einen Benutzer, der die Applikation verwendet, um eine Maßnahme einzutragen. Bei Abschluss des Tests soll überprüft werden, ob die  eingegebenen Daten mit den Inhalten der Json-Datei übereinstimmen.
 
-\begin{alexlisting}{Schritt 1}{Der Integration Test Driver}
-  {Quellcode/Schritt-1/conditional_form/integration_test/driver.dart}
-  {firstline=3}
-  \label{lst:Schritt1IntegrationTestDriver}
-\end{alexlisting}
+Flutter erlaubt über einen eigenen Testtreiber solche Integrationstest durchzuführen. Dabei wird die Applikation zur Ausführung gebracht, und jeder Schritt so visualisiert, wie es bei der Ausführung der realen Applikation der Fall wäre. Der Entwickler hat damit die Möglichkeit, die Eingaben und Interaktionen zu beobachten und gegebenfalls zu bemerken, warum ein Testfall nicht korrekt ausgeführt wird.
 
-\blindtext
+Das Ergebnis des Integrationstests soll allerdings nicht mit der tatsächlich geschriebenen Json-Datei überprüft werden. Der Test soll nicht tatsächlich Daten auf der Festplatte speichern. Das würde die Gefahr bergen, das  vergangene Eingaben manipuliert werden. Stattdessen soll der Test in einer Umgebung stattfinden, die keine Auswirkung auf die Haupt-Applikation oder zukünftige Tests haben soll. Zu diesem Zweck können sogenannte Mocks genutzt werden. Das Paket \enquote{mockito} erlaubt über Annotationen solche Mocks für die gewünschten Klassen  über Quellcode-Generierung zu erstellen.
+
+Integrationstests werden im Ordner integration_test angelegt. Während des Zeitpunkt der Erstellung dieser Arbeit war es in der Standardkonfiguration der Quellcode-Generierung und dem Paket \enquote{mockito} nicht möglich, Mocks auch im integration_test Ordner zu generieren.  Lediglich innerhalb des test Ordners, der für die Unit-Tests vorgesehen ist, hat die Annotation generate mocks funktioniert. Zu diesem Fehlverhalten existiert ein entsprechendes Issue im GitHub Repository  des Mockito packages. \HP{Ref} 
+
+Und das Generieren von Mocks auch für Integrationstest verfügbar zu machen, hat der Autor dieser Arbeit einen entsprechenden Lösungsansatz recherchieren und im Issue beschrieben. \HP{Ref} 
+
+Damit der integration_test Ordner für die Quellcode-Generierung der Mocks integriert wird, muss ein entsprechender Eintrag in der Build-Konfiguration vorgenommen werden. Damit das Paket \enquote{source_gen} die entsprechenden Dateien analysiert, müssen sie in der Rubrik \IC{sources} angegeben werden \LstZ{\ref{lst:Schritt1IntegrationsTestInitialisierung}}{3-8}. Wird der Ordner integration_test darin eingefügt \Z{8}, bezieht \enquote{source_gen} den Ordner in der Quellcode-Generierung mit ein. Zusätzlich dazu muss die Rubrik \IC{generate_for} von dem \IC{mockBuilder} des \enquote{mockito}-Pakets \Z{11-13} um die gleiche Angabe des Ordners ergänzt werden \Z{13}.
+
+\begin{alexyamllisting}{Schritt 1}{Initialisierung des Integrations Tests}
+  {Quellcode/Schritt-1/conditional_form/build.yaml}
+  {firstline=0}
+  \label{lst:Schritt1IntegrationsTestInitialisierung}
+\end{alexyamllisting}
+
+Anschließend kann mit der Annotation and generate mocks \LstZ{\ref{lst:Schritt1IntegrationsTestInitialisierung}}{20} ein Mock für \IC{MassnahmenJsonFile} angefordert werden. In der Kommandozeile ist \IC{flutter pub run build_runner build} einzugeben, damit der entsprechende Quellcode generiert wird. Mit dem Mock kann der Integrationstest ausgeführt werden, ohne dass befürchtet werden muss, dass die Json-Datei tatsächlich beschrieben wird. Stattdessen kann darauf gehorcht werden, wenn Operationen auf dem Objekt ausgeführt werden. 
 
 \begin{alexlisting}{Schritt 1}{Initialisierung des Integrations Tests}
   {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
@@ -20,9 +30,9 @@
   \label{lst:Schritt1IntegrationsTestInitialisierung}
 \end{alexlisting}
 
-\blindtext
+Die Funktion \IC{testWidgets} startet den Test und erhält als ersten Parameter das \IC{tester}-Objekt \Z{22}. Darüber ist die Interaktion mit der Oberfläche während des Tests möglich. In den Zeilen 22 bis 25 wird der Testtreiber initialisiert. \HP{Ref}. Anschließend wird ein Objekt der generierten Klasse \IC{MockMassnahmenJsonFile} erstellt. Wenn das Model nun während der Applikation versucht, aus der Json-Datei zu lesen, soll der Mock eine leere Liste von Maßnahmen zurückgeben \Z{28}. Dazu wird die entsprechende Methode \IC{when} verwendet. Als erster Parameter wird die Methode \IC{readMassnahmen} des Mocks übergeben. Im darauffolgenden Aufruf \IC{thenAnswer} kann angegeben werden, welche Rückgabe die Methode liefern soll.
 
-\blindtext
+Über den \IC{tester} kann mit Hilfe der Methode \IC{pumpWidget} ein beliebiges Widget in der Test-Ausführung konstruiert werden. In diesem Fall ist es die gesamte Applikation, die getestet werden soll. Dementsprechend ist  hier erneut der komplette Haupteinstiegspunkt angegeben \Lst{\ref{lst:Schritt1IntegrationsTestWidgetInitialisierung}}. Doch der Konstruktor von \Z{MassnahmenModel} erhält dieses Mal nicht das \IC{MassnahmenJsonFile}, sondern den entsprechenden Mock \Z{31}. 
 
 \begin{alexlisting}{Schritt 1}{Initialisierung des Widgets für den Integrations Tests}
   {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
@@ -30,28 +40,98 @@
   \label{lst:Schritt1IntegrationsTestWidgetInitialisierung}
 \end{alexlisting}
 
+
+
+Weil während des Integrationstest immer wieder die gleichen Operationen wie das Selektieren einer Selektions-Karte, das Auswählen einer Option, das Anklicken des Buttons zum Akzeptieren der Auswahl und das Füllen eines Eingabefeldes auftauchen, wurden entsprechende Hilfsfunktionen erstellt.
+
+
+Der Funktion \IC{tabSelectionCard} \Lst{\ref{lst:Schritt1HilfsmethodeTabSelectionCard}} benötigt lediglich die Liste der Auswahloptionen \IC{choices}, die ihr hinterlegt ist.
+ 
+
 \begin{alexlisting}{Schritt 1}{Die Hilfsmethode tabSelectionCard}
   {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
-  {firstline=49, lastline=107}
+  {firstline=49, lastline=59}
   \label{lst:Schritt1HilfsmethodeTabSelectionCard}
 \end{alexlisting}
 
+Um Objekte während des Testens in Oberfläche zu finden, stellt die Klasse \IC{Finder} nützliche Funktionalitäten zur Verfügung. \IC{Finder}-Objekte können über Fabrikmethoden des Objekts \IC{find} abgerufen werden.
+
+\paragraph{Fabrikmethoden}
+Bei der Fabrikmethode handelt es sich um ein klassenbasiertes Erzeugungsmuster. Anstatt ein Objekt einer Klasse direkt über einen Konstruktor zu erstellen, erlaubt ein Erzeuger das Objekt zu konstruieren. Dabei entscheidet der Erzeuger darüber, welche Implementierung der Klasse zurückgegeben wird. Der aufrufende Kontext muss die konkrete Klasse dazu nicht kennen.\footcite[Vgl.][107-116]{gamma2009entwurfsmuster} Er arbeitet lediglich mit der Schnittstelle. In diesem Fall ist \IC{find} dieser Erzeuger. Über die Fabrikmethode \IC{text} wird ein \IC{_TextFinder} konstruiert, jedoch über die Schnittstelle \IC{Finder} zurückgegeben. Eine weitere Fabrikmethode ist \IC{ancestor}. Sie gibt einen \IC{_AncestorFinder} zurück, welcher ebenso hinter der Schnittstelle \IC{Finder} versteckt wird. \HP{Ref}. Die Fabrikmethoden werden hier deshalb verwendet, weil sie die Lesbarkeit verbessern. Anstatt \IC{Finder titel = new _TextFinder("Maßnahmentitel")} ist \IC{Finder titel = find.text("Maßnahmentitel")} deutlich leichter zu erfassen.
+
+
+
+Um die Selektions-Karten zu finden, wird lediglich der Titel- Text benötigt. Angenommen der Test ruft \IC{tabSelectionCard} mit dem Argument \IC{letzterStatusChoices} auf, so entspricht choices.name dem String \IC{"Status"}. Der Ausdruck \IC{find.text("Status")} lokalisiert den Titel innerhalb der Selektions-Karte \Z{50}. 
+
+Die Funktion \IC{expect} erwartet als ersten Parameter einen \IC{Finder} und als zweiten einen sogenannten \enquote{Matcher} \Z{51}.
+Der Aufruf von \IC{expect} mit dem entsprechenden \IC{Finder}-Objekt und dem Matcher \IC{findsWidgets} verifiziert, dass mindestens ein entsprechendes Text Element gefunden wurde.
+
+Wurde das Text-Element gefunden, so muss noch den Vater gesucht werden, der vom Typ \IC{Card} ist \Z{53}. Das kann mit \IC{find.ancestor} erfolgen. Über den Parameter \IC{of} erhält er den \IC{Finder} des Kind-Elements und der Parameter \IC{matching} erhält als Argument die Voraussetzung, die vom Vater-Objekt erfüllt werden soll, als weiteren \IC{Finder}. \IC{find.byType(Card)} sucht also alle Elemente vom Typ \IC{Card}. \IC{find.ancestor} sucht anschließend alle Entsprechungen, in der eine \IC{Card} ein Vater des \IC{Finder textLabel } ist. Wiederum überprüft die Funktion \IC{expect}, dass die Karte gefunden wurde. Doch dieses Mal muss es genau ein Widget sein, welches mit dem \enquote{Matcher} \IC{findsOneWidget} verifiziert werden kann \Z{54}. Sollte mehr als nur eine Karte gefunden werden, so wäre nicht klar, welche geklickt werden soll.
+
+Um eine Karte tatsächlich anzuwählen muss sie im sichtbaren Bereich sein. Die Methode \enquote{ensureVisible} scrollt den Bildschirm zur entsprechenden Position, damit die Karte sichtbar ist \Z{56}. Schließlich sorgt \IC{tab} mit dem \IC{Finder} \IC{card} dafür, dass die Karte ausgewählt wird. \IC{pumpAndSettle} \Z{58} ist eine obligatorische Methode, die nach jeder Aktion durchgeführt werden muss. Sie sorgt dafür, dass der Test so lange pausiert, bis alle Aktionen in der Oberfläche und damit auch alle angestoßenen Animationen vorüber sind. Zusätzlich kann eine Dauer angegeben werden, die darüber hinaus gewartet werden soll. 
+
+\IC{tabConfirmButton} funktioniert ähnlich \Lst{\ref{lst:Schritt1HilfsmethodeTabSelectionCard}}. Das Finden des Buttons ist jedoch einfacher, da es nur einen Button zum Akzeptieren auf jeder Oberfläche gibt. Der Button enthält keinen Text, lässt sich aber auch über seinen Tooltip lokalisieren \Z{62}. Die Hilfsfunktion klickt den Button \Z{63} und wartet dann erneut auf Vollendung aller angestoßenen Animationen \Z{64}.
+
+\begin{alexlisting}{Schritt 1}{Die Hilfsmethode tabConfirmButton}
+  {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
+  {firstline=61, lastline=65}
+  \label{lst:Schritt1HilfsmethodeTabSelectionCard}
+\end{alexlisting}
+
+Ist der Integrationstest aktuell in dem Auswahlbildschirm, so sorgt \IC{tabOption} dafür, dass Auswahloptionen gewählt wird \Lst{\ref{lst:Schritt1HilfsmethodeTabOption}}. Dazu wird die gewünschte Option dem Parameter \IC{choice} übergeben. Um die Checkbox der Option zu finden, muss jedoch zunächst der Text der Auswahloption gefunden werden \Z{68}. Erst wenn verifiziert wurde, dass auch nur genau ein Label mit diesem Text existiert, läuft der Test weiter \Z{69}. 
+
+\begin{alexlisting}{Schritt 1}{Die Hilfsmethode tabOption}
+  {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
+  {firstline=67, lastline=78}
+  \label{lst:Schritt1HilfsmethodeTabOption}
+\end{alexlisting}
+
+Ein Klick auf das Text-Label reicht bereits aus, denn damit wird das Vater-Element - das \IC{CheckboxListTile} - ebenfalls getroffen. Der \IC{tester} holt es in den sichtbaren Bereich \IC{71}, klickt es \IC{72} und wartet auf Abschluss aller Animationen \Z{73}. Sollte der optionale Parameter \IC{tabConfirm} auf \IC{true} gesetzt sein \Z{75}, so wird der Auswahlbildschirm anschließend direkt wieder geschlossen, nachdem die Option ausgewählt wurde  \Z{76}. 
+
+Schließlich kann mit der Hilfsfunktionen \IC{fillTextFormField} ein Formularfeld über dessen Titel gefunden und der entsprechende übergebende Text eingetragen werden \Lst{\label{lst:Schritt1HilfsmethodeFillTextFormField}}. Sie findet das \IC{TextFormField}, indem es zunächst nach dem Titel mit \IC{find.text(title)} und anschließend dessen Vater-Element vom Typ \IC{TextFormField} sucht \Z{83}. Sollte sowohl der Hinweistext als auch der Titel den gleichen Text enthalten, so kann es sein, dass zwei solche Elemente gefunden werden. In Wahrheit ist es aber zwei Mal dasselbe \IC{TextFormField}. Mit \IC{.first} wird lediglich das erste Element geliefert \Z{85}.
+Nachdem feststeht, dass das Element existiert \Z{85} und es in den sichtbaren Bereich gescrollt wurde \Z{87}, gibt der Integrationstest den gewünschten Text in das Eingabefeld ein \Z{88}. Anschließend wird erneut auf Abschluss aller Animationen gewartet \Z{89}.
+
+\begin{alexlisting}{Schritt 1}{Die Hilfsmethode fillTextFormField}
+  {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
+  {firstline=80, lastline=90}
+  \label{lst:Schritt1HilfsmethodeFillTextFormField}
+\end{alexlisting}
+
+
+
+
+
+
+
+während der Integrationstest startet öffnet sich zu nächste Übersicht Bildschirm. Zunächst wird gewartet, dass alle widgets korrekt initialisiert wurden 109.  nun den zu 111, 112. Dazu wird der Button über den entsprechenden t gefunden. 111 
+
+
+
+
+
+
+
+
+
+
+
+
 \begin{alexlisting}{Schritt 1}{Der Button zum Kreieren einer Maßnahme wird ausgelöst}
   {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
-  {firstline=109, lastline=115}
+  {firstline=92, lastline=96}
   \label{lst:Schritt1ButtonKreierenMaßnahmeAusgeloest}
 \end{alexlisting}
 
 \begin{alexlisting}{Schritt 1}{Der letzte Status wird ausgewählt}
   {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
-  {firstline=117, lastline=118}
+  {firstline=98, lastline=99}
   \label{lst:Schritt1LetzterStatusWirdAusgewählt}
 \end{alexlisting}
 
 
 \begin{alexlisting}{Schritt 1}{Der Maßnahmentitel wird eingegeben}
   {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
-  {firstline=120, lastline=123}
+  {firstline=101, lastline=104}
   \label{lst:Schritt1MaßnahmentitelWirdEingegeben}
 \end{alexlisting}
 
@@ -59,13 +139,13 @@
 
 \begin{alexlisting}{Schritt 1}{Der Button zum Speichern wird ausgelöst}
   {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
-  {firstline=125, lastline=127}
+  {firstline=106, lastline=108}
   \label{lst:Schritt1ButtonZumSpeichernWirdAusgelöst}
 \end{alexlisting}
 
 \begin{alexlisting}{Schritt 1}{Der Button zum Speichern wird ausgelöst}
   {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
-  {firstline=129, lastline=141}
+  {firstline=110, lastline=122}
   \label{lst:Schritt1ErgebnisWirdVerglichen}
 \end{alexlisting}
 
