@@ -4,7 +4,7 @@
 \subsubsection{Vergleich zweier minimaler Beispiele für Formulare und Validierung}
 
 
-Es soll eine Formularanwendung mit komplexer Validierung im Rahmen dieser These erstellt werden. Es ist durchaus sinnvoll, die beiden Technologien anhand von  Beispielanwendungen, welche Formulare und die Validierung dieser  beinhalten,   zu vergleichen.  Deshalb sollen nachfolgend  jeweils eine solche Beispielanwendung der jeweiligen Technologie gefunden werden. Die Anwendung werden sich stark voneinander unterscheiden, weshalb sie im nächsten Schritt vereinfacht und aneinander angeglichen werden.  Anschließend wird ersichtlich werden, nach welchen Kriterien sich die Technologien im Hinblick auf die Entwicklung der Formularanwendung vergleichen lassen.
+Es soll eine Formularanwendung mit komplexer Validierung im Rahmen dieser These erstellt werden. Es ist durchaus sinnvoll, die beiden Technologien anhand von  Beispielanwendungen, welche Formulare und die Validierung dieser  beinhalten,   zu vergleichen.  Deshalb soll nachfolgend  jeweils eine solche Beispielanwendung der jeweiligen Technologie gefunden werden. Die Anwendungen werden sich stark voneinander unterscheiden, weshalb sie im nächsten Schritt vereinfacht und aneinander angeglichen werden.  Anschließend wird ersichtlich werden, nach welchen Kriterien sich die Technologien im Hinblick auf die Entwicklung der Formularanwendung vergleichen lassen.
 
 \paragraph{React Native}
 
@@ -13,14 +13,20 @@ React native stellt nur eine vergleichsweise geringe Anzahl von eigenen Komponen
 
 
 
-Für die Formular-Anwendung ist die Validierung komplexer Bedingungen nötig. Die Formular-Validierungs-Bibliotheken bieten in der Regel Funktionen an, welche überprüfen, ob ein Feld gefüllt ist oder der Inhalt einem speziellen Muster entspricht – wie etwa einem regulären Ausdruck. Doch solche mitgelieferten Validierungs-Funktionen reichen nicht aus um die Komplexität der Bedingungen abzubilden. Stattdessen müssen benutzerdefinierte Funktionen zum Einsatz kommen.
+Für die Formular-Anwendung ist die Validierung komplexer Bedingungen nötig. Die Formular-Validierungs-Bibliotheken bieten in der Regel Funktionen an, welche überprüfen, ob ein Feld gefüllt ist oder der Inhalt einem speziellen Muster entspricht – wie etwa einem regulären Ausdruck. Doch solche mitgelieferten Validierungs-Funktionen reichen nicht aus, um die Komplexität der Bedingungen abzubilden. Stattdessen müssen benutzerdefinierte Funktionen zum Einsatz kommen.
 
-Keiner der drei oben genannten Validierungs-Bibliotheken ist in dieser Hinsicht limitiert. Sie alle bieten die Möglichkeit, eine JavaScript Funktion für die Validierung zu übergeben. Diese Funktion gibt einen Wahrheitswert zurück – wahr, wenn das Feld oder die Felder valide sind, falsch, falls nicht. In React Hook Form ist es die Funktion register, die ein Parameter-Object namens Register Options erhält, dessen Eigenschaft validate die JavaScript Funktion zugewiesen werden kann.\footnote{Vgl. \cite{RegisterReactHookFormAPI}}
-In Redux Form ist es die initialisierungs-Funktion reduxForm, die ein Konfigurations-Objekt mit dem Namen config erhält, in welchem die Eigenschaft ebenfalls validate heißt.\footnote{Vgl. \cite{ReduxFormReduxFormAPI}}
+Keiner der drei oben genannten Validierungs-Bibliotheken ist in dieser Hinsicht limitiert. Sie alle bieten die Möglichkeit, eine JavaScript Funktion für die Validierung zu übergeben. Diese Funktion gibt einen Wahrheitswert zurück – wahr, wenn das Feld oder die Felder valide sind, falsch, falls nicht. In React Hook Form ist es die Funktion register, die ein Parameter-Objekt namens Register Options erhält, dessen Eigenschaft validate die JavaScript Funktion zugewiesen werden kann.\footnote{Vgl. \cite{RegisterReactHookFormAPI}}
+In Redux Form ist es die Initialisierungs-Funktion reduxForm, die ein Konfigurations-Objekt mit dem Namen config erhält, in welchem die Eigenschaft ebenfalls validate heißt.\footnote{Vgl. \cite{ReduxFormReduxFormAPI}}
 Auch in Formic ist der Bezeichner validate, und ist als Attribut in der Formic Komponente  zu finden.\footnote{Vgl. \cite{FormikComponentFormikDocsAPI}}
 
 
-Es ist also absehbar, dass die Formular-Anwendung in React Native entwickelt werden kann. Die nötigen Funktionen werden von den Bibliotheken bereitgestellt. Einziger Nachteil hierbei ist, dass es sich um Drittanbieter Bibliotheken handelt, welche im Verlauf der Zeit an Beliebtheit gewinnen und verlieren können. Möglicherweise geht die Beliebtheit einer der Bibliothek mit der Zeit zurück, weshalb es weniger Kontributionen wie etwa neue Funktionalitäten oder Fehlerbehebungen, sowie Fragen und Antworten  und Anleitungen zu diesen Bibliotheken geben wird, da die Entwickler sich für andere Bibliotheken entscheiden. Die Wahl der Bibliothek kann also schwerwiegende Folgen wie Mangel an Dokumentation oder Limitationen im Vergleich zu anderen Bibliotheken mit sich bringen. Eine Migration von der einen Bibliothek zu einer anderen könnte in Zukunft notwendig werden, wenn diese Limitationen während der Entwicklung auffallen. Aus dem Grund ist es in der Regel von Vorteil, wenn solche Funktionalitäten bereits im Kern der Frontend-Technologie integriert sind. Der Fall, dass die Kern-Komponenten an Relevanz verlieren und empfohlen wird, auf externe Bibliotheken zuzugreifen, ist zwar nicht ausgeschlossen, geschied aber im wesentlichen seltener.
+Es ist also absehbar, dass die Formular-Anwendung in React Native entwickelt werden kann.
+Die nötigen Funktionen werden von den Bibliotheken bereitgestellt.
+Einziger Nachteil hierbei ist, dass es sich um Drittanbieter Bibliotheken handelt, welche im Verlauf der Zeit an Beliebtheit gewinnen und verlieren können.
+Möglicherweise geht die Beliebtheit einer der Bibliotheken mit der Zeit zurück, weshalb es weniger Kontributionen wie etwa neue Funktionalitäten oder Fehlerbehebungen, sowie Fragen und Antworten und Anleitungen zu diesen Bibliotheken geben wird, da die Entwickler sich für andere Bibliotheken entscheiden.
+Die Wahl der Bibliothek kann also schwerwiegende Folgen wie Mangel an Dokumentation oder Limitationen im Vergleich zu anderen Bibliotheken mit sich bringen.
+Eine Migration von der einen Bibliothek zu einer anderen könnte in Zukunft notwendig werden, wenn diese Limitationen während der Entwicklung auffallen. Aus dem Grund ist es in der Regel von Vorteil, wenn solche Funktionalitäten bereits im Kern der Frontend-Technologie integriert sind.
+Der Fall, dass die Kern-Komponenten an Relevanz verlieren und empfohlen wird, auf externe Bibliotheken zuzugreifen, ist zwar nicht ausgeschlossen, geschieht aber im Wesentlichen seltener.
 
 
 
@@ -41,29 +47,29 @@ Es ist also absehbar, dass die Formular-Anwendung in React Native entwickelt wer
 
 
 \paragraph{Flutter}
-Die Flutter Dokumentation stellt in ihrer cookbook Sektion ein Beispiel einer minimalistischen Formularanwendung mit Validierung bereit.\footnote{Vgl. \cite{BuildAFormWithValidation}} Das Rezept ist Teil einer Serie von insgesamt fünf Anleitungen,  welche Formulare in Flutter behandeln.\footnote{Vgl. \cite{FormsFlutter}}
+Die Flutter Dokumentation stellt in ihrer cookbook Sektion ein Beispiel einer minimalistischen Formularanwendung mit Validierung bereit.\footnote{Vgl. \cite{BuildAFormWithValidation}} Das Rezept ist Teil einer Serie von insgesamt fünf Anleitungen, welche Formulare in Flutter behandeln.\footnote{Vgl. \cite{FormsFlutter}}
 
 \subsubsection{Automatisiertes Testen}
 
-\paragraph{Automatisierte Test in React Native} Die React Native Dokumentation führt genau eine Seite mit einem Überblick über die unterschiedlichen Testarten. Dabei wird das Konzept von Unit Tests, Mocking, Integrations Tests, Komponenten Tests und Snapshot Tests kurz erläutert, jedoch ohne ein Beispiel zu geben oder zu verlinken. Vier Quellcodeschnipsel sind auf der Seite zu finden: Ein Schnipsel zeigt den minimalen Aufbau eines Tests, zwei weitere Schnipsel veranschaulichen Beispielhaft, wie Nutzerinteraktionen getestet werden können und Letzteres zeigt die textuelle Representation der Ausgabe einer Komponente, die für einen Snapshottest verwendet wird. Weiterhin wird auf die Jest API Dokumentation verwiesen, sowie auf ein Beispiel für einen Snapshot Test in der Jest Dokumentation.\footnoteL{\url{https://jestjs.io/docs/snapshot-testing}}
+\paragraph{Automatisierte Tests in React Native} Die React Native Dokumentation führt genau eine Seite mit einem Überblick über die unterschiedlichen Testarten. Dabei wird das Konzept von Unit Tests, Mocking, Integrations Tests, Komponenten Tests und Snapshot Tests kurz erläutert, jedoch ohne ein Beispiel zu geben oder zu verlinken. Vier Quellcodeschnipsel sind auf der Seite zu finden: Ein Schnipsel zeigt den minimalen Aufbau eines Tests, zwei weitere Schnipsel veranschaulichen beispielhaft, wie Nutzerinteraktionen getestet werden können und Letzteres zeigt die textuelle Repräsentation der Ausgabe einer Komponente, die für einen Snapshottest verwendet wird. Weiterhin wird auf die Jest API Dokumentation verwiesen, sowie auf ein Beispiel für einen Snapshot Test in der Jest Dokumentation.\footnoteL{\url{https://jestjs.io/docs/snapshot-testing}}
 
 Um die notwendigen Anleitungen für das Erstellen der jeweiligen Tests ausfindig zu machen, ist es notwendig, die Dokumentation von React Native zu verlassen.
 
-Die Dokumentation von Jest enthält mehr Details zum Einsatz der Testbibliothek, welches für mehrere auf Javascript basierende Frontend Framework kompatibel ist\footnoteL{\url{https://jestjs.io/docs/getting-started}}. Somit muss zum Erstellen der Unit-Tests immerhin nur dieses Framework studiert werden.
+Die Dokumentation von Jest enthält mehr Details zum Einsatz der Testbibliothek, welches für mehrere auf Javascript basierende Frontend Frameworks kompatibel ist\footnoteL{\url{https://jestjs.io/docs/getting-started}}. Somit muss zum Erstellen der Unit-Tests immerhin nur dieses Framework studiert werden.
 
-Zum Entwickeln von Test von React Testing Library React Native Komponenten wird unter anderem auf die Bibliothek React Native Testing Library verwiesen. Anders als der Name vermuten lässt, handelt es sich nicht um eine von React Native bereitgestellte Bibliothek. Im Unterschied zur React Testing Library, von der sie inspiriert ist, läuft sie  ebenso  wie React Native selbst nicht in einer Browser-Umgebung.\footnote{Vgl. \cite{NativeTestingLibraryIntroduction}} Herausgegeben wird die react native testing Library vom Drittanbieter Callstack - ein Partner im React Native Ökosystem.\footnote{Vgl. \cite{TheReactNativeEcosystem}}
+Zum Entwickeln von Tests von React Native Komponenten wird unter anderem auf die Bibliothek React Native Testing Library verwiesen. Anders als der Name vermuten lässt, handelt es sich nicht um eine von React Native bereitgestellte Bibliothek. Im Unterschied zur React Testing Library, von der sie inspiriert ist, läuft sie  ebenso  wie React Native selbst nicht in einer Browser-Umgebung.\footnote{Vgl. \cite{NativeTestingLibraryIntroduction}} Herausgegeben wird die React Native Testing Library vom Drittanbieter Callstack - ein Partner im React Native Ökosystem.\footnote{Vgl. \cite{TheReactNativeEcosystem}}
 
-Sie verwendet im Hintergrund den React Test Renderer\footnoteL{\url{https://reactjs.org/docs/test-renderer.html}}, welcher wiederum vom React Team angeboten wird und auch zum Testen von react.js Anwendungen geeignet ist. Der React Test Renderer Wird ebenfalls empfohlen, um Komponententest zu kreieren, die keine React Native spezifischen Funktionalitäten nutzen.
+Sie verwendet im Hintergrund den React Test Renderer\footnoteL{\url{https://reactjs.org/docs/test-renderer.html}}, welcher wiederum vom React Team angeboten wird und auch zum Testen von react.js Anwendungen geeignet ist. Der React Test Renderer wird ebenfalls empfohlen, um Komponententests zu kreieren, die keine React Native spezifischen Funktionalitäten nutzen.
 
-Um Integrationstest so entwickeln, welche die Applikation auf einem physischen Gerät oder auf einem Emulator testen, wird auf zwei weitere Drittanbieter Bibliotheken verlinkt: Appium\footnoteL{\url{http://appium.io/}} und Detox\footnoteL{\url{https://github.com/wix/detox/}}. Es wird darauf hingewiesen, dass Detox speziell für die Entwicklung von React Native Integrationstest entwickelt wurde. Appium wird lediglich als ein weiteres  bekanntes Werkzeug erwähnt. 
+Um Integrationstests zu entwickeln - welche die Applikation auf einem physischen Gerät oder auf einem Emulator testen - wird auf zwei weitere Drittanbieter-Bibliotheken verlinkt: Appium\footnoteL{\url{http://appium.io/}} und Detox\footnoteL{\url{https://github.com/wix/detox/}}. Es wird darauf hingewiesen, dass Detox speziell für die Entwicklung von React Native Integrationstests entwickelt wurde. Appium wird lediglich als ein weiteres bekanntes Werkzeug erwähnt. 
 
-Es lässt sich damit zusammenfassen, dass der Aufwand der Einarbeitung für automatisiertes Testen in React Native vergleichsweise hoch ist. Die Dokumentation ist auf die Seiten der jeweiligen Anbieter verteilt. Der Entwickler muss sich den Überblick selbst verschaffen und zusätzlich die für das Framework React Native relevanten Inhalte identifizieren. Notwendig ist auch das Erlernen von mehreren APIs um alle Testarten abzudecken. Für einen Anfänger kommt erschwerend hinzu, dass eine Entscheidung für die eine oder andere Bibliothek notwendig wird. Um diese Entscheidung treffen zu können, ist eine Auseinandersetzung mit den Vor- und Nachteile der Technologien im Vorfeld vom Entwickler zu leisten.
+Es lässt sich damit zusammenfassen, dass der Aufwand der Einarbeitung für automatisiertes Testen in React Native vergleichsweise hoch ist. Die Dokumentation ist auf die Seiten der jeweiligen Anbieter verteilt. Der Entwickler muss sich den Überblick selbst verschaffen und zusätzlich die für das Framework React Native relevanten Inhalte identifizieren. Notwendig ist auch das Erlernen von mehreren APIs um alle Testarten abzudecken. Für einen Anfänger kommt erschwerend hinzu, dass eine Entscheidung für die eine oder andere Bibliothek notwendig wird. Um diese Entscheidung treffen zu können, ist eine Auseinandersetzung mit den Vor- und Nachteilen der Technologien im Vorfeld vom Entwickler zu leisten.
 
-\paragraph{Automatisierte Test in Flutter} Die Flutter Dokumentation erklärt sehr umfangreich auf 11 Unterseiten die unterschiedlichen Testarten mit Quellcodebeispielen und verlinkt für jede Testart eine bis mehrere detaillierte Schritt-für-Schritt-Anleitungen, wie ein solcher Test erstellt wird.
+\paragraph{Automatisierte Tests in Flutter} Die Flutter Dokumentation erklärt sehr umfangreich auf 11 Unterseiten die unterschiedlichen Testarten mit Quellcodebeispielen und verlinkt für jede Testart eine bis mehrere detaillierte Schritt-für-Schritt-Anleitungen, wie ein solcher Test erstellt wird.
 
-Einer Seite erklärt den Unterschied zwischen Unit Test, Widget Test und Integrationstest\footnoteL{\url{https://flutter.dev/docs/testing}}. Eine weitere Seite erklärt Integrationstests in mehr Detail\footnoteL{\url{https://flutter.dev/docs/testing/integration-tests}}. 
+Eine Seite erklärt den Unterschied zwischen Unit Test, Widget Test und Integrationstest\footnoteL{\url{https://flutter.dev/docs/testing}}. Eine weitere Seite erklärt Integrationstests in mehr Detail\footnoteL{\url{https://flutter.dev/docs/testing/integration-tests}}. 
 
-Ein sogenanntes Codelab führt durch die Erstellung einer minimalistischen App und zwei Unit-, fünf Widget- und zwei Integrationstest für diese App\footnoteL{\url{https://codelabs.developers.google.com/codelabs/flutter-app-testing}}
+Ein sogenanntes Codelab führt durch die Erstellung einer minimalistischen App und zwei Unit-, fünf Widget- und zwei Integrationstests für diese App\footnoteL{\url{https://codelabs.developers.google.com/codelabs/flutter-app-testing}}
 
 Im sogenannten Kochbuch tauchen folgende Rezepte auf:
 
@@ -71,18 +77,18 @@ Im sogenannten Kochbuch tauchen folgende Rezepte auf:
     \item 2 Rezepte für Unit Tests
     \begin{itemize} 
        \item eine grundlegende Anleitung zum Erstellen von Unit-Tests \footnoteL{\url{https://flutter.dev/docs/cookbook/testing/unit/introduction}}
-       \item Eine weitere Anleitung zum Nutzen von mocks in Unit Test mithilfe der Bibliothek mockito \footnoteL{\url{https://flutter.dev/docs/cookbook/testing/unit/mocking}}
+       \item Eine weitere Anleitung zum Nutzen von Mocks in Unit Test mithilfe der Bibliothek mockito \footnoteL{\url{https://flutter.dev/docs/cookbook/testing/unit/mocking}}
     \end{itemize}
     \item 3 Rezepte für Widget Tests
     \begin{itemize} 
-        \item Eine grundlegende Anleitung zum Erstellen von Widget Test \footnoteL{\url{https://flutter.dev/docs/cookbook/testing/widget/introduction}}
-        \item Ein Rezept mit detaillierteren Beispielen zum Finden von widgets  zur Laufzeit eines Widget Tests \footnoteL{\url{https://flutter.dev/docs/cookbook/testing/widget/finders}}
-        \item Ein Rezept zum Testen von Nutzerverhalten wie dem Tab, dem Drag und dem eingeben von Text \footnoteL{\url{https://flutter.dev/docs/cookbook/testing/widget/tap-drag}}
+        \item Eine grundlegende Anleitung zum Erstellen von Widget Tests \footnoteL{\url{https://flutter.dev/docs/cookbook/testing/widget/introduction}}
+        \item Ein Rezept mit detaillierteren Beispielen zum Finden von Widgets  zur Laufzeit eines Widget Tests \footnoteL{\url{https://flutter.dev/docs/cookbook/testing/widget/finders}}
+        \item Ein Rezept zum Testen von Nutzerverhalten wie dem Tab, dem Drag und dem Eingeben von Text \footnoteL{\url{https://flutter.dev/docs/cookbook/testing/widget/tap-drag}}
      \end{itemize}
     \item 3 Rezepte für Integrationstests
     \begin{itemize} 
-        \item Eine grundlegende Anleitung zum Erstellen eines Integrationstest \footnoteL{\url{https://flutter.dev/docs/cookbook/testing/integration/introduction}}
-        \item eine Anleitung zum simulieren von scrollen in der Anwendung während der Laufzeit eines Integrationstest \footnoteL{\url{https://flutter.dev/docs/cookbook/testing/integration/scrolling}}
+        \item Eine grundlegende Anleitung zum Erstellen eines Integrationstests \footnoteL{\url{https://flutter.dev/docs/cookbook/testing/integration/introduction}}
+        \item eine Anleitung zum Simulieren von dem Scrollen in der Anwendung während der Laufzeit eines Integrationstests \footnoteL{\url{https://flutter.dev/docs/cookbook/testing/integration/scrolling}}
         \item eine Anleitung zum Performance Profiling \footnoteL{\url{https://flutter.dev/docs/cookbook/testing/integration/profiling}}
      \end{itemize}
 \end{itemize}
