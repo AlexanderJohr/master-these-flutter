@@ -10,9 +10,7 @@ Flutter erlaubt über einen eigenen Testtreiber solche Integrationstest durchzuf
 
 Das Ergebnis des Integrationstests soll allerdings nicht mit der tatsächlich geschriebenen Json-Datei überprüft werden. Der Test soll nicht tatsächlich Daten auf der Festplatte speichern. Das würde die Gefahr bergen, das  vergangene Eingaben manipuliert werden. Stattdessen soll der Test in einer Umgebung stattfinden, die keine Auswirkung auf die Haupt-Applikation oder zukünftige Tests haben soll. Zu diesem Zweck können sogenannte Mocks genutzt werden. Das Paket \enquote{mockito} erlaubt über Annotationen solche Mocks für die gewünschten Klassen  über Quellcode-Generierung zu erstellen.
 
-Integrationstests werden im Ordner integration_test angelegt. Während des Zeitpunkt der Erstellung dieser Arbeit war es in der Standardkonfiguration der Quellcode-Generierung und dem Paket \enquote{mockito} nicht möglich, Mocks auch im integration_test Ordner zu generieren.  Lediglich innerhalb des test Ordners, der für die Unit-Tests vorgesehen ist, hat die Annotation generate mocks funktioniert. Zu diesem Fehlverhalten existiert ein entsprechendes Issue im GitHub Repository  des Mockito packages. \HP{Ref} 
-
-Und das Generieren von Mocks auch für Integrationstest verfügbar zu machen, hat der Autor dieser Arbeit einen entsprechenden Lösungsansatz recherchieren und im Issue beschrieben. \HP{Ref} 
+Integrationstests werden im Ordner integration_test angelegt. Während des Zeitpunkt der Erstellung dieser Arbeit war es in der Standardkonfiguration der Quellcode-Generierung und dem Paket \enquote{mockito} nicht möglich, Mocks auch im integration_test Ordner zu generieren.  Lediglich innerhalb des test Ordners, der für die Unit-Tests vorgesehen ist, hat die Annotation generate mocks funktioniert. Zu diesem Fehlverhalten existiert ein entsprechendes Issue im GitHub Repository  des Mockito packages. \HP{Ref} Um das Generieren von Mocks auch für Integrationstest verfügbar zu machen, hat der Autor dieser Arbeit einen entsprechenden Lösungsansatz recherchieren und im Issue beschrieben. \HP{Ref} 
 
 Damit der integration_test Ordner für die Quellcode-Generierung der Mocks integriert wird, muss ein entsprechender Eintrag in der Build-Konfiguration vorgenommen werden. Damit das Paket \enquote{source_gen} die entsprechenden Dateien analysiert, müssen sie in der Rubrik \IC{sources} angegeben werden \LstZ{\ref{lst:Schritt1IntegrationsTestInitialisierung}}{3-8}. Wird der Ordner integration_test darin eingefügt \Z{8}, bezieht \enquote{source_gen} den Ordner in der Quellcode-Generierung mit ein. Zusätzlich dazu muss die Rubrik \IC{generate_for} von dem \IC{mockBuilder} des \enquote{mockito}-Pakets \Z{11-13} um die gleiche Angabe des Ordners ergänzt werden \Z{13}.
 
@@ -87,8 +85,8 @@ Ist der Integrationstest aktuell in dem Auswahlbildschirm, so sorgt \IC{tabOptio
 \end{alexlisting}
 
 Ein Klick auf das Text-Label reicht bereits aus, denn damit wird das Vater-Element - das \IC{CheckboxListTile} - ebenfalls getroffen. Der \IC{tester} holt es in den sichtbaren Bereich \IC{71}, klickt es \IC{72} und wartet auf Abschluss aller Animationen \Z{73}. Sollte der optionale Parameter \IC{tabConfirm} auf \IC{true} gesetzt sein \Z{75}, so wird der Auswahlbildschirm anschließend direkt wieder geschlossen, nachdem die Option ausgewählt wurde  \Z{76}. 
-
-Schließlich kann mit der Hilfsfunktionen \IC{fillTextFormField} ein Formularfeld über dessen Titel gefunden und der entsprechende übergebende Text eingetragen werden \Lst{\label{lst:Schritt1HilfsmethodeFillTextFormField}}. Sie findet das \IC{TextFormField}, indem es zunächst nach dem Titel mit \IC{find.text(title)} und anschließend dessen Vater-Element vom Typ \IC{TextFormField} sucht \Z{83}. Sollte sowohl der Hinweistext als auch der Titel den gleichen Text enthalten, so kann es sein, dass zwei solche Elemente gefunden werden. In Wahrheit ist es aber zwei Mal dasselbe \IC{TextFormField}. Mit \IC{.first} wird lediglich das erste Element geliefert \Z{85}.
+  
+Schließlich kann mit der Hilfsfunktionen \IC{fillTextFormField} ein Formularfeld über dessen Titel gefunden und der entsprechende übergebende Text eingetragen werden \Lst{\ref{lst:Schritt1HilfsmethodeFillTextFormField}}. Sie findet das \IC{TextFormField}, indem es zunächst nach dem Titel mit \IC{find.text(title)} und anschließend dessen Vater-Element vom Typ \IC{TextFormField} sucht \Z{83}. Sollte sowohl der Hinweistext als auch der Titel den gleichen Text enthalten, so kann es sein, dass zwei solche Elemente gefunden werden. In Wahrheit ist es aber zwei Mal dasselbe \IC{TextFormField}. Mit \IC{.first} wird lediglich das erste Element geliefert \Z{85}.
 Nachdem feststeht, dass das Element existiert \Z{85} und es in den sichtbaren Bereich gescrollt wurde \Z{87}, gibt der Integrationstest den gewünschten Text in das Eingabefeld ein \Z{88}. Anschließend wird erneut auf Abschluss aller Animationen gewartet \Z{89}.
 
 \begin{alexlisting}{Schritt 1}{Die Hilfsmethode fillTextFormField}
@@ -97,24 +95,7 @@ Nachdem feststeht, dass das Element existiert \Z{85} und es in den sichtbaren Be
   \label{lst:Schritt1HilfsmethodeFillTextFormField}
 \end{alexlisting}
 
-
-
-
-
-
-
-während der Integrationstest startet öffnet sich zu nächste Übersicht Bildschirm. Zunächst wird gewartet, dass alle widgets korrekt initialisiert wurden 109.  nun den zu 111, 112. Dazu wird der Button über den entsprechenden t gefunden. 111 
-
-
-
-
-
-
-
-
-
-
-
+Während der Integrationstest startet, öffnet sich als Erstes der Übersichts-Bildschirm. Zunächst wird gewartet, dass alle Widgets korrekt initialisiert wurden \LstZ{\ref{lst:Schritt1ButtonKreierenMaßnahmeAusgeloest}}{92}. Es folgt der Klick auf den Button zum Erstellen einen neuen Maßnahme \Z{95}. Dazu wird der Button über den entsprechenden \IC{Key} gefunden \Z{94}. Vor allem jetzt ist das Abwarten mittels \IC{pumpAndSettle} \Z{96} unablässig, denn es wird auf einen anderen Bildschirm navigiert. Angenommen der Test wartet nicht ab, so würden die Aktionen noch immer auf den Elementen des alten Bildschirms Anwendung finden. 
 
 \begin{alexlisting}{Schritt 1}{Der Button zum Kreieren einer Maßnahme wird ausgelöst}
   {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
@@ -122,12 +103,15 @@ während der Integrationstest startet öffnet sich zu nächste Übersicht Bildsc
   \label{lst:Schritt1ButtonKreierenMaßnahmeAusgeloest}
 \end{alexlisting}
 
+Der Integrationstest öffnet nun den Auswahl-Bildschirm, in dem die Selektions-Karte zum Setzen des letzten Statuses angewählt wird \LstZ{\ref{lst:Schritt1LetzterStatusWirdAusgewählt}}{98}. Anschließend fällt die Wahl auf die Option für \enquote{abgeschlossen} \Z{98}. Dabei sorgt \IC{tabConfirm: true} für die sofortige Rückkehr zum Eingabeformular nach der Auswahl.
+ 
 \begin{alexlisting}{Schritt 1}{Der letzte Status wird ausgewählt}
   {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
   {firstline=98, lastline=99}
   \label{lst:Schritt1LetzterStatusWirdAusgewählt}
 \end{alexlisting}
 
+Nachfolgend soll der Test das Eingabefeld für den Maßnahmen-Titel überprüfen \Lst{\ref{lst:Schritt1MaßnahmentitelWirdEingegeben}}. Es erfolgt die Erstellung eines beispielhaften Titels anhand des aktuellen Datums und der aktuellen Uhrzeit \Z{101, 102}. Der erstellte Text dient als Eingabe für das Eingabefeld \Z{104}. 
 
 \begin{alexlisting}{Schritt 1}{Der Maßnahmentitel wird eingegeben}
   {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
@@ -135,19 +119,22 @@ während der Integrationstest startet öffnet sich zu nächste Übersicht Bildsc
   \label{lst:Schritt1MaßnahmentitelWirdEingegeben}
 \end{alexlisting}
 
+Die nötigen Eingaben sind erfolgt. Daher kann der Test nun den Klick auf den Button zum Speichern simulieren \LstZ{\ref{lst:Schritt1ButtonZumSpeichernWirdAusgelöst}}{106-108}. Dadurch würde in der Anwendung nun das Speichern der Maßnahmen in der Json-Datei erfolgen. Doch da stattdessen ein Mock verwendet wurde, passiert dies nicht. Das Model ruft aber dennoch die entsprechenden Methoden - wie zum Beispiel \IC{saveMassnahmen} - auf. Die Methoden haben nur nicht die ursprüngliche Funktion. Stattdessen protokollieren sie sowohl die Aufrufe, als auch die übergebenen Argumente. Durch die Methode \IC{verify} \Z{111} kann überprüft werden, ob die entsprechende Methode \IC{saveMassnahmen} ausgeführt wurde. Der \enquote{Matcher} \IC{captureAny} ermöglicht die Überprüfung auf irgendeine Übergabe und stellt die übergebenen Argumente über den Rückgabewert bereit.
 
-
-\begin{alexlisting}{Schritt 1}{Der Button zum Speichern wird ausgelöst}
+\begin{alexlisting}{Schritt 1}{Validierung des Testergebnisses}
   {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
-  {firstline=106, lastline=108}
-  \label{lst:Schritt1ButtonZumSpeichernWirdAusgelöst}
+  {firstline=106, lastline=122}
 \end{alexlisting}
 
-\begin{alexlisting}{Schritt 1}{Der Button zum Speichern wird ausgelöst}
-  {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
-  {firstline=110, lastline=122}
-  \label{lst:Schritt1ErgebnisWirdVerglichen}
-\end{alexlisting}
+Die Rückgabe ist vom Typ \IC{VerificationResult} und enthält eine Getter-Methode mit dem Namen \IC{captured}. Dabei handelt es sich um eine Liste aller Argumente, die in den vergangenen Aufrufen übergeben wurden. Mit \IC{last} lässt sich auf das Argument des letzten Aufrufes zurückgreifen.
+
+Nun soll sich zeigen, ob das übergebene Argument mit dem erwarteten Wert übereinstimmt. Weil das Ergebnis eine Liste mit lediglich einer Maßnahme ist,soll auch ausschließlich diese Maßnahme verglichen werden. Der Schlüssel \IC{'massnahmen'} greift auf die Liste zurück und der Schlüssel \IC{0} auf die erste und einzige Maßnahme. Die lokalen Variable \IC{actualMassnahme} speichert sie zwischen \Z{113}.
+
+Es ist unklar, welche zufällige guid bei der Erstellung der Maßnahme generiert wurde. Auch der Zeitstempel hinter dem Schlüssel \IC{"letzteBearbeitung"} ist unbekannt. Eine mögliche Lösung wären weitere Mocks, welche die Erstellung der guid und des Datums überwachen und - anstelle einer zufälligen - immer die gleiche Zeichenkette zurückgibt. Es ist jedoch auch möglich, die Vergleiche der guid und des Zeitstempels auszuschließen. Dazu reicht es die entsprechenden Schlüssel-Werte-Paare über die Schlüssel \IC{"guid"} und \IC{"letztesBearbeitungsDatum"} aus der Ergebnis-Hashtabelle zu entfernen \Z{114-115}.
+
+Die lokale Variable \IC{expectedJson} speichert das erwartete Ergebnis der eingegebenen Maßnahme \Z{117-120}. Die Methode \IC{expect} und der \enquote{Matcher} \IC{equals} überprüfen beide Objekte auf Gleichheit \Z{122}.
+
+Der Befehl \IC{flutter test integration_test/app_test.dart} startet den Test. Die App öffnet sich und der Ausführung des Tests kann zugesehen werden Punkt am Endeerfolgt in dem Terminal die Ausgabe des Ergebnisses: \IC{All tests passed!}
 
 
 \clearpage
