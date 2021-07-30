@@ -179,12 +179,12 @@ Der Befehl  \IC{flutter pub run build_runner build} stößt erneut die Quellcode
 
 \subsection{Test der Serialisierung der Maßnahmenliste}
 
-Nun soll noch überprüft werden, ob die Menge von Maßnahmen mit genau einer eingetragenen Maßnahme korrekt serialisiert. Auch das wird von einem Unit Test überprüft \Lst{\ref{lst:Schritt1MaßnahmenSerialisierenOhneFehlerUnitTest}}. In Zeile 8 wird das leere Objekt \IC{storage} erstellt. In Zeile 9 wird es dann wiederverwendet, um aufbauend auf der Kopie Änderungen mithilfe der \IC{rebuild}-Methode durchzuführen.
+Nun soll noch überprüft werden, ob die Menge von Maßnahmen mit genau einer eingetragenen Maßnahme korrekt serialisiert. Auch das wird von einem Unit Test überprüft \Lst{\ref{lst:Schritt1MassnahmenSerialisierenOhneFehlerUnitTest}}. In Zeile 8 wird das leere Objekt \IC{storage} erstellt. In Zeile 9 wird es dann wiederverwendet, um aufbauend auf der Kopie Änderungen mithilfe der \IC{rebuild}-Methode durchzuführen.
 
 \begin{alexlisting}{Schritt 1}{Ein automatisierter Testfall überprüft}
   {Quellcode/Schritt-1/conditional_form/test/data_model/storage_test.dart}
   {firstline=7, lastline=31}
-  \label{lst:Schritt1MaßnahmenSerialisierenOhneFehlerUnitTest}
+  \label{lst:Schritt1MassnahmenSerialisierenOhneFehlerUnitTest}
 \end{alexlisting}
 
 Bei der Instanzvariable \IC{massnahmen} der Klasse \IC{Storage} handelt es sich um ein \IC{BuiltSet}.  Der Aufruf von \IC{b.massnahmen}  gibt allerdings nicht dieses \IC{BuiltSet} zurück. Wäre es so, so könnte die Operation \IC{add} nicht  darauf angewendet werden. Ein \IC{BuiltSet} stellt keine Methoden zur Manipulation des Sets zur Verfügung. In Wahrheit gibt der Ausdruck \IC{b.massnahmen} einen \IC{SetBuilder} zurück. Das kann im generierten Quellcode nachgesehen werden \LstZ{\ref{lst:Schritt1InstanzvariableMassnahmenGibtEinenSetBuilderZurueck}}.
@@ -200,5 +200,5 @@ Der \IC{SetBuilder} wiederum erlaubt es, Änderungen am Set vorzunehmen und stel
 
 Diesmal konstruiert die Methode \IC{serializers.serializeWith} mit dem Serialisierer \IC{Storage.serializer} ein weiteres JSON-Object \Z{12}. Genau wie zuvor wird ein Json-Dokument vorbereitet \Z{14-30}, welches der \IC{Matcher} \IC{equals} gegen das serialisierte Dokument des soeben konstruierten Objects \IC{storage} vergleicht \Z{31}. Das Json-Dokument unterscheidet sich nur darin, dass es einen Knoten namens \IC{'massnahmen'} enthält, der als Wert eine Liste hat. Die Liste hat nur ein Element.  Weil dieses Mal das Objeckt des Typs \IC{Massnahme} nicht direkt zugreifbar ist, muss es zunächst über die Liste der Maßnahmen aus dem \IC{storage}-Object abgerufen werden. Das ist mit dem Befehl \IC{first} möglich, der das erste Objekt - und in diesem Fall einzige Objekt - der Kollektion zurückgibt \Z{17, 21}. Darüber kann erneut die \IC{guid}  und  das \IC{letztesBearbeitungsDatum} abgerufen werden.
 
-Ein weiterer Unit-Test überprüft, ob auch die Deserialisierung eines \IC{storage}-Objects erfolgreich ist. Er ist in Listing {\ref{lst:Schritt1MaßnahmenDeserialisierenOhneFehlerUnitTest} im Anhang \ref{appendix:Schritt1Anhang} zu finden.
+Ein weiterer Unit-Test überprüft, ob auch die Deserialisierung eines \IC{storage}-Objects erfolgreich ist. Er ist in Listing {\ref{lst:Schritt1MassnahmenDeserialisierenOhneFehlerUnitTest} im Anhang \ref{appendix:Schritt1Anhang} zu finden.
 Auch dieser Test ist der Deserialisierung des Objektes des Typs \IC{Massnahme} sehr ähnlich. Er unterscheidet sich nur darin, dass das \IC{Massnahme}-Objekt in der Liste \IC{massnahmen} des \IC{storage}-Objektes  enthalten ist.

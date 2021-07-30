@@ -95,12 +95,12 @@ Nachdem feststeht, dass das Element existiert \Z{85} und es in den sichtbaren Be
   \label{lst:Schritt1HilfsmethodeFillTextFormField}
 \end{alexlisting}
 
-Während der Integrationstest startet, öffnet sich als Erstes der Übersichts-Bildschirm. Zunächst wird gewartet, dass alle Widgets korrekt initialisiert wurden \LstZ{\ref{lst:Schritt1ButtonKreierenMaßnahmeAusgeloest}}{92}. Es folgt der Klick auf den Button zum Erstellen einen neuen Maßnahme \Z{95}. Dazu wird der Button über den entsprechenden \IC{Key} gefunden \Z{94}. Vor allem jetzt ist das Abwarten mittels \IC{pumpAndSettle} \Z{96} unablässig, denn es wird auf einen anderen Bildschirm navigiert. Angenommen der Test wartet nicht ab, so würden die Aktionen noch immer auf den Elementen des alten Bildschirms Anwendung finden. 
+Während der Integrationstest startet, öffnet sich als Erstes der Übersichts-Bildschirm. Zunächst wird gewartet, dass alle Widgets korrekt initialisiert wurden \LstZ{\ref{lst:Schritt1ButtonKreierenMassnahmeAusgeloest}}{92}. Es folgt der Klick auf den Button zum Erstellen einen neuen Maßnahme \Z{95}. Dazu wird der Button über den entsprechenden \IC{Key} gefunden \Z{94}. Vor allem jetzt ist das Abwarten mittels \IC{pumpAndSettle} \Z{96} unablässig, denn es wird auf einen anderen Bildschirm navigiert. Angenommen der Test wartet nicht ab, so würden die Aktionen noch immer auf den Elementen des alten Bildschirms Anwendung finden. 
 
 \begin{alexlisting}{Schritt 1}{Der Button zum Kreieren einer Maßnahme wird ausgelöst}
   {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
   {firstline=92, lastline=96}
-  \label{lst:Schritt1ButtonKreierenMaßnahmeAusgeloest}
+  \label{lst:Schritt1ButtonKreierenMassnahmeAusgeloest}
 \end{alexlisting}
 
 Der Integrationstest öffnet nun den Auswahl-Bildschirm, in dem die Selektions-Karte zum Setzen des letzten Statuses angewählt wird \LstZ{\ref{lst:Schritt1LetzterStatusWirdAusgewählt}}{98}. Anschließend fällt die Wahl auf die Option für \enquote{abgeschlossen} \Z{98}. Dabei sorgt \IC{tabConfirm: true} für die sofortige Rückkehr zum Eingabeformular nach der Auswahl.
@@ -111,12 +111,12 @@ Der Integrationstest öffnet nun den Auswahl-Bildschirm, in dem die Selektions-K
   \label{lst:Schritt1LetzterStatusWirdAusgewählt}
 \end{alexlisting}
 
-Nachfolgend soll der Test das Eingabefeld für den Maßnahmen-Titel überprüfen \Lst{\ref{lst:Schritt1MaßnahmentitelWirdEingegeben}}. Es erfolgt die Erstellung eines beispielhaften Titels anhand des aktuellen Datums und der aktuellen Uhrzeit \Z{101, 102}. Der erstellte Text dient als Eingabe für das Eingabefeld \Z{104}. 
+Nachfolgend soll der Test das Eingabefeld für den Maßnahmen-Titel überprüfen \Lst{\ref{lst:Schritt1MassnahmentitelWirdEingegeben}}. Es erfolgt die Erstellung eines beispielhaften Titels anhand des aktuellen Datums und der aktuellen Uhrzeit \Z{101, 102}. Der erstellte Text dient als Eingabe für das Eingabefeld \Z{104}. 
 
 \begin{alexlisting}{Schritt 1}{Der Maßnahmentitel wird eingegeben}
   {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
   {firstline=101, lastline=104}
-  \label{lst:Schritt1MaßnahmentitelWirdEingegeben}
+  \label{lst:Schritt1MassnahmentitelWirdEingegeben}
 \end{alexlisting}
 
 Die nötigen Eingaben sind erfolgt. Daher kann der Test nun den Klick auf den Button zum Speichern simulieren \LstZ{\ref{lst:Schritt1ButtonZumSpeichernWirdAusgelöst}}{106-108}. Dadurch würde in der Anwendung nun das Speichern der Maßnahmen in der Json-Datei erfolgen. Doch da stattdessen ein Mock verwendet wurde, passiert dies nicht. Das Model ruft aber dennoch die entsprechenden Methoden - wie zum Beispiel \IC{saveMassnahmen} - auf. Die Methoden haben nur nicht die ursprüngliche Funktion. Stattdessen protokollieren sie sowohl die Aufrufe, als auch die übergebenen Argumente. Durch die Methode \IC{verify} \Z{111} kann überprüft werden, ob die entsprechende Methode \IC{saveMassnahmen} ausgeführt wurde. Der \enquote{Matcher} \IC{captureAny} ermöglicht die Überprüfung auf irgendeine Übergabe und stellt die übergebenen Argumente über den Rückgabewert bereit.
