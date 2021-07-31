@@ -5,7 +5,8 @@
 
 
 \HP{Ich wurde zwischengeparkt}
-\paragraph{Strategie Entwurfsmuster} Das Strategie Entwurfsmuster ist ein Verhaltensmuster. Es erlaubt Algorithmen zu Kapseln und auszutauschen. Die Typdefinition \IC{OnSelectCallback} \Z{4} kann nach dem Strategie-Entwurfsmuster als die Schnittstelle namens \enquote{Strategie} interpretiert werden. Sie definiert, welche Voraussetzung an die Schnittstelle gegeben ist. In diesem Fall ist die Voraussetzung, dass es sich um eine Funktion ohne Rückgabewert handelt, der eine Maßnahme als erstes Argument übergeben wird. Dentsprechend ist der Parameter \IC{onSelect} im Konstruktor die sogenannte \enquote{konkrete Strategie}, die dieser Schnittstelle entsprechen muss. Der \enquote{Kontext} ist schließlich die aufrufende Oberfläche \IC{MassnahmenMasterScreen}. Die konkrete Strategie, die der Übersichts-Bildschirm der Tabelle übergibt, verwendet die selektierte Maßnahme, um damit die Eingabemaske zu öffnen.
+\paragraph{Strategie Entwurfsmuster} Das Strategie Entwurfsmuster ist ein Verhaltensmuster.
+Es erlaubt Algorithmen zu Kapseln und auszutauschen. Die Typdefinition \IC{OnSelectCallback} \Z{4} kann nach dem Strategie-Entwurfsmuster als die Schnittstelle namens \enquote{Strategie} interpretiert werden. Sie definiert, welche Voraussetzung an die Schnittstelle gegeben ist. In diesem Fall ist die Voraussetzung, dass es sich um eine Funktion ohne Rückgabewert handelt, der eine Maßnahme als erstes Argument übergeben wird. Dentsprechend ist der Parameter \IC{onSelect} im Konstruktor die sogenannte \enquote{konkrete Strategie}, die dieser Schnittstelle entsprechen muss. Der \enquote{Kontext} ist schließlich die aufrufende Oberfläche \IC{MassnahmenMasterScreen}. Die konkrete Strategie, die der Übersichts-Bildschirm der Tabelle übergibt, verwendet die selektierte Maßnahme, um damit die Eingabemaske zu öffnen.
 \HP{Ich wurde zwischengeparkt}
 
 
@@ -16,5 +17,5 @@
 \begin{alexlisting}{Schritt 1}{Ein automatisierter Testfall überprüft}
     {Quellcode/Schritt-1/conditional_form/test/data_model/storage_test.dart}
     {firstline=48, lastline=74}
-    \label{lst:Schritt1MaßnahmenDeserialisierenOhneFehlerUnitTest}
+    \label{lst:Schritt1MassnahmenDeserialisierenOhneFehlerUnitTest}
   \end{alexlisting}
