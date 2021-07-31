@@ -52,7 +52,7 @@ Ein Hauptaspekt bei dem Design der Sprache ist die Produktivität des Entwickler
 Nicht nur für die reibungslose Entwicklung sondern auch für das Laufzeitverhalten der finalen Applikation wurde die Sprache optimiert.
 Für die Ziel-Architektouren ARM32, ARM64 und x86_64 wird Dart in Maschinencode kompiliert. \HP{\url{https://dart.dev/overview#native-platform}}
 
-Dementsprechend kommt während der Entwicklung eine virtuelle Maschine - die Dart VM - geschiet über Just-in-time-Kompilierung (JIT) zum Einsatz. Für die Kompilierung in Maschinencode wird dagegen Ahead-of-time-Kompilierung (AOT) eingesetz.
+Dementsprechend kommt während der Entwicklung eine virtuelle Maschine - die Dart VM - über Just-in-time-Kompilierung (JIT) zum Einsatz. Für die Kompilierung in Maschinencode wird dagegen Ahead-of-time-Kompilierung (AOT) eingesetz.
 
 \paragraph{tree shaking}
 Für die Minimierung der Dateigröße des resultierenden Kompilats wird das sogenannte \enquote{tree shaking} eingesetzt. Das Hauptprogramm importiert über das Schlüsselwort \IC{import} Funktionalitäten aus  weiteren .dart-Dateien oder sogar ganzen Bibliotheken. Diese Dateien importieren wieder Weitere. Dadurch wird ein Baum aufgespannt. Das \enquote{tree shaking} identifiziert, welche Funktionalitäten tatsächlich vom Programm verwendet werden und welche nicht. Dies bringt aber einer wichtige Einschränkung mit sich. Die Metaprogrammierung (der Zugriff auf sprachinterne Eigenschaften, wie etwa Klassen und ihre Attribute) ist damit stark eingeschränkt.
