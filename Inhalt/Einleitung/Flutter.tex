@@ -138,7 +138,7 @@ var fieberTemperaturen = [
 Wird in Dart hinter einem Typen ein \IC{?} angegeben, so kann die Variable nicht nur  Werte annehmen, die dieser Datentyp zulässt, sondern zusätzlich auch noch den Wert \IC{null}. Methoden auf Objekten mit Null-Zulässigkeit aufzurufen ist nicht ohne Weiteres möglich.
 
 Im Listing \ref{lst:printTemperatureInCelsius}
-wird versucht die  auf die Variable \IC{fahrenheitTemperature} den Operator \IC{-} anzuwenden um sie mit \IC{32} zu subtrahieren. Der Compiler liefert jedoch einen Fehler, da der Wert der Variable \IC{null} sein kann, wie die Notation \IC{int?} anzeigt. Solange nicht feststeht, dass die Variable zur Laufzeit tatsächlich nicht \IC{null} ist, kann das Programm nicht kompiliert werden.
+wird versucht, auf die Variable \IC{fahrenheitTemperature} den Operator \IC{-} anzuwenden, um sie mit \IC{32} zu subtrahieren. Der Compiler liefert jedoch einen Fehler, da der Wert der Variable \IC{null} sein kann, wie die Notation \IC{int?} anzeigt. Solange nicht feststeht, dass die Variable zur Laufzeit tatsächlich nicht \IC{null} ist, kann das Programm nicht kompiliert werden.
 
 \ifincludeall
   \begin{listing}[ht]
