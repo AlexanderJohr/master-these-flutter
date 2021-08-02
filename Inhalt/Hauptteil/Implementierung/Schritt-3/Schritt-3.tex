@@ -10,7 +10,7 @@ Maßnahmen, die als abgeschlossen markiert sind, dürfen keine leeren Eingabefel
 
 Das Widget \IC{Form} ist ein Container, welcher die Validierung für alle Kinderelemente des Typs \IC{FormField} ausführt. 
 Damit es alle Eingabefelder im Formular umgibt, wird es zwischen dem \IC{WillPopScope} und dem \IC{Stack} eingefügt \LstZ{\ref{lst:Schritt3Form}}{168}. 
-Darüber hinaus wird die Funktion \IC{saveRecord} durch \IC{validateAndSave} ersetzt \Z{167}, welche ebenfalls in diesem Schritt implementiert wird. 
+Darüber hinaus wird die Funktion \IC{saveRecord} durch \IC{saveAndGoBackToOverviewScreenIfValid} ersetzt \Z{167}, welche ebenfalls in diesem Schritt implementiert wird. 
 Das \IC{Form}-Widget muss über einen \IC{key} registriert werden \Z{169}, damit auf die Validierungsfunktionen zurückgegriffen werden kann.
 
 \begin{alexlisting}{Schritt 3}{Die Maßnahmencharakteristika Selektionskarten werden ergänzt}
@@ -39,7 +39,14 @@ Es erbt vom Typ \IC{FormField} und wird daher mit dem Vaterelement \IC{Form} ver
 Es beinhaltet bereits einen Parameter für die Validierungsfunktion namens \IC{validator} \Z{104}.
 Die übergebene Funktion erhält im ersten Parameter den für das Textfeld eingetragenen Wert. 
 Die Funktion soll \IC{null} zurückgeben, wenn keine Fehler in der Validierung geschehen sind. 
-In jedem anderen Fall soll der Text zurückgegeben werden, der als Fehlermeldung angezeigt werden soll. 
+In jedem anderen Fall soll der Text zurückgegeben werden, der als Fehlermeldung angezeigt werden soll.
+
+\begin{alexlisting}{Schritt 3}{Die Maßnahmencharakteristika Selektionskarten werden ergänzt}
+    {Quellcode/Schritt-3/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
+    {firstline=94, lastline=127, highlightlines={95,100, 104-120}}
+    \label{lst:Schritt3createMassnahmenTitelTextFormFieldValidator}
+\end{alexlisting}
+
 Sollte der Parameter \IC{null} sein oder aber ein leerer String \Z{105}, so wird die entsprechende Fehlermeldung \IC{'Bitte Text eingeben'} angezeigt \Z{107}.
 Damit der Benutzer direkt zu dem fehlerhaften Eingabefeld geführt wird, kann ein Objekt der Klasse \IC{FocusNode} verwendet werden. 
 Er wird vor der Konstruktion der Karte erstellt \Z{95} und dem Parameter \IC{focusNode} des \IC{TextFormField} übergeben \Z{100}.
@@ -57,11 +64,7 @@ Der Benutzer bekommt die entsprechende Fehlermeldung \IC{'Dieser Maßnahmentitel
 Wenn keine der beiden Fallunterscheidungen das \IC{return}-Statement \Z{107, 117} auslöst, so erfolgt schließlich die Rückgabe von \IC{null}.
 In dem Kontext der \IC{validator}-Funktion bedeutet die Rückgabe von \IC{null}, dass die Validierung erfolgreich war.
  
-\begin{alexlisting}{Schritt 3}{Die Maßnahmencharakteristika Selektionskarten werden ergänzt}
-    {Quellcode/Schritt-3/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
-    {firstline=94, lastline=127, highlightlines={95,100, 104-120}}
-    \label{lst:Schritt3createMassnahmenTitelTextFormFieldValidator}
-\end{alexlisting}
+
  
 Das \IC{Form}-Widget validiert lediglich Kindelemente vom Typ \IC{FormField}.
 Dementsprechend wird das Widget \IC{SelectionCard} nicht in die Validierung miteinbezogen.
@@ -73,15 +76,17 @@ Die Selektionskarte kann ebenso von einem \IC{FormField} umgeben werden \LstZ{\r
 Der erste Parameterder \IC{builder}-Funktion ist das \IC{State}-Objekt das \IC{FormField}.
 Es enthält die Getter-Methode \IC{errorText}, die bei gegebenenfalls fehlgeschlagener Validierung die zurückgegebene Fehlermeldung enthält.
 
-Die anonyme Funktion, die als Argument dem Parameter \IC{validator} übergeben wird \Z{133-143}, erstellt eine temporäre Menge, die den Wert des \IC{selectionViewModel} enthält, wenn dieser nicht \IC{null} ist, andernfalls ist sie eine leere Menge \Z{134-136}.
-Die \IC{validator}-Funktion gibt eine Fehlermeldung zurück, sollte die Menge leer sein \Z{138-140}. 
-Ist die Menge dagegen gefüllt, so gibt sie \IC{null} zurück, um mitzuteilen, dass die Validierung erfolgreich war \Z{142}.
-
 \begin{alexlisting}{Schritt 3}{Die Maßnahmencharakteristika Selektionskarten werden ergänzt}
     {Quellcode/Schritt-3/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
     {firstline=129, lastline=156, highlightlines={132-144, 154-155}}
     \label{lst:Schritt3buildSelectionCardValidator}
 \end{alexlisting}
+
+Die anonyme Funktion, die als Argument dem Parameter \IC{validator} übergeben wird \Z{133-143}, erstellt eine temporäre Menge, die den Wert des \IC{selectionViewModel} enthält, wenn dieser nicht \IC{null} ist, andernfalls ist sie eine leere Menge \Z{134-136}.
+Die \IC{validator}-Funktion gibt eine Fehlermeldung zurück, sollte die Menge leer sein \Z{138-140}. 
+Ist die Menge dagegen gefüllt, so gibt sie \IC{null} zurück, um mitzuteilen, dass die Validierung erfolgreich war \Z{142}.
+
+
 
 Der \IC{errorText} wird im Konstruktor der Klasse \IC{SelectionCard} übergeben \LstZ{\ref{lst:Schritt3errorText}}{29}.
 Da er \IC{null} sein darf, ist er mit dem Suffix \IC{?} als Typ mit Null-Zulässigkeit gekennzeichnet \Z{21}. 
@@ -104,14 +109,14 @@ Sollte der \IC{errorText} gesetzt sein \Z{65}, so erscheint unter dem Titel und 
 
 
 
-Oberhalb des vorhandenen \IC{FloatingActionButton} wird nun ein weiterer eingefügt, der zum Speichern des Entwurfs mit der Funktion \IC{saveDraft} genutzt werden soll \LstZ{\ref{lst:Schritt3FloatingActionButton}}{210-216}. Der ursprüngliche \IC{FloatingActionButton} versucht die Validierung und die anschließende Speicherung der Maßnahme mithilfe der neuen Funktion \IC{validateAndSave} \Z{224}.
+Oberhalb des vorhandenen \IC{FloatingActionButton} wird nun ein weiterer eingefügt, der zum Speichern des Entwurfs mit der Funktion \IC{saveDraftAndGoBackToOverviewScreen} genutzt werden soll \LstZ{\ref{lst:Schritt3FloatingActionButton}}{210-216}. Der ursprüngliche \IC{FloatingActionButton} versucht die Validierung und die anschließende Speicherung der Maßnahme mithilfe der neuen Funktion \IC{saveAndGoBackToOverviewScreenIfValid} \Z{224}.
 
 \begin{alexlisting}{Schritt 3}{Die Maßnahmencharakteristika Selektionskarten werden ergänzt}
     {Quellcode/Schritt-3/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
     {firstline=209, lastline=226, highlightlines={210-219, 224}}
     \label{lst:Schritt3FloatingActionButton}
 \end{alexlisting}
-
+ 
 
 
 
