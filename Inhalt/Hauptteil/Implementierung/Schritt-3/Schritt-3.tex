@@ -3,61 +3,145 @@
 
 \subsection{Schritt 3}
 
+In diesem Schritt soll die grundlegende Validierungsfunktion hinzugefügt werden.
+Maßnahmen, die als abgeschlossen markiert sind, dürfen keine leeren Eingabefelder enthalten und der Maßnahmentitel darf nicht doppelt belegt sein. \IC{Flutter} stellt das Widget \IC{Form} für die Validierung von Eingabefeldern bereit. 
+
+\subsection{Einfügen des Form-Widgets}
+
+Das Widget \IC{Form} ist ein Container, welcher die Validierung für alle Kinderelemente des Typs \IC{FormField} ausführt. 
+Damit es alle Eingabefelder im Formular umgibt, wird es zwischen dem \IC{WillPopScope} und dem \IC{Stack} eingefügt \LstZ{\ref{lst:Schritt3Form}}{168}. 
+Darüber hinaus wird die Funktion \IC{saveRecord} durch \IC{validateAndSave} ersetzt \Z{167}, welche ebenfalls in diesem Schritt implementiert wird. 
+Das \IC{Form}-Widget muss über einen \IC{key} registriert werden \Z{169}, damit auf die Validierungsfunktionen zurückgegriffen werden kann.
+
+\begin{alexlisting}{Schritt 3}{Die Maßnahmencharakteristika Selektionskarten werden ergänzt}
+    {Quellcode/Schritt-3/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
+    {firstline=158, lastline=166, highlightlines={163-165}}
+    \label{lst:Schritt3Form}
+\end{alexlisting}
+ 
+Die Erstellung des \IC{formKey} findet zu Beginn der \IC{build}-Methode des Eingabeformulars statt \LstZ{\ref{lst:Schritt3FormState}}{20}. 
+Der \IC{GlobalKey} identifiziert ein Element, welches durch ein Widget gebaut wurde, über die gesamte Applikation hinweg. 
+Es erlaubt darüber hinaus auf das \IC{State}-Objekt zuzugreifen, welches mit dem \IC{StatefulWidget} verknüpft ist. 
+Ohne Angabe eines Typparameters kann nur Zugriff auf Funktionen des Typs \IC{State} gewährt werden. 
+Doch die gewünschte Methode \IC{validate} ist nur Teil des Typs \IC{FormState}. 
+Damit das Element, welches über den \IC{GlobalKey} registriert wurde, auch den \IC{FormState} liefert, kann der entsprechende Typparameter \IC{<FormState>} bei der Erstellung des GlobalKey übergeben werden.
+
+\begin{alexlisting}{Schritt 3}{Die Maßnahmencharakteristika Selektionskarten werden ergänzt}
+    {Quellcode/Schritt-3/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
+    {firstline=17, lastline=20, highlightlines={20}}
+    \label{lst:Schritt3FormState}
+\end{alexlisting}
+
+\subsection{Validierung des Maßnahmentitels}
+
+Das Eingabefeld für den Maßnahmen-Titel ist ein \IC{TextFormField} \LstZ{\ref{lst:Schritt3createMassnahmenTitelTextFormFieldValidator}}{99}.
+Es erbt vom Typ \IC{FormField} und wird daher mit dem Vaterelement \IC{Form} verknüpft. 
+Es beinhaltet bereits einen Parameter für die Validierungsfunktion namens \IC{validator} \Z{104}.
+Die übergebene Funktion erhält im ersten Parameter den für das Textfeld eingetragenen Wert. 
+Die Funktion soll \IC{null} zurückgeben, wenn keine Fehler in der Validierung geschehen sind. 
+In jedem anderen Fall soll der Text zurückgegeben werden, der als Fehlermeldung angezeigt werden soll. 
+Sollte der Parameter \IC{null} sein oder aber ein leerer String \Z{105}, so wird die entsprechende Fehlermeldung \IC{'Bitte Text eingeben'} angezeigt \Z{107}.
+Damit der Benutzer direkt zu dem fehlerhaften Eingabefeld geführt wird, kann ein Objekt der Klasse \IC{FocusNode} verwendet werden. 
+Er wird vor der Konstruktion der Karte erstellt \Z{95} und dem Parameter \IC{focusNode} des \IC{TextFormField} übergeben \Z{100}.
+Sollte ein Fehler bei der Validierung gefunden werden, kann mit der Methode \IC{requestFocus} angeordnet werden, den Cursor in das betreffende Feld zu setzen \Z{106}. 
+Das sorgt auch dafür, dass das Eingabefeld in den sichtbaren Bereich gerückt wird.
+
+Sollte das Textfeld nicht leer sein, so soll noch überprüft werden, ob der Maßnahmen-Titel bereits vergeben ist. Über das Model kann die Liste der Maßnahmen angefordert werden \Z{110}.
+Die Funktion \IC{any} akzeptiert als Argument eine Funktion, die für alle Elemente der Liste ausgeführt wird \Z{110-113}. 
+Wenn die Rückgabe der Funktion auch nur in einem Fall \IC{true} ist, so evaluiert auch \IC{any} mit \IC{true}.
+Andernfalls ist die Rückgabe \IC{false}. 
+Die anonyme Funktion schließt zunächst den Vergleich mit derselben Maßnahme aus, welche sich gerade in Bearbeitung befindet.
+Der Vergleich der guid ist dafür ausreichend.
+Sollte es eine andere Maßnahme geben, welche den gleichen Titel hat \Z{112-113}, so wird Die lokale Variable \IC{massnahmeTitleDoesAlreadyExists} auf \IC{true} gesetzt.
+Der Benutzer bekommt die entsprechende Fehlermeldung \IC{'Dieser Maßnahmentitel ist bereits vergeben'} zu lesen \IC{117}. 
+Wenn keine der beiden Fallunterscheidungen das \IC{return}-Statement \Z{107, 117} auslöst, so erfolgt schließlich die Rückgabe von \IC{null}.
+In dem Kontext der \IC{validator}-Funktion bedeutet die Rückgabe von \IC{null}, dass die Validierung erfolgreich war.
+ 
+\begin{alexlisting}{Schritt 3}{Die Maßnahmencharakteristika Selektionskarten werden ergänzt}
+    {Quellcode/Schritt-3/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
+    {firstline=94, lastline=127, highlightlines={95,100, 104-120}}
+    \label{lst:Schritt3createMassnahmenTitelTextFormFieldValidator}
+\end{alexlisting}
+ 
+Das \IC{Form}-Widget validiert lediglich Kindelemente vom Typ \IC{FormField}.
+Dementsprechend wird das Widget \IC{SelectionCard} nicht in die Validierung miteinbezogen.
+Es erbt nicht von \IC{FormField}.
+Es wäre möglich, eine weitere Klasse zu erstellen, die von \IC{FormField} erbt und alle Parameter für die Erstellung einer Selektions-Karte wiederverwendet.
+Doch das würde bedeuten, dass für alle folgenden Schritte jeder weitere Parameter in beiden Konstruktoren der Klassen gepflegt werden müsste.
+Um der Arbeit leichter folgen zu können, wurde sich für einen anderen, simpleren Weg entschieden: 
+Die Selektionskarte kann ebenso von einem \IC{FormField} umgeben werden \LstZ{\ref{lst:Schritt3buildSelectionCardValidator}}{132-159}, welches die Selektionskarte in der \IC{builder}-Funktion erstellt und an den Parametern nichts ändert, außer einen weiteren hinzuzufügen: der Text für die Fehlermeldung \Z{158}. 
+Der erste Parameterder \IC{builder}-Funktion ist das \IC{State}-Objekt das \IC{FormField}.
+Es enthält die Getter-Methode \IC{errorText}, die bei gegebenenfalls fehlgeschlagener Validierung die zurückgegebene Fehlermeldung enthält.
+
+Die anonyme Funktion, die als Argument dem Parameter \IC{validator} übergeben wird \Z{133-143}, erstellt eine temporäre Menge, die den Wert des \IC{selectionViewModel} enthält, wenn dieser nicht \IC{null} ist, andernfalls ist sie eine leere Menge \Z{134-136}.
+Die \IC{validator}-Funktion gibt eine Fehlermeldung zurück, sollte die Menge leer sein \Z{138-140}. 
+Ist die Menge dagegen gefüllt, so gibt sie \IC{null} zurück, um mitzuteilen, dass die Validierung erfolgreich war \Z{142}.
+
+\begin{alexlisting}{Schritt 3}{Die Maßnahmencharakteristika Selektionskarten werden ergänzt}
+    {Quellcode/Schritt-3/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
+    {firstline=129, lastline=156, highlightlines={132-144, 154-155}}
+    \label{lst:Schritt3buildSelectionCardValidator}
+\end{alexlisting}
+
+Der \IC{errorText} wird im Konstruktor der Klasse \IC{SelectionCard} übergeben \LstZ{\ref{lst:Schritt3errorText}}{29}.
+Da er \IC{null} sein darf, ist er mit dem Suffix \IC{?} als Typ mit Null-Zulässigkeit gekennzeichnet \Z{21}. 
+
 \begin{alexlisting}{Schritt 3}{errorText wird der SelectionCard hinzugefügt}
     {Quellcode/Schritt-3/conditional_form/lib/widgets/selection_card.dart}
     {firstline=19, lastline=30, highlightlines={21,29}}
-    \label{lst:Schritt3DieMassnahmencharakteristikaSelektionskartenWerdenergaenzt}
+    \label{lst:Schritt3errorText}
 \end{alexlisting}
+
+Durch Einfügen einer \IC{Column} zwischen der \IC{Card} \LstZ{\ref{lst:Schritt3ColumnErrorText}}{53} und dem ListTile \Z{57} kann die visuelle Repräsentation der Selektionskarte in der Höhe erweitert werden.
+Sollte der \IC{errorText} gesetzt sein \Z{65}, so erscheint unter dem Titel und dem Untertitel eine entsprechende Fehlermeldung \Z{66-71}.
+ 
 
 \begin{alexlisting}{Schritt 3}{errorText wird ausgegeben}
     {Quellcode/Schritt-3/conditional_form/lib/widgets/selection_card.dart}
-    {firstline=63, lastline=71, highlightlines={65-71}}
-    \label{lst:Schritt3DieMassnahmencharakteristikaSelektionskartenWerdenergaenzt}
+    {firstline=53, lastline=74, highlightlines={54-56,64-72}}
+    \label{lst:Schritt3ColumnErrorText}
 \end{alexlisting}
+
+
+
+Oberhalb des vorhandenen \IC{FloatingActionButton} wird nun ein weiterer eingefügt, der zum Speichern des Entwurfs mit der Funktion \IC{saveDraft} genutzt werden soll \LstZ{\ref{lst:Schritt3FloatingActionButton}}{210-216}. Der ursprüngliche \IC{FloatingActionButton} versucht die Validierung und die anschließende Speicherung der Maßnahme mithilfe der neuen Funktion \IC{validateAndSave} \Z{224}.
 
 \begin{alexlisting}{Schritt 3}{Die Maßnahmencharakteristika Selektionskarten werden ergänzt}
     {Quellcode/Schritt-3/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
-    {firstline=215, lastline=230, highlightlines={215-224, 229}}
-    \label{lst:Schritt3DieMassnahmencharakteristikaSelektionskartenWerdenergaenzt}
+    {firstline=209, lastline=226, highlightlines={210-219, 224}}
+    \label{lst:Schritt3FloatingActionButton}
 \end{alexlisting}
 
-\begin{alexlisting}{Schritt 3}{Die Maßnahmencharakteristika Selektionskarten werden ergänzt}
-    {Quellcode/Schritt-3/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
-    {firstline=25, lastline=36}
-    \label{lst:Schritt3DieMassnahmencharakteristikaSelektionskartenWerdenergaenzt}
-\end{alexlisting}
 
-\begin{alexlisting}{Schritt 3}{Die Maßnahmencharakteristika Selektionskarten werden ergänzt}
-    {Quellcode/Schritt-3/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
-    {firstline=20, lastline=23, highlightlines={23}}
-    \label{lst:Schritt3DieMassnahmencharakteristikaSelektionskartenWerdenergaenzt}
-\end{alexlisting}
 
 
 \begin{alexlisting}{Schritt 3}{Die Maßnahmencharakteristika Selektionskarten werden ergänzt}
     {Quellcode/Schritt-3/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
-    {firstline=48, lastline=73}
+    {firstline=22, lastline=33}
     \label{lst:Schritt3DieMassnahmencharakteristikaSelektionskartenWerdenergaenzt}
 \end{alexlisting}
 
 
 \begin{alexlisting}{Schritt 3}{Die Maßnahmencharakteristika Selektionskarten werden ergänzt}
     {Quellcode/Schritt-3/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
-    {firstline=75, lastline=85}
-    \label{lst:Schritt3DieMassnahmencharakteristikaSelektionskartenWerdenergaenzt}
-\end{alexlisting}
-
-\begin{alexlisting}{Schritt 3}{Die Maßnahmencharakteristika Selektionskarten werden ergänzt}
-    {Quellcode/Schritt-3/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
-    {firstline=87, lastline=95}
+    {firstline=84, lastline=92}
     \label{lst:Schritt3DieMassnahmencharakteristikaSelektionskartenWerdenergaenzt}
 \end{alexlisting}
 
 
 \begin{alexlisting}{Schritt 3}{Die Maßnahmencharakteristika Selektionskarten werden ergänzt}
     {Quellcode/Schritt-3/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
-    {firstline=132, lastline=163, highlightlines={135-151, 161-162}}
+    {firstline=72, lastline=79}
     \label{lst:Schritt3DieMassnahmencharakteristikaSelektionskartenWerdenergaenzt}
 \end{alexlisting}
+
+\begin{alexlisting}{Schritt 3}{Die Maßnahmencharakteristika Selektionskarten werden ergänzt}
+    {Quellcode/Schritt-3/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
+    {firstline=45, lastline=70}
+    \label{lst:Schritt3DieMassnahmencharakteristikaSelektionskartenWerdenergaenzt}
+\end{alexlisting}
+
+
+
 
 \clearpage 
