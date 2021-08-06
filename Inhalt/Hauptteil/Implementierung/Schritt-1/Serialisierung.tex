@@ -183,8 +183,8 @@ Zum Vergleich wird in den Zeilen 46 bis 52 eine Maßnahme über das Builder-Entw
 Dabei ist darauf zu achten, dass die Instanzvariable \IC{letzteBearbeitung} keinen Wert über den Zuweisungs-Operator \IC{=} erhält, sondern stattdessen die Methode \IC{update} darauf aufgerufen wird.
 
 Da es sich bei der Instanzvariablen \IC{letzteBearbeitung} genauso um ein Objekt eines Wertetypen - handelt, ist sie ebenso unveränderlich.
-Deshalb kann sie nur über einen Builder manipuliert werden.
-Ein Blick in den generierten Quellcode offenbart, dass es sich in Wahrheit um einen Builder handelt \LstZ{\ref{lst:Schritt1InstanzvariableLetzteBearbeitungGibtEinenLetzteBearbeitungBuilderZurueck}}{224-225}.
+Deshalb kann sie nur über einen \enquote{Builder} manipuliert werden.
+Ein Blick in den generierten Quellcode offenbart, dass es sich in Wahrheit um einen \enquote{Builder} handelt \LstZ{\ref{lst:Schritt1InstanzvariableLetzteBearbeitungGibtEinenLetzteBearbeitungBuilderZurueck}}{224-225}.
 
 \begin{alexlisting}{Schritt 1}{Instanzvariable \IC{letzteBearbeitung} gibt einen \IC{LetzteBearbeitungBuilder} zurück}
   {Quellcode/Schritt-1/conditional_form/lib/data_model/massnahme.g.dart}
