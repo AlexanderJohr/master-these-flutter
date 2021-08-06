@@ -242,7 +242,7 @@ In Zukunft könnte es sinnvoll sein, innerhalb der Fehlerbehandlung eine Meldung
 Mit \IC{putMassnahmeIfAbsent} \Z{24-33} steht eine Methode bereit, um gleichzeitig  sowohl die Oberfläche,  als auch die JSON-Datei zu aktualisieren.
 Sollte die eigetragene Maßnahme schon existieren, wird sie zunächst gelöscht \Z{26}.
 In jedem Fall wird die neue Maßnahme dem Stream hinzugefügt \Z{27}.
-Durch Austauschen des gesamten Objektes mit der Zuweisung von \IC{storage.value} \Z{25} erhält der Stream erneut ein neues Ereignis, womit er die Oberfläche benachrichtigen kann, sich neu zu zeichnen. Außerdem wird die Serialisierung des \IC{Storage}-Objektes und angestoßen \Z{29-30} und die neue Liste von Maßnahmen im darauffolgenden Schritt zurück in die JSON-Datei gespeichert \Z{32}.
+Durch Austauschen des gesamten Objekts mit der Zuweisung von \IC{storage.value} \Z{25} erhält der Stream erneut ein neues Ereignis, womit er die Oberfläche benachrichtigen kann, sich neu zu zeichnen. Außerdem wird die Serialisierung des \IC{Storage}-Objekts und angestoßen \Z{29-30} und die neue Liste von Maßnahmen im darauffolgenden Schritt zurück in die JSON-Datei gespeichert \Z{32}.
 
 \begin{alexlisting}{Schritt 1}{Die Klasse MassnahmenModel}
   {Quellcode/Schritt-1/conditional_form/lib/data_access/massnahmen_model.dart}
