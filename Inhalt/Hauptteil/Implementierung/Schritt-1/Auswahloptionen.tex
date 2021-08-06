@@ -124,8 +124,8 @@ Stattdessen wird das mit dem sogenannten \enquote{collection for} eine Wiederhol
 
 
 
-In Zeile 18 wird durch die  Menge aller Auswahloptionen \IC{choices} iteriert und dabei in jedem Schleifendurchlauf die Auswahloption in die Variablen \IC{choice} gespeichert.
-Während des Schleifendurchlauf wird dann ein Schlüssel-Wertepaar gebildet wobei \IC{choice.abbreviation} der Schlüssel ist und das Objekt \IC{choice} selbst der Wert.
+In Zeile 18 wird durch die  Menge aller Auswahloptionen \IC{choices} iteriert und dabei in jedem Schleifendurchlauf die Auswahloption in die  Variable \IC{choice} gespeichert.
+Während des Schleifendurchlaufs wird dann ein Schlüssel-Werte-Paar gebildet, wobei \IC{choice.abbreviation} der Schlüssel ist und das Objekt \IC{choice} der Wert.
 
 Die Map \IC{choiceByAbbreviation} erlaubt es nach der Initialisierung mit Hilfe der Methode \IC{fromAbbreviation} \Z{14} über die Abkürzung das dazugehörige \IC{Choice}-Objekt abzurufen.
 Beispielsweise gibt der Befehl \IC{letzterStatusChoices.fromAbbreviation(“fertig”)} das Objekt \IC{LetzterStatus("fertig", "abgeschlossen")} zurück. Auffällig dabei ist das der Parameter abbreviation Mit dem Typen \IC{String?} und der generische Rückgabetyp mit \IC{T?} gekennzeichnet ist. Der Suffix \IC{?} macht beide zu Typen mit Null-Zulässigkeit.
