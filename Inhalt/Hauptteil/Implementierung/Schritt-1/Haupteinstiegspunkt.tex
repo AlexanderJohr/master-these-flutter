@@ -1,5 +1,5 @@
 
-\clearpage
+\ifincludeall \clearpage \fi
 \subsection{Der Haupteinstiegspunkt}
 
 Das Listing \ref{lst:Schritt1DerHaupteinstiegspunkt} zeigt den Haupteinstiegspunkt des Programms.
@@ -65,7 +65,7 @@ Hat der Benutzer die Arbeit in der Unterseite vollendet, so kann der Navigator g
   \label{lst:Schritt1DerHaupteinstiegspunkt}
 \end{alexlisting}
 
-\clearpage
+\ifincludeall \clearpage \fi
 \subsection{Der Service für den Applikations übergreifenden Zustand}
 
 
@@ -167,7 +167,7 @@ Er enthält sowohl ViewModel als auch Model.
 \fi
 
 
-\clearpage
+\ifincludeall \clearpage \fi
 \subsection{Speichern der Maßnahmen in eine Json-Datei}
 Das Model wird durch die Klasse \IC{MassnahmenJsonFile} in eine JSON-Datei gespeichert \Lst{\ref{lst:Schritt1KlasseMassnahmenJsonFile}}.
 Der Dateipfad wird dabei durch die Methode \IC{_localMassnahmenJsonFile} \Z{8-11} abgerufen.
@@ -200,7 +200,7 @@ Sollte die Dateien nicht existieren, führt das zu einer Ausnahme \Z{28}, welche
   \label{lst:Schritt1KlasseMassnahmenJsonFile}
 \end{alexlisting}
 
-\clearpage
+\ifincludeall \clearpage \fi
 \subsection{ Abhängigkeit zum Verwalten der Maßnahmen}
 
 Die Art und Weise, wie die Maßnahmen abgerufen werden, sollte nach Möglichkeit abstrahiert werden.
@@ -250,4 +250,4 @@ Durch Austauschen des gesamten Objektes mit der Zuweisung von \IC{storage.value}
   \label{lst:Schritt1KlasseMassnahmenModel}
 \end{alexlisting}
 
-\clearpage
+\ifincludeall \clearpage \fi

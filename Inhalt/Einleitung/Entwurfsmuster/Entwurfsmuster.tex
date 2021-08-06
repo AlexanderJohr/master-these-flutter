@@ -1,5 +1,7 @@
 \subsection{Entwurfsmuster}
 
+\ifincludeall
+
 \begin{tikzpicture}
 
     \umlclass[x=-0.5, y=0]{Kontext}{
@@ -32,11 +34,13 @@
     
     \umluniaggreg[arg1=strategie, pos1=0.4]{Kontext}{Strategie}
     
-    \end{tikzpicture}
+\end{tikzpicture}
 
+\fi
 
+\ifincludeall
 
-    \begin{tikzpicture}
+\begin{tikzpicture}
 
         \umlclass[x=-0.5, y=0]{Direktor}{
         }{
@@ -68,4 +72,6 @@
         
         \umluniaggreg[arg1=erbauer, pos1=0.4]{Kontext}{Strategie}
         
-        \end{tikzpicture}
+\end{tikzpicture}
+
+\fi

@@ -1,5 +1,5 @@
 
-\clearpage
+\ifincludeall \clearpage \fi
 
 \subsection{Widget SelectionCard}
 
@@ -37,7 +37,7 @@ Der Benutzer würde ansonsten in Formular wieder an der obersten Position heraus
 Der \IC{FocusNode} wird einmal zu Anfang der \IC{build}-Methode erstellt \Z{35}.
 Damit ist er außerhalb des \IC{StreamBuilder} und bleibt somit beim Neuzeichnen der Karte erhalten.
 
-\clearpage
+\ifincludeall \clearpage \fi
 Klickt der Benutzer die Karte an, navigiert er schließlich zur Unterseite, wo er die Auswahloptionen präsentiert bekommt.
 Die verschachtelte Funktion \IC{navigateToSelectionScreen} kommt dafür zum Einsatz \Z{37-45}.
 Da das Wechseln zu Unterseite bevorsteht, fordert der \IC{focusNode} den Fokus für das angeklickte \IC{ListTile} an \Z{38}.
@@ -99,4 +99,4 @@ Mit einem Klick darauf gelangt der Benutzer zurück zur Eingabemaske \Z{100}.
 \end{alexlisting}
  
  
-\clearpage
+\ifincludeall \clearpage \fi

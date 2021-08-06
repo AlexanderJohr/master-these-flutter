@@ -1,5 +1,5 @@
 
-\clearpage
+\ifincludeall \clearpage \fi
 \subsection{Übersichtsbildschirm der Maßnahmen}
 
 Der erste Bildschirm - die Übersicht der Maßnahmen - kann auf das im letzten Schritt erstellten Model zugreifen.
@@ -85,7 +85,7 @@ class MassnahmenMasterScreen extends StatelessWidget {
   \end{listing}
 \fi
 
-\clearpage
+\ifincludeall \clearpage \fi
 \subsubsection{Auflistung der Maßnahmen im Übersichtsbildschirm}
 
 Der Inhalt der \IC{builder}-Methode ist in Listing \ref{lst:Schritt1DieAusgabeDerMassnahmen} dargestellt.
@@ -122,7 +122,7 @@ Unterhalb der Rubrik der finalen Maßnahmen, listed die Übersicht die Maßnahme
 Daher ist das dritte Element der \IC{Column} wiederum eine Überschrift: \IC{"In Bearbeitung"} \Z{62} gefolgt von einem weiteren horizontalen Scrollbereich \Z{66-83} mit einer Tabelle von Maßnahmen \Z{70-82}.
 Der einzige Unterschied hier: die Bedingung der Filterfunktion.
 Dieses Mal filtert die Kollektion auf Maßnahmen in Bearbeitung \Z{73-74}.
-\clearpage
+\ifincludeall \clearpage \fi
 
 
 \subsection{Widget MassnahmenTable}
@@ -172,7 +172,7 @@ Hier erlaubt es eine Funktionssignatur als eigenen Typ zu deklarieren.
 Der \IC{MassnahmenMasterScreen} wiederum instanziiert genauso so ein Funktions-Objekt als anonyme Funktion \LstZ{\ref{lst:Schritt1DieAusgabeDerMassnahmen}}{75-82}.
 Weil es der Signatur der Typdefinition von \IC{OnSelectCallback}  entspricht, kann es der Tabelle als Argument für den Parameter \IC{onSelect} übergeben werden. 
 
-\clearpage
+\ifincludeall \clearpage \fi
 
 \begin{alexlisting}{Schritt 1}{Die Klasse MassnahmenTable}
   {Quellcode/Schritt-1/conditional_form/lib/widgets/massnahmen_table.dart}
@@ -180,7 +180,7 @@ Weil es der Signatur der Typdefinition von \IC{OnSelectCallback}  entspricht, ka
   \label{lst:Schritt1KlasseMassnahmenTable}
 \end{alexlisting}
 
-\clearpage
+\ifincludeall \clearpage \fi
 
 
 Das Inversion of Control Entwurfsmuster ist auch unter dem Namen \enquote{hollywood pattern} bekannt , da es ähnlich wie die typische Antwort auf eine Bewerbung für einen Hollywood Film - don’t call us, we’ll call you - funktioniert.\footcite[Vgl.][]{fowler2005InversionOfControl}
