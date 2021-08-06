@@ -146,7 +146,7 @@ var gradCelsiusTemperaturen = {
 
 Gleiches gilt für Hashtabellen.
 Hierbei wird ein Schlüssel-Werte-Paar übergeben.
-Links vom einem \IC{:} ist der Schlüssel und rechts davon der Wert.
+Links vom \IC{:} ist der Schlüssel und rechts davon der Wert.
 In Listing \ref{lst:CollectionForInEinerHashtabelle}
 wird durch  die gleiche Liste von Temperaturen in Fahrenheit iteriert.
  Für jede Schleifenvariable \IC{f} wird für das resultierende Schlüssel-Wörter-Paar das Ergebnis in Grad Celsius als Schlüssel und das Ergebnis als Wert eingetragen.
@@ -263,7 +263,7 @@ Genauso könnte es aber auch sein, dass eine Klasse von Patient erbt und das Fel
 Auch wenn es sehr unwahrscheinlich ist, könnte es trotzdem vorkommen, dass der Aufruf von \IC{temperature} in Zeile 6 einen Wert zurückgibt, der nicht \IC{null} ist und der darauffolgende Aufruf in Zeile 7 \IC{null} liefert.
 So provoziert es die Klasse \IC{UnusualPatient} im Listing \ref{lst:UnusualPatient}.
 Beim ersten Aufruf von \IC{temperature} wird die Zähl-Variable \IC{counter} von \IC{0} auf \IC{1} erhöht.
-Die Abfrage, ob es sich bei dem Wert von Counter um eine ungerade Zahl handelt ist erfolgreich \Z{6}, weshalb mit \IC{97,7} ein valider Wert zurückgegeben wird.
+Die Abfrage, ob es sich bei dem Wert von Counter um eine ungerade Zahl handelt, ist erfolgreich \Z{6}, weshalb mit \IC{97,7} ein valider Wert zurückgegeben wird.
 Beim zweiten Aufruf erhöht sich \IC{counter} allerdings auf \IC{2}.
 Die gleiche Abfrage schlägt dieses Mal fehl.
 Deshalb liefert die Getter-Methode nun \IC{null} \Z{9}.
@@ -336,7 +336,7 @@ Im Sprachkern stellt Dart Schlüsselwörter und Datentypen für die asynchrone P
 Das sind unter anderem die Datentypen \IC{Future} und \IC{Stream} sowie die Schlüsselwörter \IC{async} und \IC{await}.
 
 \paragraph{Future}
-Ein \IC{Future}-Objekt repräsentiert einen potenziellen einmaligen Wert, der in der erst in der Zukunft bereit steht.
+Ein \IC{Future}-Objekt repräsentiert einen potenziellen einmaligen Wert, der erst in der Zukunft bereit steht.
 Er gleicht damit dem sogenannten \IC{Promise} - deutsch Versprechen – in JavaScript.
 \HP{\url{https://developer.mozilla.org/de/docs/orphaned/Web/JavaScript/Reference/Global_Objects/Promise}}
 
@@ -406,7 +406,7 @@ Dazu dient das \IC{async} Schlüsselwort vor Beginn des Methoden-Körpers.
 
 \enquote{Streams} liefern nicht nur einen Wert – wie im Fall eines \IC{Future} – sondern eine Serie von Werten, die in der Zukunft geliefert werden.
 Listing \ref{lst:countStream} zeigt wie auf einen solchen Stream gehorcht werden kann.
-\IC{countStream} liefert jede Sekunde einen neuen Wert, nämlich die aktuelle Sekunde - von 0 beginnent.
+\IC{countStream} liefert jede Sekunde einen neuen Wert, nämlich die aktuelle Sekunde - von 0 beginnend.
 Mit \IC{countStream.listen} kann eine Funktion übergeben werden, die immer dann ausgeführt wird, wenn dem \IC{countStream} ein neuer Wert hinzugefügt wurde. Der erste Parameter ist dabei der hinzugefügte Wert.
 
 \ifincludeall
