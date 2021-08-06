@@ -250,7 +250,7 @@ Dazu wird dieses Mal die anonyme Funktion zum Konstruieren der Maßnahme gleich 
 
 Diesmal konstruiert die Methode \IC{serializers.serializeWith} mit dem Serialisierer \IC{Storage.serializer} ein weiteres JSON-Object \Z{12}. Genau wie zuvor wird ein Json-Dokument vorbereitet \Z{14-30}, welches der \IC{Matcher} \IC{equals} gegen das serialisierte Dokument des soeben konstruierten Objects \IC{storage} vergleicht \Z{31}. Das Json-Dokument unterscheidet sich nur darin, dass es einen Knoten namens \IC{'massnahmen'} enthält, der als Wert eine Liste hat. Die Liste hat nur ein Element.  Weil dieses Mal das Objeckt des Typs \IC{Massnahme} nicht direkt zugreifbar ist, muss es zunächst über die Liste der Maßnahmen aus dem \IC{storage}-Object abgerufen werden. Das ist mit dem Befehl \IC{first} möglich, der das erste Objekt - und in diesem Fall einzige Objekt - der Kollektion zurückgibt \Z{17, 21}. Darüber kann erneut die \IC{guid}  und  das \IC{letztesBearbeitungsDatum} abgerufen werden.
 
-Ein weiterer Unit-Test überprüft, ob auch die Deserialisierung eines \IC{storage}-Objects erfolgreich ist.
+Ein weiterer Unit-Test überprüft, ob auch die Deserialisierung eines \IC{storage}-Objekts erfolgreich ist.
 Er ist in Listing {\ref{lst:Schritt1MassnahmenDeserialisierenOhneFehlerUnitTest} im Anhang \ref{appendix:Schritt1Anhang} zu finden.
 Auch dieser Test ist der Deserialisierung des Objektes des Typs \IC{Massnahme} sehr ähnlich.
 Er unterscheidet sich nur darin, dass das \IC{Massnahme}-Objekt in der Liste \IC{massnahmen} des \IC{storage}-Objektes  enthalten ist.
