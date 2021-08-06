@@ -6,13 +6,13 @@
 
 Ein automatisierter Integrationstest soll verifizieren, dass die Oberfläche wie vorgesehen funktioniert.
 Der Integrationstest simuliert einen Benutzer, der die Applikation verwendet, um eine Maßnahme einzutragen.
-Bei Abschluss des Tests soll überprüft werden, ob die  eingegebenen Daten mit den Inhalten der Json-Datei übereinstimmen.
+Bei Abschluss des Tests soll überprüft werden, ob die  eingegebenen Daten mit den Inhalten der JSON-Datei übereinstimmen.
 
 Flutter erlaubt über einen eigenen Testtreiber solche Integrationstest durchzuführen.
 Dabei wird die Applikation zur Ausführung gebracht, und jeder Schritt so visualisiert, wie es bei der Ausführung der realen Applikation der Fall wäre.
 Der Entwickler hat damit die Möglichkeit, die Eingaben und Interaktionen zu beobachten und gegebenfalls zu bemerken, warum ein Testfall nicht korrekt ausgeführt wird.
 
-Das Ergebnis des Integrationstests soll allerdings nicht mit der tatsächlich geschriebenen Json-Datei überprüft werden.
+Das Ergebnis des Integrationstests soll allerdings nicht mit der tatsächlich geschriebenen JSON-Datei überprüft werden.
 Der Test soll nicht tatsächlich Daten auf der Festplatte speichern.
 Das würde die Gefahr bergen, das  vergangene Eingaben manipuliert werden.
 Stattdessen soll der Test in einer Umgebung stattfinden, die keine Auswirkung auf die Haupt-Applikation oder zukünftige Tests haben soll.
@@ -35,7 +35,7 @@ Zusätzlich dazu muss die Rubrik \IC{generate_for} von dem \IC{mockBuilder} des 
 
 Anschließend kann mit der Annotation and generate mocks \LstZ{\ref{lst:Schritt1IntegrationsTestInitialisierung}}{20} ein Mock für \IC{MassnahmenJsonFile} angefordert werden.
 In der Kommandozeile ist \IC{flutter pub run build_runner build} einzugeben, damit der entsprechende Quellcode generiert wird.
-Mit dem Mock kann der Integrationstest ausgeführt werden, ohne dass befürchtet werden muss, dass die Json-Datei tatsächlich beschrieben wird.
+Mit dem Mock kann der Integrationstest ausgeführt werden, ohne dass befürchtet werden muss, dass die JSON-Datei tatsächlich beschrieben wird.
 Stattdessen kann darauf gehorcht werden, wenn Operationen auf dem Objekt ausgeführt werden. 
 
 \begin{alexlisting}{Schritt 1}{Initialisierung des Integrations Tests}
@@ -46,7 +46,7 @@ Stattdessen kann darauf gehorcht werden, wenn Operationen auf dem Objekt ausgef�
 
 Die Funktion \IC{testWidgets} startet den Test und erhält als ersten Parameter das \IC{tester}-Objekt \Z{22}.
 Darüber ist die Interaktion mit der Oberfläche während des Tests möglich.
-In den Zeilen 22 bis 25 wird der Testtreiber initialisiert. \HP{Ref}. Anschließend wird ein Objekt der generierten Klasse \IC{MockMassnahmenJsonFile} erstellt. Wenn das Model nun während der Applikation versucht, aus der Json-Datei zu lesen, soll der Mock eine leere Liste von Maßnahmen zurückgeben \Z{28}. Dazu wird die entsprechende Methode \IC{when} verwendet. Als erster Parameter wird die Methode \IC{readMassnahmen} des Mocks übergeben. Im darauffolgenden Aufruf \IC{thenAnswer} kann angegeben werden, welche Rückgabe die Methode liefern soll.
+In den Zeilen 22 bis 25 wird der Testtreiber initialisiert. \HP{Ref}. Anschließend wird ein Objekt der generierten Klasse \IC{MockMassnahmenJsonFile} erstellt. Wenn das Model nun während der Applikation versucht, aus der JSON-Datei zu lesen, soll der Mock eine leere Liste von Maßnahmen zurückgeben \Z{28}. Dazu wird die entsprechende Methode \IC{when} verwendet. Als erster Parameter wird die Methode \IC{readMassnahmen} des Mocks übergeben. Im darauffolgenden Aufruf \IC{thenAnswer} kann angegeben werden, welche Rückgabe die Methode liefern soll.
 
 Über den \IC{tester} kann mit Hilfe der Methode \IC{pumpWidget} ein beliebiges Widget in der Test-Ausführung konstruiert werden.
 In diesem Fall ist es die gesamte Applikation, die getestet werden soll.
@@ -169,7 +169,7 @@ Der erstellte Text dient als Eingabe für das Eingabefeld \Z{104}.
 
 Die nötigen Eingaben sind erfolgt.
 Daher kann der Test nun den Klick auf den Button zum Speichern simulieren \LstZ{\ref{lst:Schritt1ButtonZumSpeichernWirdAusgelöst}}{106-108}.
-Dadurch würde in der Anwendung nun das Speichern der Maßnahmen in der Json-Datei erfolgen.
+Dadurch würde in der Anwendung nun das Speichern der Maßnahmen in der JSON-Datei erfolgen.
 Doch da stattdessen ein Mock verwendet wurde, passiert dies nicht.
 Das Model ruft aber dennoch die entsprechenden Methoden - wie zum Beispiel \IC{saveMassnahmen} - auf.
 Die Methoden haben nur nicht die ursprüngliche Funktion.
