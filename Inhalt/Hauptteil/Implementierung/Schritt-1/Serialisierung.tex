@@ -152,7 +152,7 @@ Dies ist mit Hilfe des sogenannten \enquote{Builder}-Entwurfsmuster möglich, we
 \end{alexlisting}
 
 \paragraph{Erbauer-Entwurfsmuster} Das Erbauer-Entwurfsmuster - englisch builder pattern - ist ein Erzeugungsmuster, welches die Konstruktion komplexer Objekte von ihrer Repräsentation trennt.
-Es gehört zu der Serie von Entwurfsmustern der Gang of Four. \footcite[Vgl.][S. 119]{gamma2009entwurfsmuster}. Im Fall von built_value trennt es die unveränderlichen Objekte von ihrer Konstruktion. Über den Builder lassen sich Änderungen an diesen unveränderlichen Objekten vornehmen, wodurch eine Kopie dieses unveränderlichen Objekts mit der gewünschten Änderung zurückgegeben wird.
+Es gehört zu der Serie von Entwurfsmustern der Gang of Four. \footcite[Vgl.][S. 119]{gamma2009entwurfsmuster}. Im Fall von built_value trennt es die unveränderlichen Objekte von ihrer Konstruktion. Über den \enquote{Builder} lassen sich Änderungen an diesen unveränderlichen Objekten vornehmen, wodurch eine Kopie dieses unveränderlichen Objekts mit der gewünschten Änderung zurückgegeben wird.
 
 In den Zeilen 9 bis 10 wird so ein neues Objekt von der Klasse Maßnahme mit Hilfe der Methode \IC{rebuild} erzeugt und anschließend der Referenz \IC{massnahme} zugewiesen, wodurch sie ihren alten Wert verliert.
 Über die generiertet Methode \IC{serializers} \IC{.serializeWith} kann das Objekt in JSON übersetzt werden.
