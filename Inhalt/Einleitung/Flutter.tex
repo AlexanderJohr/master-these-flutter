@@ -46,20 +46,20 @@ Der Zustand selbst ist dabei im visuellen Baum als Vater der visuellen Elemente 
 Wie alle Widgets werden sie neu gezeichnet, wenn es durch das Framework angeordnet wurde.
 Das kann unter anderem der Fall sein, wenn das Widget zum ersten Mal in der Oberfläche auftaucht, oder das Vater-Element und damit alle Kinder-Elemente neu gezeichnet werden.
 
-\enquote{StatefulWidgets} sind nur eine von vielen Möglichkeiten den Zustand des Programms zu verwalte.
+\enquote{StatefulWidgets} sind nur eine von vielen Möglichkeiten den Zustand des Programms zu verwalten.
 Die Formular-Anwendung verwendet ausschließlich \IC{StatelessWidget}s, da die Verwaltung des Zustands über das sogenannte BloC Pattern umgesetzt wir.
 Mehr dazu im Kapitel \HP{Kapitel einfügen}.
 
 
 \subsection{Dart}
 
-Flutter-Anwendungen werden in der Programmiersprache Dart geschriebe.
+Flutter-Anwendungen werden in der Programmiersprache Dart geschrieben.
 Nachfolgend soll auf eine Reihe von Besonderheiten von Dart im Vergleich zu anderen objektorientierten Programmiersprachen eingegangen werden.
 
 Dart ist eine Hochsprache, die hauptsächlich für die Entwicklung von Oberflächen entwickelt wurde, sich jedoch ebenso dazu eignet, Programme für das Back-End zu entwickeln.
 
-Ein Hauptaspekt bei dem Design der Sprache ist die Produktivität des Entwickler.
-Mechanismen wie das \enquote{hot reload} verkürzen die Entwicklungszyklen erheblic.
+Ein Hauptaspekt bei dem Design der Sprache ist die Produktivität des Entwicklers.
+Mechanismen wie das \enquote{hot reload} verkürzen die Entwicklungszyklen erheblich.
 Das \enquote{hot reload} ermöglicht es, während eine Anwendung im Debug-Modus ausgeführt wird, Änderungen an dessen Quellcode vorzunehmen.
 Daraufhin werden nur die Teile der laufenden Applikation aktualisiert, die tatsächlich verändert wurden.
  Währenddessen bleibt die Anwendung in der gleichen Ansicht, anstatt zum Hauptbildschirm zurückgesetzt zu werden, von der aus der Entwickler erneut zur gewünschten Ansicht zurücknavigieren müsste.
@@ -70,7 +70,7 @@ Für die Ziel-Architektouren ARM32, ARM64 und x86_64 wird Dart in Maschinencode 
 \HP{\url{https://dart.dev/overview#native-platform}}
 
 Dementsprechend kommt während der Entwicklung eine virtuelle Maschine - die Dart VM - über Just-in-time-Kompilierung (JIT) zum Einsatz.
-Für die Kompilierung in Maschinencode wird dagegen Ahead-of-time-Kompilierung (AOT) eingesetz.
+Für die Kompilierung in Maschinencode wird dagegen Ahead-of-time-Kompilierung (AOT) eingesetzt.
 
 \paragraph{tree shaking}
 Für die Minimierung der Dateigröße des resultierenden Kompilats wird das sogenannte \enquote{tree shaking} eingesetzt.
@@ -117,7 +117,7 @@ menge.add("Text");
 Es entfällt also die Instanziierung einer Liste, einer Menge oder einer Hashtabelle über den Klassennamen und der darauffolgenden Zuweisung der einzelnen Werte.
 Stattdessen startet das \IC{Set} und \IC{Map} Literal mit einer öffnenden geschweiften Klammer und endet mit einer schließenden geschweiften Klammer.
 Innerhalb der Klammern werden die Werte im Fall eines Sets mit \IC{,} getrennt nacheinander aufgeführt ( \IC{\{1,2\}} ).
-Im Fall einer Map werden der Schlüssel und der Wert durch einen \IC{:} voneinander getrennt und die Schlüsse-Wertepaare wiederum durch \IC{,} getrennt nacheinander aufgelistet (\IC{\{1: "erster Wert",2:"zweiter Wert"\}}).
+Im Fall einer Map werden der Schlüssel und der Wert durch einen \IC{:} voneinander getrennt und die Schlüssel-Wertepaare wiederum durch \IC{,} getrennt nacheinander aufgelistet (\IC{\{1: "erster Wert",2:"zweiter Wert"\}}).
 Eine Liste wiederum wird mit eckigen Klammern geöffnet und geschlossen.
 Die Werte werden erneut mit , getrennt voneinander angegeben (\IC{[1,2]}).
 
