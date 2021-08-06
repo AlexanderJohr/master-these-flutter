@@ -168,8 +168,8 @@ Der zweite Parameter ist ein sogenannter \IC{Matcher} und die Variante mit dem N
 
 
 Analog zur Serialisierung testet der Unit-Test in Listing \ref{lst:DeserialisierungEinerMassnahmeUnittest} auch die Deserialisierung.
-Das Json-Dokument ist dabei sehr ähnlich und unterscheidet sich lediglich in zwei Details.
-Der \IC{'guid'} wird auf einen festen Wert festgelegt \Z{38}, statt - wie zuvor - durch den in dem Initialisierungs-Prozess der Maßnahme zufällig generiert zu werden.
+Das JSON-Dokument ist dabei sehr ähnlich und unterscheidet sich lediglich in zwei Details.
+Der \IC{'guid'} wird auf einen festen Wert festgelegt \Z{38}, statt - wie zuvor - durch den in dem Initialisierungsprozess der Maßnahme zufällig generiert zu werden.?
 Außerdem wird auch das \IC{letztesBearbeitungsDatum} festgesetzt, nämlich auf die Microsekunde \IC{0} \Z{40}.
 
 \begin{alexlisting}{Schritt 1}{Deserialisierung einer Maßnahme Unittest}
@@ -215,7 +215,7 @@ Gibt man in der Kommandozeile den Befehl \IC{flutter} \IC{test} \IC{test}\IC{/da
 Damit alle Maßnahmen - statt nur einer einzigen - in einer Datei zusammengefasst werden können, müssen die Maßnahmen zunächst zu einer Menge zusammengefasst werden, die ebenfalls serialisierbar ist.
 Der Werte-Typ Storage ist dafür vorgesehen \Lst{\ref{lst:Schritt1WerteTypStorage}}.
 Er deklariert allein das \IC{BuiltSet massnahmen} \Z{10}.
-Ein BuiltSet ist die Abwandlung eines gewöhnlichen Sets, jedoch unter anderem mit der Möglichkeit, es mit einem Builder zu erstellen und das Set zu serialisieren.
+Ein BuiltSet ist die Abwandlung eines gewöhnlichen Sets, jedoch unter anderem mit der Möglichkeit, es mit einem \enquote{Builder} zu erstellen und das Set zu serialisieren.
 % todo high Referenz einfügen
 Die Übergabe des Typarguments \IC{<Massnahme>} gewährleistet, dass keine anderen Objekte Eingefügt werden können, die weder eine Instanz der Klasse \IC{Massnahme} sind, oder einer Klasse, die von \IC{Massnahmen} erbt.
 
