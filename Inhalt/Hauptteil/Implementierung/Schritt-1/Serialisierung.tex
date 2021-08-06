@@ -88,7 +88,7 @@ In Wahrheit werden sie aber nur auf den \enquote{Builder}-Objekt angewendet.  Eb
 Durch Eingabe von zwei aufeinanderfolgenden Punkten \IC{..} statt nur einem \IC{.} können mehrere Operationen an einem Objekt ausgeführt werden, ohne  das Objekt zuvor einer Variablen zuzuweisen oder die Operationen über dessen Namen wiederholt aufzurufen.\DartSpec{149f.} Beispiel: die Aufrufe \IC{objekt.tueEtwas();} \IC{objekt.tueEtwasAnderes();} und \IC{objekt..tueEtwas()..tueEtwasAnderes();} sind äquivalent.
 
 Da der Kaskadierungs-Operator jedoch dazu verwendet wird, mehrere Operationen auf einem Objekt auszuführen, hat er in Zeile 16 keine Funktion.
-Doch bei Änderung eines Objekts über das \enquote{Builder Pattern} werden für gewöhnlich mehrere Operationen am gleichen Builder-Objekt ausgeführt, weshalb der Einheitlichkeit wegen der Kaskadierungs-Operator immer im Zusammenhang mit dem Builder-Objekt verwendet werden soll.
+Doch bei Änderung eines Objekts über das \enquote{Builder Pattern} werden für gewöhnlich mehrere Operationen am gleichen \enquote{Builder}-Objekt ausgeführt, weshalb der Einheitlichkeit wegen der Kaskadierungs-Operator immer im Zusammenhang mit dem \enquote{Builder}-Objekt verwendet werden soll.
 
 Die Attribute \IC{letzteBearbeitung} und \IC{identifikatoren} \Z{11, 13} erhalten dagegen ganz automatisch Standardwerte in Form von Instanzen der dazugehörigen Klassen.
 Diese wiederum konfigurieren ihre eigenen Felder und deren initiale Werte.
