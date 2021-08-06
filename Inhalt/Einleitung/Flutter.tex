@@ -3,7 +3,7 @@ Für Form wurde Flutter gewählt
 
 \section{Grundlagen}
 
-Für die Formular Anwendung wurde die Programmiersprache Dart und das Oberflächen Framework Flutter gewähl.
+Für die Formular Anwendung wurde die Programmiersprache Dart und das Oberflächen Framework Flutter gewählt.
 Kapitel Kapitel einfügen  erläutert die Entscheidungs-Grundlage dafür.
 
 Nachfolgend soll auf  Grundlagen der beiden Technologien eingegangen werden.
@@ -35,10 +35,10 @@ Es unterstützt eine breite Anzahl an Ziel-Systemen.
 
 Flutter ist inspiriert durch das Web-Framework react und deren Oberflächenelemente, die Components genannt werden \footcite[Vgl.][]{IntroductionToWidgets}.
 Die visuellen Oberflächen-Elemente in Flutter werden dagegen Widgets genannt.
-\enquote{react} \enquote{Components} verfügen über einen Zustand – \enquote{State} genannt – der bei Veränderung das Neuzeichnen der visuellen Repräsentation erwirk.
+\enquote{react} \enquote{Components} verfügen über einen Zustand – \enquote{State} genannt – der bei Veränderung das Neuzeichnen der visuellen Repräsentation erwirkt.
 Flutter unterscheidet allerdings zwischen zwei Arten von Widgets: denen, die einen Zustand pflegen – den \enquote{Stateful Widgets} – und solchen, die keinen Zustand haben – den \enquote{Stateless Widgets}.
 
-\enquote{Stateful Widgets} pflegen einen Zustand, der mittels der Methode \IC{setstate} gesetzt werden kan.
+\enquote{Stateful Widgets} pflegen einen Zustand, der mittels der Methode \IC{setstate} gesetzt werden kann.
 Beim Aufrufen der Methode wird das gesamte Widget neu gezeichnet.
 Der Zustand selbst ist dabei im visuellen Baum als Vater der visuellen Elemente des Widgets verankert und bleibt erhalten, während die dazugehörigen Oberflächenelemente ausgetauscht werden.
 
@@ -47,7 +47,7 @@ Wie alle Widgets werden sie neu gezeichnet, wenn es durch das Framework angeordn
 Das kann unter anderem der Fall sein, wenn das Widget zum ersten Mal in der Oberfläche auftaucht, oder das Vater-Element und damit alle Kinder-Elemente neu gezeichnet werden.
 
 \enquote{StatefulWidgets} sind nur eine von vielen Möglichkeiten den Zustand des Programms zu verwalten.
-Die Formular-Anwendung verwendet ausschließlich \IC{StatelessWidget}s, da die Verwaltung des Zustands über das sogenannte BloC Pattern umgesetzt wir.
+Die Formular-Anwendung verwendet ausschließlich \IC{StatelessWidget}s, da die Verwaltung des Zustands über das sogenannte BloC Pattern umgesetzt wird.
 Mehr dazu im Kapitel \HP{Kapitel einfügen}.
 
 

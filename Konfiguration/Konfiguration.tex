@@ -27,12 +27,16 @@
 \definecolor{mediumPrioColor}{RGB}{0, 255, 255}
 
 
+
+
+
+
 % Syntax Highlighting 
 \usepackage{minted}
 % Lösche rote Rahmen in minted Quelltext und nutze das Visual Studio Theme
 \usemintedstyle{vs}
 \ifincludeall 
-\setminted{autogobble=true, fontsize=\footnotesize, baselinestretch=1.0, frame=lines, mathescape, linenos, numbersep=5pt, framesep=2mm, breaklines, highlightcolor=insertedCode, breakafter=_@|.}
+\setminted{autogobble=true, fontsize=\footnotesize, baselinestretch=1.0, mathescape, linenos, numbersep=8pt, breaklines, highlightcolor=insertedCode, breakafter=_@|.}
 \fi
 \renewcommand{\listingscaption}{Code Snippet}
 % Veringere Abstand zum Untertitel
@@ -40,6 +44,10 @@
 % Bei Syntaxfehler keine roten vierecke darum zeichnen
 % https://tex.stackexchange.com/questions/343494/minted-red-box-around-greek-characters 
 
+% rounded corners for minted listings
+\usepackage[]{mdframed}
+\BeforeBeginEnvironment{mintinline}{\begin{mdframed}}
+\AfterEndEnvironment{mintinline}{\end{mdframed}}
 
 \usepackage{etoolbox}
 
@@ -151,6 +159,23 @@
 % Blindtext einfügen
 \usepackage{blindtext}
 
+% hintergrund für listings (auch inline)
+
+\usepackage{tcolorbox}
+
+\xdefinecolor{inlineCodetXColor}{RGB}{244,246,248} 
+
+\newtcbox{\inlineCodetcbox}[1][inlineCodetXColor]{on line,
+arc=1pt,colback=inlineCodetXColor,colframe=inlineCodetXColor,
+before upper={\rule[-3pt]{0pt}{10pt}},boxrule=0pt,
+boxsep=0pt,left=2pt,right=2pt,top=2pt,bottom=0pt} 
+
+\newtcolorbox{codeFrame}{colback=inlineCodetXColor,
+colframe=inlineCodetXColor,on line,arc=4pt,boxrule=0pt,boxsep=0pt,left=4pt,right=4pt,top=4pt,bottom=4pt}
+
+\BeforeBeginEnvironment{minted}{\begin{codeFrame}}
+  \AfterEndEnvironment{minted}{\end{codeFrame}}
+
 \newcommand{\alexlistingcaption}[3]{\caption[#1 #2]{#2, Quelle: Eigenes Listing, Datei: \url{#3}}}
 
 
@@ -160,14 +185,19 @@
 \newenvironment{alexlisting}[4]
 {%
   \ifincludeall
+  
     \begin{listing}[ht]%
+      \begin{codeFrame}
       \inputminted[#4]{dart}{#3}%
-      \vspace{-18pt}
+      \end{codeFrame}
+
+      %\vspace{-18pt}
       \alexlistingcaption{#1}{#2}{#3}%
       \fi
       }%
       {%
       \ifincludeall
+
     \end{listing}%
   \fi
 }
@@ -177,8 +207,12 @@
 {%
   \ifincludeall
     \begin{listing}[ht]%
+      \begin{codeFrame}
+
       \inputminted[#4]{yaml}{#3}%
-      \vspace{-18pt}
+    \end{codeFrame}
+
+      %\vspace{-18pt}
       \alexlistingcaption{#1}{#2}{#3}%
       \fi
       }%
@@ -251,11 +285,14 @@
 \newcommand{\Z}[1]{(Z. #1)}
 
 % Eigener Befehl für Listingreferenz mit Zeilenreferenz
-\newcommand{\LstZ}[2]{(Listing. #1 Z. #2)}
+\newcommand{\LstZ}[2]{(Listing. #1, Z. #2)}
+
 
 
 % Eigener Befehl für inline Code
-\newcommand{\IC}[1]{\mintinline[breaklines, breakafter=_/.,bgcolor=inlineCodeColor]{dart}{#1}}
+
+
+\newcommand{\IC}[1]{\inlineCodetcbox{\mintinline[breaklines, breakafter=_/.]{dart}{#1}}}
 \newcommand{\C}[1]{\mintinline{dart}{#1}}
 
 \newcommand{\HP}[1]{\mintinline[breaklines, breakafter=_/.,bgcolor=highPrioColor]{dart}{#1}}

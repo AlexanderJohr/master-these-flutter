@@ -1,6 +1,6 @@
 \documentclass[11pt, twoside]{article}
 
-\newif\ifincludeall\includeallfalse
+\newif\ifincludeall\includealltrue
 
 
 \include{Konfiguration/Konfiguration} 
@@ -17,47 +17,36 @@
 \include{Sonstiges/Deckblatt} 
 % todo high: uncomment 
 \include{Sonstiges/empty_page}
-% todo high: uncomment 
-\include{Inhalt/Expose/Expose}   
+% todo high: uncomment \include{Inhalt/Expose/Expose}   
 
-% todo high: uncomment 
-\include{Sonstiges/empty_page} 
-% todo high: uncomment
-\include{Verzeichnisse/Inhaltsverzeichnis}
-% todo high: uncomment
-\include{Verzeichnisse/Abbildungsverzeichnis} 
-% todo high: uncomment
-\include{Verzeichnisse/Listingverzeichnis}
+% todo high: uncomment \include{Sonstiges/empty_page} 
+% todo high: uncomment \include{Verzeichnisse/Inhaltsverzeichnis}
+% todo high: uncomment \include{Verzeichnisse/Abbildungsverzeichnis} 
+% todo high: uncomment \include{Verzeichnisse/Listingverzeichnis}
 
-% todo high: uncomment
-\include{Inhalt/Hauptteil/Anforderungen/Anforderungen}
+% todo high: uncomment \include{Inhalt/Hauptteil/Anforderungen/Anforderungen}
 
-% todo high: uncomment 
-\include{Inhalt/Einleitung/Einleitung}
+% todo high: uncomment \include{Inhalt/Einleitung/Einleitung}
  
 
-% todo high: uncomment 
-\include{Inhalt/Hauptteil/Technologie-Auswahl/Technologie-Auswahl}
+% todo high: uncomment \include{Inhalt/Hauptteil/Technologie-Auswahl/Technologie-Auswahl}
 
-% todo high: uncomment  
-\include{Inhalt/Hauptteil/Implementierung/Implementierung} 
 % todo high: uncomment 
-\include{Inhalt/Hauptteil/Fehlschlaege/Fehlschlaege}  
+\include{Inhalt/Hauptteil/Implementierung/Implementierung} 
+% todo high: uncomment \include{Inhalt/Hauptteil/Fehlschlaege/Fehlschlaege}  
 
 \begin{appendix} 
   \part{Anhang} 
   \renewcommand{\thesection}{\Alph{section}}
- 
-% todo high: uncomment 
-\include{Inhalt/Hauptteil/Technologie-Auswahl/Technologie-Auswahl-Anhang}
-% todo high: uncomment 
-\include{Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1-Anhang}
-% todo high: uncomment 
-\include{Inhalt/Hauptteil/Implementierung/Schritt-2/Schritt-2-Anhang}
-% todo high: uncomment
-\include{Inhalt/Hauptteil/Implementierung/Schritt-7/Schritt-7-Anhang}
 
-\end{appendix} 
+% todo high: uncomment \include{Inhalt/Hauptteil/Technologie-Auswahl/Technologie-Auswahl-Anhang}
+
+\include{Inhalt/Hauptteil/Implementierung/Implementierung-Anhang} 
+
+
+
+
+\end{appendix}  
 
 % todo high: uncomment
 \include{Verzeichnisse/Literaturverzeichnis}
