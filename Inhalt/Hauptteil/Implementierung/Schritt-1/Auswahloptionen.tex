@@ -65,13 +65,12 @@ Die Variable \IC{letzterStatusChoices} \LstZ{\ref{lst:Schritt1DieMengeLetzterSta
 Da es sich um eine solche Kollektion handelt, in der jedes Element nur ein einziges Mal vorkommen darf, ist hier von einer Menge zu sprechen.
 Auffällig hierbei ist, dass das Schlüsselwort \IC{new} fehlt.
 In Dart ist das Schlüsselwort für die Konstruktion von Instanzen optional.
- Die Klasse, die zur Konstruktion dieser Menge verwendet wird, ist die selbst erstellte Klasse choices.
-Über das Typargument LetzterStatus wird erreicht, das ausschließlich Variablen  dieses Typs in der Menge eingefügt werden dürfen.
+Die Klasse, die zur Konstruktion dieser Menge verwendet wird, ist die selbst erstellte Klasse \IC{Choices}.
+Über das Typargument \IC{LetzterStatus} wird erreicht, dass ausschließlich Variablen  dieses Typs in der Menge eingefügt werden dürfen.
 Wird stattdessen eine Variable eingefügt, die weder vom selben Typ, noch von einem Typ, der von letzter Status erbt, so gibt es einen Compilerfehler.
 Dies dient einzig und allein dem Zweck, dem  Fehler vorzubeugen, dass aus Versehen falsche Optionen in der Menge eingetragen werden.
-Über den Parameter name ist es möglich dieser Menge die Beschriftung “Status” hinzuzufügen.
- Es handelt sich hier um einen  benannte Parameter.
-
+Über den Parameter \IC{name} ist es möglich, dieser Menge die Beschriftung \IC{"Status"} hinzuzufügen.
+ Es handelt sich hier um einen  benannten Parameter.
 
 \begin{alexlisting}{Schritt 1}{Die Menge letzterStatusChoices}
   {Quellcode/Schritt-1/conditional_form/lib/choices/choices.dart}
@@ -100,13 +99,13 @@ Das macht den Parameter zu einem vorgeschriebenen benannten Parameter.
 
 \paragraph{Vorgeschriebene benannte Parameter}
 
-Gewöhnlicher benannte Parameter sind optional.
+Gewöhnliche benannte Parameter sind optional.
 Wird ihnen das Schlüsselwort \IC{required} vorangestellt, so müssen sie gesetz werden, denn sonst gibt es einen Compilerfehler.
-An dieser Stelle ist das \IC{required} Schlüsselwort sinnvoll, denn es handelt sich um den Datentyp String der nicht den  wert \IC{null} annehmender.
-Würde  der Parameter aber optional sein, so wäre es möglich, das programm zu kompilieren, auch wenn bei Aufrufen des Konstruktors kein Argument für den Parameter übergeben wurde.
-Doch in diesem Fall gäbe es keinen Initialwert für Name und somit müsste der  Instanzvariable null  zugewiesen werden.
-in der statischen Analyse wird daher sichergestellt, das Instanzvariablen durch benannte Parameter nur dann initialisiert werden dürfen, wenn dieser durch required  als vorgeschrieben gekennzeichnet sind und damit unter keinem Umstand ausgelassen werden können.
-Dürfte name den Wert Null annehmen, So würde es sich um den nullable Datentyp String  mit der Notation String? Handeln.
+An dieser Stelle ist das \IC{required} Schlüsselwort sinnvoll, denn es handelt sich um den Datentyp \IC{String}, der nicht den Wert \IC{null} annehmen kann.
+Würde der Parameter aber optional sein, so wäre es möglich, das Programm zu kompilieren, auch wenn bei Aufrufen des Konstruktors kein Argument für den Parameter übergeben wurde.
+Doch in diesem Fall gäbe es keinen Initialwert für \IC{name} und somit müsste der Instanzvariablen \IC{null} zugewiesen werden.
+In der statischen Analyse wird daher sichergestellt, dass Instanzvariablen durch benannte Parameter nur dann mit absoluter Sicherheit initialisiert werden, wenn diese durch \IC{required}  als verpflichtend gekennzeichnet sind und damit unter keinem Umstand ausgelassen werden können. \HP{Kürzer und einfacher}
+Dürfte \IC{name} den Wert \IC{null} annehmen, so würde es sich um den Datentyp \IC{String} mit Null-Zulässigkeit -- also mit der Notation \IC{String?} -- handeln.
 
 Neben \IC{name} wird mit \IC{choiceByAbbreviation} eine weitere Instanzvariable deklariert \Z{12}.
 Es handelt sich um den Datentyp \IC{Map} - eine Kollektion die Daten mittels Schlüssel Wertepaaren ablegen kann.
