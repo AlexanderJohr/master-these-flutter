@@ -135,5 +135,5 @@ Beispielsweise gibt der Befehl \IC{letzterStatusChoices.fromAbbreviation(“fert
 Die Methode \IC{fromAbbreviation} soll für die Deserialisierung genutzt werden.
  Sollten im Formular Auswahlfelder leer gelassen worden sein, so haben  entsprechende Variablen den Wert \IC{null}.
 Wenn nun das Formular abgespeichert wird, so tauchen auch in der abgespeicherten Json-Datei keine Werte für das Feld auf.
-Wird die Datei gelesen wird die Methode \IC{fromAbbreviation} genutzt um aus der in der Json-Datei gespeicherten Abkürzung wieder die entsprechende Auswahl Option abzurufen.
-Sollte jedoch kein Wert hinterlegt sein, so wird \IC{letzterStatusChoices.fromAbbreviation(null)} aufgerufen werden. Dadurch wird klar, dass der Parameter \IC{null} zulassen muss. Es impliziert auch, dass potenziell \IC{null} zurückgeben werden kann, da für den Schlüssel \IC{null} kein Wert in der Map hinterlegt sein kann. Deshalb  erlaubt auch der Rückgabetyp \IC{T?} Null-Werte.
+Aus der Json-Datei werden ausschließlich die Abkürzungen der Auswahloptionen gelesen. Die Methode \IC{fromAbbreviation} wandelt sie wieder in die entsprechenden Objekte des Datentyps \IC{Choice} um.
+Sollte jedoch kein Wert hinterlegt sein, so wird \IC{letzterStatusChoices.fromAbbreviation(null)} aufgerufen. Dadurch wird klar, dass der Parameter \IC{null} zulassen muss. Es impliziert auch, dass potenziell \IC{null} zurückgeben werden kann, da für den Schlüssel \IC{null} kein Wert in der Map hinterlegt sein kann. Deshalb  erlaubt auch der Rückgabetyp \IC{T?} Null-Werte.
