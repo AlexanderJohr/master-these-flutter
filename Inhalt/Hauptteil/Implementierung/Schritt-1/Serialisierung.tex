@@ -75,7 +75,7 @@ Die Methode wird intern von \enquote{built_value} aufgerufen.
 Bei dem Feld \enquote{guid} handelt es sich um einen String, der keine Null-Werte zulässt.
 Könnte das Feld auch Null-Werte annehmen, so wäre die Notation in Dart dafür stattdessen \IC{String? get guid;}. \enquote{built_value} erwartet also immer einen Wert für dieses Feld. Sollte die Datei gelesen werden, welche die Maßnahmen enthält, so enthält jede Maßnahme bei der Deserialisierung den abgespeicherten Wert für die \IC{guid} und somit wird das Feld gefüllt. Doch sollte eine leere Maßnahme über einen Konstruktor erstellt werden, so wäre das Feld \enquote{guid} leer und \enquote{built_value} würde einen Fehler auslösen. Aus diesem Grund wird in der Zeile 21 für das Feld \IC{guid} ein Standardwert festgelegt: nämlich eine zufällige generierte ID, die dem Standard Uuid der Version 4 entspricht.
 % todo high:  https://www.ietf.org/rfc/rfc4122.txt
-Zu diesem Zweck wird das Builder-Objekt verwendet.
+Zu diesem Zweck wird das \enquote{Builder}-Objekt verwendet.
 Die Klasse \IC{MassnahmeBuilder} gehört dabei zu dem von \enquote{built_value} generierten Quellcode.
 Der Parametername wird hier – wie so häufig im builder pattern – mit einem b für Builder abgekürzt.
 Die Syntax \IC{=>} leitet  einen sogenannten \enquote{arrow function body} ein.
