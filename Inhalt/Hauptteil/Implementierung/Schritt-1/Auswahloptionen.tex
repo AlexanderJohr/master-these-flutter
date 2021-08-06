@@ -128,7 +128,7 @@ In Zeile 18 wird durch die  Menge aller Auswahloptionen \IC{choices} iteriert un
 Während des Schleifendurchlaufs wird dann ein Schlüssel-Werte-Paar gebildet, wobei \IC{choice.abbreviation} der Schlüssel ist und das Objekt \IC{choice} der Wert.
 
 Die Map \IC{choiceByAbbreviation} erlaubt es nach der Initialisierung mit Hilfe der Methode \IC{fromAbbreviation} \Z{14} über die Abkürzung das dazugehörige \IC{Choice}-Objekt abzurufen.
-Beispielsweise gibt der Befehl \IC{letzterStatusChoices.fromAbbreviation(“fertig”)} das Objekt \IC{LetzterStatus("fertig", "abgeschlossen")} zurück. Auffällig dabei ist das der Parameter abbreviation Mit dem Typen \IC{String?} und der generische Rückgabetyp mit \IC{T?} gekennzeichnet ist. Der Suffix \IC{?} macht beide zu Typen mit Null-Zulässigkeit.
+Beispielsweise gibt der Befehl \IC{letzterStatusChoices.fromAbbreviation(“fertig”)} das Objekt \IC{LetzterStatus("fertig", "abgeschlossen")} zurück. Auffällig dabei ist, dass der Parameter \IC{abbreviation} mit dem Typ \IC{String?} und der generische Rückgabetyp mit \IC{T?} gekennzeichnet ist. Der Suffix \IC{?} macht beide zu Typen mit Null-Zulässigkeit.
 
 
 
