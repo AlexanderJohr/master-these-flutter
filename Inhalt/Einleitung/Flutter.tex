@@ -37,7 +37,7 @@ Die visuellen Oberflächen-Elemente in Flutter werden dagegen Widgets genannt.
 Flutter unterscheidet allerdings zwischen zwei Arten von Widgets: denen, die einen Zustand pflegen – den \enquote{Stateful Widgets} – und solchen, die keinen Zustand haben – den \enquote{Stateless Widgets}.
 
 \enquote{Stateful Widgets} pflegen einen Zustand, der mittels der Methode \IC{setstate} gesetzt werden kann.
-Bei Aufrufen der Methode wird das gesamte Widget neu gezeichnet.
+Beim Aufrufen der Methode wird das gesamte Widget neu gezeichnet.
 Der Zustand selbst ist dabei im visuellen Baum als Vater der visuellen Elemente des Widgets verankert und bleibt erhalten, während die dazugehörigen Oberflächenelemente ausgetauscht werden.
 
 \enquote{Stateless Widgets} haben dagegen keinen solchen Mechanismus.
@@ -114,7 +114,7 @@ menge.add("Text");
 Es entfällt also die Instanziierung einer Liste, einer Menge oder einer Hashtabelle über den Klassennamen und der darauffolgenden Zuweisung der einzelnen Werte.
 Stattdessen startet das \IC{Set} und \IC{Map} Literal mit einer öffnenden geschweiften Klammer und endet mit einer schließenden geschweiften Klammer.
 Innerhalb der Klammern werden die Werte im Fall eines Sets mit \IC{,} getrennt nacheinander aufgeführt ( \IC{{1,2}} ).
-Im Fall einer Map werden der Schlüssel und der Wert durch \IC{:} voneinander getrennt und die Schlüssel-Wertepaare wiederum durch \IC{,} getrennt nacheinander aufgelistet (\IC{{1: "erster Wert",2:"zweiter Wert"}}).
+Im Fall einer Map werden der Schlüssel und der Wert durch einen \IC{:} voneinander getrennt und die Schlüssel-Wertepaare wiederum durch \IC{,} getrennt nacheinander aufgelistet (\IC{{1: "erster Wert",2:"zweiter Wert"}}).
 Eine Liste wiederum wird mit eckigen Klammern geöffnet und geschlossen.
 Die Werte werden erneut mit , getrennt voneinander angegeben (\IC{[1,2]}).
 
@@ -260,7 +260,7 @@ Genauso könnte es aber auch sein, dass eine Klasse von Patient erbt und das Fel
 Auch wenn es sehr unwahrscheinlich ist, könnte es trotzdem vorkommen, dass der Aufruf von \IC{temperature} in Zeile 6 einen Wert zurückgibt, der nicht \IC{null} ist und der darauffolgende Aufruf in Zeile 7 \IC{null} liefert.
 So provoziert es die Klasse \IC{UnusualPatient} im Listing \ref{lst:UnusualPatient}.
 Beim ersten Aufruf von \IC{temperature} wird die Zähl-Variable \IC{counter} von \IC{0} auf \IC{1} erhöht.
-Die Abfrage, ob es sich bei dem Wert von Counter um eine ungerade Zahl handelt ist erfolgreich \Z{6}, weshalb mit \IC{97,7} ein valider Wert zurückgegeben wird.
+Die Abfrage, ob es sich bei dem Wert von Counter um eine ungerade Zahl handelt, ist erfolgreich \Z{6}, weshalb mit \IC{97,7} ein valider Wert zurückgegeben wird.
 Beim zweiten Aufruf erhöht sich \IC{counter} allerdings auf \IC{2}.
 Die gleiche Abfrage schlägt dieses Mal fehl.
 Deshalb liefert die Getter-Methode nun \IC{null} \Z{9}.
@@ -333,9 +333,8 @@ Im Sprachkern stellt Dart Schlüsselwörter und Datentypen für die asynchrone P
 Das sind unter anderem die Datentypen \IC{Future} und \IC{Stream} sowie die Schlüsselwörter \IC{async} und \IC{await}.
 
 \paragraph{Future}
-Ein \IC{Future}-Objekt repräsentiert einen potenziellen einmaligen Wert, der in der erst in der Zukunft bereit steht.
-Er gleicht damit dem sogenannten \IC{Promise} - deutsch Versprechen – in JavaScript. \footcite[Vgl.][]{PromiseJavaScriptMDN}
-
+Ein \IC{Future}-Objekt repräsentiert einen potenziellen einmaligen Wert, der erst in der Zukunft bereit steht.
+Er gleicht damit dem sogenannten \IC{Promise} - deutsch Versprechen – in JavaScript  \footcite[Vgl.][]{PromiseJavaScriptMDN}.
 
 Das Listing \ref{lst:fileReadAsString} zeigt mit dem Lesen einer Datei ein Beispiel für den Aufruf einer asynchronen Operation.
 
@@ -408,7 +407,7 @@ Dazu dient das \IC{async} Schlüsselwort vor Beginn des Methoden-Körpers.
 
 \enquote{Streams} liefern nicht nur einen Wert – wie im Fall eines \IC{Future} – sondern eine Serie von Werten, die in der Zukunft geliefert werden.
 Listing \ref{lst:countStream} zeigt wie auf einen solchen Stream gehorcht werden kann.
-\IC{countStream} liefert jede Sekunde einen neuen Wert, nämlich die aktuelle Sekunde - von 0 beginnent.
+\IC{countStream} liefert jede Sekunde einen neuen Wert, nämlich die aktuelle Sekunde - von 0 beginnend.
 Mit \IC{countStream.listen} kann eine Funktion übergeben werden, die immer dann ausgeführt wird, wenn dem \IC{countStream} ein neuer Wert hinzugefügt wurde. Der erste Parameter ist dabei der hinzugefügte Wert.
 
 \ifincludeall

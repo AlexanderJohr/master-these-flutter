@@ -168,7 +168,7 @@ Er enthält sowohl ViewModel als auch Model.
 
 
 \ifincludeall \clearpage \fi
-\subsection{Speichern der Maßnahmen in eine Json-Datei}
+\subsection{Speichern der Maßnahmen in eine JSON-Datei}
 Das Model wird durch die Klasse \IC{MassnahmenJsonFile} in eine JSON-Datei gespeichert \Lst{\ref{lst:Schritt1KlasseMassnahmenJsonFile}}.
 Der Dateipfad wird dabei durch die Methode \IC{_localMassnahmenJsonFile} \Z{8-11} abgerufen.
 Die Hilfsmethode \IC{getApplicationSupportDirectory} \Z{9} gibt aus dem Nutzerverzeichnis des aktuellen Nutzers den zur Applikation zugeordneten Datei-Ordner zurück.
@@ -185,13 +185,13 @@ Asynchron muss die Methode deshalb sein, weil sie auf den Aufruf \IC{getApplicat
 
 Der Funktion \IC{saveMassnahmen} \Z{13-16} wird ein JSON Objekt in Form einer Hashtabelle übergeben.
 Sie ruft die Hilfs-Getter-Methode \IC{_localMassnahmenJsonFile} \Z{14} auf und schreib den Dateiinhalt in die Datei des abgefragten Pfades \Z{15}.
-Zuvor wird dazu das JSON-Object in eine textuelle Repräsentation überführt.
+Zuvor wird dazu das JSON-Objekt in eine textuelle Repräsentation überführt.
 Dazu dient die Funktion \IC{jsonEncode}.
 
 Das Äquivalent dazu stellt die Methode \IC{readMassnahmen} \Z{18-30} dar.
 Auch sie ruft den Dateipfad ab \Z{19}, überprüft allerdings im nächsten Schritt, ob die Datei bereits existiert \Z{21}.
 Sollte das der Fall sein, so wird die Datei eingelesen \Z{23}.
-Die textuelle Repräsentation aus der Datei wird mittels Methode \IC{jsonDecode} in ein Json-Objekt in der Form einer Hashtabelle gespeichert \Z{24} und schließlich zurückgegeben \Z{26}.
+Die textuelle Repräsentation aus der Datei wird mittels Methode \IC{jsonDecode} in ein JSON-Objekt in der Form einer Hashtabelle gespeichert \Z{24} und schließlich zurückgegeben \Z{26}.
 Sollte die Dateien nicht existieren, führt das zu einer Ausnahme \Z{28}, welche von der aufrufenden Funktion behandelt werden kann.
 
 \begin{alexlisting}{Schritt 1}{Die Klasse MassnahmenJsonFile}
@@ -205,7 +205,7 @@ Sollte die Dateien nicht existieren, führt das zu einer Ausnahme \Z{28}, welche
 
 Die Art und Weise, wie die Maßnahmen abgerufen werden, sollte nach Möglichkeit abstrahiert werden.
 Das erlaubt, den Mechanismus in Zukunft auszutauschen, ohne dabei den Rest der Applikation verändern zu müssen.
-So wäre es beispielsweise denkbar, statt einer Json-Datei eine direkte Verbindung zu einer relationalen Datenbank herzustellen.
+So wäre es beispielsweise denkbar, statt einer JSON-Datei eine direkte Verbindung zu einer relationalen Datenbank herzustellen.
 Auch das Austauschen der Abhängigkeit mit einem Platzhalter, der lediglich die Aufrufe der Methoden zählt, ist damit möglich.
 Ein solches Platzhalterobjekt wird \enquote{Mock} genannt und für automatisiertes Testen eingesetzt (siehe Kapitel  \HP{Kapitel einfügen}).
 Ebenso abstrahiert werden soll der Umgang mit Ausnahmen.
@@ -225,8 +225,8 @@ Darin wird der Stream \IC{storage} \Z{19} initialisiert.
 Es handelt sich um eine Erweiterung eines \enquote{broadcast streams} mit dem Namen \IC{BehaviorSubject} \Z{9}.
 Es entstammt dem Paket rx.dart, welches die Streams in Dart um eine Reihe von weiteren Funktionalitäten erweitert. Ein \IC{BehaviorSubject} hat die Besonderheit, dass es den Wert des letzten Ereignisses zwischenspeichern. Die \enquote{broadcast streams} haben für gewöhnlich den Nachteil, dass neue Zuhörer des Streams nur die neuen Ereignisse erhalten. Alle in der Vergangenheit erfolgten Ereignisse sind nicht mehr verfügbar. Vor allem dann, wenn in der Oberfläche der letzte Wert eines Streams verwendet werden soll, um Elemente zu zeichnen, ist das von einem besonderen Nachteil. Denn wenn der Stream zuvor initialisiert wurde, so gibt es keine Daten zu dem Zeitpunkt, wenn die Oberfläche gezeichnet wird. Sollte die Oberfläche jedoch gezeichnet werden, bevor der Stream initialisiert wurde, so  existieren ebenfalls keine Daten. Hier kommt das \IC{BehaviorSubject} ins Spiel. Sobald die Oberfläche gezeichnet wird und der Stream bereits initialisiert ist, kann dennnoch auf den zuletzt übertragenen Wert zurückgegriffen werden. Anschließend überträgt der Stream die folgenden Aktualisierungen für die Oberfläche mit jedem neuen Ereignis, so wie es für Streams üblich ist.
 
-Der Stream kann nicht bereits in der Initialisierungsliste des Konstruktors mit den Daten aus der Json-Datei gefüllt werden.
-Das liegt daran, dass die Json-Daten dazu zunächst gelesen werden müssen, was nur durch eine Reihe von asynchronen Operation möglich ist.
+Der Stream kann nicht bereits in der Initialisierungsliste des Konstruktors mit den Daten aus der JSON-Datei gefüllt werden.
+Das liegt daran, dass die JSON-Daten dazu zunächst gelesen werden müssen, was nur durch eine Reihe von asynchronen Operation möglich ist.
 In einer Initialisierungsliste können allerdings keine asynchronen Operationen ausgeführt werden.
 Deshalb wird \IC{init} erst im Konstruktor-Körper aufgerufen \Z{7}.
 
@@ -234,15 +234,15 @@ Damit der Stream anfangs nicht leer ist, füllt ihn der benannte Konstruktor \IC
 Sobald die Datei gelesen \Z{17} und anschließend deserialisiert wurde \Z{20}, erhält der Stream über die Setter-Methode \IC{value} ein neues Ereignis mit dem gelesenen Wert \Z{19}.
 
 Die Initialisierung ist von einem \IC{try}-Block umgeben.
-Sollte die Initialisierung verschlagen, weil die Json-Datei nicht existiert, wird die entsprechende Fehlerbehandlung ausgeführt \Z{21}.
+Sollte die Initialisierung verschlagen, weil die JSON-Datei nicht existiert, wird die entsprechende Fehlerbehandlung ausgeführt \Z{21}.
 Diese ist leer, da sich im Stream bereits ein leeres \IC{Storage}-Objekt  befindet.
 Mit diesem leeren Objekt kann die Oberfläche weiterarbeiten.
 In Zukunft könnte es sinnvoll sein, innerhalb der Fehlerbehandlung eine Meldung an den Benutzer zu geben, um darüber zu informieren, dass eine neue Datei angelegt wurde.
 
-Mit \IC{putMassnahmeIfAbsent} \Z{24-33} steht eine Methode bereit, um gleichzeitig  sowohl die Oberfläche,  als auch die Json-Datei zu aktualisieren.
+Mit \IC{putMassnahmeIfAbsent} \Z{24-33} steht eine Methode bereit, um gleichzeitig  sowohl die Oberfläche,  als auch die JSON-Datei zu aktualisieren.
 Sollte die eigetragene Maßnahme schon existieren, wird sie zunächst gelöscht \Z{26}.
 In jedem Fall wird die neue Maßnahme dem Stream hinzugefügt \Z{27}.
-Durch Austauschen des gesamten Objektes mit der Zuweisung von \IC{storage.value} \Z{25} erhält der Stream erneut ein neues Ereignis, womit er die Oberfläche benachrichtigen kann, sich neu zu zeichnen. Außerdem wird die Serialisierung des \IC{Storage}-Objektes und angestoßen \Z{29-30} und die neue Liste von Maßnahmen im darauffolgenden Schritt zurück in die Json-Datei gespeichert \Z{32}.
+Durch Austauschen des gesamten Objekts mit der Zuweisung von \IC{storage.value} \Z{25} erhält der Stream erneut ein neues Ereignis, womit er die Oberfläche benachrichtigen kann, sich neu zu zeichnen. Außerdem wird die Serialisierung des \IC{Storage}-Objekts und angestoßen \Z{29-30} und die neue Liste von Maßnahmen im darauffolgenden Schritt zurück in die JSON-Datei gespeichert \Z{32}.
 
 \begin{alexlisting}{Schritt 1}{Die Klasse MassnahmenModel}
   {Quellcode/Schritt-1/conditional_form/lib/data_access/massnahmen_model.dart}

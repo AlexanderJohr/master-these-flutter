@@ -109,7 +109,7 @@ Das ermöglicht das Widget \IC{Padding} \Z{35-40} und das Argument \IC{EdgeInset
 
 Die Informationen der Maßnahmen werden in einer Tabelle angezeigt.
 Dies übernimmt das selbstgeschriebener \enquote{Widget} \IC{MassnahmenTable} \Z{45}.
-Als erstes Argument erfolgt die Übergabe der anzuzeigenden Maßnahmen aus dem Model. \IC{storage.value.massnahmen} gibt den aktuellen Wert des Streams des \IC{storage}-Objektes zurück und greift auf die Liste der Maßnahmen zu. Mit der Methode \IC{where} \Z{47} kann ein Filter auf die Liste angewendet werden. Die übergebene anonyme Funktion \Z{47-49}   überprüft, ob der letzte Status auf fertig gesetz ist. Dazu reicht der Vergleich der Abkürzung. Nur wenn die Bedingung erfüllt ist, bleibt die Maßnahme in der gefilterten Kollektion zurück. Ein solcher Filter gibt ein sogenanntes \enquote{lazy} \IC{Iterable} zurück. Erst beim Zugriff auf das Ergebnis findet der Filter Anwendung. Doch es gibt keinen Zwischenspeicher für die gefilterten Elemente. Jeder Zugriff filtert die Elemente also neu. Der Aufruf \IC{toSet} bewirkt allerdings das Speichern der Ergebnisse in einer Menge \Z{50}. Das Resultat erhält das Widget \IC{MassnahmenTable} zur Anzeige.
+Als erstes Argument erfolgt die Übergabe der anzuzeigenden Maßnahmen aus dem Model. \IC{storage.value.massnahmen} gibt den aktuellen Wert des Streams des \IC{storage}-Objekts zurück und greift auf die Liste der Maßnahmen zu. Mit der Methode \IC{where} \Z{47} kann ein Filter auf die Liste angewendet werden. Die übergebene anonyme Funktion \Z{47-49}   überprüft, ob der letzte Status auf fertig gesetz ist. Dazu reicht der Vergleich der Abkürzung. Nur wenn die Bedingung erfüllt ist, bleibt die Maßnahme in der gefilterten Kollektion zurück. Ein solcher Filter gibt ein sogenanntes \enquote{lazy} \IC{Iterable} zurück. Erst beim Zugriff auf das Ergebnis findet der Filter Anwendung. Doch es gibt keinen Zwischenspeicher für die gefilterten Elemente. Jeder Zugriff filtert die Elemente also neu. Der Aufruf \IC{toSet} bewirkt allerdings das Speichern der Ergebnisse in einer Menge \Z{50}. Das Resultat erhält das Widget \IC{MassnahmenTable} zur Anzeige.
 
 Ein weiterer Parameter ist \IC{onSelect} \Z{50}.
 Als Argument kann eine Funktion mit genau einem Parameter gesetzt werden.
@@ -256,7 +256,7 @@ Darüber wird der Setter-Methode \IC{value} von jedem \IC{BehaviorSubject} der e
 Besonders ist auch, wie die Auswahloptionen sich im Model und ViewModel unterscheiden.  Im ViewModel sind es abgeleitete Objekte der Basisklasse Choice, wie z.b. LetzterStatus.  Im Gegensatz dazu speichert das Modell die Optionen lediglich über die Abkürzung als String ab. Mit Hilfe der Methode \IC{fromAbbreviation} kann Anhand der Abkürzung wieder das entsprechende Objekt wiedergefunden werden \Z{16}.
 
 Die Getter-Methode dagegen konvertiert in das exakte Gegenteil.
-Die aktuellen Werte von jedem \IC{BehaviorSubject} werden über die Getter-Methode \IC{value} ausgelesen und anschließend der entsprechenden Eigenschaft des Objektes vom Werte-Typ \IC{Massnahme} gespeichert.
+Die aktuellen Werte von jedem \IC{BehaviorSubject} werden über die Getter-Methode \IC{value} ausgelesen und anschließend der entsprechenden Eigenschaft des Objekts vom Werte-Typ \IC{Massnahme} gespeichert.
 Die Auswahloption, die für den letzten Status hinterlegt wurde, wird dabei wiederum nur als Abkürzung eingetragen.
 Dementsprechend ist bloß die Eigenschaft \IC{abbreviation} abzufragen \Z{22}.
 
