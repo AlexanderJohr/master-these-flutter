@@ -1,98 +1,135 @@
-\ifincludeall \clearpage \fi 
-
+\ifincludeall \clearpage \fi
 
 \subsection{Schritt 5}
 
-\begin{alexlisting}{Schritt 5}{XXXX}
-    {Quellcode/Schritt-5/conditional_form/integration_test/app_test.dart}
-    {firstline=144, lastline=150, highlightlines={144,145,146}}
-    \label{lst:Schritt5XXXX}
-  \end{alexlisting}
+Im letzten Schritt wurde das primäre Problem der Formularanwendung gelöst:
+Auswahloptionen sollen nur dann anwählbar sein,
+wenn sie die ihr hinterlegte Bedingung erfüllen.
+Darüber hinaus können nur Maßnahmen gespeichert werden,
+deren Auswahloptionen untereinander kompatibel sind.
 
-  
-\begin{alexlisting}{Schritt 5}{XXXX}
-    {Quellcode/Schritt-5/conditional_form/integration_test/app_test.dart}
-    {firstline=162, lastline=167, highlightlines={163-166}}
-    \label{lst:Schritt5XXXX}
-  \end{alexlisting}
+Durch das Lösen dieses Problems ist ein neues Problem entstanden:
+Alle Selektionskarten müssen bei einer Selektion neu gezeichnet werden.
+Bei einer geringen Anzahl von Auswahlfeldern sollte das noch keine gravierenden Auswirkungen auf das Laufzeitverhalten der Applikation haben.
+Doch je zahlreicher die Auswahlfelder werden,
+desto länger dauert die Aktualisierung der Oberfläche.
 
-  \begin{alexlisting}{Schritt 5}{XXXX}
-    {Quellcode/Schritt-5/conditional_form/lib/choices/choices.dart}
-    {firstline=219, lastline=224, highlightlines={223-224}}
-    \label{lst:Schritt5XXXX}
-  \end{alexlisting}
+Das Problem kann folgendermaßen entschärft werden:
+Noch bevor das Widget \IC{SelectionCard} den \IC{StreamBuilder} in der \IC{build}-Methode zurückgibt,
+wird ein neuer Stream namens \IC{validityChanged} erstellt \LstZ{\ref{lst:Schritt5needsRepaint}}{51-54}.
 
-  \begin{alexlisting}{Schritt 5}{XXXX}
-    {Quellcode/Schritt-5/conditional_form/lib/data_model/massnahme.dart}
-    {firstline=68, lastline=77, highlightlines={77}}
-    \label{lst:Schritt5XXXX}
-  \end{alexlisting}
+Es handelt sich um eine sogenannte Transformation des Streams \IC{priorChoices}, welcher die Momentaufnahme aller ausgewählten Optionen im gesamten Formular übermittelt.
+Immer dann, wenn der Stream \IC{priorChoices} ein neues Ereignis sendet,
+geschieht für die Abwandlung dieses Streams folgendes:
+Die Methode \IC{map} wandelt jedes Ereignis in ein neues Objekt um \Z{52}.
+Die aktuelle Momentaufnahme der Auswahloptionen im Formular wird dazu im Parameter \IC{choices} gespeichert.
+Bei der Umwandlung des Ereignisses werden die ausgewählten Optionen der aktuellen Selektionskarte über \IC{selectionViewModel.value} abgerufen.
+Sollte es sich beispielsweise bei der aktuellen Selektionskarte um das Auswahlfeld der \enquote{Kategorie} handeln,
+so könnte der ausgewählte Wert \enquote{Düngemanagement} sein.
+Für den Wert oder die Werte wird nun überprüft, ob sie mit der neuen Momentaufnahme der Selektionen im Formular kompatibel sind.
+Wurde also beispielsweise bei der neuen Selektion in der \enquote{Förderklasse} nun \enquote{Ökolandbau} ausgewählt,
+so würde die Option \enquote{Düngemanagement} nun invalide werden,
+da sie nur mit der Förderklasse \enquote{Agrarumwelt-(und Klima)Maßnahme: nur Vertragsnaturschutz} bzw. \enquote{Agrarumwelt-(und Klima)Maßnahmen, tw. auch mit Tierwohlaspekten, aber OHNE Vertragsnaturschutz} kompatibel ist.
+Die Methode \IC{map} wandelt also das neue Ereignis der Momentaufnahme aller Selektionen im Formular in einen einzigen Wahrheitswert um.
+Ist der Wahrheitswert \IC{true},
+bedeutet dies,
+dass alle ausgewählten Optionen in der aktuellen Selektionskate valide sind.
+Ist er dagegen \IC{false}, so ist wenigstens eine der Auswahloption mit den restlichen Auswahloptionen der anderen Auswahlfelder im Formularen nicht kompatibel.
 
-  \begin{alexlisting}{Schritt 5}{XXXX}
-    {Quellcode/Schritt-5/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
-    {firstline=133, lastline=177, highlightlines={134, 136-177}}
-    \label{lst:Schritt5XXXXX}
-  \end{alexlisting}
+Der resultierende Stream wird weiter transformiert: Durch die Funktion \IC{distinct} \Z{54} werden nur Ereignisse gesendet,
+sofern sie sich von dem letzten Ereignis unterscheiden.
+Ein Beispiel: Für die \enquote{Kategorie} ist \enquote{Düngemanagement} ausgewählt.
+Für die \enquote{Förderklasse} ist \enquote{Erschwernisausgleich} im letzten Ereignis ausgewählt worden.
+\enquote{Düngemanagement} ist mit \enquote{Erschwernisausgleich} nicht kompatibel, weshalb das letzte Ereignis des durch \IC{map} transformierten Streams \IC{false} war.
+Nun wird für die \enquote{Förderklasse} eine weitere Selektion vorgenommen: \enquote{Ökolandbau} wird ausgewählt.
+Auch diese Option ist mit \enquote{Düngemanagement} nicht kompatibel.
+Der durch \IC{map} transformierten Stream wird also erneut ein Ereignis mit dem Wert \IC{false} senden.
+Doch bereits das letzte Ereignis war \IC{false}.
+Die Methode \IC{distinct} verhindert,
+dass dieses redundante Ereignis weitergeleitet wird.
+Nun erfolgt noch eine weitere Selektion: Für die \enquote{Förderklasse} wird \enquote{Agrarumwelt-(und Klima)Maßnahme: nur Vertragsnaturschutz} selektiert.
+Nun ist die \enquote{Kategorie} \enquote{Düngemanagement} mit der neuen Selektion kompatibel.
+Der aus der Methode \IC{map} resultierende Stream liefert dieses Mal den Wert \IC{true}.
+Das letzte Ereignis hatte den Wert \IC{false}.
+Die Werte der beiden letzten Ereignisse unterscheiden sich also,
+was dazu führt,
+dass die Methode \IC{distinct} das veränderte Ereignis nicht filtert sondern weiterleitet.
 
-  \begin{alexlisting}{Schritt 5}{XXXX}
-    {Quellcode/Schritt-5/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
-    {firstline=187, lastline=191, highlightlines={187}}
-    \label{lst:Schritt5XXXXX}
-  \end{alexlisting}
+Der Stream \IC{validityChanged} sendet also immer genau dann Ereignisse,
+wenn sich etwas an der Validität der Auswahloptionen der aktuellen Selektionskarte ändert.
+Doch dieser Stream kann nicht für den \IC{StreamBuilder} benutzt werden.
+Denn wenn sich die Auswahl in der aktuellen Selektionskarte ändert
+und die Validität dadurch unverändert bleibt,
+so erfolgt kein neues Zeichnen der Selektionskarte.
+Deshalb ist eine Kombination der Streams \IC{validityChanged} und \IC{selectionViewModel} erforderlich.
+Das \IC{BehaviorSubject} \IC{needsRepaint} soll als diese Kombination fungieren \Z{56}.
+Es wird mit dem Wert \Z{true} initialisiert.
+Es ist unerheblich, welcher Wert in dem Stream aktuell gespeichert ist.
+Lediglich dass ein neues Ereignis hinzugefügt wird,
+um die Aktualisierung der Oberfläche auszulösen,
+ist wesentlich.
+Mit der Methode \IC{listen} wird nun sowohl auf den Stream \IC{validityChanged} \Z{57} als auch auf \IC{selectionViewModel} \Z{58} gehorcht. 
+Jedes empfangene Ereignis wird dabei dem \IC{BehaviorSubject} \IC{needsRepaint} hinzugefügt.
 
-  \begin{alexlisting}{Schritt 5}{XXXX}
-    {Quellcode/Schritt-5/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
-    {firstline=202, lastline=211, highlightlines={204, 207-209}}
-    \label{lst:Schritt5XXXXX}
-  \end{alexlisting}
+Dadurch,
+dass \IC{needsRepaint} für den \IC{StreamBuilder} verwendet wird \Z{61},
+zeichnet sich die Selektionskarte immer dann neu,
+wenn sich die beinhaltenden Auswahloptionen oder aber dessen Validität ändert.
 
-  \begin{alexlisting}{Schritt 5}{XXXX}
-    {Quellcode/Schritt-5/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
-    {firstline=251, lastline=257, highlightlines={254-257}}
-    \label{lst:Schritt5XXXXX}
-  \end{alexlisting}
-
-
-  \begin{alexlisting}{Schritt 5}{XXXX}
-    {Quellcode/Schritt-5/conditional_form/lib/screens/massnahmen_detail/massnahmen_form_view_model.dart}
-    {firstline=18, lastline=21, highlightlines={20-21}}
-    \label{lst:Schritt5XXXXX}
-  \end{alexlisting}
-
-  \begin{alexlisting}{Schritt 5}{XXXX}
-    {Quellcode/Schritt-5/conditional_form/lib/screens/massnahmen_detail/massnahmen_form_view_model.dart}
-    {firstline=62, lastline=65, highlightlines={64-65}}
-    \label{lst:Schritt5XXXXX}
-  \end{alexlisting}
-
-  \begin{alexlisting}{Schritt 5}{XXXX}
-    {Quellcode/Schritt-5/conditional_form/lib/screens/massnahmen_detail/massnahmen_form_view_model.dart}
-    {firstline=79, lastline=81, highlightlines={80-81}}
-    \label{lst:Schritt5XXXXX}
-  \end{alexlisting}
-
-  \begin{alexlisting}{Schritt 5}{XXXXX}
-    {Quellcode/Schritt-5/conditional_form/lib/widgets/massnahmen_table.dart}
-    {firstline=27, lastline=28, highlightlines={28}}
-    \label{lst:Schritt5XXXXX}
-  \end{alexlisting}
-
-  \begin{alexlisting}{Schritt 5}{XXXXX}
-    {Quellcode/Schritt-5/conditional_form/lib/widgets/massnahmen_table.dart}
-    {firstline=42, lastline=50, highlightlines={44-50}}
-    \label{lst:Schritt5XXXXX}
-  \end{alexlisting}
-
-  \begin{alexlisting}{Schritt 5}{XXXX}
-    {Quellcode/Schritt-5/conditional_form/lib/widgets/selection_card.dart}
-    {firstline=15, lastline=27, highlightlines={17,27}}
-    \label{lst:Schritt5XXXX}
-\end{alexlisting}
 
 \begin{alexlisting}{Schritt 5}{XXXX}
-    {Quellcode/Schritt-5/conditional_form/lib/widgets/selection_card.dart}
-    {firstline=121, lastline=142, highlightlines={122-131, 136}}
-    \label{lst:Schritt5XXXX}
-\end{alexlisting}
+  {Quellcode/Schritt-5/conditional_form/lib/widgets/selection_card.dart}
+  {firstline=51, lastline=71, highlightlines={51-58,61}}
+  \label{lst:Schritt5needsRepaint}
+\end{alexlisting} 
 
-\ifincludeall \clearpage \fi 
+Dieses Verhalten kann auch bei Ausführung der Applikation im Debugmodus in Android Studio beobachtet werden.
+Der \enquote{Flutter Performance}-Tab gibt eine Übersicht über die Anzahl der im letzten Frame neu gezeichneten Widgets \Abb{\ref{fig:Schritt51rebuild}}. 
+\begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-5/1rebuild.png}
+  {XXX}
+  {XXXXX}
+
+  \label{fig:Schritt51rebuild}
+
+\end{alexfigure}
+Angenommen für die \enquote{Förderklasse} ist \enquote{Agrarumwelt-(und Klima)Maßnahme: nur Vertragsnaturschutz} und für die \enquote{Kategorie} ist \enquote{Düngemanagement} ausgewählt.
+Wenn nun für die \IC{Förderklasse} die Option \enquote{Agrarumwelt-(und Klima)Maßnahmen, tw. auch mit Tierwohlaspekten, aber OHNE Vertragsnaturschutz}  selektiert wird,
+so ist im \enquote{Flutter Performance}-Tab zu beobachten,
+dass das Widget Card nur einmal neu gezeichnet wurde.
+
+
+
+Das ergibt Sinn, denn es hat sich nichts an der Validität eines anderen Auswahlfeld geändert.
+Lediglich die Selektionskarte für die Förderklasse muss neu gezeichnet werden,
+da sich seine Selektion angepasst hat.
+Wird nun aber die \enquote{Förderklasse} \enquote{Ökolandbau} ausgewählt,
+so ist zu beobachten,
+dass das \IC{Card} Widget zweimal gebaut wurde:
+Einmal für die Selektionskarte der \enquote{Förderklasse}, da sich dessen ViewModel änderte;
+Ein weiteres Mal für die Selektionskarte der \enquote{Kategorie},
+da die Auswahl \enquote{Düngemanagement} nicht länger valide ist
+und die Karte deshalb mit einem roten Hintergrund eingefärbt werden muss \Abb{\ref{fig:Schritt52rebuilds}}.
+
+\begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-5/2rebuilds.png}
+  {XXX}
+  {XXXXX}
+
+  \label{fig:Schritt52rebuilds}
+
+\end{alexfigure}
+
+Ohne die Änderungen in diesem Schritt zeigt der \enquote{Flutter Performance}-Tab, dass sich bei jeder Auswahl einer Option sechs \IC{Card}-Elemente aktualisieren \Abb{\ref{fig:Schritt56rebuilds}}.
+Das ist der Fall, weil es in Summe sechs Auswahlfelder gibt.
+
+\begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-5/6rebuilds.png}
+  {XXX}
+  {XXXXX}
+
+  \label{fig:Schritt56rebuilds}
+
+\end{alexfigure}
+
+
+
+
+\ifincludeall \clearpage \fi

@@ -26,11 +26,6 @@
 \definecolor{highPrioColor}{RGB}{255, 0, 0}
 \definecolor{mediumPrioColor}{RGB}{0, 255, 255}
 
-
-
-
-
-
 % Syntax Highlighting 
 \usepackage{minted}
 % Lösche rote Rahmen in minted Quelltext und nutze das Visual Studio Theme
@@ -330,3 +325,6 @@ colframe=inlineCodetXColor,on line,arc=4pt,boxrule=0pt,boxsep=0pt,left=4pt,right
 % https://tex.stackexchange.com/questions/435302/unicode-character-error-inputenc-package
 \DeclareUnicodeCharacter{00B3}{\textsuperscript{3}}
   
+% enquote wird auch immer kursiv gesetzt
+\let\oldenquote\enquote
+\renewcommand{\enquote}[1]{\textit{\oldenquote{#1}}}
