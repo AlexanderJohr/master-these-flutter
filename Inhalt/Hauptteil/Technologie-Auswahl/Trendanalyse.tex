@@ -2,14 +2,14 @@
 
 \subsection{Trendanalyse}
 
-Zwei Quellen wurden für die Analyse der Technologie-Trends ausgewählt: die Ergebnisse der jährlichen Stack Overflow Umfragen und das Such-Interesse von Google Trends.
+Zwei Quellen wurden für die Analyse der Technologie-Trends ausgewählt: die Ergebnisse der jährlichen Stack Overflow-Umfragen und das Such-Interesse von Google Trends.
 
 
 \paragraph{Stack Overflow Umfrage}
 Die Internet-Plattform Stack Overflow richtet sich an Softwareentwickler und bietet ihren Nutzern die Möglichkeiten, Fragen zu stellen, Antworten einzustellen und Antworten anderer Nutzer auf- und abzuwerten.
 
 Besonders für Fehlermeldungen, die häufig während der Softwareentwicklung auftreten, findet man auf dieser Plattform rasch die Erklärung und den Lösungsvorschlag gleich mit.
-Dadurch lässt sich auch die Herkunft des Domain-Namens herleiten:
+So lässt sich auch die Herkunft des Domain-Namens herleiten:
 
 \begin{quotation}
 We named it Stack Overflow, after a common type of bug that causes software to crash -- plus, the domain name stackoverflow.com happened to be available. - Joel Spolsky, Mitgründer von Stack Overflow \footnote{\cite{TheUnprovenPath}}
@@ -27,8 +27,8 @@ Es transformiert die Daten in ein einheitliches Format, da die  Umfrageergebniss
 Anschließend erstellt es Diagramme, die im Folgenden analysiert werden.
 Das Jupyter Notebook ist im  Anhang zu finden.
 
-\paragraph{Google Trends} Suchanfragen die an die Suchmaschine Google  abgesetzt werden, lassen sich  über den Dienst Google Trends  als Trenddiagramm visualisieren.
-Um das relative Such-Interesse abzubilden, werden die Ergebnisse normalisiert, um die Ergebnisse auf einer Skala von 0 bis 100 darstellen zu können.
+\paragraph{Google Trends} Suchanfragen die über die Suchmaschine Google  abgesetzt werden, lassen sich  über den Dienst Google Trends  als Trenddiagramm visualisieren.
+Die Ergebnisse werden normalisiert, um das relative Such-Interesse abzubilden und die Ergebnisse auf einer Skala von 0 bis 100 darstellen zu können.
 \footnote{Vgl. \cite{GoogleTrendsHilfe}}
 
 \begin{quotation}
@@ -72,7 +72,7 @@ In Abbildung \ref{fig:SuchinteresseGeringeRelevanz} werden NativeScript, Sencha,
 \paragraph{Verwandte Technologien zu Apache Cordova} Das Ionic Framework taucht in den Ergebnissen der Stack Overflow Umfragen nicht auf.
 Ein Grund dafür könnte sein, dass es auf Apache Cordova aufbaut\footnote{\cite{TheLastWordOnCordovaAndPhoneGap}}, welches bereits in den Ergebnissen vorkommt.
 Adobe PhoneGap taucht zwar in den Ergebnissen von 2013 mit 1043 Stimmen auf (Siehe Abbildung \ref{fig:CordovaUndPhoneGapStimmen}), verliert jedoch in den Folgejahren mit weniger als 10 Stimmen abrubt an Relevanz.
- Das stimmt nicht mit dem Suchinteresse auf Google überein, da es dort ab 2013 sogar steigt, wie in Abbildung \ref{fig:SuchinteresseGeringeRelevanz} zu sehen ist. 2013 existierte PhoneGap noch als extra Mehrfachauswahlfeld in den Daten, während es ab 2014 nur noch in dem Feld für die sonstigen Freitext Angaben auftaucht \footnote{Vgl. \cite{StackOverflowInsights}}.
+Das stimmt nicht mit dem Suchinteresse auf Google überein, da Adobe PhoneGap dort erst ab 2014 anfängt, langsam an Relevanz zu verlieren, wie in Abbildung \ref{fig:SuchinteresseGeringeRelevanz} zu sehen ist. 2013 existierte PhoneGap noch als extra Mehrfachauswahlfeld in den Daten, während es ab 2014 nur noch in dem Feld für die sonstigen Freitext Angaben auftaucht \footnote{Vgl. \cite{StackOverflowInsights}}.
 Auch Adobe PhoneGap baut auf Apache Cordova auf\footnote{Vgl.
 \cite{FaqPhoneGapDocs}}.
 Für diese Auswertung spielen diese verwandten Technologien eine untergeordnete Rolle, da sie auch in den Google Trends weit hinter Apache Cordova zurückbleiben (Abb.
@@ -88,7 +88,7 @@ Für diese Auswertung spielen diese verwandten Technologien eine untergeordnete 
 \end{alexfigurewithnotebook}
 
 Am Beispiel von Adobe PhoneGap wird deutlich, wie wichtig es ist, auf eine Technologie zu setzen, die weit verbreitet ist.
-Im schlimmsten Fall wird die Technologie sogar vom Betreiber aufgrund zu geringer Nutzung komplett eingestellt, wie es bereits bei PhoneGap geschehen ist.
+Im schlimmsten Fall wird die Technologie sogar vom Betreiber aufgrund zu geringer Nutzung komplett eingestellt, wie es bei PhoneGap bereits geschehen ist.
 Adobe gab am 11.
 August 2020 bekannt, dass die  Entwicklung an PhoneGap eingestellt wird und empfiehlt die Migration hin zu Apache Cordova.\footnote{Vgl. \cite{UpdateForCustomersUsingPhoneGapAndPhoneGapBuild}}
 
@@ -108,7 +108,7 @@ Cordova scheint in diesem Hinblick dagegen eher unbeliebt: Es gibt mehr Entwickl
 \end{alexfigurewithnotebook}
 
 
-In Abbildung \ref{fig:SuchinteresseSinkendeUndSteigendeRelevanz} ist noch einmal zu sehen, dass Google Trends die Erkenntnisse aus der Stack Overflow Umfrage reflektiert und es wird auch sichtbar, welche beiden Technologien möglicherweise der Grund für den Rückgang von Xamarin und Cordova sind.
+In Abbildung \ref{fig:SuchinteresseSinkendeUndSteigendeRelevanz} ist noch einmal zu sehen, dass Google Trends die Erkenntnisse aus der Stack Overflow Umfrage reflektiert; und es wird auch sichtbar, welche beiden Technologien möglicherweise der Grund für den Rückgang von Xamarin und Cordova sind.
 
 \begin{alexfigurewithnotebook}{Charts/Google Trends/Suchinteresse sinkende und steigende Relevanz.pdf}
 	{Suchinteresse sinkende und steigende Relevanz}
@@ -124,7 +124,7 @@ In Abbildung \ref{fig:SuchinteresseSinkendeUndSteigendeRelevanz} ist noch einmal
 Besser ist es, auf Technologien zu setzen, die noch einen steigenden Trend der Verbreitung und Beliebtheit zeigen.
 In Abbildung \ref{fig:ReactNativeUndFlutterStimmen} wird sichtbar, dass es sich dabei um Flutter und -- immerhin im Hinblick auf die Verbreitung -- auch um React Native handelt.
 Ungünstigerweise wird React Native in der Stack Overflow Umfrage erst seit 2018 als tatsächliches Framework abgefragt.
-Vorher erschien lediglich das Framework React, welches sich nicht für den Vergleich der Cross-PlatformFrameworks eignet, da es sich um ein reines Web-Framework handelt.
+Vorher erschien lediglich das Framework React, welches sich nicht für den Vergleich der Cross-Plattform-Frameworks eignet, da es sich um ein reines Web-Framework handelt.
 Doch auch die Ergebnisse von Google Trends zeigen einen ähnlichen Verlauf für die Jahre 2019 und 2020 (Abb. \ref{fig:SuchinteresseSinkendeUndSteigendeRelevanz}).
 
 \begin{alexfigurewithnotebook}{Charts/Stack Overflow Umfrage/React Native und Flutter Stimmen.pdf}
@@ -136,7 +136,7 @@ Doch auch die Ergebnisse von Google Trends zeigen einen ähnlichen Verlauf für 
 
 \end{alexfigurewithnotebook}
 
-Im Vergleich von dem Jahr 2019 mit 2020 wird sichbar, dass die Zahl der Entwickler, die sich wünschen, mit React Native zu arbeiten, gesunken ist.
+Im Vergleich des Jahres 2019 mit 2020 wird sichtbar, dass die Zahl der Entwickler, die sich wünschen, mit React Native zu arbeiten, gesunken ist.
 Dennoch ist die Anzahl der Entwickler, die mit React Native arbeiten möchten noch weit höher, als die der Entwickler, die tatsächlich mit React Native arbeiten.
 
 Es ist möglich, dass der abfallende Trend daran liegt, dass die Zahl der Entwickler, die mit Flutter arbeiten möchten im selben Jahr gestiegen ist.

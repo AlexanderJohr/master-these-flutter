@@ -124,9 +124,6 @@ Lediglich der Schleifen-Kopf wird dazu im Literal geschrieben.
 Darauf folgt der Wert, der bei jedem Schleifendurchlauf hinzugefügt werden soll.
 Dabei kann der Wert von der Schleifenvariable genutzt oder davon abgeleitet werden.
 Listing \ref{lst:CollectionForInEinerMenge} geht beispielsweise durch die Liste der Temperatur-Angaben 97.7,105.8, die in Fahrenheit gelistet sind.
-Für jeden Schleifendurchlauf wird die Schleifen-Variable f mit der entsprechenden Formel in Grad Celsius umgewandelt.
-Das Ergebnis ist somit äquivalent mit dem \IC{Set}-Literal \IC{{36.5, 38.5, 41}}.
-
 
 \ifincludeall
   \begin{listing}[ht]
@@ -141,13 +138,16 @@ var gradCelsiusTemperaturen = {
   \end{listing}
 \fi
 
+Für jeden Schleifendurchlauf wird die Schleifen-Variable f mit der entsprechenden Formel in Grad Celsius umgewandelt.
+Das Ergebnis ist somit äquivalent mit dem \IC{Set}-Literal \IC{{36.5, 38.5, 41}}.
+
+
+
 Gleiches gilt für Hashtabellen.
 Hierbei wird ein Schlüssel-Werte-Paar übergeben.
 Links von einem \IC{:} ist der Schlüssel und rechts davon der Wert.
 In Listing \ref{lst:CollectionForInEinerHashtabelle}
 wird durch  die gleiche Liste von Temperaturen in Fahrenheit iteriert.
- Für jede Schleifenvariable \IC{f} wird für das resultierende Schlüssel-Wörter-Paar das Ergebnis in Grad Celsius als Schlüssel und das Ergebnis als Wert eingetragen.
-Das Ergebnis von \IC{celsiusUndFahrenheit} ist dementsprechend eine \IC{Map} mit dem Wert: \IC{{36.5: 97.7, 38.5: 101.3, 41: 105.8}}
 
 \ifincludeall
   \begin{listing}[ht]
@@ -162,13 +162,16 @@ var celsiusUndFahrenheit = {
   \end{listing}
 \fi
 
+ Für jede Schleifenvariable \IC{f} wird für das resultierende Schlüssel-Wörter-Paar das Ergebnis in Grad Celsius als Schlüssel und das Ergebnis als Wert eingetragen.
+Das Ergebnis von \IC{celsiusUndFahrenheit} ist dementsprechend eine \IC{Map} mit dem Wert: \IC{{36.5: 97.7, 38.5: 101.3, 41: 105.8}}
+
+
+
 \paragraph{Collection-if}
 
 Neben dem Collection-for ist auch die Nutzung von Fallunterscheidungen in Kollektionen erlaubt.
 Vor dem Wert, der in die Kollektion aufgenommen werden soll oder nicht,  kann  das Schlüsselwort \IC{if} mit einer darauffolgenden Bedingung in Klammern gesetzt werden.
 Listing \ref{lst:CollectionIfInEinerListe} iteriert durch eine Anzahl von Temperaturen in Grad Celsius.
-Nur in dem Fall, dass die Temperatur der Schleifen-Variable \IC{c} größer oder gleich 38,5 ist, wird die Temperatur der Liste zugefügt.
-Das Ergebnis der Liste \IC{fieberTemperaturen} ergibt also \IC{[38.5, 41]}.
 
 \ifincludeall
   \begin{listing}[ht]
@@ -182,6 +185,10 @@ var fieberTemperaturen = [
     \label{lst:CollectionIfInEinerListe}
   \end{listing}
 \fi
+
+Nur in dem Fall, dass die Temperatur der Schleifen-Variable \IC{c} größer oder gleich 38,5 ist, wird die Temperatur der Liste zugefügt.
+Das Ergebnis der Liste \IC{fieberTemperaturen} ergibt also \IC{[38.5, 41]}.
+
 
 \subsubsection{Typen ohne NULL-Zulässigkeit} Im Vergleich zu vielen anderen Programmiersprachen - wie beispielsweise Java - wird in Dart zwischen gewöhnlichen Typen und nullable Typen unterschieden.
 In Java ist es nur bei atomaren Datentypen wie \IC{int} und \IC{float} vorgeschrieben einen Wert anzugeben.
@@ -198,8 +205,6 @@ Methoden auf Objekten mit Null-Zulässigkeit aufzurufen ist nicht ohne Weiteres 
 
 Im Listing \ref{lst:printTemperatureInCelsius}
 wird versucht, auf die Variable \IC{fahrenheitTemperature} den Operator \IC{-} anzuwenden, um sie mit \IC{32} zu subtrahieren.
-Der Compiler liefert jedoch einen Fehler, da der Wert der Variable \IC{null} sein kann, wie die Notation \IC{int?} anzeigt.
-Solange nicht feststeht, dass die Variable zur Laufzeit tatsächlich nicht \IC{null} ist, kann das Programm nicht kompiliert werden.
 
 \ifincludeall
   \begin{listing}[ht]
@@ -213,9 +218,13 @@ Solange nicht feststeht, dass die Variable zur Laufzeit tatsächlich nicht \IC{n
   \end{listing}
 \fi
 
-Zu diesem Zweck macht Dart von der sogenannten Type Promotion - deutsch Typ Beförderung - Gebrauch.
-Mithilfe einer Fallunterscheidung kann vor Anwenden der Operation nachgesehen werden, ob der Wert der Variable nicht \IC{null} ist.
-Innerhalb des Körpers der Fallunterscheidung wird der Typ der Variable automatisch in einen Typ ohne Null-Zulässigkeit befördert.
+Der Compiler liefert jedoch einen Fehler, da der Wert der Variablen \IC{null} sein kann, wie die Notation \IC{int?} anzeigt.
+Solange nicht feststeht, dass die Variable zur Laufzeit tatsächlich nicht \IC{null} ist, kann das Programm nicht kompiliert werden.
+
+
+Zu diesem Zweck macht Dart von der sogenannten \enquote{Type Promotion} - deutsch Typ Beförderung - Gebrauch.
+Mithilfe einer Fallunterscheidung kann vor Anwenden der Operation nachgesehen werden, ob der Wert der Variablen nicht \IC{null} ist.
+Innerhalb des Körpers der Fallunterscheidung wird der Typ der Variablen automatisch in einen Typ ohne Null-Zulässigkeit befördert.
 Der Code in Listing \ref{lst:printTemperatureInCelsiusWithIf} lässt sich daher wieder kompilieren.
 
 \ifincludeall
@@ -234,7 +243,7 @@ void printTemperatureInCelsius(int? temperature) {
 
 Eine Besonderheit stellen dabei allerdings Instanzvariablen dar.
 In Dart wird syntaktisch nicht zwischen dem Aufruf einer Getter-Methode oder einer Instanzvariable unterschieden.
-In Listing \label{lst:Patient}
+In Listing \ref{lst:PatientWithoutNullCheck}
 könnte sich hinter den Aufrufen von \IC{temperature} in den Zeilen 6 und 7 die Instanzvariable verbergen, die in Zeile 2 deklariert ist.
 
 \ifincludeall
@@ -256,17 +265,9 @@ class Patient {
   \end{listing}
 \fi
 
-Genauso könnte es aber auch sein, dass eine Klasse von Patient erbt und das Feld \IC{temperature} mit einer gleichnamigen Getter-Methode überschreibt.
+Genauso könnte es aber auch sein, dass eine Klasse von \IC{Patient} erbt und das Feld \IC{temperature} mit einer gleichnamigen Getter-Methode überschreibt.
 Auch wenn es sehr unwahrscheinlich ist, könnte es trotzdem vorkommen, dass der Aufruf von \IC{temperature} in Zeile 6 einen Wert zurückgibt, der nicht \IC{null} ist und der darauffolgende Aufruf in Zeile 7 \IC{null} liefert.
 So provoziert es die Klasse \IC{UnusualPatient} im Listing \ref{lst:UnusualPatient}.
-Beim ersten Aufruf von \IC{temperature} wird die Zähl-Variable \IC{counter} von \IC{0} auf \IC{1} erhöht.
-Die Abfrage, ob es sich bei dem Wert von Counter um eine ungerade Zahl handelt, ist erfolgreich \Z{6}, weshalb mit \IC{97,7} ein valider Wert zurückgegeben wird.
-Beim zweiten Aufruf erhöht sich \IC{counter} allerdings auf \IC{2}.
-Die gleiche Abfrage schlägt dieses Mal fehl.
-Deshalb liefert die Getter-Methode nun \IC{null} \Z{9}.
-Ein solches Szenario ist schon sehr unwahrscheinlich, doch die Typ-Überprüfung des Compilers arbeitet mit Beweisen.
-Im Fall von Instanzvariablen kann nicht bewiesen werden, dass zur Laufzeit ein solcher Fall ausgeschlossen werden kann.
-
 \ifincludeall
   \begin{listing}[ht]
     \begin{minted}[]{dart}
@@ -289,8 +290,18 @@ class UnusualPatient extends Patient {
 \fi
 
 
-Sollte sich der Entwickler sicher sein, dass die Variable nicht \IC{null} sein kann, so kann er mit einem nachgestellten \IC{!} erzwingen, dass die Variable als nicht \IC{null} angesehen wird \LstZ{\label{lst:printTemperatureInCelsiusLocalVariableForceNullCheck}}{3}.
-Sollte es dann dennoch passieren, dass die Variable \IC{null} ist, so wird eine Fehlermeldung beim Aufruf der Variable geworfen.
+Beim ersten Aufruf von \IC{temperature} wird die Zähl-Variable \IC{counter} von \IC{0} auf \IC{1} erhöht.
+Die Abfrage, ob es sich bei dem Wert von \IC{counter} um eine ungerade Zahl handelt, ist erfolgreich \Z{6}, weshalb mit \IC{97,7} ein valider Wert zurückgegeben wird.
+Beim zweiten Aufruf erhöht sich \IC{counter} allerdings auf \IC{2}.
+Die gleiche Abfrage schlägt dieses Mal fehl.
+Deshalb liefert die Getter-Methode nun \IC{null} \Z{9}.
+Ein solches Szenario ist schon sehr unwahrscheinlich, doch die Typ-Überprüfung des Compilers arbeitet mit Beweisen.
+Im Fall von Instanzvariablen kann nicht bewiesen werden, dass zur Laufzeit ein solcher Fall ausgeschlossen werden kann.
+
+
+
+
+Sollte sich der Entwickler sicher sein, dass die Variable nicht \IC{null} sein kann, so kann er mit einem nachgestellten \IC{!} erzwingen, dass die Variable als nicht \IC{null} angesehen wird \LstZ{\ref{lst:printTemperatureInCelsiusLocalVariableForceNullCheck}}{3}.
 
 \ifincludeall
   \begin{listing}[ht]
@@ -306,9 +317,11 @@ Sollte es dann dennoch passieren, dass die Variable \IC{null} ist, so wird eine 
   \end{listing}
 \fi
 
+Sollte es dann dennoch passieren, dass die Variable \IC{null} ist, so wird eine Fehlermeldung beim Aufruf der Variable geworfen.
+
+
+
 Eine noch sicherere Variante ist es, die Instanzvariable zuvor in eine lokale Variable zu speichern \LstZ{\ref{lst:printTemperatureInCelsiusLocalVariable}}{2}.
-Die lokale Variable hat keine Möglichkeit zwischen den zwei Aufrufen einen unterschiedlichen Wert anzunehmen.
-Somit kann auch das Suffix \IC{!} weggelassen werden \Z{4}.
 
 \ifincludeall
   \begin{listing}[ht]
@@ -324,6 +337,11 @@ Somit kann auch das Suffix \IC{!} weggelassen werden \Z{4}.
     \label{lst:printTemperatureInCelsiusLocalVariable}
   \end{listing}
 \fi
+
+Die lokale Variable hat keine Möglichkeit zwischen den zwei Aufrufen einen unterschiedlichen Wert anzunehmen.
+Somit kann auch das Suffix \IC{!} weggelassen werden \Z{4}.
+
+
 
 \subsubsection{Asynchrone Programmierung}
 
@@ -348,15 +366,13 @@ var fileContent = file.readAsString();
   \end{listing}
 \fi
 
-Anders als erwartet, befindet sich in der Variable \IC{fileContent} in Wahrheit kein Text mit dem Inhalt der Datei.
+Anders als erwartet, befindet sich in der Variablen \IC{fileContent} in Wahrheit kein Text mit dem Inhalt der Datei.
 Stattdessen hat die Variable den Datentyp \IC{Future<String>} und ist lediglich ein sogenannter \enquote{Handle} - deutsch Referenzwert - für das potenzielle und zukünftige Ergebnis der Operation.
 
 Mit der Übergabe einer Funktion, die bei Vollendung der Operation aufgerufen wird, kann der Wert ausgewertet werden.
 Man nennt diese Operation auch \enquote{Callback-Funktion} - deutsch Rückruffunktion.
 Listing \ref{lst:fileContentThen}
 zeigt, wie auf den Dateiinhalt zugegriffen werden kann.
-Über die Methode \IC{then} wird eine Funktion übergeben, die genau einen Parameter hat.
-In diesem Parameter wird der Text der gelesenen Datei bei Vollendung der Operation übergeben.
 
 \ifincludeall
   \begin{listing}[ht]
@@ -369,6 +385,9 @@ In diesem Parameter wird der Text der gelesenen Datei bei Vollendung der Operati
     \label{lst:fileContentThen}
   \end{listing}
 \fi
+
+Über die Methode \IC{then} wird eine Funktion übergeben, die genau einen Parameter hat.
+In diesem Parameter wird der Text der gelesenen Datei bei Vollendung der Operation übergeben.
 
 Der Einsatz von \enquote{Callback-Funktionen} kann den Quellcode stark verkomplizieren.
  Man spricht von der sogenannten \enquote{callback hell} - deutsch Rückruffunktionen-Hölle -, wenn solche \enquote{Callback-Funktionen} über etliche Level hinweg ineinander verschachtelt sind.
@@ -383,8 +402,7 @@ Genauso heißen sie auch in anderen Sprachen wie etwa C\# ab Version 4.5 und Jav
 
 
 Listing \ref{lst:awaitFileReadAsString}
-zeigt, dass durch das Anwenden des Schlüsselwortes \IC{await} vor der Operation \IC{file.readAsString} dafür sorgt, dass der zukünftige Wert direkt in \IC{fileContent} gespeichert wird. Ganz ohne \enquote{Callback-Funktion} kann der Dateiinhalt in der darauffolgenden Zeile ausgegeben werden.
-
+zeigt, dass das Anwenden des Schlüsselwortes \IC{await} vor der Operation \IC{file.readAsString} dafür sorgt, dass der zukünftige Wert direkt in \IC{fileContent} gespeichert wird.
 
 \ifincludeall
   \begin{listing}[ht]
@@ -399,17 +417,19 @@ printFileContent() async {
   \end{listing}
 \fi
 
+Ganz ohne \enquote{Callback-Funktion} kann der Dateiinhalt in der darauffolgenden Zeile ausgegeben werden.
+
+
+
+
 
 Doch jede Funktion, die auf andere Funktionsaufrufe wartet, muss selbst als asynchron gekennzeichnet werden.
 Dazu dient das \IC{async} Schlüsselwort vor Beginn des Methoden-Körpers.
 
 \paragraph{Streams}
 
-\enquote{Streams} liefern nicht nur einen Wert – wie im Fall eines \IC{Future} – sondern eine Serie von Werten, die in der Zukunft geliefert werden.
+Streams liefern nicht nur einen Wert – wie im Fall eines \IC{Future} – sondern eine Serie von Werten, die in der Zukunft geliefert werden.
 Listing \ref{lst:countStream} zeigt wie auf einen solchen Stream gehorcht werden kann.
-\IC{countStream} liefert jede Sekunde einen neuen Wert, nämlich die aktuelle Sekunde - von 0 beginnend.
-Mit \IC{countStream.listen} kann eine Funktion übergeben werden, die immer dann ausgeführt wird, wenn dem \IC{countStream} ein neuer Wert hinzugefügt wurde. Der erste Parameter ist dabei der hinzugefügte Wert.
-
 \ifincludeall
   \begin{listing}[ht]
     \begin{minted}[]{dart}
@@ -426,15 +446,20 @@ var countStream = Stream<num>.periodic(const Duration(seconds: 1), (count) {
   \end{listing}
 \fi
 
-Es wird zwischen zwei Arten von Streams unterschieden.
-Solche, die genau einen Empfänger haben - \enquote{singe subscription streams} - und solche, die beliebig viele Empfänger haben können - \enquote{broadcast streams}.
+\IC{countStream} liefert jede Sekunde einen neuen Wert, nämlich die aktuelle Sekunde - von 0 beginnend.
+Mit \IC{countStream.listen} kann eine Funktion übergeben werden, die immer dann ausgeführt wird, wenn dem \IC{countStream} ein neuer Wert hinzugefügt wurde. Der erste Parameter ist dabei der hinzugefügte Wert.
 
-Für die Formular Anwendung sind ausschließlich \enquote{broadcast streams} zu berücksichtigen.
+
+
+Es wird zwischen zwei Arten von Streams unterschieden.
+Solche, die genau einen Empfänger haben - \enquote{single subscription streams} - und solche, die beliebig viele Empfänger haben können - \enquote{broadcast streams}.
+
+Für die Formularanwendung sind ausschließlich \enquote{broadcast streams} zu berücksichtigen.
 Die Streams sollen verwendet werden, um Änderungen in der Eingabemaske zu behandeln.
 Die  Oberflächenelemente horchen auf diese Änderungen.
 Teile der Oberfläche und damit die Oberflächenelemente, welche auf die Streams horchen, werden immer wieder neu gezeichnet.
 Dabei werden die Elemente entfernt und durch neu konstruierte ersetzt.
-Damit melden sich immer wieder Zuhörer vom \enquote{Stream} ab und neue Elemente melden sich an.
-Daher kommen nur \enquote{broadcast streams} infrage.
+So melden sich immer wieder Zuhörer vom \enquote{Stream} ab und neue Elemente melden sich an.
+Aufgrund dessen kommen nur \enquote{broadcast streams} infrage.
 
 
