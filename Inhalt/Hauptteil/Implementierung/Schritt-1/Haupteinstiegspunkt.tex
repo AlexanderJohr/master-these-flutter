@@ -9,6 +9,13 @@ Darin ist erkennbar, dass sich die Applikation in drei Rubriken einteilen lässt
   \item der View \Z{41-44}
   \item das ViewModel. \Z{25-26}
 \end{itemize}
+
+\begin{alexlisting}{Schritt 1}{Der Haupteinstiegspunkt}
+  {Quellcode/Schritt-1/conditional_form/lib/main.dart}
+  {firstline=18}
+  \label{lst:Schritt1DerHaupteinstiegspunkt}
+\end{alexlisting}
+
 \paragraph{Model View ViewModel}
 Das ModelViewViewmodel Entwurfsmuster wurde zunächst von John Gossman für die Windows Presentation Foundation beschrieben.
 Das Model beschreibt die Datenzugriffs-Komponente welche die Daten in relationalen Datenbanken oder hierarchischen Datenstrukturen wie XML oder JSON ablegt.
@@ -59,17 +66,10 @@ Hat der Benutzer die Arbeit in der Unterseite vollendet, so kann der Navigator g
  Mit dem Parameter \IC{routes} \Z{34-39} erfolgt die Angabe der Unterseiten, die besucht werden können.
 Über \IC{initialRoute} \Z{39} kann die Startseite angegeben werden.
 
-\begin{alexlisting}{Schritt 1}{Der Haupteinstiegspunkt}
-  {Quellcode/Schritt-1/conditional_form/lib/main.dart}
-  {firstline=18}
-  \label{lst:Schritt1DerHaupteinstiegspunkt}
-\end{alexlisting}
+
 
 \ifincludeall \clearpage \fi
 \subsection{Der Service für den Applikations übergreifenden Zustand}
-
-
-
 
 Um Daten an alle Kind Elementen im Widgets mitzugeben, finden die sogenannten \enquote{InheritedWidgets} Anwendung.
 Der Service \IC{AppState} \Lst{\ref{lst:Schritt1DerServiceAppState}} ist genauso ein solches.
