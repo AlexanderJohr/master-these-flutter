@@ -125,8 +125,8 @@ Statt eines Variablennamens wird hier ein Unterstrich \IC{_} verwendet \Z{30}.
 In Sprachen wie etwa \enquote{JavaScript} und \enquote{Python} ist dies gängige Praxis für die Benennung von Parametern,
 die nicht genutzt werden.
 In Kotlin und Dart wurde diese Praxis zur Konvention gemacht
-\footcite[][]{DartEffectiveDartStylePREFERusingUnderscore}
-\footcite[][]{KotlinHighOrderFunctionsAndLambdasUnderscoreForUnusedVariables}
+\footcite[Vgl.][]{DartEffectiveDartStylePREFERusingUnderscore}
+\footcite[Vgl.][]{KotlinHighOrderFunctionsAndLambdasUnderscoreForUnusedVariables}
 . 
 Die anonyme Funktion gibt eine Menge zurück,
 in welcher alle Werte der \IC{BehaviorSubject}-Objekte integriert werden \Z{31-37}.
@@ -182,7 +182,7 @@ die den Wert der bisherigen Auswahloptionen neu setzt.
 Doch das Programm verwaltet keine Referenzen auf alle gebauten Selektionskarten.
 Somit kann auch nicht über eine Referenz eine Setter-Methode aufgerufen werden,
 denn eine solche Referenz existiert nicht. 
-Die übliche Vorgehensweise wäre in Flutter das gesamte Widget neu zu zeichnen.
+Die übliche Vorgehensweise wäre in Flutter, das gesamte Widget neu zu zeichnen.
 Bei Einsatz eines \enquote{StatefulWidgets} und Zustandsänderungen über die \IC{setState}-Methode würde dies das Neuzeichnen des gesamten Formulars bedeuten.
 
 Performante ist es dagegen,

@@ -66,7 +66,7 @@ Da es sich um eine solche Kollektion handelt, in der jedes Element nur ein einzi
 Auffällig hier ist, dass das Schlüsselwort new fehlt.
 In Dart ist das Schlüsselwort für die Konstruktion von Instanzen optional.
  Die Klasse, die zur Konstruktion dieser Menge verwendet wird, ist die selbst erstellte Klasse choices.
-Über das Typargument LetzterStatus wird erreicht, das ausschließlich Variablen  dieses Typs in der Menge eingefügt werden dürfen.
+Über das Typargument LetzterStatus wird erreicht, dass ausschließlich Variablen  dieses Typs in der Menge eingefügt werden dürfen.
 Wird stattdessen eine Variable eingefügt, die weder vom selben Typ, noch von einem Typ, der von letzter Status erbt, so gibt es einen Compilerfehler.
 Dies dient einzig und allein dem Zweck, dem  Fehler vorzubeugen, dass aus Versehen falsche Optionen in der Menge eingetragen werden.
 Über den Parameter name ist es möglich dieser Menge die Beschriftung “Status” hinzuzufügen.
@@ -103,7 +103,7 @@ Das macht den Parameter zu einem vorgeschriebenen benannten Parameter.
 Gewöhnlicher benannte Parameter sind optional.
 Wird ihnen das Schlüsselwort \IC{required} vorangestellt, so müssen sie gesetz werden, denn sonst gibt es einen Compilerfehler.
 An dieser Stelle ist das \IC{required} Schlüsselwort sinnvoll, denn es handelt sich um den Datentyp String der nicht den  wert \IC{null} annehmender.
-Würde  der Parameter aber optional sein, so wäre es möglich, das programm zu kompilieren, auch wenn bei Aufrufen des Konstruktors kein Argument für den Parameter übergeben wurde.
+Würde  der Parameter aber optional sein, so wäre es möglich, das Programm zu kompilieren, auch wenn bei Aufrufen des Konstruktors kein Argument für den Parameter übergeben wurde.
 Doch in diesem Fall gäbe es keinen Initialwert für Name und somit müsste der  Instanzvariable null  zugewiesen werden.
 in der statischen Analyse wird daher sichergestellt, das Instanzvariablen durch benannte Parameter nur dann initialisiert werden dürfen, wenn dieser durch required  als vorgeschrieben gekennzeichnet sind und damit unter keinem Umstand ausgelassen werden können.
 Dürfte name den Wert Null annehmen, So würde es sich um den nullable Datentyp String  mit der Notation String? Handeln.

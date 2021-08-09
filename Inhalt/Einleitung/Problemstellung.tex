@@ -2,17 +2,17 @@
 \section{Problemstellung}
 
 Das primäre Problem der Formular-Anwendung ist, dass sich die Auswahlfelder untereinander beeinflussen.
-Wird eine Option in einem Auswahlfeld selektiert, so werden die möglichen Auswahlfelder von potenziell jedem anderen Auswahlfeld dadurch manipuliert.
+Wird eine Option in einem Auswahlfeld selektiert, so werden die möglichen Auswahlfelder von potenziell jedem weiteren Auswahlfeld dadurch manipuliert.
 Es muss eine Möglichkeit gefunden werden, die Abhängigkeiten in einer einfachen Art und Weise für jede Auswahloption zu hinterlegen und bei Bedarf abzurufen.
 
 
-Das sekundäre Problem, welches sich vom primären Problem ableiten lässt, ist die  Laufzeit-Geschwindigkeit. 
+Das sekundäre Problem, welches sich vom primären Problem ableiten lässt, ist die  Laufzeitgeschwindigkeit. 
 Wenn die Auswahl in einem Auswahlfeld die Auswahlmöglichkeiten in potenziell allen anderen Auswahlfeldern manipuliert, so könnte dies zu einer hohen Last beim erneuten Zeichnen der Oberfläche zur Folge haben.
-Wann immer der Nutzer eine Selektion tätigt, müsste das gesamte Formular neu gezeichnet werden, um sicherzustellen, das invalide Auswahloptionen gekennzeichnet werden.
-Bei einem  Formular mit wenigen Auswahlfeldern wäre das kein Problem.
-Doch die nötigen Auswahlfelder für das eintragen von Maßnahmen  des Europäische Landwirtschaftsfonds für die Entwicklung des ländlichen Raums (ELER) sind zahlreich.
+Wann immer der Nutzer eine Selektion tätigt, müsste das gesamte Formular neu gezeichnet werden, um sicherzustellen, dass invalide Auswahloptionen gekennzeichnet werden.
+Bei einem  Formular mit wenigen Auswahlfeldern wäre das kein Problem,
+Doch die nötigen Auswahlfelder für das Eintragen von Maßnahmen  des Europäische Landwirtschaftsfonds für die Entwicklung des ländlichen Raums (ELER) sind zahlreich.
 Ein  automatisierter Integrationstest, welcher im Formular Daten einer beispielhaften Maßnahme einträgt, zählt zum Zeitpunkt der Erstellung dieser Arbeit bereits 58 aufgerufene Auswahlfelder und 107 darin selektierte Auswahloptionen.
 Das bedeutet, dass bei jedem dieser 107 Selektionen die 58 Auswahlfelder und all ihre Kinder neu gezeichnet werden müssten.
-Es könnten also Wartezeiten nach jedem Auswählen einer Option entstehen.
-Das Formular soll in Zukunft zudem noch erweitert und auch für die Eingabe ganz anderer Datensätze mit potenziell noch mehr Auswahlfeldern eingesetzt werden.
+Es entstehen also Wartezeiten nach jedem Auswählen einer Option.
+Das Formular soll in Zukunft zudem noch erweitert und auch für die Eingabe ganz anderer Datensätze mit potenziell noch mehr Auswahlfeldern eingesetzt werden können.
 Es ist also erforderlich, dass ein Mechanismus gefunden wird,  der nur die Elemente neu zeichnet, die sich wirklich ändern.

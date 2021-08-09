@@ -1,16 +1,14 @@
 
-Für Form wurde Flutter gewählt
-
 \section{Grundlagen}
 
 Für die Formular Anwendung wurde die Programmiersprache Dart und das Oberflächen Framework Flutter gewählt.
 Kapitel Kapitel einfügen  erläutert die Entscheidungs-Grundlage dafür.
 
-Nachfolgend soll auf  Grundlagen der beiden Technologien eingegangen werden.
+Nachfolgend soll auf die Grundlagen der beiden Technologien eingegangen werden.
 
 \subsection{Flutter}
 
-Flutter ist ein Framework zur Entwicklung von Oberflächen von Google.
+Flutter ist ein Framework von Google zur Entwicklung von Oberflächen.
 Es unterstützt eine breite Anzahl an Ziel-Systemen.
  Dazu gehören:
 
@@ -66,11 +64,10 @@ Daraufhin werden nur die Teile der laufenden Applikation aktualisiert, die tats�
 
 \subsubsection{AOT und JIT}
 Nicht nur für die reibungslose Entwicklung sondern auch für das Laufzeitverhalten der finalen Applikation wurde die Sprache optimiert.
-Für die Ziel-Architektouren ARM32, ARM64 und x86_64 wird Dart in Maschinencode kompiliert.
-\HP{\url{https://dart.dev/overview#native-platform}}
+Für die Ziel-Architekturen ARM32, ARM64 und x86_64 wird Dart in Maschinencode kompiliert \footcite[Vgl.][]{DartThePlatforms}.
 
 Dementsprechend kommt während der Entwicklung eine virtuelle Maschine - die Dart VM - über Just-in-time-Kompilierung (JIT) zum Einsatz.
-Für die Kompilierung in Maschinencode wird dagegen Ahead-of-time-Kompilierung (AOT) eingesetz.
+Für die Kompilierung in Maschinencode wird dagegen Ahead-of-time-Kompilierung (AOT) eingesetzt.
 
 \paragraph{tree shaking}
 Für die Minimierung der Dateigröße des resultierenden Kompilats wird das sogenannte \enquote{tree shaking} eingesetzt.
@@ -82,7 +79,7 @@ Dies bringt aber eine wichtige Einschränkung mit sich.
 Die Metaprogrammierung (der Zugriff auf sprachinterne Eigenschaften, wie etwa Klassen und ihre Attribute) ist damit stark eingeschränkt.
 
 \paragraph{Meta-Programmierung}
-Bei der Kompilierung werden die Original-Bezeichner durch Symbole ersetzt, welche minimalen Speicher-Bedarf haben.
+Bei der Kompilierung werden die Original-Bezeichner durch Symbole ersetzt, welche minimalen Speicherbedarf haben.
 Aber nicht nur das, denn durch das \enquote{tree shaking} werden auch etwaige Eigenschaften und Funktionalitäten entfernt, die nicht verwendet werden.
 Die sogenannte \enquote{Reflexion} oder \enquote{Introspektion} versucht auf solche Meta-Informationen während der Laufzeit zuzugreifen.
 Da die Eigenschaften aber nicht mehr verfügbar sind, ist \enquote{Reflexion} nicht anwendbar.
@@ -91,7 +88,7 @@ Dart greift daher auf eine andere Variante der Meta-Programmierung zurück: die 
 \paragraph{Quellcode-Generierung}
 Das Package \enquote{source_gen} erlaubt das Auslesen der Meta-Informationen und ermöglicht das Generieren von Quellcode, der von diesen Eigenschaften abgeleitet werden kann.
 So verwendet beispielsweise das Package \enquote{built_value} die Quellcode-Generierung.
-Zunächst werden Eigenschaften wie Klassennamen, Instanzvariablen mit ihren Bezeichnern und Datentypen gelesen.
+Zunächst werden Eigenschaften wie Klassennamen und Instanzvariablen mit ihren Bezeichnern und Datentypen gelesen.
 Die Eigenschaften können dann genutzt werden, um unveränderliche Werte-Typen und dazugehörige sogenannte \enquote{Builder}-Objekte des Erbauer-Entwurfsmusters, sowie Funktionen zum Serialisieren und Deserialisieren von Objekten zu generieren.
 \HP{Referenzen}
 
@@ -100,7 +97,7 @@ Die Eigenschaften können dann genutzt werden, um unveränderliche Werte-Typen u
 Dart erlaubt es Listen (\IC{List}), Mengen (\IC{Set}) und Hashtabellen (\IC{Map}) als sogenannte Literale zu deklarieren.
 Ein Literal ist die textuelle Repräsentation eines Wertes eines speziellen Datentyps.
 Beispielsweise ist \IC{"Text"}  ein String-Literal für eine Zeichenkette mit den Elementen \enquote{T}, \enquote{e}, \enquote{x}, \enquote{t}.
-So ist auch \IC{\{"Text"\}}  ein Literal für eine Menge (\IC{Set}).
+So ist auch \IC{{"Text"}}  ein Literal für eine Menge (\IC{Set}).
 Eine Menge mit den gleichen Werten könnte genauso auch wie in Listing \ref{lst:EinSet} erstellt werden.
 
 \ifincludeall
@@ -116,8 +113,8 @@ menge.add("Text");
 
 Es entfällt also die Instanziierung einer Liste, einer Menge oder einer Hashtabelle über den Klassennamen und der darauffolgenden Zuweisung der einzelnen Werte.
 Stattdessen startet das \IC{Set} und \IC{Map} Literal mit einer öffnenden geschweiften Klammer und endet mit einer schließenden geschweiften Klammer.
-Innerhalb der Klammern werden die Werte im Fall eines Sets mit \IC{,} getrennt nacheinander aufgeführt ( \IC{\{1,2\}} ).
-Im Fall einer Map werden der Schlüssel und der Wert durch einen \IC{:} voneinander getrennt und die Schlüsse-Wertepaare wiederum durch \IC{,} getrennt nacheinander aufgelistet (\IC{\{1: "erster Wert",2:"zweiter Wert"\}}).
+Innerhalb der Klammern werden die Werte im Fall eines Sets mit \IC{,} getrennt nacheinander aufgeführt ( \IC{{1,2}} ).
+Im Fall einer Map werden der Schlüssel und der Wert durch \IC{:} voneinander getrennt und die Schlüssel-Wertepaare wiederum durch \IC{,} getrennt nacheinander aufgelistet (\IC{{1: "erster Wert",2:"zweiter Wert"}}).
 Eine Liste wiederum wird mit eckigen Klammern geöffnet und geschlossen.
 Die Werte werden erneut mit , getrennt voneinander angegeben (\IC{[1,2]}).
 
@@ -126,7 +123,7 @@ Dabei darf die Schleife jedoch keinen Schleifen-Körper besitzen.
 Lediglich der Schleifen-Kopf wird dazu im Literal geschrieben.
 Darauf folgt der Wert, der bei jedem Schleifendurchlauf hinzugefügt werden soll.
 Dabei kann der Wert von der Schleifenvariable genutzt oder davon abgeleitet werden.
-Listing \ref{lst:CollectionForInEinerMenge} geht beispielsweise durch die Liste von der Temperatur-Angaben 97.7,105.8, die in Fahrenheit gelistet sind.
+Listing \ref{lst:CollectionForInEinerMenge} geht beispielsweise durch die Liste der Temperatur-Angaben 97.7,105.8, die in Fahrenheit gelistet sind.
 Für jeden Schleifendurchlauf wird die Schleifen-Variable f mit der entsprechenden Formel in Grad Celsius umgewandelt.
 Das Ergebnis ist somit äquivalent mit dem \IC{Set}-Literal \IC{{36.5, 38.5, 41}}.
 
@@ -146,7 +143,7 @@ var gradCelsiusTemperaturen = {
 
 Gleiches gilt für Hashtabellen.
 Hierbei wird ein Schlüssel-Werte-Paar übergeben.
-Links vom einem \IC{:} ist der Schlüssel und rechts davon der Wert.
+Links von einem \IC{:} ist der Schlüssel und rechts davon der Wert.
 In Listing \ref{lst:CollectionForInEinerHashtabelle}
 wird durch  die gleiche Liste von Temperaturen in Fahrenheit iteriert.
  Für jede Schleifenvariable \IC{f} wird für das resultierende Schlüssel-Wörter-Paar das Ergebnis in Grad Celsius als Schlüssel und das Ergebnis als Wert eingetragen.
@@ -171,7 +168,7 @@ Neben dem Collection-for ist auch die Nutzung von Fallunterscheidungen in Kollek
 Vor dem Wert, der in die Kollektion aufgenommen werden soll oder nicht,  kann  das Schlüsselwort \IC{if} mit einer darauffolgenden Bedingung in Klammern gesetzt werden.
 Listing \ref{lst:CollectionIfInEinerListe} iteriert durch eine Anzahl von Temperaturen in Grad Celsius.
 Nur in dem Fall, dass die Temperatur der Schleifen-Variable \IC{c} größer oder gleich 38,5 ist, wird die Temperatur der Liste zugefügt.
-Das Ergebnis der Liste \IC{fieberTemperaturen} Ergibt also \IC{[38.5, 41]}.
+Das Ergebnis der Liste \IC{fieberTemperaturen} ergibt also \IC{[38.5, 41]}.
 
 \ifincludeall
   \begin{listing}[ht]
@@ -186,12 +183,12 @@ var fieberTemperaturen = [
   \end{listing}
 \fi
 
-\subsubsection{Typen ohne NULL-Zulässigkeit} Im Vergleich zu vielen anderen Programmiersprachen - wie beispielsweise in Java - wird in Dart zwischen gewöhnlichen Typen und nullable Typen unterschieden.
+\subsubsection{Typen ohne NULL-Zulässigkeit} Im Vergleich zu vielen anderen Programmiersprachen - wie beispielsweise Java - wird in Dart zwischen gewöhnlichen Typen und nullable Typen unterschieden.
 In Java ist es nur bei atomaren Datentypen wie \IC{int} und \IC{float} vorgeschrieben einen Wert anzugeben.
 \IC{null} ist bei diesen primitiven Datentypen nicht als Wert erlaubt.
 Doch nicht atomare Datentypen erlauben immer die Angabe von \IC{null} als Wert.
-\IC{null} drückt dabei immer das Nichtvorhandensein von Daten aus.
-Ab Dart 2.12   kann allen Datentypen standardmäßig kein Null-Wert zugewiesen werden. Das hat den Vorteil, dass der Compiler sich darauf verlassen kann, dass eine Variable niemals den Wert \IC{null} haben kann. Das ist besonders dann nützlich, wenn auf einem Objekt eine Methode aufgerufen wird. Ist das Objekt in Wahrheit \IC{null}, so gibt es erst zur Laufzeit einen Fehler, da die Methode auf der Referenz \IC{null} nicht aufgerufen werden kann. Damit ein Laufzeitfehler geworfen werden kann, muss vor jedem Aufruf einer Methode auf einer Referenz überprüft werden, ob die Referenzen nicht \IC{null} sind. Würde diese Überprüfung nicht stattfinden, so könnte kein Laufzeitfehler geworfen werden und das Programm würde ohne Fehlermeldung abstürzen. Handelt es sich allerdings um eine Referenz, die niemals den Wert \IC{null} annehmen kann, so kann der Compiler die Überprüfung auf Null-Werte für diese Referenzen überspringen. Damit erhört sich zusätzlich die Ausführungsgeschwindigkeit, da die Überprüfung Zeit in Anspruch nimmt. Vor allem aber ist es vorteilhaft für den Entwickler, da der Compiler  Fehlermeldungen und Warnungen mitteilen kann, wenn Operationen auf Variablen mit potenziellen Null-Werten verwendet werden. Die Abwesenheit von Daten ist jedoch bei der Entwicklung sehr wichtig. Nicht alle Variablen können immer einen Wert haben. Aus diesem Grund gibt es in Dart auch die Typen, die auch Null-Werte zulassen. Allerdings gelten besondere Regeln für diese Typen.
+\IC{null} drückt dabei immer das Nicht-Vorhandensein von Daten aus.
+Ab Dart 2.12   kann allen Datentypen standardmäßig kein Null-Wert zugewiesen werden. Das hat den Vorteil, dass der Compiler sich darauf verlassen kann, dass eine Variable niemals den Wert \IC{null} haben kann. Das ist besonders dann nützlich, wenn auf einem Objekt eine Methode aufgerufen wird. Ist das Objekt in Wahrheit \IC{null}, so gibt es erst zur Laufzeit einen Fehler, da die Methode auf der Referenz \IC{null} nicht aufgerufen werden kann. Damit ein Laufzeitfehler geworfen werden kann, muss vor jedem Aufruf einer Methode auf einer Referenz überprüft werden, ob die Referenzen nicht \IC{null} sind. Würde diese Überprüfung nicht stattfinden, so könnte kein Laufzeitfehler geworfen werden und das Programm würde ohne Fehlermeldung abstürzen. Handelt es sich allerdings um eine Referenz, die niemals den Wert \IC{null} annehmen kann, so kann der Compiler die Überprüfung auf Null-Werte für diese Referenzen überspringen. Damit erhört sich zusätzlich die Ausführungsgeschwindigkeit, da die Überprüfung Zeit in Anspruch nimmt. Vor allem aber ist es vorteilhaft für den Entwickler, da der Compiler  Fehlermeldungen und Warnungen mitteilen kann, wenn Operationen auf Variablen mit potenziellen Null-Werten verwendet werden. Die Abwesenheit von Daten ist jedoch bei der Entwicklung sehr wichtig. Nicht alle Variablen können immer einen Wert haben. Aus diesem Grund gibt es in Dart auch die Typen, die Null-Werte zulassen. Allerdings gelten besondere Regeln für diese Typen.
 
 \subsubsection{Typen mit Null-Zulässigkeit}
 \label{TypenMitNullZulaessigkeit}
@@ -378,7 +375,12 @@ Der Einsatz von \enquote{Callback-Funktionen} kann den Quellcode stark verkompli
  Man spricht von der sogenannten \enquote{callback hell} - deutsch Rückruffunktionen-Hölle -, wenn solche \enquote{Callback-Funktionen} über etliche Level hinweg ineinander verschachtelt sind.
 
 Um genau das zu verhindern, existieren in Dart die Schlüsselwörter \IC{async} und \IC{await}.
-Genauso heißen sie auch in anderen Sprachen wie etwa C\# ab Version 4.5 und JavaScript ab Version ES8. \HP{Referenz}
+Genauso heißen sie auch in anderen Sprachen wie etwa C\# ab Version 4.5 und JavaScript ab Version ES2017
+\footcite[Vgl.][]{asyncfunctionJavaScriptMDN}
+\footcite[Vgl.][]{Asynchronousprogrammingwithasyncandawait}.
+
+
+ 
 
 
 Listing \ref{lst:awaitFileReadAsString}
