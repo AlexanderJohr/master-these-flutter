@@ -174,7 +174,7 @@
 \BeforeBeginEnvironment{minted}{\begin{codeFrame}}
     \AfterEndEnvironment{minted}{\end{codeFrame}}
 
-\newcommand{\alexlistingcaption}[3]{\caption[#1 #2]{#2, Quelle: Eigenes Listing, Datei: \url{#3}}}
+\newcommand{\alexlistingcaption}[3]{\caption[#1 #2]{#2\ifincludeall, Quelle: Eigenes Listing, Datei: \url{#3}\fi}}
 
 
 % Code Snippet -> Listing
@@ -222,6 +222,13 @@
       \inputminted[#4]{#6}{#3}%
       \fi
       \vspace{-18pt}
+
+      \ifincludeall
+      \fremdeslistingcaption{#1}{#2}{#3}{#5}%
+      \else
+      \caption[#1]{#2}
+      \fi
+      
       \fremdeslistingcaption{#1}{#2}{#3}{#5}%
       }%
       {%
@@ -236,7 +243,13 @@
       \ifincludeall
       \includegraphics[width=1.0\textwidth]{#1}
       \fi
+
+      \ifincludeall
       \caption[#2]{#3, Quelle: Eigene Abbildung}
+      \else
+      \caption[#2]{#3}
+      \fi
+
       }%
       {%
     \end{figure}%
