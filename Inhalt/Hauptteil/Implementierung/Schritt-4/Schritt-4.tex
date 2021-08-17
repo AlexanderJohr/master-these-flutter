@@ -1,12 +1,39 @@
 \ifincludeall \clearpage \fi
 
-\subsection{Schritt 4}
+\section{Schritt 4}
+\label{Schritt4}
+
+
+\begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-4/D Z Wald.png}
+  {Schritt 4 Eingabemaske}
+  {XXX Die Eingabemaske zeigt im Schritt 1 eine Karte zum Selektieren des Status und ein Eingabefeld für den Titel}
+
+  \label{fig:Schritt4Eingabemaske}
+
+\end{alexfigure}
+
+\begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-4/D Z Wald Rot.png}
+  {Schritt 4 Eingabemaske}
+  {XXX Die Eingabemaske zeigt im Schritt 1 eine Karte zum Selektieren des Status und ein Eingabefeld für den Titel}
+
+  \label{fig:Schritt4Eingabemaske}
+
+\end{alexfigure}
+
+
+\begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-4/D D Z Wald Rot.png}
+  {Schritt 4 Eingabemaske}
+  {XXX Die Eingabemaske zeigt im Schritt 1 eine Karte zum Selektieren des Status und ein Eingabefeld für den Titel}
+
+  \label{fig:Schritt4Eingabemaske}
+
+\end{alexfigure}
 
 
 Im Folgenden werden der Validierung die Bedingungen hinzugefügt,
 welche die Auswahloptionen untereinander haben. 
 
-\subsubsection{Hinzufügen der Bedingungen zu den Auswahloptionen}
+\subsection{Hinzufügen der Bedingungen zu den Auswahloptionen}
 
 Es gibt einfache Bedingungen wie beispielsweise die der Zielfläche \enquote{AL}.
 Dessen Auswahl kann nur dann erfolgen,
@@ -94,7 +121,7 @@ Der Ausdruck \IC{wald.condition(priorChoices)} kann dadurch durch die expliziter
   \label{lst:Schritt4Choice}
 \end{alexlisting}
 
-\subsubsection{Hinzufügen der Momentaufnahme aller ausgewählten Optionen im gesamten Formular}
+\subsection{Hinzufügen der Momentaufnahme aller ausgewählten Optionen im gesamten Formular}
 
 Die Menge der bisherigen Ausfülloptionen setzt sich aus den aktuellen Inhalten der Auswahlfelder zusammen.
 Sie ist also die Momentaufnahme aller Werte,
@@ -140,7 +167,7 @@ Die Methode \IC{listen} horcht auf Änderungen des \IC{choicesStream}-Objekts un
 Damit existiert immer ein Wert für die Momentaufnahme der aktuell ausgewählten Auswahloptionen.
 Sie ist ursprünglich die leere Menge \IC{{}} und nachfolgend immer das zuletzt übermittelte Ereignis des \IC{choicesStream}.
 
-\subsubsection{Reagieren der Selektionskarte auf die ausgewählten Optionen}
+\subsection{Reagieren der Selektionskarte auf die ausgewählten Optionen}
 
 Dadurch
 , dass \IC{priorChoices} nun im ViewModel verfügbar ist
@@ -213,7 +240,7 @@ Anderenfalls wird dem Parameter \IC{tileColor} \IC{null} übergeben \Z{70}.
 
 \ifincludeall \clearpage \fi
 
-\subsubsection{Reagieren des Auswahlbildschirms auf die ausgewählten Optionen}
+\subsection{Reagieren des Auswahlbildschirms auf die ausgewählten Optionen}
 
 
 

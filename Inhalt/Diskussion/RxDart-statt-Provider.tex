@@ -1,0 +1,108 @@
+ 
+\section{Reevaluation des Zustandsmanagements}
+
+Während der Implementierung wurde eine passende Vorgehensweise gesucht,
+um den Zustand der Applikation zu verwalten
+und damit die Aktualisierung der Oberfläche auszulösen.
+Für simple Applikationen empfiehlt Google den integrierten Mechanismus der \enquote{StatefulWidgets} und deren Methode \enquote{setState} zu verwenden \footcite[Vgl.][]{AddingInteractivityToYourFlutterApp}.
+Doch durch die hohe Anzahl der Oberflächenelemente in der finalen Applikation ist diese Vorgehensweise nicht empfehlenswert.
+Sie setzt das Aktualisieren gesamter Widgets bei Anpassung des Zustandes voraus,
+was für die Laufzeitgeschwindigkeit die intensivste Belastung darstellt.
+Stattdessen wurde versucht,
+einem Mechanismus zu verwenden,
+der es erlaubt,
+nur Teile der Oberfläche neuzuzeichen,
+die wirklich eine Aktualisierung benötigen.
+
+Zu diesem Zweck empfiehlt Google das Nutzen des Pakets \enquote{provider} der Flutter Community \footcite[Vgl.][]{ProviderARecommendedApproach}.
+Dieser Ansatz wurde in der Implementierung ursprünglich verwendet.
+Das Paket hat den Nachteil,
+dass für jeden Zustand,
+der die Aktualisierung eines Teils der Oberfläche bewirken soll,
+eine neue Klasse erstellt werden muss, die von ChangeNotifier erbt.
+Eine Möglichkeit ist,
+dass jede dieser Klassen den nötigen Boilerplate-Quellcode enthält,
+welcher die Oberfläche über die Methode \IC{notifyListeners} benachrichtigt.
+Eine andere Möglichkeit ist es, für den gleichen Datentyp den benötigten BoilerplateCode in einer eigenen Basisklasse auszulagern
+und dann von dieser Klasse zu erben wie in Listing \label{lst:ChoiceChangeNotifier} zu sehen.
+\ifincludeall
+  \begin{listing}[h]
+    \begin{minted}[]{dart}
+class ChoiceChangeNotifier extends ChangeNotifier {
+    BuiltSet<Choice> _choices = BuiltSet<Choice>();
+
+    BuiltSet<Choice> get choices => _choices;
+
+    set choices(BuiltSet<Choice> choices) {
+        _choices = choices;
+        notifyListeners();
+    }
+}
+class LetzterStatusViewModel extends ChoiceChangeNotifier {}
+\end{minted}
+    \caption[built_value Live Template]{Live Template für die Erstellung von built_value Boilerplate-Code in Android Studio, Quelle: Jetbrains Marketplace Built Value Snippets Plugin}
+    \label{lst:ChoiceChangeNotifier}
+  \end{listing}
+\fi
+\IC{ChoiceChangeNotifier} verwaltet den internen privaten Zustand \IC{_choices} \Z{3} über die öffentlichen Schnittstellen zum Lesen \Z{4} und Schreiben \Z{6-9}.
+Bei Aktualisierung des Wertes erhalten alle Listener eine Benachrichtigung \Z{8}.
+\IC{LetzterStatusViewModel} erbt dieses Verhalten, doch hat die Klasse darüber hinaus keine Implementierung.
+
+Anschließend muss jeder \IC{ChangeNotifier} als ein \IC{ChangeNotifierProvider} registriert werden \LstZ{\ref{lst:MultiProvider}}{7}. 
+Der \IC{MultiProvider} kann genutzt werden, um mehrere Provider in einer Liste zu übergeben.
+Dort werden auch andere Services wie etwa \IC{MassnahmenFormViewModel} \Z{3} und \IC{MassnahmenModel} \Z{6} hinterlegt.
+
+\ifincludeall
+  \begin{listing}[h]
+    \begin{minted}[]{dart}
+MultiProvider(
+  providers: [
+    Provider<MassnahmenFormViewModel>(create: (_) => MassnahmenFormViewModel()),
+    Provider<MassnahmenJsonFile>(create: (_) => MassnahmenJsonFile()),
+    Provider(
+        create: (context) => MassnahmenModel(
+            Provider.of<MassnahmenJsonFile>(context, listen: false))),
+     ChangeNotifierProvider(create: (context) => LetzterStatusViewModel())),
+  ],
+  child: MaterialApp(),
+)
+\end{minted}
+    \caption[built_value Live Template]{Live Template für die Erstellung von built_value Boilerplate-Code in Android Studio, Quelle: Jetbrains Marketplace Built Value Snippets Plugin}
+    \label{lst:MultiProvider}
+  \end{listing}
+\fi
+
+Dann ist der \IC{ChangeNotifier} in dem Widget, welches den Parameter \IC{child} übergeben wird und darüber hinaus allen Kindern-Elementen dieses Widgets verfügbar.
+Über einen \IC{Consumer} kann in der Oberfläche auf Änderungen des \IC{ChangeNotifier} reagiert werden \Lst{\ref{lst:BuiltValueLiveTemplate}}.
+
+\ifincludeall
+  \begin{listing}[h]
+    \begin{minted}[]{dart}
+  Consumer<LetzterStatusViewModel>(
+      builder: (context, choiceChangeNotifier, child) {
+      },
+    )
+\end{minted}
+    \caption[built_value Live Template]{Live Template für die Erstellung von built_value Boilerplate-Code in Android Studio, Quelle: Jetbrains Marketplace Built Value Snippets Plugin}
+    \label{lst:Consumer}
+  \end{listing}
+\fi
+
+
+Doch diese Vorgehensweise bietet im Vergleich zu den von Flutter mitgelieferten \enquote{Widgets} keine Vorteile.
+Das Äquivalent zum \IC{Consumer} ist das mitgelieferten Widget \IC{StreamBuilder},
+welcher mit jeder Art von \enquote{Stream} verwendet werden kann.
+
+Damit unterstützt er ein breiteres Spektrum von Einsatzmöglichkeiten.
+Beispielsweise kann ein transformierter \enquote{Stream} übergeben werden, wie im Kapitel \ref{Schritt4} gezeigt.
+
+Die einzige fehlende Komponente dafür ist ein \enquote{Stream},
+der den zuletzt übermittelten Wert speichert und den neuen StreamBuilder Elementen übermittelt.
+Deshalb wurde sich für das Package \enquote{rx.dart} entschieden,
+welches genau dieses Verhalten mit dem \enquote{BehaviorSubject} abdeckt.
+Durch dessen Verwendung ebenso auf das registrieren eines jeden \IC{ChangeNotifierProvider} verzichtet werden
+und es muss keine weitere Klasse für die einzelnen beobachtbaren Objekte erstellt werden.
+
+Auch der \IC{MultiProvider} erscheint auf den ersten Blick als sehr nützlich.
+Doch das anbieten der Services durch ein eigens implementiertes \IC{InheritedWidget} erlaubt einen Zugriff der kürzer und expliziter ist.
+Durch die Umstellung wurde der Zugriff auf das ViewModel mit dem Ausdruck \IC{Provider.of<MassnahmenFormViewModel>(context, listen: false)} durch \IC{AppState.of(context).viewModel} ersetzt werden.
