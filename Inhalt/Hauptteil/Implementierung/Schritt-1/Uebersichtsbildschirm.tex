@@ -1,6 +1,6 @@
 
-\ifincludeall \clearpage \fi
-\subsection{Übersichtsbildschirm der Maßnahmen}
+\ifIncludeFigures \clearpage \fi
+\section{Übersichtsbildschirm der Maßnahmen}
 
 Der erste Bildschirm - die Übersicht der Maßnahmen - kann auf das im letzten Schritt erstellten Model zugreifen.
 In Listing \ref{lst:Schritt1KlasseMassnahmenMasterScreenStruktur}  ist die Struktur des Übersicht-Bildschirms zu sehen. Über die Route \url{/massnahmen_master} ist der Bildschirm erreichbar \Z{16}. Die \IC{build}-Methode zeichnet die Oberfläche \IC{21-111}.  Da ein Objekt des Typs
@@ -32,7 +32,7 @@ Er kann auf Streams horchen, die Ereignisse des Typs \IC{Storage} übermitteln.
 Er horcht auf Änderungen im Model, um genau zu sein auf Änderungen des Streams \IC{model.storage} \Z{28}. Sobald der \IC{StreamBuilder} ein Ereignis erhält, so führt er die Methode aus, die als Argument des Parameters \IC{builder} hinterlegt ist. Alle Widgets außerhalb davon, wie etwa das \IC{Scaffold}, erhalten dabei keine Aufforderung zum Neuzeichnen, sobald eine Maßnahme hinzugefügt wird. Das wirkt sich positiv auf die Laufzeit-Geschwindigkeit aus.
 
 
-\ifincludeall
+\ifIncludeFigures
   \begin{listing}[htbp]
     \renewcommand\theFancyVerbLine{%
       \ifnum\value{FancyVerbLine}=31
@@ -85,8 +85,8 @@ class MassnahmenMasterScreen extends StatelessWidget {
   \end{listing}
 \fi
 
-\ifincludeall \clearpage \fi
-\subsubsection{Auflistung der Maßnahmen im Übersichtsbildschirm}
+\ifIncludeFigures \clearpage \fi
+\subsection{Auflistung der Maßnahmen im Übersichtsbildschirm}
 
 Der Inhalt der \IC{builder}-Methode ist in Listing \ref{lst:Schritt1DieAusgabeDerMassnahmen} dargestellt.
 Das erste Widget ist ein \IC{SingleChildScrollView} \Z{30}.
@@ -124,7 +124,7 @@ Der einzige Unterschied hier: die Bedingung der Filterfunktion.
 Dieses Mal filtert die Kollektion auf Maßnahmen in Bearbeitung \Z{73-74}.
 
 
-\subsection{Widget MassnahmenTable}
+\section{Widget MassnahmenTable}
 
 Die \IC{MassnahmenTable} ist ein  \IC{StatelessWidget} \LstZ{\ref{lst:Schritt1KlasseMassnahmenTable}}{6}.
 Zur Anzeige eignet sich das Widget \IC{Table} \Z{15-31}. 
@@ -158,7 +158,7 @@ Bei auslösen des Ereignisses \IC{onTap} erfolgt die Ausführung des Callbacks \
 Doch zuvor muss überprüft werden, ob der Callback auch initialisiert wurde \Z{43}.
 Wie hier zu sehen ist, reicht es nicht aus, abzufragen, ob \IC{onSelect}  gesetzt ist.
 Trotzdem erfolgt keine Typ-Beförderung zu einem Typen ohne Null-Zulässigkeit, denn es handelt sich um eine Instanzvariable.
-Deshalb muss der Suffix \IC{!} gesetz sein (Siehe Grundlagenkapitel \ref{TypenMitNullZulaessigkeit} \nameref{TypenMitNullZulaessigkeit}).
+Deshalb muss der Suffix \IC{!} gesetz sein (Siehe Grundlagenkapitel \ref{sec:TypenMitNullZulaessigkeit} \nameref{sec:TypenMitNullZulaessigkeit}).
 
 Bei \IC{onSelect} handelt es sich um einen Callback.
 An diesem Beispiel kann das Inversion of Control Entwurfsmuster visualisiert werden.
@@ -171,7 +171,7 @@ Hier erlaubt es eine Funktionssignatur als eigenen Typ zu deklarieren.
 Der \IC{MassnahmenMasterScreen} wiederum instanziiert genauso so ein Funktions-Objekt als anonyme Funktion \LstZ{\ref{lst:Schritt1DieAusgabeDerMassnahmen}}{75-82}.
 Weil es der Signatur der Typdefinition von \IC{OnSelectCallback}  entspricht, kann es der Tabelle als Argument für den Parameter \IC{onSelect} übergeben werden. 
 
-\ifincludeall \clearpage \fi
+\ifIncludeFigures \clearpage \fi
 
 \begin{alexlisting}{Schritt 1}{Die Klasse MassnahmenTable}
   {Quellcode/Schritt-1/conditional_form/lib/widgets/massnahmen_table.dart}
@@ -179,7 +179,7 @@ Weil es der Signatur der Typdefinition von \IC{OnSelectCallback}  entspricht, ka
   \label{lst:Schritt1KlasseMassnahmenTable}
 \end{alexlisting}
 
-\ifincludeall \clearpage \fi
+\ifIncludeFigures \clearpage \fi
 
 
 Das Inversion of Control Entwurfsmuster ist auch unter dem Namen \enquote{hollywood pattern} bekannt , da es ähnlich wie die typische Antwort auf eine Bewerbung für einen Hollywood Film - don’t call us, we’ll call you - funktioniert.\footcite[Vgl.][]{fowler2005InversionOfControl}
@@ -189,7 +189,7 @@ Der Übersichts-Bildschirm verwendet die Tabelle, welche nicht wissen musst, wof
 Sobald die Tabelle eine Selektion des Benutzers bemerkt, kommuniziert sie wieder mit dem Übersicht Bildschirm.
 Nun greift der Übersicht-Bildschirm über den Service Locator auf das ViewModel zu, um die selektierte Maßnahme zu übergeben. 
 
-\ifincludeall
+\ifIncludeFigures
   \begin{figure}[h]
     \centering
 
@@ -237,7 +237,7 @@ Nun greift der Übersicht-Bildschirm über den Service Locator auf das ViewModel
 
 
 
-\subsection{ Das View Model }
+\section{ Das View Model }
 
 Listing \ref{lst:Schritt1KlasseMassnahmenFormViewModel} Zeig das ViewModel.
 Im ersten Schritt enthält es nur drei Streams vom Typ \IC{BehaviorSubject}.

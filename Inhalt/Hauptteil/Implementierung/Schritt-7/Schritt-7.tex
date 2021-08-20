@@ -1,8 +1,5 @@
-\ifincludeall \clearpage \fi 
-
-
-
-\section{Schritt 7}
+\chapter{Schritt 7}
+\label{chap:Schritt-7}
 
 \begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-7/D H BioDiv.png}
   {Schritt 7 Eingabemaske}
@@ -102,7 +99,7 @@ An dem Namen \IC{defaultChoiceMatcherStrategy} wird offensichtlich, um welches E
 Es erlaubt Algorithmen zu kapseln und auszutauschen \footcite[Vgl.][S. 373]{gamma2009entwurfsmuster}.
 Abbildung \ref{fig:UmlStrategie} zeigt das UML-Diagramm des \enquote{Strategie-Entwurfsmusters}. 
 
-\ifincludeall
+\ifIncludeFigures
   \begin{figure}[h]
     \centering
 
@@ -164,7 +161,7 @@ In diesem Fall ist das die \enquote{Klasse} \IC{SelectionCard}.
 Abbildung \ref{fig:UmlChoiceMatcherStrategyPattern} zeigt das UML-Diagramm der konkreten Implementierung des \enquote{Strategie-Entwurfsmusters} für die \enquote{Strategie} \IC{ChoiceMatcher}.
 Da sich bei der konkreten Strategie für das Auswahlfeld der \enquote{Nebenziele} um eine anonyme Funktion handelt,
 wurde sie zum besseren Verständnis im UML-Diagramm \enquote{nebenzieleChoiceMatcherStrategy} genannt.
-\ifincludeall
+\ifIncludeFigures
   \begin{figure}[h]
     \centering
 
@@ -277,7 +274,7 @@ Durch die Generalisierung der Klassen und die Angabe des Typparameters ist das V
 Die beiden neuen Methoden sind in Listing \ref{lst:Schritt7ZielsetzungLandChoice} zu sehen.
 
 
-\ifincludeall
+\ifIncludeFigures
   \begin{listing}[htbp]
     \renewcommand\theFancyVerbLine{%
       \ifnum\value{FancyVerbLine}=187
@@ -324,4 +321,3 @@ So zum Beispiel der Stream, welcher die Validität der Auswahlfelder prüft \Lst
 Alle Vorkommnisse, die durch den neuen Ausdruck ersetzt werden,
 sind im Anhang \ref{appendix:Schritt7Anhang} auf den Seiten \pageref{lst:Schritt7validityChangedStreamBuilderChoiceMatcher}
 bis \pageref{lst:Schritt7validateChoices} zu finden.
-\ifincludeall \clearpage \fi 

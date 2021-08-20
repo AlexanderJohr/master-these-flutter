@@ -1,6 +1,6 @@
 
-\ifincludeall \clearpage \fi
-\subsection{Der Haupteinstiegspunkt}
+\ifIncludeFigures \clearpage \fi
+\section{Der Haupteinstiegspunkt}
 
 Das Listing \ref{lst:Schritt1DerHaupteinstiegspunkt} zeigt den Haupteinstiegspunkt des Programms.
 Darin ist erkennbar, dass sich die Applikation in drei Rubriken einteilen lässt:
@@ -68,7 +68,7 @@ Hat der Benutzer die Arbeit in der Unterseite vollendet, so kann der Navigator g
 
 
 
-\subsection{Der Service für den Applikations übergreifenden Zustand}
+\section{Der Service für den Applikations übergreifenden Zustand}
 
 Um Daten an alle Kind Elementen im Widgets mitzugeben, finden die sogenannten \enquote{InheritedWidgets} Anwendung.
 Der Service \IC{AppState} \Lst{\ref{lst:Schritt1DerServiceAppState}} ist genauso ein solches.
@@ -117,7 +117,7 @@ Er enthält sowohl ViewModel als auch Model.
 \end{alexlisting}
 
 
-\ifincludeall
+\ifIncludeFigures
   \begin{figure}[h]
     \centering
 
@@ -166,8 +166,8 @@ Er enthält sowohl ViewModel als auch Model.
 \fi
 
 
-\ifincludeall \clearpage \fi
-\subsection{Speichern der Maßnahmen in eine JSON-Datei}
+\ifIncludeFigures \clearpage \fi
+\section{Speichern der Maßnahmen in eine JSON-Datei}
 Das Model wird durch die Klasse \IC{MassnahmenJsonFile} in eine JSON-Datei gespeichert \Lst{\ref{lst:Schritt1KlasseMassnahmenJsonFile}}.
 Der Dateipfad wird dabei durch die Methode \IC{_localMassnahmenJsonFile} \Z{8-11} abgerufen.
 Die Hilfsmethode \IC{getApplicationSupportDirectory} \Z{9} gibt aus dem Nutzerverzeichnis des aktuellen Nutzers den zur Applikation zugeordneten Datei-Ordner zurück.
@@ -199,8 +199,8 @@ Sollte die Dateien nicht existieren, führt das zu einer Ausnahme \Z{28}, welche
   \label{lst:Schritt1KlasseMassnahmenJsonFile}
 \end{alexlisting}
 
-\ifincludeall \clearpage \fi
-\subsection{ Abhängigkeit zum Verwalten der Maßnahmen}
+\ifIncludeFigures \clearpage \fi
+\section{ Abhängigkeit zum Verwalten der Maßnahmen}
 
 Die Art und Weise, wie die Maßnahmen abgerufen werden, sollte nach Möglichkeit abstrahiert werden.
 Das erlaubt, den Mechanismus in Zukunft auszutauschen, ohne dabei den Rest der Applikation verändern zu müssen.
@@ -249,4 +249,4 @@ Durch Austauschen des gesamten Objekts mit der Zuweisung von \IC{storage.value} 
   \label{lst:Schritt1KlasseMassnahmenModel}
 \end{alexlisting}
 
-\ifincludeall \clearpage \fi
+\ifIncludeFigures \clearpage \fi

@@ -1,7 +1,7 @@
 
-\ifincludeall \clearpage \fi
+\ifIncludeFigures \clearpage \fi
 
-\subsection{Widget SelectionCard}
+\section{Widget SelectionCard}
 
 Das Listing \ref{lst:Schritt1KlasseSelectionCard} zeigt die Struktur des Widgets SelectionCard.
 Die Klasse hat einen generischen Typparameter \Z{15}. \IC{<ChoiceType extends Choice>} bedeutet, dass die SelectionCard nur für Typen verwendet werden kann, die von \IC{Choice} erben. Das ist eine wichtige Voraussetzung, da auf den übergebenen Werten Operationen ausgeführt werden sollen, die nur \IC{Choice} unterstützt. Alle Parameter, die dem Konstrukt übergeben werden, leiten ebenso von diesen Typparameter ab. Einzige Ausnahme dabei ist der \IC{titel} \IC{16}.
@@ -37,7 +37,7 @@ Der Benutzer würde ansonsten in Formular wieder an der obersten Position heraus
 Der \IC{FocusNode} wird einmal zu Anfang der \IC{build}-Methode erstellt \Z{35}.
 Damit ist er außerhalb des \IC{StreamBuilder} und bleibt somit beim Neuzeichnen der Karte erhalten.
 
-\ifincludeall \clearpage \fi
+\ifIncludeFigures \clearpage \fi
 Klickt der Benutzer die Karte an, navigiert er schließlich zur Unterseite, wo er die Auswahloptionen präsentiert bekommt.
 Die verschachtelte Funktion \IC{navigateToSelectionScreen} kommt dafür zum Einsatz \Z{37-45}.
 Da das Wechseln zu Unterseite bevorsteht, fordert der \IC{focusNode} den Fokus für das angeklickte \IC{ListTile} an \Z{38}.
@@ -49,7 +49,7 @@ Schließlich navigiert der Benutzer mit \IC{Navigator.push} zur Unterseite. Es h
 
 
 
-\subsubsection{Bildschirm für die Auswahl der Optionen}
+\subsection{Bildschirm für die Auswahl der Optionen}
 
  
 Die Funktion \IC{createMultipleChoiceSelectionScreen} \Lst{\ref{lst:Schritt1FunktionCreateMultipleChoiceSelectionScreen}} gibt einen \IC{Scaffold} zurück, der die gesamte Seite enthält \Z{65}.
@@ -99,4 +99,4 @@ Mit einem Klick darauf gelangt der Benutzer zurück zur Eingabemaske \Z{100}.
 \end{alexlisting}
  
  
-\ifincludeall \clearpage \fi
+\ifIncludeFigures \clearpage \fi

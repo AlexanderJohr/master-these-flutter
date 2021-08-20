@@ -1,6 +1,6 @@
 
-\ifincludeall \clearpage \fi
-\subsection{Serialisierung einer Maßnahme}
+\ifIncludeFigures \clearpage \fi
+\section{Serialisierung einer Maßnahme}
 
 Damit die Daten angezeigt und verändert werden können, müssen sie zunächst serialisierbar sein, sodass sie auf einen Datenträger geschrieben und von dort auch wieder gelesen werden können.
 % todo: Serialisierung erklären
@@ -25,7 +25,7 @@ Templates für \enquote{built_value} wie dieses und weitere müssen nicht vom Nu
 % todo medium: live template erklären
 % todo ask medium: Kein Autor, nur git Name
 % todo ask medium: Quelle nötig?
-\ifincludeall
+\ifIncludeFigures
   \begin{listing}[h]
     \begin{minted}[firstnumber=6]{dart}
 part '$file_name$.g.dart';
@@ -137,7 +137,7 @@ In diesem Fall wird das \IC{StandardJsonPlugin}verwendet.
 % Korrigieren (Unten)
 Wird nun der Befehl  \IC{flutter pub run build_runner build} ausgeführt, so wird der Quellcode generiert und die Werte-Typen können für die Serialisierung genutzt werden.
 
-\subsection{Test der Serialisierung einer Maßnahme}
+\section{Test der Serialisierung einer Maßnahme}
 
 Das Ergebnis der Serialisierung wird im dazugehörigen Unit-Test ersichtlich \Lst{\ref{lst:SerialisierungEinerMassnahmeUnittest}}.
 In Zeile 8 wird ein Objekt der Klasse \IC{Massnahme} instanzieiert.
@@ -210,7 +210,7 @@ Ganz ähnlich wie bei der Serialisierung wird nun mit dem Befehl \IC{serializers
 
 Gibt man in der Kommandozeile den Befehl \IC{flutter} \IC{test} \IC{test}\IC{/data_model}\IC{/massnahme _test.dart} ein, so werden die Tests in der Testdatei ausgeführt. Die Ausgabe \IC{00:01 +2: All tests passed!} teilt mit, dass beide Tests erfolgreich ausgeführt wurden und beide Ergebnisse mit den verglichenen Werten übereinstimmten.
 
-\subsection{Serialisierung der Maßnahmenliste}
+\section{Serialisierung der Maßnahmenliste}
 
 Damit alle Maßnahmen - statt nur einer einzigen - in einer Datei zusammengefasst werden können, müssen die Maßnahmen zunächst zu einer Menge zusammengefasst werden, die ebenfalls serialisierbar ist.
 Der Werte-Typ Storage ist dafür vorgesehen \Lst{\ref{lst:Schritt1WerteTypStorage}}.
@@ -227,7 +227,7 @@ Die Übergabe des Typarguments \IC{<Massnahme>} gewährleistet, dass keine ander
 
 Der Befehl  \IC{flutter pub run build_runner build} stößt erneut die Quellcodegenerierung für den Werte-Typen \IC{Storage} an.
 
-\subsection{Test der Serialisierung der Maßnahmenliste}
+\section{Test der Serialisierung der Maßnahmenliste}
 
 Nun soll noch überprüft werden, ob die Menge von Maßnahmen mit genau einer eingetragenen Maßnahme korrekt serialisiert.
 Auch das wird von einem Unit Test überprüft \Lst{\ref{lst:Schritt1MassnahmenSerialisierenOhneFehlerUnitTest}}.

@@ -1,10 +1,5 @@
-\ifincludeall \clearpage \fi 
-
-
-
-
-
-\section{Schritt 2}
+\chapter{Schritt 2}
+\label{chap:Schritt-2}
 
 \begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-2/Ü.png}
   {Schritt 2 Übersicht}
@@ -28,7 +23,7 @@ Es handelt sich um die Einzelauswahlfelder für Förderklasse, Kategorie, Zielfl
 Darüber hinaus soll das Erstellen der Selektions-Karten in einer Methode abstrahiert werden.
 Das ermöglicht die Konfiguration der Selektions-Karten in der aufrufenden Eingabemaske, ohne dafür die Klasse \IC{SelectionCard} ändern zu müssen.
 
-\subsubsection{Integrationstest erweitern}
+\subsection{Integrationstest erweitern}
 
 Noch vor der Implementierung der Änderungen soll zunächst der Integrationstest um die zusätzlichen Selektionen erweitert werden \Lst{\ref{lst:Schritt2IntegrationstestKlickt5WeitereKarten}}. Nach den letzten Eingaben und bevor der Button zum Speichern ausgelöst wird, erfolgt die Selektion der fünf Optionen \Z{106-119}.   
 
@@ -65,7 +60,7 @@ done.
 When all the tests run, and you can't think of any more tests that would break, you
 are done adding functionality.}}
 
-\rightline{{\rm — Kent Beck\footcite[][S. 9]{beck2003test}}}
+\rightline{{ — Kent Beck\footcite[][S. 9]{beck2003test}}}
 
 \end{quotation}
 
@@ -73,7 +68,7 @@ Es folgt das Hinzufügen der fehlenden Symbole, damit der Quellcode wieder kompi
 Anschließend erfolgt die Weiterentwicklung des Models, ViewModels und Views damit der Integrationstest erneut erfolgreich abschließt.
 
 
-\subsubsection{Hinzufügen der Auswahloptionen}
+\subsection{Hinzufügen der Auswahloptionen}
 
 Der Integrationstest selektiert unter anderem die Förderklasse mit der Abkürzung \IC{aukm_ohne_vns}. Sie wird den Auswahloptionen hinzugefügt, wie in Listing \ref{lst:Schritt2KlasseFoerderklasseChoice} zu sehen ist.
 Die Liste aller hinzugefügten Auswahloptionen in diesem Schritt ist in Anhang \ref{appendix:Schritt2Anhang} auf den Seiten \pageref{lst:Schritt2FoerderklasseChoicesKategorieChoices} bis \pageref{lst:Schritt2hauptzielsetzungLandChoices} zu finden.
@@ -84,7 +79,7 @@ Die Liste aller hinzugefügten Auswahloptionen in diesem Schritt ist in Anhang \
   \label{lst:Schritt2KlasseFoerderklasseChoice}
 \end{alexlisting}
 
-\subsubsection{Aktualisierung des Models}
+\subsection{Aktualisierung des Models}
 
 Damit der Hash-Tabelle der Schlüssel \IC{'massnahmenCharakteristika'} hinzugefügt wird, muss der entsprechende Eintrag im Werte-Typ \IC{Massnahme} hinzugefügt werden.
 Die Getter-Methode \IC{massnahmenCharakteristika}, die das Paket \enquote{built_value} dazu veranlaßt, den Quellcode für die Eigenschaft zu generieren, wird unterhalb der Getter-Methode \IC{identifikatoren} hinzugefügt \LstZ{\ref{lst:Schritt2massnahmenCharakteristikaWirdMMassnahmeHinzugefuegt}}{15}.
@@ -108,7 +103,7 @@ Da sie auch im Entwurfsmodus auch nicht gefüllt sein können, wird ihnen mit de
 Der Werte-Typ wurde hinzugefügt.
 Der Befehl \IC{flutter pub run build_runner build} generiert den Quellcode für die Serialisierung und die Builder-Methoden.
 
-\subsubsection{Aktualisierung der Übersichtstabelle}
+\subsection{Aktualisierung der Übersichtstabelle}
 
 Der Übersichtsbildschirm bzw. die Übersichtstabelle können auf das Model ohne den Umweg über das ViewModel zugreifen. Der Tabellenkopf listet die Überschriften der hinzugefügten Werte auf \LstZ{\ref{lst:Schritt2MassnahmencharakteristikaEerdenDemTabellenkopfHinzugefuegt}}{23-27}. 
 
@@ -129,7 +124,7 @@ Ist der dagegen nicht \IC{null}, so wird der Wert links vom Operator \IC{??} gen
   \label{lst:Schritt2MassnahmencharakteristikaWerdenDemTabellenkoerperHinzugefuegt}
 \end{alexlisting}
 
-\subsubsection{Aktualisierung des ViewModels}
+\subsection{Aktualisierung des ViewModels}
 
 Damit die Eingabefelder die neuen Werte eintragen können, muss das ViewModel oder die beobachtbaren Subjects bereitstellen \LstZ{\ref{lst:Schritt2MassnahmencharakteristikaWerdenDemViewModelHinzugefuegt}}{12-17}. \HP{Subjects und Observer in Schritt 1 erklären} 
 
@@ -159,7 +154,7 @@ Bei der Konvertierung des Models in das ViewModel wurde bereits beim letzten Sch
   \label{lst:Schritt2KonvertierungDesViewModelsInDasModel}
 \end{alexlisting}
 
-\subsubsection{Aktualisierung der Eingabemaske}
+\subsection{Aktualisierung der Eingabemaske}
 
 Nach der Anpassung des ViewModels kann schließlich die Eingabemaske erweitert werden.
 
@@ -213,9 +208,3 @@ Damit ist die Implementierung für Schritt 2 beendet.
 
 Der Integrationstest kann nun verifizieren, dass die Eingaben erfolgen und in der Json-Datei auftauchen werden.
 
-
-
-
-
-
-\ifincludeall \clearpage \fi 

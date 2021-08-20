@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="02490462-2357-4f13-8e27-7bcfb35e7e6a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Inhalt/Diskussion/Diskussion.tex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Diskussion/Kein-Hinweis-ueber-Inkompatible-Optionen.tex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Diskussion/RxDart-statt-Provider.tex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Diskussion/Schlussfolgerung.tex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Einleitung/Einleitung.tex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Einleitung/Flutter.tex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Einleitung/Gliederung.tex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Einleitung/Problemstellung.tex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Expose/Expose.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Expose/Expose.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Anforderungen/Anforderungen.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Anforderungen/Anforderungen.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Implementierung.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Implementierung.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Auswahloptionen.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Auswahloptionen.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Eingabeformular.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Eingabeformular.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Haupteinstiegspunkt.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Haupteinstiegspunkt.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Integrations-Test.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Integrations-Test.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1-Anhang.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1-Anhang.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Serialisierung.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Serialisierung.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Uebersichtsbildschirm.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Uebersichtsbildschirm.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Widget-SelectionCard.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Widget-SelectionCard.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-2/Schritt-2-Anhang.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-2/Schritt-2-Anhang.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-2/Schritt-2.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-2/Schritt-2.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-3/Schritt-3-Anhang.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-3/Schritt-3-Anhang.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-3/Schritt-3.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-3/Schritt-3.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-4/Schritt-4-Anhang.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-4/Schritt-4-Anhang.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-4/Schritt-4.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-4/Schritt-4.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-5/Schritt-5.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-5/Schritt-5.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-6/Schritt-6-Anhang.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-6/Schritt-6-Anhang.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-6/Schritt-6.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-6/Schritt-6.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-7/Schritt-7-Anhang.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-7/Schritt-7-Anhang.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-7/Schritt-7.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-7/Schritt-7.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-8/Schritt-8-Anhang.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-8/Schritt-8-Anhang.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-8/Schritt-8.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-8/Schritt-8.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Technologie-Auswahl/Technologie-Auswahl-Anhang.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Technologie-Auswahl/Technologie-Auswahl-Anhang.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Technologie-Auswahl/Technologie-Auswahl.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Technologie-Auswahl/Technologie-Auswahl.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Technologie-Auswahl/Trendanalyse.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Technologie-Auswahl/Trendanalyse.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Technologie-Auswahl/Vergleich-React-Native-und-Flutter.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Technologie-Auswahl/Vergleich-React-Native-und-Flutter.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Konfiguration/Konfiguration.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Konfiguration/Konfiguration.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sonstiges/Deckblatt.tex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Verzeichnisse/Abbildungsverzeichnis.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Verzeichnisse/Abbildungsverzeichnis.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Verzeichnisse/Eidesstattliche_Erklaerung.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Verzeichnisse/Eidesstattliche_Erklaerung.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Verzeichnisse/Inhaltsverzeichnis copy.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Verzeichnisse/Inhaltsverzeichnis copy.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Verzeichnisse/Inhaltsverzeichnis.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Verzeichnisse/Inhaltsverzeichnis.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Verzeichnisse/Listingverzeichnis.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Verzeichnisse/Listingverzeichnis.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Verzeichnisse/Literaturverzeichnis.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Verzeichnisse/Literaturverzeichnis.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/literatur/literatur.bib" beforeDir="false" afterPath="$PROJECT_DIR$/literatur/literatur.bib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/m27007_master_these_main.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/m27007_master_these_main.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/m27007_master_these_main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/m27007_master_these_main.tex" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1x0GHHL0MgRvTNQl7jUy6YcWYvx" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="02490462-2357-4f13-8e27-7bcfb35e7e6a" name="Default Changelist" comment="" />
+      <created>1629484503214</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1629484503214</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="92" y="92" width="1736" height="856" maximized="true" key="DiffContextDialog" timestamp="1629485158640">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="92" y="92" width="1736" height="856" maximized="true" key="DiffContextDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629485158640" />
+  </component>
+</project>

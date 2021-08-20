@@ -1,7 +1,5 @@
-\ifincludeall \clearpage \fi
-
-\section{Schritt 4}
-\label{Schritt4}
+\chapter{Schritt 4}
+\label{chap:Schritt-4}
 
 
 \begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-4/D Z Wald.png}
@@ -33,7 +31,7 @@
 Im Folgenden werden der Validierung die Bedingungen hinzugefügt,
 welche die Auswahloptionen untereinander haben. 
 
-\subsection{Hinzufügen der Bedingungen zu den Auswahloptionen}
+\section{Hinzufügen der Bedingungen zu den Auswahloptionen}
 
 Es gibt einfache Bedingungen wie beispielsweise die der Zielfläche \enquote{AL}.
 Dessen Auswahl kann nur dann erfolgen,
@@ -121,7 +119,7 @@ Der Ausdruck \IC{wald.condition(priorChoices)} kann dadurch durch die expliziter
   \label{lst:Schritt4Choice}
 \end{alexlisting}
 
-\subsection{Hinzufügen der Momentaufnahme aller ausgewählten Optionen im gesamten Formular}
+\section{Hinzufügen der Momentaufnahme aller ausgewählten Optionen im gesamten Formular}
 
 Die Menge der bisherigen Ausfülloptionen setzt sich aus den aktuellen Inhalten der Auswahlfelder zusammen.
 Sie ist also die Momentaufnahme aller Werte,
@@ -167,7 +165,7 @@ Die Methode \IC{listen} horcht auf Änderungen des \IC{choicesStream}-Objekts un
 Damit existiert immer ein Wert für die Momentaufnahme der aktuell ausgewählten Auswahloptionen.
 Sie ist ursprünglich die leere Menge \IC{{}} und nachfolgend immer das zuletzt übermittelte Ereignis des \IC{choicesStream}.
 
-\subsection{Reagieren der Selektionskarte auf die ausgewählten Optionen}
+\section{Reagieren der Selektionskarte auf die ausgewählten Optionen}
 
 Dadurch
 , dass \IC{priorChoices} nun im ViewModel verfügbar ist
@@ -238,9 +236,9 @@ Anderenfalls wird dem Parameter \IC{tileColor} \IC{null} übergeben \Z{70}.
 
 
 
-\ifincludeall \clearpage \fi
+\ifIncludeFigures \clearpage \fi
 
-\subsection{Reagieren des Auswahlbildschirms auf die ausgewählten Optionen}
+\section{Reagieren des Auswahlbildschirms auf die ausgewählten Optionen}
 
 
 
@@ -300,9 +298,9 @@ dass diese Option nicht anwählbar ist.
   \label{lst:Schritt4selectedAndSelectableChoices}
 \end{alexlisting}
 
-\ifincludeall \clearpage \fi
+\ifIncludeFigures \clearpage \fi
 
-\subsubsection{Hinzufügen der Momentaufnahme zur Validierung}
+\subsection{Hinzufügen der Momentaufnahme zur Validierung}
 
 Alle bisher eingefügten Vergleiche hatten lediglich den Zweck,
 die invaliden Optionen einzufärben und von der Selektion durch den Benutzer auszuschließen.
@@ -330,13 +328,3 @@ Nur dann kann eine Maßnahme mit dem Status \enquote{abgeschlossen} gespeichert 
   {firstline=121, lastline=140, highlightlines={131-136}}
   \label{lst:Schritt4validator}
 \end{alexlisting}
-
-
-
-
-
-
-
-
-
-\ifincludeall \clearpage \fi

@@ -1,6 +1,5 @@
-\ifincludeall \clearpage \fi
-
-\section{Schritt 6}
+\chapter{Schritt 6}
+\label{chap:Schritt-6}
 
 
 \begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-6/Ü.png}
@@ -32,7 +31,7 @@ In diesem Schritt soll das Formular um Mehrfachauswahlfelder erweitert werden.
 Im Speziellen handelt es sich um das Auswahlfeld Nebenziele.
 Es beinhaltet die gleichen Auswahloptionen wie das Auswahlfeld Hauptzielsetzung.
 
-\subsection{Integrationstest erweitern}
+\section{Integrationstest erweitern}
 
 Zunächst wird der Integrationstest um die Auswahl der Nebenziele erweitert \Lst{\ref{lst:Schritt6tabSelectionCard}}.
 
@@ -64,7 +63,7 @@ Sie wird im erwarteten JSON-Dokument als Array-Literal codiert \Z{140-143}.
 
 
 
-\subsection{Hinzufügen der Menge der Nebenziele}
+\section{Hinzufügen der Menge der Nebenziele}
 
 Für die Menge der Nebenziele müssen keine weiteren Auswahloptionen hinzugefügt werden.
 Es werden die gleichen Optionen verwendet,
@@ -76,7 +75,7 @@ die auch bei der Menge  mit dem Namen \enquote{Hauptzielsetzung Land} zum Einsat
   \label{lst:Schritt6nebenzielsetzungLandChoices}
 \end{alexlisting}
 
-\subsection{Aktualisierung des Models}
+\section{Aktualisierung des Models}
 
 Um die Liste der Nebenziele im Wertetyp \IC{MassnahmenCharakteristika} einzufügen,
 kann der Datentyp \IC{BuiltSet} verwendet werden \LstZ{\ref{lst:Schritt6MassnahmenCharakteristika}}{77}.
@@ -92,7 +91,7 @@ dass die Menge leer ist.
 
 
 
-\subsection{Aktualisierung der Übersichtstabelle}
+\section{Aktualisierung der Übersichtstabelle}
 
 Für das Einfügen der Überschrift in der Übersichtstabelle gibt es keine Unterschiede zum bisherigen Vorgehen.
 Die Überschrift wird nach der Spaltenüberschrift für die \enquote{Hauptzielsetzung} eingefügt \LstZ{\ref{lst:Schritt6buildColumnHeader}}{28}.
@@ -114,7 +113,7 @@ Jedes Element des \IC{BuiltSet} \IC{nebenziele} \Z{47} wird über die Methode \I
   \label{lst:Schritt6buildSelectableCell}
 \end{alexlisting}
 
-\subsection{Aktualisierung des ViewModels}
+\section{Aktualisierung des ViewModels}
 
 Die Nebenziele werden -- erneut Mit dem Datentyp BuiltSet -- im ViewModel hinzugefügt \Lst{\ref{lst:Schritt6BehaviorSubjectNebenziele}}.
 \begin{alexlisting}{Schritt 6}{XXXX}
@@ -160,7 +159,7 @@ Der \IC{SetBuilder} wiederum kümmert sich um das Bauen des \IC{BuiltSet}, sobal
 
 
 
-\subsection{Aktualisierung der Eingabemaske}
+\section{Aktualisierung der Eingabemaske}
 
 Unterhalb des Auswahlfeldes für das Hauptziel wird die Selektionkarte für die Nebenziele eingefügt \Lst{\ref{lst:Schritt6buildMultiSelectionCardnebenzielsetzungLandChoices}}.
 \begin{alexlisting}{Schritt 6}{XXXX}
@@ -210,7 +209,7 @@ Sie nutzen stattdessen die Methode \IC{rebuild} des \IC{BuiltSet} um ein Element
 Der Methodenaufruf \IC{rebuild} sorgt jedoch nicht für das Hinzufügen oder Löschen am Original-Objekt, sondern erstellt eine Kopie der Liste mit der gewünschten Änderungen.
 Deshalb erfolgt eine Zuweisung der Kopie zum Wert des \IC{BehaviorSubject}-Objekts, was wiederum das Auslösen eines neuen Ereignisses bewirkt \Z{158,161}.
 
-\subsection{Aktualisierung der Selektionskarte}
+\section{Aktualisierung der Selektionskarte}
 
 
 Diese Selektionskarte wird um die Instanzvariable \IC{multiSelection} erweitert \LstZ{\ref{lst:Schritt6SelectionCard}}{17},
@@ -239,5 +238,3 @@ Anderenfalls war die Option nicht selektiert, weshalb sie mit der Methode \IC{ad
   {firstline=124, lastline=154, highlightlines={133-142, 147}}
   \label{lst:Schritt6XXXX}
 \end{alexlisting}
-
-\ifincludeall \clearpage \fi

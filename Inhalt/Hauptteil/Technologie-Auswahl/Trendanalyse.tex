@@ -1,11 +1,10 @@
+\section{Trendanalyse}
+\label{sec:Trendanalyse}
 
-
-\subsection{Trendanalyse}
 
 Zwei Quellen wurden für die Analyse der Technologie-Trends ausgewählt: die Ergebnisse der jährlichen Stack Overflow-Umfragen und das Such-Interesse von Google Trends.
 
-
-\paragraph{Stack Overflow Umfrage}
+\subsection{Stack Overflow Umfrage}
 Die Internet-Plattform Stack Overflow richtet sich an Softwareentwickler und bietet ihren Nutzern die Möglichkeiten, Fragen zu stellen, Antworten einzustellen und Antworten anderer Nutzer auf- und abzuwerten.
 
 Besonders für Fehlermeldungen, die häufig während der Softwareentwicklung auftreten, findet man auf dieser Plattform rasch die Erklärung und den Lösungsvorschlag gleich mit.
@@ -27,7 +26,7 @@ Es transformiert die Daten in ein einheitliches Format, da die  Umfrageergebniss
 Anschließend erstellt es Diagramme, die im Folgenden analysiert werden.
 Das Jupyter Notebook ist im  Anhang zu finden.
 
-\paragraph{Google Trends} Suchanfragen die über die Suchmaschine Google  abgesetzt werden, lassen sich  über den Dienst Google Trends  als Trenddiagramm visualisieren.
+\subsection{Google Trends} Suchanfragen die über die Suchmaschine Google  abgesetzt werden, lassen sich  über den Dienst Google Trends  als Trenddiagramm visualisieren.
 Die Ergebnisse werden normalisiert, um das relative Such-Interesse abzubilden und die Ergebnisse auf einer Skala von 0 bis 100 darstellen zu können.
 \footnote{Vgl. \cite{GoogleTrendsHilfe}}
 
@@ -39,8 +38,7 @@ Es spiegelt lediglich das Suchinteresse an bestimmten Themen wider.
 
 Genau aus diesem Grund wird Google Trends im Folgenden lediglich zum Abgleich der Ergebnisse der Stack Overflow Umfrage eingesetzt.
 
-
-\subsubsection{Frameworks mit geringer Relevanz}
+\subsection{Frameworks mit geringer Relevanz}
 
 NativeScript, Sencha (bzw.
 Sencha Touch) und Appcelerator spielen in den Umfrageergebnissen eine untergeordnete Rolle.
@@ -69,7 +67,7 @@ In Abbildung \ref{fig:SuchinteresseGeringeRelevanz} werden NativeScript, Sencha,
 
 \end{alexfigurewithnotebook}
 
-\paragraph{Verwandte Technologien zu Apache Cordova} Das Ionic Framework taucht in den Ergebnissen der Stack Overflow Umfragen nicht auf.
+\subsubsection{Verwandte Technologien zu Apache Cordova} Das Ionic Framework taucht in den Ergebnissen der Stack Overflow Umfragen nicht auf.
 Ein Grund dafür könnte sein, dass es auf Apache Cordova aufbaut\footnote{\cite{TheLastWordOnCordovaAndPhoneGap}}, welches bereits in den Ergebnissen vorkommt.
 Adobe PhoneGap taucht zwar in den Ergebnissen von 2013 mit 1043 Stimmen auf (Siehe Abbildung \ref{fig:CordovaUndPhoneGapStimmen}), verliert jedoch in den Folgejahren mit weniger als 10 Stimmen abrubt an Relevanz.
 Das stimmt nicht mit dem Suchinteresse auf Google überein, da Adobe PhoneGap dort erst ab 2014 anfängt, langsam an Relevanz zu verlieren, wie in Abbildung \ref{fig:SuchinteresseGeringeRelevanz} zu sehen ist. 2013 existierte PhoneGap noch als extra Mehrfachauswahlfeld in den Daten, während es ab 2014 nur noch in dem Feld für die sonstigen Freitext Angaben auftaucht \footnote{Vgl. \cite{StackOverflowInsights}}.
@@ -92,7 +90,7 @@ Im schlimmsten Fall wird die Technologie sogar vom Betreiber aufgrund zu geringe
 Adobe gab am 11.
 August 2020 bekannt, dass die  Entwicklung an PhoneGap eingestellt wird und empfiehlt die Migration hin zu Apache Cordova.\footnote{Vgl. \cite{UpdateForCustomersUsingPhoneGapAndPhoneGapBuild}}
 
-\subsubsection{Frameworks mit sinkender Relevanz}
+\subsection{Frameworks mit sinkender Relevanz}
 
 Die Technologien Xamarin und Cordova zeigen bereits einen abfallenden Trend, wie in Abbildung \ref{fig:XamarinUndCordovaStimmen} ersichtlich ist.
 Im Fall von Xamarin gibt es immerhin mehr Entwickler, die sich wünschen, mit dem Framework zu arbeiten, als Entwickler, die tatsächlich mit Xamarin arbeiten.
@@ -119,7 +117,7 @@ In Abbildung \ref{fig:SuchinteresseSinkendeUndSteigendeRelevanz} ist noch einmal
 
 \end{alexfigurewithnotebook}
 
-\subsubsection{Frameworks mit steigender Relevanz}
+\subsection{Frameworks mit steigender Relevanz}
 
 Besser ist es, auf Technologien zu setzen, die noch einen steigenden Trend der Verbreitung und Beliebtheit zeigen.
 In Abbildung \ref{fig:ReactNativeUndFlutterStimmen} wird sichtbar, dass es sich dabei um Flutter und -- immerhin im Hinblick auf die Verbreitung -- auch um React Native handelt.

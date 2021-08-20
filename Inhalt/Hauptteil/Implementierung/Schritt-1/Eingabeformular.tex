@@ -1,6 +1,6 @@
 
-\ifincludeall \clearpage \fi
-\subsection{Eingabeformular}
+\ifIncludeFigures \clearpage \fi
+\section{Eingabeformular}
   
 Das soeben erstellte ViewModel kann nun für die Eingabemaske verwendet werden.
 Listing \ref{lst:Schritt1KlasseMassnahmenDetailScreenStruktur} zeig die grundlegende Struktur der Klasse \IC{MassnahmenDetailScreen}.
@@ -45,7 +45,7 @@ Mit dem Argument \IC{MainAxisSize.min} nimmt die \IC{Column} in der Höhe nur so
 
 
 
-\ifincludeall
+\ifIncludeFigures
   \begin{listing}[htbp]
   \renewcommand\theFancyVerbLine{%
 \ifnum\value{FancyVerbLine}=20 
@@ -130,9 +130,9 @@ class MassnahmenDetailScreen extends StatelessWidget {
   \end{listing}
 \fi
 
-\ifincludeall \clearpage \fi
+\ifIncludeFigures \clearpage \fi
 
-\subsubsection{Ausgabe der Formularfelder}
+\subsection{Ausgabe der Formularfelder}
 
 Listing \ref{lst:Schritt1AusgabeDerFormularfelder} zeigt die Ausgabe der Formularfelder in einer Column 58.
 Das Auswahlfeld für den letzten Status verwendet ein selbstgeschriebenes \IC{Widget} namens \IC{SelectionCard} \Z{61-72}.
@@ -164,7 +164,7 @@ Deshalb reicht es aus, den Wert bei Selektion zu ersetzen und ihn bei Deselektio
 \end{alexlisting}
 
 
-\subsubsection{Eingabefeld für den Maßnahmentitel}
+\subsection{Eingabefeld für den Maßnahmentitel}
 
 
 Unterhalb der ersten Selektionskarte soll das Eingabefeld für den Maßnahmentitel erscheinen \Z{73}.
@@ -183,7 +183,7 @@ Denn auch das \IC{TextFormField} erhält einen initialen Wert über den Paramete
 Sobald sich der Wert das Formularfeld das ändert, kann der neue Wert im ViewModel über die anonyme Funktion aktualisiert werden, welche dem Parameter \IC{onChanged} übergeben wurde.
 
 
-\subsubsection{Speicher-Routine}
+\subsection{Speicher-Routine}
 
 
 Die Funktion die dem Parameter \IC{onWillPop} des \IC{WillPopScope} übergeben wurde, ist in Listing \ref{lst:Schritt1SaveRecord} zu sehen.
@@ -204,4 +204,4 @@ Das aktuelle \IC{Scaffold}-Objekt kann über \IC{ScaffoldMessenger.of} adressier
   \label{lst:Schritt1SaveRecord}
 \end{alexlisting}
 
-\ifincludeall \clearpage \fi
+\ifIncludeFigures \clearpage \fi
