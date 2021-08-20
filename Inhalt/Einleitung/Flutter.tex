@@ -4,7 +4,7 @@ Für Form wurde Flutter gewählt
 \section{Grundlagen}
 
 Für die Formular Anwendung wurde die Programmiersprache Dart und das Oberflächen Framework Flutter gewählt.
-Kapitel Kapitel einfügen  erläutert die Entscheidungs-Grundlage dafür.
+Kapitel Kapitel Einfügen  erläutert die Entscheidungs-Grundlage dafür.
 
 Nachfolgend soll auf  Grundlagen der beiden Technologien eingegangen werden.
 
@@ -35,7 +35,7 @@ Es unterstützt eine breite Anzahl an Ziel-Systemen.
 
 Flutter ist inspiriert durch das Web-Framework react und deren Oberflächenelemente, die Components genannt werden \footcite[Vgl.][]{IntroductionToWidgets}.
 Die visuellen Oberflächen-Elemente in Flutter werden dagegen Widgets genannt.
-\enquote{react} \enquote{Components} verfügen über einen Zustand – \enquote{State} genannt – der bei Veränderung das Neuzeichnen der visuellen Repräsentation erwirkt.
+\enquote{react} \enquote{Components} verfügen über einen Zustand – \enquote{State} genannt, – der bei Veränderung das Neuzeichnen der visuellen Repräsentation erwirkt.
 Flutter unterscheidet allerdings zwischen zwei Arten von Widgets: denen, die einen Zustand pflegen – den \enquote{Stateful Widgets} – und solchen, die keinen Zustand haben – den \enquote{Stateless Widgets}.
 
 \enquote{Stateful Widgets} pflegen einen Zustand, der mittels der Methode \IC{setstate} gesetzt werden kann.
@@ -60,7 +60,7 @@ Dart ist eine Hochsprache, die hauptsächlich für die Entwicklung von Oberfläc
 
 Ein Hauptaspekt bei dem Design der Sprache ist die Produktivität des Entwicklers.
 Mechanismen wie das \enquote{hot reload} verkürzen die Entwicklungszyklen erheblich.
-Das \enquote{hot reload} ermöglicht es, während eine Anwendung im Debug-Modus ausgeführt wird, Änderungen an dessen Quellcode vorzunehmen.
+Das \enquote{hot reload} ermöglicht es, während eine Anwendung im Debug-Modus ausgeführt wird, Änderungen an dessen deren Quellcode vorzunehmen.
 Daraufhin werden nur die Teile der laufenden Applikation aktualisiert, die tatsächlich verändert wurden.
  Währenddessen bleibt die Anwendung in der gleichen Ansicht, anstatt zum Hauptbildschirm zurückgesetzt zu werden, von der aus der Entwickler erneut zur gewünschten Ansicht zurücknavigieren müsste.
 
@@ -74,7 +74,7 @@ Für die Kompilierung in Maschinencode wird dagegen Ahead-of-time-Kompilierung (
 
 \paragraph{tree shaking}
 Für die Minimierung der Dateigröße des resultierenden Kompilats wird das sogenannte \enquote{tree shaking} eingesetzt.
-Das Hauptprogramm importiert über das Schlüsselwort \IC{import} Funktionalitäten aus  weiteren .dart-Dateien oder sogar ganzen Bibliotheken.
+Das Hauptprogramm importiert über das Schlüsselwort \IC{import} Funktionalitäten aus  weiteren (.)dart-Dateien oder sogar ganzen Bibliotheken.
 Diese Dateien importieren wieder Weitere.
 Dadurch wird ein Baum aufgespannt.
 Das \enquote{tree shaking} identifiziert, welche Funktionalitäten tatsächlich vom Programm verwendet werden und welche nicht.
@@ -119,15 +119,15 @@ Stattdessen startet das \IC{Set} und \IC{Map} Literal mit einer öffnenden gesch
 Innerhalb der Klammern werden die Werte im Fall eines Sets mit \IC{,} getrennt nacheinander aufgeführt ( \IC{\{1,2\}} ).
 Im Fall einer Map werden der Schlüssel und der Wert durch einen \IC{:} voneinander getrennt und die Schlüssel-Wertepaare wiederum durch \IC{,} getrennt nacheinander aufgelistet (\IC{\{1: "erster Wert",2:"zweiter Wert"\}}).
 Eine Liste wiederum wird mit eckigen Klammern geöffnet und geschlossen.
-Die Werte werden erneut mit , getrennt voneinander angegeben (\IC{[1,2]}).
+Die Werte werden erneut mit ,(blau unterlegen) getrennt voneinander angegeben (\IC{[1,2]}).
 
 \paragraph{Collection for} Dart erlaubt es Schleifen innerhalb von Listen-, Mengen- und Hashtabellen-Literalen zu verwenden.
 Dabei darf die Schleife jedoch keinen Schleifen-Körper besitzen.
 Lediglich der Schleifen-Kopf wird dazu im Literal geschrieben.
 Darauf folgt der Wert, der bei jedem Schleifendurchlauf hinzugefügt werden soll.
 Dabei kann der Wert von der Schleifenvariable genutzt oder davon abgeleitet werden.
-Listing \ref{lst:CollectionForInEinerMenge} geht beispielsweise durch die Liste von der Temperatur-Angaben 97.7,105.8, die in Fahrenheit gelistet sind.
-Für jeden Schleifendurchlauf wird die Schleifen-Variable f mit der entsprechenden Formel in Grad Celsius umgewandelt.
+Listing \ref{lst:CollectionForInEinerMenge} geht beispielsweise durch die Liste von den Temperatur-Angaben 97.7,105.8, die in Fahrenheit gelistet sind.
+Für jeden Schleifendurchlauf wird die Schleifen-Variable f(blau) mit der entsprechenden Formel in Grad Celsius umgewandelt.
 Das Ergebnis ist somit äquivalent mit dem \IC{Set}-Literal \IC{{36.5, 38.5, 41}}.
 
 
@@ -171,7 +171,7 @@ Neben dem Collection-for ist auch die Nutzung von Fallunterscheidungen in Kollek
 Vor dem Wert, der in die Kollektion aufgenommen werden soll oder nicht,  kann  das Schlüsselwort \IC{if} mit einer darauffolgenden Bedingung in Klammern gesetzt werden.
 Listing \ref{lst:CollectionIfInEinerListe} iteriert durch eine Anzahl von Temperaturen in Grad Celsius.
 Nur in dem Fall, dass die Temperatur der Schleifen-Variable \IC{c} größer oder gleich 38,5 ist, wird die Temperatur der Liste zugefügt.
-Das Ergebnis der Liste \IC{fieberTemperaturen} Ergibt also \IC{[38.5, 41]}.
+Das Ergebnis der Liste \IC{fieberTemperaturen} ergibt also \IC{[38.5, 41]}.
 
 \ifincludeall
   \begin{listing}[ht]
@@ -217,8 +217,8 @@ Solange nicht feststeht, dass die Variable zur Laufzeit tatsächlich nicht \IC{n
 \fi
 
 Zu diesem Zweck macht Dart von der sogenannten Type Promotion - deutsch Typ Beförderung - Gebrauch.
-Mithilfe einer Fallunterscheidung kann vor Anwenden der Operation nachgesehen werden, ob der Wert der Variable nicht \IC{null} ist.
-Innerhalb des Körpers der Fallunterscheidung wird der Typ der Variable automatisch in einen Typ ohne Null-Zulässigkeit befördert.
+Mithilfe einer Fallunterscheidung kann vor dem Anwenden der Operation nachgesehen werden, ob der Wert der Variablen nicht \IC{null} ist.
+Innerhalb des Körpers der Fallunterscheidung wird der Typ der Variablen automatisch in einen Typ ohne Null-Zulässigkeit befördert.
 Der Code in Listing \ref{lst:printTemperatureInCelsiusWithIf} lässt sich daher wieder kompilieren.
 
 \ifincludeall
@@ -236,7 +236,7 @@ void printTemperatureInCelsius(int? temperature) {
 \fi
 
 Eine Besonderheit stellen dabei allerdings Instanzvariablen dar.
-In Dart wird syntaktisch nicht zwischen dem Aufruf einer Getter-Methode oder einer Instanzvariable unterschieden.
+In Dart wird syntaktisch nicht zwischen dem Aufruf einer Getter-Methode oder einer Instanzvariablen unterschieden.
 In Listing \label{lst:Patient}
 könnte sich hinter den Aufrufen von \IC{temperature} in den Zeilen 6 und 7 die Instanzvariable verbergen, die in Zeile 2 deklariert ist.
 
@@ -259,7 +259,7 @@ class Patient {
   \end{listing}
 \fi
 
-Genauso könnte es aber auch sein, dass eine Klasse von Patient erbt und das Feld \IC{temperature} mit einer gleichnamigen Getter-Methode überschreibt.
+Genauso könnte es aber auch sein, dass eine Klasse von Patient... erbt und das Feld \IC{temperature} mit einer gleichnamigen Getter-Methode überschreibt.
 Auch wenn es sehr unwahrscheinlich ist, könnte es trotzdem vorkommen, dass der Aufruf von \IC{temperature} in Zeile 6 einen Wert zurückgibt, der nicht \IC{null} ist und der darauffolgende Aufruf in Zeile 7 \IC{null} liefert.
 So provoziert es die Klasse \IC{UnusualPatient} im Listing \ref{lst:UnusualPatient}.
 Beim ersten Aufruf von \IC{temperature} wird die Zähl-Variable \IC{counter} von \IC{0} auf \IC{1} erhöht.
@@ -293,7 +293,7 @@ class UnusualPatient extends Patient {
 
 
 Sollte sich der Entwickler sicher sein, dass die Variable nicht \IC{null} sein kann, so kann er mit einem nachgestellten \IC{!} erzwingen, dass die Variable als nicht \IC{null} angesehen wird \LstZ{\label{lst:printTemperatureInCelsiusLocalVariableForceNullCheck}}{3}.
-Sollte es dann dennoch passieren, dass die Variable \IC{null} ist, so wird eine Fehlermeldung beim Aufruf der Variable geworfen.
+Sollte es dann dennoch passieren, dass die Variable \IC{null} ist, so wird eine Fehlermeldung beim Aufruf der Variablen geworfen.
 
 \ifincludeall
   \begin{listing}[ht]
@@ -352,7 +352,7 @@ var fileContent = file.readAsString();
   \end{listing}
 \fi
 
-Anders als erwartet, befindet sich in der Variable \IC{fileContent} in Wahrheit kein Text mit dem Inhalt der Datei.
+Anders als erwartet, befindet sich in der Variablen \IC{fileContent} in Wahrheit kein Text mit dem Inhalt der Datei.
 Stattdessen hat die Variable den Datentyp \IC{Future<String>} und ist lediglich ein sogenannter \enquote{Handle} - deutsch Referenzwert - für das potenzielle und zukünftige Ergebnis der Operation.
 
 Mit der Übergabe einer Funktion, die bei Vollendung der Operation aufgerufen wird, kann der Wert ausgewertet werden.
@@ -382,7 +382,7 @@ Genauso heißen sie auch in anderen Sprachen wie etwa C\# ab Version 4.5 und Jav
 
 
 Listing \ref{lst:awaitFileReadAsString}
-zeigt, dass durch das Anwenden des Schlüsselwortes \IC{await} vor der Operation \IC{file.readAsString} dafür sorgt, dass der zukünftige Wert direkt in \IC{fileContent} gespeichert wird. Ganz ohne \enquote{Callback-Funktion} kann der Dateiinhalt in der darauffolgenden Zeile ausgegeben werden.
+zeigt, dass durch das Anwenden des Schlüsselwortes \IC{await} vor der Operation,? \IC{file.readAsString} dafür sorgt?, dass der zukünftige Wert direkt in \IC{fileContent} gespeichert wird. Ganz ohne \enquote{Callback-Funktion} kann der Dateiinhalt in der darauffolgenden Zeile ausgegeben werden.
 
 
 \ifincludeall
