@@ -2,7 +2,7 @@
 \label{chap:Grundlagen}
 
 Für die Formular Anwendung wurde die Programmiersprache Dart und das Oberflächen Framework Flutter gewählt.
-Kapitel Kapitel Einfügen  erläutert die Entscheidungs-Grundlage dafür.
+Kapitel \ref{chap:Technologie-Auswahl} erläutert die Entscheidungsgrundlage dafür.
 
 Nachfolgend soll auf die Grundlagen der beiden Technologien eingegangen werden.
 
@@ -34,7 +34,7 @@ Es unterstützt eine breite Anzahl an Ziel-Systemen.
 
 Flutter ist inspiriert durch das Web-Framework react und deren Oberflächenelemente, die Components genannt werden \footcite[Vgl.][]{IntroductionToWidgets}.
 Die visuellen Oberflächen-Elemente in Flutter werden dagegen Widgets genannt.
-\enquote{react} \enquote{Components} verfügen über einen Zustand – \enquote{State} genannt, – der bei Veränderung das Neuzeichnen der visuellen Repräsentation erwirkt.
+\enquote{react} \enquote{Components} verfügen über einen Zustand -- \enquote{State} genannt -- der bei Veränderung das Neuzeichnen der visuellen Repräsentation erwirkt.
 Flutter unterscheidet allerdings zwischen zwei Arten von Widgets: denen, die einen Zustand pflegen – den \enquote{Stateful Widgets} – und solchen, die keinen Zustand haben – den \enquote{Stateless Widgets}.
 
 \enquote{Stateful Widgets} pflegen einen Zustand, der mittels der Methode \IC{setstate} gesetzt werden kann.
@@ -63,7 +63,7 @@ Dart ist eine Hochsprache, die hauptsächlich für die Entwicklung von Oberfläc
 
 Ein Hauptaspekt bei dem Design der Sprache ist die Produktivität des Entwicklers.
 Mechanismen wie das \enquote{hot reload} verkürzen die Entwicklungszyklen erheblich.
-Das \enquote{hot reload} ermöglicht es, während eine Anwendung im Debug-Modus ausgeführt wird, Änderungen an dessen deren Quellcode vorzunehmen.
+Das \enquote{hot reload} ermöglicht es, während eine Anwendung im Debug-Modus ausgeführt wird, Änderungen an deren Quellcode vorzunehmen.
 Daraufhin werden nur die Teile der laufenden Applikation aktualisiert, die tatsächlich verändert wurden.
  Währenddessen bleibt die Anwendung in der gleichen Ansicht, anstatt zum Hauptbildschirm zurückgesetzt zu werden, von der aus der Entwickler erneut zur gewünschten Ansicht zurücknavigieren müsste.
 
@@ -76,7 +76,7 @@ Für die Kompilierung in Maschinencode wird dagegen Ahead-of-time-Kompilierung (
 
 \subsubsection{tree shaking}
 Für die Minimierung der Dateigröße des resultierenden Kompilats wird das sogenannte \enquote{tree shaking} eingesetzt.
-Das Hauptprogramm importiert über das Schlüsselwort \IC{import} Funktionalitäten aus  weiteren (.)dart-Dateien oder sogar ganzen Bibliotheken.
+Das Hauptprogramm importiert über das Schlüsselwort \IC{import} Funktionalitäten aus  weiteren Dart-Dateien oder sogar ganzen Bibliotheken.
 Diese Dateien importieren wieder Weitere.
 Dadurch wird ein Baum aufgespannt.
 Das \enquote{tree shaking} identifiziert, welche Funktionalitäten tatsächlich vom Programm verwendet werden und welche nicht.
@@ -121,7 +121,7 @@ Stattdessen startet das \IC{Set} und \IC{Map} Literal mit einer öffnenden gesch
 Innerhalb der Klammern werden die Werte im Fall eines Sets mit \IC{,} getrennt nacheinander aufgeführt ( \IC{{1,2}} ).
 Im Fall einer Map werden der Schlüssel und der Wert durch einen \IC{:} voneinander getrennt und die Schlüssel-Wertepaare wiederum durch \IC{,} getrennt nacheinander aufgelistet (\IC{{1: "erster Wert",2:"zweiter Wert"}}).
 Eine Liste wiederum wird mit eckigen Klammern geöffnet und geschlossen.
-Die Werte werden erneut mit ,(blau unterlegen) getrennt voneinander angegeben (\IC{[1,2]}).
+Die Werte werden erneut mit \IC{,} getrennt voneinander angegeben (\IC{[1,2]}).
 
 \subsubsection{Collection for} Dart erlaubt es Schleifen innerhalb von Listen-, Mengen- und Hashtabellen-Literalen zu verwenden.
 Dabei darf die Schleife jedoch keinen Schleifen-Körper besitzen.
@@ -154,6 +154,7 @@ Links von einem \IC{:} ist der Schlüssel und rechts davon der Wert.
 In Listing \ref{lst:CollectionForInEinerHashtabelle}
 wird durch  die gleiche Liste von Temperaturen in Fahrenheit iteriert.
 
+
 \ifIncludeFigures
   \begin{listing}[ht]
     \begin{minted}[]{dart}
@@ -177,6 +178,7 @@ Das Ergebnis von \IC{celsiusUndFahrenheit} ist dementsprechend eine \IC{Map} mit
 Neben dem Collection-for ist auch die Nutzung von Fallunterscheidungen in Kollektionen erlaubt.
 Vor dem Wert, der in die Kollektion aufgenommen werden soll oder nicht,  kann  das Schlüsselwort \IC{if} mit einer darauffolgenden Bedingung in Klammern gesetzt werden.
 Listing \ref{lst:CollectionIfInEinerListe} iteriert durch eine Anzahl von Temperaturen in Grad Celsius.
+
 
 \ifIncludeFigures
   \begin{listing}[ht]
@@ -210,8 +212,7 @@ Methoden auf Objekten mit Null-Zulässigkeit aufzurufen ist nicht ohne Weiteres 
 
 Im Listing \ref{lst:printTemperatureInCelsius}
 wird versucht, auf die Variable \IC{fahrenheitTemperature} den Operator \IC{-} anzuwenden, um sie mit \IC{32} zu subtrahieren.
-Der Compiler liefert jedoch einen Fehler, da der Wert der Variablen \IC{null} sein kann, wie die Notation \IC{int?} anzeigt.
-Solange nicht feststeht, dass die Variable zur Laufzeit tatsächlich nicht \IC{null} ist, kann das Programm nicht kompiliert werden.
+
 
 \ifIncludeFigures
   \begin{listing}[ht]
@@ -224,6 +225,10 @@ Solange nicht feststeht, dass die Variable zur Laufzeit tatsächlich nicht \IC{n
     \label{lst:printTemperatureInCelsius}
   \end{listing}
 \fi
+
+Der Compiler liefert jedoch einen Fehler, da der Wert der Variablen \IC{null} sein kann, wie die Notation \IC{int?} anzeigt.
+Solange nicht feststeht, dass die Variable zur Laufzeit tatsächlich nicht \IC{null} ist, kann das Programm nicht kompiliert werden.
+
 
 Zu diesem Zweck macht Dart von der sogenannten \enquote{Type Promotion} - deutsch Typ Beförderung - Gebrauch.
 Mithilfe einer Fallunterscheidung kann vor dem Anwenden der Operation nachgesehen werden, ob der Wert der Variablen nicht \IC{null} ist.
@@ -272,7 +277,7 @@ Genauso könnte es aber auch sein, dass eine Klasse von \IC{Patient} erbt und da
 Auch wenn es sehr unwahrscheinlich ist, könnte es trotzdem vorkommen, dass der Aufruf von \IC{temperature} in Zeile 6 einen Wert zurückgibt, der nicht \IC{null} ist und der darauffolgende Aufruf in Zeile 7 \IC{null} liefert.
 So provoziert es die Klasse \IC{UnusualPatient} im Listing \ref{lst:UnusualPatient}.
 Beim ersten Aufruf von \IC{temperature} wird die Zähl-Variable \IC{counter} von \IC{0} auf \IC{1} erhöht.
-Die Abfrage, ob es sich bei dem Wert von Counter um eine ungerade Zahl handelt, ist erfolgreich \Z{6}, weshalb mit \IC{97,7} ein valider Wert zurückgegeben wird.
+Die Abfrage, ob es sich bei dem Wert von \IC{counter} um eine ungerade Zahl handelt, ist erfolgreich \Z{6}, weshalb mit \IC{97,7} ein valider Wert zurückgegeben wird.
 Beim zweiten Aufruf erhöht sich \IC{counter} allerdings auf \IC{2}.
 Die gleiche Abfrage schlägt dieses Mal fehl.
 Deshalb liefert die Getter-Methode nun \IC{null} \Z{9}.
@@ -300,8 +305,10 @@ class UnusualPatient extends Patient {
 \fi
 
 
-Sollte sich der Entwickler sicher sein, dass die Variable nicht \IC{null} sein kann, so kann er mit einem nachgestellten \IC{!} erzwingen, dass die Variable als nicht \IC{null} angesehen wird \LstZ{\label{lst:printTemperatureInCelsiusLocalVariableForceNullCheck}}{3}.
-Sollte es dann dennoch passieren, dass die Variable \IC{null} ist, so wird eine Fehlermeldung beim Aufruf der Variablen geworfen.
+
+
+
+
 
 Sollte sich der Entwickler sicher sein, dass die Variable nicht \IC{null} sein kann, so kann er mit einem nachgestellten \IC{!} erzwingen, dass die Variable als nicht \IC{null} angesehen wird \LstZ{\ref{lst:printTemperatureInCelsiusLocalVariableForceNullCheck}}{3}.
 
@@ -319,11 +326,12 @@ Sollte sich der Entwickler sicher sein, dass die Variable nicht \IC{null} sein k
   \end{listing}
 \fi
 
-Sollte es dann dennoch passieren, dass die Variable \IC{null} ist, so wird eine Fehlermeldung beim Aufruf der Variable geworfen.
+Sollte es dann dennoch passieren, dass die Variable \IC{null} ist, so wird eine Fehlermeldung beim Aufruf der Variablen geworfen.
 
 
 
 Eine noch sicherere Variante ist es, die Instanzvariable zuvor in eine lokale Variable zu speichern \LstZ{\ref{lst:printTemperatureInCelsiusLocalVariable}}{2}.
+
 
 \ifIncludeFigures
   \begin{listing}[ht]
@@ -430,7 +438,7 @@ Dazu dient das \IC{async} Schlüsselwort vor Beginn des Methoden-Körpers.
 
 \subsubsection{Streams}
 
-Streams liefern nicht nur einen Wert – wie im Fall eines \IC{Future} – sondern eine Serie von Werten, die in der Zukunft geliefert werden.
+\enquote{Streams} liefern nicht nur einen Wert –- wie im Fall eines \IC{Future} –- sondern eine Serie von Werten, die in der Zukunft geliefert werden.
 Listing \ref{lst:countStream} zeigt wie auf einen solchen Stream gehorcht werden kann.
 \ifIncludeFigures
   \begin{listing}[ht]
