@@ -1,13 +1,14 @@
 
-\subsection{Vergleich React Native und Flutter}
+\section{Vergleich von React Native und Flutter}
+\label{sec:Vergleich-React-Native-und-Flutter}
 
-\subsubsection{Vergleich zweier minimaler Beispiele für Formulare und Validierung}
+\subsection{Vergleich zweier minimaler Beispiele für Formulare und Validierung} \HP{verweise auf Listings Anhang, erstelle Tabelle mit Zusammenfassung}
 
 
 Es soll eine Formularanwendung mit komplexer Validierung im Rahmen dieser These erstellt werden.
 Es ist durchaus sinnvoll, die beiden Technologien anhand von  Beispielanwendungen, welche Formulare und die Validierung dieser  beinhalten,   zu vergleichen.  Deshalb soll nachfolgend  jeweils eine solche Beispielanwendung der jeweiligen Technologie gefunden werden. Die Anwendungen werden sich stark voneinander unterscheiden, weshalb sie im nächsten Schritt vereinfacht und aneinander angeglichen werden.  Anschließend wird ersichtlich werden, nach welchen Kriterien sich die Technologien im Hinblick auf die Entwicklung der Formularanwendung vergleichen lassen.
 
-\paragraph{React Native}
+\subsubsection{React Native}
 
 React native stellt nur eine vergleichsweise geringe Anzahl von eigenen Komponenten zur Verfügung und zu diesen gehören keine, welche die Validierung von Formularen ermöglichen.
 Doch die im react.js Raum sehr bekannten Bibliotheken Formic, Redux Forms und React Hook Form sind alle drei kompatibel mit React Native.\footnote{Vgl. \cite{ReactNativeFormikDocs}}\footnote{Vgl. \cite{DoesReduxFormWorkWithReactNative}}\footnote{Vgl. \cite{ReactNativeReactHookFormGetStarted}}
@@ -15,7 +16,7 @@ Doch die im react.js Raum sehr bekannten Bibliotheken Formic, Redux Forms und Re
 
 
 
-Für die Formular-Anwendung ist die Validierung komplexer Bedingungen nötig.
+Für die Formularanwendung ist die Validierung komplexer Bedingungen nötig.
 Die Formular-Validierungs-Bibliotheken bieten in der Regel Funktionen an, welche überprüfen, ob ein Feld gefüllt ist oder der Inhalt einem speziellen Muster entspricht – wie etwa einem regulären Ausdruck.
 Doch solche mitgelieferten Validierungs-Funktionen reichen nicht aus, um die Komplexität der Bedingungen abzubilden.
 Stattdessen müssen benutzerdefinierte Funktionen zum Einsatz kommen.
@@ -35,34 +36,19 @@ Möglicherweise geht die Beliebtheit einer der Bibliotheken mit der Zeit zurück
 Die Wahl der Bibliothek kann also schwerwiegende Folgen, wie Mangel an Dokumentation oder Limitationen im Vergleich zu anderen Bibliotheken mit sich bringen.
 Eine Migration von der einen Bibliothek zu einer anderen könnte in Zukunft notwendig werden, wenn diese Limitationen während der Entwicklung auffallen.
 Aus dem Grund ist es in der Regel von Vorteil, wenn solche Funktionalitäten bereits im Kern der Frontend-Technologie integriert sind.
-Der Fall, dass die Kern-Komponenten an Relevanz verlieren und empfohlen wird, auf externe Bibliotheken zuzugreifen, ist zwar nicht ausgeschlossen, geschieht aber im Wesentlichen seltener.
+Der Fall, dass die Kernkomponenten an Relevanz verlieren und empfohlen wird, auf externe Bibliotheken zuzugreifen, ist zwar nicht ausgeschlossen, geschieht aber im Wesentlichen seltener.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\paragraph{Flutter}
+\subsubsection{Flutter}
 Die Flutter Dokumentation stellt in ihrer cookbook Sektion ein Beispiel einer minimalistischen Formularanwendung mit Validierung bereit.\footnote{Vgl. \cite{BuildAFormWithValidation}} Das Rezept ist Teil einer Serie von insgesamt fünf Anleitungen, welche Formulare in Flutter behandeln.\footnote{Vgl. \cite{FormsFlutter}}
 
-\subsubsection{Automatisiertes Testen}
+\HP{Auf Listing im Anhang verweisen}
 
-\paragraph{Automatisierte Tests in React Native} Die React Native Dokumentation führt genau eine Seite mit einem Überblick über die unterschiedlichen Testarten.
+\subsection{Automatisiertes Testen}
+
+\subsubsection{Automatisierte Tests in React Native} Die React Native Dokumentation führt genau eine Seite mit einem Überblick über die unterschiedlichen Testarten.
 Dabei wird das Konzept von Unit Tests, Mocking, Integrations Tests, Komponenten Tests und Snapshot Tests kurz erläutert, jedoch ohne ein Beispiel zu geben oder zu verlinken.
-Vier Quellcodeschnipsel sind auf der Seite zu finden: Ein Schnipsel zeigt den minimalen Aufbau eines Tests, zwei weitere Schnipsel veranschaulichen beispielhaft, wie Nutzerinteraktionen getestet werden können und Letzteres zeigt die textuelle Repräsentation der Ausgabe einer Komponente, die für einen Snapshottest verwendet wird.
+Vier Quellcodeschnipsel sind auf der Seite zu finden: Ein Schnipsel zeigt den minimalen Aufbau eines Tests; zwei weitere Schnipsel veranschaulichen beispielhaft, wie Nutzerinteraktionen getestet werden können. Letzteres zeigt die textuelle Repräsentation der Ausgabe einer Komponente, die für einen Snapshottest verwendet wird.
 Weiterhin wird auf die Jest API Dokumentation verwiesen, sowie auf ein Beispiel für einen Snapshot Test in der Jest Dokumentation.\footnoteL{\url{https://jestjs.io/docs/snapshot-testing}}
 
 Um die notwendigen Anleitungen für das Erstellen der jeweiligen Tests ausfindig zu machen, ist es notwendig, die Dokumentation von React Native zu verlassen.
@@ -84,7 +70,7 @@ Notwendig ist auch das Erlernen von mehreren APIs um alle Testarten abzudecken.
 Für einen Anfänger kommt erschwerend hinzu, dass eine Entscheidung für die eine oder andere Bibliothek notwendig wird.
 Um diese Entscheidung treffen zu können, ist eine Auseinandersetzung mit den Vor- und Nachteilen der Technologien im Vorfeld vom Entwickler zu leisten.
 
-\paragraph{Automatisierte Tests in Flutter} Die Flutter Dokumentation erklärt sehr umfangreich auf 11 Unterseiten die unterschiedlichen Testarten mit Quellcodebeispielen und verlinkt für jede Testart eine bis mehrere detaillierte Schritt-für-Schritt-Anleitungen, wie ein solcher Test erstellt wird.
+\subsubsection{Automatisierte Tests in Flutter} Die Flutter Dokumentation erklärt sehr umfangreich auf 11 Unterseiten die unterschiedlichen Testarten mit Quellcodebeispielen und verlinkt für jede Testart eine bis mehrere detaillierte Schritt-für-Schritt-Anleitungen, wie ein solcher Test erstellt wird.
 
 Eine Seite erklärt den Unterschied zwischen Unit-Tests, Widget-Tests und Integrationstests\footnoteL{\url{https://flutter.dev/docs/testing}}. Eine weitere Seite erklärt Integrationstests detaillierter\footnoteL{\url{https://flutter.dev/docs/testing/integration-tests}}.
 
@@ -107,12 +93,7 @@ Im sogenannten Kochbuch tauchen folgende Rezepte auf:
     \item 3 Rezepte für Integrationstests
     \begin{itemize} 
         \item Eine grundlegende Anleitung zum Erstellen eines Integrationstests \footnoteL{\url{https://flutter.dev/docs/cookbook/testing/integration/introduction}}
-        \item eine Anleitung zum Simulieren von dem Scrollen in der Anwendung während der Laufzeit eines Integrationstests \footnoteL{\url{https://flutter.dev/docs/cookbook/testing/integration/scrolling}}
+        \item eine Anleitung zum Simulieren des Scrollens in der Anwendung während der Laufzeit eines Integrationstests \footnoteL{\url{https://flutter.dev/docs/cookbook/testing/integration/scrolling}}
         \item eine Anleitung zum Performance Profiling \footnoteL{\url{https://flutter.dev/docs/cookbook/testing/integration/profiling}}
      \end{itemize}
 \end{itemize}
-
-Zusammengefasst: Der Aufwand der Einarbeitung in das Testen in Flutter ist gering.
-Alle Werkzeuge werden vom Dart- und Flutter-Team bereitgestellt.
-Die Dokumentation ist umfangreich, folgt jedoch einem roten Faden.
-Eine Übersichtsseite fasst die Kerninformationen zusammen und verweist auf die jeweiligen  Seiten für detailliertere Informationen und Übungen.

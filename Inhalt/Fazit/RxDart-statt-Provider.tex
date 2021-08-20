@@ -1,0 +1,184 @@
+ 
+\section{Reevaluation des Zustandsmanagements}
+\label{sec:Reevaluation-des-Zustandsmanagements}
+
+
+Während der Implementierung wurde eine passende Vorgehensweise gesucht,
+um den Zustand der Applikation zu verwalten
+und damit die Aktualisierung der Oberfläche auszulösen.
+Für simple Applikationen empfiehlt Google den integrierten Mechanismus der \enquote{StatefulWidgets} und deren Methode \enquote{setState} zu verwenden \footcite[Vgl.][]{AddingInteractivityToYourFlutterApp}.
+Doch durch die hohe Anzahl der Oberflächenelemente in der finalen Applikation ist diese Vorgehensweise nicht empfehlenswert.
+Sie setzt das Aktualisieren gesamter Widgets bei Anpassung des Zustandes voraus,
+was für die Laufzeitgeschwindigkeit die intensivste Belastung darstellt.
+Stattdessen wurde versucht,
+einem Mechanismus zu verwenden,
+der es erlaubt,
+nur Teile der Oberfläche neuzuzeichen,
+die wirklich eine Aktualisierung benötigen.
+
+Zu diesem Zweck empfiehlt Google das Nutzen des Pakets \enquote{provider} der Flutter Community \footcite[Vgl.][]{ProviderARecommendedApproach}.
+Dieser Ansatz wurde in der Implementierung ursprünglich verwendet.
+Das Paket hat den Nachteil,
+dass für jeden Zustand,
+der die Aktualisierung eines Teils der Oberfläche bewirken soll,
+eine neue Klasse erstellt werden muss, die von ChangeNotifier erbt.
+Eine Möglichkeit ist,
+dass jede dieser Klassen den nötigen Boilerplate-Quellcode enthält,
+welcher die Oberfläche über die Methode \IC{notifyListeners} benachrichtigt.
+Eine andere Möglichkeit ist es, für den gleichen Datentyp den benötigten BoilerplateCode in einer eigenen Basisklasse auszulagern
+und dann von dieser Klasse zu erben wie in Listing \label{lst:ChoiceChangeNotifier} zu sehen.
+\ifIncludeFigures
+  \begin{listing}[h]
+    \begin{minted}[]{dart}
+class ChoiceChangeNotifier extends ChangeNotifier {
+    BuiltSet<Choice> _choices = BuiltSet<Choice>();
+
+    BuiltSet<Choice> get choices => _choices;
+
+    set choices(BuiltSet<Choice> choices) {
+        _choices = choices;
+        notifyListeners();
+    }
+}
+class LetzterStatusViewModel extends ChoiceChangeNotifier {}
+\end{minted}
+    \caption[built_value Live Template]{Live Template für die Erstellung von built_value Boilerplate-Code in Android Studio, Quelle: Jetbrains Marketplace Built Value Snippets Plugin}
+    \label{lst:ChoiceChangeNotifier}
+  \end{listing}
+\fi
+\IC{ChoiceChangeNotifier} verwaltet den internen privaten Zustand \IC{_choices} \Z{3} über die öffentlichen Schnittstellen zum Lesen \Z{4} und Schreiben \Z{6-9}.
+Bei Aktualisierung des Wertes erhalten alle Listener eine Benachrichtigung \Z{8}.
+\IC{LetzterStatusViewModel} erbt dieses Verhalten, doch hat die Klasse darüber hinaus keine Implementierung.
+
+Anschließend muss jeder \IC{ChangeNotifier} als ein \IC{ChangeNotifierProvider} registriert werden \LstZ{\ref{lst:MultiProvider}}{7}. 
+Der \IC{MultiProvider} kann genutzt werden, um mehrere Provider in einer Liste zu übergeben.
+Dort werden auch andere Services wie etwa \IC{MassnahmenFormViewModel} \Z{3} und \IC{MassnahmenModel} \Z{6} hinterlegt.
+
+\ifIncludeFigures
+  \begin{listing}[h]
+    \begin{minted}[]{dart}
+MultiProvider(
+  providers: [
+    Provider<MassnahmenFormViewModel>(create: (_) => MassnahmenFormViewModel()),
+    Provider<MassnahmenJsonFile>(create: (_) => MassnahmenJsonFile()),
+    Provider(
+        create: (context) => MassnahmenModel(
+            Provider.of<MassnahmenJsonFile>(context, listen: false))),
+     ChangeNotifierProvider(create: (context) => LetzterStatusViewModel())),
+  ],
+  child: MaterialApp(),
+)
+\end{minted}
+    \caption[built_value Live Template]{Live Template für die Erstellung von built_value Boilerplate-Code in Android Studio, Quelle: Jetbrains Marketplace Built Value Snippets Plugin}
+    \label{lst:MultiProvider}
+  \end{listing}
+\fi
+
+Dann ist der \IC{ChangeNotifier} in dem Widget, welches den Parameter \IC{child} übergeben wird und darüber hinaus allen Kindern-Elementen dieses Widgets verfügbar.
+Über einen \IC{Consumer} kann in der Oberfläche auf Änderungen des \IC{ChangeNotifier} reagiert werden \Lst{\ref{lst:Consumer}}.
+
+\ifIncludeFigures
+  \begin{listing}[h]
+    \begin{minted}[]{dart}
+  Consumer<LetzterStatusViewModel>(
+      builder: (context, choiceChangeNotifier, child) {
+      },
+    )
+\end{minted}
+    \caption[built_value Live Template]{Live Template für die Erstellung von built_value Boilerplate-Code in Android Studio, Quelle: Jetbrains Marketplace Built Value Snippets Plugin}
+    \label{lst:Consumer}
+  \end{listing}
+\fi
+
+
+Doch diese Vorgehensweise bietet im Vergleich zu den von Flutter mitgelieferten \enquote{Widgets} keine Vorteile.
+Das Äquivalent zum \IC{Consumer} ist das mitgelieferten Widget \IC{StreamBuilder},
+welcher mit jeder Art von \enquote{Stream} verwendet werden kann.
+
+Damit unterstützt er ein breiteres Spektrum von Einsatzmöglichkeiten.
+Beispielsweise kann ein transformierter \enquote{Stream} übergeben werden, wie im Kapitel \ref{Schritt4} gezeigt.
+
+Die einzige fehlende Komponente dafür ist ein \enquote{Stream},
+der den zuletzt übermittelten Wert speichert und den neuen StreamBuilder Elementen übermittelt.
+Deshalb wurde sich für das Package \enquote{rx.dart} entschieden,
+welches genau dieses Verhalten mit dem \enquote{BehaviorSubject} abdeckt.
+Durch dessen Verwendung kann sowohl auf das Registrieren des \IC{ChangeNotifierProvider} verzichtet werden
+und es muss keine weitere Klasse für die einzelnen beobachtbaren Objekte erstellt werden.
+
+Auch der \IC{MultiProvider} erscheint auf den ersten Blick als sehr nützlich.
+Doch das Anbieten der Services durch ein eigens implementiertes \IC{InheritedWidget} erlaubt einen Zugriff,
+der kürzer und expliziter ist.
+Durch die Umstellung konnte der Zugriff auf das ViewModel mithilfe des Ausdrucks \IC{Provider.of<MassnahmenFormViewModel>(context, listen: false)} durch \IC{AppState.of(context).viewModel} ersetzt werden.
+
+Eine ganz ähnliche, wenn auch deutlich kompliziertere Variante dieser Vorgehensweise, wurde auf der Google I/O 2018 von Filip Hracek und Matt Sulliivan vorgestellt. Doch anstatt lediglich das BehaviorSubject für das ViewModel zu verwenden, sorgte die Präsentation durch den zusätzlichen -- jedoch überflüssigen -- Einsatz zwei weiterer Stream-Klassen für schweres Verständnis \Lst{\ref{lst:CartBloc}}\footcite[][TC: \href{https://youtu.be/RS36gBEp8OI?t=1657}{27:37}]{GoogleIO18}.
+
+\ifIncludeFigures
+  \begin{listing}[h]
+    \begin{minted}[]{dart}
+class CartBloc{
+    final _cart = Cart();
+
+    Sink<Product> get addition => _additionalController.sink;
+
+    final _additionController = StreamController<Product>();
+
+    Stream<int> get itemCount => _itemCountSubject.stream;
+
+    final _itemCountSubject = BehaviorSubject<int>();
+
+    CartBloc(){
+        _additionaController.stream.listen(_handle);
+    }
+
+    void _handle(Product product){
+        _cart.add(product);
+        _itemCountSubject.add(_cart.itemCount);
+    }
+}
+\end{minted}
+    \caption[Die Klasse CartBloc]{Die Klasse CartBloc, Quelle: \cite{GoogleIO18} TC: \href{https://youtu.be/RS36gBEp8OI?t=1657}{27:37} \footnotemark}
+    \label{lst:CartBloc}
+  \end{listing}
+\fi
+
+Obwohl das \IC{BehaviorSubject} die Funktionsweise des \IC{ViewModels} bereits löst,
+wurde ein Objekt des Typs \IC{Sink} verwendet,
+um Ereignisse von dem View an das \IC{ViewModel} senden zu können \Z{4}. \IC{StreamController} verwendet.
+Ein Sind implementiert jedoch ausschließlich Methoden zum Hinzufügen von Ereignissen Punkt um den Stream zu lesen,
+wird ein  dazugehöriger \IC{StreamController} erstellt \Z{6}.
+Er hat im Gegensatz zum \IC{Sink} auch lesenden Zugriff auf die Ereignisse.
+Sobald ein Ereignis eintrifft,
+so wird es dem \IC{Model} \IC{_cart} hinzugefügt \Z{17}.
+Es existiert außerdem ein weiterer \IC{Stream itemCount} \Z{8} welcher lediglich die transitive Eigenschaft der Anzahl der hinzugefügten Elemente darstellt \IC{18}. 
+Er nutzt das BehaviorSubject \IC{10},
+verwendet allerdings keine der bedeutsamen Methoden.
+Es könnte genauso gut durch einen weiteren \IC{StreamController} ersetzt werden.
+
+Der gesamte Quellcode kann stark vereinfacht werden \Lst{\ref{lst:CartBlocVereinfacht}}.
+\ifIncludeFigures
+  \begin{listing}[h]
+    \begin{minted}[]{dart}
+class CartBloc{
+  final _cart = BehaviorSubject<Cart>(seedValue: Cart());
+
+  addProduct(Product product) => _cart.value = _cart.value..add(product);
+
+  Stream<int> get itemCount => _cart.map((cart) => cart.itemCount);
+}
+\end{minted}
+    \caption[Die vereinfachte Klasse CartBloc]{Die vereinfachte Klasse CartBloc, Quelle: Eigenes Listing}
+    \label{lst:CartBlocVereinfacht}
+  \end{listing}
+\fi
+
+Durch Einsatz der für das \IC{BehaviorSubject} einzigartigen Getter-Methode \IC{value} kann dem \enquote{Stream} ein neues Objekt hinzugefügt werden,
+wodurch er gleichzeitig ein neues Ereignis sendet \Z{4}.
+Die Zuweisung hat zwar ansonsten keinen Zweck,
+da das Objekt vor und nach der Zuweisung das gleiche ist,
+denn es handelt sich um einen Referenztyp und nicht um einen Werttyp.
+Die Erstellung weiterer \IC{StreamController} zum Senden der transitiven Eigenschaft \IC{itemCount} ist nicht nötig.
+Sendet das \IC{BehaviorSubject} \IC{_cart} ein neues Event \Z{4},
+so wird auch die Methode \IC{map} ausgelöst und ein transformiertes Eigenschaft gesendet \Z{6}.
+
+Durch eine Anleitung mit diesem Ergebnis könnten gegebenenfalls weitere Entwickler das \enquote{BloC-Pattern} dem Paket \enquote{provider} vorziehen.
+

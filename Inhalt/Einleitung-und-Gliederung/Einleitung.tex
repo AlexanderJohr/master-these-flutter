@@ -1,0 +1,120 @@
+\chapter{Einleitung}
+
+Eine angenehme Erfahrung für den Nutzer einer Software entsteht unter anderem dann,
+wenn ihm die richtigen Information zur richtigen Zeit präsentiert werden.
+In Formularen spielen Einfach- und Mehrfachauswahl Felder
+-- im Englischen unter dem Begriff multiple choice Zusammengefasst -- eine Rolle.
+
+%Abbildung x zeigt eine solches Auswahlfeld mit 3 Auswahloptionen.
+
+% Zieleinheit
+% \newlist{todolist}{itemize}{2}
+% \setlist[todolist]{label=$\square$}
+% \begin{center}
+%   \begin{todolist}[topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex]
+%     \item Stück
+%     \item m³
+%     \item ha
+%   \end{todolist}    
+% \end{center}
+
+Die richtigen Informationen zur richtigen Zeit zu präsentieren könnte in diesem Kontext bedeuten,
+nur solche Auswahloptionen anzubeten,
+welche mit den bisherigen gewählten Optionen Sinn ergeben.
+Für die Datenerfassung von Maßnahmen auf landwirtschaftlich genutzten Flächen stellt dies eine Herausforderung dar,
+denn die Auswahlfelder und Optionen sind zahlreich und ihre Bedingungen komplex.
+Es lassen sich folgende Probleme ableiten. 
+
+\section{Problemstellung}
+
+Das primäre Problem und damit Musskriterium der Formular-Anwendung ist,
+dass sich die Auswahlfelder untereinander beeinflussen.
+Wird eine Option in einem Auswahlfeld selektiert,
+so werden die möglichen Auswahlfelder von potenziell jedem weiteren Auswahlfeld dadurch manipuliert.
+Es muss eine Möglichkeit gefunden werden,
+die Abhängigkeiten in einer einfachen Art und Weise für jede Auswahloption zu hinterlegen und bei Bedarf abzurufen.
+
+
+Das sekundäre Problem,
+welches sich vom primären Problem ableiten lässt,
+ist die  Laufzeitgeschwindigkeit. 
+Wenn die Auswahl in einem Auswahlfeld die Auswahlmöglichkeiten in potenziell allen anderen Auswahlfeldern manipuliert,
+so könnte dies zu einer hohen Last beim erneuten Zeichnen der Oberfläche zur Folge haben.
+Wann immer der Nutzer eine Selektion tätigt,
+müsste das gesamte Formular neu gezeichnet werden,
+um sicherzustellen,
+dass invalide Auswahloptionen gekennzeichnet werden.
+Bei einem  Formular mit wenigen Auswahlfeldern wäre das kein Problem,
+doch die nötigen Auswahlfelder für das Eintragen von Maßnahmen des Europäischen Landwirtschaftsfonds für die Entwicklung des ländlichen Raums (ELER) sind zahlreich.
+Ein  automatisierter Integrationstest,
+welcher im Formular Daten einer beispielhaften Maßnahme einträgt,
+zählt zum Zeitpunkt der Erstellung dieser Arbeit bereits 58 aufgerufene Auswahlfelder und 107 darin selektierte Auswahloptionen.
+Das bedeutet,
+dass bei jedem dieser 107 Selektionen die 58 Auswahlfelder und all ihre Kinder neu gezeichnet werden müssten.
+Es entstehen also Wartezeiten nach jedem Auswählen einer Option.
+Das Formular soll in Zukunft zudem noch erweitert und auch für die Eingabe ganz anderer Datensätze mit potenziell noch mehr Auswahlfeldern eingesetzt werden können.
+Die Dateneingabe wäre mit den Wartezeiten trotzdem möglich.
+\begin{newText}Daher ist es ein Wunschkriterium, dass ein Mechanismus gefunden wird,
+der nur die Elemente neu zeichnet, die sich wirklich ändern.\end{newText}
+
+Ein weiteres Wunschkriterium ist,
+dass der Benutzer beim Anwählen einer deaktivierten Auswahloption eine Mitteilung darüber erhält,
+welche der zuvor ausgewählten Optionen zu der Inkompatibilität mit dem gewünschten Optionen führt. 
+
+Ziel dieser Masterarbeit ist es eine geeignete Technologie für die Umsetzung auszuwählen
+und die Umsetzbarkeit der  oben genannten Kriterien zu evaluieren.
+
+\section{Gliederung}
+
+%Um nur die bedeutsamen Änderungen der erforderlichen Entwicklungsschritte für das Formular aufzuzeigen,
+%wurde die Anwendung auf ein Mindestmaß an Eingabefehler reduziert.
+%In sieben aufeinander aufbauenden Schritten wird im Formular jeweils eine weitere Funktionalität hinzugefügt.
+
+%Kapitel Schritt1 erstellt die grundlegende Struktur der Applikation
+%und geht auf das model-view-viewmodel,
+%das Servicelocator-
+%und das Builder-Entwurfsmuster ein.
+
+
+Kapitel \ref{chap:Technologie-Auswahl} evaluiert die Kandidaten der Frontendtechnologien,
+die für eine nähere Betrachtung infrage kommen.
+Dazu werden die Umfrageergebnisse der Stack Overflow -Umfragen sowie das relative Suchinteresse dieser Technologien auf Google Trends analysiert.
+Da die Technologien React Native und Flutter die am verbreitetsten Technologien hervorgingen, 
+werden sie daraufhin einem detaillierteren Vergleich unterzogen.
+
+Da als Frontendtechnologie für die Entwicklung der Formularanwendung Flutter gewählt wurde,
+beschäftigt sich Kapitel \ref{chap:Grundlagen} mit den Grundlagen des Frameworks und der zugrunde liegenden Programmiersprache Dart.
+
+Die Kapitel \ref{chap:Schritt-1} bis \ref{chap:Schritt-7} dokumentieren die nötigen Entwicklungsschritte,
+um die einzelnen aufeinander aufbauenden  Funktionalitäten hinzuzufügen.
+Die während der Arbeit im Thünen-Institut entstandene Anwendung wurde zu diesem Zweck auf die für die  Problemstellung bedeutsamsten Funktionalitäten reduziert.
+Die Anzahl der Auswahlfelder beschränkt sich darüber hinaus auf ein Mindestmaß,
+
+
+
+welches die Bedingungen der  Auswahloptionen untereinander erkennbar macht. 
+
+Kapitel \ref{chap:Schritt-1} stellt die grundlegende Struktur der Anwendung her. Kapitel \ref{chap:Schritt-2} fügt Hilfsmethoden hinzu,
+welche  das Hinzufügen  weiterer Formularfelder  in den folgenden Schritten vereinfachen wird.
+
+In Kapitel \ref{chap:Schritt-3} erhält die Anwendung die grundlegende Funktion,
+Felder zu validieren.
+Kapitel \ref{chap:Schritt-4} erweitert die Validierung schließlich um die Bedingungen der Auswahloptionen.
+Als Konsequenz werden alle Formularfelder neu gezeichnet,
+sollte  der Benutzer eine beliebige Auswahloption selektieren.
+Durch die Validierung  geschieht es nach dem Neuzeichnen,
+dass invalide Auswahlfelder rot markiert werden.
+Die erforderlichen Änderungen,
+um nur die Auswahlfelder zu aktualisieren,
+die ihre Validität oder ihren eigenen Inhalt ändern,
+wird in Kapitel \ref{chap:Schritt-5} hinzugefügt.
+
+Kapitel \ref{chap:Schritt-6} ergänzt die Möglichkeit,
+Mehrfachauswahlfelder zu verwenden.
+Kapitel \ref{chap:Schritt-7} sorgt dafür,
+dass auch benutzerdefinierte Bedingungen für die Auswahlfelder hinterlegt werden können.
+
+Kapitel \ref{chap:Diskussion} setzt sich mit den Erkenntnissen auseinander,
+die während der Entwicklung der Anwendung gesammelt wurden.
+Kapitel \ref{chap:Schlussfolgerung-und-Ausblick} bewertet die Erkenntnisse,
+ergänzt sie um einen Ausblick und vergleicht die Ergebnisse der Entwicklung mit den Anforderungen.

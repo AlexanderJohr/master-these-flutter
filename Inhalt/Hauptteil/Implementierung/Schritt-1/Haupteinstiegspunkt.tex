@@ -1,6 +1,6 @@
 
-\clearpage
-\subsection{Der Haupteinstiegspunkt}
+\ifIncludeFigures \clearpage \fi
+\section{Der Haupteinstiegspunkt}
 
 Das Listing \ref{lst:Schritt1DerHaupteinstiegspunkt} zeigt den Haupteinstiegspunkt des Programms.
 Darin ist erkennbar, dass sich die Applikation in drei Rubriken einteilen lässt:
@@ -9,6 +9,13 @@ Darin ist erkennbar, dass sich die Applikation in drei Rubriken einteilen lässt
   \item der View \Z{41-44}
   \item das ViewModel. \Z{25-26}
 \end{itemize}
+
+\begin{alexlisting}{Schritt 1}{Der Haupteinstiegspunkt}
+  {Quellcode/Schritt-1/conditional_form/lib/main.dart}
+  {firstline=18}
+  \label{lst:Schritt1DerHaupteinstiegspunkt}
+\end{alexlisting}
+
 \paragraph{Model View ViewModel}
 Das ModelViewViewmodel Entwurfsmuster wurde zunächst von John Gossman für die Windows Presentation Foundation beschrieben.
 Das Model beschreibt die Datenzugriffs-Komponente, welche die Daten in relationalen Datenbanken oder hierarchischen Datenstrukturen wie XML oder JSON ablegt.
@@ -59,17 +66,10 @@ Hat der Benutzer die Arbeit in der Unterseite vollendet, so kann der Navigator g
  Mit dem Parameter \IC{routes} \Z{34-39} erfolgt die Angabe der Unterseiten, die besucht werden können.
 Über \IC{initialRoute} \Z{39} kann die Startseite angegeben werden.
 
-\begin{alexlisting}{Schritt 1}{Der Haupteinstiegspunkt}
-  {Quellcode/Schritt-1/conditional_form/lib/main.dart}
-  {firstline=18}
-  \label{lst:Schritt1DerHaupteinstiegspunkt}
-\end{alexlisting}
 
 \clearpage
 \subsection{Der Service für den applikationsübergreifenden Zustand}
 
-
-\ref{lst:UmlAppState}
 
 Um Daten an alle Kind-Elementen im Widgets mitzugeben, finden die sogenannten \enquote{InheritedWidgets} Anwendung.
 Der Service \IC{AppState} \Lst{\ref{lst:Schritt1DerServiceAppState}} ist genauso ein solches.?
@@ -103,7 +103,7 @@ Damit der Aufruf leichter lesbar und kürzer ist, empfiehlt das Flutter-Team, ei
 Auch eine Fehlermeldung kann bei dieser Auslagerung geworfen werden, sollte im Kontext kein Objekt des gewünschten Typs vorhanden sein \Z{18}.
 Das Widget, welches auf den \IC{AppState} zugreifen möchte, kann es? mit der einfachen Schreibweise \IC{AppState.of(context)} abrufen.
 
-Abbildung \label{lst:UmlAppState}? zeigt die Beziehung zwischen den Bildschirmen und dem AppState auf.
+Abbildung \ref{lst:UmlAppState} zeigt die Beziehung zwischen den Bildschirmen und dem AppState auf.
 Sowohl MassnahmenMasterScreen und MassnahmenDetailScreen müssen auf MassnahmenModel und MassnahmenFormViewModel zugreifen können.
 Zu diesem Zweck erstellt MassnahmenFormApp den AppState.
 Er enthält sowohl ViewModel als auch Model.
@@ -118,7 +118,7 @@ Er enthält sowohl ViewModel als auch Model.
 \end{alexlisting}
 
 
-\ifincludeall
+\ifIncludeFigures
   \begin{figure}[h]
     \centering
 
@@ -167,8 +167,8 @@ Er enthält sowohl ViewModel als auch Model.
 \fi
 
 
-\clearpage
-\subsection{Speichern der Maßnahmen in eine JSON-Datei}
+\ifIncludeFigures \clearpage \fi
+\section{Speichern der Maßnahmen in eine JSON-Datei}
 Das Model wird durch die Klasse \IC{MassnahmenJsonFile} in eine JSON-Datei gespeichert \Lst{\ref{lst:Schritt1KlasseMassnahmenJsonFile}}.
 Der Dateipfad wird dabei durch die Methode \IC{_localMassnahmenJsonFile} \Z{8-11} abgerufen.
 Die Hilfsmethode \IC{getApplicationSupportDirectory} \Z{9} gibt aus dem Nutzerverzeichnis des aktuellen Nutzers den zur Applikation zugeordneten Datei-Ordner zurück.
@@ -200,8 +200,8 @@ Sollte die Dateien nicht existieren, führt das zu einer Ausnahme \Z{28}, welche
   \label{lst:Schritt1KlasseMassnahmenJsonFile}
 \end{alexlisting}
 
-\clearpage
-\subsection{ Abhängigkeit zum Verwalten der Maßnahmen}
+\ifIncludeFigures \clearpage \fi
+\section{ Abhängigkeit zum Verwalten der Maßnahmen}
 
 Die Art und Weise, wie die Maßnahmen abgerufen werden, sollte nach Möglichkeit abstrahiert werden.
 Das erlaubt, den Mechanismus in Zukunft auszutauschen, ohne dabei den Rest der Applikation verändern zu müssen.
@@ -223,7 +223,7 @@ Sie bekommt \IC{MassnahmenJsonFile} im Konstruktor übergeben? \Z{11}.
 Daraufhin ruft der Konstruktor gleich die \IC{init} auf \Z{12}, welche in den Zeilen 15-22 deklariert ist.
 Darin wird der Stream \IC{storage} \Z{19} initialisiert.
 Es handelt sich um eine Erweiterung eines \enquote{broadcast streams} mit dem Namen \IC{BehaviorSubject} \Z{9}.
-Es? entstammt dem Paket rx.dart, welches die Streams in Dart um eine Reihe von weiteren Funktionalitäten erweitert. Ein \IC{BehaviorSubject} hat die Besonderheit, dass es den Wert des letzten Ereignisses zwischenspeichert. Die \enquote{broadcast streams} haben für gewöhnlich den Nachteil, dass neue Zuhörer des Streams nur die neuen Ereignisse erhalten. Alle in der Vergangenheit erfolgten Ereignisse sind nicht mehr verfügbar. Vor allem dann, wenn in der Oberfläche der letzte Wert eines Streams verwendet werden soll, um Elemente zu zeichnen, ist das von einem besonderen Nachteil. Denn wenn der Stream zuvor initialisiert wurde, so gibt es keine Daten zu dem Zeitpunkt, wenn die Oberfläche gezeichnet wird. Sollte die Oberfläche jedoch gezeichnet werden, bevor der Stream initialisiert wurde, so  existieren ebenfalls keine Daten. Hier kommt das \IC{BehaviorSubject} ins Spiel. Sobald die Oberfläche gezeichnet wird und der Stream bereits initialisiert ist, kann dennnoch auf den zuletzt übertragenen Wert zurückgegriffen werden. Anschließend überträgt der Stream die folgenden Aktualisierungen für die Oberfläche mit jedem neuen Ereignis, so wie es für Streams üblich ist.
+Es entstammt dem Paket rx.dart, welches die Streams in Dart um eine Reihe von weiteren Funktionalitäten erweitert. Ein \IC{BehaviorSubject} hat die Besonderheit, dass es den Wert des letzten Ereignisses zwischenspeichert. Die \enquote{broadcast streams} haben für gewöhnlich den Nachteil, dass neue Zuhörer des Streams nur die neuen Ereignisse erhalten. Alle in der Vergangenheit erfolgten Ereignisse sind nicht mehr verfügbar. Vor allem dann, wenn in der Oberfläche der letzte Wert eines Streams verwendet werden soll, um Elemente zu zeichnen, ist das von einem besonderen Nachteil. Denn wenn der Stream zuvor initialisiert wurde, so gibt es keine Daten zu dem Zeitpunkt, wenn die Oberfläche gezeichnet wird. Sollte die Oberfläche jedoch gezeichnet werden, bevor der Stream initialisiert wurde, so  existieren ebenfalls keine Daten. Hier kommt das \IC{BehaviorSubject} ins Spiel. Sobald die Oberfläche gezeichnet wird und der Stream bereits initialisiert ist, kann dennnoch auf den zuletzt übertragenen Wert zurückgegriffen werden. Anschließend überträgt der Stream die folgenden Aktualisierungen für die Oberfläche mit jedem neuen Ereignis, so wie es für Streams üblich ist.
 
 Der Stream kann nicht bereits in der Initialisierungsliste des Konstruktors mit den Daten aus der JSON-Datei gefüllt werden.
 Das liegt daran, dass die JSON-Daten dazu zunächst gelesen werden müssen, was nur durch eine Reihe von asynchronen Operation möglich ist.
@@ -250,4 +250,4 @@ Durch Austauschen des gesamten Objekts mit der Zuweisung von \IC{storage.value} 
   \label{lst:Schritt1KlasseMassnahmenModel}
 \end{alexlisting}
 
-\clearpage
+\ifIncludeFigures \clearpage \fi

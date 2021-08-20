@@ -1,58 +1,141 @@
-\documentclass[11pt, twoside]{article}
+\documentclass[11pt, twoside
+  % fontsize=11pt, % Schriftgröße
+  DIV10,
+  % ngerman, % für Umlaute, Silbentrennung etc.
+  % twoside=true, % einseitiges Dokument
+  % titlepage, % es wird eine Titelseite verwendet
+   parskip=full, % Abstand zwischen Absätzen (halbe Zeile)
+  % headings=normal, % Größe der Überschriften verkleinern
+   listof=totoc, % Verzeichnisse im Inhaltsverzeichnis aufführen
+   bibliography=totoc, % Literaturverzeichnis im Inhaltsverzeichnis aufführen
+   index=totoc, % Index im Inhaltsverzeichnis aufführen
+  % captions=tableheading, % Beschriftung von Tabellen unterhalb ausgeben
+  ]{scrbook}
 
-\newif\ifincludeall\includealltrue
+
+
+
+\newif\ifSimplyIncludeEverythingForSubmission
+
+\newif\ifIncludeFigures
+
+\newif\ifIncludeAllChapters
+
+\newif\ifIncludeMiscellaneous
+
+\newif\ifIncludeTitlePage
+
+\newif\ifIncludeAppendix
+
+
+
+% was soll integriert werden?
+
+
+\IncludeAllChaptersfalse
+\IncludeFiguresfalse
+\IncludeMiscellaneousfalse
+\IncludeTitlePagefalse
+\IncludeAppendixfalse
+
+
+\SimplyIncludeEverythingForSubmissionfalse
+
+% was soll integriert werden?
+
+\ifSimplyIncludeEverythingForSubmission
+  \IncludeAllChapterstrue
+  \IncludeFigurestrue
+  \IncludeMiscellaneoustrue
+  \IncludeTitlePagetrue
+  \IncludeAppendixtrue
+\fi
+
+
+
 
 
 \include{Konfiguration/Konfiguration} 
+
+
 
 \addbibresource{Literatur/Literatur.bib}
 
 \begin{document}
 
-\setcounter{page}{0}
-% todo high: uncomment 
-%\include{Sonstiges/empty_page}
-% todo high: uncomment
+%\setcounter{page}{0}
 
-\include{Sonstiges/Deckblatt} 
-% todo high: uncomment 
+
+
+\ifIncludeTitlePage
+\include{Sonstiges/Deckblatt/Deckblatt}
+\fi
+
+
+\ifIncludeMiscellaneous
 \include{Sonstiges/empty_page}
-% todo high: uncomment \include{Inhalt/Expose/Expose}   
+\include{Inhalt/Expose/Expose}   
 
-% todo high: uncomment \include{Sonstiges/empty_page} 
-% todo high: uncomment \include{Verzeichnisse/Inhaltsverzeichnis}
-% todo high: uncomment \include{Verzeichnisse/Abbildungsverzeichnis} 
-% todo high: uncomment \include{Verzeichnisse/Listingverzeichnis}
+%\include{Sonstiges/empty_page} 
+\include{Verzeichnisse/Inhaltsverzeichnis}
+\include{Verzeichnisse/Abbildungsverzeichnis} 
+\include{Verzeichnisse/Listingverzeichnis}
+\fi
 
+
+
+% todo high: Löschen!
 % todo high: uncomment \include{Inhalt/Hauptteil/Anforderungen/Anforderungen}
 
-% todo high: uncomment \include{Inhalt/Einleitung/Einleitung}
- 
 
-% todo high: uncomment \include{Inhalt/Hauptteil/Technologie-Auswahl/Technologie-Auswahl}
+%\ifIncludeAllChapters
+\include{Inhalt/Einleitung-und-Gliederung/Einleitung-und-Gliederung}
+%\fi
 
-% todo high: uncomment 
+\part{Vorbereitung}
+\label{part:Vorbereitung}
+
+\ifIncludeAllChapters
+\include{Inhalt/Hauptteil/Technologie-Auswahl/Technologie-Auswahl}
+\fi
+
+\ifIncludeAllChapters
+\input{Inhalt/Grundlagen/Grundlagen}
+\fi
+
+\ifIncludeAllChapters
 \include{Inhalt/Hauptteil/Implementierung/Implementierung} 
-% todo high: uncomment \include{Inhalt/Hauptteil/Fehlschlaege/Fehlschlaege}  
+\fi
+
+%\ifIncludeAllChapters
+\include{Inhalt/Fazit/Fazit}  
+%\fi
+
+
+\ifIncludeAppendix
 
 \begin{appendix} 
-  \part{Anhang} 
+  \part{Anhang}
   \renewcommand{\thesection}{\Alph{section}}
 
-% todo high: uncomment \include{Inhalt/Hauptteil/Technologie-Auswahl/Technologie-Auswahl-Anhang}
+% todo high: uncomment 
+\include{Inhalt/Hauptteil/Technologie-Auswahl/Technologie-Auswahl-Anhang}
 
+% todo high: uncomment
 \include{Inhalt/Hauptteil/Implementierung/Implementierung-Anhang} 
-
-
-
 
 \end{appendix}  
 
-% todo high: uncomment
+\fi
+
+% todo high: uncomment 
 \include{Verzeichnisse/Literaturverzeichnis}
 
 % todo high: uncomment 
 \include{Inhalt/Hauptteil/eidesstattliche_erklaerung}
-% todo high: uncomment \include{Verzeichnisse/Eidesstattliche_Erklaerung.tex}
+% todo high: uncomment 
+\include{Verzeichnisse/Eidesstattliche_Erklaerung.tex}
+
+
 
 \end{document}

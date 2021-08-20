@@ -1,156 +1,323 @@
-\clearpage 
+\chapter{Schritt 7}
+\label{chap:Schritt-7}
 
-\subsection{Schritt 7}
+\begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-7/D H BioDiv.png}
+  {Schritt 7 Eingabemaske}
+  {XXX Die Eingabemaske zeigt im Schritt 1 eine Karte zum Selektieren des Status und ein Eingabefeld für den Titel}
 
-\begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-7/Übersicht.png}
-  {Schritt 1 Übersicht}
-  {Der Übersicht-Bildschirm zeigt in  Schritt 1 zunächst nur die Maßnahmen mit ihrem Titel und Bearbeitungsdatum in den Kategorien \enquote{Abgeschlossen} und \enquote{In Bearbeitung}}
-
-  \label{fig:Schritt1Uebersicht}
+  \label{fig:Schritt4Eingabemaske}
 
 \end{alexfigure}
 
-\clearpage 
+\begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-7/D N Biodiv.png}
+  {Schritt 7 Eingabemaske}
+  {XXX Die Eingabemaske zeigt im Schritt 1 eine Karte zum Selektieren des Status und ein Eingabefeld für den Titel}
+
+  \label{fig:Schritt4Eingabemaske}
+
+\end{alexfigure}
+
+
+\begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-7/D N Biodiv Rot.png}
+  {Schritt 7 Eingabemaske}
+  {XXX Die Eingabemaske zeigt im Schritt 1 eine Karte zum Selektieren des Status und ein Eingabefeld für den Titel}
+
+  \label{fig:Schritt4Eingabemaske}
+
+\end{alexfigure}
+
+Nachdem im letzten Schritt nun die Mehrfachauswahl für die Nebenziel hinzugefügt wurde,
+soll in diesem Schritt die Möglichkeit geschaffen werden,
+benutzerdefinierte Abhängigkeiten für Auswahloptionen anzugeben.
+Denn die Nebenziele haben mehrere besondere Voraussetzungen:
+
+Sollte das Hauptziel nicht gesetzt sein oder die Option \enquote{keine Angabe/Vorgabe} oder \enquote{bitte um Unterstützung} enthalten,
+so ist es nicht sinnvoll, dass ein tatsächliches Nebenziel gewählt wird.
+In diesem Fall kommen wiederum nur die Werte \enquote{keine Angabe/Vorgabe} oder \enquote{bitte um Unterstützung} infragen.
+
+Sollte dagegen ein Hauptziel gesetzt sein, so darf das Nebenziel nicht die gleiche Option enthalten.
+Diese Bedingungen lassen sich nicht mit Funktion \IC{condition} der Basisklasse \IC{Choice} lösen.
+
+Denn das Argument \IC{priorChoices},
+welches der Funktion \IC{condition} übergeben wird,
+enthält zwar alle Auswahloptionen,
+die im gesamten Formular gewählt worden,
+gibt aber keine Auskunft darüber,
+von welchem Auswahlfeld sie stammen. 
+Sollte also die Auswahloptionen \enquote{Biodiversität} in der Menge der \IC{priorChoices} auftauchen,
+so ist unklar,
+ob sie im Auswahlfeld für das Hauptziel oder dem der Nebenziele gewählt wurde.
+
+Wenn der Selektionskarte aber eine benutzerdefinierte Funktion übergeben werden könnte,
+welche im aufrufenden Kontext auch Zugriff auf das ViewModel hat,
+so könnte direkt auf die Auswahlfelder zugegriffen werden.
+
+
+Zu diesem Zweck wird der Klasse \IC{SelectionCard} die Instanzvariable \IC{choiceMatcher} hinzugefügt \LstZ{\ref{lst:Schritt7SelectionCard}}{27}.
+Ein Parameter des gleichen Namens wird den Hilfsmethoden \IC{buildSelectionCard} und \IC{buildMultiSelectionCard} welche ihn unverändert an den Konstruktor der Klasse \IC{SelectionCard} weitergeleitet.
+Die entsprechenden Listing sind in Anhang \ref{appendix:Schritt7Anhang} auf den Seiten \pageref{lst:Schritt7buildSelectionCard} und \pageref{lst:Schritt7buildMultiSelectionCard} zu finden. 
+
+
+
+
 
 
 \begin{alexlisting}{Schritt 7}{XXXX}
-    {Quellcode/Schritt-7/conditional_form/integration_test/app_test.dart}
-    {firstline=148, lastline=157, highlightlines={148-153}}
-    \label{lst:Schritt5XXXX}
-  \end{alexlisting}
-
-  \begin{alexlisting}{Schritt 7}{XXXX}
-    {Quellcode/Schritt-7/conditional_form/integration_test/app_test.dart}
-    {firstline=178, lastline=184, highlightlines={180-183}}
-    \label{lst:Schritt5XXXX}
-  \end{alexlisting}
-
-
-  \begin{alexlisting}{Schritt 7}{XXXXX}
-    {Quellcode/Schritt-7/conditional_form/lib/choices/base/choice.dart}
-    {firstline=14, lastline=25, highlightlines={17-25}}
-    \label{lst:Schritt4XXXXX}
-  \end{alexlisting}
-
-  \begin{alexlisting}{Schritt 7}{XXXX}
-    {Quellcode/Schritt-7/conditional_form/lib/choices/choices.dart}
-    {firstline=226, lastline=258}
-    \label{lst:Schritt5XXXX}
-  \end{alexlisting}
-
-  \begin{alexlisting}{Schritt 7}{XXXX}
-    {Quellcode/Schritt-7/conditional_form/lib/choices/choices.dart}
-    {firstline=260, lastline=268}
-    \label{lst:Schritt5XXXX}
-  \end{alexlisting}
-
-  \begin{alexlisting}{Schritt 7}{XXXX}
-    {Quellcode/Schritt-7/conditional_form/lib/choices/choices.dart}
-    {firstline=270, lastline=288}
-    \label{lst:Schritt5XXXX}
-  \end{alexlisting}
-
-  \begin{alexlisting}{Schritt 7}{XXXX}
-    {Quellcode/Schritt-7/conditional_form/lib/choices/choices.dart}
-    {firstline=290, lastline=299}
-    \label{lst:Schritt5XXXX}
-  \end{alexlisting}
-
-
-  \begin{alexlisting}{Schritt 7}{XXXX}
-    {Quellcode/Schritt-7/conditional_form/lib/data_model/massnahme.dart}
-    {firstline=16, lastline=18, highlightlines={18}}
-    \label{lst:Schritt5XXXX}
-  \end{alexlisting}
-
-  \begin{alexlisting}{Schritt 7}{XXXX}
-    {Quellcode/Schritt-7/conditional_form/lib/data_model/massnahme.dart}
-    {firstline=91, lastline=101, highlightlines={}}
-    \label{lst:Schritt5XXXX}
-  \end{alexlisting}
-
-  \begin{alexlisting}{Schritt 7}{XXXX}
-    {Quellcode/Schritt-7/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
-    {firstline=133, lastline=140, highlightlines={137}}
-    \label{lst:Schritt6XXXXX}
-  \end{alexlisting}
-
-  \begin{alexlisting}{Schritt 7}{XXXX}
-    {Quellcode/Schritt-7/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
-    {firstline=207, lastline=218, highlightlines={214}}
-    \label{lst:Schritt6XXXXX}
-  \end{alexlisting}
-
-  \begin{alexlisting}{Schritt 7}{XXXX}
-    {Quellcode/Schritt-7/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
-    {firstline=280, lastline=305, highlightlines={280-304}}
-    \label{lst:Schritt6XXXXX}
-  \end{alexlisting}
-
-
-
-  \begin{alexlisting}{Schritt 7}{XXXX}
-    {Quellcode/Schritt-7/conditional_form/lib/screens/massnahmen_detail/massnahmen_form_view_model.dart}
-    {firstline=20, lastline=23, highlightlines={22-23}}
-    \label{lst:Schritt5XXXXX}
-  \end{alexlisting}
-  \begin{alexlisting}{Schritt 7}{XXXX}
-    {Quellcode/Schritt-7/conditional_form/lib/screens/massnahmen_detail/massnahmen_form_view_model.dart}
-    {firstline=28, lastline=45, highlightlines={35,43}}
-    \label{lst:Schritt5XXXXX}
-  \end{alexlisting}
-  \begin{alexlisting}{Schritt 7}{XXXX}
-    {Quellcode/Schritt-7/conditional_form/lib/screens/massnahmen_detail/massnahmen_form_view_model.dart}
-    {firstline=68, lastline=73, highlightlines={72,73}}
-    \label{lst:Schritt5XXXXX}
-  \end{alexlisting}
-  \begin{alexlisting}{Schritt 7}{XXXX}
-    {Quellcode/Schritt-7/conditional_form/lib/screens/massnahmen_detail/massnahmen_form_view_model.dart}
-    {firstline=87, lastline=90, highlightlines={89}}
-    \label{lst:Schritt5XXXXX}
-  \end{alexlisting}
-  \begin{alexlisting}{Schritt 7}{XXXX}
-    {Quellcode/Schritt-7/conditional_form/lib/screens/massnahmen_detail/massnahmen_form_view_model.dart}
-    {firstline=92, lastline=119, highlightlines={}}
-    \label{lst:Schritt5XXXXX}
-  \end{alexlisting}
-
-  \begin{alexlisting}{Schritt 7}{XXXXX}
-    {Quellcode/Schritt-7/conditional_form/lib/widgets/massnahmen_table.dart}
-    {firstline=28, lastline=29, highlightlines={29}}
-    \label{lst:Schritt5XXXXX}
-  \end{alexlisting}
-  \begin{alexlisting}{Schritt 7}{XXXXX}
-    {Quellcode/Schritt-7/conditional_form/lib/widgets/massnahmen_table.dart}
-    {firstline=45, lastline=52, highlightlines={52}}
-    \label{lst:Schritt5XXXXX}
-  \end{alexlisting}
-  \begin{alexlisting}{Schritt 7}{XXXXX}
-    {Quellcode/Schritt-7/conditional_form/lib/widgets/massnahmen_table.dart}
-    {firstline=59, lastline=81, highlightlines={}}
-    \label{lst:Schritt5XXXXX}
-  \end{alexlisting}
-
-  \begin{alexlisting}{Schritt 7}{XXXX}
-    {Quellcode/Schritt-7/conditional_form/lib/widgets/selection_card.dart}
-    {firstline=7, lastline=15, highlightlines={}}
-    \label{lst:Schritt6XXXX}
-\end{alexlisting}
-\begin{alexlisting}{Schritt 7}{XXXX}
-    {Quellcode/Schritt-7/conditional_form/lib/widgets/selection_card.dart}
-    {firstline=28, lastline=57, highlightlines={37,46,54-55}}
-    \label{lst:Schritt6XXXX}
-\end{alexlisting}
-\begin{alexlisting}{Schritt 7}{XXXX}
-    {Quellcode/Schritt-7/conditional_form/lib/widgets/selection_card.dart}
-    {firstline=106, lastline=118, highlightlines={107,109-110,113-117}}
-    \label{lst:Schritt6XXXX}
+  {Quellcode/Schritt-7/conditional_form/lib/widgets/selection_card.dart}
+  {firstline=13, lastline=47, highlightlines={13-14, 16-18, 31, 41, 46}}
+  \label{lst:Schritt7SelectionCard}
 \end{alexlisting}
 
-\begin{alexlisting}{Schritt 7}{XXXX}
-    {Quellcode/Schritt-7/conditional_form/lib/widgets/selection_card.dart}
-    {firstline=120, lastline=135, highlightlines={125-129}}
-    \label{lst:Schritt6XXXX}
-\end{alexlisting} 
+Der initialisierende Wert kann im Konstruktor gesetzt \Z{41},
+aber auch ausgelassen werden,
+da er nicht mit dem \IC{required}-Schlüsselwort gekennzeichnet und damit nicht verpflichtend ist.
+Doch aus diesem Grund kann der Parameter den Wert \IC{null} annehmen,
+weshalb er mit dem Suffix \IC{?} gekennzeichnet werden muss.
+In der Initialisierungsliste erfolgt die Initialisierung der Instanzvariable \IC{choiceMatcher} \Z{46}.
+Sollte der im Konstruktor übergebene Parameter nicht \IC{null} sein,
+so wird er der Instanzvariable zugewiesen.
+Ist der aber \IC{null},
+so sorgt die \enquote{If-null Expression} dafür,
+dass der Standardwert rechts von dem \IC{??} zugewiesen wird:
+die Funktion \IC{defaultChoiceMatcherStrategy} \IC{46}.
+Diese Funktion kapselt die Überprüfung der Abhängigkeiten
+-- welche die Auswahloption und untereinander haben --
+so wie sie in den letzten Schritten durchgeführt wurde \Z{16-18}.
+Ihr wird die zu überprüfende Auswahloption \IC{choice},
+sowie die Menge \IC{priorChoices} -- die mit allen bisher ausgewählten Auswahloptionen im Formular gefüllt ist --
+übergeben \Z{16}.
+Die Auswahloption \IC{choice} ruft
+-- wie zuvor auch --
+die Methode \IC{conditionMatches} auf
+und übergibt ihr das Objekt \IC{priorChoices} \Z{17}.
+Diese Implementierung soll immer dann verwendet werden, 
+wenn kein benutzerdefinierter \IC{choiceMatcher} übergeben wurde.
+An dem Namen \IC{defaultChoiceMatcherStrategy} wird offensichtlich, um welches Entwurfsmuster es sich hierbei handelt: das \enquote{Strategie-Entwurfsmuster}. 
 
-\clearpage 
+
+\paragraph{Strategie-Entwurfsmuster} Das Strategie-Entwurfsmuster ist ein Verhaltensmuster der Gang of Four.
+Es erlaubt Algorithmen zu kapseln und auszutauschen \footcite[Vgl.][S. 373]{gamma2009entwurfsmuster}.
+Abbildung \ref{fig:UmlStrategie} zeigt das UML-Diagramm des \enquote{Strategie-Entwurfsmusters}. 
+
+\ifIncludeFigures
+  \begin{figure}[h]
+    \centering
+
+    \begin{tikzpicture}
+
+      \umlclass[x=-0.5, y=0]{Kontext}{
+      }{
+      KontextSchnittstelle()
+      }
+      
+      \umlclass[x=6,y=0]{Strategie}{
+        }{
+        \umlvirt{AlgorithmusSchnittstelle()}
+        }
+      \umlclass[x=0,y=-3]{KonkreteStrategieA}{
+        }{
+        AlgorithmusSchnittstelle()
+        }
+      \umlclass[x=5.0,y=-3]{KonkreteStrategieB}{
+        }{
+        AlgorithmusSchnittstelle()
+        }
+      \umlclass[x=10,y=-3]{KonkreteStrategieC}{
+        }{
+        AlgorithmusSchnittstelle()
+        }
+      
+      
+      
+      \umlinherit[geometry=|-|]{KonkreteStrategieA}{Strategie}
+      \umlinherit[geometry=-|]{KonkreteStrategieB}{Strategie}
+      \umlinherit[geometry=|-|]{KonkreteStrategieC}{Strategie}
+      
+      \umluniaggreg[arg1=strategie, pos1=0.4]{Kontext}{Strategie}
+      
+  \end{tikzpicture}
+
+    \caption[UML Diagramme]{UML Diagramme, Quelle: Eigene Abbildung}
+    \label{fig:UmlStrategie}
+
+  \end{figure}%
+\fi
+
+Die Typdefinition \IC{ChoiceMatcher} \Z{13} kann nach dem Strategie-Entwurfsmuster als die Schnittstelle namens \enquote{Strategie} interpretiert werden.
+Sie definiert, welche Voraussetzung an die Schnittstelle gegeben ist.
+In diesem Fall ist die Voraussetzung, dass es sich um eine Funktion mit dem Rückgabewert \IC{bool} handelt,
+der als erstes Argument eine Auswahloption
+-- der Parameterbezeichner lautet \IC{choice} --
+und als zweites Argument eine Menge von Auswahloptionen
+-- der Parameterbezeichner ist \IC{priorChoices} --
+übergeben wird.
+Sollte der Parameter \IC{choiceMatcher} gesetzt sein,
+so tauscht er die standardmäßig genutztes Strategie \IC{defaultChoiceMatcherStrategy} durch die benutzerdefinierte Strategie aus \Z{46}.
+Beide werden nach dem Strategie-Entwurfsmuster als \enquote{konkrete Strategien} bezeichnet.
+Im Entwurfsmuster gibt es noch den Akteur \enquote{Kontext},
+wobei es sich um die aufrufende Klasse handelt,
+welche die Strategien verwendet.
+In diesem Fall ist das die \enquote{Klasse} \IC{SelectionCard}.
+Abbildung \ref{fig:UmlChoiceMatcherStrategyPattern} zeigt das UML-Diagramm der konkreten Implementierung des \enquote{Strategie-Entwurfsmusters} für die \enquote{Strategie} \IC{ChoiceMatcher}.
+Da sich bei der konkreten Strategie für das Auswahlfeld der \enquote{Nebenziele} um eine anonyme Funktion handelt,
+wurde sie zum besseren Verständnis im UML-Diagramm \enquote{nebenzieleChoiceMatcherStrategy} genannt.
+\ifIncludeFigures
+  \begin{figure}[h]
+    \centering
+
+    \begin{tikzpicture}
+
+      \umlsimpleclass[x=-1, y=0]{SelectionCard}{}{}
+      
+      \umlsimpleclass[x=7,y=0]{ChoiceMatcher}{}{}
+      \umlsimpleclass[x=0,y=-1.5]{nebenzieleChoiceMatcherStrategy}{}{}
+      \umlsimpleclass[x=7,y=-1.5]{defaultChoiceMatcherStrategy}{}{}
+
+      \umlsimpleclass[x=3.5, y=-3.0]{MassnahmenDetailScreen}{}{}
+           
+      \umlinherit[geometry=|-|]{nebenzieleChoiceMatcherStrategy}{ChoiceMatcher}
+      \umlinherit[geometry=-|]{defaultChoiceMatcherStrategy}{ChoiceMatcher}
+      
+      \umluniaggreg[arg1=choiceMatcher, pos1=0.4]{SelectionCard}{ChoiceMatcher}
+      
+      %\umluniassoc[geometry=-|]{MassnahmenDetailScreen}{nebenzieleChoiceMatcherStrategy}
+      \umluniassoc[geometry=-|]{MassnahmenDetailScreen}{defaultChoiceMatcherStrategy}
+
+      \umldep[arg=<<create>>, pos=0.9, geometry=-|, anchors=180 and -150]{MassnahmenDetailScreen}{nebenzieleChoiceMatcherStrategy}
+
+
+  \end{tikzpicture}
+
+    \caption[UML Diagramme]{UML Diagramme, Quelle: Eigene Abbildung}
+    \label{fig:UmlChoiceMatcherStrategyPattern}
+
+  \end{figure}%
+\fi
+
+Im Diagramm ist ebenfalls der \enquote{View} \IC{MassnahmenDetailScreen} enthalten,
+denn er verwendet die konkrete Strategie \IC{defaultChoiceMatcherStrategy} für die Validierung \Lst{\ref{lst:Schritt7buildSelectionCard}}.
+
+\begin{alexlisting}{Schritt 7}{XXXX}
+  {Quellcode/Schritt-7/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
+  {firstline=119, lastline=130, highlightlines={122,130}}
+  \label{lst:Schritt7buildSelectionCard}
+\end{alexlisting}
+
+Sollte nämlich ein Argument für den Parameter \IC{choiceMatcher} übergeben werden \Z{122},
+so wird es auch für die Validierung verwendet \Z{130}.
+Ist das Argument aber nicht gesetzt und damit \IC{null},
+so sorgt die \enquote{If-null Expression} dafür,
+dass die \IC{defaultChoiceMatcherStrategy} für die Validierung verwendet wird.
+
+Außerdem erstellt \IC{MassnahmenDetailScreen} die konkrete Strategie \enquote{nebenzieleChoiceMatcherStrategy}, wie in Listing \ref{lst:Schritt7buildMultiSelectionCardZielsetzungLandChoice} zu sehen ist.
+
+\begin{alexlisting}{Schritt 7}{XXXX}
+  {Quellcode/Schritt-7/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
+  {firstline=221, lastline=239, highlightlines={224-239}}
+  \label{lst:Schritt7buildMultiSelectionCardZielsetzungLandChoice}
+\end{alexlisting}
+
+Der Aufruf \IC{buildMultiSelectionCard} wird um die Übergabe einer anonymen Funktion für den Parameter \IC{choiceMatcher} erweitert \Z{224-239}.
+In der ersten Fallunterscheidung wird überprüft,
+ob die gewählte Option ein tatsächliches Nebenziel ist \Z{225}.
+Dies kann über die Getter-Methode \IC{hasRealValue} abgefragt werden.
+Ist dies nicht der Fall,
+so handelt es sich um die Auswahloptionen \enquote{keine Angabe/Vorgabe} bzw. \enquote{bitte um Unterstützung},
+weshalb \IC{true} zurückgegeben werden kann \Z{237},
+da diese Auswahloptionen immer erlaubt sind.
+Sollte sich dagegen um ein tatsächliches Nebenziel handeln,
+so überprüft die nächste Fallunterscheidung,
+ob das Hauptziel entweder nicht gesetzt ist
+oder mit einem nicht tatsächlichen Hauptziel belegt ist \Z{226-228}.,
+Dazu wird die Getter-Methode \IC{hasNoRealValue} benutzt,
+welche als Gegenteil zu \IC{hasRealValue} fungiert,
+und dementsprechend \IC{true} zurückgibt wenn die Auswahloption entweder \enquote{keine Angabe/Vorgabe} oder \enquote{bitte um Unterstützung} ist \Z{226-228}.
+Sollte das Hauptziel keinen tatsächlichen Wert einer Zielsetzung enthalten,
+dann ist die Wahl eines oder mehrerer Nebenziele nicht sinnvoll.
+Waren beide zuvorigen Bedingungen nicht wahr,
+so steht bereits fest,
+dass sowohl das Hauptziel,
+als auch den Nebenziel gesetzt sind
+und weder die Option \enquote{keine Angabe/Vorgabe}
+oder \enquote{bitte um Unterstützung} enthalten.
+Nun soll eine letzte Fallunterscheidung überprüfen,
+ob das Nebenziel bereits im Hauptziel gesetzt ist \Z{230-321}. 
+Das ist nicht erlaubt,
+weshalb \IC{false} zurückgegeben werden soll \Z{232}.
+Anderenfalls sind alle Bedingungen erfüllt und \IC{true} kann zurückgegeben werden.
+
+An diesem Beispiel wird auch offensichtlich,
+welchen Nutzen die Generalisierung der Klasse \IC{SelectionCard} hat.
+Der Typparameter \IC{ZielsetzungLandChoice} wird beim Aufruf der Methode \IC{buildMultiSelectionCard} übergeben \Z{221}. 
+Die Methode übergibt den Typparameter wiederum der Klasse \IC{SelectionCard} \Lst{\ref{lst:Schritt7builderFieldSelectionCardChoiceType}}.
+\begin{alexlisting}{Schritt 7}{XXXX}
+  {Quellcode/Schritt-7/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
+  {firstline=131, lastline=131}
+  \label{lst:Schritt7builderFieldSelectionCardChoiceType}
+\end{alexlisting}
+
+Schließlich übergibt die Klasse \IC{SelectionCard} den Typparameter an die Instanzvariable \IC{choiceMatcher} \Lst{\ref{lst:Schritt7ChoiceMatcherChoiceTypeChoiceMatcher}}.
+\begin{alexlisting}{Schritt 7}{XXXX}
+  {Quellcode/Schritt-7/conditional_form/lib/widgets/selection_card.dart}
+  {firstline=41, lastline=41}
+  \label{lst:Schritt7ChoiceMatcherChoiceTypeChoiceMatcher}
+\end{alexlisting}
+
+Damit handelt es sich also auch bei dem ersten Parameter \IC{choice} der anonymen Funktion,
+die dem Parameter \IC{choiceMatcher} übergeben wird um den Typ \IC{ZielsetzungLandChoice}.
+Aus diesem Grund können die Methoden \IC{hasRealValue} \Z{225} und \IC{hasNoRealValue} \Z{228} auf dem Objekt \IC{choice} aufrufen werden,
+obwohl sie nur Teil der Klasse \IC{ZielsetzungLandChoice} aber nicht der Basisklasse \IC{Choice} sind.
+Ohne Parametrisierung über den Typ müsste das Objekt \IC{choice} in einen anderen Typen umgewandelt werden.
+Doch nach dieser Typumwandlung könnte ein Laufzeitfehler geschehen, sollte es sich bei dem Objekt tatsächlich nicht um den gewünschten Typ handeln.
+Durch die Generalisierung der Klassen und die Angabe des Typparameters ist das Vorhandensein des richtigen Typs garantiert und keine Typumwandlung nötig.
+
+Die beiden neuen Methoden sind in Listing \ref{lst:Schritt7ZielsetzungLandChoice} zu sehen.
+
+
+\ifIncludeFigures
+  \begin{listing}[htbp]
+    \renewcommand\theFancyVerbLine{%
+      \ifnum\value{FancyVerbLine}=187
+      \setcounter{FancyVerbLine}{197}
+      \tiny\ldots
+      \else
+      \tiny\arabic{FancyVerbLine}%
+      \fi
+    }
+    \begin{minted}[firstnumber=185]{dart}
+class ZielsetzungLandChoice extends Choice {
+  static final ka = ZielsetzungLandChoice("ka", "keine Angabe/Vorgabe");
+
+  static final contact =
+      ZielsetzungLandChoice("contact", "bitte um Unterstützung");
+
+  bool get hasRealValue => this != ka && this != contact;
+
+  bool get hasNoRealValue => !hasRealValue;
+\end{minted}
+    \alexlistingcaption{Schritt 7}{XXX} {Quellcode/Schritt-7/conditional_form/lib/choices/choices.dart}
+    \label{lst:Schritt7ZielsetzungLandChoice}
+  \end{listing}
+\fi
+%\begin{alexlisting}{Schritt 7}{XXX}
+%  {Quellcode/Schritt-7/conditional_form/lib/choices/choices.dart}
+%  {firstline=185, lastline=203, highlightlines={201,203}}
+%  \label{lst:Schritt7ZielsetzungLandChoice}
+%\end{alexlisting}
+
+
+\IC{hasRealValue} vergleicht, ob der aktuelle Wert weder \enquote{keine Angabe/Vorgabe} noch \enquote{bitte um Unterstützung} ist \Z{201}.
+\IC{hasNoRealValue} ruft dagegen intern \IC{hasRealValue} auf und negiert Wert \Z{203}.
+
+
+Überall dort, wo zuvor der Ausdruck \IC{choice.conditionMatches(priorChoices)} verwendet wurde, muss nun der Aufruf des \IC{choiceMatcher} erfolgen.
+So zum Beispiel der Stream, welcher die Validität der Auswahlfelder prüft \Lst{\ref{lst:Schritt7validityChangedchoiceMatcher}}.
+\begin{alexlisting}{Schritt 7}{XXXX}
+  {Quellcode/Schritt-7/conditional_form/lib/widgets/selection_card.dart}
+  {firstline=63, lastline=66, highlightlines={65}}
+  \label{lst:Schritt7validityChangedchoiceMatcher}
+  \end{alexlisting}
+
+Alle Vorkommnisse, die durch den neuen Ausdruck ersetzt werden,
+sind im Anhang \ref{appendix:Schritt7Anhang} auf den Seiten \pageref{lst:Schritt7validityChangedStreamBuilderChoiceMatcher}
+bis \pageref{lst:Schritt7validateChoices} zu finden.

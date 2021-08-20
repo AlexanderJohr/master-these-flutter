@@ -1,7 +1,7 @@
 
-\clearpage
+\ifIncludeFigures \clearpage \fi
 
-\subsection{Widget SelectionCard}
+\section{Widget SelectionCard}
 
 Das Listing \ref{lst:Schritt1KlasseSelectionCard} zeigt die Struktur des Widgets SelectionCards.
 Die Klasse hat einen generischen Typparameter \Z{15}. \IC{<ChoiceType extends Choice>} bedeutet, dass die SelectionCard nur für Typen verwendet werden kann, die von \IC{Choice} erben. Das ist eine wichtige Voraussetzung, da auf den übergebenen Werten Operationen ausgeführt werden sollen, die nur \IC{Choice} unterstützt. Alle Parameter, die dem Konstrukt übergeben werden, leiten ebenso von diesem Typparameter ab. Einzige Ausnahme dabei ist der \IC{titel} \IC{16}.
@@ -37,7 +37,7 @@ Der Benutzer würde ansonsten in Formular wieder an der obersten Position heraus
 Der \IC{FocusNode} wird einmal zu Anfang der \IC{build}-Methode erstellt \Z{35}.
 Damit ist er außerhalb des \IC{StreamBuilder}s und bleibt somit beim Neuzeichnen der Karte erhalten.
 
-\clearpage
+\ifIncludeFigures \clearpage \fi
 Klickt der Benutzer die Karte an, navigiert er schließlich zur Unterseite, wo er die Auswahloptionen präsentiert bekommt.
 Die verschachtelte Funktion \IC{navigateToSelectionScreen} kommt dafür zum Einsatz \Z{37-45}.
 Da das Wechseln zur Unterseite bevorsteht, fordert der \IC{focusNode} den Fokus für das angeklickte \IC{ListTile} an \Z{38}oder auf.
@@ -49,7 +49,7 @@ Schließlich navigiert der Benutzer mit \IC{Navigator.push} zur Unterseite. Es h
 
 
 
-\subsubsection{Bildschirm für die Auswahl der Optionen}
+\subsection{Bildschirm für die Auswahl der Optionen}
 
  
 Die Funktion \IC{createMultipleChoiceSelectionScreen} \Lst{\ref{lst:Schritt1FunktionCreateMultipleChoiceSelectionScreen}} gibt einen \IC{Scaffold} zurück, der die gesamte Seite enthält \Z{65}.
@@ -73,7 +73,7 @@ Die \IC{replace}-Methode wandelt das Argument dafür automatisch um.
 Durch Zuweisung des neuen Wertes erhält das ViewModel der \IC{SelectionCard} ein neues Ereignis.
 Damit wird die \IC{SelectionCard} und der dazugehörige Auswahlbildschirm aktualisiert.
 Während der Erstellung dieser Arbeit wurde versucht, die SelectionCard als ein \IC{StatefulWidget} zu erstellen.
-Mittels \IC{setState} sollte dafür gesorgt werden, das sowohl SelectionCard als auch der Auswahlbildschirm aktualisiert werden.
+Mittels \IC{setState} sollte dafür gesorgt werden, dass sowohl SelectionCard als auch der Auswahlbildschirm aktualisiert werden.
 Doch bei diesem Vorgehen zeichnet sich nur die \IC{SelectionCard} neu.
 Der Auswahlbildschirm bleibt unverändert, denn er wird zwar von der \IC{SelectionCard} gebaut, doch ist er nicht tatsächlich Kind der \IC{SelectionCard}.
 In Wahrheit ist der Auswahlbildschirm ein Kind von \IC{MaterialApp} - genau wie \IC{MassnahmenMasterScreen} und \IC{MassnahmenDetailScreen}.
@@ -92,4 +92,4 @@ Mit einem Klick darauf gelangt der Benutzer zurück zur Eingabemaske \Z{100}.
 \end{alexlisting}
  
  
-\clearpage
+\ifIncludeFigures \clearpage \fi

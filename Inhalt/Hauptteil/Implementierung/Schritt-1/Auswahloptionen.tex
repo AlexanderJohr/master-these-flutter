@@ -1,5 +1,5 @@
 
-\subsection{Auswahloptionen hinzufügen}
+\section{Auswahloptionen hinzufügen}
 
 Dart verfügt – anders als beispielsweise Java\footcite[Vgl.][S. 321]{TheJavaLanguageSpecificationJavaSE16Edition} – nicht über Aufzählungstypen mit zusätzlichen Eigenschaften. Das Schlüsselwort \mintinline{dart}{enum} in Dart erlaubt lediglich die Auflistung konstanter Symbole\footcite[Vgl.][S. 74f.]{DartProgrammingLanguageSpecification5thedition}. Für die Auswahloptionen ist es jedoch notwendig, dass es zwei Eigenschaften gibt:
 \begin{itemize}
@@ -78,7 +78,7 @@ Dies dient einzig und allein dem Zweck, dem  Fehler vorzubeugen, dass aus Verseh
   \label{lst:Schritt1DieMengeLetzterStatusChoices}
 \end{alexlisting}
 
-\clearpage
+\ifIncludeFigures \clearpage \fi
 
 Listing \ref{lst:Schritt1KlasseChoices} zeigt die Klasse \IC{Choices}.
 Sie erbt von \IC{UnmodifiableSetView} und erlaubt damit die Erstellung  einer eigenen Menge - auch \IC{Set} genannt\HP{Referenz}.

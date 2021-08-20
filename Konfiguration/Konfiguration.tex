@@ -1,4 +1,11 @@
 
+%%\usepackage{listings}
+%%\usepackage{chngcntr}
+
+
+%\addtotoclist[float]{lol}
+%\renewcommand*\listoflistings{\listoftoc[{\listoflistingscaption}]{lol}}
+
 % Erlaube einfaches copy & paste aus der generierten pdf
 \usepackage[T1]{fontenc}
 % Erlaube überall underscore zu benutzen ohne \_ schreiben zu müssen
@@ -7,10 +14,25 @@
 \usepackage[utf8]{inputenc}
 
 % Deutsche Bezeichnungen wie etwa "Inhaltsverzeichnis", statt "Contents"
-\usepackage[german]{babel}
+% ngerman ist neue Rechtschreibung: https://tex.stackexchange.com/questions/67549/whats-the-difference-between-ngerman-and-german-in-babel
+\usepackage[ngerman]{babel}
+\usepackage{scrextend}
+\addto\captionsenglish{\renewcommand{\bibname}{References}}
+
+%\renewcaptionname{ngerman}{\contentsname}{Inhalt}           %Table of contents
+%\renewcaptionname{ngerman}{\listfigurename}{Abbildungen}    %Figures
+%\renewcaptionname{ngerman}{\listtablename}{Tabellen}        %Tables
+%\renewcaptionname{ngerman}{\figurename}{Abb.}               %Figure
+%\renewcaptionname{ngerman}{\tablename}{Tab.}                %Table
+%\renewcaptionname{ngerman}{\bibname}{Literatur}             %Bibliography
+  \newcaptionname{ngerman}{\listlistingname}{Listingverzeichnis} 
+  %\renewcaptionname{ngerman}{\listingname}{Quelltext}      %Listing
 
 % Deutsche Absätze
 \parindent 0pt
+
+\renewcommand{\baselinestretch}{1.25}
+
 
 % Dieses Package ermöglich einfügen von Bildern mittels \includegraphics
 \usepackage{graphicx}
@@ -26,19 +48,19 @@
 \definecolor{highPrioColor}{RGB}{255, 0, 0}
 \definecolor{mediumPrioColor}{RGB}{0, 255, 255}
 
-
-
-
-
-
 % Syntax Highlighting 
-\usepackage{minted}
+% newfloat macht, dass KOMA zusammen mit minted funktioniert und den Listings die Kapitelnummer voranstellt und sie gruppiert, so, wie auch mit den Abbildungen 
+% newfloat macht auch, dass durch die Verwendung von KOMA nun Befehle wie  \renewcommand{\listoflistingscaption}{Listingverzeichnis} nicht mehr funktionieren
+% umbennenen des List of Listings funktioniert dann anders:
+% nämlich so: \newcaptionname{ngerman}{\listlistingname}{Listingverzeichnis} (https://tex.stackexchange.com/questions/82993/how-to-change-the-name-of-document-elements-like-figure-contents-bibliogr)
+% Achtung wegen minted nicht lstlistlistingname sondern listlistingname
+\usepackage[newfloat]{minted}
 % Lösche rote Rahmen in minted Quelltext und nutze das Visual Studio Theme
 \usemintedstyle{vs}
-\ifincludeall 
-\setminted{autogobble=true, fontsize=\footnotesize, baselinestretch=1.0, mathescape, linenos, numbersep=8pt, breaklines, highlightcolor=insertedCode, breakafter=_@|.}
+\ifIncludeFigures
+  \setminted{autogobble=true, fontsize=\footnotesize, baselinestretch=1.0, mathescape, linenos, numbersep=8pt, breaklines, highlightcolor=insertedCode, breakafter=_@|.}
 \fi
-\renewcommand{\listingscaption}{Code Snippet}
+%\renewcommand{\listingscaption}{Code Snippet}
 % Veringere Abstand zum Untertitel
 %\AtEndEnvironment{listing}{\vspace{-14pt}} % <-
 % Bei Syntaxfehler keine roten vierecke darum zeichnen
@@ -47,7 +69,7 @@
 % rounded corners for minted listings
 \usepackage[]{mdframed}
 \BeforeBeginEnvironment{mintinline}{\begin{mdframed}}
-\AfterEndEnvironment{mintinline}{\end{mdframed}}
+    \AfterEndEnvironment{mintinline}{\end{mdframed}}
 
 \usepackage{etoolbox}
 
@@ -74,7 +96,10 @@
 
 % Literaturverzeichnisse verwenden
 % backref=true - referenziert von Literaturverzeichnis zurück auf die Seite wo zitiert wurde
-\usepackage[style=authortitle, natbib, backend=biber, backref=true]{biblatex}
+%\usepackage[style=authortitle, natbib, backend=biber, backref=true]{biblatex}
+\usepackage[%
+  backend=bibtex8, % bibtex8 biber % <==================== change as needed!
+]{biblatex}
 % Nummer der Zitation nicht hochgestellt, sondern sondern mit
 % normaler Textgröße und einem Punkt nach der Nummer
 % Beispiel: 1. Teller,”Visibility computations in densely occluded polyhedral environments.“, S. 19
@@ -111,11 +136,11 @@
 \geometry{a4paper, top=20mm, inner=40mm, outer=20mm, bottom=20mm, headsep=12mm, footskip=12mm}
 
 % Absatzformat
-\parskip2ex		% Absatzabsstand	
-\parindent0ex		% Absatzeinzug
+%\parskip2ex		% Absatzabsstand	
+%\parindent0ex		% Absatzeinzug
 
 % Package zum hinzufügen eines Glossars
-\usepackage{glossaries} 
+\usepackage{glossaries}
 \setacronymstyle{long-short}
 \newacronym{eler}{ELER}{Europäischer Landwirtschaftsfond für die Entwicklung des ländlichen Raum}
 
@@ -163,115 +188,114 @@
 
 \usepackage{tcolorbox}
 
-\xdefinecolor{inlineCodetXColor}{RGB}{244,246,248} 
+\xdefinecolor{inlineCodetXColor}{RGB}{244,246,248}
 
 \newtcbox{\inlineCodetcbox}[1][inlineCodetXColor]{on line,
-arc=1pt,colback=inlineCodetXColor,colframe=inlineCodetXColor,
-before upper={\rule[-3pt]{0pt}{10pt}},boxrule=0pt,
-boxsep=0pt,left=2pt,right=2pt,top=2pt,bottom=0pt} 
+  arc=1pt,colback=inlineCodetXColor,colframe=inlineCodetXColor,
+  before upper={\rule[-3pt]{0pt}{10pt}},boxrule=0pt,
+  boxsep=0pt,left=2pt,right=2pt,top=2pt,bottom=0pt}
 
 \newtcolorbox{codeFrame}{colback=inlineCodetXColor,
-colframe=inlineCodetXColor,on line,arc=4pt,boxrule=0pt,boxsep=0pt,left=4pt,right=4pt,top=4pt,bottom=4pt}
+  colframe=inlineCodetXColor,on line,arc=4pt,boxrule=0pt,boxsep=0pt,left=4pt,right=4pt,top=4pt,bottom=4pt}
+
+\newtcolorbox{newText}{colback=yellow,on line,boxrule=0pt,boxsep=0pt,left=0pt,right=0pt,top=0pt,bottom=0pt}
 
 \BeforeBeginEnvironment{minted}{\begin{codeFrame}}
-  \AfterEndEnvironment{minted}{\end{codeFrame}}
+    \AfterEndEnvironment{minted}{\end{codeFrame}}
 
-\newcommand{\alexlistingcaption}[3]{\caption[#1 #2]{#2, Quelle: Eigenes Listing, Datei: \url{#3}}}
+\newcommand{\alexlistingcaption}[3]{\caption[#1 #2]{#2\ifIncludeFigures, Quelle: Eigenes Listing, Datei: \url{#3}\fi}}
 
 
 % Code Snippet -> Listing
-\renewcommand{\listingscaption}{Listing}
+%\renewcommand{\listingscaption}{Listing}
 % Eigener Befehl für Listings
 \newenvironment{alexlisting}[4]
 {%
-  \ifincludeall
-  
-    \begin{listing}[ht]%
-      \begin{codeFrame}
-      \inputminted[#4]{dart}{#3}%
-      \end{codeFrame}
-
-      %\vspace{-18pt}
-      \alexlistingcaption{#1}{#2}{#3}%
+  \begin{listing}[ht]%
+    \begin{codeFrame}
+      \ifIncludeFigures
+        \inputminted[#4]{dart}{#3}%
       \fi
-      }%
-      {%
-      \ifincludeall
-
-    \end{listing}%
-  \fi
+    \end{codeFrame}
+    %\vspace{-18pt}
+    \alexlistingcaption{#1}{#2}{#3}%
+    }%
+    {%
+  \end{listing}%
 }
 
 
 \newenvironment{alexyamllisting}[4]
 {%
-  \ifincludeall
-    \begin{listing}[ht]%
-      \begin{codeFrame}
-
-      \inputminted[#4]{yaml}{#3}%
+  \begin{listing}[ht]%
+    \begin{codeFrame}
+      \ifIncludeFigures
+        \inputminted[#4]{yaml}{#3}%
+      \fi
     \end{codeFrame}
 
-      %\vspace{-18pt}
-      \alexlistingcaption{#1}{#2}{#3}%
-      \fi
-      }%
-      {%
-      \ifincludeall
-    \end{listing}%
-  \fi
+    %\vspace{-18pt}
+    \alexlistingcaption{#1}{#2}{#3}%
+
+    }%
+    {%
+  \end{listing}%
 }
 
 \newcommand{\fremdeslistingcaption}[4]{\caption[#1 #2]{#2, Quelle: #4, Datei: \url{#3}}}
 % Eigener Befehl für fremde Listings
 \newenvironment{fremdeslisting}[6]
 {%
-  \ifincludeall
     \begin{listing}[ht]%
+      \ifIncludeFigures
       \inputminted[#4]{#6}{#3}%
-      \vspace{-18pt}
-      \fremdeslistingcaption{#1}{#2}{#3}{#5}%
       \fi
+      \vspace{-18pt}
+
+      \ifIncludeFigures
+      \fremdeslistingcaption{#1}{#2}{#3}{#5}%
+      \else
+      \caption[#1]{#2}
+      \fi
+      
+      \fremdeslistingcaption{#1}{#2}{#3}{#5}%
       }%
       {%
-      \ifincludeall
     \end{listing}%
-  \fi
 }
 
 % Eigener Befehl für Bilder
 \newenvironment{alexfigure}[4]
 {%
-  \ifincludeall
     \begin{figure}[h]
       \centering
+      \ifIncludeFigures
       \includegraphics[width=1.0\textwidth]{#1}
-      \caption[#2]{#3, Quelle: Eigene Abbildung}
       \fi
+
+      \ifIncludeFigures
+      \caption[#2]{#3, Quelle: Eigene Abbildung}
+      \else
+      \caption[#2]{#3}
+      \fi
+
       }%
       {%
-      \ifincludeall
-
     \end{figure}%
-
-  \fi
 }
 
 % Eigener Befehl für Bilder
 \newenvironment{alexfigurewithnotebook}[5]
 {%
-  \ifincludeall
     \begin{figure}[ht]
       \centering
+      \ifIncludeFigures
       \includegraphics[width=1.0\textwidth]{#1}
-      \caption[#2]{#3, Quelle: Eigene Abbildung, Notebook: \url{#4}, Daten-Quelle: #5}
-
       \fi
+      \caption[#2]{#3, Quelle: Eigene Abbildung, Notebook: \url{#4}, Daten-Quelle: #5}
       }%
       {%
-      \ifincludeall
     \end{figure}
-  \fi
 }
 
 
@@ -285,7 +309,7 @@ colframe=inlineCodetXColor,on line,arc=4pt,boxrule=0pt,boxsep=0pt,left=4pt,right
 \newcommand{\Z}[1]{(Z. #1)}
 
 % Eigener Befehl für Listingreferenz mit Zeilenreferenz
-\newcommand{\LstZ}[2]{(Listing. #1, Z. #2)}
+\newcommand{\LstZ}[2]{(Listing #1, Z. #2)}
 
 
 
@@ -306,27 +330,32 @@ colframe=inlineCodetXColor,on line,arc=4pt,boxrule=0pt,boxsep=0pt,left=4pt,right
 % Abstand zwischen itemize Punkten verringern
 % https://stackoverflow.com/questions/2180567/change-parskip-only-inside-enumerate-itemize-environment
 
-
-
-\makeatletter
-
-\def\@listi{%
-  % default settings for base LaTeX classes at 10pt:
-  \parsep 4pt plus 2pt minus 1pt
-  \topsep 8pt plus 2pt minus 4pt
-  \itemsep 4pt plus 2pt minus 1pt
-  % your settings:
-  \parskip 0
-}
-
-\makeatother
-
-
-
-
 % Package inputenc: Unicode char ³ (U+B3) (inputenc)	not set up for use with LaTeX.
 % https://tex.stackexchange.com/questions/83440/inputenc-error-unicode-char-u8-not-set-up-for-use-with-latex
 \DeclareUnicodeCharacter{00A0}{ }
 % https://tex.stackexchange.com/questions/435302/unicode-character-error-inputenc-package
 \DeclareUnicodeCharacter{00B3}{\textsuperscript{3}}
-  
+
+% enquote wird auch immer kursiv gesetzt
+\let\oldenquote\enquote
+\renewcommand{\enquote}[1]{\textit{\oldenquote{#1}}}
+
+% Anleitung zum Styling vom Kapitel Titel
+% https://tex.stackexchange.com/questions/50448/how-to-place-the-chapter-number-behind-the-chapter-title-in-koma-script
+
+
+% roman numbering
+\renewcommand{\thepart}{\Roman{part}}
+% remove dot after number
+\renewcommand{\partformat}{\partname~\thepart}
+% font for "Part X"
+\setkomafont{partnumber}{\normalsize\rmfamily}
+% font for part title
+\definecolor{flutterDarkBlue}{RGB}{7, 89, 157}
+\setkomafont{part}{\huge\rmfamily\color{flutterDarkBlue}\textsc}
+
+% Multiple Choice boxes https://tex.stackexchange.com/questions/81938/multiple-choice-with-answers-at-the-end-of-the-chapter
+\usepackage{enumitem,amssymb}
+
+
+

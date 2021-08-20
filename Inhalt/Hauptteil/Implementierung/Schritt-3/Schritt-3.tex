@@ -1,13 +1,22 @@
-\clearpage 
+\chapter{Schritt 3}
+\label{chap:Schritt-3}
 
 
-\subsection{Schritt 3}
+
+  
+  \begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-3/D M F Rot.png}
+    {Schritt 3 Eingabemaske}
+    {XXX Die Eingabemaske zeigt im Schritt 1 eine Karte zum Selektieren des Status und ein Eingabefeld für den Titel}
+  
+    \label{fig:Schritt3Eingabemaske}
+  
+  \end{alexfigure}
 
 In diesem Schritt soll die grundlegende Validierungsfunktion hinzugefügt werden.
 Maßnahmen, die als abgeschlossen markiert sind, dürfen keine leeren Eingabefelder enthalten und der Maßnahmentitel darf nicht doppelt belegt sein.
 \IC{Flutter} stellt das Widget \IC{Form} für die Validierung von Eingabefeldern bereit.
 
-\subsection{Einfügen des Form-Widgets}
+\section{Einfügen des Form-Widgets}
 
 Das Widget \IC{Form} ist ein Container, welcher die Validierung für alle Kinderelemente des Typs \IC{FormField} ausführt.
 Damit es alle Eingabefelder im Formular umgibt, wird es oberhalb des \IC{Stack} eingefügt \LstZ{\ref{lst:Schritt3Form}}{161}.
@@ -32,7 +41,7 @@ Damit das Element, welches über den \IC{GlobalKey} registriert wurde, auch den 
     \label{lst:Schritt3FormState}
 \end{alexlisting}
 
-\subsection{Validierung des Maßnahmentitels}
+\section{Validierung des Maßnahmentitels}
 
 Das Eingabefeld für den Maßnahmen-Titel ist ein \IC{TextFormField} \LstZ{\ref{lst:Schritt3createMassnahmenTitelTextFormFieldValidator}}{88}.
 Es erbt vom Typ \IC{FormField} und wird daher mit dem Vaterelement \IC{Form} verknüpft.
@@ -157,8 +166,3 @@ Sollte es zu einem Fehler kommen, so zeigt die Hilfsfunktion \IC{showValidationE
     {firstline=44, lastline=69}
     \label{lst:Schritt3showValidationError}
 \end{alexlisting}
-
-
-
-
-\clearpage 
