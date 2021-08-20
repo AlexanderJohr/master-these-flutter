@@ -39,7 +39,7 @@ Werden sie ausgelassen, so gibt es einen Compilerfehler.
 
 Die Klasse \IC{LetzterStatus} erbt von der Basisklasse \IC{Choice} \Z{5}.
 Der Konstruktor der Klasse \Z{9} übergibt beide Parameter als Argumente an den Konstruktor der Klasse \IC{Choice}.
-Genau wie in Java wird mit Hilfe des Schlüsselwortes \IC{super}\Z{10} der Konstruktor der Basisklasse aufgerufen.
+Genau wie in Java wird mithilfe des Schlüsselwortes \IC{super}\Z{10} der Konstruktor der Basisklasse aufgerufen.
 Doch anders als in Java erfolgt der Aufruf des super Konstruktors nicht in der ersten Zeile des Konstruktor-Körpers \JavaSpec{310}.
 Weil das Aufrufen des Konstruktors der Basisklasse zum statischen Teil der Objekt-Instanziierung gehört, muss der Aufruf von \IC{super} in der Initialisierungsliste erfolgen.
 Die Initialisierungsliste wird mit dem \IC{:} nach der Parameterliste eingeleitet \Z{10}\DartSpec{42}.
@@ -67,7 +67,7 @@ Auffällig hierbei ist, dass das Schlüsselwort \IC{new} fehlt.
 In Dart ist das Schlüsselwort für die Konstruktion von Instanzen optional.
 Die Klasse, die zur Konstruktion dieser Menge verwendet wird, ist die selbst erstellte Klasse \IC{Choices}.
 Über das Typargument \IC{LetzterStatus} wird erreicht, dass ausschließlich Variablen  dieses Typs in der Menge eingefügt werden dürfen.
-Wird stattdessen eine Variable eingefügt, die weder vom selben Typ, noch von einem Typ, der von letzter? Status erbt, so gibt es einen Compilerfehler.
+Wird stattdessen eine Variable eingefügt, die weder vom selben Typ, noch von einem Typ, der von \IC{LetzterStatus} erbt, so gibt es einen Compilerfehler.
 Dies dient einzig und allein dem Zweck, dem  Fehler vorzubeugen, dass aus Versehen falsche Optionen in der Menge eingetragen werden.
 Über den Parameter \IC{name} ist es möglich, dieser Menge die Beschriftung \IC{"Status"} hinzuzufügen.
  Es handelt sich hier um einen  benannten Parameter.
@@ -119,8 +119,8 @@ Mehr zu \IC{Map} Literalen in dem Grundlagenkapitel \HP{Kapitel einfügen}.
 
 
 
-Auffällig ist jedoch, dass in Zeile 18 dem Set lateral keine einfache Auflistung von Werten übergeben wird.
-Stattdessen wird (das) mit dem sogenannten \enquote{collection for} eine Wiederholung verwendet.?
+Auffällig ist jedoch, dass in Zeile 18 dem Set-Literal keine einfache Auflistung von Werten übergeben wird.
+Stattdessen wird mit dem sogenannten \enquote{collection for} eine Wiederholung verwendet.
 
 
 

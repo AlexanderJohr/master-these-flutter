@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="02490462-2357-4f13-8e27-7bcfb35e7e6a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Inhalt/Einleitung/Flutter.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Einleitung/Flutter.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Auswahloptionen.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Auswahloptionen.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Eingabeformular.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Eingabeformular.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Haupteinstiegspunkt.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Haupteinstiegspunkt.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/m27007_master_these_main.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/m27007_master_these_main.pdf" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+  </component>
+  <component name="ProjectId" id="1x0GHHL0MgRvTNQl7jUy6YcWYvx" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="02490462-2357-4f13-8e27-7bcfb35e7e6a" name="Default Changelist" comment="" />
+      <created>1629484503214</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1629484503214</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="772" y="8" width="1096" height="922" key="DiffContextDialog" timestamp="1629487012225">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="772" y="8" width="1096" height="922" key="DiffContextDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629487012225" />
+    <state x="671" y="253" key="VcsDiffUtil.ChangesDialog" timestamp="1629486249642">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="671" y="253" key="VcsDiffUtil.ChangesDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629486249642" />
+  </component>
+</project>
