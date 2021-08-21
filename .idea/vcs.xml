@@ -5,5 +5,9 @@
     <mapping directory="$PROJECT_DIR$/Quellcode/Schritt-1" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Quellcode/Schritt-2" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Quellcode/Schritt-3" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Quellcode/Schritt-4" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Quellcode/Schritt-5" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Quellcode/Schritt-6" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Quellcode/Schritt-7" vcs="Git" />
   </component>
 </project>

@@ -23,7 +23,7 @@ Der View beschreibt die Oberflächenelemente wie Texteingabefelder und Buttons.
 Diese beiden Komponenten sind auch aus dem ModelViewController Entwurfsmuster bekannt.
 Das ModelViewViewmodel Entwurfsmuster ist eine Weiterentwicklung davon und integriert das sogenannte ViewModel.
 Es ist dafür zuständig, als Schnittstelle zwischen View und Model zu fungieren.
-Die Daten des Models lassen sich in der Regel nicht direkt mit Oberflächen-Elementen verknüpfen.
+Die Daten des Models lassen sich in der Regel nicht direkt mit Oberflächenelementen verknüpfen.
 Denn es kann notwendig sein, dass die Oberfläche weitere temporäre Daten benötigt, die aber nicht mit den Daten des Models gespeichert werden sollen.
 Das ViewModel übernimmt diese Arbeit, indem es die Daten des Models abruft und sie in veränderter Form den Oberflächen-Elementen zur Verfügung stellt.
 Andersherum formt es die Eingaben in der Nutzeroberfläche so um, dass sie im strikten Datenmodell des Models Platz finden.
@@ -41,7 +41,7 @@ Das ist möglich, weil die Daten nicht manipuliert, sondern nur angezeigt werden
 Damit sowohl ViewModel als auch Model von jedem View heraus abrufbar sind, werden sie in eine Art Service eingefügt \Z{23}.
 Das Widget AppState ist dieser Service.
  Er erhält das Model \Z{24} und das ViewModel \Z{25}  im Konstruktor.
-Die Abhängigkeit zum Schreiben des Models in einer JSON Datei \IC{MassnahmenJsonFile} bekommt das Model ebenfalls im Konstruktor übergeben \Z{24}.
+Die Abhängigkeit zum Schreiben des Models in eine JSON-Datei \IC{MassnahmenJsonFile} bekommt das Model ebenfalls im Konstruktor übergeben \Z{24}.
 \IC{AppState} ist das erste Element, welches im Widget-Baum auftaucht.
 Die gesamte restliche Applikation ist als Kind-Element hinterlegt \Z{26}.
 Damit können alle Widgets auf den Service zugreifen.
@@ -51,10 +51,10 @@ Damit können alle Widgets auf den Service zugreifen.
 
 Das Service Locator Entwurfsmuster folgt dem Umsetzungsparadigma Inversion of Control – deutsch Umkehrung der Steuerung.
 Frameworks folgen diesem Muster, indem sie als erweiterbare Skelett-Applikationen fungieren.
-Anstatt, dass die Applikation den Programmfluss steuert und dabei selbst Funktionen aufruft, wird die Programmflusssteuerung an das Framework abgegeben und mit Hilfe von Ereignissen wird ermöglicht, dass das Framework Funktionen des Nutzers aufruft.
+Anstatt, dass die Applikation den Programmfluss steuert und dabei selbst Funktionen aufruft, wird die Programmflusssteuerung an das Framework abgegeben und mit Hilfe von Ereignissen ermöglicht, dass das Framework Funktionen des Nutzers aufruft.
 \footcite[Vgl.][]{johnson1988designing}
 Im Service Locator Entwurfsmuster werden Komponenten darüber hinaus zentral registriert und über dieses Register anderen Komponenten zur Interaktion zur Verfügung gestellt.\footcite[Vgl.][]{fowler2004DependencyInjection}
-Anstatt die Komponenten direkt miteinander zu verknüpfen, werden sie für den Zugriff von praktisch überall? vorbereitet.
+Damit ist es möglich, die Komponenten nicht direkt miteinander verknüpfen zu müssen.
 Vor allem für automatisierte Tests ist dies von Vorteil, da solche Abhängigkeiten ausgetauscht werden können, um ganz spezielle Teil-Funktionalitäten eines Programms zu testen.
  Mehr dazu im Kapitel \HP{Kapitel einfügen}.
 
@@ -67,21 +67,20 @@ Hat der Benutzer die Arbeit in der Unterseite vollendet, so kann der Navigator g
 Über \IC{initialRoute} \Z{39} kann die Startseite angegeben werden.
 
 
-\clearpage
+
 \subsection{Der Service für den applikationsübergreifenden Zustand}
 
+Um Daten für alle Kind-Elementen zugreifbar zu machen, werden die sogenannten \enquote{InheritedWidgets} genutzt.
+Der Service \IC{AppState} \Lst{\ref{lst:Schritt1DerServiceAppState}} ist genau ein solches \enquote{InheritedWidget}.
 
-Um Daten an alle Kind-Elementen im Widgets mitzugeben, finden die sogenannten \enquote{InheritedWidgets} Anwendung.
-Der Service \IC{AppState} \Lst{\ref{lst:Schritt1DerServiceAppState}} ist genauso ein solches.?
-
-Im Konstruktor erhält er zunächst bei den Parameter des Typs \IC{Key} \Z{7}.?
+Im Konstruktor erhält es zunächst den Parameter des Typs \IC{Key} \Z{7}.?
 Es ist gängige Praxis in Flutter, jedem Widget im Konstruktor zu ermöglichen, einen solchen Schlüssel zu übergeben.
 Es ist jedoch optional.
  Ein solcher Schlüssel kann genutzt werden, um das Widget eindeutig zu identifizieren und es unter anderem über den Schlüssel wiederzufinden.
 In den Zeilen 8 und 9 werden das Model und das ViewModel dem Objekt  im Konstruktor übergeben.
 In den Zeilen 14 und 15 sind sie deklariert.
-Das letzte Element im Konstruktor ist das \IC{child}.
-Ihm muss der Widget-Baum übergeben werden, dem der Zustand verfügbar gemacht werden soll.?
+Der letzte Parameter im Konstruktor ist \IC{child}.
+Ihm wird der Widget-Baum übergeben, der Zugriff auf das \enquote{InheritedWidget} haben soll.
 
 Der Aufruf des Basis-Konstruktors mit den Argumenten \IC{key} und \IC{child} ist in Zeile 11 zu sehen.
 Die Basisklasse von \IC{InheritedWidget} ist \IC{ProxyWidget} und erhält exakt dieselben Argumente.
@@ -92,16 +91,16 @@ Immer dann, wenn das \IC{InheritedWidget} selbst aktualisiert wird, kann es alle
  In dem Fall werden diese  Widgets ebenfalls neu gezeichnet.
 Für die Formular-Applikation ist das allerdings nicht gewünscht.
 Die Aktualisierung der Oberfläche soll in den nachfolgenden Schritten selbst kontrolliert werden.
-Deshalb erfolgt die Rückgabe \IC{false}, da in Zukunft nicht gewünscht ist wird, den Applikations-Zustand komplett auszutauschen.
+Deshalb erfolgt die Rückgabe \IC{false}, da in Zukunft nicht gewünscht ist, den Applikations-Zustand komplett auszutauschen.
  Um die  Aktualisierung  der Oberfläche  kümmern sich sowohl Model als auch ViewModel.
 
-Damit ein Widget einne Abhängigkeit von dem \IC{AppState} anmelden kann, verwendet es in seiner eigenen \IC{build}-Methode die Methode \IC{dependOnInheritedWidgetOfExactType<AppState>()}.
+Damit ein Widget eine Abhängigkeit von dem \IC{AppState} anmelden kann, verwendet es in seiner eigenen \IC{build}-Methode den Ausdruck \IC{dependOnInheritedWidgetOfExactType<AppState>()}.
 Der Aufruf der Methode erfolgt auf dem Objekt vom Typ \IC{BuildContext}.
 Weil dieser Kontext bei jedem Zeichnen allen Kindern übergeben wird, kann jedes Kind darüber die Vater-Elemente wiederfinden.
 
 Damit der Aufruf leichter lesbar und kürzer ist, empfiehlt das Flutter-Team, eine eigene Klassenmethode zu erstellen, welche die Methode für den Benutzer aufruft \Z{16-17}.
 Auch eine Fehlermeldung kann bei dieser Auslagerung geworfen werden, sollte im Kontext kein Objekt des gewünschten Typs vorhanden sein \Z{18}.
-Das Widget, welches auf den \IC{AppState} zugreifen möchte, kann es? mit der einfachen Schreibweise \IC{AppState.of(context)} abrufen.
+Das Widget, welches den \IC{AppState} benötigt, kann dann über die vereinfachte Schreibweise \IC{AppState.of(context)} darauf zugreifen.
 
 Abbildung \ref{lst:UmlAppState} zeigt die Beziehung zwischen den Bildschirmen und dem AppState auf.
 Sowohl MassnahmenMasterScreen und MassnahmenDetailScreen müssen auf MassnahmenModel und MassnahmenFormViewModel zugreifen können.
@@ -176,9 +175,9 @@ Auf Windows-Betriebssystemen wäre das beispielsweise \url{C:\\Users\\AktuellerN
 
 Dadurch, dass dem Methoden-Bezeichner \IC{_localMassnahmenJsonFile} ein Unterstrich vorangestellt ist, ist die Methode privat und kann nur innerhalb der Klasse aufgerufen werden.
 Dart hat damit eine Konvention zum Standard werden lassen.
-In Programmiersprachen wie beispielsweise C++ wurde der Unterstrich zusätzlich den Bezeichnern von Instanz-Attributen vorangestellt, die mit dem \IC{private} Schlüsselwort gekennzeichnet sind, damit sie überall im Quellcode als private Attribute identifizierbar sind, ohne dazu die Klassendefinition ansehen zu müssen.
+In Programmiersprachen wie beispielsweise C++ wurde der Unterstrich zusätzlich den Bezeichnern von Instanzattributen vorangestellt, die mit dem \IC{private} Schlüsselwort gekennzeichnet sind, damit sie überall im Quellcode als private Attribute identifizierbar sind, ohne dazu die Klassendefinition ansehen zu müssen.
 In Dart gibt es dagegen das \IC{private} Schlüsselwort nicht.
-Stattdessen wird der Unterstrich vor dem Bezeichner? verwendet, um ein Instanzattribut privat zu deklarieren.
+Stattdessen wird der Unterstrich vor dem Bezeichner verwendet, um ein Instanzattribut privat zu deklarieren.
 
 Die Getter-Methode \IC{_localMassnahmenJsonFile} hat den Rückgabetyp \IC{Future<File>} und ist zudem mit dem Schlüsselwort \IC{async} gekennzeichnet.
 Asynchron muss die Methode deshalb sein, weil sie auf den Aufruf \IC{getApplicationSupportDirectory} warten muss, der ebenfalls asynchron abläuft.
@@ -234,7 +233,7 @@ Damit der Stream anfangs nicht leer ist, füllt ihn der benannte Konstruktor \IC
 Sobald die Datei gelesen \Z{17} und anschließend deserialisiert wurde \Z{20}, erhält der Stream über die Setter-Methode \IC{value} ein neues Ereignis mit dem gelesenen Wert \Z{19}.
 
 Die Initialisierung ist von einem \IC{try}-Block umgeben.
-Sollte die Initialisierung verschlagen?, weil die JSON-Datei nicht existiert, wird die entsprechende Fehlerbehandlung ausgeführt \Z{21}.
+Sollte die Initialisierung fehlschlagen, weil die JSON-Datei nicht existiert, wird die entsprechende Fehlerbehandlung ausgeführt \Z{21}.
 Diese ist leer, da sich im Stream bereits ein leeres \IC{Storage}-Objekt  befindet.
 Mit diesem leeren Objekt kann die Oberfläche weiterarbeiten.
 In Zukunft könnte es sinnvoll sein, innerhalb der Fehlerbehandlung eine Meldung an den Benutzer zu geben, um darüber zu informieren, dass eine neue Datei angelegt wurde.
@@ -242,7 +241,7 @@ In Zukunft könnte es sinnvoll sein, innerhalb der Fehlerbehandlung eine Meldung
 Mit \IC{putMassnahmeIfAbsent} \Z{24-33} steht eine Methode bereit, um gleichzeitig  sowohl die Oberfläche,  als auch die JSON-Datei zu aktualisieren.
 Sollte die eigetragene Maßnahme schon existieren, wird sie zunächst gelöscht \Z{26}.
 In jedem Fall wird die neue Maßnahme dem Stream hinzugefügt \Z{27}.
-Durch Austauschen des gesamten Objekts mit der Zuweisung von \IC{storage.value} \Z{25} erhält der Stream erneut ein neues Ereignis, womit er die Oberfläche benachrichtigen kann, sich neu zu zeichnen. Außerdem wird die Serialisierung des \IC{Storage}-Objekts ? und angestoßen \Z{29-30} und die neue Liste von Maßnahmen wird im darauffolgenden Schritt zurück in die JSON-Datei gespeichert \Z{32}.
+Durch Austauschen des gesamten Objekts mit der Zuweisung von \IC{storage.value} \Z{25} erhält der Stream erneut ein neues Ereignis, womit er die Oberfläche benachrichtigen kann, sich neu zu zeichnen. Außerdem wird die Serialisierung des \IC{Storage}-Objekts angestoßen \Z{29-30}. Die neue Liste von Maßnahmen wird im darauffolgenden Schritt zurück in die JSON-Datei gespeichert \Z{32}.
 
 \begin{alexlisting}{Schritt 1}{Die Klasse MassnahmenModel}
   {Quellcode/Schritt-1/conditional_form/lib/data_access/massnahmen_model.dart}

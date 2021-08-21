@@ -24,7 +24,7 @@ Stattdessen müssen benutzerdefinierte Funktionen zum Einsatz kommen.
 Keiner der drei oben genannten Validierungs-Bibliotheken ist in dieser Hinsicht limitiert.
 Sie alle bieten die Möglichkeit, eine JavaScript Funktion für die Validierung zu übergeben.
 Diese Funktion gibt einen Wahrheitswert zurück – wahr, wenn das Feld oder die Felder valide sind, falsch, falls nicht.
-In React Hook Form ist es die Funktion Register, die ein Parameter-Objekt namens Register Options erhält, dessen Eigenschaft validate die JavaScript Funktion zugewiesen werden kann.?\footnote{Vgl. \cite{RegisterReactHookFormAPI}}
+In \enqoute{React Hook Form} ist es die Funktion \enqoute{register}, die ein Parameter-Objekt namens \enqoute{RegisterOptions} erhält. Der Eigenschaft \enqoute{validate} dieses Objekts kann eine JavaScript-Funktion für die Validierung übergeben werden.\footnote{Vgl. \cite{RegisterReactHookFormAPI}}
 In Redux Form ist es die Initialisierungs-Funktion reduxForm, die ein Konfigurations-Objekt mit dem Namen config erhält, in welchem die Eigenschaft ebenfalls validate heißt.\footnote{Vgl. \cite{ReduxFormReduxFormAPI}}
 Auch in Formic ist der Bezeichner validate, und ist als Attribut in der Formic Komponente  zu finden.\footnote{Vgl. \cite{FormikComponentFormikDocsAPI}}
 
@@ -33,7 +33,7 @@ Es ist also absehbar, dass die Formular-Anwendung in React Native entwickelt wer
 Die nötigen Funktionen werden von den Bibliotheken bereitgestellt.
 Einziger Nachteil hierbei ist, dass es sich um Drittanbieter Bibliotheken handelt, welche im Verlauf der Zeit an Beliebtheit gewinnen und verlieren können.
 Möglicherweise geht die Beliebtheit einer der Bibliotheken mit der Zeit zurück, weshalb es weniger Kontributionen wie etwa neue Funktionalitäten oder Fehlerbehebungen, sowie Fragen und Antworten und Anleitungen zu diesen Bibliotheken geben wird, da die Entwickler sich für andere Bibliotheken entscheiden.
-Die Wahl der Bibliothek kann also schwerwiegende Folgen, wie Mangel an Dokumentation oder Limitationen im Vergleich zu anderen Bibliotheken mit sich bringen.
+Die Wahl der Bibliothek kann also schwerwiegende Folgen wie Mangel an Dokumentation oder Limitationen im Vergleich zu anderen Bibliotheken mit sich bringen.
 Eine Migration von der einen Bibliothek zu einer anderen könnte in Zukunft notwendig werden, wenn diese Limitationen während der Entwicklung auffallen.
 Aus dem Grund ist es in der Regel von Vorteil, wenn solche Funktionalitäten bereits im Kern der Frontend-Technologie integriert sind.
 Der Fall, dass die Kernkomponenten an Relevanz verlieren und empfohlen wird, auf externe Bibliotheken zuzugreifen, ist zwar nicht ausgeschlossen, geschieht aber im Wesentlichen seltener.
@@ -53,7 +53,7 @@ Weiterhin wird auf die Jest API Dokumentation verwiesen, sowie auf ein Beispiel 
 
 Um die notwendigen Anleitungen für das Erstellen der jeweiligen Tests ausfindig zu machen, ist es notwendig, die Dokumentation von React Native zu verlassen.
 
-Die Dokumentation von Jest enthält mehr Details zum Einsatz der Testbibliothek, welche für mehrere Frontend Frameworks kompatibel sind, die auf JavaScript basieren\footnoteL{\url{https://jestjs.io/docs/getting-started}}. Somit muss zum Erstellen der Unit-Tests immerhin nur dieses Framework studiert werden.
+Die Dokumentation von Jest enthält mehr Details zum Einsatz der Testbibliothek, welche für mehrere Frontend-Frameworks kompatibel ist, die auf JavaScript basieren\footnoteL{\url{https://jestjs.io/docs/getting-started}}. Somit muss zum Erstellen der Unit-Tests immerhin nur dieses Framework studiert werden.
 
 Zum Entwickeln von Tests von React Native Komponenten wird unter anderem auf die Bibliothek React Native Testing Library verwiesen.
 Anders als der Name vermuten lässt, handelt es sich nicht um eine von React Native bereitgestellte Bibliothek.
@@ -61,7 +61,7 @@ Im Unterschied zur React Testing Library, von der sie inspiriert ist, läuft sie
 
 Sie verwendet im Hintergrund den React Test Renderer\footnoteL{\url{https://reactjs.org/docs/test-renderer.html}}, welcher wiederum vom React Team angeboten wird und auch zum Testen von react.js Anwendungen geeignet ist. Der React Test Renderer wird ebenfalls empfohlen, um Komponententests zu kreieren, die keine React Native spezifischen Funktionalitäten nutzen.
 
-Um Integrationstests zu entwickeln - welche die Applikation auf einem physischen Gerät oder auf einem Emulator testen, - wird auf zwei weitere Drittanbieter-Bibliotheken verlinkt: Appium\footnoteL{\url{http://appium.io/}} und Detox\footnoteL{\url{https://github.com/wix/detox/}}. Es wird darauf hingewiesen, dass Detox speziell für die Entwicklung von React Native Integrationstests entwickelt wurde. Appium wird lediglich als ein weiteres bekanntes Werkzeug erwähnt. 
+Um Integrationstests zu entwickeln -- welche die Applikation auf einem physischen Gerät oder auf einem Emulator testen -- wird auf zwei weitere Drittanbieter-Bibliotheken verlinkt: Appium\footnoteL{\url{http://appium.io/}} und Detox\footnoteL{\url{https://github.com/wix/detox/}}. Es wird darauf hingewiesen, dass Detox speziell für die Entwicklung von React Native Integrationstests entwickelt wurde. Appium wird lediglich als ein weiteres bekanntes Werkzeug erwähnt.
 
 Es lässt sich damit zusammenfassen, dass der Aufwand der Einarbeitung für automatisiertes Testen in React Native vergleichsweise hoch ist.
 Die Dokumentation ist auf die Seiten der jeweiligen Anbieter verteilt.
@@ -74,7 +74,7 @@ Um diese Entscheidung treffen zu können, ist eine Auseinandersetzung mit den Vo
 
 Eine Seite erklärt den Unterschied zwischen Unit-Tests, Widget-Tests und Integrationstests\footnoteL{\url{https://flutter.dev/docs/testing}}. Eine weitere Seite erklärt Integrationstests detaillierter\footnoteL{\url{https://flutter.dev/docs/testing/integration-tests}}.
 
-Ein sogenanntes Codelab führt durch die Erstellung einer minimalistischen App und zwei Unit-, fünf Widget- und zwei Integrationstests für diese ?App\footnoteL{\url{https://codelabs.developers.google.com/codelabs/flutter-app-testing}}
+Ein sogenanntes Codelab führt durch die Erstellung einer minimalistischen App und der anschließenden Implementierung von zwei Unit-, fünf Widget- und zwei Integrationstests für diese App\footnoteL{\url{https://codelabs.developers.google.com/codelabs/flutter-app-testing}}.
 
 Im sogenannten Kochbuch tauchen folgende Rezepte auf:
 
@@ -88,7 +88,7 @@ Im sogenannten Kochbuch tauchen folgende Rezepte auf:
     \begin{itemize} 
         \item Eine grundlegende Anleitung zum Erstellen von Widget Tests \footnoteL{\url{https://flutter.dev/docs/cookbook/testing/widget/introduction}}
         \item Ein Rezept mit detaillierteren Beispielen zum Finden von Widgets  zur Laufzeit eines Widget Tests \footnoteL{\url{https://flutter.dev/docs/cookbook/testing/widget/finders}}
-        \item Ein Rezept zum Testen vonm Nutzerverhalten wie dem Tab, dem Drag und dem Eingeben von Text \footnoteL{\url{https://flutter.dev/docs/cookbook/testing/widget/tap-drag}}
+        \item Ein Rezept zum Testen vom Nutzerverhalten wie dem Tab, dem Drag und dem Eingeben von Text \footnoteL{\url{https://flutter.dev/docs/cookbook/testing/widget/tap-drag}}
      \end{itemize}
     \item 3 Rezepte für Integrationstests
     \begin{itemize} 

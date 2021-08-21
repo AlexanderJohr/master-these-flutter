@@ -2,7 +2,7 @@
 \ifIncludeFigures \clearpage \fi
 \section{Übersichtsbildschirm der Maßnahmen}
 
-Der erste Bildschirm - die Übersicht der Maßnahmen - kann auf das im letzten Schritt erstellte(n) Model zugreifen.
+Der erste Bildschirm -- die Übersicht der Maßnahmen -- kann auf das im letzten Schritt erstellte Model zugreifen.
 In Listing \ref{lst:Schritt1KlasseMassnahmenMasterScreenStruktur}  ist die Struktur des Übersichts-Bildschirms zu sehen. Über die Route \url{/massnahmen_master} ist der Bildschirm erreichbar \Z{16}. Die \IC{build}-Methode zeichnet die Oberfläche \IC{21-111}.  Da ein Objekt des Typs
 MassnahmenPool im zentralen  Register der Provider hinterlegt wurde, kann mit der Methode Provider.of darauf zugegriffen werden.
 
@@ -14,14 +14,14 @@ Das \IC{Scaffold} kann auch Mitteilungen an den Benutzer am unteren Bildschirmra
 Die Überschrift wird in der sogenannten \IC{AppBar} hinterlegt \Z{24}.
 Sie unterstützt weitere Funktionalitäten.
 Sollte es sich bei der aktuell besuchten Route  um eine Unterseite handeln, taucht links von der Titel-Überschrift einen Button zum Zurücknavigieren auf.
-Weiterhin können rechts von der Titelleiste Aktionsbuttons hinzugefügt werden, welches was für die Formular Anwendung allerdings nicht nötig ist.
+Weiterhin können rechts von der Titelleiste Aktionsbuttons hinzugefügt werden. Das ist für die Formularanwendung allerdings nicht nötig.
 
 Zusätzlich kann dem \IC{Scaffold} ein Button für die primäre Aktion auf diesem Bildschirm hinzugefügt werden: der sogenannte \IC{FloatingActionButton} \Z{88-97}.
-Bei Aktivierung diees Buttons navigiert die Applikation zur Eingabemaske, um eine neue Maßnahme anzulegen \Z{98}.
+Bei Aktivierung dieses Buttons navigiert die Applikation zur Eingabemaske, um eine neue Maßnahme anzulegen \Z{98}.
 
 Das Eingabeformular sollte den Benutzer auffordern, tatsächlich leere Eingabefelder zu füllen.
 Deshalb muss die Aktivierung des Buttons auch das ViewModel neu initialisieren.
-Dies geschieht durch Zuweisung einer leeren Maßnahme zu? zur Setter-Methode \IC{vm.model} \Z{95}. Ohne die Neuinitialisierung würde die Eingabemaske immer die zuletzt eingetragene Maßnahme enthalten. Dies würde große Verwirrung beim Benutzer stiften.
+Dies geschieht durch Zuweisung einer leeren Maßnahme zur Setter-Methode \IC{vm.model} \Z{95}. Ohne die Neuinitialisierung würde die Eingabemaske immer die zuletzt eingetragene Maßnahme enthalten. Dies würde große Verwirrung beim Benutzer stiften.
 
 The \IC{FloatingActionButton} erhält den Schlüssel \IC{createNewMassnahmeButtonKey} \Z{89}.
 Er ist als \IC{GlobalKey} deklariert \Z{11}.
@@ -100,8 +100,8 @@ Sollte die Liste der Maßnahmen die Höhe des Fensters überschreiten, so kann d
 \end{alexlisting}
 
 Das Kind des Scrollbereichs ist ein \IC{Column}-Widget \Z{31}.
-Sie (es) zeichnet Widgets, die als Argument des Parameters \IC{children} gesetzt sind, von oben nach unten.
-Der Parameter \IC{crossAxisAlignment} gibt an, wie die Kindelemente ausgerichtet sein sollen. \IC{crossAxis} bedeutet dabei die zur Anzeige-Richtung entgegengesetzte Richtung. Da die \IC{Column} vertikal zeichnet, ist mit \IC{crossAxis} die horizontale Achse gemeint. \IC{CrossAxisAlignment.start} beschreibt, dass Elemente entlang der horizontalen Achse an dessen Startpunkt auszurichten sind. Dadurch sind alle Elemente der Liste linksbündig.
+Es zeichnet Widgets, die als Argument des Parameters \IC{children} gesetzt sind, von oben nach unten.
+Der Parameter \IC{crossAxisAlignment} gibt an, wie die Kindelemente ausgerichtet sein sollen. \IC{crossAxis} bedeutet dabei die entgegengesetzte Achse zur Anzeige-Richtung. Da die \IC{Column} vertikal zeichnet, ist mit \IC{crossAxis} die horizontale Achse gemeint. \IC{CrossAxisAlignment.start} beschreibt, dass Elemente entlang der horizontalen Achse an dessen Startpunkt auszurichten sind. Dadurch sind alle Elemente der Liste linksbündig.
 
 Zuerst kommt die Auflistung der abgeschlossenen Maßnahmen.
 Die Überschrift \IC{"Abgeschlossen"} \Z{37} soll einen Abstand von jeweils 16 Pixel in alle Richtungen haben.
@@ -109,7 +109,7 @@ Das ermöglicht das Widget \IC{Padding} \Z{35-40} und das Argument \IC{EdgeInset
 
 Die Informationen der Maßnahmen werden in einer Tabelle angezeigt.
 Dies übernimmt das selbstgeschriebene \enquote{Widget} \IC{MassnahmenTable} \Z{45}.
-Als erstes Argument erfolgt die Übergabe der anzuzeigenden Maßnahmen aus dem Model. \IC{storage.value.massnahmen} gibt den aktuellen Wert des Streams des \IC{storage}-Objekts zurück und greift auf die Liste der Maßnahmen zu. Mit der Methode \IC{where} \Z{47} kann ein Filter auf die Liste angewendet werden. Die übergebene anonyme Funktion \Z{47-49}   überprüft, ob der letzte Status auf "fertig" gesetz ist. Dazu reicht der Vergleich der Abkürzung. Nur wenn diese Bedingung erfüllt ist, bleibt die Maßnahme in der gefilterten Kollektion zurück. Ein solcher Filter gibt ein sogenanntes \enquote{lazy} \IC{Iterable} zurück. Erst beim Zugriff auf das Ergebnis findet der Filter Anwendung. Doch es gibt keinen Zwischenspeicher für die gefilterten Elemente. Jeder Zugriff filtert die Elemente also neu. Der Aufruf \IC{toSet} bewirkt allerdings das Speichern der Ergebnisse in einer Menge \Z{50}. Das Resultat erhält? das Widget \IC{MassnahmenTable} zur Anzeige.
+Als erstes Argument erfolgt die Übergabe der anzuzeigenden Maßnahmen aus dem Model. \IC{storage.value.massnahmen} gibt den aktuellen Wert des Streams des \IC{storage}-Objekts zurück und greift auf die Liste der Maßnahmen zu. Mit der Methode \IC{where} \Z{47} kann ein Filter auf die Liste angewendet werden. Die übergebene anonyme Funktion \Z{47-49} überprüft, ob der letzte Status auf \enqoute{fertig} gesetz ist. Dazu reicht der Vergleich der Abkürzung. Nur wenn diese Bedingung erfüllt ist, bleibt die Maßnahme in der gefilterten Kollektion zurück. Ein solcher Filter gibt ein sogenanntes \enquote{lazy} \IC{Iterable} zurück. Erst beim Zugriff auf das Ergebnis findet der Filter Anwendung. Doch es gibt keinen Zwischenspeicher für die gefilterten Elemente. Jeder Zugriff filtert die Elemente also neu. Der Aufruf \IC{toSet} bewirkt allerdings das Speichern der Ergebnisse in einer Menge \Z{50}. Das Widget \IC{MassnahmenTable} erhält das Resultat um es in einer Tabelle anzuzeigen.
 
 Ein weiterer Parameter ist \IC{onSelect} \Z{50}.
 Als Argument kann eine Funktion mit genau einem Parameter gesetzt werden.
@@ -118,9 +118,9 @@ Der erste Parameter enthält dann die ausgewählte Maßnahme.
 Daraufhin soll sich wieder die Eingabemaske öffnen \Z{55-56}.
 Dann beinhalten die Eingabefehler jedoch die Werte der ausgewählten Maßnahme.  Um das zu erreichen, reicht eine Zuweisung der Maßnahme an das ViewModel \Z{51}. Allerdings soll die Maßnahme zuvor ein neues letztes Bearbeitungsdatum mit dem aktuellen Zeitstempel erhalten \Z{51-53}.
 
-Unterhalb der Rubrik der finalen Maßnahmen listed die Übersicht die Maßnahmen, welche sich noch im Entwurf befinden \Z{59-83}.
+Unterhalb der Rubrik der finalen Maßnahmen listet die Übersicht die Maßnahmen, welche sich noch im Entwurf befinden \Z{59-83}.
 Daher ist das dritte Element der \IC{Column} wiederum eine Überschrift: \IC{"In Bearbeitung"} \Z{62} gefolgt von einem weiteren horizontalen Scrollbereich \Z{66-83} mit einer Tabelle von Maßnahmen \Z{70-82}.
-Der einzige Unterschied hier: ist die Bedingung der Filterfunktion.
+Der einzige Unterschied ist hier die Bedingung der Filterfunktion.
 Dieses Mal filtert die Kollektion auf Maßnahmen in Bearbeitung \Z{73-74}.
 
 
@@ -148,11 +148,11 @@ Sie zeichnet die Spalten mit einem Abstand von 8 Pixeln in alle Richtungen.
 
 Nach den Spaltenbezeichnungen folgen die Zeilen für die Daten der Maßnahmen \Z{24-29}.
 Die Methode \IC{map} \Z{24} ermöglicht es dazu durch die Liste der Maßnahmen zu iterieren und für jede Maßnahme ein Element eines völlig anderen Typs - in diesem Fall \IC{TableRow} - zurückzugeben.
-Bei den vorangestellten Punkten \IC{...} in Zeile 24 handelt sich um den spread operator. Die Filtermethode \IC{map} und die darauffolgende Methode \IC{toList} liefern eine Liste von \IC{TableRow} Elementen. Die umgebende Liste der Zeilen \IC{children} \Z{19-30} erwartet jedoch Elemente des Typs \IC{TableRow} und keine Elemente des Typs \IC{List}. Der spread operator ermöglicht es, alle Elemente der inneren Liste in die äußere Liste einzufügen. \footcite[Vgl.][]{SpreadOperator}
+Bei den vorangestellten Punkten \IC{...} in Zeile 24 handelt sich um den spread operator. Die Filtermethode \IC{map} und die darauffolgende Methode \IC{toList} liefern eine Liste von \IC{TableRow} Elementen. Die umgebende Liste der Zeilen \IC{children} \Z{19-30} erwartet jedoch Elemente des Typs \IC{TableRow} und keine Elemente des Typs \IC{List}. Der \enqoute{spread operator} ermöglicht, alle Elemente der inneren Liste in die äußere Liste einzufügen. \footcite[Vgl.][]{SpreadOperator}
 
 Eine weitere Hilfsmethode \IC{_buildSelectableCell} erstellt Zellen, die anklickbar sind \Z{39-51}.
 Das Widget \IC{TableRowInkWell} \Z{41-51} kann in Tabellen verwendet werden, um einen anklickbaren Bereich zu erstellen.
-Beim  Anklicken breitet sich, ausgehend von der Position des Klicks, ein Tintenklecks  aus.
+Beim  Anklicken breitet sich ausgehend von der Position des Klicks ein Tintenklecks  aus.
 Dabei überschreitet der Tintenklecks nicht den Bereich, der von der umgebenden Zeile begrenzt ist.
 Beim Auslösen des Ereignisses \IC{onTap} erfolgt die Ausführung des Callbacks \IC{onSelect} \Z{44} mit der ausgewählten Maßnahme.
 Doch zuvor muss überprüft werden, ob der Callback auch initialisiert wurde \Z{43}.
@@ -167,8 +167,8 @@ Der \IC{MassnahmenMasterScreen} verwendet die \IC{MassnahmenTable}.
 Die Tabelle enthält ein Objekt namens \IC{onSelect}.
 Dabei handelt es sich um einen Funktions-Objekt.
 Anstatt eine neue Klasse mit einer beinhaltenden Funktion zu deklarieren, kann das gleiche über eine Abkürzung erreicht werden: dem Schlüsselwort \IC{typedef} \Z{4}.
-Hier erlaubt es eine Funktionssignatur als? eigenen Typ zu deklarieren.
-Der \IC{MassnahmenMasterScreen} wiederum instanziiert genauso so? ein Funktions-Objekt als anonyme Funktion \LstZ{\ref{lst:Schritt1DieAusgabeDerMassnahmen}}{75-82}.
+Hier erlaubt es eine Funktionssignatur als einen Typ zu deklarieren.
+Der \IC{MassnahmenMasterScreen} wiederum instanziiert ein anonymes Funktions-Objekt, welches der Schnittstelle und damit der Funktionssignatur entspricht \LstZ{\ref{lst:Schritt1DieAusgabeDerMassnahmen}}{75-82}.
 Weil es der Signatur der Typdefinition von \IC{OnSelectCallback}  entspricht, kann es der Tabelle als Argument für den Parameter \IC{onSelect} übergeben werden. 
 
 \ifIncludeFigures \clearpage \fi
@@ -185,9 +185,8 @@ Weil es der Signatur der Typdefinition von \IC{OnSelectCallback}  entspricht, ka
 Das Inversion of Control Entwurfsmuster ist auch unter dem Namen \enquote{hollywood pattern} bekannt, da es ähnlich wie die typische Antwort auf eine Bewerbung für einen Hollywood Film - don’t call us, we’ll call you - funktioniert.\footcite[Vgl.][]{fowler2005InversionOfControl}
 
 Und genauso arbeiten der Übersichts-Bildschirm und die Tabelle zusammen.
-Der Übersichts-Bildschirm verwendet die Tabelle, welche nicht wissen muss, wofür sie eingesetzt wird.
-Sobald die Tabelle eine Selektion des Benutzers bemerkt, kommuniziert sie wieder mit dem Übersichts-Bildschirm.
-Nun greift der Übersichts-Bildschirm über den Service Locator auf das ViewModel zu, um die selektierte Maßnahme zu übergeben.
+Der Übersichtsbildschirm verwendet die Tabelle, welche nicht wissen muss, wofür sie eingesetzt wird.
+Sobald die Tabelle eine Selektion des Benutzers bemerkt, kommuniziert sie wieder mit dem Übersichtsbildschirm, worauf dieser über den \enqoute{Service Locator} auf das \enqoute{ViewModel} zugreift, um die selektierte Maßnahme zu übergeben.
 
 \ifIncludeFigures
   \begin{figure}[h]
@@ -239,7 +238,7 @@ Nun greift der Übersichts-Bildschirm über den Service Locator auf das ViewMode
 
 \section{ Das View Model }
 
-Listing \ref{lst:Schritt1KlasseMassnahmenFormViewModel} zeig das ViewModel.
+Listing \ref{lst:Schritt1KlasseMassnahmenFormViewModel} zeigt das ViewModel.
 Im ersten Schritt enthält es nur drei Streams vom Typ \IC{BehaviorSubject}.
 Eines für den letzten Status \Z{6}, eines für die \enquote{guid} \Z{8} und eines für den Titel der Maßnahme \Z{10}.
 Anhand dessen wird offensichtlich, warum ein ViewModel nötig ist.
@@ -249,17 +248,17 @@ Auf dieses Ereignis kann der View reagieren.
 Das Model bietet die Eigenschaften der Maßnahmen dagegen nicht als Stream an.
 
 Weil sich Model und ViewModel in ihrer Struktur unterscheiden, gibt es zwei Methoden, die die Konvertierung in beide Richtungen vornehmen.
-Die Setter-Methode \IC{model} \Z{12-18} erhält ein Objekt des Werts des Typs \IC{Massnahme} - das Format des Models.
+Die Setter-Methode \IC{model} \Z{12-18} erhält ein Objekt des Wertetyps \IC{Massnahme}.
 Die einzelnen Eigenschaften werden dann in das Format des ViewModels umgewandelt: in Streams.
 Darüber wird der Setter-Methode \IC{value} von jedem \IC{BehaviorSubject} der entsprechende Wert aus dem Model zugewiesen.
-Besonders ist auch, wie die Auswahloptionen sich im Model und ViewModel unterscheiden.  Im ViewModel sind es abgeleitete Objekte der Basisklasse Choice, wie z.b. LetzterStatus.  Im Gegensatz dazu speichert das \enqoute{Model} die Optionen lediglich über die Abkürzung als String ab. Mit Hilfe der Methode \IC{fromAbbreviation} kann anhand der Abkürzung wieder das entsprechende Objekt wiedergefunden werden \Z{16}.
+Besonders ist auch, wie die Auswahloptionen sich im Model und ViewModel unterscheiden. Im ViewModel sind es abgeleitete Objekte der Basisklasse Choice, wie z.b. LetzterStatus.  Im Gegensatz dazu speichert das \enqoute{Model} die Optionen lediglich über die Abkürzung als String ab. Mithilfe der Methode \IC{fromAbbreviation} kann anhand der Abkürzung das entsprechende Objekt wiedergefunden werden \Z{16}.
 
 Die Getter-Methode dagegen konvertiert in das exakte Gegenteil.
 Die aktuellen Werte von jedem \IC{BehaviorSubject} werden über die Getter-Methode \IC{value} ausgelesen und anschließend der entsprechenden Eigenschaft des Objekts vom Werte-Typ \IC{Massnahme} gespeichert.
 Die Auswahloption, die für den letzten Status hinterlegt wurde, wird dabei wiederum nur als Abkürzung eingetragen.
 Dementsprechend ist bloß die Eigenschaft \IC{abbreviation} abzufragen \Z{22}.
 
-Allerdings kann bei Auswahlfeldern auch keine Option gewählt worden sein.
+Allerdings kann bei Auswahlfeldern auch keine Option gewählt sein.
 Die Getter-Methode \IC{value} kann daher also auch \IC{null} zurück geben.
 Der Compiler gibt einen Fehler aus, wenn versucht wird, auf \IC{value} eine Operation auszuführen, sollte es sich um einen Typ mit Null-Zulässigkeit handeln.
 So ist es bei dem Aufruf von \IC{abbreviation} der Fall \Z{22}.
