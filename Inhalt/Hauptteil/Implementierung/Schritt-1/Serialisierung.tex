@@ -67,7 +67,7 @@ Die Attribute \IC{letzteBearbeitung} und \IC{identifikatoren} sind im Gegensatz 
 
 Auffällig ist, dass es sich hier um eine abstrakte Klasse handelt und die drei Attribute jeweils Getter-Methoden ohne Implementierung sind.
 Eine solche Getter-Methode speichert keinen Wert, sondern gibt lediglich den Wert eines Feldes zurück.
-Die dazugehörigen Felder, Setter-Methoden, die konkrete Klasse und der restliche generierte Code sind in der gleichnamigen Datei mit der Endung \enqoute{.g.dart} (Zeile 11) zu finden.
+Die dazugehörigen Felder, Setter-Methoden, die konkrete Klasse und der restliche generierte Code sind in der gleichnamigen Datei mit der Endung \enquote{.g.dart} (Zeile 11) zu finden.
 
 Die Klassen-Methode \IC{_initializeBuilder} kann in jedem Werte-Typ hinterlegt werden, um Standardwerte für Felder festzulegen.
 % todo medium: Vgl. https://pub.dev/packages/built_value/changelog
@@ -81,7 +81,7 @@ Der Parametername wird hier – wie so häufig im builder pattern – mit einem 
 Die Syntax \IC{=>} leitet  einen sogenannten \enquote{arrow function body} ein.
 Dabei handelt es sich schlicht um einen Funktions-Körper, der genau eine Anweisung ausführt. Deshalb muss er nicht von geschweiften Klammern umgeben werden.\DartSpec{18f., 234}
 Auf dem \enquote{Builder}-Objekt können dann die Eigenschaften so gesetzt werden, als wären sie die Eigenschaften von dem Objekt \IC{Massnahme}.
-In Wahrheit werden sie aber nur auf den \enquote{Builder}-Objekt angewendet.  Ebenfalls auffällig ist die Syntax \IC{b..guid}.  Statt eines \IC{.} zum Zugriff auf Attribute des Objekts wird hier der sogenannte Kaskadierungs-Operator \{..} benutzt.
+In Wahrheit werden sie aber nur auf den \enquote{Builder}-Objekt angewendet.  Ebenfalls auffällig ist die Syntax \IC{b..guid}.  Statt eines \IC{.} zum Zugriff auf Attribute des Objekts wird hier der sogenannte Kaskadierungs-Operator \IC{..} benutzt.
 
 \paragraph{Der Kaskadierungs-Operator}
 

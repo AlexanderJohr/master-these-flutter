@@ -92,8 +92,10 @@
 \include{Inhalt/Einleitung-und-Gliederung/Einleitung-und-Gliederung}
 %\fi
 
+\ifIncludeMiscellaneous
 \part{Vorbereitung}
 \label{part:Vorbereitung}
+\fi
 
 \ifIncludeAllChapters
 \include{Inhalt/Hauptteil/Technologie-Auswahl/Technologie-Auswahl}
@@ -103,9 +105,9 @@
 \input{Inhalt/Grundlagen/Grundlagen}
 \fi
 
-\ifIncludeAllChapters
+%\ifIncludeAllChapters
 \include{Inhalt/Hauptteil/Implementierung/Implementierung} 
-\fi
+%\fi
 
 %\ifIncludeAllChapters
 \include{Inhalt/Fazit/Fazit}  
@@ -128,8 +130,10 @@
 
 \fi
 
+\ifIncludeMiscellaneous
 % todo high: uncomment 
 \include{Verzeichnisse/Literaturverzeichnis}
+\fi
 
 % todo high: uncomment 
 \include{Inhalt/Hauptteil/eidesstattliche_erklaerung}
