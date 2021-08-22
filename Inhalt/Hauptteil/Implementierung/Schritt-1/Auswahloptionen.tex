@@ -15,9 +15,9 @@ Würde anstatt der Abkürzung die Beschreibung als Schlüssel verwendet werden, 
 Der alte Beschreibungstext würde nicht mehr mit dem Text übereinstimmen, der als Schlüssel in der Anwendung verwendet wird.
 
 
-Die beiden Zustände \enquote{in Bearbeitung} und \enquote{abgeschlossen} werden daher in Listing \ref{Schritt1KlasseLetzterStatus} als statische Klassenvariablen deklariert \Z{6-7}.
+Die beiden Zustände \enquote{in Bearbeitung} und \enquote{abgeschlossen} werden daher in Listing \ref{lst:Schritt1KlasseLetzterStatus} als statische Klassenvariablen deklariert \Z{6-7}.
 Die beiden Konstruktor-Aufrufe übergeben dabei als erstes Argument die Abkürzung und als zweites Argument die Beschreibung.
-Der Konstruktor selbst \Z{9-10} deklariert die beiden Parameter als positionale Parameter.
+Der Konstruktor selbst \Z{9-10} deklariert sie als sogenannte \enquote{positionale Parameter}.
 
 
 
@@ -56,7 +56,7 @@ Mit der abgekürzten Schreibweise \IC{this.abbreviation} und \IC{this} \IC{.desc
   \label{lst:Schritt1KlasseChoice}
 \end{alexlisting}
 
-Dies erübrigt sowohl die Angabe des Parametertyps mittels \IC{(String abbreviation, String description)}, denn der Typ des Parameters kann bereits durch Angabe des Typs in der Instanzvariablen-Deklaration\Z{4-5} abgeleitet werden.
+Dies erübrigt die Angabe des Parametertyps mittels \IC{(String abbreviation, String description)}, denn der Typ des Parameters kann bereits durch Angabe des Typs in der Instanzvariablen-Deklaration \Z{4-5} abgeleitet werden.
 Außerdem entfällt auch die Zuweisung, die man ansonsten in der Form \IC{this.abbreviation = abbreviation} und \IC{this.}\IC{description = description} in der Initialisierungsliste erreichen würde.\DartSpec{40f}
 % Auch String description wird gespart
 
@@ -67,7 +67,7 @@ Auffällig hierbei ist, dass das Schlüsselwort \IC{new} fehlt.
 In \enquote{Dart} ist das Schlüsselwort für die Konstruktion von Instanzen optional.
 Die Klasse, die zur Konstruktion dieser Menge verwendet wird, ist die selbst erstellte Klasse \IC{Choices}.
 Über das Typargument \IC{LetzterStatus} wird erreicht, dass ausschließlich Variablen  dieses Typs in der Menge eingefügt werden dürfen.
-Wird stattdessen eine Variable eingefügt, die weder vom selben Typ, noch von einem Typ, der von \IC{LetzterStatus} erbt, so gibt es einen Compilerfehler.
+Wird stattdessen eine Variable eingefügt, die weder vom selben Typ ist, noch von einem Typ, der von \IC{LetzterStatus} erbt, so gibt es einen Compilerfehler.
 Dies dient einzig und allein dem Zweck, dem  Fehler vorzubeugen, dass aus Versehen falsche Optionen in der Menge eingetragen werden.
 Über den Parameter \IC{name} ist es möglich, dieser Menge die Beschriftung \IC{"Status"} hinzuzufügen.
  Es handelt sich hier um einen  benannten Parameter.
@@ -100,7 +100,8 @@ Das macht den Parameter zu einem vorgeschriebenen benannten Parameter.
 \paragraph{Vorgeschriebene benannte Parameter}
 
 Gewöhnliche benannte Parameter sind optional.
-Wird ihnen das Schlüsselwort \IC{required} vorangestellt, so müssen sie gesetz werden, denn sonst gibt es einen Compilerfehler.
+Wird ihnen das Schlüsselwort \IC{required} vorangestellt, so müssen sie gesetz werden,
+da es sonst einen Compilerfehler gibt.
 An dieser Stelle ist das \IC{required} Schlüsselwort sinnvoll, denn es handelt sich um den Datentyp \IC{String}, der nicht den Wert \IC{null} annehmen kann.
 Würde der Parameter aber optional sein, so wäre es möglich, das Programm zu kompilieren, auch wenn bei Aufrufen des Konstruktors kein Argument für den Parameter übergeben wurde.
 Doch in diesem Fall gäbe es keinen Initialwert für \IC{name} und somit müsste der Instanzvariablen der Wert \IC{null} zugewiesen werden.
@@ -124,7 +125,7 @@ Stattdessen wird mit dem sogenannten \enquote{collection for} eine Wiederholung 
 
 
 
-In Zeile 18 wird durch die  Menge aller Auswahloptionen \IC{choices} iteriert und dabei in jedem Schleifendurchlauf die Auswahloption in die  Variable \IC{choice} gespeichert.
+In Zeile 18 wird durch die  Menge aller Auswahloptionen \IC{choices} iteriert und dabei in jedem Schleifendurchlauf die Auswahloption in der Variablen \IC{choice} gespeichert.
 Während des Schleifendurchlaufs wird dann ein Schlüssel-Werte-Paar gebildet, wobei \IC{choice.abbreviation} der Schlüssel ist und das Objekt \IC{choice} der Wert.
 
 Die Map \IC{choiceByAbbreviation} erlaubt es nach der Initialisierung mit Hilfe der Methode \IC{fromAbbreviation} \Z{14} über die Abkürzung das dazugehörige \IC{Choice}-Objekt abzurufen.

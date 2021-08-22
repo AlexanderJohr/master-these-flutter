@@ -41,7 +41,7 @@ Die Ebene, die  über den Eingabefeldern eingeblendet wird, soll die beiden Akti
 Das Widget \IC{Align} erlaubt es, in dieser Ebene festzulegen, wo die Elemente angeordnet sein sollen \Z{80-99}.
 Wie für den \IC{FloatingActionButton} üblich wurde die untere rechte Bildschirm-Ecke gewählt \Z{81}.
 Die Buttons sollen in Zukunft übereinander angeordnet sein, weshalb ein \IC{Column}-Widget zum Einsatz kommt.
-Zum ersten Mal taucht der Parameter \IC{mainAxisSizeAuf}.
+Zum ersten Mal taucht der Parameter \IC{mainAxisSize} auf.
 Mit dem Argument \IC{MainAxisSize.min} nimmt die \IC{Column} in der Höhe nur so viel Platz ein, wie durch die Kindelemente notwendig. Als bisher einziges Element in der \IC{Column}  taucht nun der \IC{FloatingActionButton} auf \Z{87-95}, der die aktuell eingetragenen Daten abspeichern \Z{92} und zur Übersicht zurückkehren soll \Z{93}. Wenn der Nutzer den Mauszeiger über diesen Button bewegt, wird ein Tooltip angezeigt: "Validiere und speichere Massnahme" \Z{88}. Der Tooltip ist als Konstante angelegt \Z{7}. Das hat vor allem den Grund, dass er auch für den folgenden Integrationstest genutzt wird. Elemente können darin über einen beinhaltenden Text oder Tooltip gefunden werden.
 
 
@@ -135,10 +135,10 @@ class MassnahmenDetailScreen extends StatelessWidget {
 
 \subsection{Ausgabe der Formularfelder}
 
-Listing \ref{lst:Schritt1AusgabeDerFormularfelder} zeigt die Ausgabe der Formularfelder in einer Column 58.
+Listing \ref{lst:Schritt1AusgabeDerFormularfelder} zeigt die Ausgabe der Formularfelder in einer \IC{Column} \Z{58}.
 Das Auswahlfeld für den letzten Status verwendet ein selbstgeschriebenes \IC{Widget} namens \IC{SelectionCard} \Z{61-72}.
 Da die Menge der Auswahloptionen auch den Namen der Liste enthält, kann er als Titel der Selektionskarte verwendet werden \Z{62}. In diesem Fall ist das der Text \enquote{Status}.
-Die Auswahloptionen, welche  der Auswahlbildschirm anzeigen soll, sind dem Parameter \IC{allChoices} hinterlegt 63.
+Die Auswahloptionen, welche  der Auswahlbildschirm anzeigen soll, sind dem Parameter \IC{allChoices} hinterlegt \Z{63}.
 
 Die Selektionskarte soll ihren eigenen Zustand pflegen.
 Sie erhält dazu lediglich den initialen Wert, der aktuell im \enquote{ViewModel} gespeichert ist.
@@ -151,7 +151,7 @@ Ist das Element allerdings \IC{null}, so bleibt das \IC{Set}-Literal einfach lee
 Für mehr Informationen zum Set-Literal und dem collection-if siehe \HP{Kapitel einfügen}.
 
 
-Wenn der Benutzer einerAuswahloptionen selektiert, so  wird die dementsprechende anonyme Funktion aufgerufen.
+Wenn der Benutzer eine Auswahloption selektiert, so  wird die dementsprechende anonyme Funktion aufgerufen.
 Sie ist für den Parameter \IC{onSelect} hinterlegt \Z{68-69}.
 Das Gleiche gilt für Auswahloptionen, welche deselektiert werden \Z{70-71}.
 Das Auswahlfeld erlaubt nur einen Wert.
@@ -192,7 +192,7 @@ Die Voraussetzung für diese Funktion ist, dass ihr Rückgabetyp ein \IC{Future<
 Das erlaubt der Methode, asynchron zu sein.
 Der \IC{Future}, der von der Funktion zurückgegeben werden soll, muss in der Zukunft den Wert \IC{true} zurückgeben, wenn dem Navigator erlaubt  werden soll, zurück zu navigieren.
 Da die Implementierung der Methode allerdings nicht asynchron ist, soll der Wahrheitswert direkt zurückgegeben werden.
-Mit dem benannten Konstruktor \IC{value} der Klasse \IC{Future} ist es möglich, genau das zu tun \IC{27}.
+Mit dem benannten Konstruktor \IC{value} der Klasse \IC{Future} ist es möglich, genau das zu tun \Z{27}.
  Der Wahrheitswert ist damit in einem \IC{Future}-Objekt gekapselt und steht ohne Verzögerung zur Verfügung.
 Aktuell soll die Maßnahme lediglich abgespeichert werden \Z{25}, da noch keine Validierung erfolgt.
 
