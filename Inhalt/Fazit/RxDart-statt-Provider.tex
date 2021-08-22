@@ -11,7 +11,7 @@ Doch durch die hohe Anzahl der Oberflächenelemente in der finalen Applikation i
 Sie setzt das Aktualisieren gesamter Widgets bei Anpassung des Zustandes voraus,
 was für die Laufzeitgeschwindigkeit die intensivste Belastung darstellt.
 Stattdessen wurde versucht,
-einem Mechanismus zu verwenden,
+einen Mechanismus zu verwenden,
 der es erlaubt,
 nur Teile der Oberfläche neuzuzeichen,
 die wirklich eine Aktualisierung benötigen.
@@ -26,7 +26,7 @@ Eine Möglichkeit ist,
 dass jede dieser Klassen den nötigen Boilerplate-Quellcode enthält,
 welcher die Oberfläche über die Methode \IC{notifyListeners} benachrichtigt.
 Eine andere Möglichkeit ist es, für den gleichen Datentyp den benötigten BoilerplateCode in einer eigenen Basisklasse auszulagern
-und dann von dieser Klasse zu erben wie in Listing \label{lst:ChoiceChangeNotifier} zu sehen.
+und dann von dieser Klasse zu erben wie in Listing \label{lst:ChoiceChangeNotifier} zu sehen ist.
 \ifIncludeFigures
   \begin{listing}[h]
     \begin{minted}[]{dart}
@@ -47,7 +47,7 @@ class LetzterStatusViewModel extends ChoiceChangeNotifier {}
   \end{listing}
 \fi
 \IC{ChoiceChangeNotifier} verwaltet den internen privaten Zustand \IC{_choices} \Z{3} über die öffentlichen Schnittstellen zum Lesen \Z{4} und Schreiben \Z{6-9}.
-Bei Aktualisierung des Wertes erhalten alle Listener eine Benachrichtigung \Z{8}.
+Bei Aktualisierung des Wertes erhalten alle Listener? eine Benachrichtigung \Z{8}.
 \IC{LetzterStatusViewModel} erbt dieses Verhalten, doch hat die Klasse darüber hinaus keine Implementierung.
 
 Anschließend muss jeder \IC{ChangeNotifier} als ein \IC{ChangeNotifierProvider} registriert werden \LstZ{\ref{lst:MultiProvider}}{7}. 
@@ -74,7 +74,7 @@ MultiProvider(
   \end{listing}
 \fi
 
-Dann ist der \IC{ChangeNotifier} in dem Widget, welches den Parameter \IC{child} übergeben wird und darüber hinaus allen Kindern-Elementen dieses Widgets verfügbar.
+Dann sind der \IC{ChangeNotifier} in dem Widget, welches dem Parameter \IC{child} übergeben wird und darüber hinaus allen Kinder-Elementen dieses Widgets verfügbar.?
 Über einen \IC{Consumer} kann in der Oberfläche auf Änderungen des \IC{ChangeNotifier} reagiert werden \Lst{\ref{lst:Consumer}}.
 
 \ifIncludeFigures
@@ -92,21 +92,21 @@ Dann ist der \IC{ChangeNotifier} in dem Widget, welches den Parameter \IC{child}
 
 
 Doch diese Vorgehensweise bietet im Vergleich zu den von Flutter mitgelieferten \enquote{Widgets} keine Vorteile.
-Das Äquivalent zum \IC{Consumer} ist das mitgelieferten Widget \IC{StreamBuilder},
-welcher mit jeder Art von \enquote{Stream} verwendet werden kann.
+Das Äquivalent zum \IC{Consumer} ist das mitgelieferte Widget \IC{StreamBuilder},
+welcher welches mit jeder Art von \enquote{Stream} verwendet werden kann.
 
 Damit unterstützt er ein breiteres Spektrum von Einsatzmöglichkeiten.
 Beispielsweise kann ein transformierter \enquote{Stream} übergeben werden, wie im Kapitel \ref{Schritt4} gezeigt.
 
 Die einzige fehlende Komponente dafür ist ein \enquote{Stream},
-der den zuletzt übermittelten Wert speichert und den neuen StreamBuilder Elementen übermittelt.
+der den zuletzt übermittelten Wert speichert und den neuen StreamBuilder Elementen übermittelt.?
 Deshalb wurde sich für das Package \enquote{rx.dart} entschieden,
 welches genau dieses Verhalten mit dem \enquote{BehaviorSubject} abdeckt.
 Durch dessen Verwendung kann sowohl auf das Registrieren des \IC{ChangeNotifierProvider} verzichtet werden
 und es muss keine weitere Klasse für die einzelnen beobachtbaren Objekte erstellt werden.
 
 Auch der \IC{MultiProvider} erscheint auf den ersten Blick als sehr nützlich.
-Doch das Anbieten der Services durch ein eigens implementiertes \IC{InheritedWidget} erlaubt einen Zugriff,
+Doch das Anbieten des Services durch ein eigens implementiertes \IC{InheritedWidget} erlaubt einen Zugriff,
 der kürzer und expliziter ist.
 Durch die Umstellung konnte der Zugriff auf das ViewModel mithilfe des Ausdrucks \IC{Provider.of<MassnahmenFormViewModel>(context, listen: false)} durch \IC{AppState.of(context).viewModel} ersetzt werden.
 
@@ -143,8 +143,8 @@ class CartBloc{
 
 Obwohl das \IC{BehaviorSubject} die Funktionsweise des \IC{ViewModels} bereits löst,
 wurde ein Objekt des Typs \IC{Sink} verwendet,
-um Ereignisse von dem View an das \IC{ViewModel} senden zu können \Z{4}. \IC{StreamController} verwendet.
-Ein Sind implementiert jedoch ausschließlich Methoden zum Hinzufügen von Ereignissen Punkt um den Stream zu lesen,
+um Ereignisse von dem View an das \IC{ViewModel} senden zu können \Z{4}. \IC{StreamController} verwendet.?
+Ein \IC{Sink} implementiert jedoch ausschließlich Methoden zum Hinzufügen von Ereignissen. Um den Stream zu lesen,
 wird ein  dazugehöriger \IC{StreamController} erstellt \Z{6}.
 Er hat im Gegensatz zum \IC{Sink} auch lesenden Zugriff auf die Ereignisse.
 Sobald ein Ereignis eintrifft,
@@ -152,7 +152,7 @@ so wird es dem \IC{Model} \IC{_cart} hinzugefügt \Z{17}.
 Es existiert außerdem ein weiterer \IC{Stream itemCount} \Z{8} welcher lediglich die transitive Eigenschaft der Anzahl der hinzugefügten Elemente darstellt \IC{18}. 
 Er nutzt das BehaviorSubject \IC{10},
 verwendet allerdings keine der bedeutsamen Methoden.
-Es könnte genauso gut durch einen weiteren \IC{StreamController} ersetzt werden.
+Es oder er könnte genauso gut durch einen weiteren \IC{StreamController} ersetzt werden.
 
 Der gesamte Quellcode kann stark vereinfacht werden \Lst{\ref{lst:CartBlocVereinfacht}}.
 \ifIncludeFigures
@@ -178,7 +178,7 @@ da das Objekt vor und nach der Zuweisung das gleiche ist,
 denn es handelt sich um einen Referenztyp und nicht um einen Werttyp.
 Die Erstellung weiterer \IC{StreamController} zum Senden der transitiven Eigenschaft \IC{itemCount} ist nicht nötig.
 Sendet das \IC{BehaviorSubject} \IC{_cart} ein neues Event \Z{4},
-so wird auch die Methode \IC{map} ausgelöst und ein transformiertes Eigenschaft gesendet \Z{6}.
+so wird auch die Methode \IC{map} ausgelöst und ein transformiertes Eigenschaft oder Ergebnis? gesendet \Z{6}.
 
 Durch eine Anleitung mit diesem Ergebnis könnten gegebenenfalls weitere Entwickler das \enquote{BloC-Pattern} dem Paket \enquote{provider} vorziehen.
 
