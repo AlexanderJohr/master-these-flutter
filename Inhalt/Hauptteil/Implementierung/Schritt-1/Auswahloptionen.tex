@@ -1,7 +1,7 @@
 
 \section{Auswahloptionen hinzufügen}
 
-Dart verfügt – anders als beispielsweise Java\footcite[Vgl.][S. 321]{TheJavaLanguageSpecificationJavaSE16Edition} – nicht über Aufzählungstypen mit zusätzlichen Eigenschaften. Das Schlüsselwort \mintinline{dart}{enum} in Dart erlaubt lediglich die Auflistung konstanter Symbole\footcite[Vgl.][S. 74f.]{DartProgrammingLanguageSpecification5thedition}. Für die Auswahloptionen ist es jedoch notwendig, dass es zwei Eigenschaften gibt:
+\enquote{Dart} verfügt -- anders als beispielsweise Java\footcite[Vgl.][S. 321]{TheJavaLanguageSpecificationJavaSE16Edition} -- nicht über Aufzählungstypen mit zusätzlichen Eigenschaften. Das Schlüsselwort \mintinline{dart}{enum} in \enquote{Dart} erlaubt lediglich die Auflistung konstanter Symbole\footcite[Vgl.][S. 74f.]{DartProgrammingLanguageSpecification5thedition}. Für die Auswahloptionen ist es jedoch notwendig, dass es zwei Eigenschaften gibt:
 \begin{itemize}
   \parsep 0pt
   \topsep 0pt
@@ -64,7 +64,7 @@ Außerdem entfällt auch die Zuweisung, die man ansonsten in der Form \IC{this.a
 Die Variable \IC{letzterStatusChoices} \LstZ{\ref{lst:Schritt1DieMengeLetzterStatusChoices}}{13} fasst die beiden statischen Klassenvariablen als eine Kollektion zusammen.
 Da es sich um eine solche Kollektion handelt, in der jedes Element nur ein einziges Mal vorkommen darf, ist hier von einer Menge zu sprechen.
 Auffällig hierbei ist, dass das Schlüsselwort \IC{new} fehlt.
-In Dart ist das Schlüsselwort für die Konstruktion von Instanzen optional.
+In \enquote{Dart} ist das Schlüsselwort für die Konstruktion von Instanzen optional.
 Die Klasse, die zur Konstruktion dieser Menge verwendet wird, ist die selbst erstellte Klasse \IC{Choices}.
 Über das Typargument \IC{LetzterStatus} wird erreicht, dass ausschließlich Variablen  dieses Typs in der Menge eingefügt werden dürfen.
 Wird stattdessen eine Variable eingefügt, die weder vom selben Typ, noch von einem Typ, der von \IC{LetzterStatus} erbt, so gibt es einen Compilerfehler.
@@ -81,7 +81,7 @@ Dies dient einzig und allein dem Zweck, dem  Fehler vorzubeugen, dass aus Verseh
 \ifIncludeFigures \clearpage \fi
 
 Listing \ref{lst:Schritt1KlasseChoices} zeigt die Klasse \IC{Choices}.
-Sie erbt von \IC{UnmodifiableSetView} und erlaubt damit die Erstellung  einer eigenen Menge - auch \IC{Set} genannt\HP{Referenz}.
+Sie erbt von \IC{UnmodifiableSetView} und erlaubt damit die Erstellung  einer eigenen Menge -- auch \IC{Set} genannt\HP{Referenz}.
 Methoden, die man von einem \IC{Set} erwartet,  lassen sich somit direkt auf  Instanzen der Klasse \IC{Choices} aufrufen.
 Darunter ist unter anderem die \IC{contains} Methode,  welche erlaubt, das Vorhandensein eines Objekts im \IC{Set} zu überprüfen\HP{Referenz}.
 
@@ -108,7 +108,7 @@ In der statischen Analyse wird daher sichergestellt, dass Instanzvariablen durch
 Dürfte \IC{name} den Wert \IC{null} annehmen, so würde es sich um den Datentyp \IC{String} mit Null-Zulässigkeit -- also mit der Notation \IC{String?} -- handeln.
 
 Neben \IC{name} wird mit \IC{choiceByAbbreviation} eine weitere Instanzvariable deklariert \Z{12}.
-Es handelt sich um den Datentyp \IC{Map} - eine Kollektion die Daten mittels Schlüssel-Werte-Paaren ablegen kann.
+Es handelt sich um den Datentyp \IC{Map} -- eine Kollektion die Daten mittels Schlüssel-Werte-Paaren ablegen kann.
 Als Schlüssel wird die Abkürzung mit dem Datentyp \IC{String} verwendet.
 Als Wert ist der generische Typ-Parameter \IC{T} angegeben.
 Er ist in Zeile 10 deklariert und muss mindestens von der Klasse \IC{Choice} erben.

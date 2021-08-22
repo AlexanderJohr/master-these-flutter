@@ -8,7 +8,7 @@ Ein automatisierter Integrationstest soll verifizieren, dass die Oberfläche wie
 Der Integrationstest simuliert einen Benutzer, der die Applikation verwendet, um eine Maßnahme einzutragen.
 Bei Abschluss des Tests soll überprüft werden, ob die  eingegebenen Daten mit den Inhalten der JSON-Datei übereinstimmen.
 
-Flutter erlaubt über einen eigenen Testtreiber solche Integrationstests durchzuführen.
+\enquote{Flutter} erlaubt über einen eigenen Testtreiber solche Integrationstests durchzuführen.
 Dabei wird die Applikation zur Ausführung gebracht, und jeder Schritt so visualisiert, wie es bei der Ausführung der realen Applikation der Fall wäre.
 Der Entwickler hat damit die Möglichkeit, die Eingaben und Interaktionen zu beobachten und gegebenfalls zu bemerken, warum ein Testfall nicht korrekt ausgeführt wird.
 
@@ -20,7 +20,7 @@ Zu diesem Zweck können sogenannte Mocks genutzt werden.
 Das Paket \enquote{mockito} erlaubt über Annotationen solche Mocks für die gewünschten Klassen  über Quellcode-Generierung zu erstellen.
 
 Integrationstests werden im Ordner integration_test angelegt.
-Während des Zeitpunkts der Erstellung dieser Arbeit war es in der Standardkonfiguration der Quellcode-Generierung und dem Paket \enquote{mockito} nicht möglich, Mocks auch im integration_test Ordner zu generieren.  Lediglich innerhalb des test Ordners, der für die Unit-Tests vorgesehen ist, hat die Annotation generate mocks funktioniert. Zu diesem Fehlverhalten existiert ein entsprechendes Issue im GitHub Repository  des Mockito packages. \HP{Ref} Um das Generieren von Mocks auch für Integrationstests verfügbar zu machen, hat der Autor dieser Arbeit einen entsprechenden Lösungsansatz recherchiert und im Issue beschrieben. \HP{Ref} 
+Während des Zeitpunkts der Erstellung dieser Arbeit war es in der Standardkonfiguration der Quellcode-Generierung und dem Paket \enquote{mockito} nicht möglich, Mocks auch im integration_test Ordner zu generieren.  Lediglich innerhalb des test Ordners, der für die Unit-Tests vorgesehen ist, hat die Annotation generate mocks funktioniert. Zu diesem Fehlverhalten existiert ein entsprechendes Issue im GitHub Repository  des Mockito packages. \HP{Ref} Um das Generieren von Mocks auch für Integrationstests verfügbar zu machen, hat der Autor dieser Arbeit einen entsprechenden Lösungsansatz recherchiert und im Issue beschrieben. \HP{Ref}
 
 Damit der integration_test Ordner für die Quellcode-Generierung der Mocks integriert wird, muss ein entsprechender Eintrag in der Build-Konfiguration vorgenommen werden.
 Damit das Paket \enquote{source_gen} die entsprechenden Dateien analysiert, müssen sie in der Rubrik \IC{sources} angegeben werden \LstZ{\ref{lst:Schritt1IntegrationsTestInitialisierung}}{3-8}.
@@ -46,7 +46,7 @@ Stattdessen kann darauf gehorcht werden, wenn Operationen auf dem Objekt ausgef�
 
 Die Funktion \IC{testWidgets} startet den Test und erhält als ersten Parameter das \IC{tester}-Objekt \Z{22}.
 Darüber ist die Interaktion mit der Oberfläche während des Tests möglich.
-In den Zeilen 22 bis 25 wird der Testtreiber initialisiert. \HP{Ref}. Anschließend wird ein Objekt der generierten Klasse \IC{MockMassnahmenJsonFile} erstellt. Wenn das Model nun während der Applikation versucht, aus der JSON-Datei zu lesen, soll der Mock eine leere Liste von Maßnahmen zurückgeben \Z{28}. Dazu wird die entsprechende Methode \IC{when} verwendet. Als erster Parameter wird die Methode \IC{readMassnahmen} des Mocks übergeben. Im darauffolgenden Aufruf \IC{thenAnswer} kann angegeben werden, welche Rückgabe die Methode liefern soll.
+In den Zeilen 22 bis 25 wird der Testtreiber initialisiert. \HP{Ref}. Anschließend wird ein Objekt der generierten Klasse \IC{MockMassnahmenJsonFile} erstellt. Wenn das \enquote{Model} nun während der Applikation versucht, aus der JSON-Datei zu lesen, soll der Mock eine leere Liste von Maßnahmen zurückgeben \Z{28}. Dazu wird die entsprechende Methode \IC{when} verwendet. Als erster Parameter wird die Methode \IC{readMassnahmen} des Mocks übergeben. Im darauffolgenden Aufruf \IC{thenAnswer} kann angegeben werden, welche Rückgabe die Methode liefern soll.
 
 Über den \IC{tester} kann mit Hilfe der Methode \IC{pumpWidget} ein beliebiges Widget in der Test-Ausführung konstruiert werden.
 In diesem Fall ist es die gesamte Applikation, die getestet werden soll.
@@ -85,13 +85,13 @@ Der aufrufende Kontext muss die konkrete Klasse dazu nicht kennen.\footcite[Vgl.
 
 
 Um die Selektions-Karten zu finden, wird lediglich der Titel- Text benötigt.
-Angenommen der Test ruft \IC{tabSelectionCard} mit dem Argument \IC{letzterStatusChoices} auf, so entspricht \IC{choices.name} dem String \IC{"Status"}. Der Ausdruck \IC{find.text("Status")} lokalisiert den Titel innerhalb der Selektions-Karte \Z{50}. 
+Angenommen der Test ruft \IC{tabSelectionCard} mit dem Argument \IC{letzterStatusChoices} auf, so entspricht \IC{choices.name} dem String \IC{"Status"}. Der Ausdruck \IC{find.text("Status")} lokalisiert den Titel innerhalb der Selektions-Karte \Z{50}.
 
 Die Funktion \IC{expect} erwartet als ersten Parameter einen \IC{Finder} und als zweiten einen sogenannten \enquote{Matcher} \Z{51}.
 Der Aufruf von \IC{expect} mit dem entsprechenden \IC{Finder}-Objekt und dem Matcher \IC{findsWidgets} verifiziert, dass mindestens ein entsprechendes Text Element gefunden wurde.
 
 Wurde das Text-Element gefunden, so muss noch der Vater gesucht werden, der vom Typ \IC{Card} ist \Z{53}.
-Das kann mit \IC{find.ancestor} erfolgen. Über den Parameter \IC{of} erhält er den \IC{Finder} des Kind-Elements und der Parameter \IC{matching} erhält als Argument die Voraussetzung, die vom Vater-Objekt erfüllt werden soll, als weiteren \IC{Finder}. \IC{find.byType(Card)} sucht also alle Elemente vom Typ \IC{Card}. \IC{find.ancestor} sucht anschließend alle Entsprechungen, in denen eine \IC{Card} ein Vater des \IC{Finder textLabel} ist. Wiederum überprüft die Funktion \IC{expect}, dass die Karte gefunden wurde. Doch dieses Mal muss es genau ein Widget sein, welches mit dem \enquote{Matcher} \IC{findsOneWidget} verifiziert werden kann \Z{54}. Sollte mehr als nur eine Karte gefunden werden, so wäre nicht klar, welche angeklickt werden soll.
+Das kann mit \IC{find.ancestor} erfolgen. Über den Parameter \IC{of} erhält er den \IC{Finder} des Kindelements und der Parameter \IC{matching} erhält als Argument die Voraussetzung, die vom Vater-Objekt erfüllt werden soll, als weiteren \IC{Finder}. \IC{find.byType(Card)} sucht also alle Elemente vom Typ \IC{Card}. \IC{find.ancestor} sucht anschließend alle Entsprechungen, in denen eine \IC{Card} ein Vater des \IC{Finder textLabel} ist. Wiederum überprüft die Funktion \IC{expect}, dass die Karte gefunden wurde. Doch dieses Mal muss es genau ein Widget sein, welches mit dem \enquote{Matcher} \IC{findsOneWidget} verifiziert werden kann \Z{54}. Sollte mehr als nur eine Karte gefunden werden, so wäre nicht klar, welche angeklickt werden soll.
 
 Um eine Karte tatsächlich anzuwählen muss sie im sichtbaren Bereich sein.
 Die Methode \enquote{ensureVisible} scrollt den Bildschirm zur entsprechenden Position, damit die Karte sichtbar ist \Z{56}.
@@ -119,12 +119,12 @@ Erst wenn verifiziert wurde, dass auch nur genau ein Label mit diesem Text exist
   \label{lst:Schritt1HilfsmethodeTabOption}
 \end{alexlisting}
 
-Ein Klick auf das Text-Label reicht bereits aus, denn damit wird das Vater-Element - das \IC{CheckboxListTile} - ebenfalls getroffen.
+Ein Klick auf das Text-Label reicht bereits aus, denn damit wird das Vaterelement -- das \IC{CheckboxListTile} -- ebenfalls getroffen.
 Der \IC{tester} holt es in den sichtbaren Bereich \IC{71}, klickt es \IC{72} und wartet auf Abschluss aller Animationen \Z{73}.
 Sollte der optionale Parameter \IC{tabConfirm} auf \IC{true} gesetzt sein \Z{75}, so wird der Auswahlbildschirm anschließend direkt wieder geschlossen, nachdem die Option ausgewählt wurde  \Z{76}. 
   
 Schließlich kann mit der Hilfsfunktionen \IC{fillTextFormField} ein Formularfeld über dessen Titel gefunden und der entsprechende übergebende Text eingetragen werden \Lst{\ref{lst:Schritt1HilfsmethodeFillTextFormField}}.
-Die Hilfsfunktionen findet das \IC{TextFormField}, indem sie zunächst nach dem Titel mit \IC{find.text(title)} und anschließend nach dessen Vater-Element vom Typ \IC{TextFormField} sucht \Z{83}. Sollte sowohl der Hinweistext als auch der Titel den gleichen Text enthalten, so kann es sein, dass zwei solche Elemente gefunden werden. In Wahrheit ist es aber zwei Mal dasselbe \IC{TextFormField}. Mit \IC{.first} wird lediglich das erste Element geliefert \Z{85}.
+Die Hilfsfunktionen findet das \IC{TextFormField}, indem sie zunächst nach dem Titel mit \IC{find.text(title)} und anschließend nach dessen Vaterelement vom Typ \IC{TextFormField} sucht \Z{83}. Sollte sowohl der Hinweistext als auch der Titel den gleichen Text enthalten, so kann es sein, dass zwei solche Elemente gefunden werden. In Wahrheit ist es aber zwei Mal dasselbe \IC{TextFormField}. Mit \IC{.first} wird lediglich das erste Element geliefert \Z{85}.
 Nachdem feststeht, dass das Element existiert \Z{85} und es in den sichtbaren Bereich gescrollt wurde \Z{87}, gibt der Integrationstest den gewünschten Text in das Eingabefeld ein \Z{88}.
 Anschließend wird erneut auf Abschluss aller Animationen gewartet \Z{89}.
 
@@ -171,7 +171,7 @@ Die nötigen Eingaben sind erfolgt.
 Daher kann der Test nun den Klick auf den Button zum Speichern simulieren \LstZ{\ref{lst:Schritt1ButtonZumSpeichernWirdAusgelöst}}{106-108}.
 Dadurch würde in der Anwendung nun das Speichern der Maßnahmen in der JSON-Datei erfolgen.
 Doch da stattdessen ein Mock verwendet wurde, passiert dies nicht.
-Das Model ruft aber dennoch die entsprechenden Methoden - wie zum Beispiel \IC{saveMassnahmen} - auf.
+Das \enquote{Model} ruft aber dennoch die entsprechenden Methoden -- wie zum Beispiel \IC{saveMassnahmen} -- auf.
 Die Methoden haben nur nicht die ursprüngliche Funktion.
 Stattdessen protokollieren sie sowohl die Aufrufe, als auch die übergebenen Argumente.
 Durch die Methode \IC{verify} \Z{111} kann überprüft werden, ob die entsprechende Methode \IC{saveMassnahmen} ausgeführt wurde.

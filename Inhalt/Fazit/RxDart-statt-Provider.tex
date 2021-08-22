@@ -16,7 +16,7 @@ der es erlaubt,
 nur Teile der Oberfläche neuzuzeichen,
 die wirklich eine Aktualisierung benötigen.
 
-Zu diesem Zweck empfiehlt Google das Nutzen des Pakets \enquote{provider} der Flutter Community \footcite[Vgl.][]{ProviderARecommendedApproach}.
+Zu diesem Zweck empfiehlt Google das Nutzen des Pakets \enquote{provider} der \enquote{Flutter}-Community \footcite[Vgl.][]{ProviderARecommendedApproach}.
 Dieser Ansatz wurde in der Implementierung ursprünglich verwendet.
 Das Paket hat den Nachteil,
 dass für jeden Zustand,
@@ -42,7 +42,7 @@ class ChoiceChangeNotifier extends ChangeNotifier {
 }
 class LetzterStatusViewModel extends ChoiceChangeNotifier {}
 \end{minted}
-    \caption[built_value Live Template]{Live Template für die Erstellung von built_value Boilerplate-Code in Android Studio, Quelle: Jetbrains Marketplace Built Value Snippets Plugin}
+    \caption[Verwendung der Klasse \enquote{ChangeNotifier}]{Verwendung der Klasse \enquote{ChangeNotifier}, Quelle: Eigenes Listing}
     \label{lst:ChoiceChangeNotifier}
   \end{listing}
 \fi
@@ -64,17 +64,17 @@ MultiProvider(
     Provider(
         create: (context) => MassnahmenModel(
             Provider.of<MassnahmenJsonFile>(context, listen: false))),
-     ChangeNotifierProvider(create: (context) => LetzterStatusViewModel())),
+    ChangeNotifierProvider(create: (context) => LetzterStatusViewModel())),
   ],
   child: MaterialApp(),
 )
 \end{minted}
-    \caption[built_value Live Template]{Live Template für die Erstellung von built_value Boilerplate-Code in Android Studio, Quelle: Jetbrains Marketplace Built Value Snippets Plugin}
+    \caption[Die \enquote{Widgets} \enquote{Provider}, \enquote{ChangeNotifierProvider} und \enquote{MultiProvider}]{Die \enquote{Widgets} \enquote{Provider}, \enquote{ChangeNotifierProvider} und \enquote{MultiProvider}, Quelle: Eigenes Listing}
     \label{lst:MultiProvider}
   \end{listing}
 \fi
 
-Dann ist der \IC{ChangeNotifier} in dem Widget, welches dem Parameter \IC{child} übergeben wird, und darüber hinaus allen in Kinderelementen dieses Widgets verfügbar.
+Dann ist der \IC{ChangeNotifier} in dem Widget, welches dem Parameter \IC{child} übergeben wird, und darüber hinaus in allen Kinderelementen dieses Widgets verfügbar.
 Über einen \IC{Consumer} kann in der Oberfläche auf Änderungen des \IC{ChangeNotifier} reagiert werden \Lst{\ref{lst:Consumer}}.
 
 \ifIncludeFigures
@@ -85,13 +85,13 @@ Dann ist der \IC{ChangeNotifier} in dem Widget, welches dem Parameter \IC{child}
       },
     )
 \end{minted}
-    \caption[built_value Live Template]{Live Template für die Erstellung von built_value Boilerplate-Code in Android Studio, Quelle: Jetbrains Marketplace Built Value Snippets Plugin}
+    \caption[Das \enquote{Widget} \enquote{Consumer}]{Das \enquote{Widget} \enquote{Consumer}, Quelle: Eigenes Listing}
     \label{lst:Consumer}
   \end{listing}
 \fi
 
 
-Doch diese Vorgehensweise bietet im Vergleich zu den von Flutter mitgelieferten \enquote{Widgets} keine Vorteile.
+Doch diese Vorgehensweise bietet im Vergleich zu den von \enquote{Flutter} mitgelieferten \enquote{Widgets} keine Vorteile.
 Das Äquivalent zum \IC{Consumer} ist das mitgelieferte Widget \IC{StreamBuilder},
 welches mit jeder Art von \enquote{Stream} verwendet werden kann.
 
@@ -108,9 +108,9 @@ und es muss keine weitere Klasse für die einzelnen beobachtbaren Objekte erstel
 Auch der \IC{MultiProvider} erscheint auf den ersten Blick als sehr nützlich.
 Doch das Anbieten der Services durch ein eigens implementiertes \IC{InheritedWidget} erlaubt einen Zugriff,
 der kürzer und expliziter ist.
-Durch die Umstellung konnte der Zugriff auf das ViewModel mithilfe des Ausdrucks \IC{Provider.of<MassnahmenFormViewModel>(context, listen: false)} durch \IC{AppState.of(context).viewModel} ersetzt werden.
+Durch die Umstellung konnte der Zugriff auf das \enquote{ViewModel} mithilfe des Ausdrucks \IC{Provider.of<MassnahmenFormViewModel>(context, listen: false)} durch \IC{AppState.of(context).viewModel} ersetzt werden.
 
-Eine ganz ähnliche, wenn auch deutlich kompliziertere Variante dieser Vorgehensweise, wurde auf der Google I/O 2018 von Filip Hracek und Matt Sulliivan vorgestellt. Doch anstatt lediglich das BehaviorSubject für das ViewModel zu verwenden, sorgte die Präsentation durch den zusätzlichen -- jedoch überflüssigen -- Einsatz zwei weiterer Stream-Klassen für schweres Verständnis \Lst{\ref{lst:CartBloc}}\footcite[][TC: \href{https://youtu.be/RS36gBEp8OI?t=1657}{27:37}]{GoogleIO18}.
+Eine ganz ähnliche, wenn auch deutlich kompliziertere Variante dieser Vorgehensweise, wurde auf der Google I/O 2018 von Filip Hracek und Matt Sulliivan vorgestellt. Doch anstatt lediglich das \IC{BehaviorSubject} für das \enquote{ViewModel} zu verwenden, sorgte die Präsentation durch den zusätzlichen -- jedoch überflüssigen -- Einsatz zwei weiterer \enquote{Stream}-Klassen für schweres Verständnis \Lst{\ref{lst:CartBloc}}\footcite[][TC: \href{https://youtu.be/RS36gBEp8OI?t=1657}{27:37}]{GoogleIO18}.
 
 \ifIncludeFigures
   \begin{listing}[h]
@@ -136,7 +136,7 @@ class CartBloc{
     }
 }
 \end{minted}
-    \caption[Die Klasse CartBloc]{Die Klasse CartBloc, Quelle: \cite{GoogleIO18} TC: \href{https://youtu.be/RS36gBEp8OI?t=1657}{27:37} \footnotemark}
+    \caption[Die Klasse CartBloc]{Die Klasse CartBloc, Quelle: \cite{GoogleIO18} TC: \href{https://youtu.be/RS36gBEp8OI?t=1657}{27:37}}
     \label{lst:CartBloc}
   \end{listing}
 \fi

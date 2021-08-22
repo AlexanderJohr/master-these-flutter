@@ -2,13 +2,13 @@
 \ifIncludeFigures \clearpage \fi
 \section{Übersichtsbildschirm der Maßnahmen}
 
-Der erste Bildschirm -- die Übersicht der Maßnahmen -- kann auf das im letzten Schritt erstellte Model zugreifen.
+Der erste Bildschirm -- die Übersicht der Maßnahmen -- kann auf das im letzten Schritt erstellte \enquote{Model} zugreifen.
 In Listing \ref{lst:Schritt1KlasseMassnahmenMasterScreenStruktur}  ist die Struktur des Übersichts-Bildschirms zu sehen. Über die Route \url{/massnahmen_master} ist der Bildschirm erreichbar \Z{16}. Die \IC{build}-Methode zeichnet die Oberfläche \IC{21-111}.  Da ein Objekt des Typs
 MassnahmenPool im zentralen  Register der Provider hinterlegt wurde, kann mit der Methode Provider.of darauf zugegriffen werden.
 
-Mittels \IC{AppState.of(context)} ist nun der Zugriff auf sowohl Model als auch ViewModel möglich. Zur einfacheren Verwendung sind sie als lokale Variablen zwischengespeichert \Z{20-21}.
+Mittels \IC{AppState.of(context)} ist nun der Zugriff auf sowohl \enquote{Model} als auch \enquote{ViewModel} möglich. Zur einfacheren Verwendung sind sie als lokale Variablen zwischengespeichert \Z{20-21}.
 
-Das Widget \IC{Scaffold} - deutsch Gerüst -  stell  ein grundlegendes Layout mit einer Überschrift und einem Bereich für den Inhalt bereit \Z{23}.
+Das Widget \IC{Scaffold} -- deutsch Gerüst --  stell  ein grundlegendes Layout mit einer Überschrift und einem Bereich für den Inhalt bereit \Z{23}.
 Das \IC{Scaffold} kann auch Mitteilungen an den Benutzer am unteren Bildschirmrand einblenden.
 
 Die Überschrift wird in der sogenannten \IC{AppBar} hinterlegt \Z{24}.
@@ -20,7 +20,7 @@ Zusätzlich kann dem \IC{Scaffold} ein Button für die primäre Aktion auf diese
 Bei Aktivierung dieses Buttons navigiert die Applikation zur Eingabemaske, um eine neue Maßnahme anzulegen \Z{98}.
 
 Das Eingabeformular sollte den Benutzer auffordern, tatsächlich leere Eingabefelder zu füllen.
-Deshalb muss die Aktivierung des Buttons auch das ViewModel neu initialisieren.
+Deshalb muss die Aktivierung des Buttons auch das \enquote{ViewModel} neu initialisieren.
 Dies geschieht durch Zuweisung einer leeren Maßnahme zur Setter-Methode \IC{vm.model} \Z{95}. Ohne die Neuinitialisierung würde die Eingabemaske immer die zuletzt eingetragene Maßnahme enthalten. Dies würde große Verwirrung beim Benutzer stiften.
 
 The \IC{FloatingActionButton} erhält den Schlüssel \IC{createNewMassnahmeButtonKey} \Z{89}.
@@ -28,8 +28,8 @@ Er ist als \IC{GlobalKey} deklariert \Z{11}.
 Er findet beim Integrationstest Anwendung, um den Button zu finden ( Siehe Kapitel \HP{Kapitel einfügen}).
 
 Der Inhaltsbereich des \IC{Scaffold} beinhaltet das Widget \IC{StreamBuilder} \Z{27}.
-Er kann auf Streams horchen, die Ereignisse des Typs \IC{Storage} übermitteln.
-Er horcht auf Änderungen im Model, um genau zu sein auf Änderungen des Streams \IC{model.storage} \Z{28}. Sobald der \IC{StreamBuilder} ein Ereignis erhält, so führt er die Methode aus, die als Argument des Parameters \IC{builder} hinterlegt ist. Alle Widgets außerhalb davon, wie etwa das \IC{Scaffold}, erhalten dabei keine Aufforderung zum Neuzeichnen, sobald eine Maßnahme hinzugefügt wird. Das wirkt sich positiv auf die Laufzeit-Geschwindigkeit aus.
+Er kann auf \enquote{Streams} horchen, die Ereignisse des Typs \IC{Storage} übermitteln.
+Er horcht auf Änderungen im \enquote{Model}, um genau zu sein auf Änderungen des \enquote{Streams} \IC{model.storage} \Z{28}. Sobald der \IC{StreamBuilder} ein Ereignis erhält, so führt er die Methode aus, die als Argument des Parameters \IC{builder} hinterlegt ist. Alle Widgets außerhalb davon, wie etwa das \IC{Scaffold}, erhalten dabei keine Aufforderung zum Neuzeichnen, sobald eine Maßnahme hinzugefügt wird. Das wirkt sich positiv auf die Laufzeit-Geschwindigkeit aus.
 
 
 \ifIncludeFigures
@@ -90,7 +90,7 @@ class MassnahmenMasterScreen extends StatelessWidget {
 
 Der Inhalt der \IC{builder}-Methode ist in Listing \ref{lst:Schritt1DieAusgabeDerMassnahmen} dargestellt.
 Das erste Widget ist ein \IC{SingleChildScrollView} \Z{30}.
-Das Argument \IC{scrollDirection} ist nicht gefüllt, weshalb die Standardoption - die vertikale Scrollrichtung - gewählt wird.
+Das Argument \IC{scrollDirection} ist nicht gefüllt, weshalb die Standardoption -- die vertikale Scrollrichtung -- gewählt wird.
 Sollte die Liste der Maßnahmen die Höhe des Fensters überschreiten, so kann der Benutzer vertikal über die Liste scrollen.
 
 \begin{alexlisting}{Schritt 1}{Die Ausgabe der Maßnahmen}
@@ -109,14 +109,14 @@ Das ermöglicht das Widget \IC{Padding} \Z{35-40} und das Argument \IC{EdgeInset
 
 Die Informationen der Maßnahmen werden in einer Tabelle angezeigt.
 Dies übernimmt das selbstgeschriebene \enquote{Widget} \IC{MassnahmenTable} \Z{45}.
-Als erstes Argument erfolgt die Übergabe der anzuzeigenden Maßnahmen aus dem Model. \IC{storage.value.massnahmen} gibt den aktuellen Wert des Streams des \IC{storage}-Objekts zurück und greift auf die Liste der Maßnahmen zu. Mit der Methode \IC{where} \Z{47} kann ein Filter auf die Liste angewendet werden. Die übergebene anonyme Funktion \Z{47-49} überprüft, ob der letzte Status auf \enquote{fertig} gesetz ist. Dazu reicht der Vergleich der Abkürzung. Nur wenn diese Bedingung erfüllt ist, bleibt die Maßnahme in der gefilterten Kollektion zurück. Ein solcher Filter gibt ein sogenanntes \enquote{lazy} \IC{Iterable} zurück. Erst beim Zugriff auf das Ergebnis findet der Filter Anwendung. Doch es gibt keinen Zwischenspeicher für die gefilterten Elemente. Jeder Zugriff filtert die Elemente also neu. Der Aufruf \IC{toSet} bewirkt allerdings das Speichern der Ergebnisse in einer Menge \Z{50}. Das Widget \IC{MassnahmenTable} erhält das Resultat um es in einer Tabelle anzuzeigen.
+Als erstes Argument erfolgt die Übergabe der anzuzeigenden Maßnahmen aus dem \enquote{Model}. \IC{storage.value.massnahmen} gibt den aktuellen Wert des \enquote{Streams} des \IC{storage}-Objekts zurück und greift auf die Liste der Maßnahmen zu. Mit der Methode \IC{where} \Z{47} kann ein Filter auf die Liste angewendet werden. Die übergebene anonyme Funktion \Z{47-49} überprüft, ob der letzte Status auf \enquote{fertig} gesetz ist. Dazu reicht der Vergleich der Abkürzung. Nur wenn diese Bedingung erfüllt ist, bleibt die Maßnahme in der gefilterten Kollektion zurück. Ein solcher Filter gibt ein sogenanntes \enquote{lazy} \IC{Iterable} zurück. Erst beim Zugriff auf das Ergebnis findet der Filter Anwendung. Doch es gibt keinen Zwischenspeicher für die gefilterten Elemente. Jeder Zugriff filtert die Elemente also neu. Der Aufruf \IC{toSet} bewirkt allerdings das Speichern der Ergebnisse in einer Menge \Z{50}. Das Widget \IC{MassnahmenTable} erhält das Resultat um es in einer Tabelle anzuzeigen.
 
 Ein weiterer Parameter ist \IC{onSelect} \Z{50}.
 Als Argument kann eine Funktion mit genau einem Parameter gesetzt werden.
 Sollte der Benutzer in der Tabelle eine Maßnahme auswählen, so löst er damit die Funktion aus.
 Der erste Parameter enthält dann die ausgewählte Maßnahme.
 Daraufhin soll sich wieder die Eingabemaske öffnen \Z{55-56}.
-Dann beinhalten die Eingabefehler jedoch die Werte der ausgewählten Maßnahme.  Um das zu erreichen, reicht eine Zuweisung der Maßnahme an das ViewModel \Z{51}. Allerdings soll die Maßnahme zuvor ein neues letztes Bearbeitungsdatum mit dem aktuellen Zeitstempel erhalten \Z{51-53}.
+Dann beinhalten die Eingabefehler jedoch die Werte der ausgewählten Maßnahme.  Um das zu erreichen, reicht eine Zuweisung der Maßnahme an das \enquote{ViewModel} \Z{51}. Allerdings soll die Maßnahme zuvor ein neues letztes Bearbeitungsdatum mit dem aktuellen Zeitstempel erhalten \Z{51-53}.
 
 Unterhalb der Rubrik der finalen Maßnahmen listet die Übersicht die Maßnahmen, welche sich noch im Entwurf befinden \Z{59-83}.
 Daher ist das dritte Element der \IC{Column} wiederum eine Überschrift: \IC{"In Bearbeitung"} \Z{62} gefolgt von einem weiteren horizontalen Scrollbereich \Z{66-83} mit einer Tabelle von Maßnahmen \Z{70-82}.
@@ -147,7 +147,7 @@ Für die Spaltenbezeichnungen wurde eine Hilfsmethode kreiert: \IC{_buildColumnH
 Sie zeichnet die Spalten mit einem Abstand von 8 Pixeln in alle Richtungen.
 
 Nach den Spaltenbezeichnungen folgen die Zeilen für die Daten der Maßnahmen \Z{24-29}.
-Die Methode \IC{map} \Z{24} ermöglicht es dazu durch die Liste der Maßnahmen zu iterieren und für jede Maßnahme ein Element eines völlig anderen Typs - in diesem Fall \IC{TableRow} - zurückzugeben.
+Die Methode \IC{map} \Z{24} ermöglicht es dazu durch die Liste der Maßnahmen zu iterieren und für jede Maßnahme ein Element eines völlig anderen Typs -- in diesem Fall \IC{TableRow} -- zurückzugeben.
 Bei den vorangestellten Punkten \IC{...} in Zeile 24 handelt sich um den spread operator. Die Filtermethode \IC{map} und die darauffolgende Methode \IC{toList} liefern eine Liste von \IC{TableRow} Elementen. Die umgebende Liste der Zeilen \IC{children} \Z{19-30} erwartet jedoch Elemente des Typs \IC{TableRow} und keine Elemente des Typs \IC{List}. Der \enquote{spread operator} ermöglicht, alle Elemente der inneren Liste in die äußere Liste einzufügen. \footcite[Vgl.][]{SpreadOperator}
 
 Eine weitere Hilfsmethode \IC{_buildSelectableCell} erstellt Zellen, die anklickbar sind \Z{39-51}.
@@ -182,7 +182,7 @@ Weil es der Signatur der Typdefinition von \IC{OnSelectCallback}  entspricht, ka
 \ifIncludeFigures \clearpage \fi
 
 
-Das Inversion of Control Entwurfsmuster ist auch unter dem Namen \enquote{hollywood pattern} bekannt, da es ähnlich wie die typische Antwort auf eine Bewerbung für einen Hollywood Film - don’t call us, we’ll call you - funktioniert.\footcite[Vgl.][]{fowler2005InversionOfControl}
+Das Inversion of Control Entwurfsmuster ist auch unter dem Namen \enquote{hollywood pattern} bekannt, da es ähnlich wie die typische Antwort auf eine Bewerbung für einen Hollywood Film -- don’t call us, we’ll call you -- funktioniert.\footcite[Vgl.][]{fowler2005InversionOfControl}
 
 Und genauso arbeiten der Übersichts-Bildschirm und die Tabelle zusammen.
 Der Übersichtsbildschirm verwendet die Tabelle, welche nicht wissen muss, wofür sie eingesetzt wird.
@@ -236,25 +236,25 @@ Sobald die Tabelle eine Selektion des Benutzers bemerkt, kommuniziert sie wieder
 
 
 
-\section{ Das View Model }
+\section{Das \enquote{ViewModel}}
 
-Listing \ref{lst:Schritt1KlasseMassnahmenFormViewModel} zeigt das ViewModel.
-Im ersten Schritt enthält es nur drei Streams vom Typ \IC{BehaviorSubject}.
+Listing \ref{lst:Schritt1KlasseMassnahmenFormViewModel} zeigt das \enquote{ViewModel}.
+Im ersten Schritt enthält es nur drei \enquote{Streams} vom Typ \IC{BehaviorSubject}.
 Eines für den letzten Status \Z{6}, eines für die \enquote{guid} \Z{8} und eines für den Titel der Maßnahme \Z{10}.
-Anhand dessen wird offensichtlich, warum ein ViewModel nötig ist.
-Die Daten, die in der Oberfläche angezeigt werden, sind Streams, die neue Werte annehmen können.
-Wann immer sich ein Wert ändert, löst der Stream ein neues Ereignis aus.
-Auf dieses Ereignis kann der View reagieren.
-Das Model bietet die Eigenschaften der Maßnahmen dagegen nicht als Stream an.
+Anhand dessen wird offensichtlich, warum ein \enquote{ViewModel} nötig ist.
+Die Daten, die in der Oberfläche angezeigt werden, sind \enquote{Streams}, die neue Werte annehmen können.
+Wann immer sich ein Wert ändert, löst der \enquote{Stream} ein neues Ereignis aus.
+Auf dieses Ereignis kann der \enquote{View} reagieren.
+Das \enquote{Model} bietet die Eigenschaften der Maßnahmen dagegen nicht als \enquote{Stream} an.
 
-Weil sich Model und ViewModel in ihrer Struktur unterscheiden, gibt es zwei Methoden, die die Konvertierung in beide Richtungen vornehmen.
+Weil sich \enquote{Model} und \enquote{ViewModel} in ihrer Struktur unterscheiden, gibt es zwei Methoden, die die Konvertierung in beide Richtungen vornehmen.
 Die Setter-Methode \IC{model} \Z{12-18} erhält ein Objekt des Wertetyps \IC{Massnahme}.
-Die einzelnen Eigenschaften werden dann in das Format des ViewModels umgewandelt: in Streams.
-Darüber wird der Setter-Methode \IC{value} von jedem \IC{BehaviorSubject} der entsprechende Wert aus dem Model zugewiesen.
-Besonders ist auch, wie die Auswahloptionen sich im Model und ViewModel unterscheiden. Im ViewModel sind es abgeleitete Objekte der Basisklasse Choice, wie z.b. LetzterStatus.  Im Gegensatz dazu speichert das \enquote{Model} die Optionen lediglich über die Abkürzung als String ab. Mithilfe der Methode \IC{fromAbbreviation} kann anhand der Abkürzung das entsprechende Objekt wiedergefunden werden \Z{16}.
+Die einzelnen Eigenschaften werden dann in das Format des \enquote{ViewModels} umgewandelt: in \enquote{Streams}.
+Darüber wird der Setter-Methode \IC{value} von jedem \IC{BehaviorSubject} der entsprechende Wert aus dem \enquote{Model} zugewiesen.
+Besonders ist auch, wie die Auswahloptionen sich im \enquote{Model} und \enquote{ViewModel} unterscheiden. Im \enquote{ViewModel} sind es abgeleitete Objekte der Basisklasse Choice, wie z.b. LetzterStatus.  Im Gegensatz dazu speichert das \enquote{Model} die Optionen lediglich über die Abkürzung als String ab. Mithilfe der Methode \IC{fromAbbreviation} kann anhand der Abkürzung das entsprechende Objekt wiedergefunden werden \Z{16}.
 
 Die Getter-Methode dagegen konvertiert in das exakte Gegenteil.
-Die aktuellen Werte von jedem \IC{BehaviorSubject} werden über die Getter-Methode \IC{value} ausgelesen und anschließend der entsprechenden Eigenschaft des Objekts vom Werte-Typ \IC{Massnahme} gespeichert.
+Die aktuellen Werte von jedem \IC{BehaviorSubject} werden über die Getter-Methode \IC{value} ausgelesen und anschließend der entsprechenden Eigenschaft des Objekts vom Wertetyp \IC{Massnahme} gespeichert.
 Die Auswahloption, die für den letzten Status hinterlegt wurde, wird dabei wiederum nur als Abkürzung eingetragen.
 Dementsprechend ist bloß die Eigenschaft \IC{abbreviation} abzufragen \Z{22}.
 

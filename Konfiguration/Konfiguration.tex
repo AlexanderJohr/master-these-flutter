@@ -95,10 +95,13 @@
 \usepackage{tabularx}
 
 % Literaturverzeichnisse verwenden
-% backref=true - referenziert von Literaturverzeichnis zurück auf die Seite wo zitiert wurde
+% backref=true -- referenziert von Literaturverzeichnis zurück auf die Seite wo zitiert wurde
 %\usepackage[style=authortitle, natbib, backend=biber, backref=true]{biblatex}
 \usepackage[%
-  backend=bibtex8, % bibtex8 biber % <==================== change as needed!
+  style=authortitle, % sorgt dafür dass in der Fußnote der Autor und dann der Titel gelistet wird, welches hiervon aber?
+  natbib, % sorgt dafür dass in der Fußnote der Autor und dann der Titel gelistet wird, welches hiervon aber?
+  backref=true % sorgt dafür dass in der Fußnote der Autor und dann der Titel gelistet wird, welches hiervon aber?
+  backend=bibtex8, % KOMA benutzt bibtex8 statt biber
 ]{biblatex}
 % Nummer der Zitation nicht hochgestellt, sondern sondern mit
 % normaler Textgröße und einem Punkt nach der Nummer
@@ -114,15 +117,6 @@
   backrefpages = {Zitiert auf den Seiten},% originally "cited on pages"
 }
 
-% Links mit Sprungmarken
-\usepackage{hyperref}
-\hypersetup{
-  colorlinks=true,
-  linkcolor=black, % Setz die Farbe von Links im 
-  % Inhaltsverzeichnis zurück auf schwarz
-  citecolor=black, % Farbe von Literaturlinks = schwarz
-  urlcolor=blue    % Farbe von URLs = blau     
-}
 
 
 % Referezieren von Kapiteln mit ihrem Titel
@@ -144,11 +138,6 @@
 \setacronymstyle{long-short}
 \newacronym{eler}{ELER}{Europäischer Landwirtschaftsfond für die Entwicklung des ländlichen Raum}
 
-% Auf gleiche footnote erneut verweisen mit cleveref
-% Achtung: Wenn cleveref nicht zum ende geladen wird gibt es evtl. die Fehlermeldung: Package cleveref Error: cleveref must be loaded after amsmath!.
-\usepackage{cleveref}
-% Auf erneut verweisen
-\crefformat{footnote}{#2\footnotemark[#1]#3}
 
 % Abbildungsunterschrift anpassen
 % https://tex.stackexchange.com/questions/86120/font-size-of-figure-caption-header/86121
@@ -172,7 +161,27 @@
 
 % https://tex.stackexchange.com/questions/50654/how-to-allow-line-breaks-after-forward-slashes-in-context?rq=1
 % enables a break point after /, +, (, ) and -
+% use hyphens option to break url
 \usepackage{url}
+
+% Links mit Sprungmarken
+% hyperref muss nach \usepackage[hyphens]{url} kommen, sonst gibt es einen Option clash, denn hyperref läd url ohne hyphens option
+% https://tex.stackexchange.com/questions/50654/how-to-allow-line-breaks-after-forward-slashes-in-context?rq=1
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black, % Setz die Farbe von Links im 
+  % Inhaltsverzeichnis zurück auf schwarz
+  citecolor=black, % Farbe von Literaturlinks = schwarz
+  urlcolor=blue    % Farbe von URLs = blau     
+}
+
+% Auf gleiche footnote erneut verweisen mit cleveref
+% Achtung: Wenn cleveref nicht zum ende geladen wird gibt es evtl. die Fehlermeldung: Package cleveref Error: cleveref must be loaded after amsmath!.
+\usepackage{cleveref}
+% Auf erneut verweisen
+\crefformat{footnote}{#2\footnotemark[#1]#3}
+
 
 % Installation manuell: 
 % Download: https://perso.ensta-paris.fr/~kielbasi/tikzuml/index.php?lang=en&id=download
@@ -338,7 +347,9 @@
 
 % enquote wird auch immer kursiv gesetzt
 \let\oldenquote\enquote
-\renewcommand{\enquote}[1]{\textit{\oldenquote{#1}}}
+% \renewcommand{\enquote}[1]{\textit{\oldenquote{#1}}} % <--  mit Anfügrungsstrichen
+\renewcommand{\enquote}[1]{\textit{#1}}
+
 
 % Anleitung zum Styling vom Kapitel Titel
 % https://tex.stackexchange.com/questions/50448/how-to-place-the-chapter-number-behind-the-chapter-title-in-koma-script

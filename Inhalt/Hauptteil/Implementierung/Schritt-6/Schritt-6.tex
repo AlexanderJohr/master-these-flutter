@@ -3,16 +3,16 @@
 
 
 \begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-6/Ü.png}
-  {Schritt 6 Eingabemaske}
-  {XXX Die Eingabemaske zeigt im Schritt 1 eine Karte zum Selektieren des Status und ein Eingabefeld für den Titel}
+  {Der Übersichtsbildschirm in Schritt 6}
+  {Der Übersichtsbildschirm in Schritt 6}
 
   \label{fig:Schritt4Eingabemaske}
 
 \end{alexfigure}
 
 \begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-6/D.png}
-  {Schritt 6 Eingabemaske}
-  {XXX Die Eingabemaske zeigt im Schritt 1 eine Karte zum Selektieren des Status und ein Eingabefeld für den Titel}
+  {Die Eingabemaske in Schritt 6}
+  {Die Eingabemaske in Schritt 6}
 
   \label{fig:Schritt4Eingabemaske}
 
@@ -20,8 +20,8 @@
 
 
 \begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-6/D Z.png}
-  {Schritt 6 Eingabemaske}
-  {XXX Die Eingabemaske zeigt im Schritt 1 eine Karte zum Selektieren des Status und ein Eingabefeld für den Titel}
+  {Im Selektionsbildschirm für die \enquote{Nebenziele} können mehrere Optionen gewählt werden}
+  {Im Selektionsbildschirm für die \enquote{Nebenziele} können mehrere Optionen gewählt werden}
 
   \label{fig:Schritt4Eingabemaske}
 
@@ -75,7 +75,7 @@ die auch bei der Menge  mit dem Namen \enquote{Hauptzielsetzung Land} zum Einsat
   \label{lst:Schritt6nebenzielsetzungLandChoices}
 \end{alexlisting}
 
-\section{Aktualisierung des Models}
+\section{Aktualisierung des \enquote{Models}}
 
 Um die Liste der Nebenziele im Wertetyp \IC{MassnahmenCharakteristika} einzufügen,
 kann der Datentyp \IC{BuiltSet} verwendet werden \LstZ{\ref{lst:Schritt6MassnahmenCharakteristika}}{77}.
@@ -113,9 +113,9 @@ Jedes Element des \IC{BuiltSet} \IC{nebenziele} \Z{47} wird über die Methode \I
   \label{lst:Schritt6buildSelectableCell}
 \end{alexlisting}
 
-\section{Aktualisierung des ViewModels}
+\section{Aktualisierung des \enquote{ViewModels}}
 
-Die Nebenziele werden -- erneut Mit dem Datentyp BuiltSet -- im ViewModel hinzugefügt \Lst{\ref{lst:Schritt6BehaviorSubjectNebenziele}}.
+Die Nebenziele werden -- erneut Mit dem Datentyp BuiltSet -- im \enquote{ViewModel} hinzugefügt \Lst{\ref{lst:Schritt6BehaviorSubjectNebenziele}}.
 \begin{alexlisting}{Schritt 6}{XXXX}
   {Quellcode/Schritt-6/conditional_form/lib/screens/massnahmen_detail/massnahmen_form_view_model.dart}
   {firstline=18, lastline=21, highlightlines={20-21}}
@@ -124,10 +124,10 @@ Die Nebenziele werden -- erneut Mit dem Datentyp BuiltSet -- im ViewModel hinzug
 
 Der benannte Konstruktor \IC{seeded} initialisiert die Instanzvariable mit  einer leeren Menge \Z{20}.
 Dafür wird der parameterlose Konstruktor von \IC{BuiltSet} aufgerufen \Z{21}.
-Dadurch unterscheidet sich das \IC{BehaviorSubject} von den anderen im ViewModel
-und muss dementsprechend bei der Konvertierung zwischen Model in ViewModel gesondert behandelt werden.
+Dadurch unterscheidet sich das \IC{BehaviorSubject} von den anderen im \enquote{ViewModel}
+und muss dementsprechend bei der Konvertierung zwischen \enquote{Model} in \enquote{ViewModel} gesondert behandelt werden.
 
-Bei Konvertierung von Model in ViewModel sind für alle Auswahloptionen -- genau wie in den Schritten zuvor -- jeweils nur die Abkürzungen verfügbar.
+Bei Konvertierung von \enquote{Model} in \enquote{ViewModel} sind für alle Auswahloptionen -- genau wie in den Schritten zuvor -- jeweils nur die Abkürzungen verfügbar.
 Die Liste der gespeicherten Abkürzungen der Nebenziele muss dementsprechend zuerst in eine Menge von Auswahloptionen konvertiert werden,
 bevor sie dem \IC{BuiltSet} übergeben werden kann \Lst{\ref{lst:Schritt6setModel}}.
 Die Methode \IC{map} löst das Problem,
@@ -142,7 +142,7 @@ Die resultierende Menge kann dem Konstruktor von \IC{BuiltSet} übergeben werden
 \end{alexlisting}
 
 
-Ähnlich verhält es sich bei der Umwandlung des ViewModels in das Model \Lst{\ref{lst:Schritt6nebenzieleSetBuilder}}.
+Ähnlich verhält es sich bei der Umwandlung des \enquote{ViewModels} in das \enquote{Model} \Lst{\ref{lst:Schritt6nebenzieleSetBuilder}}.
 
 \begin{alexlisting}{Schritt 6}{XXXX}
   {Quellcode/Schritt-6/conditional_form/lib/screens/massnahmen_detail/massnahmen_form_view_model.dart}
@@ -162,7 +162,7 @@ Der \IC{SetBuilder} wiederum kümmert sich um das Bauen des \IC{BuiltSet}, sobal
 \section{Aktualisierung der Eingabemaske}
 
 Unterhalb des Auswahlfeldes für das Hauptziel wird die Selektionkarte für die Nebenziele eingefügt \Lst{\ref{lst:Schritt6buildMultiSelectionCardnebenzielsetzungLandChoices}}.
-\begin{alexlisting}{Schritt 6}{XXXX}
+\begin{alexlisting}{Schritt 6}{Der Aufruf von \enquote{buildMultiSelectionCard} für die Menge \enquote{nebenzielsetzungLandChoices}}
   {Quellcode/Schritt-6/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
   {firstline=212, lastline=217, highlightlines={215-217}}
   \label{lst:Schritt6buildMultiSelectionCardnebenzielsetzungLandChoices}
@@ -181,7 +181,7 @@ um redundanten Code zu vermeiden.
 Innerhalb der bereits vorhandenen Methode \IC{buildSelectionCard} wird die Routine,
 welche für die Validierung das Formulares genutzt wird,
 in eine neue Methode namens \IC{validateChoices} \LstZ{\ref{lst:Schritt6buildSelectionCard}}{123-128} ausgelagert.
-\begin{alexlisting}{Schritt 6}{XXXX}
+\begin{alexlisting}{Schritt 6}{Die Methode \enquote{buildSelectionCard} in Schritt 6}
   {Quellcode/Schritt-6/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
   {firstline=119, lastline=129, highlightlines={123-128}}
   \label{lst:Schritt6buildSelectionCard}
@@ -195,7 +195,7 @@ Die ausgelagerte Funktion ist in Anhang \ref{appendix:Schritt6Anhang} in Listing
 
 Für die Erstellung der Mehrfachauswahlfelder ist die Methode \IC{buildMultiSelectionCard} zuständig \Lst{\ref{lst:Schritt6buildMultiSelectionCard}}.
 
-\begin{alexlisting}{Schritt 6}{XXXX}
+\begin{alexlisting}{Schritt 6}{Die Methode \enquote{buildMultiSelectionCard}}
   {Quellcode/Schritt-6/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
   {firstline=144, lastline=166}
   \label{lst:Schritt6buildMultiSelectionCard}
@@ -215,7 +215,7 @@ Deshalb erfolgt eine Zuweisung der Kopie zum Wert des \IC{BehaviorSubject}-Objek
 Diese Selektionskarte wird um die Instanzvariable \IC{multiSelection} erweitert \LstZ{\ref{lst:Schritt6SelectionCard}}{17},
 dessen Wert im Konstruktor übergeben wird \Z{27} aber auch ausgelassen werden kann, da der Standardwert \IC{false} angegeben ist.
 
-\begin{alexlisting}{Schritt 6}{XXXX}
+\begin{alexlisting}{Schritt 6}{Die Klasse \enquote{SelectionCard} erhält die Instanzvariable \enquote{multiSelection}}
   {Quellcode/Schritt-6/conditional_form/lib/widgets/selection_card.dart}
   {firstline=15, lastline=27, highlightlines={17,27}}
   \label{lst:Schritt6SelectionCard}
@@ -223,7 +223,7 @@ dessen Wert im Konstruktor übergeben wird \Z{27} aber auch ausgelassen werden k
 
 
 Die Rückruffunktion \IC{onChanged} des CheckboxListTile unterscheidet schließlich zwischen Mehrfach- und Einzel-Selektion.
-Sollte \IC{multiSelection} mit \IC{true} gesetzt sein \Z{133}, so erstellt die Methode \IC{rebuild} von \IC{BuiltSet} eine Kopie des aktuellen ViewModels der Selektionen.
+Sollte \IC{multiSelection} mit \IC{true} gesetzt sein \Z{133}, so erstellt die Methode \IC{rebuild} von \IC{BuiltSet} eine Kopie des aktuellen \enquote{ViewModels} der Selektionen.
 In der anonymen Funktion,
 welche für die Manipulationen an der Kopie genutzt wird,
 wird in einer Fallunterscheidung überprüft,
@@ -233,7 +233,7 @@ so wird diese bereits selektierte Option, die nun erneut angewählt wurde, mit d
 Anderenfalls war die Option nicht selektiert, weshalb sie mit der Methode \IC{add} hinzugefügt wird. 
 
 
-\begin{alexlisting}{Schritt 6}{XXXX}
+\begin{alexlisting}{Schritt 6}{Die Mehrfachselektion wird dem \enquote{CheckboxListTile} hinzugefügt }
   {Quellcode/Schritt-6/conditional_form/lib/widgets/selection_card.dart}
   {firstline=124, lastline=154, highlightlines={133-142, 147}}
   \label{lst:Schritt6XXXX}
