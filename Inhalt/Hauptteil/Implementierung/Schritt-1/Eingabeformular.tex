@@ -2,15 +2,15 @@
 \ifIncludeFigures \clearpage \fi
 \section{Eingabeformular}
   
-Das soeben erstellte ViewModel kann nun für die Eingabemaske verwendet werden.
+Das soeben erstellte \enquote{ViewModel} kann nun für die Eingabemaske verwendet werden.
 Listing \ref{lst:Schritt1KlasseMassnahmenDetailScreenStruktur} zeigt die grundlegende Struktur der Klasse \IC{MassnahmenDetailScreen}.
 
     
-Wiederum werden das ViewModel und das Model über das \enquote{InheritedWidget} \IC{AppState} abgerufen und in die jeweiligen lokalen Variablen gespeichert \Z{16, 17}.
+Wiederum werden das \enquote{ViewModel} und das \enquote{Model} über das \enquote{InheritedWidget} \IC{AppState} abgerufen und in die jeweiligen lokalen Variablen gespeichert \Z{16, 17}.
 Nachfolgend werden zwei Hilfsfunktionen innerhalb der \IC{build}-Methode deklariert.
-Solche sogenannten nested functions - deutsch
-verschachtelten Funktionen - sind im Dart erlaubt, was zu einer weiteren Besonderheit führt.
-Der Sichtbarkeitsbereich von Variablen ist in Dart lexikalisch.
+Solche sogenannten \enquote{nested functions} -- deutsch
+verschachtelten Funktionen -- sind in \enquote{Dart} erlaubt, was zu einer weiteren Besonderheit führt.
+Der Sichtbarkeitsbereich von Variablen ist in \enquote{Dart} lexikalisch.
 Die Bindung der Variablen ist also durch den umgebenden Quelltext bestimmt.
 Die lokalen Variablen \IC{model} und \IC{vm} sind also im gesamten Bereich sichtbar, der durch die öffnenden und schließenden geschweiften Klammern der Methode \IC{build} aufgespannt wird \Z{15-103}.
 Damit sind sie auch innerhalb der beiden verschachtelten Funktionen verfügbar.
@@ -23,7 +23,7 @@ Bei dem Eingabeformular handelt es sich um eine Unterseite.
 % Meine Formulierung wäre:
 Dadurch erscheint in der \IC{AppBar} \Z{47-48} links von der Überschrift ein Button, der es ermöglicht, zur letzten Ansicht zurück zu navigieren \Abb{\ref{fig:Schritt1Eingabemaske}}.
 Dabei stellt sich jedoch die Frage, was mit der bis zu diesem Zeitpunkt eingetragenen Maßnahme passieren soll.
-Für die Formular-Anwendung soll in diesem Fall die Maßnahme im aktuellen Zustand abgespeichert werden.
+Für die Formularanwendung soll in diesem Fall die Maßnahme im aktuellen Zustand abgespeichert werden.
 Dazu wird dem Parameter \IC{onWillPop} als Argument die Funktion \IC{saveRecord} zugewiesen.
 
 
@@ -141,9 +141,9 @@ Da die Menge der Auswahloptionen auch den Namen der Liste enthält, kann er als 
 Die Auswahloptionen, welche  der Auswahlbildschirm anzeigen soll, sind dem Parameter \IC{allChoices} hinterlegt 63.
 
 Die Selektionskarte soll ihren eigenen Zustand pflegen.
-Sie erhält dazu lediglich den initialen Wert, der aktuell im ViewModel gespeichert ist.
-Bei allen Änderungen, die innerhalb der Selektionskarte erfolgen, sollen die gleichen Änderungen auch im ViewModel nachgepflegt werden.
-Sollte also der Wert des letzten Status im ViewModel verfügbar sein \Z{65}, so wird er als Startwert dem Parameter \IC{initialValue} \Z{64-67} übergeben.
+Sie erhält dazu lediglich den initialen Wert, der aktuell im \enquote{ViewModel} gespeichert ist.
+Bei allen Änderungen, die innerhalb der Selektionskarte erfolgen, sollen die gleichen Änderungen auch im \enquote{ViewModel} nachgepflegt werden.
+Sollte also der Wert des letzten Status im \enquote{ViewModel} verfügbar sein \Z{65}, so wird er als Startwert dem Parameter \IC{initialValue} \Z{64-67} übergeben.
 Dabei ist zu beachten, dass das Argument eine Menge ist.
 Sie wird mit den  öffnenden und schließenden geschweiften Klammern erstellt.
 Das collection-if wird hier verwendet, um genau ein Element diesem \IC{Set}-Literal hinzuzufügen, sollte es nicht \IC{null} sein.
@@ -173,7 +173,7 @@ Listing \ref{lst:Schritt1DieFunktionCreateMassnahmenTitelTextFormField} zeigt di
  Es handelt sich um das Widget \IC{TextFormField} \Z{34-41}.
 
 
-\begin{alexlisting}{Schritt 1}{Die Funktion createMassnahmenTitelTextFormField}
+\begin{alexlisting}{Schritt 1}{Die Funktion \enquote{createMassnahmenTitelTextFormField} in Schritt 1}
   {Quellcode/Schritt-1/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
   {firstline=30, lastline=44}
   \label{lst:Schritt1DieFunktionCreateMassnahmenTitelTextFormField}
@@ -181,7 +181,7 @@ Listing \ref{lst:Schritt1DieFunktionCreateMassnahmenTitelTextFormField} zeigt di
 
 Hier wird klar, wovon die Selektionskarte inspiriert ist.
 Denn auch das \IC{TextFormField} erhält einen initialen Wert über den Parameter \IC{initialValue}.
-Sobald sich der Wert des Formularfelds ändert, kann der neue Wert im ViewModel über die anonyme Funktion aktualisiert werden, welche dem Parameter \IC{onChanged} übergeben wurde.
+Sobald sich der Wert des Formularfelds ändert, kann der neue Wert im \enquote{ViewModel} über die anonyme Funktion aktualisiert werden, welche dem Parameter \IC{onChanged} übergeben wurde.
 
 
 \subsection{Speicher-Routine}

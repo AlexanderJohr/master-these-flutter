@@ -4,7 +4,7 @@
 \section{Widget SelectionCard}
 
 Das Listing \ref{lst:Schritt1KlasseSelectionCard} zeigt die Struktur des Widgets \IC{SelectionCard}.
-Die Klasse hat einen generischen Typparameter \Z{15}. \IC{<ChoiceType extends Choice>} bedeutet, dass die SelectionCard nur für Typen verwendet werden kann, die von \IC{Choice} erben. Das ist eine wichtige Voraussetzung, da auf den übergebenen Werten Operationen ausgeführt werden sollen, die nur \IC{Choice} unterstützt. Alle Parameter, die dem Konstrukt übergeben werden, leiten ebenso von diesem Typparameter ab. Einzige Ausnahme dabei ist der \IC{titel} \IC{16}. 
+Die Klasse hat einen generischen Typparameter \Z{15}. \IC{<ChoiceType extends Choice>} bedeutet, dass die SelectionCard nur für Typen verwendet werden kann, die von \IC{Choice} erben. Das ist eine wichtige Voraussetzung, da auf den übergebenen Werten Operationen ausgeführt werden sollen, die nur \IC{Choice} unterstützt. Alle Parameter, die dem Konstrukt übergeben werden, leiten ebenso von diesem Typparameter ab. Einzige Ausnahme dabei ist der \IC{titel} \IC{16}.
 
 \begin{alexlisting}{Schritt 1}{Die Klasse SelectionCard}
   {Quellcode/Schritt-1/conditional_form/lib/widgets/selection_card.dart}
@@ -12,10 +12,10 @@ Die Klasse hat einen generischen Typparameter \Z{15}. \IC{<ChoiceType extends Ch
   \label{lst:Schritt1KlasseSelectionCard}
 \end{alexlisting}
 
-Mit dem Stream \IC{selectionViewModel} verwaltet die \IC{SelectionCard} ihren eigenen Zustand.
-Der Stream ist mit dem generischen Typen \IC{BuiltSet<ChoiceType>} konfiguriert.
+Mit dem \enquote{Stream} \IC{selectionViewModel} verwaltet die \IC{SelectionCard} ihren eigenen Zustand.
+Der \enquote{Stream} ist mit dem generischen Typen \IC{BuiltSet<ChoiceType>} konfiguriert.
 Das macht es unmöglich, den aktuell hinterlegten Wert anzupassen, ohne das Gesamtobjekt auszutauschen.
-Der Tausch des Objekts wiederum bewirkt, dass ein Ereignis über den Stream ausgelöst wird. Über dieses Ereignis zeichnet die SelectionCard Teile seiner Oberfläche neu. Allerdings erhält der Konstruktor kein Argument des Typs \IC{BehaviorSubject}, sondern stattdessen vom \IC{Iterable<ChoiceType>} \Z{24}. Damit wird der Benutzer nicht darauf eingeschränkt, einen Stream zu übergeben. Er kann auch eine gewöhnliche Liste oder Menge setzen. Die Umwandlung der ankommenden Kollektion erfolgt in der Initialisierungsliste \IC{29-30}. Nur so ist es möglich, die Instanzvariable mit \IC{final} als unveränderbar zu kennzeichnen. Initialisierungen solcher Variablen müssen im statischen Kontext der Objekterstellung geschehen. Der Konstruktor-Körper gehört dagegen nicht mehr zum statischen Teil. Im Konstruktor-Körper können Operationen der Instanz verwendet werden, denn das Objekt existiert bereits. Der Versuch eine mit \IC{final} gekennzeichnete Instanzvariable im Konstruktor-Körper zu setzen, führt zu einem Compilerfehler in Dart. Der Konstruktor \IC{seeded} der Klasse \IC{BehaviorSubject} wird mit einem \IC{BuiltSet} gefüllt \Z{29}. Dieses wiederum wird mit dem benannten Konstruktor \IC{from} von \IC{BuiltSet} mit der Kollektion aufgerufen \Z{30}. Er wandelt die  Liste in eine unveränderbare Menge um. Die Liste aller Auswahloptionen \IC{allChoices} \Z{18} gewährleistet über den generischen Typparameter, dass nicht versehentlich Auswahloptionen übergeben werden, die nicht zum Typ der \IC{SelectionCard} passen. Die Rückruffunktionen \Z{19, 20}, die bei Selektion und Deselektion von Optionen ausgelöst werden, bieten einen besonderen Vorteil dadurch, dass sie mit dem generischen Typen konfiguriert sind. Die Signaturen der Rückruf-Funktionen \Z{7-8, 10-11} geben nämlich vor, dass der erste Parameter vom Typen \IC{ChoiceType} sein muss. Wenn nun der Benutzer der SelectionCard einen Typ wie etwa \IC{LetzterStatus} für den Typparameter übergibt, so erhält er auch eine Rückruffunktion, dessen erster Parameter vom Typ \IC{LetzterStatus} ist. Ohne eine Typumwandlung - englisch type casting - von \Z{Choice} in \IC{LetzterStatus}, können keine Operationen auf das Objekt angewendet werden, die nur die Klasse \IC{LetzterStatus} unterstützt.
+Der Tausch des Objekts wiederum bewirkt, dass ein Ereignis über den \enquote{Stream} ausgelöst wird. Über dieses Ereignis zeichnet die SelectionCard Teile seiner Oberfläche neu. Allerdings erhält der Konstruktor kein Argument des Typs \IC{BehaviorSubject}, sondern stattdessen vom \IC{Iterable<ChoiceType>} \Z{24}. Damit wird der Benutzer nicht darauf eingeschränkt, einen \enquote{Stream} zu übergeben. Er kann auch eine gewöhnliche Liste oder Menge setzen. Die Umwandlung der ankommenden Kollektion erfolgt in der Initialisierungsliste \IC{29-30}. Nur so ist es möglich, die Instanzvariable mit \IC{final} als unveränderbar zu kennzeichnen. Initialisierungen solcher Variablen müssen im statischen Kontext der Objekterstellung geschehen. Der Konstruktor-Körper gehört dagegen nicht mehr zum statischen Teil. Im Konstruktor-Körper können Operationen der Instanz verwendet werden, denn das Objekt existiert bereits. Der Versuch eine mit \IC{final} gekennzeichnete Instanzvariable im Konstruktor-Körper zu setzen, führt zu einem Compilerfehler in \enquote{Dart}. Der Konstruktor \IC{seeded} der Klasse \IC{BehaviorSubject} wird mit einem \IC{BuiltSet} gefüllt \Z{29}. Dieses wiederum wird mit dem benannten Konstruktor \IC{from} von \IC{BuiltSet} mit der Kollektion aufgerufen \Z{30}. Er wandelt die  Liste in eine unveränderbare Menge um. Die Liste aller Auswahloptionen \IC{allChoices} \Z{18} gewährleistet über den generischen Typparameter, dass nicht versehentlich Auswahloptionen übergeben werden, die nicht zum Typ der \IC{SelectionCard} passen. Die Rückruffunktionen \Z{19, 20}, die bei Selektion und Deselektion von Optionen ausgelöst werden, bieten einen besonderen Vorteil dadurch, dass sie mit dem generischen Typen konfiguriert sind. Die Signaturen der Rückruf-Funktionen \Z{7-8, 10-11} geben nämlich vor, dass der erste Parameter vom Typen \IC{ChoiceType} sein muss. Wenn nun der Benutzer der SelectionCard einen Typ wie etwa \IC{LetzterStatus} für den Typparameter übergibt, so erhält er auch eine Rückruffunktion, dessen erster Parameter vom Typ \IC{LetzterStatus} ist. Ohne eine Typumwandlung -- englisch \enquote{type casting} -- von \Z{Choice} in \IC{LetzterStatus}, können keine Operationen auf das Objekt angewendet werden, die nur die Klasse \IC{LetzterStatus} unterstützt.
 
 Das erste Element, welches von der \IC{build}-Methode zurückgeben wird, ist ein \IC{StreamBuilder} \LstZ{\ref{lst:Schritt1BuildMethodeDerSelectionCard}}{47}.
 Er horcht auf das \IC{selectionViewModel} \Z{48}.
@@ -26,7 +26,7 @@ Ein \IC{ListTile} Widget erlaubt es dann, den übergebenen \IC{titel} als Übers
 Zu diesem Zweck wandelt die Methode \IC{map} alle Elemente von \IC{selectedChoices} in \IC{String}-Objekte um, indem es von dem \IC{Choice}-Objekt lediglich den Beschreibungstext \IC{description} verwendet.
 Anschließend sammelt der Befehl \IC{join} die resultierende \IC{String}-Objekte ein, formt sie in einen gemeinsamen \IC{String} zusammen und trennt sie darin jeweils mit einem \IC{", "} voneinander.
 
-\begin{alexlisting}{Schritt 1}{Die Build Methode der SelectionCard}
+\begin{alexlisting}{Schritt 1}{Die \enquote{build}-Methode der Klasse \enquote{SelectionCard} in Schritt 1}
   {Quellcode/Schritt-1/conditional_form/lib/widgets/selection_card.dart}
   {firstline=34, lastline=62}
   \label{lst:Schritt1BuildMethodeDerSelectionCard}
@@ -52,14 +52,14 @@ Schließlich navigiert der Benutzer mit \IC{Navigator.push} zur Unterseite. Es h
 \subsection{Bildschirm für die Auswahl der Optionen}
 
  
-Die Funktion \IC{createMultipleChoiceSelectionScreen} \Lst{\ref{lst:Schritt1FunktionCreateMultipleChoiceSelectionScreen}} gibt einen \IC{Scaffold} zurück, der die gesamte Seite enthält \Z{65}.
+Die Methode \IC{createMultipleChoiceSelectionScreen} \Lst{\ref{lst:Schritt1FunktionCreateMultipleChoiceSelectionScreen}} gibt einen \IC{Scaffold} zurück, der die gesamte Seite enthält \Z{65}.
 Das erste Kind des \IC{Scaffold} ist wiederum ein \IC{StreamBuilder} \Z{69}.
-Hier wird der Vorteil der dynamischen Erzeugung der Seite offensichtlich: die Unterseite kann das gleiche ViewModel wiederverwenden, welches auch von der \IC{SelectionCard} genutzt wird.  Auch alle weiteren Instanzvariablen der \IC{SelectionCard} können wiederverwendet werden. Würde es sich stattdessen um eine weitere Route handeln, so müssten alle diese Informationen über den Navigator zur neuen Unterseite übergeben werden. Sollte der Nutzer die Auswahl beenden, so müsste auch ein Mechanismus für das Zurückgeben der selektierten Daten implementiert werden.
-Dadurch, dass die \IC{SelectionCard} und der Auswahlbildschirm sich das gleiche ViewModel teilen, kann sogar ein weiterer Vorteil in Zukunft genutzt werden: in einem zweispaltigen Layout könnte auf der linken Seite die Eingabemaske und auf der rechten Seite der Bildschirm der Auswahloptionen eingeblendet werden.
+Hier wird der Vorteil der dynamischen Erzeugung der Seite offensichtlich: die Unterseite kann das gleiche \enquote{ViewModel} wiederverwenden, welches auch von der \IC{SelectionCard} genutzt wird.  Auch alle weiteren Instanzvariablen der \IC{SelectionCard} können wiederverwendet werden. Würde es sich stattdessen um eine weitere Route handeln, so müssten alle diese Informationen über den Navigator zur neuen Unterseite übergeben werden. Sollte der Nutzer die Auswahl beenden, so müsste auch ein Mechanismus für das Zurückgeben der selektierten Daten implementiert werden.
+Dadurch, dass die \IC{SelectionCard} und der Auswahlbildschirm sich das gleiche \enquote{ViewModel} teilen, kann sogar ein weiterer Vorteil in Zukunft genutzt werden: in einem zweispaltigen Layout könnte auf der linken Seite die Eingabemaske und auf der rechten Seite der Bildschirm der Auswahloptionen eingeblendet werden.
 Sobald sich Auswahloptionen im rechten Auswahlbildschirm verändern, so würden sich die Änderungen auf der linken Seite für den Benutzer direkt widerspiegeln.
 
 Innerhalb des \IC{StreamBuilder} werden die Auswahloptionen gebaut.
-Dazu speichert die lokale Variable \IC{selectedChoices} die aktuellen Selektionen des Streams zunächst zwischen \Z{72}.
+Dazu speichert die lokale Variable \IC{selectedChoices} die aktuellen Selektionen des \enquote{Streams} zunächst zwischen \Z{72}.
 Die Optionen werden in einem ListView präsentiert \Z{73}.
 Er ermöglicht es, Listen-Elemente in einem vertikalen Scrollbereich darzustellen.
 Die Funktion \IC{map} konvertiert alle Objekte in der Liste aller möglichen Optionen \IC{choices} in Elemente des Typs \IC{CheckboxListTile} \Z{74-98}.
@@ -74,25 +74,25 @@ Eine Fallunterscheidung überprüft zunächst, ob der Parameter \IC{selected} ni
 Durch die Typ-Beförderung ist \IC{selected} innerhalb des Körpers der Fallunterscheidung dann vom Typ \IC{bool} \Z{84-94}. 
 
 
-Darin wird zunächst der Zustand des ViewModels der \IC{SelectionCard} aktualisiert.
+Darin wird zunächst der Zustand des \enquote{ViewModels} der \IC{SelectionCard} aktualisiert.
 Die \IC{replace}-Methode des \enquote{Builder}-Objekts kann die gesamte Kollektion im \IC{BuiltSet} austauschen, ungeachtet dessen, dass es sich beim Argument selbst nicht um ein \IC{BuiltSet} handelt.
 Die \IC{replace}-Methode wandelt das Argument dafür automatisch um.
-Durch Zuweisung des neuen Wertes erhält das ViewModel der \IC{SelectionCard} ein neues Ereignis.
+Durch Zuweisung des neuen Wertes erhält das \enquote{ViewModel} der \IC{SelectionCard} ein neues Ereignis.
 Damit wird die \IC{SelectionCard} und der dazugehörige Auswahlbildschirm aktualisiert.
 Während der Erstellung dieser Arbeit wurde versucht, die SelectionCard als ein \IC{StatefulWidget} zu erstellen.
 Mittels \IC{setState} sollte dafür gesorgt werden, dass sowohl SelectionCard als auch der Auswahlbildschirm aktualisiert werden.
 Doch bei diesem Vorgehen zeichnet sich nur die \IC{SelectionCard} neu.
 Der Auswahlbildschirm bleibt unverändert, denn er wird zwar von der \IC{SelectionCard} gebaut, doch ist er nicht tatsächlich Kind der \IC{SelectionCard}.
-In Wahrheit ist der Auswahlbildschirm ein Kind von \IC{MaterialApp} - genau wie \IC{MassnahmenMasterScreen} und \IC{MassnahmenDetailScreen}.
+In Wahrheit ist der Auswahlbildschirm ein Kind von \IC{MaterialApp} -- genau wie \IC{MassnahmenMasterScreen} und \IC{MassnahmenDetailScreen}.
 
-Neben dem ViewModel der \IC{SelectionCard} muss jedoch auch das ViewModel der Eingabemaske aktualisiert werden.
+Neben dem \enquote{ViewModel} der \IC{SelectionCard} muss jedoch auch das \enquote{ViewModel} der Eingabemaske aktualisiert werden.
 Mit den Rückruffunktionen \IC{onSelect} \Z{90} und \IC{onDeselect} \Z{92} hat die aufrufende Ansicht die Möglichkeit, auf Selektionen zu reagieren.
 
 Schließlich ist noch der \IC{FloatingActionButton} Teil der Unterseite \Z{99-103}.
 Mit einem Klick darauf gelangt der Benutzer zurück zur Eingabemaske \Z{100}.
 
 
-\begin{alexlisting}{Schritt 1}{Die Funktion createMultipleChoiceSelectionScreen}
+\begin{alexlisting}{Schritt 1}{Die Methode \enquote{createMultipleChoiceSelectionScreen}}
   {Quellcode/Schritt-1/conditional_form/lib/widgets/selection_card.dart}
   {firstline=64, lastline=126}
   \label{lst:Schritt1FunktionCreateMultipleChoiceSelectionScreen}

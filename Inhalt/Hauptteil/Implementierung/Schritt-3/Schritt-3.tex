@@ -5,8 +5,8 @@
 
   
   \begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-3/D M F Rot.png}
-    {Schritt 3 Eingabemaske}
-    {XXX Die Eingabemaske zeigt im Schritt 1 eine Karte zum Selektieren des Status und ein Eingabefeld für den Titel}
+    {Die Eingabemaske in Schritt 3}
+    {Die Eingabemaske in Schritt 3}
   
     \label{fig:Schritt3Eingabemaske}
   
@@ -16,13 +16,13 @@ In diesem Schritt soll die grundlegende Validierungsfunktion hinzugefügt werden
 Maßnahmen, die als abgeschlossen markiert sind, dürfen keine leeren Eingabefelder enthalten und der Maßnahmentitel darf nicht doppelt belegt sein.
 \IC{Flutter} stellt das Widget \IC{Form} für die Validierung von Eingabefeldern bereit.
 
-\section{Einfügen des Form-Widgets}
+\section{Einfügen des \enquote{Form-Widgets}}
 
 Das Widget \IC{Form} ist ein Container, welcher die Validierung für alle Kinderelemente des Typs \IC{FormField} ausführt.
 Damit es alle Eingabefelder im Formular umgibt, wird es oberhalb des \IC{Stack} eingefügt \LstZ{\ref{lst:Schritt3Form}}{161}.
 Das \IC{Form}-Widget muss über einen \IC{key} registriert werden \Z{162}, damit auf die Validierungsfunktionen zurückgegriffen werden kann.
 
-\begin{alexlisting}{Schritt 3}{Die Maßnahmencharakteristika Selektionskarten werden ergänzt}
+\begin{alexlisting}{Schritt 3}{Einfügen des \enquote{Form-Widgets}}
     {Quellcode/Schritt-3/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
     {firstline=161, lastline=166, highlightlines={161-162}}
     \label{lst:Schritt3Form}
@@ -35,7 +35,7 @@ Ohne Angabe eines Typparameters kann nur Zugriff auf Funktionen des Typs \IC{Sta
 Doch die gewünschte Methode \IC{validate} ist nur Teil des Typs \IC{FormState}.
 Damit das Element, welches über den \IC{GlobalKey} registriert wurde, auch den \IC{FormState} liefert, kann der entsprechende Typparameter \IC{<FormState>} bei der Erstellung des GlobalKey übergeben werden.
 
-\begin{alexlisting}{Schritt 3}{Die Maßnahmencharakteristika Selektionskarten werden ergänzt}
+\begin{alexlisting}{Schritt 3}{Der \enquote{formKey} wird erstellt}
     {Quellcode/Schritt-3/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
     {firstline=17, lastline=20, highlightlines={20}}
     \label{lst:Schritt3FormState}
@@ -50,7 +50,7 @@ Die übergebene Funktion erhält im ersten Parameter den für das Textfeld einge
 Die Funktion soll \IC{null} zurückgeben, wenn keine Fehler in der Validierung geschehen sind.
 In jedem anderen Fall soll der Text zurückgegeben werden, der als Fehlermeldung angezeigt werden soll.
 
-\begin{alexlisting}{Schritt 3}{Die Maßnahmencharakteristika Selektionskarten werden ergänzt}
+\begin{alexlisting}{Schritt 3}{Die Funktion \enquote{createMassnahmenTitelTextFormField} in Schritt 3}
     {Quellcode/Schritt-3/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
     {firstline=83, lastline=116, highlightlines={84,89, 93-109}}
     \label{lst:Schritt3createMassnahmenTitelTextFormFieldValidator}
@@ -63,7 +63,7 @@ Sollte ein Fehler bei der Validierung gefunden werden, kann mit der Methode \IC{
 Das sorgt auch dafür, dass das Eingabefeld in den sichtbaren Bereich gerückt wird.
 
 Sollte das Textfeld nicht leer sein, so soll noch überprüft werden, ob der Maßnahmen-Titel bereits vergeben ist.
-Über das Model kann die Liste der Maßnahmen angefordert werden \Z{99}.
+Über das \enquote{Model} kann die Liste der Maßnahmen angefordert werden \Z{99}.
 Die Funktion \IC{any} akzeptiert als Argument eine Funktion, die für alle Elemente der Liste ausgeführt wird \Z{99-102}.
 Wenn die Rückgabe der Funktion auch nur in einem Fall \IC{true} ist, so evaluiert auch \IC{any} mit \IC{true}.
 Andernfalls ist die Rückgabe \IC{false}. 
@@ -86,7 +86,7 @@ Die Selektionskarte kann ebenso von einem \IC{FormField} umgeben werden \LstZ{\r
 Der erste Parameterder \IC{builder}-Funktion ist das \IC{State}-Objekt das \IC{FormField}.
 Es enthält die Getter-Methode \IC{errorText}, die bei gegebenenfalls fehlgeschlagener Validierung die zurückgegebene Fehlermeldung enthält.
 
-\begin{alexlisting}{Schritt 3}{Die Maßnahmencharakteristika Selektionskarten werden ergänzt}
+\begin{alexlisting}{Schritt 3}{Die Methode \enquote{buildSelectionCard} in Schritt 3}
     {Quellcode/Schritt-3/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
     {firstline=118, lastline=145, highlightlines={121-133, 143-144}}
     \label{lst:Schritt3buildSelectionCardValidator}
@@ -142,7 +142,7 @@ Auch der \IC{WillPopScope} erhält die gleiche Fehlerbehandlung \Lst{\ref{lst:Sc
 \end{alexlisting}
 
 Die Funktion \IC{saveDraftAndGoBackToOverviewScreen} funktioniert ähnlich wie die nun ausgetauschte Funktion \IC{saveRecord}.
-Sie zeigt dem Benutzer an, dass die Maßnahme im Entwurfsmodus gespeichert wird \Z{23-26}, speichert sie im Model ab \Z{31}, und navigiert zur letzten Route zurück \Z{32}, welcher der Übersichtsbildschirm ist.  Einer der beiden Unterschiede ist, dass die Maßnahme zuvor umgebaut wird. Unerheblich dessen, welchen letzten Status sie aktuell besitzt, erhält sie den letzten Status \IC{"in Bearbeitung"} \Z{28-29}. Der zweite der beiden Unterschiede ist, dass die Funktion nun keinen Rückgabewert hat, während \IC{saveRecord} einen Wert vom Typ \IC{Future<bool>} zurückgeben musste. Der Grund dafür ist, dass die Funktion nur noch über den Aktionsbutton zum Speichern der Maßnahme im Entwurfsmodus ausgelöst wird. Der FloatingActionButton setzt keinen Rückgabewert der ausgelösten Funktion voraus.
+Sie zeigt dem Benutzer an, dass die Maßnahme im Entwurfsmodus gespeichert wird \Z{23-26}, speichert sie im \enquote{Model} ab \Z{31}, und navigiert zur letzten Route zurück \Z{32}, welcher der Übersichtsbildschirm ist.  Einer der beiden Unterschiede ist, dass die Maßnahme zuvor umgebaut wird. Unerheblich dessen, welchen letzten Status sie aktuell besitzt, erhält sie den letzten Status \IC{"in Bearbeitung"} \Z{28-29}. Der zweite der beiden Unterschiede ist, dass die Funktion nun keinen Rückgabewert hat, während \IC{saveRecord} einen Wert vom Typ \IC{Future<bool>} zurückgeben musste. Der Grund dafür ist, dass die Funktion nur noch über den Aktionsbutton zum Speichern der Maßnahme im Entwurfsmodus ausgelöst wird. Der FloatingActionButton setzt keinen Rückgabewert der ausgelösten Funktion voraus.
 
 \begin{alexlisting}{Schritt 3}{Die Maßnahmencharakteristika Selektionskarten werden ergänzt}
     {Quellcode/Schritt-3/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}

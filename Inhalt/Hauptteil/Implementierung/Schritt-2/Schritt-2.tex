@@ -2,16 +2,16 @@
 \label{chap:Schritt-2}
 
 \begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-2/Ü.png}
-  {Schritt 2 Übersicht}
-  {XXX Die Eingabemaske zeigt im Schritt 1 eine Karte zum Selektieren des Status und ein Eingabefeld für den Titel}
+  {Der Übersichtsbildschirm in Schritt 2}
+  {Der Übersichtsbildschirm in Schritt 2}
 
   \label{fig:Schritt2Uebersicht}
 
 \end{alexfigure}
 
 \begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-2/D.png}
-  {Schritt 2 Eingabemaske}
-  {XXX Die Eingabemaske zeigt im Schritt 1 eine Karte zum Selektieren des Status und ein Eingabefeld für den Titel}
+  {Die Eingabemaske in Schritt 2}
+  {Die Eingabemaske in Schritt 2}
 
   \label{fig:Schritt2Eingabemaske}
 
@@ -36,7 +36,7 @@ Noch vor der Implementierung der Änderungen soll zunächst der Integrationstest
 Nach der Auswahl und der anschließenden Serialisierung sollen die entsprechenden Werte auch in der Json-Datei auftauchen.
 Die Json-Datei erhält ein neues Schlüssel-Werte-Paar mit dem Schlüssel \IC{'massnahmenCharakteristika'} und einem Objekt für die fünf neuen Werte \LstZ{\ref{lst:Schritt2ExpectedJson}}{135-141}.
 
-\begin{alexlisting}{Schritt 2}{Der Integrationstest klickt 5 weitere Karten}
+\begin{alexlisting}{Schritt 2}{XXXXXXXXXXXXXX}
   {Quellcode/Schritt-2/conditional_form/integration_test/app_test.dart}
   {firstline=132, lastline=142, highlightlines={135-141}}
   \label{lst:Schritt2ExpectedJson}
@@ -45,7 +45,7 @@ Die Json-Datei erhält ein neues Schlüssel-Werte-Paar mit dem Schlüssel \IC{'m
 Der Integrationstest ist damit aktualisiert.
 Die Implementierung ist jedoch noch gar nicht erfolgt.
 Die Selektions-Karten können nicht geklickt werden, da sie in der Oberfläche noch nicht auftauchen.
-Die neuen Schlüssel-Werte-Paare können nicht in der Hash-Tabelle auftauchen, da sie dem entsprechenden Werte-Typ noch nicht hinzugefügt wurden.
+Die neuen Schlüssel-Werte-Paare können nicht in der Hash-Tabelle auftauchen, da sie dem entsprechenden Wertetyp noch nicht hinzugefügt wurden.
 Der Integrationstest kann also unmöglich erfolgreich sein.
 Der Quellcode kann noch nicht einmal kompilieren, da die entsprechenden Symbole -- wie zum Beispiel \IC{FoerderklasseChoice} -- fehlen.
 Das hier angewendete Vorgehensmodell wird Test-Driven Development -- deutsch Testgetriebene Entwicklung -- genannt.
@@ -65,7 +65,7 @@ are done adding functionality.}}
 \end{quotation}
 
 Es folgt das Hinzufügen der fehlenden Symbole, damit der Quellcode wieder kompiliert werden kann.
-Anschließend erfolgt die Weiterentwicklung des Models, ViewModels und Views damit der Integrationstest erneut erfolgreich abschließt.
+Anschließend erfolgt die Weiterentwicklung des \enquote{Models}, \enquote{ViewModels} und des \enquote{Views} damit der Integrationstest erneut erfolgreich abschließt.
 
 
 \subsection{Hinzufügen der Auswahloptionen}
@@ -79,9 +79,9 @@ Die Liste aller hinzugefügten Auswahloptionen in diesem Schritt ist in Anhang \
   \label{lst:Schritt2KlasseFoerderklasseChoice}
 \end{alexlisting}
 
-\subsection{Aktualisierung des Models}
+\subsection{Aktualisierung des \enquote{Models}}
 
-Damit der Hash-Tabelle der Schlüssel \IC{'massnahmenCharakteristika'} hinzugefügt wird, muss der entsprechende Eintrag im Werte-Typ \IC{Massnahme} hinzugefügt werden.
+Damit der Hash-Tabelle der Schlüssel \IC{'massnahmenCharakteristika'} hinzugefügt wird, muss der entsprechende Eintrag im Wertetyp \IC{Massnahme} hinzugefügt werden.
 Die Getter-Methode \IC{massnahmenCharakteristika}, die das Paket \enquote{built_value} dazu veranlaßt, den Quellcode für die Eigenschaft zu generieren, wird unterhalb der Getter-Methode \IC{identifikatoren} hinzugefügt \LstZ{\ref{lst:Schritt2massnahmenCharakteristikaWirdMMassnahmeHinzugefuegt}}{15}.
 
 \begin{alexlisting}{Schritt 2}{massnahmenCharakteristika wird Massnahme hinzugefügt}
@@ -90,22 +90,22 @@ Die Getter-Methode \IC{massnahmenCharakteristika}, die das Paket \enquote{built_
   \label{lst:Schritt2massnahmenCharakteristikaWirdMMassnahmeHinzugefuegt}
 \end{alexlisting}
 
-Bei dem Datentyp handelt es sich um einen weiteren Werte-Typ: \IC{MassnahmenCharakteristika}, welcher in Listing \ref{lst:Schritt2WerteTypMassnahmencharakteristika} zu sehen ist.
+Bei dem Datentyp handelt es sich um einen weiteren Wertetyp: \IC{MassnahmenCharakteristika}, welcher in Listing \ref{lst:Schritt2WerteTypMassnahmencharakteristika} zu sehen ist.
 Die darin enthaltenen Getter-Methoden sind dagegen lediglich gewöhnliche Zeichenketten, da sie die Abkürzungen der ausgewählten Optionen abspeichern.
 Da sie auch im Entwurfsmodus auch nicht gefüllt sein können, wird ihnen mit dem Suffix \IC{?} erlaubt, auch Null-Werte anzunehmen \Z{70-74}.
 
-\begin{alexlisting}{Schritt 2}{Der Werte-Typ Massnahmencharakteristika}
+\begin{alexlisting}{Schritt 2}{Der Wertetyp \enquote{Massnahmencharakteristika}}
   {Quellcode/Schritt-2/conditional_form/lib/data_model/massnahme.dart}
   {firstline=67, lastline=74}
   \label{lst:Schritt2WerteTypMassnahmencharakteristika}
 \end{alexlisting}
 
-Der Werte-Typ wurde hinzugefügt.
-Der Befehl \IC{flutter pub run build_runner build} generiert den Quellcode für die Serialisierung und die Builder-Methoden.
+Der Wertetyp wurde hinzugefügt.
+Der Befehl \IC{flutter pub run build_runner build} generiert den Quellcode für die Serialisierung und die \enquote{Builder}-Methoden.
 
 \subsection{Aktualisierung der Übersichtstabelle}
 
-Der Übersichtsbildschirm bzw. die Übersichtstabelle können auf das Model ohne den Umweg über das ViewModel zugreifen. Der Tabellenkopf listet die Überschriften der hinzugefügten Werte auf \LstZ{\ref{lst:Schritt2MassnahmencharakteristikaEerdenDemTabellenkopfHinzugefuegt}}{23-27}. 
+Der Übersichtsbildschirm bzw. die Übersichtstabelle können auf das \enquote{Model} ohne den Umweg über das \enquote{ViewModel} zugreifen. Der Tabellenkopf listet die Überschriften der hinzugefügten Werte auf \LstZ{\ref{lst:Schritt2MassnahmencharakteristikaEerdenDemTabellenkopfHinzugefuegt}}{23-27}. 
 
 \begin{alexlisting}{Schritt 2}{Maßnahmencharakteristika werden dem Tabellenkopf hinzugefügt}
   {Quellcode/Schritt-2/conditional_form/lib/widgets/massnahmen_table.dart}
@@ -124,20 +124,20 @@ Ist der dagegen nicht \IC{null}, so wird der Wert links vom Operator \IC{??} gen
   \label{lst:Schritt2MassnahmencharakteristikaWerdenDemTabellenkoerperHinzugefuegt}
 \end{alexlisting}
 
-\subsection{Aktualisierung des ViewModels}
+\subsection{Aktualisierung des \enquote{ViewModels}}
 
-Damit die Eingabefelder die neuen Werte eintragen können, muss das ViewModel oder die beobachtbaren Subjects bereitstellen \LstZ{\ref{lst:Schritt2MassnahmencharakteristikaWerdenDemViewModelHinzugefuegt}}{12-17}. \HP{Subjects und Observer in Schritt 1 erklären} 
+Damit die Eingabefelder die neuen Werte eintragen können, muss das \enquote{ViewModel} oder die beobachtbaren Subjects bereitstellen \LstZ{\ref{lst:Schritt2MassnahmencharakteristikaWerdenDemViewModelHinzugefuegt}}{12-17}. \HP{Subjects und Observer in Schritt 1 erklären} 
 
-\begin{alexlisting}{Schritt 2}{Maßnahmencharakteristika werden dem ViewModel hinzugefügt}
+\begin{alexlisting}{Schritt 2}{Maßnahmencharakteristika werden dem \enquote{ViewModel} hinzugefügt}
   {Quellcode/Schritt-2/conditional_form/lib/screens/massnahmen_detail/massnahmen_form_view_model.dart}
   {firstline=5, lastline=17, highlightlines={12-17}}
   \label{lst:Schritt2MassnahmencharakteristikaWerdenDemViewModelHinzugefuegt}
 \end{alexlisting}
 
 
-Die Konvertierung des Models in das ViewModel erfolgt wie gewohnt über das Heraussuchen des korrekten Objektes aus der Menge der Auswahloptionen über die Abkürzung \LstZ{\ref{lst:Schritt2KonvertierungDesModelsInDasViewModel}}{29-36}. 
+Die Konvertierung des \enquote{Models} in das \enquote{ViewModel} erfolgt wie gewohnt über das Heraussuchen des korrekten Objektes aus der Menge der Auswahloptionen über die Abkürzung \LstZ{\ref{lst:Schritt2KonvertierungDesModelsInDasViewModel}}{29-36}. 
 
-\begin{alexlisting}{Schritt 2}{Konvertierung des Models in das ViewModel}
+\begin{alexlisting}{Schritt 2}{Konvertierung des \enquote{Models} in das \enquote{ViewModel}}
   {Quellcode/Schritt-2/conditional_form/lib/screens/massnahmen_detail/massnahmen_form_view_model.dart}
   {firstline=19, lastline=38, highlightlines={26-37}}
   \label{lst:Schritt2KonvertierungDesModelsInDasViewModel}
@@ -146,9 +146,9 @@ Die Konvertierung des Models in das ViewModel erfolgt wie gewohnt über das Hera
 Wenn in jeder Zeile der Ausdruck \IC{model.massnahmenCharakteristika} stehen würde, wäre die Leserlichkeit stark eingeschränkt. Das wurde für weitere Zeilenumbrüche sorgen. Deshalb speichert die lokale Variable \IC{mc} den Ausdruck zwischen und kann in den folgenden Zeilen verwendet werden \Z{27}.
 Damit die variable \IC{mc} jedoch nur Gültigkeit für die folgenden Zeilen hat, begrenzen die öffnenden und schließenden geschweiften Klammern den Sichtbarkeitsbereich \Z{26,37}.
 
-Bei der Konvertierung des Models in das ViewModel wurde bereits beim letzten Schritt die Methode \IC{update} verwendet, um das Objekt des geschachtelten Wertetyps \IC{Identifikatoren} anzupassen \LstZ{\ref{lst:Schritt2KonvertierungDesViewModelsInDasModel}}{44}. So ist es auch für den geschachtelten Wertetyp \IC{MassnahmenCharakteristika} der Fall. Der Unterschied: Es handelt sich um Auswahloptionen, weshalb nur die Abkürzungen abgespeichert werden \Z{46-50}, so wie es auch schon bei \IC{letzterStatus} geschah \Z{42}.
+Bei der Konvertierung des \enquote{Models} in das \enquote{ViewModel} wurde bereits beim letzten Schritt die Methode \IC{update} verwendet, um das Objekt des geschachtelten Wertetyps \IC{Identifikatoren} anzupassen \LstZ{\ref{lst:Schritt2KonvertierungDesViewModelsInDasModel}}{44}. So ist es auch für den geschachtelten Wertetyp \IC{MassnahmenCharakteristika} der Fall. Der Unterschied: Es handelt sich um Auswahloptionen, weshalb nur die Abkürzungen abgespeichert werden \Z{46-50}, so wie es auch schon bei \IC{letzterStatus} geschah \Z{42}.
 
-\begin{alexlisting}{Schritt 2}{Konvertierung des ViewModels in das Model}
+\begin{alexlisting}{Schritt 2}{Konvertierung des \enquote{ViewModels} in das Model}
   {Quellcode/Schritt-2/conditional_form/lib/screens/massnahmen_detail/massnahmen_form_view_model.dart}
   {firstline=40, lastline=50, highlightlines={45-50}}
   \label{lst:Schritt2KonvertierungDesViewModelsInDasModel}
@@ -156,7 +156,7 @@ Bei der Konvertierung des Models in das ViewModel wurde bereits beim letzten Sch
 
 \subsection{Aktualisierung der Eingabemaske}
 
-Nach der Anpassung des ViewModels kann schließlich die Eingabemaske erweitert werden.
+Nach der Anpassung des \enquote{ViewModels} kann schließlich die Eingabemaske erweitert werden.
 
 Im letzten Schritt nahm die Selektionskarte für den letzten Status 11 Zeilen ein \HP{R}. 
 Das wäre für jede weitere Karte nun auch der Fall.
@@ -168,7 +168,7 @@ Nun übernimmt die Methode die Übergabe der Argumente an den Konstruktor der \I
 Dazu verwendet die \IC{SelectionCard} wie zuvor den Namen der Menge der Auswahloptionen als Titel \Z{52}.
 Außerdem wird dieselbe Menge unverändert an die SelektionCard weitergegeben \Z{53}.
 
-\begin{alexlisting}{Schritt 2}{Die Maßnahmencharakteristika Selektionskarten werden ergänzt}
+\begin{alexlisting}{Schritt 2}{Die Methode \enquote{buildSelectionCard} in Schritt 2}
   {Quellcode/Schritt-2/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
   {firstline=48, lastline=60, highlightlines={77-89, 82-99}}
   \label{lst:Schritt2MassnahmencharakteristikaSelektionskartenWerdenErgaenzt}
@@ -178,9 +178,9 @@ Der Grund, warum die Klasse \IC{SelectionCard} den Titel aus der Menge der Auswa
 Es muss nicht immer der Fall sein, dass der Titel auf diese Art und Weise ausgelesen werden kann.
 Somit erlaubt die Methode \IC{buildSelectionCard} nun den Aufruf trotzdem zu vereinfachen und die Anwendbarkeit der Klasse \IC{SelectionCard} durch dessen direkte Veränderung nicht einzuschränken.
 
-Das betrifft auch das ViewModel. Durch die Methode \IC{buildSelectionCard} muss lediglich das \IC{BehaviorSubject} übergeben werden. Die Methode kümmert sich bei Initialisierung der Selektionskarte um das Auslesen des aktuellen Wertes \Z{54-56} und die Aktualisierung dessen über die Methoden \IC{onSelect} \Z{57}  \IC{onDeselect} \Z{58}. Damit ist die Erstellung der Selektionskarte für den letzten Status mit 3 Zeilen \Lst{\ref{lst:Schritt2BuildSelectionCardLetzterStatusChoices}} nun deutlich kürzer als die ursprüngliche Variante mit 11 Zeilen (siehe Seite \pageref{lst:Schritt1AusgabeDerFormularfelder}).
+Das betrifft auch das \enquote{ViewModel}. Durch die Methode \IC{buildSelectionCard} muss lediglich das \IC{BehaviorSubject} übergeben werden. Die Methode kümmert sich bei Initialisierung der Selektionskarte um das Auslesen des aktuellen Wertes \Z{54-56} und die Aktualisierung dessen über die Methoden \IC{onSelect} \Z{57}  \IC{onDeselect} \Z{58}. Damit ist die Erstellung der Selektionskarte für den letzten Status mit 3 Zeilen \Lst{\ref{lst:Schritt2BuildSelectionCardLetzterStatusChoices}} nun deutlich kürzer als die ursprüngliche Variante mit 11 Zeilen (siehe Seite \pageref{lst:Schritt1AusgabeDerFormularfelder}).
 
-\begin{alexlisting}{Schritt 2}{Die Maßnahmencharakteristika Selektionskarten werden ergänzt}
+\begin{alexlisting}{Schritt 2}{Der Aufruf von \enquote{buildSelectionCard} für die Menge \enquote{letzterStatusChoices}}
   {Quellcode/Schritt-2/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
   {firstline=77, lastline=79}
   \label{lst:Schritt2BuildSelectionCardLetzterStatusChoices}
@@ -196,9 +196,9 @@ Unterhalb des Eingabefeldes für den Maßnahmen-Titel können nun die weiteren S
 
 Auffällig hierbei sind Überschriften \Z{80, 82} und ine Zwischenüberschrift \Z{89} über den Selektionskarten. Sie sorgen für sichtbare Gruppierungen in der Oberfläche.
 
-Die Hilfsmethode \IC{buildSectionHeadline} und \IC{buildSubSectionHeadline} bauen die Überschriften \LstZ{\ref{lst:Schritt2buildSectionHeadlineBuildSubSectionHeadline}}{131-134} bzw. Zwischenüberschriften \Z{136-139} mit unterschiedlichen Abständen zur Außenkante \Z{132, 137} und unterschiedlicher Schriftgröße \Z{133, 138}. Der benannte Konstruktor \IC{fromLTRB} der Klasse \IC{EdgeInsets} erlaubt die Abstände zur außenkante im Uhrzeigersinn für jede Seite festzulegen. Die Abkürzung \IC{LTRB} steht dabei für für left, top, right, bottom -- deutsch links, oben, rechts, unten.
+Die Hilfsfunktionen \IC{buildSectionHeadline} und \IC{buildSubSectionHeadline} bauen die Überschriften \LstZ{\ref{lst:Schritt2buildSectionHeadlineBuildSubSectionHeadline}}{131-134} bzw. Zwischenüberschriften \Z{136-139} mit unterschiedlichen Abständen zur Außenkante \Z{132, 137} und unterschiedlicher Schriftgröße \Z{133, 138}. Der benannte Konstruktor \IC{fromLTRB} der Klasse \IC{EdgeInsets} erlaubt die Abstände zur außenkante im Uhrzeigersinn für jede Seite festzulegen. Die Abkürzung \IC{LTRB} steht dabei für für left, top, right, bottom -- deutsch links, oben, rechts, unten.
 
-\begin{alexlisting}{Schritt 2}{Die Maßnahmencharakteristika Selektionskarten werden ergänzt}
+\begin{alexlisting}{Schritt 2}{Die Hilfsfunktionen \enquote{buildSectionHeadline} und \enquote{buildSubSectionHeadline}}
   {Quellcode/Schritt-2/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
   {firstline=131, lastline=140}
   \label{lst:Schritt2buildSectionHeadlineBuildSubSectionHeadline}
