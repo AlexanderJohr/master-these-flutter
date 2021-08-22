@@ -107,7 +107,7 @@ Da er \IC{null} sein darf, ist er mit dem Suffix \IC{?} als Typ mit Null-Zuläss
     \label{lst:Schritt3errorText}
 \end{alexlisting}
 
-Durch Einfügen einer \IC{Column} zwischen der \IC{Card} \LstZ{\ref{lst:Schritt3ColumnErrorText}}{53} und dem ListTile? \Z{57} kann die visuelle Repräsentation der Selektionskarte in der Höhe erweitert werden.
+Durch Einfügen einer \IC{Column} zwischen der \IC{Card} \LstZ{\ref{lst:Schritt3ColumnErrorText}}{53} und dem \IC{ListTile} \Z{57} kann die visuelle Repräsentation der Selektionskarte in der Höhe erweitert werden.
 Sollte der \IC{errorText} gesetzt sein \Z{65}, so erscheint unter dem Titel und dem Untertitel eine entsprechende Fehlermeldung \Z{66-71}.
  
 
@@ -118,7 +118,7 @@ Sollte der \IC{errorText} gesetzt sein \Z{65}, so erscheint unter dem Titel und 
 \end{alexlisting}
 
 Oberhalb des vorhandenen \IC{FloatingActionButton} wird nun ein weiterer eingefügt, der zum Speichern des Entwurfs mit der Funktion \IC{saveDraftAndGoBackToOverviewScreen} genutzt werden soll \LstZ{\ref{lst:Schritt3FloatingActionButton}}{207-216}.
-Der ursprüngliche \IC{FloatingActionButton} speichert nur ausschließlich dann, wenn die Maßnahme als \enquote{in Bearbeitung} markiert ist oder alle Eingabefelder valide sind.
+Der ursprüngliche \IC{FloatingActionButton} speichert fortan ausschließlich dann, wenn die Maßnahme als \enquote{in Bearbeitung} markiert ist oder alle Eingabefelder valide sind.
 Dazu nutzt er die Hilfsfunktion \IC{inputsAreValidOrNotMarkedFinal} \Z{222}.
 Ist das der Fall, so folgt die Speicherung der Maßnahme mithilfe der bereits implementierten Funktion \IC{saveRecord} \Z{223}.
 Diese funktioniert wie in den letzten Schritten, nur dass sie keinen Rückgabewert mehr hat (siehe Listing \ref{lst:Schritt3saveRecord} in Anhang \ref{appendix:Schritt3Anhang} auf Seite \pageref{appendix:Schritt3Anhang}).
@@ -142,7 +142,7 @@ Auch der \IC{WillPopScope} erhält die gleiche Fehlerbehandlung \Lst{\ref{lst:Sc
 \end{alexlisting}
 
 Die Funktion \IC{saveDraftAndGoBackToOverviewScreen} funktioniert ähnlich wie die nun ausgetauschte Funktion \IC{saveRecord}.
-Sie zeigt dem Benutzer an, dass die Maßnahme im Entwurfsmodus gespeichert wird \Z{23-26}, speichert sie dann im Model ab \Z{31} und navigiert zur letzten Route zurück \Z{32}, welche der Übersichtsbildschirm ist.  Einer der beiden Unterschiede ist, dass die Maßnahme zuvor umgebaut wird. Unerheblich dessen, welchen letzten Status sie aktuell besitzt, erhält sie den letzten Status \IC{"in Bearbeitung"} \Z{28-29}. Der zweite der beiden Unterschiede ist, dass die Funktion nun keinen Rückgabewert hat, während \IC{saveRecord} einen Wert vom Typ \IC{Future<bool>} zurückgeben musste. Der Grund dafür ist, dass die Funktion nur noch über den Aktionsbutton zum Speichern der Maßnahme im Entwurfsmodus ausgelöst wird. Der FloatingActionButton setzt keinen Rückgabewert der ausgelösten Funktion voraus.
+Sie zeigt dem Benutzer an, dass die Maßnahme im Entwurfsmodus gespeichert wird \Z{23-26}, speichert sie anschließend im Model ab \Z{31} und navigiert zur letzten Route zurück \Z{32}, welche der Übersichtsbildschirm ist.  Einer der beiden Unterschiede ist, dass die Maßnahme zuvor umgebaut wird. Unerheblich dessen, welchen letzten Status sie aktuell besitzt, erhält sie den letzten Status \IC{"in Bearbeitung"} \Z{28-29}. Der zweite der beiden Unterschiede ist, dass die Funktion nun keinen Rückgabewert hat, während \IC{saveRecord} einen Wert vom Typ \IC{Future<bool>} zurückgeben musste. Der Grund dafür ist, dass die Funktion nur noch über den Aktionsbutton zum Speichern der Maßnahme im Entwurfsmodus ausgelöst wird. Der FloatingActionButton setzt keinen Rückgabewert der ausgelösten Funktion voraus.
 
 \begin{alexlisting}{Schritt 3}{Die Maßnahmencharakteristika Selektionskarten werden ergänzt}
     {Quellcode/Schritt-3/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}

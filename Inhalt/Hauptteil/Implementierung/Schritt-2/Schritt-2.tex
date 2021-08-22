@@ -84,7 +84,7 @@ Die Liste aller hinzugefügten Auswahloptionen in diesem Schritt ist im Anhang \
 Damit der Hash-Tabelle der Schlüssel \IC{'massnahmenCharakteristika'} hinzugefügt wird, muss der entsprechende Eintrag im Werte-Typ \IC{Massnahme} hinzugefügt werden.
 Die Getter-Methode \IC{massnahmenCharakteristika}, die das Paket \enquote{built_value} dazu veranlasst, den Quellcode für die Eigenschaft zu generieren, wird unterhalb der Getter-Methode \IC{identifikatoren} hinzugefügt \LstZ{\ref{lst:Schritt2massnahmenCharakteristikaWirdMMassnahmeHinzugefuegt}}{15}.
 
-\begin{alexlisting}{Schritt 2}{MassnahmenCharakteristika wird Massnahme hinzugefügt}
+\begin{alexlisting}{Schritt 2}{\enquote{massnahmenCharakteristika} wird \enquote{Massnahme} hinzugefügt}
   {Quellcode/Schritt-2/conditional_form/lib/data_model/massnahme.dart}
   {firstline=13, lastline=15, highlightlines={15}}
   \label{lst:Schritt2massnahmenCharakteristikaWirdMMassnahmeHinzugefuegt}
@@ -92,7 +92,7 @@ Die Getter-Methode \IC{massnahmenCharakteristika}, die das Paket \enquote{built_
 
 Bei dem Datentyp handelt es sich um einen weiteren Werte-Typ: \IC{MassnahmenCharakteristika}, welcher in Listing \ref{lst:Schritt2WerteTypMassnahmencharakteristika} zu sehen ist.
 Die darin enthaltenen Getter-Methoden sind dagegen lediglich gewöhnliche Zeichenketten, da sie die Abkürzungen der ausgewählten Optionen abspeichern.
-Da sie auch im Entwurfsmodus nicht gefüllt sein können, wird ihnen mit dem Suffix \IC{?} erlaubt, auch Null-Werte anzunehmen \Z{70-74}.
+Da sie auch im Entwurfsmodus nicht gefüllt sein können, wird ihnen mit dem Suffix \IC{?} erlaubt, Null-Werte anzunehmen \Z{70-74}.
 
 \begin{alexlisting}{Schritt 2}{Der Werte-Typ Massnahmencharakteristika}
   {Quellcode/Schritt-2/conditional_form/lib/data_model/massnahme.dart}
@@ -126,7 +126,7 @@ Ist der dagegen nicht \IC{null}, so wird der Wert links vom Operator \IC{??} gen
 
 \subsection{Aktualisierung des ViewModels}
 
-Damit die Eingabefelder die neuen Werte eintragen können, muss das ViewModel oder die beobachtbaren Subjects bereitstellen bereit gestellt werden? \LstZ{\ref{lst:Schritt2MassnahmencharakteristikaWerdenDemViewModelHinzugefuegt}}{12-17}. \HP{Subjects und Observer in Schritt 1 erklären} 
+Damit die Eingabefelder die neuen Werte eintragen können, muss das ViewModel die beobachtbaren \enquote{Subjects} bereitstellen \LstZ{\ref{lst:Schritt2MassnahmencharakteristikaWerdenDemViewModelHinzugefuegt}}{12-17}. \HP{Subjects und Observer in Schritt 1 erklären}
 
 \begin{alexlisting}{Schritt 2}{Maßnahmencharakteristika werden dem ViewModel hinzugefügt}
   {Quellcode/Schritt-2/conditional_form/lib/screens/massnahmen_detail/massnahmen_form_view_model.dart}
@@ -163,7 +163,7 @@ Das wäre für jede weitere Karte nun auch der Fall.
 Damit die Übersichtlichkeit darunter nicht leidet, soll nun zunächst eine Methode erstellt werden, welche die Erstellung der Selektionskarten abstrahiert und damit den Aufruf auf 3 Zeilen reduziert.
 Dies erlaubt auch die Konfiguration der Selektionskarten außerhalb der Klasse \IC{SelektionCard}.
 In den folgenden Schritten soll diese Konfigurationsmöglichkeit genutzt werden, um weitere Funktionalitäten hinzuzufügen, ohne die Klasse selbst zu manipulieren.
-Die Methode \IC{buildSelectionCard} bekommt dazu nur die Argumente für die Liste aller Auswahloptionen \IC{allChoices} \LstZ{\ref{lst:Schritt2MassnahmencharakteristikaSelektionskartenWerdenErgaenzt}}{49} und das Subjekt \IC{selectionViewModel} \Z{50} übergeben.
+Die Methode \IC{buildSelectionCard} bekommt dazu nur die Argumente für die Liste aller Auswahloptionen \IC{allChoices} \LstZ{\ref{lst:Schritt2MassnahmencharakteristikaSelektionskartenWerdenErgaenzt}}{49} und das \enquote{Subject} \IC{selectionViewModel} \Z{50} übergeben.
 Nun übernimmt die Methode die Übergabe der Argumente an den Konstruktor der \IC{SelectionCard}.
 Dazu verwendet die \IC{SelectionCard} wie zuvor den Namen der Menge der Auswahloptionen als Titel \Z{52}.
 Außerdem wird dieselbe Menge unverändert an die SelektionCard weitergegeben \Z{53}.

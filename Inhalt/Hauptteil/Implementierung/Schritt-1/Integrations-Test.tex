@@ -33,7 +33,7 @@ Zusätzlich dazu muss die Rubrik \IC{generate_for} von dem \IC{mockBuilder} des 
   \label{lst:Schritt1IntegrationsTestInitialisierung}
 \end{alexyamllisting}
 
-Anschließend kann mit der Annotation \IC{and generate mocks} \LstZ{\ref{lst:Schritt1IntegrationsTestInitialisierung}}{20} ein Mock für \IC{MassnahmenJsonFile} angefordert werden.
+Anschließend kann mit der Annotation \IC{@GenerateMocks} \LstZ{\ref{lst:Schritt1IntegrationsTestInitialisierung}}{20} ein Mock für \IC{MassnahmenJsonFile} angefordert werden.
 In der Kommandozeile ist \IC{flutter pub run build_runner build} einzugeben, damit der entsprechende Quellcode generiert wird.
 Mit dem Mock kann der Integrationstest ausgeführt werden, ohne dass befürchtet werden muss, dass die JSON-Datei tatsächlich beschrieben wird.
 Stattdessen kann darauf gehorcht werden, wenn Operationen auf dem Objekt ausgeführt werden. 
@@ -53,7 +53,7 @@ In diesem Fall ist es die gesamte Applikation, die getestet werden soll.
 Dementsprechend ist  hier erneut der komplette Haupteinstiegspunkt angegeben \Lst{\ref{lst:Schritt1IntegrationsTestWidgetInitialisierung}}.
 Doch der Konstruktor von \Z{MassnahmenModel} erhält dieses Mal nicht das \IC{MassnahmenJsonFile}, sondern den entsprechenden Mock \Z{31}. 
 
-\begin{alexlisting}{Schritt 1}{Initialisierung des Widgets für den Integrations Test}
+\begin{alexlisting}{Schritt 1}{Initialisierung des Widgets für den Integrationstest}
   {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
   {firstline=30, lastline=47}
   \label{lst:Schritt1IntegrationsTestWidgetInitialisierung}
@@ -91,7 +91,7 @@ Die Funktion \IC{expect} erwartet als ersten Parameter einen \IC{Finder} und als
 Der Aufruf von \IC{expect} mit dem entsprechenden \IC{Finder}-Objekt und dem Matcher \IC{findsWidgets} verifiziert, dass mindestens ein entsprechendes Text Element gefunden wurde.
 
 Wurde das Text-Element gefunden, so muss noch der Vater gesucht werden, der vom Typ \IC{Card} ist \Z{53}.
-Das kann mit \IC{find.ancestor} erfolgen. Über den Parameter \IC{of} erhält er den \IC{Finder} des Kind-Elements und der Parameter \IC{matching} erhält als Argument die Voraussetzung, die vom Vater-Objekt erfüllt werden soll, als weiteren \IC{Finder}. \IC{find.byType(Card)} sucht also alle Elemente vom Typ \IC{Card}. \IC{find.ancestor} sucht anschließend alle Entsprechungen, in denen eine \IC{Card} ein Vater des \IC{Finder textLabel } ist. Wiederum überprüft die Funktion \IC{expect}, dass die Karte gefunden wurde. Doch dieses Mal muss es genau ein Widget sein, welches mit dem \enquote{Matcher} \IC{findsOneWidget} verifiziert werden kann \Z{54}. Sollte mehr als nur eine Karte gefunden werden, so wäre nicht klar, welche angeklickt werden soll.
+Das kann mit \IC{find.ancestor} erfolgen. Über den Parameter \IC{of} erhält er den \IC{Finder} des Kind-Elements und der Parameter \IC{matching} erhält als Argument die Voraussetzung, die vom Vater-Objekt erfüllt werden soll, als weiteren \IC{Finder}. \IC{find.byType(Card)} sucht also alle Elemente vom Typ \IC{Card}. \IC{find.ancestor} sucht anschließend alle Entsprechungen, in denen eine \IC{Card} ein Vater des \IC{Finder textLabel} ist. Wiederum überprüft die Funktion \IC{expect}, dass die Karte gefunden wurde. Doch dieses Mal muss es genau ein Widget sein, welches mit dem \enquote{Matcher} \IC{findsOneWidget} verifiziert werden kann \Z{54}. Sollte mehr als nur eine Karte gefunden werden, so wäre nicht klar, welche angeklickt werden soll.
 
 Um eine Karte tatsächlich anzuwählen muss sie im sichtbaren Bereich sein.
 Die Methode \enquote{ensureVisible} scrollt den Bildschirm zur entsprechenden Position, damit die Karte sichtbar ist \Z{56}.
@@ -108,7 +108,7 @@ Die Hilfsfunktion klickt den Button \Z{63} und wartet dann erneut auf Vollendung
   \label{lst:Schritt1HilfsmethodeTabSelectionCard}
 \end{alexlisting}
 
-Ist der Integrationstest aktuell in dem Auswahlbildschirm, so sorgt \IC{tabOption} dafür, dass Auswahloptionen gewählt werden \Lst{\ref{lst:Schritt1HilfsmethodeTabOption}}.
+Ist der Integrationstest aktuell in dem Auswahlbildschirm, so sorgt \IC{tabOption} dafür, dass eine Auswahloption gewählt wird \Lst{\ref{lst:Schritt1HilfsmethodeTabOption}}.
 Dazu wird die gewünschte Option dem Parameter \IC{choice} übergeben.
 Um die Checkbox der Option zu finden, muss jedoch zunächst der Text der Auswahloption gefunden werden \Z{68}.
 Erst wenn verifiziert wurde, dass auch nur genau ein Label mit diesem Text existiert, läuft der Test weiter \Z{69}. 
@@ -124,7 +124,7 @@ Der \IC{tester} holt es in den sichtbaren Bereich \IC{71}, klickt es \IC{72} und
 Sollte der optionale Parameter \IC{tabConfirm} auf \IC{true} gesetzt sein \Z{75}, so wird der Auswahlbildschirm anschließend direkt wieder geschlossen, nachdem die Option ausgewählt wurde  \Z{76}. 
   
 Schließlich kann mit der Hilfsfunktionen \IC{fillTextFormField} ein Formularfeld über dessen Titel gefunden und der entsprechende übergebende Text eingetragen werden \Lst{\ref{lst:Schritt1HilfsmethodeFillTextFormField}}.
-Sie? findet das \IC{TextFormField}, indem es? zunächst nach dem Titel mit \IC{find.text(title)} und anschließend nach dessen Vater-Element vom Typ \IC{TextFormField} sucht \Z{83}. Sollte sowohl der Hinweistext als auch der Titel den gleichen Text enthalten, so kann es sein, dass zwei solche Elemente gefunden werden. In Wahrheit ist es aber zwei Mal dasselbe \IC{TextFormField}. Mit \IC{.first} wird lediglich das erste Element geliefert \Z{85}.
+Die Hilfsfunktionen findet das \IC{TextFormField}, indem sie zunächst nach dem Titel mit \IC{find.text(title)} und anschließend nach dessen Vater-Element vom Typ \IC{TextFormField} sucht \Z{83}. Sollte sowohl der Hinweistext als auch der Titel den gleichen Text enthalten, so kann es sein, dass zwei solche Elemente gefunden werden. In Wahrheit ist es aber zwei Mal dasselbe \IC{TextFormField}. Mit \IC{.first} wird lediglich das erste Element geliefert \Z{85}.
 Nachdem feststeht, dass das Element existiert \Z{85} und es in den sichtbaren Bereich gescrollt wurde \Z{87}, gibt der Integrationstest den gewünschten Text in das Eingabefeld ein \Z{88}.
 Anschließend wird erneut auf Abschluss aller Animationen gewartet \Z{89}.
 
@@ -193,7 +193,7 @@ Die lokale Variable \IC{actualMassnahme} speichert sie zwischen \Z{113}.
 
 Es ist unklar, welche zufällige \IC{guid} bei der Erstellung der Maßnahme generiert wurde.
 Auch der Zeitstempel hinter dem Schlüssel \IC{"letzteBearbeitung"} ist unbekannt.
-Eine mögliche Lösung wären weitere Mocks, welche die Erstellung der \IC{guid} und des Datums überwachen und - anstelle einer zufälligen - immer die gleiche Zeichenkette zurückgibt.
+Eine mögliche Lösung wären weitere Mocks, welche die Erstellung der \IC{guid} und des Datums überwachen. Anstatt einer zufälligen \IC{guid} könnte beispielsweise immer die gleiche Zeichenkette zurückgegeben werden.
 Es ist jedoch auch möglich, die Vergleiche der \IC{guid} und des Zeitstempels auszuschließen.
 Dazu reicht es, die entsprechenden Schlüssel-Werte-Paare über die Schlüssel \IC{"guid"} und \IC{"letztesBearbeitungsDatum"} aus der Ergebnis-Hashtabelle zu entfernen \Z{114-115}.
 
