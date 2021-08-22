@@ -2,16 +2,16 @@
 \label{chap:Schritt-7}
 
 \begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-7/D H BioDiv.png}
-  {Schritt 7 Eingabemaske}
-  {XXX Die Eingabemaske zeigt im Schritt 1 eine Karte zum Selektieren des Status und ein Eingabefeld für den Titel}
+  {Im Selektionsbildschirm für das \enquote{Hauptziel} ist \enquote{Biodiversität} ausgewählt}
+  {Im Selektionsbildschirm für das \enquote{Hauptziel} ist \enquote{Biodiversität} ausgewählt}
 
   \label{fig:Schritt4Eingabemaske}
 
 \end{alexfigure}
 
 \begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-7/D N Biodiv.png}
-  {Schritt 7 Eingabemaske}
-  {XXX Die Eingabemaske zeigt im Schritt 1 eine Karte zum Selektieren des Status und ein Eingabefeld für den Titel}
+  {Im Selektionsbildschirm für die \enquote{Nebenziele} kann \enquote{Biodiversität} nicht ausgewählt werden}
+  {Im Selektionsbildschirm für die \enquote{Nebenziele} kann \enquote{Biodiversität} nicht ausgewählt werden}
 
   \label{fig:Schritt4Eingabemaske}
 
@@ -19,8 +19,8 @@
 
 
 \begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-7/D N Biodiv Rot.png}
-  {Schritt 7 Eingabemaske}
-  {XXX Die Eingabemaske zeigt im Schritt 1 eine Karte zum Selektieren des Status und ein Eingabefeld für den Titel}
+  {Im Selektionsbildschirm für die \enquote{Nebenziele} wird die selektierte invalide Option \enquote{Biodiversität} rot gekennzeichnet}
+  {Im Selektionsbildschirm für die \enquote{Nebenziele} wird die selektierte invalide Option \enquote{Biodiversität} rot gekennzeichnet}
 
   \label{fig:Schritt4Eingabemaske}
 
@@ -49,20 +49,20 @@ so ist unklar,
 ob sie im Auswahlfeld für das Hauptziel oder dem der Nebenziele gewählt wurde.
 
 Wenn der Selektionskarte aber eine benutzerdefinierte Funktion übergeben werden könnte,
-welche im aufrufenden Kontext auch Zugriff auf das ViewModel hat,
+welche im aufrufenden Kontext auch Zugriff auf das \enquote{ViewModel} hat,
 so könnte direkt auf die Auswahlfelder zugegriffen werden.
 
 
 Zu diesem Zweck wird der Klasse \IC{SelectionCard} die Instanzvariable \IC{choiceMatcher} hinzugefügt \LstZ{\ref{lst:Schritt7SelectionCard}}{27}.
 Ein Parameter des gleichen Namens wird den Hilfsmethoden \IC{buildSelectionCard} und \IC{buildMultiSelectionCard} welche ihn unverändert an den Konstruktor der Klasse \IC{SelectionCard} weitergeleitet.
-Die entsprechenden Listing sind in Anhang \ref{appendix:Schritt7Anhang} auf den Seiten \pageref{lst:Schritt7buildSelectionCard} und \pageref{lst:Schritt7buildMultiSelectionCard} zu finden. 
+Die entsprechenden Listing sind in Anhang \ref{appendix:Schritt7Anhang} auf den Seiten \pageref{lst:Schritt7AppendixbuildSelectionCard} und \pageref{lst:Schritt7buildMultiSelectionCard} zu finden. 
 
 
 
 
 
 
-\begin{alexlisting}{Schritt 7}{XXXX}
+\begin{alexlisting}{Schritt 7}{Der \enquote{choiceMatcher} wird der Klasse \enquote{SelectionCard} hinzugefügt}
   {Quellcode/Schritt-7/conditional_form/lib/widgets/selection_card.dart}
   {firstline=13, lastline=47, highlightlines={13-14, 16-18, 31, 41, 46}}
   \label{lst:Schritt7SelectionCard}
@@ -92,12 +92,12 @@ die Methode \IC{conditionMatches} auf
 und übergibt ihr das Objekt \IC{priorChoices} \Z{17}.
 Diese Implementierung soll immer dann verwendet werden, 
 wenn kein benutzerdefinierter \IC{choiceMatcher} übergeben wurde.
-An dem Namen \IC{defaultChoiceMatcherStrategy} wird offensichtlich, um welches Entwurfsmuster es sich hierbei handelt: das \enquote{Strategie-Entwurfsmuster}. 
+An dem Namen \IC{defaultChoiceMatcherStrategy} wird offensichtlich, um welches Entwurfsmuster es sich hierbei handelt: das \enquote{Strategie}-Entwurfsmuster. 
 
 
-\paragraph{Strategie-Entwurfsmuster} Das Strategie-Entwurfsmuster ist ein Verhaltensmuster der Gang of Four.
+\paragraph{Strategie-Entwurfsmuster} Das \enquote{Strategie}-Entwurfsmuster ist ein Verhaltensmuster der Gang of Four.
 Es erlaubt Algorithmen zu kapseln und auszutauschen \footcite[Vgl.][S. 373]{gamma2009entwurfsmuster}.
-Abbildung \ref{fig:UmlStrategie} zeigt das UML-Diagramm des \enquote{Strategie-Entwurfsmusters}. 
+Abbildung \ref{fig:UmlStrategie} zeigt das UML-Diagramm des \enquote{Strategie}-Entwurfsmusters. 
 
 \ifIncludeFigures
   \begin{figure}[h]
@@ -137,13 +137,13 @@ Abbildung \ref{fig:UmlStrategie} zeigt das UML-Diagramm des \enquote{Strategie-E
       
   \end{tikzpicture}
 
-    \caption[UML Diagramme]{UML Diagramme, Quelle: Eigene Abbildung}
+    \caption[UML-Diagramm des Strategie-Entwurfsmusters]{UML-Diagramm des Strategie-Entwurfsmusters, Quelle: Eigene Abbildung}
     \label{fig:UmlStrategie}
 
   \end{figure}%
 \fi
 
-Die Typdefinition \IC{ChoiceMatcher} \Z{13} kann nach dem Strategie-Entwurfsmuster als die Schnittstelle namens \enquote{Strategie} interpretiert werden.
+Die Typdefinition \IC{ChoiceMatcher} \Z{13} kann nach dem \enquote{Strategie}-Entwurfsmuster als die Schnittstelle namens \enquote{Strategie} interpretiert werden.
 Sie definiert, welche Voraussetzung an die Schnittstelle gegeben ist.
 In diesem Fall ist die Voraussetzung, dass es sich um eine Funktion mit dem Rückgabewert \IC{bool} handelt,
 der als erstes Argument eine Auswahloption
@@ -153,12 +153,12 @@ und als zweites Argument eine Menge von Auswahloptionen
 übergeben wird.
 Sollte der Parameter \IC{choiceMatcher} gesetzt sein,
 so tauscht er die standardmäßig genutztes Strategie \IC{defaultChoiceMatcherStrategy} durch die benutzerdefinierte Strategie aus \Z{46}.
-Beide werden nach dem Strategie-Entwurfsmuster als \enquote{konkrete Strategien} bezeichnet.
+Beide werden nach dem \enquote{Strategie}-Entwurfsmuster als \enquote{konkrete Strategien} bezeichnet.
 Im Entwurfsmuster gibt es noch den Akteur \enquote{Kontext},
 wobei es sich um die aufrufende Klasse handelt,
 welche die Strategien verwendet.
 In diesem Fall ist das die \enquote{Klasse} \IC{SelectionCard}.
-Abbildung \ref{fig:UmlChoiceMatcherStrategyPattern} zeigt das UML-Diagramm der konkreten Implementierung des \enquote{Strategie-Entwurfsmusters} für die \enquote{Strategie} \IC{ChoiceMatcher}.
+Abbildung \ref{fig:UmlChoiceMatcherStrategyPattern} zeigt das UML-Diagramm der konkreten Implementierung des \enquote{Strategie}-Entwurfsmusters für die \enquote{Strategie} \IC{ChoiceMatcher}.
 Da sich bei der konkreten Strategie für das Auswahlfeld der \enquote{Nebenziele} um eine anonyme Funktion handelt,
 wurde sie zum besseren Verständnis im UML-Diagramm \enquote{nebenzieleChoiceMatcherStrategy} genannt.
 \ifIncludeFigures
@@ -188,7 +188,7 @@ wurde sie zum besseren Verständnis im UML-Diagramm \enquote{nebenzieleChoiceMat
 
   \end{tikzpicture}
 
-    \caption[UML Diagramme]{UML Diagramme, Quelle: Eigene Abbildung}
+    \caption[UML-Diagramm des Strategie-Entwurfsmusters für den \enquote{ChoiceMatcher}]{UML-Diagramm des Strategie-Entwurfsmusters für den \enquote{ChoiceMatcher}, Quelle: Eigene Abbildung}
     \label{fig:UmlChoiceMatcherStrategyPattern}
 
   \end{figure}%
@@ -197,7 +197,7 @@ wurde sie zum besseren Verständnis im UML-Diagramm \enquote{nebenzieleChoiceMat
 Im Diagramm ist ebenfalls der \enquote{View} \IC{MassnahmenDetailScreen} enthalten,
 denn er verwendet die konkrete Strategie \IC{defaultChoiceMatcherStrategy} für die Validierung \Lst{\ref{lst:Schritt7buildSelectionCard}}.
 
-\begin{alexlisting}{Schritt 7}{XXXX}
+\begin{alexlisting}{Schritt 7}{Die Methode \enquote{buildSelectionCard} in Schritt 7}
   {Quellcode/Schritt-7/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
   {firstline=119, lastline=130, highlightlines={122,130}}
   \label{lst:Schritt7buildSelectionCard}
@@ -211,7 +211,7 @@ dass die \IC{defaultChoiceMatcherStrategy} für die Validierung verwendet wird.
 
 Außerdem erstellt \IC{MassnahmenDetailScreen} die konkrete Strategie \enquote{nebenzieleChoiceMatcherStrategy}, wie in Listing \ref{lst:Schritt7buildMultiSelectionCardZielsetzungLandChoice} zu sehen ist.
 
-\begin{alexlisting}{Schritt 7}{XXXX}
+\begin{alexlisting}{Schritt 7}{Dem Aufruf von \enquote{buildMultiSelectionCard} für die Menge \enquote{nebenzielsetzungLandChoices} wird ein benutzerdefinierter \enquote{choiceMatcher} übergeben}
   {Quellcode/Schritt-7/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
   {firstline=221, lastline=239, highlightlines={224-239}}
   \label{lst:Schritt7buildMultiSelectionCardZielsetzungLandChoice}
@@ -247,27 +247,15 @@ weshalb \IC{false} zurückgegeben werden soll \Z{232}.
 Anderenfalls sind alle Bedingungen erfüllt und \IC{true} kann zurückgegeben werden.
 
 An diesem Beispiel wird auch offensichtlich,
-welchen Nutzen die Generalisierung der Klasse \IC{SelectionCard} hat.
-Der Typparameter \IC{ZielsetzungLandChoice} wird beim Aufruf der Methode \IC{buildMultiSelectionCard} übergeben \Z{221}. 
-Die Methode übergibt den Typparameter wiederum der Klasse \IC{SelectionCard} \Lst{\ref{lst:Schritt7builderFieldSelectionCardChoiceType}}.
-\begin{alexlisting}{Schritt 7}{XXXX}
-  {Quellcode/Schritt-7/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
-  {firstline=131, lastline=131}
-  \label{lst:Schritt7builderFieldSelectionCardChoiceType}
-\end{alexlisting}
-
-Schließlich übergibt die Klasse \IC{SelectionCard} den Typparameter an die Instanzvariable \IC{choiceMatcher} \Lst{\ref{lst:Schritt7ChoiceMatcherChoiceTypeChoiceMatcher}}.
-\begin{alexlisting}{Schritt 7}{XXXX}
-  {Quellcode/Schritt-7/conditional_form/lib/widgets/selection_card.dart}
-  {firstline=41, lastline=41}
-  \label{lst:Schritt7ChoiceMatcherChoiceTypeChoiceMatcher}
-\end{alexlisting}
-
-Damit handelt es sich also auch bei dem ersten Parameter \IC{choice} der anonymen Funktion,
-die dem Parameter \IC{choiceMatcher} übergeben wird um den Typ \IC{ZielsetzungLandChoice}.
+welchen Nutzen die Generalisierung der Klasse \IC{SelectionCard} über den Typ Parameter \IC{ChoiceType} hat .
+Über eine Reihe von Methoden- und Konstruktoraufrufen gelangt das Typargument \IC{ZielsetzungLandChoice} in die Klasse \IC{SelectionCard} und somit auch zu der Instanzvariable \IC{choiceMatcher}. Zuerst wird es der Methode \IC{buildMultiSelectionCard} übergeben \Z{221}. 
+Mit dem Konstruktoraufruf \IC{SelectionCard<ChoiceType>} wird es an die Selektionskarte weitergereicht (Siehe Listing \ref{lst:Schritt7buildMultiSelectionCard} in Zeile 157 in Anhang \ref{appendix:Schritt7Anhang} auf Seite \pageref{lst:Schritt7buildMultiSelectionCard}.
+Schließlich erhält die Instanzvariable das Typargument über die Deklaration \IC{ChoiceMatcher<ChoiceType> choiceMatcher} \LstZ{\ref{lst:Schritt7SelectionCard}}{31}. Der Typparameter wird durch das Typargument ersetzt. Somit hat \IC{choiceMatcher} dann den Typ \IC{ChoiceMatcher<ZielsetzungLandChoice>}.
+Damit handelt es sich also auch bei dem ersten Parameter \IC{choice} der anonymen Funktion --
+die dem Parameter \IC{choiceMatcher} übergeben wird \LstZ{\ref{lst:Schritt7buildMultiSelectionCardZielsetzungLandChoice}}{224} -- um den Typ \IC{ZielsetzungLandChoice}.
 Aus diesem Grund können die Methoden \IC{hasRealValue} \Z{225} und \IC{hasNoRealValue} \Z{228} auf dem Objekt \IC{choice} aufrufen werden,
 obwohl sie nur Teil der Klasse \IC{ZielsetzungLandChoice} aber nicht der Basisklasse \IC{Choice} sind.
-Ohne Parametrisierung über den Typ müsste das Objekt \IC{choice} in einen anderen Typen umgewandelt werden.
+Ohne Parametrisierung über den Typ müsste das Objekt \IC{choice} in einen anderen Typ umgewandelt werden.
 Doch nach dieser Typumwandlung könnte ein Laufzeitfehler geschehen, sollte es sich bei dem Objekt tatsächlich nicht um den gewünschten Typ handeln.
 Durch die Generalisierung der Klassen und die Angabe des Typparameters ist das Vorhandensein des richtigen Typs garantiert und keine Typumwandlung nötig.
 
@@ -284,7 +272,7 @@ Die beiden neuen Methoden sind in Listing \ref{lst:Schritt7ZielsetzungLandChoice
       \tiny\arabic{FancyVerbLine}%
       \fi
     }
-    \begin{minted}[firstnumber=185]{dart}
+    \begin{minted}[firstnumber=185, highlightlines={201,203}]{dart}
 class ZielsetzungLandChoice extends Choice {
   static final ka = ZielsetzungLandChoice("ka", "keine Angabe/Vorgabe");
 
@@ -295,7 +283,7 @@ class ZielsetzungLandChoice extends Choice {
 
   bool get hasNoRealValue => !hasRealValue;
 \end{minted}
-    \alexlistingcaption{Schritt 7}{XXX} {Quellcode/Schritt-7/conditional_form/lib/choices/choices.dart}
+    \alexlistingcaption{Schritt 7}{Die Getter-Methoden \enquote{hasRealValue} und \enquote{hasNoRealValue}} {Quellcode/Schritt-7/conditional_form/lib/choices/choices.dart}
     \label{lst:Schritt7ZielsetzungLandChoice}
   \end{listing}
 \fi
@@ -311,8 +299,8 @@ class ZielsetzungLandChoice extends Choice {
 
 
 Überall dort, wo zuvor der Ausdruck \IC{choice.conditionMatches(priorChoices)} verwendet wurde, muss nun der Aufruf des \IC{choiceMatcher} erfolgen.
-So zum Beispiel der Stream, welcher die Validität der Auswahlfelder prüft \Lst{\ref{lst:Schritt7validityChangedchoiceMatcher}}.
-\begin{alexlisting}{Schritt 7}{XXXX}
+So zum Beispiel der \enquote{Stream}, welcher die Validität der Auswahlfelder prüft \Lst{\ref{lst:Schritt7validityChangedchoiceMatcher}}.
+\begin{alexlisting}{Schritt 7}{Der \enquote{Stream} \enquote{validityChanged} in Schritt 7}
   {Quellcode/Schritt-7/conditional_form/lib/widgets/selection_card.dart}
   {firstline=63, lastline=66, highlightlines={65}}
   \label{lst:Schritt7validityChangedchoiceMatcher}

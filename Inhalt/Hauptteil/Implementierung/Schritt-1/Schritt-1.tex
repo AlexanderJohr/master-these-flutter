@@ -1,20 +1,42 @@
-\chapter{Schritt 1 - Formular in Grundstruktur erstellen}
+\chapter{Schritt 1 -- Formular in Grundstruktur erstellen}
 \label{chap:Schritt-1}
 
-% todo high: uncomment 
-%\input{Inhalt/Hauptteil/Implementierung/Schritt-1/Zielsetzung}
-% todo high: uncomment 
-%\input{Inhalt/Hauptteil/Implementierung/Schritt-1/Auswahloptionen}
-% todo high: uncomment 
-%\input{Inhalt/Hauptteil/Implementierung/Schritt-1/Serialisierung}
-% todo high: uncomment 
-%\input{Inhalt/Hauptteil/Implementierung/Schritt-1/Haupteinstiegspunkt}
-% todo high: uncomment 
-%\input{Inhalt/Hauptteil/Implementierung/Schritt-1/Uebersichtsbildschirm}
-% todo high: uncomment 
-%\input{Inhalt/Hauptteil/Implementierung/Schritt-1/Eingabeformular}
-% todo high: uncomment 
+\newif\ifIncludeAllImplementierungSchrittOneInputs
+
+\IncludeAllImplementierungSchrittOneInputsfalse
+
+\ifSimplyIncludeEverythingForSubmission
+  \IncludeAllImplementierungSchrittOneInputstrue
+\fi
+
+\ifIncludeAllImplementierungSchrittOneInputs
+\input{Inhalt/Hauptteil/Implementierung/Schritt-1/Zielsetzung}
+\fi
+
+\ifIncludeAllImplementierungSchrittOneInputs
+\input{Inhalt/Hauptteil/Implementierung/Schritt-1/Auswahloptionen}
+\fi
+
+\ifIncludeAllImplementierungSchrittOneInputs
+\input{Inhalt/Hauptteil/Implementierung/Schritt-1/Serialisierung}
+\fi
+
+\ifIncludeAllImplementierungSchrittOneInputs
+\input{Inhalt/Hauptteil/Implementierung/Schritt-1/Haupteinstiegspunkt}
+\fi
+
+\ifIncludeAllImplementierungSchrittOneInputs
+\input{Inhalt/Hauptteil/Implementierung/Schritt-1/Uebersichtsbildschirm}
+\fi
+
+\ifIncludeAllImplementierungSchrittOneInputs
+\input{Inhalt/Hauptteil/Implementierung/Schritt-1/Eingabeformular}
+\fi
+
+%\ifIncludeAllImplementierungSchrittOneInputs
 \input{Inhalt/Hauptteil/Implementierung/Schritt-1/Widget-SelectionCard}
-% todo high: uncomment 
+%\fi
+
+%\ifIncludeAllImplementierungSchrittOneInputs
 \input{Inhalt/Hauptteil/Implementierung/Schritt-1/Integrations-Test}
- 
+%\fi

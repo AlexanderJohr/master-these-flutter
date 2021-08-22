@@ -1,7 +1,7 @@
 \chapter{Grundlagen}
 \label{chap:Grundlagen}
 
-Für die Formular Anwendung wurde die Programmiersprache Dart und das Oberflächen Framework Flutter gewählt.
+Für die Formular Anwendung wurde die Programmiersprache \enquote{Dart} und das Frontend-Framework \enquote{Flutter} gewählt.
 Kapitel \ref{chap:Technologie-Auswahl} erläutert die Entscheidungsgrundlage dafür.
 
 Nachfolgend soll auf die Grundlagen der beiden Technologien eingegangen werden.
@@ -9,8 +9,8 @@ Nachfolgend soll auf die Grundlagen der beiden Technologien eingegangen werden.
 \section{Flutter}
 \label{sec:Flutter-Grundlagen}
 
-Flutter ist ein Framework von Google zur Entwicklung von Oberflächen.
-Es unterstützt eine breite Anzahl an Ziel-Systemen.
+\enquote{Flutter} ist ein Framework von Google zur Entwicklung von Oberflächen.
+Es unterstützt eine breite Anzahl an Zielsystemen.
  Dazu gehören:
 
 \begin{itemize}[topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex]
@@ -32,10 +32,10 @@ Es unterstützt eine breite Anzahl an Ziel-Systemen.
   \item und das Web\footcite[Vgl.][]{WebSupportForFlutter}.
 \end{itemize}
 
-Flutter ist inspiriert durch das Web-Framework react und deren Oberflächenelemente, die Components genannt werden \footcite[Vgl.][]{IntroductionToWidgets}.
-Die visuellen Oberflächen-Elemente in Flutter werden dagegen Widgets genannt.
+\enquote{Flutter} ist inspiriert durch das Web-Framework \enquote{React} und deren Oberflächenelemente, die \enquote{Components} genannt werden \footcite[Vgl.][]{IntroductionToWidgets}.
+Die visuellen Oberflächenelemente in \enquote{Flutter} werden dagegen \enquote{Widgets} genannt.
 \enquote{react} \enquote{Components} verfügen über einen Zustand -- \enquote{State} genannt -- der bei Veränderung das Neuzeichnen der visuellen Repräsentation erwirkt.
-Flutter unterscheidet allerdings zwischen zwei Arten von Widgets: denen, die einen Zustand pflegen – den \enquote{Stateful Widgets} – und solchen, die keinen Zustand haben – den \enquote{Stateless Widgets}.
+\enquote{Flutter} unterscheidet allerdings zwischen zwei Arten von Widgets: denen, die einen Zustand pflegen -- den \enquote{Stateful Widgets} -- und solchen, die keinen Zustand haben -- den \enquote{Stateless Widgets}.
 
 \enquote{Stateful Widgets} pflegen einen Zustand, der mittels der Methode \IC{setstate} gesetzt werden kann.
 Beim Aufrufen der Methode wird das gesamte Widget neu gezeichnet.
@@ -43,63 +43,63 @@ Der Zustand selbst ist dabei im visuellen Baum als Vater der visuellen Elemente 
 
 \enquote{Stateless Widgets} haben dagegen keinen solchen Mechanismus.
 Wie alle Widgets werden sie neu gezeichnet, wenn es durch das Framework angeordnet wurde.
-Das kann unter anderem der Fall sein, wenn das Widget zum ersten Mal in der Oberfläche auftaucht, oder das Vater-Element und damit alle Kinder-Elemente neu gezeichnet werden.
+Das kann unter anderem der Fall sein, wenn das Widget zum ersten Mal in der Oberfläche auftaucht, oder das Vaterelement und damit alle Kinderelemente neu gezeichnet werden.
 \HP{oder es von Inherited Widget abhängt?}
 
 \enquote{StatefulWidgets} sind nur eine von vielen Möglichkeiten den Zustand des Programms zu verwalten.
-Die Formular-Anwendung verwendet ausschließlich \IC{StatelessWidget}s, da die Verwaltung des Zustands über das sogenannte BloC Pattern umgesetzt wird.
+Die Formularanwendung verwendet ausschließlich \IC{StatelessWidget}s, da die Verwaltung des Zustands über das sogenannte BloC Pattern umgesetzt wird.
 Mehr dazu im Kapitel \HP{Kapitel einfügen}.
 \HP{BLoC Pattern erklären? Oder einfach bei BehaviourSubject verweisen, dass MVVM bei Google BloC genannt wird (einfacher)}
 
 \HP{Inherited Widgets?}
 
-\section{Dart Grundlagen}
+\section{\enquote{Dart} Grundlagen}
 \label{sec:Dart-Grundlagen}
 
-Flutter-Anwendungen werden in der Programmiersprache Dart geschrieben.
-Nachfolgend soll auf eine Reihe von Besonderheiten von Dart im Vergleich zu anderen objektorientierten Programmiersprachen eingegangen werden.
+\enquote{Flutter}-Anwendungen werden in der Programmiersprache \enquote{Dart} geschrieben.
+Nachfolgend soll auf eine Reihe von Besonderheiten von \enquote{Dart} im Vergleich zu anderen objektorientierten Programmiersprachen eingegangen werden.
 
-Dart ist eine Hochsprache, die hauptsächlich für die Entwicklung von Oberflächen entwickelt wurde, sich jedoch ebenso dazu eignet, Programme für das Back-End zu entwickeln.
+\enquote{Dart} ist eine Hochsprache, die hauptsächlich für die Entwicklung von Oberflächen entwickelt wurde, sich jedoch ebenso dazu eignet, Programme für das Back-End zu entwickeln.
 
 Ein Hauptaspekt bei dem Design der Sprache ist die Produktivität des Entwicklers.
 Mechanismen wie das \enquote{hot reload} verkürzen die Entwicklungszyklen erheblich.
-Das \enquote{hot reload} ermöglicht es, während eine Anwendung im Debug-Modus ausgeführt wird, Änderungen an deren Quellcode vorzunehmen.
+Das \enquote{hot reload} ermöglicht es, während eine Anwendung im Debugmodus ausgeführt wird, Änderungen an deren Quellcode vorzunehmen.
 Daraufhin werden nur die Teile der laufenden Applikation aktualisiert, die tatsächlich verändert wurden.
  Währenddessen bleibt die Anwendung in der gleichen Ansicht, anstatt zum Hauptbildschirm zurückgesetzt zu werden, von der aus der Entwickler erneut zur gewünschten Ansicht zurücknavigieren müsste.
 
 \subsection{AOT und JIT}
 Nicht nur für die reibungslose Entwicklung sondern auch für das Laufzeitverhalten der finalen Applikation wurde die Sprache optimiert.
-Für die Ziel-Architekturen ARM32, ARM64 und x86_64 wird Dart in Maschinencode kompiliert \footcite[Vgl.][]{DartThePlatforms}.
+Für die Ziel-Architekturen ARM32, ARM64 und x86_64 wird \enquote{Dart} in Maschinencode kompiliert \footcite[Vgl.][]{DartThePlatforms}.
 
-Dementsprechend kommt während der Entwicklung eine virtuelle Maschine - die Dart VM - über Just-in-time-Kompilierung (JIT) zum Einsatz.
+Dementsprechend kommt während der Entwicklung eine virtuelle Maschine -- die \enquote{Dart VM} -- über Just-in-time-Kompilierung (JIT) zum Einsatz.
 Für die Kompilierung in Maschinencode wird dagegen Ahead-of-time-Kompilierung (AOT) eingesetzt.
 
 \subsubsection{tree shaking}
 Für die Minimierung der Dateigröße des resultierenden Kompilats wird das sogenannte \enquote{tree shaking} eingesetzt.
-Das Hauptprogramm importiert über das Schlüsselwort \IC{import} Funktionalitäten aus  weiteren Dart-Dateien oder sogar ganzen Bibliotheken.
+Das Hauptprogramm importiert über das Schlüsselwort \IC{import} Funktionalitäten aus  weiteren \enquote{Dart}-Dateien oder sogar ganzen Bibliotheken.
 Diese Dateien importieren wieder Weitere.
 Dadurch wird ein Baum aufgespannt.
 Das \enquote{tree shaking} identifiziert, welche Funktionalitäten tatsächlich vom Programm verwendet werden und welche nicht.
 Dies bringt aber eine wichtige Einschränkung mit sich.
 Die Metaprogrammierung (der Zugriff auf sprachinterne Eigenschaften, wie etwa Klassen und ihre Attribute) ist damit stark eingeschränkt.
 
-\subsubsection{Meta-Programmierung}
+\subsubsection{Metaprogrammierung}
 Bei der Kompilierung werden die Original-Bezeichner durch Symbole ersetzt, welche minimalen Speicherbedarf haben.
 Aber nicht nur das, denn durch das \enquote{tree shaking} werden auch etwaige Eigenschaften und Funktionalitäten entfernt, die nicht verwendet werden.
-Die sogenannte \enquote{Reflexion} oder \enquote{Introspektion} versucht auf solche Meta-Informationen während der Laufzeit zuzugreifen.
+Die sogenannte \enquote{Reflexion} oder \enquote{Introspektion} versucht auf solche Metainformationen während der Laufzeit zuzugreifen.
 Da die Eigenschaften aber nicht mehr verfügbar sind, ist \enquote{Reflexion} nicht anwendbar.
-Dart greift daher auf eine andere Variante der Meta-Programmierung zurück: die Quellcode Generierung.
+\enquote{Dart} greift daher auf eine andere Variante der Metaprogrammierung zurück: die Quellcode-Generierung.
 
 \subsubsection{Quellcode-Generierung}
-Das Package \enquote{source_gen} erlaubt das Auslesen der Meta-Informationen und ermöglicht das Generieren von Quellcode, der von diesen Eigenschaften abgeleitet werden kann.
+Das Package \enquote{source_gen} erlaubt das Auslesen der Metainformationen und ermöglicht das Generieren von Quellcode, der von diesen Eigenschaften abgeleitet werden kann.
 So verwendet beispielsweise das Package \enquote{built_value} die Quellcode-Generierung.
 Zunächst werden Eigenschaften wie Klassennamen und Instanzvariablen mit ihren Bezeichnern und Datentypen gelesen.
-Die Eigenschaften können dann genutzt werden, um unveränderliche Werte-Typen und dazugehörige sogenannte \enquote{Builder}-Objekte des Erbauer-Entwurfsmusters, sowie Funktionen zum Serialisieren und Deserialisieren von Objekten zu generieren.
+Die Eigenschaften können dann genutzt werden, um unveränderliche Wertetypen und dazugehörige sogenannte \enquote{Builder}-Objekte des \enquote{Erbauer}-Entwurfsmusters, sowie Funktionen zum Serialisieren und Deserialisieren von Objekten zu generieren.
 \HP{Referenzen}
 
 \subsection{Set und Map Literale}
 
-Dart erlaubt es Listen (\IC{List}), Mengen (\IC{Set}) und Hashtabellen (\IC{Map}) als sogenannte Literale zu deklarieren.
+\enquote{Dart} erlaubt es Listen (\IC{List}), Mengen (\IC{Set}) und Hashtabellen (\IC{Map}) als sogenannte Literale zu deklarieren.
 Ein Literal ist die textuelle Repräsentation eines Wertes eines speziellen Datentyps.
 Beispielsweise ist \IC{"Text"}  ein String-Literal für eine Zeichenkette mit den Elementen \enquote{T}, \enquote{e}, \enquote{x}, \enquote{t}.
 So ist auch \IC{{"Text"}}  ein Literal für eine Menge (\IC{Set}).
@@ -123,7 +123,7 @@ Im Fall einer Map werden der Schlüssel und der Wert durch einen \IC{:} voneinan
 Eine Liste wiederum wird mit eckigen Klammern geöffnet und geschlossen.
 Die Werte werden erneut mit \IC{,} getrennt voneinander angegeben (\IC{[1,2]}).
 
-\subsubsection{Collection for} Dart erlaubt es Schleifen innerhalb von Listen-, Mengen- und Hashtabellen-Literalen zu verwenden.
+\subsubsection{Collection for} \enquote{Dart} erlaubt es Schleifen innerhalb von Listen-, Mengen- und Hashtabellen-Literalen zu verwenden.
 Dabei darf die Schleife jedoch keinen Schleifen-Körper besitzen.
 Lediglich der Schleifen-Kopf wird dazu im Literal geschrieben.
 Darauf folgt der Wert, der bei jedem Schleifendurchlauf hinzugefügt werden soll.
@@ -138,7 +138,7 @@ var gradCelsiusTemperaturen = {
         (f - 32) * 5 / 9
 };
 \end{minted}
-    \caption[Collection-for in einer Menge]{Collection-for in einer Menge, Quelle: Eigenes Listing}
+    \caption[Das Collection-for in einer Menge]{Das Collection-for in einer Menge, Quelle: Eigenes Listing}
     \label{lst:CollectionForInEinerMenge}
   \end{listing}
 \fi
@@ -163,7 +163,7 @@ var celsiusUndFahrenheit = {
         (f - 32) * 5 / 9 :  f
 };
 \end{minted}
-    \caption[Collection-for in einer Hashtabelle]{Collection-for in einer Hashtabelle, Quelle: Eigenes Listing}
+    \caption[Das Collection-for in einer Hashtabelle]{Das Collection-for in einer Hashtabelle, Quelle: Eigenes Listing}
     \label{lst:CollectionForInEinerHashtabelle}
   \end{listing}
 \fi
@@ -188,7 +188,7 @@ var fieberTemperaturen = [
         if (c >= 38.5) c
 ];
 \end{minted}
-    \caption[Collection-if in einer Liste]{Collection-if in einer Liste, Quelle: Eigenes Listing}
+    \caption[Collection-if in einer Liste]{Das Collection-if in einer Liste, Quelle: Eigenes Listing}
     \label{lst:CollectionIfInEinerListe}
   \end{listing}
 \fi
@@ -197,17 +197,17 @@ Nur in dem Fall, dass die Temperatur der Schleifen-Variable \IC{c} größer oder
 Das Ergebnis der Liste \IC{fieberTemperaturen} ergibt also \IC{[38.5, 41]}.
 
 
-\subsection{Typen ohne Null-Zulässigkeit} Im Vergleich zu vielen anderen Programmiersprachen - wie beispielsweise Java - wird in Dart zwischen gewöhnlichen Typen und nullable Typen unterschieden.
+\subsection{Typen ohne Null-Zulässigkeit} Im Vergleich zu vielen anderen Programmiersprachen -- wie beispielsweise Java -- wird in \enquote{Dart} zwischen gewöhnlichen Typen und nullable Typen unterschieden.
 In Java ist es nur bei atomaren Datentypen wie \IC{int} und \IC{float} vorgeschrieben einen Wert anzugeben.
 \IC{null} ist bei diesen primitiven Datentypen nicht als Wert erlaubt.
 Doch nicht atomare Datentypen erlauben immer die Angabe von \IC{null} als Wert.
 \IC{null} drückt dabei immer das Nicht-Vorhandensein von Daten aus.
-Ab Dart 2.12   kann allen Datentypen standardmäßig kein Null-Wert zugewiesen werden. Das hat den Vorteil, dass der Compiler sich darauf verlassen kann, dass eine Variable niemals den Wert \IC{null} haben kann. Das ist besonders dann nützlich, wenn auf einem Objekt eine Methode aufgerufen wird. Ist das Objekt in Wahrheit \IC{null}, so gibt es erst zur Laufzeit einen Fehler, da die Methode auf der Referenz \IC{null} nicht aufgerufen werden kann. Damit ein Laufzeitfehler geworfen werden kann, muss vor jedem Aufruf einer Methode auf einer Referenz überprüft werden, ob die Referenzen nicht \IC{null} sind. Würde diese Überprüfung nicht stattfinden, so könnte kein Laufzeitfehler geworfen werden und das Programm würde ohne Fehlermeldung abstürzen. Handelt es sich allerdings um eine Referenz, die niemals den Wert \IC{null} annehmen kann, so kann der Compiler die Überprüfung auf Null-Werte für diese Referenzen überspringen. Damit erhört sich zusätzlich die Ausführungsgeschwindigkeit, da die Überprüfung Zeit in Anspruch nimmt. Vor allem aber ist es vorteilhaft für den Entwickler, da der Compiler  Fehlermeldungen und Warnungen mitteilen kann, wenn Operationen auf Variablen mit potenziellen Null-Werten verwendet werden. Die Abwesenheit von Daten ist jedoch bei der Entwicklung sehr wichtig. Nicht alle Variablen können immer einen Wert haben. Aus diesem Grund gibt es in Dart auch die Typen, die Null-Werte zulassen. Allerdings gelten besondere Regeln für diese Typen.
+Ab \enquote{Dart} 2.12   kann allen Datentypen standardmäßig kein Null-Wert zugewiesen werden. Das hat den Vorteil, dass der Compiler sich darauf verlassen kann, dass eine Variable niemals den Wert \IC{null} haben kann. Das ist besonders dann nützlich, wenn auf einem Objekt eine Methode aufgerufen wird. Ist das Objekt in Wahrheit \IC{null}, so gibt es erst zur Laufzeit einen Fehler, da die Methode auf der Referenz \IC{null} nicht aufgerufen werden kann. Damit ein Laufzeitfehler geworfen werden kann, muss vor jedem Aufruf einer Methode auf einer Referenz überprüft werden, ob die Referenzen nicht \IC{null} sind. Würde diese Überprüfung nicht stattfinden, so könnte kein Laufzeitfehler geworfen werden und das Programm würde ohne Fehlermeldung abstürzen. Handelt es sich allerdings um eine Referenz, die niemals den Wert \IC{null} annehmen kann, so kann der Compiler die Überprüfung auf Null-Werte für diese Referenzen überspringen. Damit erhört sich zusätzlich die Ausführungsgeschwindigkeit, da die Überprüfung Zeit in Anspruch nimmt. Vor allem aber ist es vorteilhaft für den Entwickler, da der Compiler  Fehlermeldungen und Warnungen mitteilen kann, wenn Operationen auf Variablen mit potenziellen Null-Werten verwendet werden. Die Abwesenheit von Daten ist jedoch bei der Entwicklung sehr wichtig. Nicht alle Variablen können immer einen Wert haben. Aus diesem Grund gibt es in \enquote{Dart} auch die Typen, die Null-Werte zulassen. Allerdings gelten besondere Regeln für diese Typen.
 
 \subsection{Typen mit Null-Zulässigkeit}
 \label{sec:TypenMitNullZulaessigkeit}
 
-Wird in Dart hinter einem Typen ein \IC{?} angegeben, so kann die Variable nicht nur  Werte annehmen, die dieser Datentyp zulässt, sondern zusätzlich auch noch den Wert \IC{null}.
+Wird in \enquote{Dart} hinter einem Typ ein \IC{?} angegeben, so kann die Variable nicht nur  Werte annehmen, die dieser Datentyp zulässt, sondern zusätzlich auch noch den Wert \IC{null}.
 Methoden auf Objekten mit Null-Zulässigkeit aufzurufen ist nicht ohne Weiteres möglich.
 
 Im Listing \ref{lst:printTemperatureInCelsius}
@@ -221,7 +221,7 @@ wird versucht, auf die Variable \IC{fahrenheitTemperature} den Operator \IC{-} a
             print((fahrenheitTemperature - 32) * 5 / 9);
         }
 \end{minted}
-    \caption[Collection-if in einer Liste]{Collection-if in einer Liste, Quelle: Eigenes Listing}
+    \caption[Fehlerhafter Zugriff auf eine Variable mit Null-Zulässigkeit]{Fehlerhafter Zugriff auf eine Variable mit Null-Zulässigkeit, Quelle: Eigenes Listing}
     \label{lst:printTemperatureInCelsius}
   \end{listing}
 \fi
@@ -230,10 +230,10 @@ Der Compiler liefert jedoch einen Fehler, da der Wert der Variablen \IC{null} se
 Solange nicht feststeht, dass die Variable zur Laufzeit tatsächlich nicht \IC{null} ist, kann das Programm nicht kompiliert werden.
 
 
-Zu diesem Zweck macht Dart von der sogenannten \enquote{Type Promotion} - deutsch Typ Beförderung - Gebrauch.
+Zu diesem Zweck macht \enquote{Dart} von der sogenannten \enquote{type promotion} -- deutsch Typ Beförderung oder Typeinschränkung -- Gebrauch.
 Mithilfe einer Fallunterscheidung kann vor dem Anwenden der Operation nachgesehen werden, ob der Wert der Variablen nicht \IC{null} ist.
-Innerhalb des Körpers der Fallunterscheidung wird der Typ der Variablen automatisch in einen Typ ohne Null-Zulässigkeit befördert.
-Der Code in Listing \ref{lst:printTemperatureInCelsiusWithIf} lässt sich daher wieder kompilieren.
+Innerhalb des Körpers der Fallunterscheidung wird der Typ der Variablen automatisch in einen Typ ohne Null-Zulässigkeit befördert.\footcite[Vgl.][]{TypePromotionOnNullChecks}
+Der Code in Listing \ref{lst:printTemperatureInCelsiusWithIf} lässt sich damit wieder kompilieren.
 
 \ifIncludeFigures
   \begin{listing}[ht]
@@ -244,13 +244,13 @@ void printTemperatureInCelsius(int? temperature) {
   }
 }
 \end{minted}
-    \caption[Collection-if in einer Liste]{Collection-if in einer Liste, Quelle: Eigenes Listing}
+    \caption[Zugriff auf eine Variable mit Null-Zulässigkeit durch \enquote{type promotion}]{Zugriff auf eine Variable mit Null-Zulässigkeit durch \enquote{type promotion}, Quelle: Eigenes Listing}
     \label{lst:printTemperatureInCelsiusWithIf}
   \end{listing}
 \fi
 
 Eine Besonderheit stellen dabei allerdings Instanzvariablen dar.
-In Dart wird syntaktisch nicht zwischen dem Aufruf einer Getter-Methode oder einer Instanzvariablen unterschieden.
+In \enquote{Dart} wird syntaktisch nicht zwischen dem Aufruf einer Getter-Methode oder einer Instanzvariablen unterschieden.
 In Listing \ref{lst:PatientWithoutNullCheck}
 könnte sich hinter den Aufrufen von \IC{temperature} in den Zeilen 6 und 7 die Instanzvariable verbergen, die in Zeile 2 deklariert ist.
 
@@ -268,7 +268,7 @@ class Patient {
   }
 }
     \end{minted}
-    \caption[Collection-if in einer Liste]{Collection-if in einer Liste, Quelle: Eigenes Listing}
+    \caption[Fehlerhafter Zugriff auf eine Instanzvariable mit Null-Zulässigkeit]{Fehlerhafter Zugriff auf eine Instanzvariable mit Null-Zulässigkeit, Quelle: Eigenes Listing}
     \label{lst:PatientWithoutNullCheck}
   \end{listing}
 \fi
@@ -276,13 +276,6 @@ class Patient {
 Genauso könnte es aber auch sein, dass eine Klasse von \IC{Patient} erbt und das Feld \IC{temperature} mit einer gleichnamigen Getter-Methode überschreibt.
 Auch wenn es sehr unwahrscheinlich ist, könnte es trotzdem vorkommen, dass der Aufruf von \IC{temperature} in Zeile 6 einen Wert zurückgibt, der nicht \IC{null} ist und der darauffolgende Aufruf in Zeile 7 \IC{null} liefert.
 So provoziert es die Klasse \IC{UnusualPatient} im Listing \ref{lst:UnusualPatient}.
-Beim ersten Aufruf von \IC{temperature} wird die Zähl-Variable \IC{counter} von \IC{0} auf \IC{1} erhöht.
-Die Abfrage, ob es sich bei dem Wert von \IC{counter} um eine ungerade Zahl handelt, ist erfolgreich \Z{6}, weshalb mit \IC{97,7} ein valider Wert zurückgegeben wird.
-Beim zweiten Aufruf erhöht sich \IC{counter} allerdings auf \IC{2}.
-Die gleiche Abfrage schlägt dieses Mal fehl.
-Deshalb liefert die Getter-Methode nun \IC{null} \Z{9}.
-Ein solches Szenario ist schon sehr unwahrscheinlich, doch die Typ-Überprüfung des Compilers arbeitet mit Beweisen.
-Im Fall von Instanzvariablen kann nicht bewiesen werden, dass zur Laufzeit ein solcher Fall ausgeschlossen werden kann.
 \ifIncludeFigures
   \begin{listing}[ht]
     \begin{minted}[]{dart}
@@ -299,10 +292,19 @@ class UnusualPatient extends Patient {
   }
 }
 \end{minted}
-    \caption[Collection-if in einer Liste]{Collection-if in einer Liste, Quelle: Eigenes Listing}
+    \caption[Überschreiben des Instanzattributs mit einer Getter-Methode]{Überschreiben des Instanzattributs mit einer Getter-Methode, Quelle: Eigenes Listing}
     \label{lst:UnusualPatient}
   \end{listing}
 \fi
+
+Beim ersten Aufruf von \IC{temperature} wird die Zähl-Variable \IC{counter} von \IC{0} auf \IC{1} erhöht.
+Die Abfrage, ob es sich bei dem Wert von \IC{counter} um eine ungerade Zahl handelt, ist erfolgreich \Z{6}, weshalb mit \IC{97,7} ein valider Wert zurückgegeben wird.
+Beim zweiten Aufruf erhöht sich \IC{counter} allerdings auf \IC{2}.
+Die gleiche Abfrage schlägt dieses Mal fehl.
+Deshalb liefert die Getter-Methode nun \IC{null} \Z{9}.
+Ein solches Szenario ist schon sehr unwahrscheinlich, doch die Typ-Überprüfung des Compilers arbeitet mit Beweisen.
+Im Fall von Instanzvariablen kann nicht bewiesen werden, dass zur Laufzeit ein solcher Fall ausgeschlossen werden kann.
+
 
 
 
@@ -321,7 +323,7 @@ Sollte sich der Entwickler sicher sein, dass die Variable nicht \IC{null} sein k
     }
   }
     \end{minted}
-    \caption[Collection-if in einer Liste]{Collection-if in einer Liste, Quelle: Eigenes Listing}
+    \caption[Erzwungener Zugriff auf eine Instanzvariable mit Null-Zulässigkeit]{Erzwungener Zugriff auf eine Instanzvariable mit Null-Zulässigkeit, Quelle: Eigenes Listing}
     \label{lst:printTemperatureInCelsiusLocalVariableForceNullCheck}
   \end{listing}
 \fi
@@ -343,7 +345,7 @@ Eine noch sicherere Variante ist es, die Instanzvariable zuvor in eine lokale Va
     }
   }
     \end{minted}
-    \caption[Collection-if in einer Liste]{Collection-if in einer Liste, Quelle: Eigenes Listing}
+    \caption[Zuweisung der Instanzvariablen zu einer lokalen Variablen]{Zuweisung der Instanzvariablen zu einer lokalen Variablen, Quelle: Eigenes Listing}
     \label{lst:printTemperatureInCelsiusLocalVariable}
   \end{listing}
 \fi
@@ -355,14 +357,14 @@ Somit kann auch das Suffix \IC{!} weggelassen werden \Z{4}.
 
 \subsection{Asynchrone Programmierung}
 
-Wird auf eine externe Ressource zugegriffen - wie zum Beispiel das Abrufen einer Information von einem Webserver, oder das Lesen einer Datei im lokalen Dateisystem - so handelt es sich um asynchrone Operationen.
+Wird auf eine externe Ressource zugegriffen -- wie zum Beispiel das Abrufen einer Information von einem Webserver, oder das Lesen einer Datei im lokalen Dateisystem -- so handelt es sich um asynchrone Operationen.
 
-Im Sprachkern stellt Dart Schlüsselwörter und Datentypen für die asynchrone Programmierung bereit.
+Im Sprachkern stellt \enquote{Dart} Schlüsselwörter und Datentypen für die asynchrone Programmierung bereit.
 Das sind unter anderem die Datentypen \IC{Future} und \IC{Stream} sowie die Schlüsselwörter \IC{async} und \IC{await}.
 
 \subsubsection{Future}
 Ein \IC{Future}-Objekt repräsentiert einen potenziellen einmaligen Wert, der erst in der Zukunft bereit steht.
-Er gleicht damit dem sogenannten \IC{Promise} - deutsch Versprechen – in JavaScript  \footcite[Vgl.][]{PromiseJavaScriptMDN}.
+Er gleicht damit dem sogenannten \IC{Promise} -- deutsch Versprechen -- in JavaScript  \footcite[Vgl.][]{PromiseJavaScriptMDN}.
 
 Das Listing \ref{lst:fileReadAsString} zeigt mit dem Lesen einer Datei ein Beispiel für den Aufruf einer asynchronen Operation.
 
@@ -371,16 +373,16 @@ Das Listing \ref{lst:fileReadAsString} zeigt mit dem Lesen einer Datei ein Beisp
     \begin{minted}[]{dart}
 var fileContent = file.readAsString();
 \end{minted}
-    \caption[Collection-if in einer Liste]{Collection-if in einer Liste, Quelle: Eigenes Listing}
+    \caption[Der asynchrone Aufruf \enquote{readAsString}]{Der asynchrone Aufruf \enquote{readAsString}, Quelle: Eigenes Listing}
     \label{lst:fileReadAsString}
   \end{listing}
 \fi
 
 Anders als erwartet, befindet sich in der Variablen \IC{fileContent} in Wahrheit kein Text mit dem Inhalt der Datei.
-Stattdessen hat die Variable den Datentyp \IC{Future<String>} und ist lediglich ein sogenannter \enquote{Handle} - deutsch Referenzwert - für das potenzielle und zukünftige Ergebnis der Operation.
+Stattdessen hat die Variable den Datentyp \IC{Future<String>} und ist lediglich ein sogenannter \enquote{Handle} -- deutsch Referenzwert -- für das potenzielle und zukünftige Ergebnis der Operation.
 
 Mit der Übergabe einer Funktion, die bei Vollendung der Operation aufgerufen wird, kann der Wert ausgewertet werden.
-Man nennt diese Operation auch \enquote{Callback-Funktion} - deutsch Rückruffunktion.
+Man nennt diese Operation auch \enquote{Callback-Funktion} -- deutsch Rückruffunktion.
 Listing \ref{lst:fileContentThen}
 zeigt, wie auf den Dateiinhalt zugegriffen werden kann.
 
@@ -391,7 +393,7 @@ zeigt, wie auf den Dateiinhalt zugegriffen werden kann.
     print("Der Datei-Inhalt ist: $text");
   });
 \end{minted}
-    \caption[Collection-if in einer Liste]{Collection-if in einer Liste, Quelle: Eigenes Listing}
+    \caption[Aufruf von \enquote{then} auf dem \enquote{Future}-Objekt]{Aufruf von \enquote{then} auf dem \enquote{Future}-Objekt, Quelle: Eigenes Listing}
     \label{lst:fileContentThen}
   \end{listing}
 \fi
@@ -400,9 +402,9 @@ zeigt, wie auf den Dateiinhalt zugegriffen werden kann.
 In diesem Parameter wird der Text der gelesenen Datei bei Vollendung der Operation übergeben.
 
 Der Einsatz von \enquote{Callback-Funktionen} kann den Quellcode stark verkomplizieren.
- Man spricht von der sogenannten \enquote{callback hell} - deutsch Rückruffunktionen-Hölle -, wenn solche \enquote{Callback-Funktionen} über etliche Level hinweg ineinander verschachtelt sind.
+ Man spricht von der sogenannten \enquote{callback hell} -- deutsch Rückruffunktionen-Hölle --, wenn solche \enquote{Callback-Funktionen} über etliche Level hinweg ineinander verschachtelt sind.
 
-Um genau das zu verhindern, existieren in Dart die Schlüsselwörter \IC{async} und \IC{await}.
+Um genau das zu verhindern, existieren in \enquote{Dart} die Schlüsselwörter \IC{async} und \IC{await}.
 Genauso heißen sie auch in anderen Sprachen wie etwa C\# ab Version 4.5 und JavaScript ab Version ES2017
 \footcite[Vgl.][]{asyncfunctionJavaScriptMDN}
 \footcite[Vgl.][]{Asynchronousprogrammingwithasyncandawait}.
@@ -422,7 +424,7 @@ printFileContent() async {
   print("Der Datei-Inhalt ist: $fileContent");
 }
 \end{minted}
-    \caption[Collection-if in einer Liste]{Collection-if in einer Liste, Quelle: Eigenes Listing}
+    \caption[Aufruf der asynchronen Methode \enquote{readAsString} mit dem \enquote{await}-Schlüsselwort]{Aufruf der asynchronen Methode \enquote{readAsString} mit dem \enquote{await}-Schlüsselwort, Quelle: Eigenes Listing}
     \label{lst:awaitFileReadAsString}
   \end{listing}
 \fi
@@ -438,8 +440,8 @@ Dazu dient das \IC{async} Schlüsselwort vor Beginn des Methoden-Körpers.
 
 \subsubsection{Streams}
 
-\enquote{Streams} liefern nicht nur einen Wert –- wie im Fall eines \IC{Future} –- sondern eine Serie von Werten, die in der Zukunft geliefert werden.
-Listing \ref{lst:countStream} zeigt wie auf einen solchen Stream gehorcht werden kann.
+\enquote{Streams} liefern nicht nur einen Wert -- wie im Fall eines \IC{Future} -- sondern eine Serie von Werten, die in der Zukunft geliefert werden.
+Listing \ref{lst:countStream} zeigt wie auf einen solchen \enquote{Stream} gehorcht werden kann.
 \ifIncludeFigures
   \begin{listing}[ht]
     \begin{minted}[]{dart}
@@ -451,23 +453,23 @@ var countStream = Stream<num>.periodic(const Duration(seconds: 1), (count) {
     print("Gezählte Sekunden: $count");
   });
 \end{minted}
-    \caption[Collection-if in einer Liste]{Collection-if in einer Liste, Quelle: Eigenes Listing}
+    \caption[Abhören eines \enquote{Streams}]{Abhören eines \enquote{Streams}, Quelle: Eigenes Listing}
     \label{lst:countStream}
   \end{listing}
 \fi
 
-\IC{countStream} liefert jede Sekunde einen neuen Wert, nämlich die aktuelle Sekunde - von 0 beginnend.
+\IC{countStream} liefert jede Sekunde einen neuen Wert, nämlich die aktuelle Sekunde -- von 0 beginnend.
 Mit \IC{countStream.listen} kann eine Funktion übergeben werden, die immer dann ausgeführt wird, wenn dem \IC{countStream} ein neuer Wert hinzugefügt wurde. Der erste Parameter ist dabei der hinzugefügte Wert.
 
 
 
-Es wird zwischen zwei Arten von Streams unterschieden.
-Solche, die genau einen Empfänger haben - \enquote{single subscription streams} - und solche, die beliebig viele Empfänger haben können - \enquote{broadcast streams}.
+Es wird zwischen zwei Arten von \enquote{Streams} unterschieden.
+Solche, die genau einen Empfänger haben -- \enquote{single subscription streams} -- und solche, die beliebig viele Empfänger haben können -- \enquote{broadcast streams}.
 
 Für die Formularanwendung sind ausschließlich \enquote{broadcast streams} zu berücksichtigen.
-Die Streams sollen verwendet werden, um Änderungen in der Eingabemaske zu behandeln.
+Die \enquote{Streams} sollen verwendet werden, um Änderungen in der Eingabemaske zu behandeln.
 Die  Oberflächenelemente horchen auf diese Änderungen.
-Teile der Oberfläche und damit die Oberflächenelemente, welche auf die Streams horchen, werden immer wieder neu gezeichnet.
+Teile der Oberfläche und damit die Oberflächenelemente, welche auf die \enquote{Streams} horchen, werden immer wieder neu gezeichnet.
 Dabei werden die Elemente entfernt und durch neu konstruierte ersetzt.
 So melden sich immer wieder Zuhörer vom \enquote{Stream} ab und neue Elemente melden sich an.
 Aufgrund dessen kommen nur \enquote{broadcast streams} infrage.

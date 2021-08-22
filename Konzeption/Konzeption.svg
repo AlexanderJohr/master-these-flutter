@@ -35,20 +35,22 @@
      inkscape:snap-midpoints="true"
      inkscape:snap-page="true"
      inkscape:snap-global="true"
-     inkscape:zoom="1"
-     inkscape:cx="242.5"
-     inkscape:cy="544.5"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="-112.78353"
+     inkscape:cy="1044.0432"
      inkscape:window-width="1920"
      inkscape:window-height="1017"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer3"
+     inkscape:current-layer="layer2"
      fit-margin-top="0"
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:snap-text-baseline="false" />
+     inkscape:snap-text-baseline="true"
+     inkscape:snap-object-midpoints="true"
+     inkscape:snap-center="true" />
   <defs
      id="defs23">
     <rect
@@ -4016,28 +4018,33 @@ LIEloopjMcxrwnXdx48fY9Sq1WqNx+Plk6cMwzAMc1n8FwGDWChr11gGAAAAAElFTkSuQmCC
        width="211.93124"
        height="14.903543"
        x="-2.8421709e-14"
-       y="113.77083" />
+       y="115.4452" />
     <rect
        style="display:inline;fill:#fafafa;fill-opacity:1;stroke:none;stroke-width:1.54087;stroke-linejoin:round"
        id="rect12061-1-3"
        width="211.93124"
        height="85.638115"
        x="-3.5527137e-14"
-       y="128.67438" />
+       y="130.34875" />
     <rect
        style="display:inline;fill:#8bc34a;fill-opacity:1;stroke:none;stroke-width:0.642805;stroke-linejoin:round"
        id="rect12061-5-0"
        width="211.93124"
        height="14.903543"
        x="-2.8421709e-14"
-       y="234.42082" />
+       y="230.89043" />
     <rect
        style="display:inline;fill:#fafafa;fill-opacity:1;stroke:none;stroke-width:1.54087;stroke-linejoin:round"
        id="rect12061-1-3-2"
        width="211.93124"
        height="85.638115"
        x="-3.5527137e-14"
-       y="249.32437" />
+       y="245.79398" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 3.1945035,156.07194 H -29.934185 V 288.613 H 0"
+       id="path131561"
+       sodipodi:nodetypes="cccc" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -4045,23 +4052,23 @@ LIEloopjMcxrwnXdx48fY9Sq1WqNx+Plk6cMwzAMc1n8FwGDWChr11gGAAAAAElFTkSuQmCC
      inkscape:label="Cards"
      style="display:inline">
     <rect
-       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1.11957;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill;filter:url(#filter51933);font-variation-settings:normal;opacity:1;vector-effect:none;stroke-linecap:butt;stroke-dashoffset:0;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"
+       style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1.11957;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;paint-order:markers stroke fill;filter:url(#filter51933);stop-color:#000000;stop-opacity:1"
        id="rect40166"
        width="23.944792"
        height="16.822027"
        x="9.6505604"
        y="145.98581"
        ry="1.480278"
-       transform="matrix(8.5897517,0,0,0.99253591,-79.701414,1.1531771)"
+       transform="matrix(8.5897517,0,0,0.99253591,-79.701414,2.8275488)"
        rx="0.14753638" />
     <text
        xml:space="preserve"
-       transform="matrix(0.26458333,0,0,0.26458333,-60.876387,148.09123)"
+       transform="matrix(0.26458333,0,0,0.26458333,-60.876387,149.7656)"
        id="text2209-6-4-2-7-7"
        style="font-size:13.3333px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect2211-6-0-5-6-8);display:inline;fill:#3a3a3a;fill-opacity:1"><tspan
          x="257.69336"
          y="40.436996"
-         id="tspan125010">Agrarumwelt-(und Klima)Maßnahme: nur Vertragsnaturschutz</tspan></text>
+         id="tspan133401">Agrarumwelt-(und Klima)Maßnahme: nur Vertragsnaturschutz</tspan></text>
     <rect
        style="font-variation-settings:normal;display:inline;vector-effect:none;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1.11957;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;paint-order:markers stroke fill;filter:url(#filter51933-6);stop-color:#000000"
        id="rect40166-2"
@@ -4070,16 +4077,16 @@ LIEloopjMcxrwnXdx48fY9Sq1WqNx+Plk6cMwzAMc1n8FwGDWChr11gGAAAAAElFTkSuQmCC
        x="9.6505604"
        y="145.98581"
        ry="1.480278"
-       transform="matrix(8.5897517,0,0,0.99253591,-79.701414,20.170289)"
+       transform="matrix(8.5897517,0,0,0.99253591,-79.701414,21.844661)"
        rx="0.14753638" />
     <text
        xml:space="preserve"
-       transform="matrix(0.26458333,0,0,0.26458333,-60.876387,167.17427)"
+       transform="matrix(0.26458333,0,0,0.26458333,-60.876387,168.84864)"
        id="text2209-6-4-2-7-4-7"
        style="font-size:13.3333px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect2211-6-0-5-6-9-3);display:inline;fill:#3a3a3a;fill-opacity:1"><tspan
          x="257.69336"
          y="40.436996"
-         id="tspan125012">Düngemanagement</tspan></text>
+         id="tspan133403">Düngemanagement</tspan></text>
     <rect
        style="font-variation-settings:normal;display:inline;vector-effect:none;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1.11957;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;paint-order:markers stroke fill;filter:url(#filter51933-6-8);stop-color:#000000"
        id="rect40166-2-7"
@@ -4088,7 +4095,7 @@ LIEloopjMcxrwnXdx48fY9Sq1WqNx+Plk6cMwzAMc1n8FwGDWChr11gGAAAAAElFTkSuQmCC
        x="9.6505604"
        y="145.98581"
        ry="1.480278"
-       transform="matrix(8.5897517,0,0,0.99253591,-79.701414,48.588352)"
+       transform="matrix(8.5897517,0,0,0.99253591,-79.701414,50.262724)"
        rx="0.14753638" />
   </g>
   <g
@@ -4103,7 +4110,7 @@ LIEloopjMcxrwnXdx48fY9Sq1WqNx+Plk6cMwzAMc1n8FwGDWChr11gGAAAAAElFTkSuQmCC
        style="font-size:24px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect2211)"><tspan
          x="257.69336"
          y="50.121022"
-         id="tspan125014">Maßnahmen Übersicht</tspan></text>
+         id="tspan133405">Maßnahmen Übersicht</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,-64.153399,11.583248)"
@@ -4111,7 +4118,7 @@ LIEloopjMcxrwnXdx48fY9Sq1WqNx+Plk6cMwzAMc1n8FwGDWChr11gGAAAAAElFTkSuQmCC
        style="font-size:24px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect2211-6)"><tspan
          x="257.69336"
          y="50.121022"
-         id="tspan125016">Abgeschlossen</tspan></text>
+         id="tspan133407">Abgeschlossen</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,-64.153399,54.419786)"
@@ -4119,7 +4126,7 @@ LIEloopjMcxrwnXdx48fY9Sq1WqNx+Plk6cMwzAMc1n8FwGDWChr11gGAAAAAElFTkSuQmCC
        style="font-size:24px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect2211-6-4)"><tspan
          x="257.69336"
          y="50.121022"
-         id="tspan125018">In Bearbeitung</tspan></text>
+         id="tspan133409">In Bearbeitung</tspan></text>
     <g
        clip-path="url(#clipEmfPath1)"
        id="g23612"
@@ -4142,125 +4149,125 @@ LIEloopjMcxrwnXdx48fY9Sq1WqNx+Plk6cMwzAMc1n8FwGDWChr11gGAAAAAElFTkSuQmCC
        transform="matrix(0.26458333,0,0,0.26458333,22.977113,112.26594)" />
     <text
        xml:space="preserve"
-       transform="matrix(0.26458333,0,0,0.26458333,-49.345753,110.69169)"
+       transform="matrix(0.26458333,0,0,0.26458333,-49.345753,112.36606)"
        id="text2209-7"
        style="font-size:24px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect2211-9);display:inline"><tspan
          x="257.69336"
          y="50.121022"
-         id="tspan125020">Maßnahmen Eingabemaske</tspan></text>
+         id="tspan133411">Maßnahmen Eingabemaske</tspan></text>
     <text
        xml:space="preserve"
-       transform="matrix(0.26458333,0,0,0.26458333,-65.93074,128.06687)"
+       transform="matrix(0.26458333,0,0,0.26458333,-65.93074,129.74124)"
        id="text2209-6-4"
        style="font-size:24px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect2211-6-0);display:inline"><tspan
          x="257.69336"
          y="50.121022"
-         id="tspan125022">Maßnahmencharakteristika</tspan></text>
+         id="tspan133413">Maßnahmencharakteristika</tspan></text>
     <text
        xml:space="preserve"
-       transform="matrix(0.26458333,0,0,0.26458333,-60.876387,142.40269)"
+       transform="matrix(0.26458333,0,0,0.26458333,-60.876387,144.07706)"
        id="text2209-6-4-2"
        style="font-size:16px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect2211-6-0-5);display:inline"><tspan
          x="257.69336"
          y="42.858025"
-         id="tspan125024">Förderklasse</tspan></text>
+         id="tspan133415">Förderklasse</tspan></text>
     <text
        xml:space="preserve"
-       transform="matrix(0.31894026,0,0,0.31894026,-64.524777,282.82491)"
+       transform="matrix(0.31894026,0,0,0.31894026,-64.524777,279.29451)"
        id="text2209-6-4-2-7"
        style="font-size:13.3333px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect2211-6-0-5-6);display:inline;fill:#3a3a3a;fill-opacity:1"><tspan
          x="257.69336"
          y="40.436996"
-         id="tspan125026">Agrarumwelt-(und Klima)Maßnahme: nur Vertragsnaturschutz</tspan></text>
+         id="tspan133417">Agrarumwelt-(und Klima)Maßnahme: nur Vertragsnaturschutz</tspan></text>
     <text
        xml:space="preserve"
-       transform="matrix(0.31894026,0,0,0.31894026,-64.524777,270.00154)"
+       transform="matrix(0.31894026,0,0,0.31894026,-64.524777,266.47114)"
        id="text2209-6-4-2-7-70"
        style="font-size:13.3333px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect2211-6-0-5-6-4);display:inline;fill:#3a3a3a;fill-opacity:1"><tspan
          x="257.69336"
          y="40.436996"
-         id="tspan125028">Erschwernisausgleich</tspan></text>
+         id="tspan133419">Erschwernisausgleich</tspan></text>
     <text
        xml:space="preserve"
-       transform="matrix(0.31894026,0,0,0.31894026,-64.524777,257.29556)"
+       transform="matrix(0.31894026,0,0,0.31894026,-64.524777,253.76516)"
        id="text2209-6-4-2-7-70-9"
        style="font-size:13.3333px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect2211-6-0-5-6-4-4);display:inline;fill:#3a3a3a;fill-opacity:1"><tspan
          x="257.69336"
          y="40.436996"
-         id="tspan125030">Ausgleichszulage</tspan></text>
+         id="tspan133421">Ausgleichszulage</tspan></text>
     <text
        xml:space="preserve"
-       transform="matrix(0.31894026,0,0,0.31894026,-64.524777,244.69642)"
+       transform="matrix(0.31894026,0,0,0.31894026,-64.524777,241.16602)"
        id="text2209-6-4-2-7-70-9-0"
        style="font-size:13.3333px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect2211-6-0-5-6-4-4-5);display:inline;fill:#3a3a3a;fill-opacity:1"><tspan
          x="257.69336"
          y="40.436996"
-         id="tspan125032">Ökolandbau</tspan></text>
+         id="tspan133423">Ökolandbau</tspan></text>
     <text
        xml:space="preserve"
-       transform="matrix(0.31894026,0,0,0.31894026,-64.524777,293.14736)"
+       transform="matrix(0.31894026,0,0,0.31894026,-64.524777,289.61696)"
        id="text2209-6-4-2-7-70-9-0-7"
        style="font-size:13.3333px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect2211-6-0-5-6-4-4-5-2);display:inline;fill:#3a3a3a;fill-opacity:1"><tspan
          x="257.69336"
          y="40.436996"
-         id="tspan125034">Agrarumwelt-(und Klima)Maßnahmen, tw. auch mit Tierwohlaspekten, aber </tspan><tspan
+         id="tspan133425">Agrarumwelt-(und Klima)Maßnahmen, tw. auch mit Tierwohlaspekten, aber </tspan><tspan
          x="257.69336"
          y="57.103622"
-         id="tspan125036">OHNE Vertragsnaturschutz</tspan></text>
+         id="tspan133427">OHNE Vertragsnaturschutz</tspan></text>
     <text
        xml:space="preserve"
-       transform="matrix(0.31894026,0,0,0.31894026,-64.524777,308.52577)"
+       transform="matrix(0.31894026,0,0,0.31894026,-64.524777,304.99537)"
        id="text2209-6-4-2-7-70-9-0-7-6"
        style="font-size:13.3333px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect2211-6-0-5-6-4-4-5-2-4);display:inline;fill:#3a3a3a;fill-opacity:1"><tspan
          x="257.69336"
          y="40.436996"
-         id="tspan125038">Tierschutz/Tierwohlmaßnahmen mit diesem als Hauptziel</tspan></text>
+         id="tspan133429">Tierschutz/Tierwohlmaßnahmen mit diesem als Hauptziel</tspan></text>
     <text
        xml:space="preserve"
-       transform="matrix(0.26458333,0,0,0.26458333,-60.876387,195.47142)"
+       transform="matrix(0.26458333,0,0,0.26458333,-60.876387,197.14579)"
        id="text2209-6-4-2-7-4-5"
        style="font-size:13.3333px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect2211-6-0-5-6-9-5);display:inline;fill:#3a3a3a;fill-opacity:1"><tspan
          x="257.69336"
          y="40.436996"
-         id="tspan125040">AL</tspan></text>
+         id="tspan133431">AL</tspan></text>
     <text
        xml:space="preserve"
-       transform="matrix(0.26458333,0,0,0.26458333,-60.876387,161.40403)"
+       transform="matrix(0.26458333,0,0,0.26458333,-60.876387,163.0784)"
        id="text2209-6-4-2-2"
-       style="font-size:16px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;white-space:pre;display:inline;shape-inside:url(#rect2211-6-0-5-2)"><tspan
+       style="font-size:16px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect2211-6-0-5-2);display:inline"><tspan
          x="257.69336"
          y="42.858025"
-         id="tspan125042">Kategorie</tspan></text>
+         id="tspan133433">Kategorie</tspan></text>
     <text
        xml:space="preserve"
-       transform="matrix(0.26458333,0,0,0.26458333,-60.876387,189.76406)"
+       transform="matrix(0.26458333,0,0,0.26458333,-60.876387,191.43843)"
        id="text2209-6-4-2-2-6"
        style="font-size:16px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect2211-6-0-5-2-8);display:inline"><tspan
          x="257.69336"
          y="42.858025"
-         id="tspan125044">Kategorie</tspan></text>
+         id="tspan133435">Kategorie</tspan></text>
     <text
        xml:space="preserve"
-       transform="matrix(0.16046207,0,0,0.16046207,-38.289749,182.02065)"
+       transform="matrix(0.16046207,0,0,0.16046207,-38.289749,183.69502)"
        id="text2209-6-8-5"
        style="font-size:24.1836px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect2211-6-4-9);display:inline"><tspan
          x="257.69336"
          y="50.287707"
-         id="tspan125046">Zielsetzung</tspan></text>
+         id="tspan133437">Zielsetzung</tspan></text>
     <text
        xml:space="preserve"
-       transform="matrix(0.26458333,0,0,0.26458333,-49.374235,231.34169)"
+       transform="matrix(0.26458333,0,0,0.26458333,-49.374235,227.81129)"
        id="text2209-7-1"
        style="font-size:24px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect2211-9-7);display:inline"><tspan
          x="257.69336"
          y="50.121022"
-         id="tspan125048">Förderklasse</tspan></text>
+         id="tspan133439">Förderklasse</tspan></text>
     <path
-       d="M 9.7362255,241.53199 H 6.2850012 l 1.5852385,-1.58524 -0.4026896,-0.39986 -2.2686774,2.26868 2.2686774,2.26868 0.3998536,-0.39986 -1.5824025,-1.58524 h 3.4512243 z"
+       d="M 9.7362255,238.00159 H 6.2850012 l 1.5852385,-1.58524 -0.4026896,-0.39986 -2.2686774,2.26868 2.2686774,2.26868 0.3998536,-0.39986 -1.5824025,-1.58524 h 3.4512243 z"
        id="path99124"
        style="display:inline;fill:#ffffff;fill-opacity:1;stroke-width:0.283584" />
     <path
-       d="M 9.7362255,120.91868 H 6.2850012 l 1.5852385,-1.58524 -0.4026896,-0.39986 -2.2686774,2.26868 2.2686774,2.26868 0.3998536,-0.39986 -1.5824025,-1.58524 h 3.4512243 z"
+       d="M 9.7362255,122.59305 H 6.2850012 l 1.5852385,-1.58524 -0.4026896,-0.39986 -2.2686774,2.26868 2.2686774,2.26868 0.3998536,-0.39986 -1.5824025,-1.58524 h 3.4512243 z"
        id="path99124-6"
        style="display:inline;fill:#ffffff;fill-opacity:1;stroke-width:0.283584" />
     <g
@@ -4269,7 +4276,7 @@ LIEloopjMcxrwnXdx48fY9Sq1WqNx+Plk6cMwzAMc1n8FwGDWChr11gGAAAAAElFTkSuQmCC
        inkscape:label="Layer 1"
        style="display:inline">
       <path
-         d="M 10.314521,291.39744 H 6.6103552 c -0.291042,0 -0.529167,0.23812 -0.529167,0.52917 v 3.70416 c 0,0.29104 0.238125,0.52917 0.529167,0.52917 h 3.7041658 c 0.291042,0 0.529167,-0.23813 0.529167,-0.52917 v -3.70416 c 0,-0.29105 -0.238125,-0.52917 -0.529167,-0.52917 z"
+         d="M 10.314521,287.86704 H 6.6103552 c -0.291042,0 -0.529167,0.23812 -0.529167,0.52917 v 3.70416 c 0,0.29104 0.238125,0.52917 0.529167,0.52917 h 3.7041658 c 0.291042,0 0.529167,-0.23813 0.529167,-0.52917 v -3.70416 c 0,-0.29105 -0.238125,-0.52917 -0.529167,-0.52917 z"
          id="path100957-6"
          style="display:inline;fill:#4caf50;fill-opacity:1;stroke-width:0.264583"
          sodipodi:nodetypes="sssssssss" />
@@ -4280,28 +4287,28 @@ LIEloopjMcxrwnXdx48fY9Sq1WqNx+Plk6cMwzAMc1n8FwGDWChr11gGAAAAAElFTkSuQmCC
        inkscape:label="Layer 6"
        style="display:inline">
       <path
-         d="m 10.049938,292.90821 -0.3730624,-0.37571 -1.7436044,1.74361 -0.682625,-0.67998 -0.375708,0.37306 1.058333,1.05569 z"
+         d="m 10.049938,289.37781 -0.3730624,-0.37571 -1.7436044,1.74361 -0.682625,-0.67998 -0.375708,0.37306 1.058333,1.05569 z"
          style="display:inline;fill:#f0f8f0;fill-opacity:1;stroke-width:0.264583"
          id="path107905" />
     </g>
     <path
-       d="m 10.314521,253.74127 v 3.70416 H 6.6103543 v -3.70416 h 3.7041667 m 0,-0.52917 H 6.6103543 c -0.291042,0 -0.529167,0.23812 -0.529167,0.52917 v 3.70416 c 0,0.29104 0.238125,0.52917 0.529167,0.52917 h 3.7041667 c 0.291042,0 0.529167,-0.23813 0.529167,-0.52917 v -3.70416 c 0,-0.29105 -0.238125,-0.52917 -0.529167,-0.52917 z"
+       d="m 10.314521,250.21087 v 3.70416 H 6.6103543 v -3.70416 h 3.7041667 m 0,-0.52917 H 6.6103543 c -0.291042,0 -0.529167,0.23812 -0.529167,0.52917 v 3.70416 c 0,0.29104 0.238125,0.52917 0.529167,0.52917 h 3.7041667 c 0.291042,0 0.529167,-0.23813 0.529167,-0.52917 v -3.70416 c 0,-0.29105 -0.238125,-0.52917 -0.529167,-0.52917 z"
        id="path100957"
        style="display:inline;fill:#737373;fill-opacity:1;stroke-width:0.264583" />
     <path
-       d="m 10.314521,266.51007 v 3.70416 H 6.6103543 v -3.70416 h 3.7041667 m 0,-0.52917 H 6.6103543 c -0.291042,0 -0.529167,0.23812 -0.529167,0.52917 v 3.70416 c 0,0.29104 0.238125,0.52917 0.529167,0.52917 h 3.7041667 c 0.291042,0 0.529167,-0.23813 0.529167,-0.52917 v -3.70416 c 0,-0.29105 -0.238125,-0.52917 -0.529167,-0.52917 z"
+       d="m 10.314521,262.97967 v 3.70416 H 6.6103543 v -3.70416 h 3.7041667 m 0,-0.52917 H 6.6103543 c -0.291042,0 -0.529167,0.23812 -0.529167,0.52917 v 3.70416 c 0,0.29104 0.238125,0.52917 0.529167,0.52917 h 3.7041667 c 0.291042,0 0.529167,-0.23813 0.529167,-0.52917 v -3.70416 c 0,-0.29105 -0.238125,-0.52917 -0.529167,-0.52917 z"
        id="path100957-4"
        style="display:inline;fill:#737373;fill-opacity:1;stroke-width:0.264583" />
     <path
-       d="m 10.314521,279.15781 v 3.70416 H 6.6103542 v -3.70416 h 3.7041668 m 0,-0.52917 H 6.6103542 c -0.291042,0 -0.529167,0.23812 -0.529167,0.52917 v 3.70416 c 0,0.29104 0.238125,0.52917 0.529167,0.52917 h 3.7041668 c 0.291042,0 0.529167,-0.23813 0.529167,-0.52917 v -3.70416 c 0,-0.29105 -0.238125,-0.52917 -0.529167,-0.52917 z"
+       d="m 10.314521,275.62741 v 3.70416 H 6.6103542 v -3.70416 h 3.7041668 m 0,-0.52917 H 6.6103542 c -0.291042,0 -0.529167,0.23812 -0.529167,0.52917 v 3.70416 c 0,0.29104 0.238125,0.52917 0.529167,0.52917 h 3.7041668 c 0.291042,0 0.529167,-0.23813 0.529167,-0.52917 v -3.70416 c 0,-0.29105 -0.238125,-0.52917 -0.529167,-0.52917 z"
        id="path100957-7"
        style="display:inline;fill:#737373;fill-opacity:1;stroke-width:0.264583" />
     <path
-       d="m 10.314521,304.82511 v 3.70416 H 6.6103543 v -3.70416 h 3.7041667 m 0,-0.52917 H 6.6103543 c -0.291042,0 -0.529167,0.23812 -0.529167,0.52917 v 3.70416 c 0,0.29104 0.238125,0.52917 0.529167,0.52917 h 3.7041667 c 0.291042,0 0.529167,-0.23813 0.529167,-0.52917 v -3.70416 c 0,-0.29105 -0.238125,-0.52917 -0.529167,-0.52917 z"
+       d="m 10.314521,301.29471 v 3.70416 H 6.6103543 v -3.70416 h 3.7041667 m 0,-0.52917 H 6.6103543 c -0.291042,0 -0.529167,0.23812 -0.529167,0.52917 v 3.70416 c 0,0.29104 0.238125,0.52917 0.529167,0.52917 h 3.7041667 c 0.291042,0 0.529167,-0.23813 0.529167,-0.52917 v -3.70416 c 0,-0.29105 -0.238125,-0.52917 -0.529167,-0.52917 z"
        id="path100957-4-1"
        style="display:inline;fill:#737373;fill-opacity:1;stroke-width:0.264583" />
     <path
-       d="m 10.314521,317.47285 v 3.70416 H 6.6103542 v -3.70416 h 3.7041668 m 0,-0.52917 H 6.6103542 c -0.291042,0 -0.529167,0.23812 -0.529167,0.52917 v 3.70416 c 0,0.29104 0.238125,0.52917 0.529167,0.52917 h 3.7041668 c 0.291042,0 0.529167,-0.23813 0.529167,-0.52917 v -3.70416 c 0,-0.29105 -0.238125,-0.52917 -0.529167,-0.52917 z"
+       d="m 10.314521,313.94245 v 3.70416 H 6.6103542 v -3.70416 h 3.7041668 m 0,-0.52917 H 6.6103542 c -0.291042,0 -0.529167,0.23812 -0.529167,0.52917 v 3.70416 c 0,0.29104 0.238125,0.52917 0.529167,0.52917 h 3.7041668 c 0.291042,0 0.529167,-0.23813 0.529167,-0.52917 v -3.70416 c 0,-0.29105 -0.238125,-0.52917 -0.529167,-0.52917 z"
        id="path100957-7-5"
        style="display:inline;fill:#737373;fill-opacity:1;stroke-width:0.264583" />
   </g>
@@ -6790,6 +6797,32 @@ LIEloopjMcxrwnXdx48fY9Sq1WqNx+Plk6cMwzAMc1n8FwGDWChr11gGAAAAAElFTkSuQmCC
      id="layer4"
      inkscape:label="Layer 5"
      style="display:inline">
+    <g
+       inkscape:groupmode="layer"
+       id="layer10"
+       inkscape:label="Layer 7">
+      <circle
+         style="display:inline;fill:#4caf50;fill-opacity:1;stroke:none;stroke-width:0.521942;stroke-linejoin:round"
+         id="path16909-0"
+         cx="200.34035"
+         cy="204.42027"
+         r="7.429462" />
+      <circle
+         style="display:inline;fill:#ff9800;fill-opacity:1;stroke:none;stroke-width:0.377887;stroke-linejoin:round"
+         id="path16909-0-7"
+         cx="200.34035"
+         cy="189.00829"
+         r="5.3789411" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layer11"
+       inkscape:label="Layer 8">
+      <path
+         d="m 202.19243,186.62703 h -1.10596 c -0.11112,-0.30692 -0.40216,-0.52917 -0.74612,-0.52917 -0.34396,0 -0.635,0.22225 -0.74613,0.52917 h -1.10595 c -0.29105,0 -0.52917,0.23812 -0.52917,0.52916 v 4.23334 c 0,0.29104 0.23812,0.52916 0.52917,0.52916 h 3.70416 c 0.29104,0 0.52917,-0.23812 0.52917,-0.52916 v -4.23334 c 0,-0.29104 -0.23813,-0.52916 -0.52917,-0.52916 z m -1.85208,0 c 0.14552,0 0.26458,0.11906 0.26458,0.26458 0,0.14552 -0.11906,0.26458 -0.26458,0.26458 -0.14552,0 -0.26458,-0.11906 -0.26458,-0.26458 0,-0.14552 0.11906,-0.26458 0.26458,-0.26458 z m 1.85208,4.7625 h -3.70416 v -4.23334 h 0.52916 v 0.79375 h 2.64584 v -0.79375 h 0.52916 z"
+         id="path125066"
+         style="display:inline;fill:#ffffff;fill-opacity:1;stroke-width:0.264583" />
+    </g>
     <circle
        style="display:inline;fill:#4caf50;fill-opacity:1;stroke:none;stroke-width:0.521942;stroke-linejoin:round"
        id="path16909"
@@ -6826,7 +6859,7 @@ LIEloopjMcxrwnXdx48fY9Sq1WqNx+Plk6cMwzAMc1n8FwGDWChr11gGAAAAAElFTkSuQmCC
              id="rect19706"
              style="fill:#ffffff;fill-opacity:1" />
           <polygon
-             points="15,12 12,12 7,12 7,14 15,14 "
+             points="15,14 15,12 12,12 7,12 7,14 "
              id="polygon19708"
              style="fill:#ffffff;fill-opacity:1" />
           <rect
@@ -6841,101 +6874,17 @@ LIEloopjMcxrwnXdx48fY9Sq1WqNx+Plk6cMwzAMc1n8FwGDWChr11gGAAAAAElFTkSuQmCC
     </g>
     <circle
        style="display:inline;fill:#4caf50;fill-opacity:1;stroke:none;stroke-width:0.521942;stroke-linejoin:round"
-       id="path16909-0"
-       cx="200.34035"
-       cy="202.7459"
-       r="7.429462" />
-    <g
-       style="display:inline;fill:#000000"
-       id="g19732-2"
-       transform="matrix(0.26458333,0,0,0.26458333,200.12007,213.67125)">
-      <g
-         id="g19714-8"
-         style="fill:#ffffff;fill-opacity:1"
-         transform="translate(-11.299402,-53.292702)">
-        <g
-           id="g19700-6"
-           style="fill:#ffffff;fill-opacity:1" />
-        <g
-           id="g19712-7"
-           style="fill:#ffffff;fill-opacity:1">
-          <path
-             d="M 17,19.22 H 5 V 7 h 7 V 5 H 5 C 3.9,5 3,5.9 3,7 v 12 c 0,1.1 0.9,2 2,2 h 12 c 1.1,0 2,-0.9 2,-2 v -7 h -2 z"
-             id="path19702-7"
-             style="fill:#ffffff;fill-opacity:1" />
-          <path
-             d="m 19,2 h -2 v 3 h -3 c 0.01,0.01 0,2 0,2 h 3 v 2.99 c 0.01,0.01 2,0 2,0 V 7 h 3 V 5 h -3 z"
-             id="path19704-3"
-             style="fill:#ffffff;fill-opacity:1" />
-          <rect
-             height="2"
-             width="8"
-             x="7"
-             y="9"
-             id="rect19706-0"
-             style="fill:#ffffff;fill-opacity:1" />
-          <polygon
-             points="15,14 15,12 12,12 7,12 7,14 "
-             id="polygon19708-8"
-             style="fill:#ffffff;fill-opacity:1" />
-          <rect
-             height="2"
-             width="8"
-             x="7"
-             y="15"
-             id="rect19710-4"
-             style="fill:#ffffff;fill-opacity:1" />
-        </g>
-      </g>
-    </g>
-    <circle
-       style="display:inline;fill:#4caf50;fill-opacity:1;stroke:none;stroke-width:0.521942;stroke-linejoin:round"
        id="path16909-0-9"
        cx="200.34035"
-       cy="323.3959"
+       cy="319.86551"
        r="7.429462" />
-    <g
-       style="display:inline;fill:#000000"
-       id="g19732-2-9"
-       transform="matrix(0.26458333,0,0,0.26458333,200.12007,334.32125)">
-      <g
-         id="g19714-8-3"
-         style="fill:#ffffff;fill-opacity:1"
-         transform="translate(-11.299402,-53.292702)">
-        <g
-           id="g19700-6-5"
-           style="fill:#ffffff;fill-opacity:1" />
-        <g
-           id="g19712-7-1"
-           style="fill:#ffffff;fill-opacity:1">
-          <path
-             d="M 17,19.22 H 5 V 7 h 7 V 5 H 5 C 3.9,5 3,5.9 3,7 v 12 c 0,1.1 0.9,2 2,2 h 12 c 1.1,0 2,-0.9 2,-2 v -7 h -2 z"
-             id="path19702-7-5"
-             style="fill:#ffffff;fill-opacity:1" />
-          <path
-             d="m 19,2 h -2 v 3 h -3 c 0.01,0.01 0,2 0,2 h 3 v 2.99 c 0.01,0.01 2,0 2,0 V 7 h 3 V 5 h -3 z"
-             id="path19704-3-3"
-             style="fill:#ffffff;fill-opacity:1" />
-          <rect
-             height="2"
-             width="8"
-             x="7"
-             y="9"
-             id="rect19706-0-2"
-             style="fill:#ffffff;fill-opacity:1" />
-          <polygon
-             points="12,12 7,12 7,14 15,14 15,12 "
-             id="polygon19708-8-5"
-             style="fill:#ffffff;fill-opacity:1" />
-          <rect
-             height="2"
-             width="8"
-             x="7"
-             y="15"
-             id="rect19710-4-6"
-             style="fill:#ffffff;fill-opacity:1" />
-        </g>
-      </g>
-    </g>
+    <path
+       d="m 199.50476,205.75574 -1.19785,-1.19785 -0.4079,0.40503 1.60575,1.60575 3.44705,-3.44705 -0.40502,-0.40502 z"
+       id="path125052"
+       style="display:inline;fill:#ffffff;fill-opacity:1;stroke-width:0.287254" />
+    <path
+       d="m 199.50476,321.09438 -1.19785,-1.19785 -0.4079,0.40503 1.60575,1.60575 3.44705,-3.44705 -0.40502,-0.40502 z"
+       id="path125052-4"
+       style="display:inline;fill:#ffffff;fill-opacity:1;stroke-width:0.287254" />
   </g>
 </svg>
