@@ -7,19 +7,20 @@ Die zwei bekanntesten Bibliotheken zum Serialisieren in \enquote{Dart} heißen \
 % todo medium: Vgl. https://flutter.dev/docs/development/data-and-backend/json
 
 
-Beide haben gemeinsam, dass sie Quellcode generieren, welcher die Umwandlung der Objekte in JSON übernimmt.
+Beide haben gemeinsam, dass sie Quellcode generieren, welcher die Umwandlung der Objekte in \enquote{JSON} übernimmt.
 
 
-\enquote{built_value} bietet im Gegensatz zu \enquote{JSON Serializable} jedoch die Möglichkeit, unveränderbare Wertetypen -- sogenannte \enquote{immutable value types} -- zu erstellen.
+\enquote{built_value} bietet im Gegensatz zu \enquote{json-serializable} jedoch die Möglichkeit, unveränderbare Wertetypen -- sogenannte \enquote{immutable value types} -- zu erstellen.
 Da diese unveränderbaren Werte noch bei der Erstellung des sogenannten \enquote{ViewModels} --  mehr dazu im Kapitel \HP{Einfügen} -- hilfreich werden,
 fiel die Entscheidung auf diese Bibliothek.
 % todo high: Kapitel Referenz einfügen
 
 Ein Wertetyp für \enquote{built_value} erfordert einige Zeilen Boilerplate-Code, um den generierten Quellcode mit der selbstgeschriebenen Klasse zu verknüpfen.
-Entwicklungsumgebungen wie Visual Studio Code und Android Studio erlauben, solchen Boilerplate-Code generieren zu lassen und dabei nur die erforderlichen Platzhalter einzugeben.
-In Visual Studio Code werden diese Templates \enquote{Snippets} genannt, in Android Studio heißen sie \enquote{Live Templates}.
- Listing \ref{lst:BuiltValueLiveTemplate} zeigt, wie das live Template für das Generieren eines Wertetyps  für built_value aussieht.
-Templates für \enquote{built_value} wie dieses und weitere müssen nicht vom Nutzer eingegeben werden, sondern existieren bereits als Plugin für die beiden Entwicklungsumgebungen\footnoteL{https://plugins.jetbrains.com/plugin/13786-built-value-snippets}, \footnoteL{https://marketplace.visualstudio.com/items?itemName=GiancarloCode.built-value-snippets}.
+Entwicklungsumgebungen wie \enquote{Visual Studio Code} und \enquote{Android Studio} erlauben, solchen Boilerplate-Code generieren zu lassen und dabei nur die erforderlichen Platzhalter einzugeben.
+In Visual Studio Code werden diese Templates \enquote{Snippets} genannt, in \enquote{Android Studio} heißen sie \enquote{Live Templates}.
+ Listing \ref{lst:BuiltValueLiveTemplate} zeigt, wie das live Template für das Generieren eines Wertetyps  für \enquote{built_value} aussieht.
+Templates für \enquote{built_value} wie dieses und weitere müssen nicht vom Nutzer eingegeben werden,
+sondern existieren bereits als Plugin für die beiden Entwicklungsumgebungen\footnoteL{https://plugins.jetbrains.com/plugin/13786-built-value-snippets}, \footnoteL{https://marketplace.visualstudio.com/items?itemName=GiancarloCode.built-value-snippets}.
 
 
 % todo medium: live template erklären
@@ -38,13 +39,13 @@ abstract class $ClassName$ implements Built<$ClassName$, $ClassName$Builder> {
 }
 
 \end{minted}
-    \caption[built_value Live Template]{Live Template für die Erstellung von built_value Boilerplate-Code in Android Studio, Quelle: Jetbrains Marketplace Built Value Snippets Plugin}
+    \caption[\enquote{built_value} Live Template]{Live Template für die Erstellung von \enquote{built_value} Boilerplate-Code in \enquote{Android Studio}, Quelle: Jetbrains Marketplace Built Value Snippets Plugin}
     \label{lst:BuiltValueLiveTemplate}
   \end{listing}
 \fi
 
 \IC{$ClassName$} Wird dabei jeweils durch den gewünschten Klassennamen ersetzt.
-Android Studio erlaubt, dass beim Einfügen des \enquote{live templates} der Klassenname einmalig eingegeben werden muss.  Anschließend wird mithilfe des \enquote{live templates} der Boilerplate Code generiert.
+\enquote{Android Studio} erlaubt, dass beim Einfügen des \enquote{live templates} der Klassenname einmalig eingegeben werden muss.  Anschließend wird mithilfe des \enquote{live templates} der Boilerplate Code generiert.
 
 In Listing \ref{lst:Schritt1WerteTypMassnahme} ist der Wertetyp \IC{Massnahme} zu sehen.
 Die Zeilen 11 bis 13, sowie 23 bis 28 wurden dabei automatisch erstellt.
@@ -63,17 +64,21 @@ Eine solche GUID hat eine textuelle Repräsentation wie beispielsweise die folge
 
 
 %  todo - guid General unique identifier erklären
-Die Attribute \IC{letzteBearbeitung} und \IC{identifikatoren} sind im Gegensatz zu dem String-Attribut \IC{guid} zusammengesetzte Datentypen, die im Folgenden weiter beleuchtet werden.
+Die Attribute \IC{letzteBearbeitung} und \IC{identifikatoren} sind im Gegensatz zu dem \IC{String}-Attribut \IC{guid} zusammengesetzte Datentypen, die im Folgenden weiter beleuchtet werden.
 
-Auffällig ist, dass es sich hier um eine abstrakte Klasse handelt und die drei Attribute jeweils Getter-Methoden ohne Implementierung sind.
-Eine solche Getter-Methode speichert keinen Wert, sondern gibt lediglich den Wert eines Feldes zurück.
-Die dazugehörigen Felder, Setter-Methoden, die konkrete Klasse und der restliche generierte Code sind in der gleichnamigen Datei mit der Endung \enquote{.g.dart} (Zeile 11) zu finden.
+Auffällig ist, dass es sich hier um eine abstrakte Klasse handelt und die drei Attribute jeweils \enquote{Getter}-Methoden ohne Implementierung sind.
+Eine solche \enquote{Getter}-Methode speichert keinen Wert, sondern gibt lediglich den Wert eines Feldes zurück.
+Die dazugehörigen Felder, \enquote{Setter}-Methoden, die konkrete Klasse und der restliche generierte Code sind in der gleichnamigen Datei mit der Endung \enquote{.g.dart} (Zeile 11) zu finden.
 
 Die Klassen-Methode \IC{_initializeBuilder} kann in jedem Wertetyp hinterlegt werden, um Standardwerte für Felder festzulegen.
 % todo medium: Vgl. https://pub.dev/packages/built_value/changelog
 Die Methode wird intern von \enquote{built_value} aufgerufen.
-Bei dem Feld \enquote{guid} handelt es sich um einen String, der keine Null-Werte zulässt.
-Könnte das Feld auch Null-Werte annehmen, so wäre die Notation in \enquote{Dart} dafür stattdessen \IC{String? get guid;}. \enquote{built_value} erwartet also immer einen Wert für dieses Feld. Sollte die Datei gelesen werden, welche die Maßnahmen enthält, so enthält jede Maßnahme bei der Deserialisierung den abgespeicherten Wert für die \IC{guid} und somit wird das Feld gefüllt. Doch sollte eine leere Maßnahme über einen Konstruktor erstellt werden, so wäre das Feld \enquote{guid} leer und \enquote{built_value} würde einen Fehler auslösen. Aus diesem Grund wird in der Zeile 21 für das Feld \IC{guid} ein Standardwert festgelegt: nämlich eine zufällig generierte ID, die dem Standard \enquote{Uuid} der Version 4 entspricht.
+Bei dem Feld \enquote{guid} handelt es sich um einen \IC{String}, der keine Null-Werte zulässt.
+Könnte das Feld auch Null-Werte annehmen, so wäre die Notation in \enquote{Dart} dafür stattdessen \IC{String? get guid;}. \enquote{built_value} erwartet also immer einen Wert für dieses Feld.
+Sollte die Datei gelesen werden,
+welche die Maßnahmen enthält, so enthält jede Maßnahme bei der Deserialisierung den abgespeicherten Wert für die \IC{guid} und somit wird das Feld gefüllt.
+Doch sollte eine leere Maßnahme über einen Konstruktor erstellt werden, so wäre das Feld \enquote{guid} leer und \enquote{built_value} würde einen Fehler auslösen.
+Aus diesem Grund wird in der Zeile 21 für das Feld \IC{guid} ein Standardwert festgelegt: nämlich eine zufällig generierte ID, die dem Standard \enquote{Uuid} der Version 4 entspricht.
 % todo high:  https://www.ietf.org/rfc/rfc4122.txt
 Zu diesem Zweck wird das \enquote{Builder}-Objekt verwendet.
 Die Klasse \IC{MassnahmeBuilder} gehört dabei zu dem von \enquote{built_value} generierten Quellcode.
@@ -81,11 +86,14 @@ Der Parametername wird hier -- wie so häufig im \enquote{builder pattern} -- mi
 Die Syntax \IC{=>} leitet  einen sogenannten \enquote{arrow function body} ein.
 Dabei handelt es sich schlicht um einen Funktions-Körper, der genau eine Anweisung ausführt. Deshalb muss er nicht von geschweiften Klammern umgeben werden.\DartSpec{18f., 234}
 Auf dem \enquote{Builder}-Objekt können dann die Eigenschaften so gesetzt werden, als wären sie die Eigenschaften von dem Objekt \IC{Massnahme}.
-In Wahrheit werden sie aber nur auf dem \enquote{Builder}-Objekt angewendet.  Ebenfalls auffällig ist die Syntax \IC{b..guid}.  Statt eines \IC{.} zum Zugriff auf Attribute des Objekts wird hier der sogenannte Kaskadierungs-Operator \IC{..} benutzt.
+In Wahrheit werden sie aber nur auf dem \enquote{Builder}-Objekt angewendet.
+Ebenfalls auffällig ist die Syntax \IC{b..guid}.
+Statt eines \IC{.} zum Zugriff auf Attribute des Objekts wird hier der sogenannte Kaskadierungs-Operator \IC{..} benutzt.
 
 \paragraph{Der Kaskadierungs-Operator}
 
-Durch Eingabe von zwei aufeinanderfolgenden Punkten \IC{..} können mehrere Operationen an einem Objekt ausgeführt werden, ohne das Objekt zuvor einer Variablen zuzuweisen oder die Operationen über dessen Namen wiederholt aufzurufen.\DartSpec{149f.} Beispiel: die Aufrufe \IC{objekt.tueEtwas();} \IC{objekt.tueEtwasAnderes();} und \IC{objekt..tueEtwas()..tueEtwasAnderes();} sind äquivalent.
+Durch Eingabe von zwei aufeinanderfolgenden Punkten \IC{..} können mehrere Operationen an einem Objekt ausgeführt werden,
+ohne das Objekt zuvor einer Variablen zuzuweisen oder die Operationen über dessen Namen wiederholt aufzurufen.\DartSpec{149f.} Beispiel: die Aufrufe \IC{objekt.tueEtwas();} \IC{objekt.tueEtwasAnderes();} und \IC{objekt..tueEtwas()..tueEtwasAnderes();} sind äquivalent.
 
 Da der Kaskadierungs-Operator jedoch dazu verwendet wird, mehrere Operationen auf einem Objekt auszuführen, hat er in Zeile 16 keine Funktion.
 Doch bei Änderung eines Objekts über das \enquote{Builder Pattern} werden für gewöhnlich mehrere Operationen am gleichen \enquote{Builder}-Objekt ausgeführt, weshalb der Einheitlichkeit wegen der Kaskadierungs-Operator immer im Zusammenhang mit dem \enquote{Builder}-Objekt verwendet werden soll.
@@ -116,11 +124,12 @@ Der initiale Wert wird in Zeile 54 auf einen konstanten Wert gesetzt, der dem Zu
 \end{alexlisting}
 
 Das Attribut \IC{letztesBearbeitungsDatum} ist dagegen nicht im Formular änderbar, sondern wird einmalig in Zeile 53 auf den aktuellen Zeitstempel gesetzt.
-Zugehörig zu diesem Attribut gibt es noch eine abgeleitete Eigenschaft namens \IC{formattedDate} \Z{45-48}.  Es ist eine Hilfsmethode, die das letzte Bearbeitungsdatum in ein für Menschen lesbares Datumsformat umwandelt. In dem Übersichtsbildschirm Abbildung \ref{fig:Schritt1Uebersicht} ist das Datumsformat sichtbar.
+Zugehörig zu diesem Attribut gibt es noch eine abgeleitete Eigenschaft namens \IC{formattedDate} \Z{45-48}.
+Es ist eine Hilfsmethode, die das letzte Bearbeitungsdatum in ein für Menschen lesbares Datumsformat umwandelt. In dem Übersichtsbildschirm Abbildung \ref{fig:Schritt1Uebersicht} ist das Datumsformat sichtbar.
 
-Da diese Getter-Methode eine Implementierung besitzt, wird für sie von \enquote{built_value} kein Quellcode für die Serialisierung generiert.
+Da diese \enquote{Getter}-Methode eine Implementierung besitzt, wird für sie von \enquote{built_value} kein Quellcode für die Serialisierung generiert.
 
-Bevor die Wertetypen serialisiert werden können, muss built_value jedoch noch mitgeteilt werden, für welche Wertetypen Serialisierungs-Funktionen generiert werden sollen.
+Bevor die Wertetypen serialisiert werden können, muss \enquote{built_value} jedoch noch mitgeteilt werden, für welche Wertetypen Serialisierungs-Funktionen generiert werden sollen.
 Dazu werden über die Annotation \IC{@SerializersFor} die gewünschten Klassen aufgelistet \LstZ{\ref{lst:Schritt1Serialisierer}}{10}.
 Die Zeilen 11 und 12 sind dabei immer gleich, es sei denn, es ist ein anderer Serialisierungs-Algorithmus gewünscht.
 In diesem Fall wird das \IC{StandardJsonPlugin}verwendet.
@@ -139,7 +148,7 @@ Wird nun der Befehl  \IC{flutter pub run build_runner build} ausgeführt, so wir
 
 \section{Test der Serialisierung einer Maßnahme}
 
-Das Ergebnis der Serialisierung wird im dazugehörigen Unit-Test ersichtlich \Lst{\ref{lst:SerialisierungEinerMassnahmeUnittest}}.
+Das Ergebnis der Serialisierung wird im dazugehörigen Unittest ersichtlich \Lst{\ref{lst:SerialisierungEinerMassnahmeUnittest}}.
 In Zeile 8 wird ein Objekt der Klasse \IC{Massnahme} instanziiert.
 Anders als bei gewöhnlichen Datentypen lassen sich bei diesem unveränderlichen Datentyp keine Attribute nach der Erstellung anpassen.
 Die einzige Möglichkeit besteht darin, ein neues Objekt  mit dem gewünschten Attributwert zu erstellen und die restlichen Werte des alten Objekts zu übernehmen.
@@ -152,23 +161,25 @@ Dies ist mit Hilfe des sogenannten \enquote{Builder}-Entwurfsmuster möglich, we
 \end{alexlisting}
 
 \paragraph{Erbauer-Entwurfsmuster} Das \enquote{Erbauer}-Entwurfsmuster -- englisch \enquote{builder pattern} -- ist ein Erzeugungsmuster, welches die Konstruktion komplexer Objekte von ihrer Repräsentation trennt.
-Es gehört zu der Serie von Entwurfsmustern der Gang of Four. \footcite[Vgl.][S. 119]{gamma2009entwurfsmuster}. Im Fall von built_value trennt es die unveränderlichen Objekte von ihrer Konstruktion. Über den \enquote{Builder} lassen sich Änderungen an diesen unveränderlichen Objekten vornehmen, wodurch eine Kopie dieses unveränderlichen Objekts mit der gewünschten Änderung zurückgegeben wird.
+Es gehört zu der Serie von Entwurfsmustern der Gang of Four. \footcite[Vgl.][S. 119]{gamma2009entwurfsmuster}.
+Im Fall von \enquote{built_value} trennt es die unveränderlichen Objekte von ihrer Konstruktion.
+Über den \enquote{Builder} lassen sich Änderungen an diesen unveränderlichen Objekten vornehmen, wodurch eine Kopie dieses unveränderlichen Objekts mit der gewünschten Änderung zurückgegeben wird.
 
 In den Zeilen 9 bis 10 wird so ein neues Objekt von der Klasse Maßnahme mit Hilfe der Methode \IC{rebuild} erzeugt und anschließend der Referenz \IC{massnahme} zugewiesen, wodurch sie ihren alten Wert verliert.
-Über die generierte Methode \IC{serializers} \IC{.serializeWith} kann das Objekt in JSON übersetzt werden.
+Über die generierte Methode \IC{serializers} \IC{.serializeWith} kann das Objekt in \enquote{JSON} übersetzt werden.
 Der erste Parameter \IC{Massnahme.serializer} gibt dabei an, wie diese Serialisierung erfolgen soll. Auch das \IC{serializer}-Objekt wurde von \enquote{built_value} generiert.
-Der zweite Parameter ist die tatsächliche \IC{massnahme}, die in JSON umgewandelt werden soll.
-Die Zeilen 13 bis 21 erstellen das JSON-Dokument, mit dem das serialisierte Ergebnis am Ende verglichen werden soll. Dabei werden die gleichen Eigenschaften eingetragen.
+Der zweite Parameter ist die tatsächliche \IC{massnahme}, die in \enquote{JSON} umgewandelt werden soll.
+Die Zeilen 13 bis 21 erstellen das \enquote{JSON}-Dokument, mit dem das serialisierte Ergebnis am Ende verglichen werden soll. Dabei werden die gleichen Eigenschaften eingetragen.
 So etwa die \IC{guid}\Z{14}, welche bei der Initialisierung der Maßnahme automatisch und zufällig erstellt wurde. Außerdem das letzte Bearbeitungsdatum, welches den Zeitstempel erhält, zu dem die Maßnahme generiert wurde.
-Da built_value bei der Serialisierung die Datumswerte in Mikrosekunden umwandelt, muss für das erwartete JSON-Dokument das Gleiche passieren \Z{16-17}.
+Da \enquote{built_value} bei der Serialisierung die Datumswerte in Mikrosekunden umwandelt, muss für das erwartete \enquote{JSON}-Dokument das Gleiche passieren \Z{16-17}.
 Der \IC{'letzterStatus'} \Z{18} wird hierbei auf den Standardwert \IC{'bearb'} gesetzt und der \IC{'massnahmenTitel'} \Z{20} auf den gleichen Wert, der in Zeile 9 übergeben wurde.
-Schließlich vergleicht die Methode \IC{expect} das tatsächlich serialisierte JSON-Dokument mit dem, welches zuvor zum Vergleich aufgebaut wurde.
+Schließlich vergleicht die Methode \IC{expect} das tatsächlich serialisierte \enquote{JSON}-Dokument mit dem, welches zuvor zum Vergleich aufgebaut wurde.
 Der zweite Parameter ist ein sogenannter \IC{Matcher} und die Variante mit dem Namen \IC{equals} überprüft auf absolute Gleichheit.
 
 
 
-Analog zur Serialisierung testet der Unit-Test in Listing \ref{lst:DeserialisierungEinerMassnahmeUnittest} auch die Deserialisierung.
-Das JSON-Dokument ist dabei sehr ähnlich und unterscheidet sich lediglich in zwei Details.
+Analog zur Serialisierung testet der Unittest in Listing \ref{lst:DeserialisierungEinerMassnahmeUnittest} auch die Deserialisierung.
+Das \enquote{JSON}-Dokument ist dabei sehr ähnlich und unterscheidet sich lediglich in zwei Details.
 Der \IC{'guid'} wird auf einen festen Wert festgelegt \Z{38}.
 Im Initialisierungsprozess der Maßnahme wird der er dagegen zufällig generiert.
 Außerdem wird auch das \IC{letztesBearbeitungsDatum} festgesetzt, nämlich auf die Mikrosekunde \IC{0} \Z{40}.
@@ -205,18 +216,23 @@ Wird also in \enquote{Dart} ein alternativer Konstruktor gewünscht, so muss er 
 Beim Aufruf des Konstruktors wird dieser Name dann mit einem \IC{.} nach dem Klassennamen angegeben, um den gewünschten Konstruktor zu benennen.
 
 
-Ganz ähnlich wie bei der Serialisierung wird nun mit dem Befehl \IC{serializers} \IC{.} \IC{deserializeWith} unter Angabe des Objekts, welches die Deserialisierung übernehmen soll -- nämlich wiederum \IC{Massnahme.serializer} -- das JSON-Dokument in ein Objekt des Wertetyps \IC{Massnahme} deserialisiert \Z{53-54}. Schließlich wird in Zeile 56 das Ergebnis der Deserialisierung mit dem gewünschten Ergebnis verglichen.
+Ganz ähnlich wie bei der Serialisierung wird nun mit dem Befehl \IC{serializers} \IC{.} \IC{deserializeWith} unter Angabe des Objekts,
+welches die Deserialisierung übernehmen soll -- nämlich wiederum \IC{Massnahme.serializer} -- das \enquote{JSON}-Dokument in ein Objekt des Wertetyps \IC{Massnahme} deserialisiert \Z{53-54}.
+Schließlich wird in Zeile 56 das Ergebnis der Deserialisierung mit dem gewünschten Ergebnis verglichen.
 
 
 
-Gibt man in der Kommandozeile den Befehl \IC{flutter} \IC{test} \IC{test}\IC{/data_model}\IC{/massnahme _test.dart} ein, so werden die Tests in der Testdatei ausgeführt. Die Ausgabe \IC{00:01 +2: All tests passed!} teilt mit, dass beide Tests erfolgreich ausgeführt wurden und beide Ergebnisse mit den verglichenen Werten übereinstimmten.
+Gibt man in der Kommandozeile den Befehl \IC{flutter} \IC{test} \IC{test}\IC{/data_model}\IC{/massnahme _test.dart} ein,
+so werden die Tests in der Testdatei ausgeführt.
+Die Ausgabe \IC{00:01 +2: All tests passed!} teilt mit,
+dass beide Tests erfolgreich ausgeführt wurden und beide Ergebnisse mit den verglichenen Werten übereinstimmten.
 
 \section{Serialisierung der Maßnahmenliste}
 
 Damit alle Maßnahmen -- statt nur einer einzigen -- in einer Datei zusammengefasst werden können, müssen die Maßnahmen zunächst zu einer Menge zusammengefasst werden, die ebenfalls serialisierbar ist.
 Der Wertetyp \IC{Storage} ist dafür vorgesehen \Lst{\ref{lst:Schritt1WerteTypStorage}}.
 Er deklariert allein das \IC{BuiltSet massnahmen} \Z{10}.
-Ein BuiltSet ist die Abwandlung eines gewöhnlichen Sets, jedoch unter anderem mit der Möglichkeit, es mit einem \enquote{Builder} zu erstellen und das Set zu serialisieren.
+Ein BuiltSet ist die Abwandlung eines gewöhnlichen \enquote{Sets}, jedoch unter anderem mit der Möglichkeit, es mit einem \enquote{Builder} zu erstellen und das \enquote{Set} zu serialisieren.
 % todo high Referenz einfügen
 Die Übergabe des Typarguments \IC{<Massnahme>} gewährleistet, dass keine anderen Objekte eingefügt werden können, die weder eine Instanz der Klasse \IC{Massnahme} sind, oder einer Klasse, die von \IC{Massnahmen} erbt.
 
@@ -242,7 +258,11 @@ In Zeile 9 wird es dann wiederverwendet, um aufbauend auf der Kopie Änderungen 
 \end{alexlisting}
 
 Bei der Instanzvariablen \IC{massnahmen} der Klasse \IC{Storage} handelt es sich um ein \IC{BuiltSet}.
- Der Aufruf von \IC{b.massnahmen}  gibt allerdings nicht dieses \IC{BuiltSet} zurück. Wäre es so, so könnte die Operation \IC{add} nicht  darauf angewendet werden. Ein \IC{BuiltSet} stellt keine Methoden zur Manipulation des Sets zur Verfügung. In Wahrheit gibt der Ausdruck \IC{b.massnahmen} einen \IC{SetBuilder} zurück. Das kann im generierten Quellcode nachgesehen werden \LstZ{\ref{lst:Schritt1InstanzvariableMassnahmenGibtEinenSetBuilderZurueck}}.
+ Der Aufruf von \IC{b.massnahmen}  gibt allerdings nicht dieses \IC{BuiltSet} zurück.
+ Wäre es so, so könnte die Operation \IC{add} nicht  darauf angewendet werden.
+ Ein \IC{BuiltSet} stellt keine Methoden zur Manipulation des \enquote{Sets} zur Verfügung.
+ In Wahrheit gibt der Ausdruck \IC{b.massnahmen} einen \IC{SetBuilder} zurück.
+ Das kann im generierten Quellcode nachgesehen werden \LstZ{\ref{lst:Schritt1InstanzvariableMassnahmenGibtEinenSetBuilderZurueck}}.
 
 \begin{alexlisting}{Schritt 1}{Instanzvariable \IC{massnahmen} gibt einen \IC{SetBuilder} zurück}
   {Quellcode/Schritt-1/conditional_form/lib/data_model/storage.g.dart}
@@ -250,14 +270,24 @@ Bei der Instanzvariablen \IC{massnahmen} der Klasse \IC{Storage} handelt es sich
   \label{lst:Schritt1InstanzvariableMassnahmenGibtEinenSetBuilderZurueck}
 \end{alexlisting}
 
-Der \IC{SetBuilder} wiederum erlaubt es, Änderungen am Set vorzunehmen und stellt dafür die -- für ein Set übliche -- Methode \IC{add} bereit.
+Der \IC{SetBuilder} wiederum erlaubt es, Änderungen am \enquote{Set} vorzunehmen und stellt dafür die -- für ein \enquote{Set} übliche -- Methode \IC{add} bereit.
 Im Aufruf von \IC{add} wird dann ein Objekt des Wertetyps \IC{Massnahme} konstruiert \Z{10}.
 Dazu wird dieses Mal die anonyme Funktion zum Konstruieren der Maßnahme gleich dem Konstruktor übergeben.
 
 
-Diesmal konstruiert die Methode \IC{serializers.serializeWith} mit dem Serialisierer \IC{Storage.serializer} ein weiteres JSON-Objekt \Z{12}. Genau wie zuvor wird ein JSON-Dokument vorbereitet \Z{14-30}, welches der \IC{Matcher} \IC{equals} mit dem serialisierten Dokument des soeben konstruierten Objekts \IC{storage} vergleicht \Z{31}. Das JSON-Dokument unterscheidet sich nur darin, dass es einen Knoten namens \IC{'massnahmen'} enthält, der als Wert eine Liste hat. Die Liste hat nur ein Element.  Weil dieses Mal das Objekt des Typs \IC{Massnahme} nicht direkt zugreifbar ist, muss es zunächst über die Liste der Maßnahmen aus dem \IC{storage}-Objekt abgerufen werden. Das ist mit dem Befehl \IC{first} möglich, der das erste Objekt -- und in diesem Fall einzige Objekt -- der Kollektion zurückgibt \Z{17, 21}. Darüber kann erneut die \IC{guid}  und  das \IC{letztesBearbeitungsDatum} abgerufen werden.
+Diesmal konstruiert die Methode \IC{serializers.serializeWith} mit dem Serialisierer \IC{Storage.serializer} ein weiteres \enquote{JSON}-Objekt \Z{12}.
+Genau wie zuvor wird ein \enquote{JSON}-Dokument vorbereitet \Z{14-30},
+welches der \IC{Matcher} \IC{equals} mit dem serialisierten Dokument des soeben konstruierten Objekts \IC{storage} vergleicht \Z{31}.
+Das \enquote{JSON}-Dokument unterscheidet sich nur darin,
+dass es einen Knoten namens \IC{'massnahmen'} enthält,
+der als Wert eine Liste hat.
+Die Liste hat nur ein Element.
+Weil dieses Mal das Objekt des Typs \IC{Massnahme} nicht direkt zugreifbar ist, muss es zunächst über die Liste der Maßnahmen aus dem \IC{storage}-Objekt abgerufen werden.
+Das ist mit dem Befehl \IC{first} möglich,
+der das erste Objekt -- und in diesem Fall einzige Objekt -- der Kollektion zurückgibt \Z{17, 21}.
+Darüber kann erneut die \IC{guid}  und  das \IC{letztesBearbeitungsDatum} abgerufen werden.
 
-Ein weiterer Unit-Test überprüft, ob auch die Deserialisierung eines \IC{storage}-Objekts erfolgreich ist.
+Ein weiterer Unittest überprüft, ob auch die Deserialisierung eines \IC{storage}-Objekts erfolgreich ist.
 Er ist in Listing {\ref{lst:Schritt1MassnahmenDeserialisierenOhneFehlerUnitTest} im Anhang \ref{appendix:Schritt1Anhang} zu finden.
 Auch dieser Test ist der Deserialisierung des Objekts des Typs \IC{Massnahme} sehr ähnlich. \HP{Weg?}
 Er unterscheidet sich nur darin, dass das \IC{Massnahme}-Objekt in der Liste \IC{massnahmen} des \IC{storage}-Objekts  enthalten ist.

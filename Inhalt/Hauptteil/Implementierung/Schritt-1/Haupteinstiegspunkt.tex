@@ -18,7 +18,7 @@ Darin ist erkennbar, dass sich die Applikation in drei Rubriken einteilen lässt
 
 \subsubsection{Model-View-ViewModel}
 Das \enquote{Model-View-ViewModel}-Entwurfsmuster -- kurs MVVM -- wurde zunächst von John Gossman für die Windows Presentation Foundation beschrieben.
-Das \enquote{Model} beschreibt die Datenzugriffs-Komponente, welche die Daten in relationalen Datenbanken oder hierarchischen Datenstrukturen wie XML oder JSON ablegt.
+Das \enquote{Model} beschreibt die Datenzugriffs-Komponente, welche die Daten in relationalen Datenbanken oder hierarchischen Datenstrukturen wie \enquote{XML} oder \enquote{JSON} ablegt.
 Der \enquote{View} beschreibt die Oberflächenelemente wie Texteingabefelder und Buttons.
 Diese beiden Komponenten sind auch aus dem ModelViewController Entwurfsmuster bekannt.
 Das ModelViewViewmodel Entwurfsmuster ist eine Weiterentwicklung davon und integriert das sogenannte \enquote{ViewModel}.
@@ -29,7 +29,7 @@ Das \enquote{ViewModel} übernimmt diese Arbeit, indem es die Daten des \enquote
 Andersherum formt es die Eingaben in der Nutzeroberfläche so um, dass sie im strikten Datenmodell des \enquote{Models} Platz finden.
 \footcite[Vgl.][]{IntroductionToModelViewViewModelPatternForBuildingWPFApps}
 
-\IC{MassnahmenModel} \Z{29} verwaltet die eingegebenen Daten der Maßnahmen und nutzt die Abhängigkeit \IC{MassnahmenJsonFile} \Z{27}, um die Daten auf einem Datenträger als eine JSON-Datei zu speichern.
+\IC{MassnahmenModel} \Z{29} verwaltet die eingegebenen Daten der Maßnahmen und nutzt die Abhängigkeit \IC{MassnahmenJsonFile} \Z{27}, um die Daten auf einem Datenträger als eine \enquote{JSON}-Datei zu speichern.
 Somit gehören diese beiden Klassen dem \enquote{Model} an.
 
 \IC{MassnahmenFormViewModel} \Z{25} greift die Daten des \enquote{Models} ab und formt diese um, sodass sie von dem \enquote{View} \IC{MassnahmenDetailScreen} \Z{43} verändert werden können.
@@ -39,12 +39,12 @@ Sollen die Daten gespeichert werden, so stellt \IC{MassnahmenFormViewModel} eben
 Das ist möglich, weil die Daten nicht manipuliert, sondern nur angezeigt werden müssen.
 
 Damit sowohl \enquote{ViewModel} als auch \enquote{Model} von jedem \enquote{View} heraus abrufbar sind, werden sie in eine Art Service eingefügt \Z{23}.
-Das Widget AppState ist dieser Service.
+Das \enquote{Widget} \IC{AppState} ist dieser Service.
  Es erhält das \enquote{Model} \Z{24} und das \enquote{ViewModel} \Z{25}  im Konstruktor.
-Die Abhängigkeit zum Schreiben des \enquote{Models} in eine JSON-Datei \IC{MassnahmenJsonFile} bekommt das \enquote{Model} ebenfalls im Konstruktor übergeben \Z{24}.
-\IC{AppState} ist das erste Element, welches im Widget-Baum auftaucht.
+Die Abhängigkeit zum Schreiben des \enquote{Models} in eine \enquote{JSON}-Datei \IC{MassnahmenJsonFile} bekommt das \enquote{Model} ebenfalls im Konstruktor übergeben \Z{24}.
+\IC{AppState} ist das erste Element, welches im \enquote{Widget}-Baum auftaucht.
 Die gesamte restliche Applikation ist als Kindelement hinterlegt \Z{26}.
-Damit können alle Widgets auf den Service zugreifen.
+Damit können alle \enquote{Widgets} auf den Service zugreifen.
 
 
 \paragraph{Service Locator und Dependency Inection}
@@ -55,12 +55,12 @@ Anstatt, dass die Applikation den Programmfluss steuert und dabei selbst Funktio
 \footcite[Vgl.][]{johnson1988designing}
 Im Service Locator Entwurfsmuster werden Komponenten darüber hinaus zentral registriert und über dieses Register anderen Komponenten zur Interaktion zur Verfügung gestellt.\footcite[Vgl.][]{fowler2004DependencyInjection}
 Damit ist es möglich, die Komponenten nicht direkt miteinander verknüpfen zu müssen.
-Vor allem für automatisierte Tests ist dies von Vorteil, da solche Abhängigkeiten ausgetauscht werden können, um ganz spezielle Teil-Funktionalitäten eines Programms zu testen.
+Vor allem für automatisierte Tests ist dies von Vorteil, da solche Abhängigkeiten ausgetauscht werden können, um ganz spezielle Teilfunktionalitäten eines Programms zu testen.
  Mehr dazu im Kapitel \HP{Kapitel einfügen}.
 
 
 Anders als der Name vermuten lässt, steuert \IC{MaterialApp} nicht nur das Aussehen der Applikation im Material Design Look.
-Sondern das Widget stellt auch Grundfunktionalitäten einer App wie etwa den Navigator bereit.
+Sondern das \enquote{Widget} stellt auch Grundfunktionalitäten einer App wie etwa den Navigator bereit.
 Damit hat die Applikation die Möglichkeit -- ähnlich wie bei einer Website -- auf Unterseiten zu navigieren.
 Hat der Benutzer die Arbeit in der Unterseite vollendet, so kann der Navigator gebeten werden, zur vorherigen Ansicht zurückzukehren.
  Mit dem Parameter \IC{routes} \Z{34-39} erfolgt die Angabe der Unterseiten, die besucht werden können.
@@ -74,35 +74,35 @@ Um Daten für alle Kindelementen zugreifbar zu machen, werden die sogenannten \e
 Der Service \IC{AppState} \Lst{\ref{lst:Schritt1DerServiceAppState}} ist ein solches \enquote{InheritedWidget}.
 
 Im Konstruktor erhält es zunächst den Parameter des Typs \IC{Key} \Z{7}.
-Es ist gängige Praxis in \enquote{Flutter}, jedem Widget im Konstruktor zu ermöglichen, einen solchen Schlüssel zu übergeben.
+Es ist gängige Praxis in \enquote{Flutter}, jedem \enquote{Widget} im Konstruktor zu ermöglichen, einen solchen Schlüssel zu übergeben.
 Es ist jedoch optional.
- Ein solcher Schlüssel kann genutzt werden, um das Widget eindeutig zu identifizieren und es unter anderem über den Schlüssel wiederzufinden.
+ Ein solcher Schlüssel kann genutzt werden, um das \enquote{Widget} eindeutig zu identifizieren und es unter anderem über den Schlüssel wiederzufinden.
 In den Zeilen 8 und 9 werden das \enquote{Model} und das \enquote{ViewModel} dem Objekt im Konstruktor übergeben.
 In den Zeilen 14 und 15 sind sie deklariert.
 Der letzte Parameter im Konstruktor ist \IC{child}.
-Ihm wird der Widget-Baum übergeben, der Zugriff auf das \enquote{InheritedWidget} haben soll.
+Ihm wird der \enquote{Widget}-Baum übergeben, der Zugriff auf das \enquote{InheritedWidget} haben soll.
 
-Der Aufruf des Basis-Konstruktors mit den Argumenten \IC{key} und \IC{child} ist in Zeile 11 zu sehen.
+Der Aufruf des Basiskonstruktors mit den Argumenten \IC{key} und \IC{child} ist in Zeile 11 zu sehen.
 Die Basisklasse von \IC{InheritedWidget} ist \IC{ProxyWidget} und erhält exakt dieselben Argumente.
- Das \IC{ProxyWidget} verwendet das Kindelement, um es im Widget-Baum unterhalb von sich selbst zu zeichnen.
+ Das \IC{ProxyWidget} verwendet das Kindelement, um es im \enquote{Widget}-Baum unterhalb von sich selbst zu zeichnen.
  Eine eigene Methode zum Zeichnen muss also nicht für das \IC{InheritedWidget} implementiert werden.
 Die einzige Methode, welche implementiert werden muss, ist \IC{updateShouldNotify} \Z{24}.
-Immer dann, wenn das \IC{InheritedWidget} selbst aktualisiert wird, kann es alle Widgets, die davon abhängig sind, benachrichtigen.
- In dem Fall werden diese  Widgets ebenfalls neu gezeichnet.
-Für die Formular-Applikation ist das allerdings nicht gewünscht.
+Immer dann, wenn das \IC{InheritedWidget} selbst aktualisiert wird, kann es alle \enquote{Widgets}, die davon abhängig sind, benachrichtigen.
+ In dem Fall werden diese  \enquote{Widgets} ebenfalls neu gezeichnet.
+Für die Formularapplikation ist das allerdings nicht gewünscht.
 Die Aktualisierung der Oberfläche soll in den nachfolgenden Schritten selbst kontrolliert werden.
-Deshalb erfolgt die Rückgabe \IC{false}, da in Zukunft nicht gewünscht ist, den Applikations-Zustand komplett auszutauschen.
+Deshalb erfolgt die Rückgabe \IC{false}, da in Zukunft nicht gewünscht ist, den Applikationszustand komplett auszutauschen.
  Um die  Aktualisierung  der Oberfläche  kümmern sich sowohl \enquote{Model} als auch \enquote{ViewModel}.
 
-Damit ein Widget eine Abhängigkeit von dem \IC{AppState} anmelden kann, verwendet es in seiner eigenen \IC{build}-Methode den Ausdruck \IC{dependOnInheritedWidgetOfExactType<AppState>()}.
+Damit ein \enquote{Widget} eine Abhängigkeit von dem \IC{AppState} anmelden kann, verwendet es in seiner eigenen \IC{build}-Methode den Ausdruck \IC{dependOnInheritedWidgetOfExactType<AppState>()}.
 Der Aufruf der Methode erfolgt auf dem Objekt vom Typ \IC{BuildContext}.
 Weil dieser Kontext bei jedem Zeichnen allen Kindern übergeben wird, kann jedes Kind darüber die Vaterelemente wiederfinden.
 
 Damit der Aufruf leichter lesbar und kürzer ist, empfiehlt das \enquote{Flutter}-Team, eine eigene Klassenmethode zu erstellen, welche die Methode für den Benutzer aufruft \Z{16-17}.
 Auch eine Fehlermeldung kann bei dieser Auslagerung geworfen werden, sollte im Kontext kein Objekt des gewünschten Typs vorhanden sein \Z{18}.
-Das Widget, welches den \IC{AppState} benötigt, kann dann über die vereinfachte Schreibweise \IC{AppState.of(context)} darauf zugreifen.
+Das \enquote{Widget}, welches den \IC{AppState} benötigt, kann dann über die vereinfachte Schreibweise \IC{AppState.of(context)} darauf zugreifen.
 
-Abbildung \ref{lst:UmlAppState} zeigt die Beziehung zwischen den Bildschirmen und dem AppState auf.
+Abbildung \ref{lst:UmlAppState} zeigt die Beziehung zwischen den Bildschirmen und dem \IC{AppState} auf.
 Sowohl \IC{MassnahmenMasterScreen} und \IC{MassnahmenDetailScreen} müssen auf \IC{MassnahmenModel} und \IC{MassnahmenFormViewModel} zugreifen können.
 Zu diesem Zweck erstellt \IC{MassnahmenFormApp} den \IC{AppState}.
 Er enthält sowohl \enquote{ViewModel} als auch \enquote{Model}.
@@ -166,33 +166,35 @@ Er enthält sowohl \enquote{ViewModel} als auch \enquote{Model}.
 \fi
 
 
-\section{Speichern der Maßnahmen in eine JSON-Datei}
-Das \enquote{Model} wird durch die Klasse \IC{MassnahmenJsonFile} in eine JSON-Datei gespeichert \Lst{\ref{lst:Schritt1KlasseMassnahmenJsonFile}}.
+\section{Speichern der Maßnahmen in eine \enquote{JSON}-Datei}
+Das \enquote{Model} wird durch die Klasse \IC{MassnahmenJsonFile} in eine \enquote{JSON}-Datei gespeichert \Lst{\ref{lst:Schritt1KlasseMassnahmenJsonFile}}.
 Der Dateipfad wird dabei durch die Methode \IC{_localMassnahmenJsonFile} \Z{8-11} abgerufen.
-Die Hilfsmethode \IC{getApplicationSupportDirectory} \Z{9} gibt aus dem Nutzerverzeichnis des aktuellen Nutzers den zur Applikation zugeordneten Datei-Ordner zurück.
+Die Hilfsmethode \IC{getApplicationSupportDirectory} \Z{9} gibt aus dem Nutzerverzeichnis des aktuellen Nutzers den zur Applikation zugeordneten Dateiordner zurück.
 Auf Windows-Betriebssystemen wäre das beispielsweise \url{C:\\Users\\AktuellerNutzer\\AppData\\Roaming\\com.example\\conditional_form}.
 
 Dadurch, dass dem Methoden-Bezeichner \IC{_localMassnahmenJsonFile} ein Unterstrich vorangestellt ist, ist die Methode privat und kann nur innerhalb der Klasse aufgerufen werden.
 \enquote{Dart} hat damit eine Konvention zum Standard werden lassen.
-In Programmiersprachen wie beispielsweise C++ wurde der Unterstrich zusätzlich den Bezeichnern von Instanzattributen vorangestellt, die mit dem \IC{private} Schlüsselwort gekennzeichnet sind, damit sie überall im Quellcode als private Attribute identifizierbar sind, ohne dazu die Klassendefinition ansehen zu müssen.
+In Programmiersprachen wie beispielsweise C++ wurde der Unterstrich zusätzlich den Bezeichnern von Instanzattributen vorangestellt,
+die mit dem \IC{private} Schlüsselwort gekennzeichnet sind,
+damit sie überall im Quellcode als private Attribute identifizierbar sind, ohne dazu die Klassendefinition ansehen zu müssen.
 In \enquote{Dart} gibt es dagegen das \IC{private} Schlüsselwort nicht.
 Stattdessen wird der Unterstrich vor dem Bezeichner verwendet, um ein Instanzattribut privat zu deklarieren.
 
-Die Getter-Methode \IC{_localMassnahmenJsonFile} hat den Rückgabetyp \IC{Future<File>} und ist zudem mit dem Schlüsselwort \IC{async} gekennzeichnet.
+Die \enquote{Getter}-Methode \IC{_localMassnahmenJsonFile} hat den Rückgabetyp \IC{Future<File>} und ist zudem mit dem Schlüsselwort \IC{async} gekennzeichnet.
 Asynchron muss die Methode deshalb sein, weil sie auf den Aufruf \IC{getApplicationSupportDirectory} warten muss, der ebenfalls asynchron abläuft.
 
-Der Funktion \IC{saveMassnahmen} \Z{13-16} wird ein JSON Objekt in Form einer Hashtabelle übergeben.
-Sie ruft die Hilfs-Getter-Methode \IC{_localMassnahmenJsonFile} \Z{14} auf und schreibt den Dateiinhalt in die Datei des abgefragten Pfades \Z{15}.
-Zuvor wird dazu das JSON-Objekt in eine textuelle Repräsentation überführt.
+Der Funktion \IC{saveMassnahmen} \Z{13-16} wird ein \enquote{JSON}-Objekt in Form einer Hashtabelle übergeben.
+Sie ruft die Hilfs-\enquote{Getter}-Methode \IC{_localMassnahmenJsonFile} \Z{14} auf und schreibt den Dateiinhalt in die Datei des abgefragten Pfades \Z{15}.
+Zuvor wird dazu das \enquote{JSON}-Objekt in eine textuelle Repräsentation überführt.
 Dazu dient die Funktion \IC{jsonEncode}.
 
 Das Äquivalent dazu stellt die Methode \IC{readMassnahmen} \Z{18-30} dar.
 Auch sie ruft den Dateipfad ab \Z{19}, überprüft allerdings im nächsten Schritt, ob die Datei bereits existiert \Z{21}.
 Sollte das der Fall sein, so wird die Datei eingelesen \Z{23}.
-Die textuelle Repräsentation aus der Datei wird mittels der Methode \IC{jsonDecode} in ein JSON-Objekt in Form einer Hashtabelle gespeichert \Z{24} und schließlich zurückgegeben \Z{26}.
+Die textuelle Repräsentation aus der Datei wird mittels der Methode \IC{jsonDecode} in ein \enquote{JSON}-Objekt in Form einer Hashtabelle gespeichert \Z{24} und schließlich zurückgegeben \Z{26}.
 Sollte die Dateien nicht existieren, führt das zu einer Ausnahme \Z{28}, welche von der aufrufenden Funktion behandelt werden kann.
 
-\begin{alexlisting}{Schritt 1}{Die Klasse MassnahmenJsonFile}
+\begin{alexlisting}{Schritt 1}{Die Klasse \enquote{MassnahmenJsonFile}}
   {Quellcode/Schritt-1/conditional_form/lib/persistence/massnahmen_json_file.dart}
   {firstline=7, lastline=31}
   \label{lst:Schritt1KlasseMassnahmenJsonFile}
@@ -203,7 +205,7 @@ Sollte die Dateien nicht existieren, führt das zu einer Ausnahme \Z{28}, welche
 
 Die Art und Weise, wie die Maßnahmen abgerufen werden, sollte nach Möglichkeit abstrahiert werden.
 Das erlaubt, den Mechanismus in Zukunft auszutauschen, ohne dabei den Rest der Applikation verändern zu müssen.
-So wäre es beispielsweise denkbar, statt einer JSON-Datei eine direkte Verbindung zu einer relationalen Datenbank herzustellen.
+So wäre es beispielsweise denkbar, statt einer \enquote{JSON}-Datei eine direkte Verbindung zu einer relationalen Datenbank herzustellen.
 Auch das Austauschen der Abhängigkeit mit einem Platzhalter, der lediglich die Aufrufe der Methoden zählt, ist damit möglich.
 Ein solches Platzhalterobjekt wird \enquote{Mock} genannt und für automatisiertes Testen eingesetzt (siehe Kapitel  \HP{Kapitel einfügen}).
 Ebenso abstrahiert werden soll der Umgang mit Ausnahmen.
@@ -221,26 +223,38 @@ Sie bekommt \IC{MassnahmenJsonFile} im Konstruktor übergeben \Z{11}.
 Daraufhin ruft der Konstruktor gleich die \IC{init} auf \Z{12}, welche in den Zeilen 15-22 deklariert ist.
 Darin wird der \enquote{Stream} \IC{storage} \Z{19} initialisiert.
 Es handelt sich um eine Erweiterung eines \enquote{broadcast streams} mit dem Namen \IC{BehaviorSubject} \Z{9}.
-Es entstammt dem Paket rx.dart, welches die \enquote{Streams} in \enquote{Dart} um eine Reihe von weiteren Funktionalitäten erweitert. Ein \IC{BehaviorSubject} hat die Besonderheit, dass es den Wert des letzten Ereignisses zwischenspeichert. Die \enquote{broadcast streams} haben für gewöhnlich den Nachteil, dass neue Zuhörer des \enquote{Streams} nur die neuen Ereignisse erhalten. Alle in der Vergangenheit erfolgten Ereignisse sind nicht mehr verfügbar. Vor allem dann, wenn in der Oberfläche der letzte Wert eines \enquote{Streams} verwendet werden soll, um Elemente zu zeichnen, ist das von einem besonderen Nachteil. Denn wenn der \enquote{Stream} zuvor initialisiert wurde, so gibt es keine Daten zu dem Zeitpunkt, wenn die Oberfläche gezeichnet wird. Sollte die Oberfläche gezeichnet werden, bevor der \enquote{Stream} initialisiert wurde, so  existieren ebenfalls keine Daten. Hier kommt das \IC{BehaviorSubject} ins Spiel. Sobald die Oberfläche gezeichnet wird und der \enquote{Stream} bereits initialisiert ist, kann dennnoch auf den zuletzt übertragenen Wert zurückgegriffen werden. Anschließend überträgt der \enquote{Stream} die folgenden Aktualisierungen für die Oberfläche mit jedem neuen Ereignis, so wie es für \enquote{Streams} üblich ist.
+Es entstammt dem Paket rx.dart, welches die \enquote{Streams} in \enquote{Dart} um eine Reihe von weiteren Funktionalitäten erweitert.
+Ein \IC{BehaviorSubject} hat die Besonderheit, dass es den Wert des letzten Ereignisses zwischenspeichert.
+Die \enquote{broadcast streams} haben für gewöhnlich den Nachteil, dass neue Zuhörer des \enquote{Streams} nur die neuen Ereignisse erhalten.
+Alle in der Vergangenheit erfolgten Ereignisse sind nicht mehr verfügbar.
+Vor allem dann, wenn in der Oberfläche der letzte Wert eines \enquote{Streams} verwendet werden soll, um Elemente zu zeichnen, ist das von einem besonderen Nachteil.
+Denn wenn der \enquote{Stream} zuvor initialisiert wurde, so gibt es keine Daten zu dem Zeitpunkt, wenn die Oberfläche gezeichnet wird.
+Sollte die Oberfläche gezeichnet werden, bevor der \enquote{Stream} initialisiert wurde, so  existieren ebenfalls keine Daten.
+Hier kommt das \IC{BehaviorSubject} ins Spiel.
+Sobald die Oberfläche gezeichnet wird und der \enquote{Stream} bereits initialisiert ist, kann dennnoch auf den zuletzt übertragenen Wert zurückgegriffen werden.
+Anschließend überträgt der \enquote{Stream} die folgenden Aktualisierungen für die Oberfläche mit jedem neuen Ereignis, so wie es für \enquote{Streams} üblich ist.
 
-Der \enquote{Stream} kann nicht bereits in der Initialisierungsliste des Konstruktors mit den Daten aus der JSON-Datei gefüllt werden.
-Das liegt daran, dass die JSON-Daten dazu zunächst gelesen werden müssen, was nur durch eine Reihe von asynchronen Operation möglich ist.
+Der \enquote{Stream} kann nicht bereits in der Initialisierungsliste des Konstruktors mit den Daten aus der \enquote{JSON}-Datei gefüllt werden.
+Das liegt daran, dass die \enquote{JSON}-Daten dazu zunächst gelesen werden müssen, was nur durch eine Reihe von asynchronen Operation möglich ist.
 In einer Initialisierungsliste können allerdings keine asynchronen Operationen ausgeführt werden.
 Deshalb wird \IC{init} erst im Konstruktor-Körper aufgerufen \Z{7}.
 
 Damit der \enquote{Stream} anfangs nicht leer ist, füllt ihn der benannte Konstruktor \IC{seeded} mit einem leeren Objekt des Typs \IC{Storage} \Z{9}.
-Sobald die Datei gelesen \Z{17} und anschließend deserialisiert wurde \Z{20}, erhält der \enquote{Stream} über die Setter-Methode \IC{value} ein neues Ereignis mit dem gelesenen Wert \Z{19}.
+Sobald die Datei gelesen \Z{17} und anschließend deserialisiert wurde \Z{20}, erhält der \enquote{Stream} über die \enquote{Setter}-Methode \IC{value} ein neues Ereignis mit dem gelesenen Wert \Z{19}.
 
 Die Initialisierung ist von einem \IC{try}-Block umgeben.
-Sollte die Initialisierung fehlschlagen, weil die JSON-Datei nicht existiert, wird die entsprechende Fehlerbehandlung ausgeführt \Z{21}.
+Sollte die Initialisierung fehlschlagen, weil die \enquote{JSON}-Datei nicht existiert, wird die entsprechende Fehlerbehandlung ausgeführt \Z{21}.
 Diese ist leer, da sich im \enquote{Stream} bereits ein leeres \IC{Storage}-Objekt  befindet.
 Mit diesem leeren Objekt kann die Oberfläche weiterarbeiten.
 In Zukunft könnte es sinnvoll sein, innerhalb der Fehlerbehandlung eine Meldung an den Benutzer zu geben, um darüber zu informieren, dass eine neue Datei angelegt wurde.
 
-Mit \IC{putMassnahmeIfAbsent} \Z{24-33} steht eine Methode bereit, um gleichzeitig  sowohl die Oberfläche,  als auch die JSON-Datei zu aktualisieren.
+Mit \IC{putMassnahmeIfAbsent} \Z{24-33} steht eine Methode bereit, um gleichzeitig  sowohl die Oberfläche,  als auch die \enquote{JSON}-Datei zu aktualisieren.
 Sollte die eingetragene Maßnahme schon existieren, wird sie zunächst gelöscht \Z{26}.
 In jedem Fall wird die neue Maßnahme dem \enquote{Stream} hinzugefügt \Z{27}.
-Durch Austauschen des gesamten Objekts mit der Zuweisung von \IC{storage.value} \Z{25} erhält der \enquote{Stream} erneut ein neues Ereignis, womit er die Oberfläche benachrichtigen kann, sich neu zu zeichnen. Außerdem wird die Serialisierung des \IC{Storage}-Objekts angestoßen \Z{29-30}. Die neue Liste von Maßnahmen wird im darauffolgenden Schritt zurück in die JSON-Datei gespeichert \Z{32}.
+Durch Austauschen des gesamten Objekts mit der Zuweisung von \IC{storage.value} \Z{25} erhält der \enquote{Stream} erneut ein neues Ereignis, womit er die Oberfläche benachrichtigen kann,
+sich neu zu zeichnen.
+Außerdem wird die Serialisierung des \IC{Storage}-Objekts angestoßen \Z{29-30}.
+Die neue Liste von Maßnahmen wird im darauffolgenden Schritt zurück in die \enquote{JSON}-Datei gespeichert \Z{32}.
 
 \begin{alexlisting}{Schritt 1}{Die Klasse MassnahmenModel}
   {Quellcode/Schritt-1/conditional_form/lib/data_access/massnahmen_model.dart}

@@ -41,7 +41,7 @@ Anschließend erfolgt erneut das Speichern der Maßnahme \Z{125-126}.
 
 
 
-Anders als bei den bisherigen Schlüssel-Werte-Paaren innerhalb des Objektes \IC{'massnahmenCharakteristika'} kann der Wert der Nebenziele nicht als einzelner String gespeichert werden \Lst{\ref{lst:Schritt6expectedJson}}.
+Anders als bei den bisherigen Schlüssel-Werte-Paaren innerhalb des Objektes \IC{'massnahmenCharakteristika'} kann der Wert der Nebenziele nicht als einzelner \enquote{String} gespeichert werden \Lst{\ref{lst:Schritt6expectedJson}}.
 
 \begin{alexlisting}{Schritt 6}{Der Integrationstest überprüft im \enquote{JSON}-Dokument den Schlussel \enquote{nebenziele}}
   {Quellcode/Schritt-6/conditional_form/integration_test/app_test.dart}
@@ -50,7 +50,7 @@ Anders als bei den bisherigen Schlüssel-Werte-Paaren innerhalb des Objektes \IC
 \end{alexlisting}
 
 Bei dem Inhalt der Mehrfachauswahlfelder handelt es sich schließlich um eine Auflistung mehrerer Werte.
-Sie wird im erwarteten JSON-Dokument als Array-Literal codiert \Z{140-143}.
+Sie wird im erwarteten \enquote{JSON}-Dokument als \enquote{Array}-Literal codiert \Z{140-143}.
 
 
 
@@ -75,7 +75,7 @@ kann der Datentyp \IC{BuiltSet} verwendet werden \LstZ{\ref{lst:Schritt6Massnahm
   {firstline=68, lastline=77, highlightlines={77}}
   \label{lst:Schritt6MassnahmenCharakteristika}
 \end{alexlisting}
-Die Getter-Methode \IC{nebenziele} bedarf keiner Null-Zulässigkeit,
+Die \enquote{Getter}-Methode \IC{nebenziele} bedarf keiner Null-Zulässigkeit,
 da das Nicht-Vorhandensein von Werten darüber erreicht werden kann,
 dass die Menge leer ist.
 
@@ -95,8 +95,8 @@ Die Überschrift wird nach der Spaltenüberschrift für die \enquote{Hauptzielse
 
 Die Anzeige der Werte in den TabellenZellen ist dagegen unterschiedlich \Lst{\ref{lst:Schritt6buildSelectableCell}}.
 Dieses Mal handelt es sich um die Aufzählung von mehreren Werten,
-weshalb ein \IC{Column}-Widget die einzelnen Einträge untereinander auflistet \Z{46-49}.
-Jedes Element des \IC{BuiltSet} \IC{nebenziele} \Z{47} wird über die Methode \IC{map} jeweils in ein Element des Widgets \IC{Text} konvertiert \Z{48}.
+weshalb ein \IC{Column}-\enquote{Widget} die einzelnen Einträge untereinander auflistet \Z{46-49}.
+Jedes Element des \IC{BuiltSet} \IC{nebenziele} \Z{47} wird über die Methode \IC{map} jeweils in ein Element des \enquote{Widgets} \IC{Text} konvertiert \Z{48}.
 
 \begin{alexlisting}{Schritt 6}{Die Nebenziele werden dem Tabellenkörper hinzugefügt}
   {Quellcode/Schritt-6/conditional_form/lib/widgets/massnahmen_table.dart}
@@ -162,7 +162,7 @@ Unterhalb des Auswahlfeldes für das Hauptziel wird die Selektionkarte für die 
 Allerdings handelt es sich dieses Mal um ein Mehrfachauswahlfeld,
 weshalb eine neue Methode namens \IC{buildMultiSelectionCard} aufgerufen wird \Z{215-217}.
 
-Da nun zwei Methoden zum Erstellen von Elementen des Widgets \IC{SelectionCard} existieren,
+Da nun zwei Methoden zum Erstellen von Elementen des \enquote{Widgets} \IC{SelectionCard} existieren,
 ist es sinnvoll,
 den Quellcode zu refaktorisieren,
 um redundanten Code zu vermeiden.
@@ -193,7 +193,8 @@ Für die Erstellung der Mehrfachauswahlfelder ist die Methode \IC{buildMultiSele
 \end{alexlisting}
 
 Das übergebene \IC{selectionViewModel} unterstützt mit dem Typometer \IC{BuiltSet} die Auswahl von mehreren Auswahloption \Z{146}.
-Bei \IC{selectionViewModel} handelt es sich bereits um eine Menge. Für die Validierung \IC{150} sowie für die Übergabe des initialen Wertes an den Konstruktor der \IC{SelectionCard} \Z{157} ist eine Umwandlung in eine Menge daher nicht mehr nötig.
+Bei \IC{selectionViewModel} handelt es sich bereits um eine Menge.
+Für die Validierung \IC{150} sowie für die Übergabe des initialen Wertes an den Konstruktor der \IC{SelectionCard} \Z{157} ist eine Umwandlung in eine Menge daher nicht mehr nötig.
 Dem Konstruktor \IC{SelectionCard} wird weiterhin über den Parameter \IC{multiSelection} mitgeteilt, dass mehr als eine Auswahl zum gewählt werden darf \Z{154}.
 Die Methoden \IC{onSelect} und \IC{onDeselect} ersetzen nun nicht mehr den aktuell gespeicherten Wert über eine einfache Zuweisung.
 Sie nutzen stattdessen die Methode \IC{rebuild} des \IC{BuiltSet} um ein Element mit Hilfe von \IC{add} hinzuzufügen \Z{160} bzw. mit \IC{remove} Elemente zu entfernen \Z{163}.
@@ -220,7 +221,7 @@ welche für die Manipulationen an der Kopie genutzt wird,
 wird in einer Fallunterscheidung überprüft,
 ob das angewählte Element bereits selektiert ist \Z{136}.
 Sollte das der Fall sein,
-so wird diese bereits selektierte Option, die nun erneut angewählt wurde, mit der Methode \IC{remove} des Builder-Objekts aus dem \IC{BuiltSet} entfernt \Z{137}.
+so wird diese bereits selektierte Option, die nun erneut angewählt wurde, mit der Methode \IC{remove} des \enquote{Builder}-Objekts aus dem \IC{BuiltSet} entfernt \Z{137}.
 Anderenfalls war die Option nicht selektiert, weshalb sie mit der Methode \IC{add} hinzugefügt wird. 
 
 

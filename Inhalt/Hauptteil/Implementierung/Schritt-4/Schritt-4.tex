@@ -106,14 +106,14 @@ Denn eine Auswahloption,
 die keine Bedingung hat,
 ist immer auswählbar.
 Sollte die übergebene Bedingungen ausgelassen worden und damit \IC{null} sein,
-so wählt die \enquote{If-null Expression} den Ausdruck rechts von dem \IC{??} und damit die Standardfunktion \IC{_conditionIsAlwaysMet} aus,
+so wählt die \enquote{if-null Expression} den Ausdruck rechts von dem \IC{??} und damit die Standardfunktion \IC{_conditionIsAlwaysMet} aus,
 welche der Instanzvariablen \IC{condition} zugewiesen wird \Z{13}.
 Ansonsten speichert der Konstruktor die übergebene Funktion.
 Aus diesem Grund ist es nicht möglich,
 dass die condition in der Instanzvariablen nur sein kann,
 weshalb sie ohne den Suffix? Als variable ohne zu null Zulässigkeit deklariert werden kann.
 Da der Ausdruck rechts von dem \IC{??} nicht \IC{null} sein kann,
-so kann auch der gesamte Ausdruck der vorliegenden \enquote{If-null Expression} nicht \IC{null} sein.
+so kann auch der gesamte Ausdruck der vorliegenden \enquote{if-null Expression} nicht \IC{null} sein.
 Damit ist es möglich,
 die Instanzvariable \IC{condition} ohne den Suffix \IC{?} als Variable ohne Null-Zulässigkeit zu deklarieren.
 Die Instanzmethode \IC{conditionMatches} ruft die übergebene Funktion für die Bedingung über die Methode \IC{call} auf \Z{10}.
@@ -130,7 +130,7 @@ Der Ausdruck \IC{wald.condition(priorChoices)} kann dadurch durch die expliziter
 
 Die Menge der bisherigen Ausfülloptionen setzt sich aus den aktuellen Inhalten der Auswahlfelder zusammen.
 Sie ist also die Momentaufnahme aller Werte,
-die jeweils über die Getter-Methode \IC{value} von allen \IC{BehaviorSubject}-Objekten im \enquote{ViewModel} abgerufen werden kann.
+die jeweils über die \enquote{Getter}-Methode \IC{value} von allen \IC{BehaviorSubject}-Objekten im \enquote{ViewModel} abgerufen werden kann.
 Doch genau diese Momentaufnahme muss immer dann neu erstellt werden,
 wenn sich auch nur ein Auswahlfeld ändert.
 Genau darum kümmert sich das \IC{BehaviorSubject} \IC{priorChoices} im \enquote{ViewModel} \Lst{\ref{lst:Schritt4priorChoices}}.
@@ -162,7 +162,7 @@ In \enquote{Kotlin} und \enquote{Dart} wurde diese Praxis zur Konvention gemacht
 . 
 Die anonyme Funktion gibt eine Menge zurück,
 in welcher alle Werte der \IC{BehaviorSubject}-Objekte integriert werden \Z{31-37}.
-Das \enquote{Collection if} Statement schließt dabei jeweils den Wert \IC{null} aus \Z{32-36}.
+Das \enquote{collection if} Statement schließt dabei jeweils den Wert \IC{null} aus \Z{32-36}.
 Somit taucht niemals der Wert \IC{null} in der Menge auf und damit kann die Menge mit dem Typparameter \IC{Choice} ohne Null-Zulässigkeit deklariert werden.
 Sollte ein Auswahlfeld nicht gewählt und damit der Wert des \IC{BehaviorSubject} \IC{null} sein,
 so taucht diese Option einfach nicht in der Menge auf.
@@ -213,13 +213,13 @@ Der Grund dafür ist,
 dass sie noch eine alte Kopie der bisherigen Auswahloptionen verwendet.
 
 Eine andere Möglichkeit wäre,
-eine Setter-Methode zu implementieren,
+eine \enquote{Setter}-Methode zu implementieren,
 die den Wert der bisherigen Auswahloptionen neu setzt.
 Doch das Programm verwaltet keine Referenzen auf alle gebauten Selektionskarten.
-Somit kann auch nicht über eine Referenz eine Setter-Methode aufgerufen werden,
+Somit kann auch nicht über eine Referenz eine \enquote{Setter}-Methode aufgerufen werden,
 denn eine solche Referenz existiert nicht. 
 Die übliche Vorgehensweise wäre in \enquote{Flutter},
-das gesamte Widget neu zu zeichnen.
+das gesamte \enquote{Widget} neu zu zeichnen.
 Bei Einsatz eines \enquote{StatefulWidgets} und Zustandsänderungen über die \IC{setState}-Methode würde dies das Neuzeichnen des gesamten Formulars bedeuten.
 
 Performanter ist es dagegen,

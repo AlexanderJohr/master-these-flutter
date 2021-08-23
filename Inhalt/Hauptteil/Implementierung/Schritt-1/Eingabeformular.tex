@@ -17,7 +17,7 @@ Damit sind sie auch innerhalb der beiden verschachtelten Funktionen verfügbar.
 Innerhalb der Funktionen kann auf model und vm zugegriffen werden, ohne sie über einen Parameter übergeben zu müssen.
 
 
-Das erste Widget im Inhaltsbereich des \IC{Scaffold}-Elements ist ein \IC{WillPopScope}.
+Das erste \enquote{Widget} im Inhaltsbereich des \IC{Scaffold}-Elements ist ein \IC{WillPopScope}.
 Es erlaubt das Verlassen einer Route an eine Abhängigkeit zu knüpfen.
 Bei dem Eingabeformular handelt es sich um eine Unterseite.
 % Meine Formulierung wäre:
@@ -33,16 +33,21 @@ Dazu wird dem Parameter \IC{onWillPop} als Argument die Funktion \IC{saveRecord}
 Anders als im Übersichtsbildschirm erhält das \IC{Scaffold} kein Argument für den Parameter \IC{floatingActionButton}.
 Der Hintergrund dafür ist, dass auf diesem Bildschirm in den nächsten Schritten nicht nur ein, sondern zwei solcher Buttons zur Verfügung stehen sollen.
  Daher muss der Button manual angelegt werden.
-Das ist nur mit Hilfe eines \IC{Stack}-Widgets möglich, welcher als Kind des \IC{WillPopScope} eingetragen ist.
+Das ist nur mit Hilfe eines \IC{Stack}-\enquote{Widgets} möglich, welcher als Kind des \IC{WillPopScope} eingetragen ist.
 Ein \IC{Stack} erlaubt es mehrere Ebenen in der Tiefe anzulegen.
 Das unterste Element soll die Auflistung der Eingabefelder sein.
 Der \IC{SingleChildScrollView} \Z{54-79} bietet einen vertikalen Scrollbereich an, in dem die Eingabefelder in einer \IC{Column} \Z{58-76} untereinander aufgelistet sind.
 Die Ebene, die  über den Eingabefeldern eingeblendet wird, soll die beiden Aktions-Buttons zeichnen.
-Das Widget \IC{Align} erlaubt es, in dieser Ebene festzulegen, wo die Elemente angeordnet sein sollen \Z{80-99}.
-Wie für den \IC{FloatingActionButton} üblich wurde die untere rechte Bildschirm-Ecke gewählt \Z{81}.
-Die Buttons sollen in Zukunft übereinander angeordnet sein, weshalb ein \IC{Column}-Widget zum Einsatz kommt.
+Das \enquote{Widget} \IC{Align} erlaubt es, in dieser Ebene festzulegen, wo die Elemente angeordnet sein sollen \Z{80-99}.
+Wie für den \IC{FloatingActionButton} üblich wurde die untere rechte Bildschirmecke gewählt \Z{81}.
+Die Buttons sollen in Zukunft übereinander angeordnet sein, weshalb ein \IC{Column}-\enquote{Widget} zum Einsatz kommt.
 Zum ersten Mal taucht der Parameter \IC{mainAxisSize} auf.
-Mit dem Argument \IC{MainAxisSize.min} nimmt die \IC{Column} in der Höhe nur so viel Platz ein, wie durch die Kindelemente notwendig. Als bisher einziges Element in der \IC{Column}  taucht nun der \IC{FloatingActionButton} auf \Z{87-95}, der die aktuell eingetragenen Daten abspeichern \Z{92} und zur Übersicht zurückkehren soll \Z{93}. Wenn der Nutzer den Mauszeiger über diesen Button bewegt, wird ein Tooltip angezeigt: "Validiere und speichere Massnahme" \Z{88}. Der Tooltip ist als Konstante angelegt \Z{7}. Das hat vor allem den Grund, dass er auch für den folgenden Integrationstest genutzt wird. Elemente können darin über einen beinhaltenden Text oder Tooltip gefunden werden.
+Mit dem Argument \IC{MainAxisSize.min} nimmt die \IC{Column} in der Höhe nur so viel Platz ein,
+wie durch die Kindelemente notwendig.
+Als bisher einziges Element in der \IC{Column}  taucht nun der \IC{FloatingActionButton} auf \Z{87-95}, der die aktuell eingetragenen Daten abspeichern \Z{92} und zur Übersicht zurückkehren soll \Z{93}.
+Wenn der Nutzer den Mauszeiger über diesen Button bewegt,
+wird ein Tooltip angezeigt: "Validiere und speichere Massnahme" \Z{88}. Der Tooltip ist als Konstante angelegt \Z{7}. Das hat vor allem den Grund,
+dass er auch für den folgenden Integrationstest genutzt wird. Elemente können darin über einen beinhaltenden Text oder Tooltip gefunden werden.
 
 
 
@@ -146,9 +151,9 @@ Bei allen Änderungen, die innerhalb der Selektionskarte erfolgen, sollen die gl
 Sollte also der Wert des letzten Status im \enquote{ViewModel} verfügbar sein \Z{65}, so wird er als Startwert dem Parameter \IC{initialValue} \Z{64-67} übergeben.
 Dabei ist zu beachten, dass das Argument eine Menge ist.
 Sie wird mit den  öffnenden und schließenden geschweiften Klammern erstellt.
-Das collection-if wird hier verwendet, um genau ein Element diesem \IC{Set}-Literal hinzuzufügen, sollte es nicht \IC{null} sein.
-Ist das Element allerdings \IC{null}, so bleibt das \IC{Set}-Literal einfach leer.
-Für mehr Informationen zum Set-Literal und dem collection-if siehe \HP{Kapitel einfügen}.
+Das \enquote{collection if} wird hier verwendet, um genau ein Element diesem \enquote{Set}-Literal hinzuzufügen, sollte es nicht \IC{null} sein.
+Ist das Element allerdings \IC{null}, so bleibt das \enquote{Set}-Literal einfach leer.
+Für mehr Informationen zum \enquote{Set}-Literal und dem \enquote{collection if} siehe \HP{Kapitel einfügen}.
 
 
 Wenn der Benutzer eine Auswahloption selektiert, so  wird die dementsprechende anonyme Funktion aufgerufen.
@@ -170,7 +175,7 @@ Deshalb reicht es aus, den Wert bei Selektion zu ersetzen und ihn bei Deselektio
 
 Unterhalb der ersten Selektionskarte soll das Eingabefeld für den Maßnahmentitel erscheinen \Z{73}.
 Listing \ref{lst:Schritt1DieFunktionCreateMassnahmenTitelTextFormField} zeigt die Implementierung der verschachtelten Funktion zum Zeichnen dieses Eingabefeldes.
- Es handelt sich um das Widget \IC{TextFormField} \Z{34-41}.
+ Es handelt sich um das \enquote{Widget} \IC{TextFormField} \Z{34-41}.
 
 
 \begin{alexlisting}{Schritt 1}{Die Funktion \enquote{createMassnahmenTitelTextFormField} in Schritt 1}
@@ -196,8 +201,11 @@ Mit dem benannten Konstruktor \IC{value} der Klasse \IC{Future} ist es möglich,
  Der Wahrheitswert ist damit in einem \IC{Future}-Objekt gekapselt und steht ohne Verzögerung zur Verfügung.
 Aktuell soll die Maßnahme lediglich abgespeichert werden \Z{25}, da noch keine Validierung erfolgt.
 
-Der Benutzer erhält noch eine Mitteilung, dass die Maßnahme erstellt wurde.
-Das aktuelle \IC{Scaffold}-Objekt kann über \IC{ScaffoldMessenger.of} adressiert werden \Z{20}. Sollte bereits eine Mitteilung vorliegen, wird diese wieder versteckt, um Platz für die neue zu schaffen \Z{21}. Anschließend wird eine sogenannte \IC{Snackbar} mit dem entsprechenden Text angezeigt \Z{22-23}.
+Der Benutzer erhält noch eine Mitteilung,
+dass die Maßnahme erstellt wurde.
+Das aktuelle \IC{Scaffold}-Objekt kann über \IC{ScaffoldMessenger.of} adressiert werden \Z{20}. Sollte bereits eine Mitteilung vorliegen,
+wird diese wieder versteckt,
+um Platz für die neue zu schaffen \Z{21}. Anschließend wird eine sogenannte \IC{Snackbar} mit dem entsprechenden Text angezeigt \Z{22-23}.
 
 \begin{alexlisting}{Schritt 1}{Die Funktion saveRecordAndGoBackToOverviewScreen}
   {Quellcode/Schritt-1/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}

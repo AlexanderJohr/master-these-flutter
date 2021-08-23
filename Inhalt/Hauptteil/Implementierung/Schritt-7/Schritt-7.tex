@@ -89,7 +89,7 @@ In der Initialisierungsliste erfolgt die Initialisierung der Instanzvariable \IC
 Sollte der im Konstruktor übergebene Parameter nicht \IC{null} sein,
 so wird er der Instanzvariable zugewiesen.
 Ist der aber \IC{null},
-so sorgt die \enquote{If-null Expression} dafür,
+so sorgt die \enquote{if-null Expression} dafür,
 dass der Standardwert rechts von dem \IC{??} zugewiesen wird:
 die Funktion \IC{defaultChoiceMatcherStrategy} \IC{46}.
 Diese Funktion kapselt die Überprüfung der Abhängigkeiten
@@ -218,7 +218,7 @@ denn er verwendet die konkrete Strategie \IC{defaultChoiceMatcherStrategy} für 
 Sollte nämlich ein Argument für den Parameter \IC{choiceMatcher} übergeben werden \Z{122},
 so wird es auch für die Validierung verwendet \Z{130}.
 Ist das Argument aber nicht gesetzt und damit \IC{null},
-so sorgt die \enquote{If-null Expression} dafür,
+so sorgt die \enquote{if-null Expression} dafür,
 dass die \IC{defaultChoiceMatcherStrategy} für die Validierung verwendet wird.
 
 Außerdem erstellt \IC{MassnahmenDetailScreen} die konkrete Strategie \enquote{nebenzieleChoiceMatcherStrategy}, wie in Listing \ref{lst:Schritt7buildMultiSelectionCardZielsetzungLandChoice} zu sehen ist.
@@ -232,7 +232,7 @@ Außerdem erstellt \IC{MassnahmenDetailScreen} die konkrete Strategie \enquote{n
 Der Aufruf \IC{buildMultiSelectionCard} wird um die Übergabe einer anonymen Funktion für den Parameter \IC{choiceMatcher} erweitert \Z{224-239}.
 In der ersten Fallunterscheidung wird überprüft,
 ob die gewählte Option ein tatsächliches \enquote{Nebenziele} ist \Z{225}.
-Dies kann über die Getter-Methode \IC{hasRealValue} abgefragt werden.
+Dies kann über die \enquote{Getter}-Methode \IC{hasRealValue} abgefragt werden.
 Ist dies nicht der Fall,
 so handelt es sich um die Auswahloptionen \enquote{keine Angabe/Vorgabe} bzw. \enquote{bitte um Unterstützung},
 weshalb \IC{true} zurückgegeben werden kann \Z{237},
@@ -241,7 +241,7 @@ Sollte sich dagegen um ein tatsächliches \enquote{Nebenziele} handeln,
 so überprüft die nächste Fallunterscheidung,
 ob das \enquote{Hauptziel} entweder nicht gesetzt ist
 oder mit einem nicht tatsächlichen \enquote{Hauptziel} belegt ist \Z{226-228}.,
-Dazu wird die Getter-Methode \IC{hasNoRealValue} benutzt,
+Dazu wird die \enquote{Getter}-Methode \IC{hasNoRealValue} benutzt,
 welche als Gegenteil zu \IC{hasRealValue} fungiert,
 und dementsprechend \IC{true} zurückgibt wenn die Auswahloption entweder \enquote{keine Angabe/Vorgabe} oder \enquote{bitte um Unterstützung} ist \Z{226-228}.
 Sollte das \enquote{Hauptziel} keinen tatsächlichen Wert einer Zielsetzung enthalten,
@@ -262,7 +262,9 @@ An diesem Beispiel wird auch offensichtlich,
 welchen Nutzen die Generalisierung der Klasse \IC{SelectionCard} über den Typ Parameter \IC{ChoiceType} hat .
 Über eine Reihe von Methoden- und Konstruktoraufrufen gelangt das Typargument \IC{ZielsetzungLandChoice} in die Klasse \IC{SelectionCard} und somit auch zu der Instanzvariable \IC{choiceMatcher}. Zuerst wird es der Methode \IC{buildMultiSelectionCard} übergeben \Z{221}. 
 Mit dem Konstruktoraufruf \IC{SelectionCard<ChoiceType>} wird es an die Selektionskarte weitergereicht (Siehe Listing \ref{lst:Schritt7buildMultiSelectionCard} in Zeile 157 in Anhang \ref{appendix:Schritt7Anhang} auf Seite \pageref{lst:Schritt7buildMultiSelectionCard}.
-Schließlich erhält die Instanzvariable das Typargument über die Deklaration \IC{ChoiceMatcher<ChoiceType> choiceMatcher} \LstZ{\ref{lst:Schritt7SelectionCard}}{31}. Der Typparameter wird durch das Typargument ersetzt. Somit hat \IC{choiceMatcher} dann den Typ \IC{ChoiceMatcher<ZielsetzungLandChoice>}.
+Schließlich erhält die Instanzvariable das Typargument über die Deklaration \IC{ChoiceMatcher<ChoiceType> choiceMatcher} \LstZ{\ref{lst:Schritt7SelectionCard}}{31}.
+Der Typparameter wird durch das Typargument ersetzt.
+Somit hat \IC{choiceMatcher} dann den Typ \IC{ChoiceMatcher<ZielsetzungLandChoice>}.
 Damit handelt es sich also auch bei dem ersten Parameter \IC{choice} der anonymen Funktion --
 die dem Parameter \IC{choiceMatcher} übergeben wird \LstZ{\ref{lst:Schritt7buildMultiSelectionCardZielsetzungLandChoice}}{224} -- um den Typ \IC{ZielsetzungLandChoice}.
 Aus diesem Grund können die Methoden \IC{hasRealValue} \Z{225} und \IC{hasNoRealValue} \Z{228} auf dem Objekt \IC{choice} aufrufen werden,
@@ -295,7 +297,7 @@ class ZielsetzungLandChoice extends Choice {
 
   bool get hasNoRealValue => !hasRealValue;
 \end{minted}
-    \alexlistingcaption{Schritt 7}{Die Getter-Methoden \enquote{hasRealValue} und \enquote{hasNoRealValue}} {Quellcode/Schritt-7/conditional_form/lib/choices/choices.dart}
+    \alexlistingcaption{Schritt 7}{Die \enquote{Getter}-Methoden \enquote{hasRealValue} und \enquote{hasNoRealValue}} {Quellcode/Schritt-7/conditional_form/lib/choices/choices.dart}
     \label{lst:Schritt7ZielsetzungLandChoice}
   \end{listing}
 \fi

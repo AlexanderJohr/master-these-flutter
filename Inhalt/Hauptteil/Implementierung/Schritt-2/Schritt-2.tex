@@ -3,7 +3,7 @@
 
 
 
-In diesem Schritt sollen weitere Selektions-Karten für die Einzelauswahlfelder hinzugefügt werden.
+In diesem Schritt sollen weitere Selektionskarten für die Einzelauswahlfelder hinzugefügt werden.
 Es handelt sich um die Einzelauswahlfelder für Förderklasse, Kategorie, Zielfläche, Zieleinheit und Zielsetzung.
 In der Eingabemaske sollen sie in einer Rubrik mit der Überschrift  Maßnahmencharakteristika auftauchen \Abb{\ref{fig:Schritt2Eingabemaske}}.
 
@@ -24,12 +24,13 @@ In den Tabellen im Übersichtsbildschirm erscheinen  die Werte  rechts  vom Maß
 
 \end{alexfigure}
 
-Darüber hinaus soll das Erstellen der Selektions-Karten in einer Methode abstrahiert werden.
-Das ermöglicht die Konfiguration der Selektions-Karten in der aufrufenden Eingabemaske, ohne dafür die Klasse \IC{SelectionCard} ändern zu müssen.
+Darüber hinaus soll das Erstellen der Selektionskarten in einer Methode abstrahiert werden.
+Das ermöglicht die Konfiguration der Selektionskarten in der aufrufenden Eingabemaske, ohne dafür die Klasse \IC{SelectionCard} ändern zu müssen.
 
 \subsection{Integrationstest erweitern}
 
-Noch vor der Implementierung der Änderungen soll zunächst der Integrationstest um die zusätzlichen Selektionen erweitert werden \Lst{\ref{lst:Schritt2IntegrationstestKlickt5WeitereKarten}}. Nach den letzten Eingaben und bevor der Button zum Speichern ausgelöst wird, erfolgt die Selektion der fünf Optionen \Z{106-119}.   
+Noch vor der Implementierung der Änderungen soll zunächst der Integrationstest um die zusätzlichen Selektionen erweitert werden \Lst{\ref{lst:Schritt2IntegrationstestKlickt5WeitereKarten}}.
+Nach den letzten Eingaben und bevor der Button zum Speichern ausgelöst wird, erfolgt die Selektion der fünf Optionen \Z{106-119}.
 
 \begin{alexlisting}{Schritt 2}{Der Integrationstest klickt 5 weitere Karten}
   {Quellcode/Schritt-2/conditional_form/integration_test/app_test.dart}
@@ -37,8 +38,8 @@ Noch vor der Implementierung der Änderungen soll zunächst der Integrationstest
   \label{lst:Schritt2IntegrationstestKlickt5WeitereKarten}
 \end{alexlisting}
 
-Nach der Auswahl und der anschließenden Serialisierung sollen die entsprechenden Werte auch in der JSON-Datei auftauchen.
-Die JSON-Datei erhält ein neues Schlüssel-Werte-Paar mit dem Schlüssel \IC{'massnahmenCharakteristika'} und einem Objekt für die fünf neuen Werte \LstZ{\ref{lst:Schritt2ExpectedJson}}{135-141}.
+Nach der Auswahl und der anschließenden Serialisierung sollen die entsprechenden Werte auch in der \enquote{JSON}-Datei auftauchen.
+Die \enquote{JSON}-Datei erhält ein neues Schlüssel-Werte-Paar mit dem Schlüssel \IC{'massnahmenCharakteristika'} und einem Objekt für die fünf neuen Werte \LstZ{\ref{lst:Schritt2ExpectedJson}}{135-141}.
 
 \begin{alexlisting}{Schritt 2}{Der Integrationstest überprüft im \enquote{JSON}-Dokument den Schlussel \enquote{massnahmenCharakteristika}}
   {Quellcode/Schritt-2/conditional_form/integration_test/app_test.dart}
@@ -48,8 +49,8 @@ Die JSON-Datei erhält ein neues Schlüssel-Werte-Paar mit dem Schlüssel \IC{'m
 
 Der Integrationstest ist damit aktualisiert.
 Die Implementierung ist jedoch noch gar nicht erfolgt.
-Die Selektions-Karten können nicht angeklickt werden, da sie in der Oberfläche noch nicht auftauchen.
-Die neuen Schlüssel-Werte-Paare können nicht in der Hash-Tabelle auftauchen, da sie dem entsprechenden Wertetyp noch nicht hinzugefügt wurden.
+Die Selektionskarten können nicht angeklickt werden, da sie in der Oberfläche noch nicht auftauchen.
+Die neuen Schlüssel-Werte-Paare können nicht in der Hashtabelle auftauchen, da sie dem entsprechenden Wertetyp noch nicht hinzugefügt wurden.
 Der Integrationstest kann also unmöglich erfolgreich sein.
 Der Quellcode kann noch nicht einmal kompilieren, da die entsprechenden Symbole -- wie zum Beispiel \IC{FoerderklasseChoice} -- fehlen.
 Das hier angewendete Vorgehensmodell wird Test-Driven Development -- deutsch Testgetriebene Entwicklung -- genannt.
@@ -85,8 +86,9 @@ Die Liste aller hinzugefügten Auswahloptionen in diesem Schritt ist im Anhang \
 
 \subsection{Aktualisierung des \enquote{Models}}
 
-Damit der Hash-Tabelle der Schlüssel \IC{'massnahmenCharakteristika'} hinzugefügt wird, muss der entsprechende Eintrag im Wertetyp \IC{Massnahme} hinzugefügt werden.
-Die Getter-Methode \IC{massnahmenCharakteristika}, die das Paket \enquote{built_value} dazu veranlasst, den Quellcode für die Eigenschaft zu generieren, wird unterhalb der Getter-Methode \IC{identifikatoren} hinzugefügt \LstZ{\ref{lst:Schritt2massnahmenCharakteristikaWirdMMassnahmeHinzugefuegt}}{15}.
+Damit der Hashtabelle der Schlüssel \IC{'massnahmenCharakteristika'} hinzugefügt wird, muss der entsprechende Eintrag im Wertetyp \IC{Massnahme} hinzugefügt werden.
+Die \enquote{Getter}-Methode \IC{massnahmenCharakteristika}, die das Paket \enquote{built_value} dazu veranlasst,
+den Quellcode für die Eigenschaft zu generieren, wird unterhalb der \enquote{Getter}-Methode \IC{identifikatoren} hinzugefügt \LstZ{\ref{lst:Schritt2massnahmenCharakteristikaWirdMMassnahmeHinzugefuegt}}{15}.
 
 \begin{alexlisting}{Schritt 2}{\enquote{massnahmenCharakteristika} wird dem Wertetyp \enquote{Massnahme} hinzugefügt}
   {Quellcode/Schritt-2/conditional_form/lib/data_model/massnahme.dart}
@@ -95,7 +97,7 @@ Die Getter-Methode \IC{massnahmenCharakteristika}, die das Paket \enquote{built_
 \end{alexlisting}
 
 Bei dem Datentyp handelt es sich um einen weiteren Wertetyp: \IC{MassnahmenCharakteristika}, welcher in Listing \ref{lst:Schritt2WerteTypMassnahmencharakteristika} zu sehen ist.
-Die darin enthaltenen Getter-Methoden sind dagegen lediglich gewöhnliche Zeichenketten, da sie die Abkürzungen der ausgewählten Optionen abspeichern.
+Die darin enthaltenen \enquote{Getter}-Methoden sind dagegen lediglich gewöhnliche Zeichenketten, da sie die Abkürzungen der ausgewählten Optionen abspeichern.
 Da sie auch im Entwurfsmodus nicht gefüllt sein können, wird ihnen mit dem Suffix \IC{?} erlaubt, Null-Werte anzunehmen \Z{70-74}.
 
 \begin{alexlisting}{Schritt 2}{Der Wertetyp \enquote{Massnahmencharakteristika}}
@@ -109,7 +111,8 @@ Der Befehl \IC{flutter pub run build_runner build} generiert den Quellcode für 
 
 \subsection{Aktualisierung der Übersichtstabelle}
 
-Der Übersichtsbildschirm bzw. die Übersichtstabelle können auf das \enquote{Model} ohne den Umweg über das \enquote{ViewModel} zugreifen. Der Tabellenkopf listet die Überschriften der hinzugefügten Werte auf \LstZ{\ref{lst:Schritt2MassnahmencharakteristikaEerdenDemTabellenkopfHinzugefuegt}}{23-27}.
+Der Übersichtsbildschirm bzw. die Übersichtstabelle können auf das \enquote{Model} ohne den Umweg über das \enquote{ViewModel} zugreifen.
+Der Tabellenkopf listet die Überschriften der hinzugefügten Werte auf \LstZ{\ref{lst:Schritt2MassnahmencharakteristikaEerdenDemTabellenkopfHinzugefuegt}}{23-27}.
 
 \begin{alexlisting}{Schritt 2}{Die \enquote{Maßnahmencharakteristika} werden dem Tabellenkopf hinzugefügt}
   {Quellcode/Schritt-2/conditional_form/lib/widgets/massnahmen_table.dart}
@@ -117,10 +120,13 @@ Der Übersichtsbildschirm bzw. die Übersichtstabelle können auf das \enquote{M
   \label{lst:Schritt2MassnahmencharakteristikaEerdenDemTabellenkopfHinzugefuegt}
 \end{alexlisting}
 
-Für jede Zeile der Tabelle werden weitere selektierbare Zellen generiert \LstZ{\ref{lst:Schritt2MassnahmencharakteristikaWerdenDemTabellenkoerperHinzugefuegt}}{33-42}. Im Unterschied zur Zelle des Maßnahmen-Titels können die Getter-Methoden der Maßnahmen-Charakteristika jedoch Null-Werte enthalten.
-Doch das \IC{Text}-Widget akzeptiert keine Null-Werte als Argument. Deshalb wird der Operator \IC{??} verwendet. Dabei handelt es sich um die \enquote{If-null Expression}. 
+Für jede Zeile der Tabelle werden weitere selektierbare Zellen generiert \LstZ{\ref{lst:Schritt2MassnahmencharakteristikaWerdenDemTabellenkoerperHinzugefuegt}}{33-42}.
+Im Unterschied zur Zelle des Maßnahmentitels können die \enquote{Getter}-Methoden der Maßnahmen-Charakteristika jedoch Null-Werte enthalten.
+Doch das \IC{Text}-\enquote{Widget} akzeptiert keine Null-Werte als Argument.
+Deshalb wird der Operator \IC{??} verwendet. Dabei handelt es sich um die \enquote{if-null Expression}. 
 Sie überprüft den Ausdruck links vom Operator \IC{??}. Ist er \IC{null}, so wird der Wert rechts vom Operator verwendet.
-Ist der dagegen nicht \IC{null}, so wird der Wert links vom Operator \IC{??} genutzt. \DartSpec{165} Ist der Wert also nicht gefüllt, so wird in allen Fällen der leere String \IC{""} als Argument übergeben.
+Ist der dagegen nicht \IC{null}, so wird der Wert links vom Operator \IC{??} genutzt.
+\DartSpec{165} Ist der Wert also nicht gefüllt, so wird in allen Fällen der leere \IC{String} \IC{""} als Argument übergeben.
 
 \begin{alexlisting}{Schritt 2}{Die \enquote{Maßnahmencharakteristika} werden dem Tabellenkörper hinzugefügt}
   {Quellcode/Schritt-2/conditional_form/lib/widgets/massnahmen_table.dart}
@@ -147,10 +153,15 @@ Die Konvertierung des \enquote{Models} in das \enquote{ViewModel} erfolgt wie ge
   \label{lst:Schritt2KonvertierungDesModelsInDasViewModel}
 \end{alexlisting}
 
-Wenn in jeder Zeile der Ausdruck \IC{model.massnahmenCharakteristika} stehen würde, wäre die Leserlichkeit stark eingeschränkt. Das würde für weitere Zeilenumbrüche sorgen. Deshalb speichert die lokale Variable \IC{mc} den Ausdruck zwischen und kann in den folgenden Zeilen verwendet werden \Z{27}.
+Wenn in jeder Zeile der Ausdruck \IC{model.massnahmenCharakteristika} stehen würde, wäre die Leserlichkeit stark eingeschränkt.
+Das würde für weitere Zeilenumbrüche sorgen.
+Deshalb speichert die lokale Variable \IC{mc} den Ausdruck zwischen und kann in den folgenden Zeilen verwendet werden \Z{27}.
 Damit die variable \IC{mc} jedoch nur Gültigkeit für die folgenden Zeilen hat, begrenzen die öffnenden und schließenden geschweiften Klammern den Sichtbarkeitsbereich \Z{26,37}.
 
-Bei der Konvertierung des \enquote{Models} in das \enquote{ViewModel} wurde bereits beim letzten Schritt die Methode \IC{update} verwendet, um das Objekt des geschachtelten Wertetyps \IC{Identifikatoren} anzupassen \LstZ{\ref{lst:Schritt2KonvertierungDesViewModelsInDasModel}}{44}. So ist es auch für den geschachtelten Wertetyp \IC{MassnahmenCharakteristika} der Fall. Der Unterschied: Es handelt sich um Auswahloptionen, weshalb nur die Abkürzungen abgespeichert werden \Z{46-50}, so wie es auch schon bei \IC{letzterStatus} geschah \Z{42}.
+Bei der Konvertierung des \enquote{Models} in das \enquote{ViewModel} wurde bereits beim letzten Schritt die Methode \IC{update} verwendet,
+um das Objekt des geschachtelten Wertetyps \IC{Identifikatoren} anzupassen \LstZ{\ref{lst:Schritt2KonvertierungDesViewModelsInDasModel}}{44}.
+So ist es auch für den geschachtelten Wertetyp \IC{MassnahmenCharakteristika} der Fall.
+Der Unterschied: Es handelt sich um Auswahloptionen, weshalb nur die Abkürzungen abgespeichert werden \Z{46-50}, so wie es auch schon bei \IC{letzterStatus} geschah \Z{42}.
 
 \begin{alexlisting}{Schritt 2}{Konvertierung des \enquote{ViewModels} in das \enquote{Model} für die \enquote{Maßnahmencharakteristika}}
   {Quellcode/Schritt-2/conditional_form/lib/screens/massnahmen_detail/massnahmen_form_view_model.dart}
@@ -182,7 +193,10 @@ Der Grund, warum die Klasse \IC{SelectionCard} den Titel aus der Menge der Auswa
 Es muss nicht immer der Fall sein, dass der Titel auf diese Art und Weise ausgelesen werden kann.
 Somit erlaubt die Methode \IC{buildSelectionCard} nun den Aufruf trotzdem zu vereinfachen und die Anwendbarkeit der Klasse \IC{SelectionCard} durch deren direkte Veränderung nicht einzuschränken.
 
-Das betrifft auch das \enquote{ViewModel}. Durch die Methode \IC{buildSelectionCard} muss lediglich das \IC{BehaviorSubject} übergeben werden. Die Methode kümmert sich bei Initialisierung der Selektionskarte um das Auslesen des aktuellen Wertes \Z{54-56} und die Aktualisierung dessen über die Methoden \IC{onSelect} \Z{57} und \IC{onDeselect} \Z{58}. Damit ist die Erstellung der Selektionskarte für den letzten Status mit 3 Zeilen \Lst{\ref{lst:Schritt2BuildSelectionCardLetzterStatusChoices}} nun deutlich kürzer als die ursprüngliche Variante mit 11 Zeilen (siehe Seite \pageref{lst:Schritt1AusgabeDerFormularfelder}).
+Das betrifft auch das \enquote{ViewModel}.
+Durch die Methode \IC{buildSelectionCard} muss lediglich das \IC{BehaviorSubject} übergeben werden.
+Die Methode kümmert sich bei Initialisierung der Selektionskarte um das Auslesen des aktuellen Wertes \Z{54-56} und die Aktualisierung dessen über die Methoden \IC{onSelect} \Z{57} und \IC{onDeselect} \Z{58}.
+Damit ist die Erstellung der Selektionskarte für den letzten Status mit 3 Zeilen \Lst{\ref{lst:Schritt2BuildSelectionCardLetzterStatusChoices}} nun deutlich kürzer als die ursprüngliche Variante mit 11 Zeilen (siehe Seite \pageref{lst:Schritt1AusgabeDerFormularfelder}).
 
 \begin{alexlisting}{Schritt 2}{Der Aufruf von \enquote{buildSelectionCard} für die Menge \enquote{letzterStatusChoices}}
   {Quellcode/Schritt-2/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
@@ -190,7 +204,7 @@ Das betrifft auch das \enquote{ViewModel}. Durch die Methode \IC{buildSelectionC
   \label{lst:Schritt2BuildSelectionCardLetzterStatusChoices}
 \end{alexlisting}
 
-Unterhalb des Eingabefeldes für den Maßnahmen-Titel können nun die weiteren Selektionskarten ergänzt werden, die jeweils ebenfalls bloß 3 Zeilen einnehmen und damit eine hohe Übersichtlichkeit gewährleisten \LstZ{\ref{lst:Schritt2MassnahmencharakteristikaSelektionskartenWerdenErgaenzt}}{82-98}.
+Unterhalb des Eingabefeldes für den Maßnahmentitel können nun die weiteren Selektionskarten ergänzt werden, die jeweils ebenfalls bloß 3 Zeilen einnehmen und damit eine hohe Übersichtlichkeit gewährleisten \LstZ{\ref{lst:Schritt2MassnahmencharakteristikaSelektionskartenWerdenErgaenzt}}{82-98}.
 
 \begin{alexlisting}{Schritt 2}{Die \enquote{Maßnahmencharakteristika} Selektionskarten werden ergänzt}
   {Quellcode/Schritt-2/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
@@ -200,7 +214,11 @@ Unterhalb des Eingabefeldes für den Maßnahmen-Titel können nun die weiteren S
 
 Auffällig hierbei sind Überschriften \Z{80, 82} und eine Zwischenüberschrift \Z{89} über den Selektionskarten. Sie sorgen für sichtbare Gruppierungen in der Oberfläche.
 
-Die Hilfsfunktionen \IC{buildSectionHeadline} und \IC{buildSubSectionHeadline} bauen die Überschriften \LstZ{\ref{lst:Schritt2buildSectionHeadlineBuildSubSectionHeadline}}{131-134} bzw. Zwischenüberschriften \Z{136-139} mit unterschiedlichen Abständen zur Außenkante \Z{132, 137} und unterschiedlichen Schriftgrößen \Z{133, 138}. Der benannte Konstruktor \IC{fromLTRB} der Klasse \IC{EdgeInsets} erlaubt, die Abstände zur Außenkante im Uhrzeigersinn für jede Seite festzulegen. Die Abkürzung \IC{LTRB} steht dabei für left, top, right, bottom -- deutsch links, oben, rechts, unten.
+Die Hilfsfunktionen \IC{buildSectionHeadline}
+und \IC{buildSubSectionHeadline} bauen die Überschriften \LstZ{\ref{lst:Schritt2buildSectionHeadlineBuildSubSectionHeadline}}{131-134} bzw. Zwischenüberschriften \Z{136-139} mit unterschiedlichen Abständen zur Außenkante \Z{132, 137}
+und unterschiedlichen Schriftgrößen \Z{133, 138}.
+Der benannte Konstruktor \IC{fromLTRB} der Klasse \IC{EdgeInsets} erlaubt, die Abstände zur Außenkante im Uhrzeigersinn für jede Seite festzulegen.
+Die Abkürzung \IC{LTRB} steht dabei für left, top, right, bottom -- deutsch links, oben, rechts, unten.
 
 \begin{alexlisting}{Schritt 2}{Die Hilfsfunktionen \enquote{buildSectionHeadline} und \enquote{buildSubSectionHeadline}}
   {Quellcode/Schritt-2/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
@@ -210,5 +228,5 @@ Die Hilfsfunktionen \IC{buildSectionHeadline} und \IC{buildSubSectionHeadline} b
 
 Damit ist die Implementierung für Schritt 2 beendet.
 
-Der Integrationstest kann nun verifizieren, dass die Eingaben erfolgen und in der JSON-Datei auftauchen werden.
+Der Integrationstest kann nun verifizieren, dass die Eingaben erfolgen und in der \enquote{JSON}-Datei auftauchen werden.
 
