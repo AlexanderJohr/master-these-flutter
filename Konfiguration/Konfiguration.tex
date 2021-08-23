@@ -256,19 +256,19 @@
 \newenvironment{fremdeslisting}[6]
 {%
     \begin{listing}[ht]%
+      \begin{codeFrame}
       \ifIncludeFigures
       \inputminted[#4]{#6}{#3}%
       \fi
-      \vspace{-18pt}
+    \end{codeFrame}
+      %\vspace{-18pt}
 
       \ifIncludeFigures
       \fremdeslistingcaption{#1}{#2}{#3}{#5}%
       \else
       \caption[#1]{#2}
       \fi
-      
-      \fremdeslistingcaption{#1}{#2}{#3}{#5}%
-      }%
+            }%
       {%
     \end{listing}%
 }
