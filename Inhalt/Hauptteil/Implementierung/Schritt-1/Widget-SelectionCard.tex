@@ -79,8 +79,8 @@ Die \IC{replace}-Methode des \enquote{Builder}-Objekts kann die gesamte Kollekti
 Die \IC{replace}-Methode wandelt das Argument dafür automatisch um.
 Durch Zuweisung des neuen Wertes erhält das \enquote{ViewModel} der \IC{SelectionCard} ein neues Ereignis.
 Damit werden die \IC{SelectionCard} und der dazugehörige Auswahlbildschirm aktualisiert.
-Während der Erstellung dieser Arbeit wurde versucht, die SelectionCard als ein \IC{StatefulWidget} zu erstellen.
-Mittels \IC{setState} sollte dafür gesorgt werden, dass sowohl SelectionCard als auch der Auswahlbildschirm aktualisiert werden.
+Während der Erstellung dieser Arbeit wurde versucht, die \IC{SelectionCard} als ein \IC{StatefulWidget} zu erstellen.
+Mittels \IC{setState} sollte dafür gesorgt werden, dass sowohl \IC{SelectionCard} als auch der Auswahlbildschirm aktualisiert werden.
 Doch bei diesem Vorgehen zeichnet sich nur die \IC{SelectionCard} neu.
 Der Auswahlbildschirm bleibt unverändert, denn er wird zwar von der \IC{SelectionCard} gebaut, doch ist er nicht tatsächlich Kind der \IC{SelectionCard}.
 In Wahrheit ist der Auswahlbildschirm ein Kind von \IC{MaterialApp} -- genau wie \IC{MassnahmenMasterScreen} und \IC{MassnahmenDetailScreen}.
