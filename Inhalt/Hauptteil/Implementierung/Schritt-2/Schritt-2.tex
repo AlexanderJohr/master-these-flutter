@@ -48,7 +48,7 @@ Die JSON-Datei erhält ein neues Schlüssel-Werte-Paar mit dem Schlüssel \IC{'m
 
 Der Integrationstest ist damit aktualisiert.
 Die Implementierung ist jedoch noch gar nicht erfolgt.
-Die Selektions-Karten können nicht geklickt werden, da sie in der Oberfläche noch nicht auftauchen.
+Die Selektions-Karten können nicht angeklickt werden, da sie in der Oberfläche noch nicht auftauchen.
 Die neuen Schlüssel-Werte-Paare können nicht in der Hash-Tabelle auftauchen, da sie dem entsprechenden Wertetyp noch nicht hinzugefügt wurden.
 Der Integrationstest kann also unmöglich erfolgreich sein.
 Der Quellcode kann noch nicht einmal kompilieren, da die entsprechenden Symbole -- wie zum Beispiel \IC{FoerderklasseChoice} -- fehlen.
@@ -147,7 +147,7 @@ Die Konvertierung des \enquote{Models} in das \enquote{ViewModel} erfolgt wie ge
   \label{lst:Schritt2KonvertierungDesModelsInDasViewModel}
 \end{alexlisting}
 
-Wenn in jeder Zeile der Ausdruck \IC{model.massnahmenCharakteristika} stehen würde, wäre die Leserlichkeit stark eingeschränkt. Das wurde für weitere Zeilenumbrüche sorgen. Deshalb speichert die lokale Variable \IC{mc} den Ausdruck zwischen und kann in den folgenden Zeilen verwendet werden \Z{27}.
+Wenn in jeder Zeile der Ausdruck \IC{model.massnahmenCharakteristika} stehen würde, wäre die Leserlichkeit stark eingeschränkt. Das würde für weitere Zeilenumbrüche sorgen. Deshalb speichert die lokale Variable \IC{mc} den Ausdruck zwischen und kann in den folgenden Zeilen verwendet werden \Z{27}.
 Damit die variable \IC{mc} jedoch nur Gültigkeit für die folgenden Zeilen hat, begrenzen die öffnenden und schließenden geschweiften Klammern den Sichtbarkeitsbereich \Z{26,37}.
 
 Bei der Konvertierung des \enquote{Models} in das \enquote{ViewModel} wurde bereits beim letzten Schritt die Methode \IC{update} verwendet, um das Objekt des geschachtelten Wertetyps \IC{Identifikatoren} anzupassen \LstZ{\ref{lst:Schritt2KonvertierungDesViewModelsInDasModel}}{44}. So ist es auch für den geschachtelten Wertetyp \IC{MassnahmenCharakteristika} der Fall. Der Unterschied: Es handelt sich um Auswahloptionen, weshalb nur die Abkürzungen abgespeichert werden \Z{46-50}, so wie es auch schon bei \IC{letzterStatus} geschah \Z{42}.
@@ -178,11 +178,11 @@ Außerdem wird dieselbe Menge unverändert an die SelektionCard weitergegeben \Z
   \label{lst:Schritt2MassnahmencharakteristikaSelektionskartenWerdenErgaenzt}
 \end{alexlisting}
 
-Der Grund, warum die Klasse \IC{SelectionCard} den Titel aus der Menge der Auswahloption nicht selbständig extrahiert ist, dass die Klasse auf diese Weise auch für mehrere Anwendungsgebiete genutzt werden kann.
+Der Grund, warum die Klasse \IC{SelectionCard} den Titel aus der Menge der Auswahloptionen nicht selbständig extrahiert ist, dass die Klasse auf diese Weise auch für mehrere Anwendungsgebiete genutzt werden kann.
 Es muss nicht immer der Fall sein, dass der Titel auf diese Art und Weise ausgelesen werden kann.
 Somit erlaubt die Methode \IC{buildSelectionCard} nun den Aufruf trotzdem zu vereinfachen und die Anwendbarkeit der Klasse \IC{SelectionCard} durch deren direkte Veränderung nicht einzuschränken.
 
-Das betrifft auch das \enquote{ViewModel}. Durch die Methode \IC{buildSelectionCard} muss lediglich das \IC{BehaviorSubject} übergeben werden. Die Methode kümmert sich bei Initialisierung der Selektionskarte um das Auslesen des aktuellen Wertes \Z{54-56} und die Aktualisierung dessen über die Methoden \IC{onSelect} \Z{57}  \IC{onDeselect} \Z{58}. Damit ist die Erstellung der Selektionskarte für den letzten Status mit 3 Zeilen \Lst{\ref{lst:Schritt2BuildSelectionCardLetzterStatusChoices}} nun deutlich kürzer als die ursprüngliche Variante mit 11 Zeilen (siehe Seite \pageref{lst:Schritt1AusgabeDerFormularfelder}).
+Das betrifft auch das \enquote{ViewModel}. Durch die Methode \IC{buildSelectionCard} muss lediglich das \IC{BehaviorSubject} übergeben werden. Die Methode kümmert sich bei Initialisierung der Selektionskarte um das Auslesen des aktuellen Wertes \Z{54-56} und die Aktualisierung dessen über die Methoden \IC{onSelect} \Z{57} und \IC{onDeselect} \Z{58}. Damit ist die Erstellung der Selektionskarte für den letzten Status mit 3 Zeilen \Lst{\ref{lst:Schritt2BuildSelectionCardLetzterStatusChoices}} nun deutlich kürzer als die ursprüngliche Variante mit 11 Zeilen (siehe Seite \pageref{lst:Schritt1AusgabeDerFormularfelder}).
 
 \begin{alexlisting}{Schritt 2}{Der Aufruf von \enquote{buildSelectionCard} für die Menge \enquote{letzterStatusChoices}}
   {Quellcode/Schritt-2/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
@@ -200,7 +200,7 @@ Unterhalb des Eingabefeldes für den Maßnahmen-Titel können nun die weiteren S
 
 Auffällig hierbei sind Überschriften \Z{80, 82} und eine Zwischenüberschrift \Z{89} über den Selektionskarten. Sie sorgen für sichtbare Gruppierungen in der Oberfläche.
 
-Die Hilfsfunktionen \IC{buildSectionHeadline} und \IC{buildSubSectionHeadline} bauen die Überschriften \LstZ{\ref{lst:Schritt2buildSectionHeadlineBuildSubSectionHeadline}}{131-134} bzw. Zwischenüberschriften \Z{136-139} mit unterschiedlichen Abständen zur Außenkante \Z{132, 137} und unterschiedlicher Schriftgröße \Z{133, 138}. Der benannte Konstruktor \IC{fromLTRB} der Klasse \IC{EdgeInsets} erlaubt, die Abstände zur Außenkante im Uhrzeigersinn für jede Seite festzulegen. Die Abkürzung \IC{LTRB} steht dabei für left, top, right, bottom -- deutsch links, oben, rechts, unten.
+Die Hilfsfunktionen \IC{buildSectionHeadline} und \IC{buildSubSectionHeadline} bauen die Überschriften \LstZ{\ref{lst:Schritt2buildSectionHeadlineBuildSubSectionHeadline}}{131-134} bzw. Zwischenüberschriften \Z{136-139} mit unterschiedlichen Abständen zur Außenkante \Z{132, 137} und unterschiedlichen Schriftgrößen \Z{133, 138}. Der benannte Konstruktor \IC{fromLTRB} der Klasse \IC{EdgeInsets} erlaubt, die Abstände zur Außenkante im Uhrzeigersinn für jede Seite festzulegen. Die Abkürzung \IC{LTRB} steht dabei für left, top, right, bottom -- deutsch links, oben, rechts, unten.
 
 \begin{alexlisting}{Schritt 2}{Die Hilfsfunktionen \enquote{buildSectionHeadline} und \enquote{buildSubSectionHeadline}}
   {Quellcode/Schritt-2/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}

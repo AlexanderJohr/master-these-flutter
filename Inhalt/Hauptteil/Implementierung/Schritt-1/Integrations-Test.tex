@@ -9,8 +9,8 @@ Der Integrationstest simuliert einen Benutzer, der die Applikation verwendet, um
 Bei Abschluss des Tests soll überprüft werden, ob die  eingegebenen Daten mit den Inhalten der JSON-Datei übereinstimmen.
 
 \enquote{Flutter} erlaubt über einen eigenen Testtreiber solche Integrationstests durchzuführen.
-Dabei wird die Applikation zur Ausführung gebracht, und jeder Schritt so visualisiert, wie es bei der Ausführung der realen Applikation der Fall wäre.
-Der Entwickler hat damit die Möglichkeit, die Eingaben und Interaktionen zu beobachten und gegebenfalls zu bemerken, warum ein Testfall nicht korrekt ausgeführt wird.
+Dabei wird die Applikation zur Ausführung gebracht und jeder Schritt so visualisiert, wie es bei der Ausführung der realen Applikation der Fall wäre.
+Der Entwickler hat damit die Möglichkeit, die Eingaben und Interaktionen zu beobachten und gegebenenfalls zu bemerken, warum ein Testfall nicht korrekt ausgeführt wird.
 
 Das Ergebnis des Integrationstests soll allerdings nicht mit der tatsächlich geschriebenen JSON-Datei überprüft werden.
 Der Test soll nicht tatsächlich Daten auf der Festplatte speichern.
@@ -84,11 +84,11 @@ Der aufrufende Kontext muss die konkrete Klasse dazu nicht kennen.\footcite[Vgl.
 
 
 
-Um die Selektions-Karten zu finden, wird lediglich der Titel- Text benötigt.
+Um die Selektions-Karten zu finden, wird lediglich der Titel-Text benötigt.
 Angenommen der Test ruft \IC{tabSelectionCard} mit dem Argument \IC{letzterStatusChoices} auf, so entspricht \IC{choices.name} dem String \IC{"Status"}. Der Ausdruck \IC{find.text("Status")} lokalisiert den Titel innerhalb der Selektions-Karte \Z{50}.
 
 Die Funktion \IC{expect} erwartet als ersten Parameter einen \IC{Finder} und als zweiten einen sogenannten \enquote{Matcher} \Z{51}.
-Der Aufruf von \IC{expect} mit dem entsprechenden \IC{Finder}-Objekt und dem Matcher \IC{findsWidgets} verifiziert, dass mindestens ein entsprechendes Text Element gefunden wurde.
+Der Aufruf von \IC{expect} mit dem entsprechenden \IC{Finder}-Objekt und dem \enquote{Matcher} \IC{findsWidgets} verifiziert, dass mindestens ein entsprechendes Text Element gefunden wurde.
 
 Wurde das Text-Element gefunden, so muss noch der Vater gesucht werden, der vom Typ \IC{Card} ist \Z{53}.
 Das kann mit \IC{find.ancestor} erfolgen. Über den Parameter \IC{of} erhält er den \IC{Finder} des Kindelements und der Parameter \IC{matching} erhält als Argument die Voraussetzung, die vom Vater-Objekt erfüllt werden soll, als weiteren \IC{Finder}. \IC{find.byType(Card)} sucht also alle Elemente vom Typ \IC{Card}. \IC{find.ancestor} sucht anschließend alle Entsprechungen, in denen eine \IC{Card} ein Vater des \IC{Finder textLabel} ist. Wiederum überprüft die Funktion \IC{expect}, dass die Karte gefunden wurde. Doch dieses Mal muss es genau ein Widget sein, welches mit dem \enquote{Matcher} \IC{findsOneWidget} verifiziert werden kann \Z{54}. Sollte mehr als nur eine Karte gefunden werden, so wäre nicht klar, welche angeklickt werden soll.
@@ -100,7 +100,7 @@ Schließlich sorgt \IC{tab} mit dem \IC{Finder} \IC{card} dafür, dass die Karte
 \IC{tabConfirmButton} funktioniert ähnlich \Lst{\ref{lst:Schritt1HilfsmethodeTabSelectionCard}}.
 Das Finden des Buttons ist jedoch einfacher, da es nur einen Button zum Akzeptieren auf jeder Oberfläche gibt.
 Der Button enthält keinen Text, lässt sich aber auch über seinen Tooltip lokalisieren \Z{62}.
-Die Hilfsfunktion klickt den Button \Z{63} und wartet dann erneut auf Vollendung aller angestoßenen Animationen \Z{64}.
+Die Hilfsfunktion klickt auf den Button \Z{63} und wartet dann erneut auf Vollendung aller angestoßenen Animationen \Z{64}.
 
 \begin{alexlisting}{Schritt 1}{Die Hilfsmethode tabConfirmButton}
   {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
@@ -120,11 +120,11 @@ Erst wenn verifiziert wurde, dass auch nur genau ein Label mit diesem Text exist
 \end{alexlisting}
 
 Ein Klick auf das Text-Label reicht bereits aus, denn damit wird das Vaterelement -- das \IC{CheckboxListTile} -- ebenfalls getroffen.
-Der \IC{tester} holt es in den sichtbaren Bereich \IC{71}, klickt es \IC{72} und wartet auf Abschluss aller Animationen \Z{73}.
+Der \IC{tester} holt es in den sichtbaren Bereich \IC{71}, klickt es \IC{72} an und wartet auf Abschluss aller Animationen \Z{73}.
 Sollte der optionale Parameter \IC{tabConfirm} auf \IC{true} gesetzt sein \Z{75}, so wird der Auswahlbildschirm anschließend direkt wieder geschlossen, nachdem die Option ausgewählt wurde  \Z{76}. 
   
-Schließlich kann mit der Hilfsfunktionen \IC{fillTextFormField} ein Formularfeld über dessen Titel gefunden und der entsprechende übergebende Text eingetragen werden \Lst{\ref{lst:Schritt1HilfsmethodeFillTextFormField}}.
-Die Hilfsfunktionen findet das \IC{TextFormField}, indem sie zunächst nach dem Titel mit \IC{find.text(title)} und anschließend nach dessen Vaterelement vom Typ \IC{TextFormField} sucht \Z{83}. Sollte sowohl der Hinweistext als auch der Titel den gleichen Text enthalten, so kann es sein, dass zwei solche Elemente gefunden werden. In Wahrheit ist es aber zwei Mal dasselbe \IC{TextFormField}. Mit \IC{.first} wird lediglich das erste Element geliefert \Z{85}.
+Schließlich kann mit der Hilfsfunktion \IC{fillTextFormField} ein Formularfeld über dessen Titel gefunden und der entsprechende übergebende Text eingetragen werden \Lst{\ref{lst:Schritt1HilfsmethodeFillTextFormField}}.
+Die Hilfsfunktion findet das \IC{TextFormField}, indem sie zunächst nach dem Titel mit \IC{find.text(title)} und anschließend nach dessen Vaterelement vom Typ \IC{TextFormField} sucht \Z{83}. Sollte sowohl der Hinweistext als auch der Titel den gleichen Text enthalten, so kann es sein, dass zwei solche Elemente gefunden werden. In Wahrheit ist es aber zweimal dasselbe \IC{TextFormField}. Mit \IC{.first} wird lediglich das erste Element geliefert \Z{85}.
 Nachdem feststeht, dass das Element existiert \Z{85} und es in den sichtbaren Bereich gescrollt wurde \Z{87}, gibt der Integrationstest den gewünschten Text in das Eingabefeld ein \Z{88}.
 Anschließend wird erneut auf Abschluss aller Animationen gewartet \Z{89}.
 
@@ -147,7 +147,7 @@ Angenommen der Test wartet nicht ab, so würden die Aktionen noch immer auf den 
   \label{lst:Schritt1ButtonKreierenMassnahmeAusgeloest}
 \end{alexlisting}
 
-Der Integrationstest öffnet nun den Auswahl-Bildschirm, in dem die Selektions-Karte zum Setzen des letzten Statuses angewählt wird \LstZ{\ref{lst:Schritt1LetzterStatusWirdAusgewählt}}{98}.
+Der Integrationstest öffnet nun den Auswahlbildschirm, in dem die Selektions-Karte zum Setzen des letzten Status angewählt wird \LstZ{\ref{lst:Schritt1LetzterStatusWirdAusgewählt}}{98}.
 Anschließend fällt die Wahl auf die Option für \enquote{abgeschlossen} \Z{98}.
 Dabei sorgt \IC{tabConfirm: true} für die sofortige Rückkehr zum Eingabeformular nach der Auswahl.
  

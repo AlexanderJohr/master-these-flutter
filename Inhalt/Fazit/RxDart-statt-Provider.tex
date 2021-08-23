@@ -26,7 +26,7 @@ Eine Möglichkeit ist,
 dass jede dieser Klassen den nötigen Boilerplate-Quellcode enthält,
 welcher die Oberfläche über die Methode \IC{notifyListeners} benachrichtigt.
 Eine andere Möglichkeit ist es, für den gleichen Datentyp den benötigten Boilerplate-Code in einer eigenen Basisklasse auszulagern
-und dann von dieser Klasse zu erben wie in Listing \label{lst:ChoiceChangeNotifier} zu sehen ist.
+und dann von dieser Klasse zu erben, wie in Listing \label{lst:ChoiceChangeNotifier} zu sehen ist.
 \ifIncludeFigures
   \begin{listing}[h]
     \begin{minted}[]{dart}
@@ -96,7 +96,7 @@ Das Äquivalent zum \IC{Consumer} ist das mitgelieferte Widget \IC{StreamBuilder
 welches mit jeder Art von \enquote{Stream} verwendet werden kann.
 
 Damit unterstützt es ein breiteres Spektrum von Einsatzmöglichkeiten.
-Beispielsweise kann ein transformierter \enquote{Stream} übergeben werden, wie im Kapitel \ref{Schritt4} gezeigt.
+Beispielsweise kann ein transformierter \enquote{Stream} übergeben werden, wie im Kapitel \ref{Schritt4} gezeigt wird.
 
 Die einzige fehlende Komponente dafür ist ein \enquote{Stream},
 der den zuletzt übermittelten Wert speichert und allen neuen zuhörenden \IC{StreamBuilder}-Elementen übermittelt.
@@ -110,7 +110,7 @@ Doch das Anbieten der Services durch ein eigens implementiertes \IC{InheritedWid
 der kürzer und expliziter ist.
 Durch die Umstellung konnte der Zugriff auf das \enquote{ViewModel} mithilfe des Ausdrucks \IC{Provider.of<MassnahmenFormViewModel>(context, listen: false)} durch \IC{AppState.of(context).viewModel} ersetzt werden.
 
-Eine ganz ähnliche, wenn auch deutlich kompliziertere Variante dieser Vorgehensweise, wurde auf der Google I/O 2018 von Filip Hracek und Matt Sulliivan vorgestellt. Doch anstatt lediglich das \IC{BehaviorSubject} für das \enquote{ViewModel} zu verwenden, sorgte die Präsentation durch den zusätzlichen -- jedoch überflüssigen -- Einsatz zwei weiterer \enquote{Stream}-Klassen für schweres Verständnis \Lst{\ref{lst:CartBloc}}\footcite[][TC: \href{https://youtu.be/RS36gBEp8OI?t=1657}{27:37}]{GoogleIO18}.
+Eine ganz ähnliche, wenn auch deutlich kompliziertere Variante dieser Vorgehensweise wurde auf der Google I/O 2018 von Filip Hracek und Matt Sullivan vorgestellt. Doch anstatt lediglich das \IC{BehaviorSubject} für das \enquote{ViewModel} zu verwenden, sorgte die Präsentation durch den zusätzlichen -- jedoch überflüssigen -- Einsatz zweier weiterer \enquote{Stream}-Klassen für schweres Verständnis \Lst{\ref{lst:CartBloc}}\footcite[][TC: \href{https://youtu.be/RS36gBEp8OI?t=1657}{27:37}]{GoogleIO18}.
 
 \ifIncludeFigures
   \begin{listing}[h]
@@ -163,7 +163,7 @@ Es existiert außerdem ein weiterer \IC{Stream itemCount} \Z{8},
  welcher lediglich die transitive Eigenschaft der Anzahl der hinzugefügten Elemente bereitstellt \IC{18}.
 Er nutzt das \IC{BehaviorSubject} mit dem Namen \IC{_itemCountSubject} \IC{10},
 verwendet allerdings keine der für die Klasse einzigartigen Eigenschaften
--- wie zum Beispiel die Getter-Metode \IC{value} für den zuletzt übermittelten Wert.
+-- wie zum Beispiel die Getter-Methode \IC{value} für den zuletzt übermittelten Wert.
 Die Eigenschaften werden auch nicht anderen Klassen angeboten, da \IC{_itemCountSubject} nicht öffentlich ist.
 Der \enquote{Stream} \IC{itemCount} könnte genauso gut durch einen weiteren \IC{StreamController} ersetzt werden.
 
