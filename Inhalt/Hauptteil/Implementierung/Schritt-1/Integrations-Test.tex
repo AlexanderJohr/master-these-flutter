@@ -16,13 +16,13 @@ Das Ergebnis des Integrationstests soll allerdings nicht mit der tatsächlich ge
 Der Test soll nicht tatsächlich Daten auf der Festplatte speichern.
 Das würde die Gefahr bergen, das  vergangene Eingaben manipuliert werden.
 Stattdessen soll der Test in einer Umgebung stattfinden, die keine Auswirkung auf die Haupt-Applikation oder zukünftige Tests haben soll.
-Zu diesem Zweck können sogenannte Mocks genutzt werden.
-Das Paket \enquote{mockito} erlaubt über Annotationen solche Mocks für die gewünschten Klassen  über Quellcode-Generierung zu erstellen.
+Zu diesem Zweck können sogenannte \enquote{Mocks} genutzt werden.
+Das Paket \enquote{mockito} erlaubt über Annotationen solche \enquote{Mocks} für die gewünschten Klassen  über Quellcode-Generierung zu erstellen.
 
 Integrationstests werden im Ordner integration_test angelegt.
-Während des Zeitpunkt der Erstellung dieser Arbeit war es in der Standardkonfiguration der Quellcode-Generierung und dem Paket \enquote{mockito} nicht möglich, Mocks auch im integration_test Ordner zu generieren.  Lediglich innerhalb des test Ordners, der für die Unit-Tests vorgesehen ist, hat die Annotation generate mocks funktioniert. Zu diesem Fehlverhalten existiert ein entsprechendes Issue im GitHub Repository  des Mockito packages. \HP{Ref} Um das Generieren von Mocks auch für Integrationstest verfügbar zu machen, hat der Autor dieser Arbeit einen entsprechenden Lösungsansatz recherchieren und im Issue beschrieben. \HP{Ref} 
+Während des Zeitpunkt der Erstellung dieser Arbeit war es in der Standardkonfiguration der Quellcode-Generierung und dem Paket \enquote{mockito} nicht möglich, \enquote{Mocks} auch im integration_test Ordner zu generieren.  Lediglich innerhalb des test Ordners, der für die Unit-Tests vorgesehen ist, hat die Annotation generate mocks funktioniert. Zu diesem Fehlverhalten existiert ein entsprechendes Issue im GitHub Repository  des Mockito packages. \HP{Ref} Um das Generieren von \enquote{Mocks} auch für Integrationstest verfügbar zu machen, hat der Autor dieser Arbeit einen entsprechenden Lösungsansatz recherchieren und im Issue beschrieben. \HP{Ref} 
 
-Damit der integration_test Ordner für die Quellcode-Generierung der Mocks integriert wird, muss ein entsprechender Eintrag in der Build-Konfiguration vorgenommen werden.
+Damit der integration_test Ordner für die Quellcode-Generierung der \enquote{Mocks} integriert wird, muss ein entsprechender Eintrag in der Build-Konfiguration vorgenommen werden.
 Damit das Paket \enquote{source_gen} die entsprechenden Dateien analysiert, müssen sie in der Rubrik \IC{sources} angegeben werden \LstZ{\ref{lst:Schritt1IntegrationsTestInitialisierung}}{3-8}.
 Wird der Ordner integration_test darin eingefügt \Z{8}, bezieht \enquote{source_gen} den Ordner in der Quellcode-Generierung mit ein.
 Zusätzlich dazu muss die Rubrik \IC{generate_for} von dem \IC{mockBuilder} des \enquote{mockito}-Pakets \Z{11-13} um die gleiche Angabe des Ordners ergänzt werden \Z{13}.
@@ -46,7 +46,7 @@ Stattdessen kann darauf gehorcht werden, wenn Operationen auf dem Objekt ausgef�
 
 Die Funktion \IC{testWidgets} startet den Test und erhält als ersten Parameter das \IC{tester}-Objekt \Z{22}.
 Darüber ist die Interaktion mit der Oberfläche während des Tests möglich.
-In den Zeilen 22 bis 25 wird der Testtreiber initialisiert. \HP{Ref}. Anschließend wird ein Objekt der generierten Klasse \IC{MockMassnahmenJsonFile} erstellt. Wenn das \enquote{Model} nun während der Applikation versucht, aus der JSON-Datei zu lesen, soll der Mock eine leere Liste von Maßnahmen zurückgeben \Z{28}. Dazu wird die entsprechende Methode \IC{when} verwendet. Als erster Parameter wird die Methode \IC{readMassnahmen} des Mocks übergeben. Im darauffolgenden Aufruf \IC{thenAnswer} kann angegeben werden, welche Rückgabe die Methode liefern soll.
+In den Zeilen 22 bis 25 wird der Testtreiber initialisiert. \HP{Ref}. Anschließend wird ein Objekt der generierten Klasse \IC{MockMassnahmenJsonFile} erstellt. Wenn das \enquote{Model} nun während der Applikation versucht, aus der JSON-Datei zu lesen, soll der Mock eine leere Liste von Maßnahmen zurückgeben \Z{28}. Dazu wird die entsprechende Methode \IC{when} verwendet. Als erster Parameter wird die Methode \IC{readMassnahmen} des \enquote{Mocks} übergeben. Im darauffolgenden Aufruf \IC{thenAnswer} kann angegeben werden, welche Rückgabe die Methode liefern soll.
 
 Über den \IC{tester} kann mit Hilfe der Methode \IC{pumpWidget} ein beliebiges Widget in der Test-Ausführung konstruiert werden.
 In diesem Fall ist es die gesamte Applikation, die getestet werden soll.
@@ -193,7 +193,7 @@ Die lokalen Variable \IC{actualMassnahme} speichert sie zwischen \Z{113}.
 
 Es ist unklar, welche zufällige guid bei der Erstellung der Maßnahme generiert wurde.
 Auch der Zeitstempel hinter dem Schlüssel \IC{"letzteBearbeitung"} ist unbekannt.
-Eine mögliche Lösung wären weitere Mocks, welche die Erstellung der guid und des Datums überwachen und -- anstelle einer zufälligen -- immer die gleiche Zeichenkette zurückgibt.
+Eine mögliche Lösung wären weitere \enquote{Mocks}, welche die Erstellung der guid und des Datums überwachen und -- anstelle einer zufälligen -- immer die gleiche Zeichenkette zurückgibt.
 Es ist jedoch auch möglich, die Vergleiche der guid und des Zeitstempels auszuschließen.
 Dazu reicht es die entsprechenden Schlüssel-Werte-Paare über die Schlüssel \IC{"guid"} und \IC{"letztesBearbeitungsDatum"} aus der Ergebnis-Hashtabelle zu entfernen \Z{114-115}.
 

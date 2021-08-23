@@ -11,7 +11,7 @@ Es ist durchaus sinnvoll, die beiden Technologien anhand von  Beispielanwendunge
 \subsubsection{React Native}
 
 React native stellt nur eine vergleichsweise geringe Anzahl von eigenen Komponenten zur Verfügung und zu diesen gehören keine, welche die Validierung von Formularen ermöglichen.
-Doch die im react.js Raum sehr bekannten Bibliotheken Formic, Redux Forms und React Hook Form sind alle drei kompatibel mit \enquote{React Native}.
+Doch die im \enquote{react.js} Raum sehr bekannten Bibliotheken \enquote{Formic}, \enquote{Redux Forms} und \enquote{React Hook Form} sind alle drei kompatibel mit \enquote{React Native}.
 \footcite[Vgl.][]{ReactNativeFormikDocs}
 \footcite[Vgl.][]{DoesReduxFormWorkWithReactNative}
 \footcite[Vgl.][]{ReactNativeReactHookFormGetStarted}
@@ -26,8 +26,8 @@ Keiner der drei oben genannten Validierungs-Bibliotheken ist in dieser Hinsicht 
 Sie alle bieten die Möglichkeit, eine JavaScript Funktion für die Validierung zu übergeben.
 Diese Funktion gibt einen Wahrheitswert zurück -- wahr, wenn das Feld oder die Felder valide sind, falsch, falls nicht.
 In \enquote{React Hook Form} ist es die Funktion \enquote{register}, die ein Parameter-Objekt namens \enquote{RegisterOptions} erhält. Der Eigenschaft \enquote{validate} dieses Objekts kann eine JavaScript-Funktion für die Validierung übergeben werden.\footnote{Vgl. \cite{RegisterReactHookFormAPI}}
-In Redux Form ist es die Initialisierungs-Funktion reduxForm, die ein Konfigurations-Objekt mit dem Namen config erhält, in welchem die Eigenschaft ebenfalls validate heißt.\footnote{Vgl. \cite{ReduxFormReduxFormAPI}}
-Auch in Formic ist der Bezeichner validate, und ist als Attribut in der Formic Komponente  zu finden.\footnote{Vgl. \cite{FormikComponentFormikDocsAPI}}
+In \enquote{Redux Form} ist es die Initialisierungs-Funktion \enquote{reduxForm}, die ein Konfigurations-Objekt mit dem Namen \enquote{config} erhält, in welchem die Eigenschaft ebenfalls \enquote{validate} heißt.\footnote{Vgl. \cite{ReduxFormReduxFormAPI}}
+Auch in \enquote{Formic} ist der Bezeichner \enquote{validate}, und ist als Attribut in der \enquote{Formic}-Komponente  zu finden.\footnote{Vgl. \cite{FormikComponentFormikDocsAPI}}
 
 
 Es ist also absehbar, dass die Formularanwendung in \enquote{React Native} entwickelt werden kann.
@@ -48,21 +48,21 @@ Die \enquote{Flutter}-Dokumentation stellt in ihrer \enquote{cookbook} Sektion e
 \subsection{Automatisiertes Testen}
 
 \subsubsection{Automatisierte Tests in \enquote{React Native}} Die \enquote{React Native}-Dokumentation führt genau eine Seite mit einem Überblick über die unterschiedlichen Testarten.
-Dabei wird das Konzept von Unit Tests, Mocking, Integrations Tests, Komponenten Tests und Snapshot Tests kurz erläutert, jedoch ohne ein Beispiel zu geben oder zu verlinken.
+Dabei wird das Konzept von Unittests, \enquote{Mocking}, Integrationstests, Komponententests und \enquote{Snapshot}-Tests kurz erläutert, jedoch ohne ein Beispiel zu geben oder zu verlinken.
 Vier Quellcodeschnipsel sind auf der Seite zu finden: Ein Schnipsel zeigt den minimalen Aufbau eines Tests; zwei weitere Schnipsel veranschaulichen beispielhaft, wie Nutzerinteraktionen getestet werden können. Letzteres zeigt die textuelle Repräsentation der Ausgabe einer Komponente, die für einen Snapshottest verwendet wird.
-Weiterhin wird auf die Jest API Dokumentation verwiesen, sowie auf ein Beispiel für einen Snapshot Test in der Jest Dokumentation.\footnoteL{\url{https://jestjs.io/docs/snapshot-testing}}
+Weiterhin wird auf die \enquote{Jest} API Dokumentation verwiesen, sowie auf ein Beispiel für einen Snapshot Test in der \enquote{Jest} Dokumentation.\footnoteL{\url{https://jestjs.io/docs/snapshot-testing}}
 
 Um die notwendigen Anleitungen für das Erstellen der jeweiligen Tests ausfindig zu machen, ist es notwendig, die Dokumentation von \enquote{React Native} zu verlassen.
 
-Die Dokumentation von Jest enthält mehr Details zum Einsatz der Testbibliothek, welche für mehrere Frontend-Frameworks kompatibel ist, die auf JavaScript basieren\footnoteL{\url{https://jestjs.io/docs/getting-started}}. Somit muss zum Erstellen der Unit-Tests immerhin nur dieses Framework studiert werden.
+Die Dokumentation von \enquote{Jest} enthält mehr Details zum Einsatz der Testbibliothek, welche für mehrere Frontend-Frameworks kompatibel ist, die auf JavaScript basieren\footnoteL{\url{https://jestjs.io/docs/getting-started}}. Somit muss zum Erstellen der Unit-Tests immerhin nur dieses Framework studiert werden.
 
 Zum Entwickeln von Tests für \enquote{React Native}-Komponenten wird unter anderem auf die Bibliothek \enquote{React Native Testing Library} verwiesen.
 Anders als der Name vermuten lässt, handelt es sich nicht um eine von \enquote{React Native} bereitgestellte Bibliothek.
-Im Unterschied zur React Testing Library, von der sie inspiriert ist, läuft sie  ebenso  wie \enquote{React Native} selbst nicht in einer Browser-Umgebung.\footnote{Vgl. \cite{NativeTestingLibraryIntroduction}} Herausgegeben wird die \enquote{React Native Testing Library} vom Drittanbieter Callstack -- einem Partner im \enquote{React Native}-Ökosystem.\footnote{Vgl. \cite{TheReactNativeEcosystem}}
+Im Unterschied zur \enquote{React Testing Library}, von der sie inspiriert ist, läuft sie  ebenso  wie \enquote{React Native} selbst nicht in einer Browser-Umgebung.\footnote{Vgl. \cite{NativeTestingLibraryIntroduction}} Herausgegeben wird die \enquote{React Native Testing Library} vom Drittanbieter \enquote{Callstack} -- einem Partner im \enquote{React Native}-Ökosystem.\footnote{Vgl. \cite{TheReactNativeEcosystem}}
 
-Sie verwendet im Hintergrund den React Test Renderer\footnoteL{\url{https://reactjs.org/docs/test-renderer.html}}, welcher wiederum vom React Team angeboten wird und auch zum Testen von react.js Anwendungen geeignet ist. Der React Test Renderer wird ebenfalls empfohlen, um Komponententests zu kreieren, die keine \enquote{React Native} spezifischen Funktionalitäten nutzen.
+Sie verwendet im Hintergrund den \enquote{React Test Renderer}\footnoteL{\url{https://reactjs.org/docs/test-renderer.html}}, welcher wiederum vom React Team angeboten wird und auch zum Testen von \enquote{react.js} Anwendungen geeignet ist. Der \enquote{React Test Renderer} wird ebenfalls empfohlen, um Komponententests zu kreieren, die keine \enquote{React Native} spezifischen Funktionalitäten nutzen.
 
-Um Integrationstests zu entwickeln -- welche die Applikation auf einem physischen Gerät oder auf einem Emulator testen -- wird auf zwei weitere Drittanbieter-Bibliotheken verlinkt: Appium\footnoteL{\url{http://appium.io/}} und Detox\footnoteL{\url{https://github.com/wix/detox/}}. Es wird darauf hingewiesen, dass Detox speziell für die Entwicklung von \enquote{React Native}-Integrationstests entwickelt wurde. Appium wird lediglich als ein weiteres bekanntes Werkzeug erwähnt.
+Um Integrationstests zu entwickeln -- welche die Applikation auf einem physischen Gerät oder auf einem Emulator testen -- wird auf zwei weitere Drittanbieter-Bibliotheken verlinkt: \enquote{Appium}\footnoteL{\url{http://appium.io/}} und \enquote{Detox}\footnoteL{\url{https://github.com/wix/detox/}}. Es wird darauf hingewiesen, dass \enquote{Detox} speziell für die Entwicklung von \enquote{React Native}-Integrationstests entwickelt wurde. \enquote{Appium} wird lediglich als ein weiteres bekanntes Werkzeug erwähnt.
 
 Es lässt sich damit zusammenfassen, dass der Aufwand der Einarbeitung für automatisiertes Testen in \enquote{React Native} vergleichsweise hoch ist.
 Die Dokumentation ist auf die Seiten der jeweiligen Anbieter verteilt.
@@ -75,7 +75,7 @@ Um diese Entscheidung treffen zu können, ist eine Auseinandersetzung mit den Vo
 
 Eine Seite erklärt den Unterschied zwischen Unit-Tests, Widget-Tests und Integrationstests\footnoteL{\url{https://flutter.dev/docs/testing}}. Eine weitere Seite erklärt Integrationstests detaillierter\footnoteL{\url{https://flutter.dev/docs/testing/integration-tests}}.
 
-Ein sogenanntes Codelab führt durch die Erstellung einer minimalistischen App und der anschließenden Implementierung von zwei Unit-, fünf Widget- und zwei Integrationstests für diese App\footnoteL{\url{https://codelabs.developers.google.com/codelabs/flutter-app-testing}}.
+Ein sogenanntes \enquote{Codelab} führt durch die Erstellung einer minimalistischen App und der anschließenden Implementierung von zwei Unit-, fünf Widget- und zwei Integrationstests für diese App\footnoteL{\url{https://codelabs.developers.google.com/codelabs/flutter-app-testing}}.
 
 Im sogenannten Kochbuch tauchen folgende Rezepte auf:
 
@@ -83,7 +83,7 @@ Im sogenannten Kochbuch tauchen folgende Rezepte auf:
     \item 2 Rezepte für Unit Tests
     \begin{itemize} 
        \item eine grundlegende Anleitung zum Erstellen von Unit-Tests \footnoteL{\url{https://flutter.dev/docs/cookbook/testing/unit/introduction}}
-       \item Eine weitere Anleitung zum Nutzen von Mocks in Unit Test mithilfe der Bibliothek mockito \footnoteL{\url{https://flutter.dev/docs/cookbook/testing/unit/mocking}}
+       \item Eine weitere Anleitung zum Nutzen von \enquote{Mocks} in Unit Test mithilfe der Bibliothek \enquote{mockito} \footnoteL{\url{https://flutter.dev/docs/cookbook/testing/unit/mocking}}
     \end{itemize}
     \item 3 Rezepte für Widget Tests
     \begin{itemize} 

@@ -2,20 +2,20 @@
 \label{sec:Trendanalyse}
 
 
-Zwei Quellen wurden für die Analyse der Technologie-Trends ausgewählt: die Ergebnisse der jährlichen Stack Overflow-Umfragen und das Such-Interesse von Google Trends.
+Zwei Quellen wurden für die Analyse der Technologie-Trends ausgewählt: die Ergebnisse der jährlichen \enquote{Stack Overflow}-Umfragen und das Such-Interesse von Google Trends.
 
-\subsection{Stack Overflow Umfrage}
-Die Internet-Plattform Stack Overflow richtet sich an Softwareentwickler und bietet ihren Nutzern die Möglichkeiten, Fragen zu stellen, Antworten einzustellen und Antworten anderer Nutzer auf- und abzuwerten.
+\subsection{\enquote{Stack Overflow}-Umfrage}
+Die Internet-Plattform \enquote{Stack Overflow} richtet sich an Softwareentwickler und bietet ihren Nutzern die Möglichkeiten, Fragen zu stellen, Antworten einzustellen und Antworten anderer Nutzer auf- und abzuwerten.
 
 Besonders für Fehlermeldungen, die häufig während der Softwareentwicklung auftreten, findet man auf dieser Plattform rasch die Erklärung und den Lösungsvorschlag gleich mit.
 So lässt sich auch die Herkunft des Domain-Namens herleiten:
 
 \begin{quotation}
-We named it Stack Overflow, after a common type of bug that causes software to crash -- plus, the domain name stackoverflow.com happened to be available. --- Joel Spolsky, Mitgründer von Stack Overflow \footnote{\cite{TheUnprovenPath}}
+We named it Stack Overflow, after a common type of bug that causes software to crash -- plus, the domain name stackoverflow.com happened to be available. --- Joel Spolsky, Mitgründer von \enquote{Stack Overflow} \footnote{\cite{TheUnprovenPath}}
 \end{quotation}
 
-Aufgrund des Erfolgsrezepts von Stack Overflow ist die Plattform kaum einem Softwareentwickler unbekannt.
-Dementsprechend nehmen auch jährlich tausende Entwickler an den von Stack Overflow herausgegebenen Umfragen teil.
+Aufgrund des Erfolgsrezepts von \enquote{Stack Overflow} ist die Plattform kaum einem Softwareentwickler unbekannt.
+Dementsprechend nehmen auch jährlich tausende Entwickler an den von \enquote{Stack Overflow} herausgegebenen Umfragen teil.
 Seit  2013 beinhalten die Umfragen auch die Angabe der aktuell genutzten und in Zukunft gewünschten Frontend-Technologien.
 \enquote{Stack Overflow} erstellt aus diesen gesammelten Daten Auswertungen und Übersichten und die zugrundeliegenden Daten werden ebenfalls veröffentlicht.
 \footnote{\cite{StackOverflowInsights}} 
@@ -35,18 +35,18 @@ Es spiegelt lediglich das Suchinteresse an bestimmten Themen wider.
 \footnote{\cite{GoogleTrendsHilfe}}
 \end{quotation}
 
-Genau aus diesem Grund wird Google Trends im Folgenden lediglich zum Abgleich der Ergebnisse der Stack Overflow Umfrage eingesetzt.
+Genau aus diesem Grund wird Google Trends im Folgenden lediglich zum Abgleich der Ergebnisse der \enquote{Stack Overflow} Umfrage eingesetzt.
 
 \subsection{Frameworks mit geringer Relevanz}
 
-NativeScript, Sencha (bzw.
-Sencha Touch) und Appcelerator spielen in den Umfrageergebnissen eine untergeordnete Rolle.
+\enquote{NativeScript}, \enquote{Sencha} (bzw.
+\enquote{Sencha Touch}) und \enquote{Appcelerator} spielen in den Umfrageergebnissen eine untergeordnete Rolle.
 Dies ist in den aufsummierten Stimmen von 2013 bis 2020 für alle in der Umfrage auftauchenden Frontend-Technologien zu sehen (Abb.
 \ref{fig:SummeDerStimmen}).
 
 \begin{alexfigurewithnotebook}{Charts/Stack Overflow Umfrage/Summe der Stimmen.pdf}
 	{Stimmen der Stack Overflow Umfrage von 2013 bis 2020}
-	{Summe der Stimmen der Stack Overflow Umfrage von 2013 bis 2020}
+	{Summe der Stimmen der \enquote{Stack Overflow}-Umfrage von 2013 bis 2020}
 	{Charts/Stack Overflow Umfrage/Stack Overflow Umfrage.ipynb}
 	{\HP{FEHLT!}}
 
@@ -55,7 +55,7 @@ Dies ist in den aufsummierten Stimmen von 2013 bis 2020 für alle in der Umfrage
 \end{alexfigurewithnotebook}
 
 Auch das Suchinteresse auf Google ist für diese Frameworks äußerst gering.
-In Abbildung \ref{fig:SuchinteresseGeringeRelevanz} werden NativeScript, Sencha, Appcelerator und auch Adobe PhoneGap mit Apache Cordova für das relative Suchinteresse verglichen.
+In Abbildung \ref{fig:SuchinteresseGeringeRelevanz} werden \enquote{NativeScript}, \enquote{Sencha}, \enquote{Appcelerator} und auch \enquote{Adobe PhoneGap} mit \enquote{Apache Cordova} für das relative Suchinteresse verglichen.
 
 \begin{alexfigurewithnotebook}{Charts/Google Trends/Suchinteresse geringe Relevanz.pdf}
 	{Suchinteresse der Frameworks mit geringer Relevanz}
@@ -66,38 +66,38 @@ In Abbildung \ref{fig:SuchinteresseGeringeRelevanz} werden NativeScript, Sencha,
 
 \end{alexfigurewithnotebook}
 
-\subsubsection{Verwandte Technologien zu Apache Cordova} Das Ionic Framework taucht in den Ergebnissen der Stack Overflow Umfragen nicht auf.
-Ein Grund dafür könnte sein, dass es auf Apache Cordova aufbaut\footnote{\cite{TheLastWordOnCordovaAndPhoneGap}}, welches bereits in den Ergebnissen vorkommt.
-Adobe PhoneGap taucht zwar in den Ergebnissen von 2013 mit 1043 Stimmen auf (Siehe Abbildung \ref{fig:CordovaUndPhoneGapStimmen}), verliert jedoch in den Folgejahren mit weniger als 10 Stimmen abrubt an Relevanz.
-Das stimmt nicht mit dem Suchinteresse auf Google überein, da Adobe PhoneGap dort erst ab 2014 anfängt, langsam an Relevanz zu verlieren, wie in Abbildung \ref{fig:SuchinteresseGeringeRelevanz} zu sehen ist. 2013 existierte PhoneGap noch als extra Mehrfachauswahlfeld in den Daten, während es ab 2014 nur noch in dem Feld für die sonstigen Freitext Angaben auftaucht \footnote{Vgl. \cite{StackOverflowInsights}}.
-Auch Adobe PhoneGap baut auf Apache Cordova auf\footnote{Vgl.
+\subsubsection{Verwandte Technologien zu Apache Cordova} Das \enquote{Ionic}-Framework taucht in den Ergebnissen der \enquote{Stack Overflow}-Umfragen nicht auf.
+Ein Grund dafür könnte sein, dass es auf \enquote{Apache Cordova} aufbaut\footnote{\cite{TheLastWordOnCordovaAndPhoneGap}}, welches bereits in den Ergebnissen vorkommt.
+\enquote{Adobe PhoneGap} taucht zwar in den Ergebnissen von 2013 mit 1043 Stimmen auf (Siehe Abbildung \ref{fig:CordovaUndPhoneGapStimmen}), verliert jedoch in den Folgejahren mit weniger als 10 Stimmen abrupt an Relevanz.
+Das stimmt nicht mit dem Suchinteresse auf Google überein, da \enquote{Adobe PhoneGap} dort erst ab 2014 anfängt, langsam an Relevanz zu verlieren, wie in Abbildung \ref{fig:SuchinteresseGeringeRelevanz} zu sehen ist. 2013 existierte PhoneGap noch als extra Mehrfachauswahlfeld in den Daten, während es ab 2014 nur noch in dem Feld für die sonstigen Freitext Angaben auftaucht \footnote{Vgl. \cite{StackOverflowInsights}}.
+Auch \enquote{Adobe PhoneGap} baut auf \enquote{Apache Cordova} auf\footnote{Vgl.
 \cite{FaqPhoneGapDocs}}.
-Für diese Auswertung spielen diese verwandten Technologien eine untergeordnete Rolle, da sie auch in den Google Trends weit hinter Apache Cordova zurückbleiben (Abb.
+Für diese Auswertung spielen diese verwandten Technologien eine untergeordnete Rolle, da sie auch in den Google Trends weit hinter \enquote{Apache Cordova} zurückbleiben (Abb.
 \ref{fig:SuchinteresseGeringeRelevanz}).
 
-\begin{alexfigurewithnotebook}{Charts/Stack Overflow Umfrage/Cordova und PhoneGap Stimmen.pdf}
-	{Stimmen für Cordova und PhoneGap 2013 bis 2020}
-	{Stimmen für Cordova und PhoneGap 2013 bis 2020}
+\begin{alexfigurewithnotebook}{Charts/Stack Overflow Umfrage/\enquote{Cordova} und PhoneGap Stimmen.pdf}
+	{Stimmen für \enquote{Cordova} und PhoneGap 2013 bis 2020}
+	{Stimmen für \enquote{Cordova} und PhoneGap 2013 bis 2020}
 	{Charts/Stack Overflow Umfrage/Stack Overflow Umfrage.ipynb}
 	{\HP{FEHLT!}}
 	\label{fig:CordovaUndPhoneGapStimmen}
 
 \end{alexfigurewithnotebook}
 
-Am Beispiel von Adobe PhoneGap wird deutlich, wie wichtig es ist, auf eine Technologie zu setzen, die weit verbreitet ist.
+Am Beispiel von \enquote{Adobe PhoneGap} wird deutlich, wie wichtig es ist, auf eine Technologie zu setzen, die weit verbreitet ist.
 Im schlimmsten Fall wird die Technologie sogar vom Betreiber aufgrund zu geringer Nutzung komplett eingestellt, wie es bei PhoneGap bereits geschehen ist.
 Adobe gab am 11.
-August 2020 bekannt, dass die  Entwicklung an PhoneGap eingestellt wird und empfiehlt die Migration hin zu Apache Cordova.\footnote{Vgl. \cite{UpdateForCustomersUsingPhoneGapAndPhoneGapBuild}}
+August 2020 bekannt, dass die  Entwicklung an PhoneGap eingestellt wird und empfiehlt die Migration hin zu \enquote{Apache Cordova}.\footnote{Vgl. \cite{UpdateForCustomersUsingPhoneGapAndPhoneGapBuild}}
 
 \subsection{Frameworks mit sinkender Relevanz}
 
-Die Technologien Xamarin und Cordova zeigen bereits einen abfallenden Trend, wie in Abbildung \ref{fig:XamarinUndCordovaStimmen} ersichtlich ist.
-Im Fall von Xamarin gibt es immerhin mehr Entwickler, die sich wünschen, mit dem Framework zu arbeiten, als Entwickler, die tatsächlich mit Xamarin arbeiten.
-Cordova scheint in diesem Hinblick dagegen eher unbeliebt: Es gibt mehr Entwickler, die mit Cordova arbeiten, als tatsächlich damit arbeiten wollen.
+Die Technologien \enquote{Xamarin} und \enquote{Cordova} zeigen bereits einen abfallenden Trend, wie in Abbildung \ref{fig:XamarinUndCordovaStimmen} ersichtlich ist.
+Im Fall von \enquote{Xamarin} gibt es immerhin mehr Entwickler, die sich wünschen, mit dem Framework zu arbeiten, als Entwickler, die tatsächlich mit \enquote{Xamarin} arbeiten.
+\enquote{Cordova} scheint in diesem Hinblick dagegen eher unbeliebt: Es gibt mehr Entwickler, die mit \enquote{Cordova} arbeiten, als tatsächlich damit arbeiten wollen.
 
 \begin{alexfigurewithnotebook}{Charts/Stack Overflow Umfrage/Xamarin und Cordova Stimmen.pdf}
-	{Stimmen für Xamarin und Cordova 2013 bis 2020}
-	{Stimmen für Xamarin und Cordova 2013 bis 2020}
+	{Stimmen für \enquote{Xamarin} und \enquote{Cordova} 2013 bis 2020}
+	{Stimmen für \enquote{Xamarin} und \enquote{Cordova} 2013 bis 2020}
 	{Charts/Stack Overflow Umfrage/Stack Overflow Umfrage.ipynb}
 	{\HP{FEHLT!}}
 	\label{fig:XamarinUndCordovaStimmen}
@@ -105,7 +105,7 @@ Cordova scheint in diesem Hinblick dagegen eher unbeliebt: Es gibt mehr Entwickl
 \end{alexfigurewithnotebook}
 
 
-In Abbildung \ref{fig:SuchinteresseSinkendeUndSteigendeRelevanz} ist noch einmal zu sehen, dass Google Trends die Erkenntnisse aus der Stack Overflow Umfrage reflektiert; und es wird auch sichtbar, welche beiden Technologien möglicherweise der Grund für den Rückgang von Xamarin und Cordova sind.
+In Abbildung \ref{fig:SuchinteresseSinkendeUndSteigendeRelevanz} ist noch einmal zu sehen, dass Google Trends die Erkenntnisse aus der \enquote{Stack Overflow}-Umfrage reflektiert; und es wird auch sichtbar, welche beiden Technologien möglicherweise der Grund für den Rückgang von \enquote{Xamarin} und \enquote{Cordova} sind.
 
 \begin{alexfigurewithnotebook}{Charts/Google Trends/Suchinteresse sinkende und steigende Relevanz.pdf}
 	{Suchinteresse sinkende und steigende Relevanz}
@@ -120,8 +120,8 @@ In Abbildung \ref{fig:SuchinteresseSinkendeUndSteigendeRelevanz} ist noch einmal
 
 Besser ist es, auf Technologien zu setzen, die noch einen steigenden Trend der Verbreitung und Beliebtheit zeigen.
 In Abbildung \ref{fig:ReactNativeUndFlutterStimmen} wird sichtbar, dass es sich dabei um \enquote{Flutter} und -- immerhin im Hinblick auf die Verbreitung -- auch um \enquote{React Native} handelt.
-Ungünstigerweise wird \enquote{React Native} in der Stack Overflow Umfrage erst seit 2018 als tatsächliches Framework abgefragt.
-Vorher erschien lediglich das Framework React, welches sich nicht für den Vergleich der Cross-Plattform-Frameworks eignet, da es sich um ein reines Web-Framework handelt.
+Ungünstigerweise wird \enquote{React Native} in der \enquote{Stack Overflow}-Umfrage erst seit 2018 als tatsächliches Framework abgefragt.
+Vorher erschien lediglich das Framework React, welches sich nicht für den Vergleich der \enquote{Cross-Plattform-Frameworks} eignet, da es sich um ein reines Web-Framework handelt.
 Doch auch die Ergebnisse von Google Trends zeigen einen ähnlichen Verlauf für die Jahre 2019 und 2020 (Abb. \ref{fig:SuchinteresseSinkendeUndSteigendeRelevanz}).
 
 \begin{alexfigurewithnotebook}{Charts/Stack Overflow Umfrage/React Native und Flutter Stimmen.pdf}
@@ -139,7 +139,7 @@ Dennoch ist die Anzahl der Entwickler, die mit \enquote{React Native} arbeiten m
 Es ist möglich, dass der abfallende Trend daran liegt, dass die Zahl der Entwickler, die mit \enquote{Flutter} arbeiten möchten, im selben Jahr gestiegen ist.
 React Native hat im Vergleich zu \enquote{Flutter} jedoch noch immer mehr aktive Entwickler und die Tendenz ist steigend.
 Doch die Anzahl der aktiven \enquote{Flutter}-Entwickler zeigt einen noch stärker steigenden Trend.
-So könnte es sein, dass die Zahl der \enquote{Flutter}-Entwickler die der \enquote{React Native}-Entwickler in einem der nächsten Jahre überholt.
+So könnte es sein, das die Zahl der \enquote{Flutter}-Entwickler die der \enquote{React Native}-Entwickler in einem der nächsten Jahre überholt.
 Im Such-Interesse hat sich diese Entwicklung bereits vollzogen (Abb. \ref{fig:SuchinteresseSinkendeUndSteigendeRelevanz}). 
 
 Nichtsdestotrotz scheinen beide Technologien als Kandidaten für einen detaillierteren Vergleich für dieses Projekt in Frage zu kommen.
