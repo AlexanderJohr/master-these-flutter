@@ -123,8 +123,8 @@ Ein Klick auf das Text-Label reicht bereits aus, denn damit wird das Vaterelemen
 Der \IC{tester} holt es in den sichtbaren Bereich \IC{71}, klickt es \IC{72} an und wartet auf Abschluss aller Animationen \Z{73}.
 Sollte der optionale Parameter \IC{tabConfirm} auf \IC{true} gesetzt sein \Z{75}, so wird der Auswahlbildschirm anschließend direkt wieder geschlossen, nachdem die Option ausgewählt wurde  \Z{76}. 
   
-Schließlich kann mit der Hilfsfunktionen \IC{fillTextFormField} ein Formularfeld über dessen Titel gefunden und der entsprechende übergebende Text eingetragen werden \Lst{\ref{lst:Schritt1HilfsmethodeFillTextFormField}}.
-Die Hilfsfunktionen findet das \IC{TextFormField}, indem sie zunächst nach dem Titel mit \IC{find.text(title)} und anschließend nach dessen Vaterelement vom Typ \IC{TextFormField} sucht \Z{83}. Sollte sowohl der Hinweistext als auch der Titel den gleichen Text enthalten, so kann es sein, dass zwei solche Elemente gefunden werden. In Wahrheit ist es aber zwei Mal dasselbe \IC{TextFormField}. Mit \IC{.first} wird lediglich das erste Element geliefert \Z{85}.
+Schließlich kann mit der Hilfsfunktion \IC{fillTextFormField} ein Formularfeld über dessen Titel gefunden und der entsprechende übergebende Text eingetragen werden \Lst{\ref{lst:Schritt1HilfsmethodeFillTextFormField}}.
+Die Hilfsfunktion findet das \IC{TextFormField}, indem sie zunächst nach dem Titel mit \IC{find.text(title)} und anschließend nach dessen Vaterelement vom Typ \IC{TextFormField} sucht \Z{83}. Sollte sowohl der Hinweistext als auch der Titel den gleichen Text enthalten, so kann es sein, dass zwei solche Elemente gefunden werden. In Wahrheit ist es aber zweimal dasselbe \IC{TextFormField}. Mit \IC{.first} wird lediglich das erste Element geliefert \Z{85}.
 Nachdem feststeht, dass das Element existiert \Z{85} und es in den sichtbaren Bereich gescrollt wurde \Z{87}, gibt der Integrationstest den gewünschten Text in das Eingabefeld ein \Z{88}.
 Anschließend wird erneut auf Abschluss aller Animationen gewartet \Z{89}.
 
