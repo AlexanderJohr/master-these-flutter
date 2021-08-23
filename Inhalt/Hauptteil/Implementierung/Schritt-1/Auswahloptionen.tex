@@ -78,14 +78,14 @@ Dies dient einzig und allein dem Zweck, dem  Fehler vorzubeugen, dass aus Verseh
   \label{lst:Schritt1DieMengeLetzterStatusChoices}
 \end{alexlisting}
 
-\ifIncludeFigures \clearpage \fi
+
 
 Listing \ref{lst:Schritt1KlasseChoices} zeigt die Klasse \IC{Choices}.
 Sie erbt von \IC{UnmodifiableSetView} und erlaubt damit die Erstellung  einer eigenen Menge -- auch \IC{Set} genannt\HP{Referenz}.
 Methoden, die man von einem \IC{Set} erwartet,  lassen sich somit direkt auf  Instanzen der Klasse \IC{Choices} aufrufen.
 Darunter ist unter anderem die \IC{contains} Methode,  welche erlaubt, das Vorhandensein eines Objekts im \IC{Set} zu überprüfen\HP{Referenz}.
 
-\begin{alexlisting}{Schritt 1}{Die Klasse Choices}
+\begin{alexlisting}{Schritt 1}{Die Klasse \enquote{Choices}}
   {Quellcode/Schritt-1/conditional_form/lib/choices/base/choice.dart}
   {firstline=10}
   \label{lst:Schritt1KlasseChoices}

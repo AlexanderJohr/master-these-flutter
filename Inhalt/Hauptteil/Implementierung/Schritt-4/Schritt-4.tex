@@ -1,34 +1,38 @@
 \chapter{Schritt 4}
 \label{chap:Schritt-4}
 
+Die im letzten Schritt implementierte Validierung überprüft lediglich auf leere Eingabefelder.
+Im Folgenden soll die Überprüfung der Kompatibilität der Auswahloptionen untereinander in die Validierung miteinbezogen werden.
+Deaktivierte Auswahloptionen sind nicht anwählbar und werden im Selektionsbildschirm mit einem vorangestellten Kreuz gekennzeichnet \Abb{\ref{fig:Schritt4EingabemaskeDZWald}}.
+
 \begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-4/D Z Wald.png}
   {Der Selektionsbildschirm in Schritt 4}
   {Der Selektionsbildschirm in Schritt 4}
 
-  \label{fig:Schritt4Eingabemaske}
+  \label{fig:Schritt4EingabemaskeDZWald}
 
 \end{alexfigure}
+
+Wenn eine Auswahloption selektiert ist und durch eine weitere Selektion in einem anderen Feld anschließend invalide geworden ist,
+wird diese rot gekennzeichnet \Abb{\ref{fig:Schritt4EingabemaskeDZWaldRot}}.
 
 \begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-4/D Z Wald Rot.png}
   {Die Eingabemaske in Schritt 2 mit einem selektierten invaliden Wert}
   {Die Eingabemaske in Schritt 2 mit einem selektierten invaliden Wert}
 
-  \label{fig:Schritt4Eingabemaske}
+  \label{fig:Schritt4EingabemaskeDZWaldRot}
 
 \end{alexfigure}
 
+In der Eingabemaske wird dann das gesamte Eingabefeld rot eingefärbt \Abb{\ref{fig:Schritt4EingabemaskeDDZWaldRot}}.
 
 \begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-4/D D Z Wald Rot.png}
   {Der Selektionsbildschirm in Schritt 4 mit einem selektierten invaliden Wert}
   {Der Selektionsbildschirm in Schritt 4 mit einem selektierten invaliden Wert}
 
-  \label{fig:Schritt4Eingabemaske}
+  \label{fig:Schritt4EingabemaskeDDZWaldRot}
 
 \end{alexfigure}
-
-
-Im Folgenden werden der Validierung die Bedingungen hinzugefügt,
-welche die Auswahloptionen untereinander haben. 
 
 \section{Hinzufügen der Bedingungen zu den Auswahloptionen}
 
@@ -36,7 +40,7 @@ Es gibt einfache Bedingungen wie beispielsweise die der Zielfläche \enquote{AL}
 Dessen Auswahl kann nur dann erfolgen,
 wenn nicht die Kategorie \enquote{Anbau Zwischenfrucht/Untersaat} ausgewählt ist \Lst{\ref{lst:Schritt4al}}.
 
-\begin{alexlisting}{Schritt 4}{XXXXX}
+\begin{alexlisting}{Schritt 4}{Der Klassenvariable \enquote{al} des Typs \enquote{ZielflaecheChoice} wird eine Bedingung hinzugefügt}
   {Quellcode/Schritt-4/conditional_form/lib/choices/choices.dart}
   {firstline=79, lastline=80, highlightlines={80}}
   \label{lst:Schritt4al}
@@ -57,14 +61,15 @@ noch
 gewählt sein.
 
 Äußerst wichtig ist hier die Auswahl der richtigen logischen Operatoren.
-Innerhalb des gleichen Typs -- wie etwa der \enquote{Förderklasse} -- muss das logische Oder \IC{||} verwendet werden \Z{97, 98, 100}.
+Innerhalb des gleichen Typs -- wie etwa der \enquote{Förderklasse} -- muss das logische Oder \IC{||} verwendet werden \Z{97,98,100}.
 Das logische Und würde hier keinen Sinn ergeben,
 da es unmöglich ist,
 in einem Einfachauswahlfeld gleichzeitig zwei Optionen ausgewählt zu haben.
 Um Bedingungen unterschiedlichen Typs miteinander zu verknüpfen,
 ist dagegen das logische und \IC{&&} zu benutzen \Z{99},
 denn die Bedingungen der \enquote{Förderklasse} und der \enquote{Kategorie} müssen gleichzeitig erfüllt sein.
-Hier ist wiederum das Nutzen des logischen Oders nicht angemessen, denn es wäre nicht ausreichend,
+Hier ist wiederum das Nutzen des logischen Oders nicht angemessen,
+denn es wäre nicht ausreichend,
 wenn nur die Bedingungen eines der beiden Typen erfüllt wäre.
 Wäre also beispielsweise für die \enquote{Förderklasse} die Option \enquote{Erschwernisausgleich} gewählt,
 so wäre es völlig unerheblich,
@@ -72,7 +77,7 @@ welche Auswahl für die \enquote{Kategorie} selektiert wurde.
 Die Bedingung wäre trotzdem erfüllt,
 auch wenn für die \enquote{Kategorie} die nicht erlaubte Option \enquote{Anbau Zwischenfrucht/Untersaat} gewählt ist.
 
-\begin{alexlisting}{Schritt 4}{XXXXX}
+\begin{alexlisting}{Schritt 4}{Der Klassenvariable \enquote{wald} des Typs \enquote{ZielflaecheChoice} wird eine Bedingung hinzugefügt}
   {Quellcode/Schritt-4/conditional_form/lib/choices/choices.dart}
   {firstline=95, lastline=101, highlightlines={96-101}}
   \label{lst:Schritt4wald}
@@ -80,41 +85,44 @@ auch wenn für die \enquote{Kategorie} die nicht erlaubte Option \enquote{Anbau 
 
 Für die Liste aller hinzugefügten Bedingungen siehe Anhang \ref{appendix:Schritt4Anhang} auf den Seiten \pageref{lst:Schritt4KategorieChoice} bis  \pageref{lst:Schritt4ZieleinheitChoice}.
 
-Bei der Bedingungen handelt sich um eine Funktion,
+Bei der Bedingung handelt sich um eine Funktion,
 die einen Wahrheitswert \IC{bool} zurückgibt und als Parameter die Menge aller bisher ausgewählten Auswahloptionen \IC{Set<Choice>} übergeben bekommt.
 Die Signatur dieser Funktion wird als Typdefinition mit dem Namen \IC{Condition} deklariert \LstZ{\ref{lst:Schritt4Choice}}{3}.
 Über diese Typdefinition kann sie als Instanzvariable in der Klasse \IC{Choice} deklariert werden \Z{8}.
 Der Konstrukteur erhält einen weiteren Parameter für die Bedingung \Z{12}.
 
-Er ist optional,  da es Auswahloption gibt, die keine Bedingung haben. 
+Er ist optional,
+da es Auswahloption gibt,
+die keine Bedingung haben.
 Deshalb wird mit der Notation \IC{Condition?} erreicht,
 dass die Bedingung auch ausgelassen werden kann und in diesem Fall \IC{null} ist.
 Sollte das der Fall sein,
 so soll eine Standardfunktion verwendet werden.
 Diese Standardfunktion ist \IC{_conditionIsAlwaysMet} \Z{15}.
-Unerheblich davon welche Auswahloptionen in Vergangenheit gewählt wurden,
+Unerheblich davon,
+ welche Auswahloptionen in Vergangenheit gewählt wurden,
 gibt diese Funktion immer \IC{true} zurück.
 Denn eine Auswahloption,
 die keine Bedingung hat,
-ist immer auswählbar. 
+ist immer auswählbar.
 Sollte die übergebene Bedingungen ausgelassen worden und damit \IC{null} sein,
 so wählt die \enquote{If-null Expression} den Ausdruck rechts von dem \IC{??} und damit die Standardfunktion \IC{_conditionIsAlwaysMet} aus,
 welche der Instanzvariablen \IC{condition} zugewiesen wird \Z{13}.
-Ansonsten speichert der Konstruktor die übergebene Funktion. 
+Ansonsten speichert der Konstruktor die übergebene Funktion.
 Aus diesem Grund ist es nicht möglich,
 dass die condition in der Instanzvariablen nur sein kann,
-weshalb sie ohne den Suffix? Als variable ohne zu null Zulässigkeit deklariert werden kann. 
+weshalb sie ohne den Suffix? Als variable ohne zu null Zulässigkeit deklariert werden kann.
 Da der Ausdruck rechts von dem \IC{??} nicht \IC{null} sein kann,
 so kann auch der gesamte Ausdruck der vorliegenden \enquote{If-null Expression} nicht \IC{null} sein.
 Damit ist es möglich,
-die Instanzvariable \IC{condition} ohne den Suffix \IC{?} als Variable ohne Null-Zulässigkeit zu deklarieren. 
-Die Instanzmethode \IC{conditionMatches} ruft die übergebender Funktion für die Bedingung über die Methode \IC{call} auf \Z{10}.
-Das erlaubt den Ausdruck  durch vereinfacht darzustellen. 
-Der Ausdruck \IC{wald.condition(priorChoices)} kann dadurch durch die explizitere Schreibweise \IC{wald.conditionMatches(priorChoices)} ersetzt werden. 
+die Instanzvariable \IC{condition} ohne den Suffix \IC{?} als Variable ohne Null-Zulässigkeit zu deklarieren.
+Die Instanzmethode \IC{conditionMatches} ruft die übergebene Funktion für die Bedingung über die Methode \IC{call} auf \Z{10}.
+Das erlaubt den Ausdruck  durch vereinfacht darzustellen.
+Der Ausdruck \IC{wald.condition(priorChoices)} kann dadurch durch die explizitere Schreibweise \IC{wald.conditionMatches(priorChoices)} ersetzt werden.
 
-\begin{alexlisting}{Schritt 4}{XXXXX}
+\begin{alexlisting}{Schritt 4}{Die Klasse \enquote{Choices} wird die Instanzvariable \enquote{condition} hinzugefügt}
   {Quellcode/Schritt-4/conditional_form/lib/choices/base/choice.dart}
-  {firstline=3, lastline=16, highlightlines={3,8,10, 12-13, 15 }}
+  {firstline=3, lastline=16, highlightlines={3,8,10,12-13,15 }}
   \label{lst:Schritt4Choice}
 \end{alexlisting}
 
@@ -127,7 +135,7 @@ Doch genau diese Momentaufnahme muss immer dann neu erstellt werden,
 wenn sich auch nur ein Auswahlfeld ändert.
 Genau darum kümmert sich das \IC{BehaviorSubject} \IC{priorChoices} im \enquote{ViewModel} \Lst{\ref{lst:Schritt4priorChoices}}.
 
-\begin{alexlisting}{Schritt 4}{XXXX}
+\begin{alexlisting}{Schritt 4}{Das \enquote{BehaviorSubject} \enquote{priorChoices}}
   {Quellcode/Schritt-4/conditional_form/lib/screens/massnahmen_detail/massnahmen_form_view_model.dart}
   {firstline=20, lastline=41}
   \label{lst:Schritt4priorChoices}
@@ -156,8 +164,10 @@ Die anonyme Funktion gibt eine Menge zurück,
 in welcher alle Werte der \IC{BehaviorSubject}-Objekte integriert werden \Z{31-37}.
 Das \enquote{Collection if} Statement schließt dabei jeweils den Wert \IC{null} aus \Z{32-36}.
 Somit taucht niemals der Wert \IC{null} in der Menge auf und damit kann die Menge mit dem Typparameter \IC{Choice} ohne Null-Zulässigkeit deklariert werden.
-Sollte ein Auswahlfeld nicht gewählt und damit der Wert des \IC{BehaviorSubject} \IC{null} sein, so taucht diese Option einfach nicht in der Menge auf.
-Sind alle Auswahlfelder nicht belegt und damit \IC{null}, so ist die Menge leer.
+Sollte ein Auswahlfeld nicht gewählt und damit der Wert des \IC{BehaviorSubject} \IC{null} sein,
+so taucht diese Option einfach nicht in der Menge auf.
+Sind alle Auswahlfelder nicht belegt und damit \IC{null},
+so ist die Menge leer.
 Doch der kombinierte \enquote{Stream} \IC{choicesStream} liefert immer nur die neuen Ereignisse und speichert nicht den zuletzt übermittelten Wert.
 Deshalb wird das \IC{BehaviorSubject} \IC{priorChoices} verwendet.
 Die Methode \IC{listen} horcht auf Änderungen des \IC{choicesStream}-Objekts und fügt das übertragene Ereignis immer \IC{priorChoices} hinzu. 
@@ -170,15 +180,17 @@ Dadurch
 , dass \IC{priorChoices} nun im \enquote{ViewModel} verfügbar ist
 , kann es im Eingabeformular bei der Konstruktion der \IC{SelectionCard} als Argument übergeben werden \LstZ{\ref{lst:Schritt4builderSelectionCard}}{143}.
 
-\begin{alexlisting}{Schritt 4}{Die Ausgabe der Formularfelder}
+\begin{alexlisting}{Schritt 4}{Dem Konstruktor der \enquote{SelectionCard} wird das \enquote{BehaviorSubject} \enquote{priorChoices}}
   {Quellcode/Schritt-4/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
   {firstline=140, lastline=143, highlightlines={143}}
   \label{lst:Schritt4builderSelectionCard}
 \end{alexlisting}
 
-Die Klasse \IC{SelectionCard} deklariert die \IC{priorChoices} als Instanzvariable \LstZ{\ref{lst:Schritt4SelectionCardPriorChoices}}{19} und initialisiert sie direkt bei der Übergabe im Konstruktor, ohne sie zu modifizieren \Z{28}.
+Die Klasse \IC{SelectionCard} deklariert die \IC{priorChoices} als Instanzvariable \LstZ{\ref{lst:Schritt4SelectionCardPriorChoices}}{19}
+und initialisiert sie direkt bei der Übergabe im Konstruktor,
+ohne sie zu modifizieren \Z{28}.
 
-\begin{alexlisting}{Schritt 4}{XXXX}
+\begin{alexlisting}{Schritt 4}{Die Klasse \enquote{SelectionCard} erhält die Instanzvariable \enquote{priorChoices}}
   {Quellcode/Schritt-4/conditional_form/lib/widgets/selection_card.dart}
   {firstline=15, lastline=32, highlightlines={19,28}}
   \label{lst:Schritt4SelectionCardPriorChoices}
@@ -206,10 +218,11 @@ die den Wert der bisherigen Auswahloptionen neu setzt.
 Doch das Programm verwaltet keine Referenzen auf alle gebauten Selektionskarten.
 Somit kann auch nicht über eine Referenz eine Setter-Methode aufgerufen werden,
 denn eine solche Referenz existiert nicht. 
-Die übliche Vorgehensweise wäre in \enquote{Flutter}, das gesamte Widget neu zu zeichnen.
+Die übliche Vorgehensweise wäre in \enquote{Flutter},
+das gesamte Widget neu zu zeichnen.
 Bei Einsatz eines \enquote{StatefulWidgets} und Zustandsänderungen über die \IC{setState}-Methode würde dies das Neuzeichnen des gesamten Formulars bedeuten.
 
-Performante ist es dagegen,
+Performanter ist es dagegen,
 wenn nur die Inhalte der Selektionskarten ausgetauscht werden.
 Anstatt ausschließlich auf die Änderungen der eigenen Auswahloptionen zu reagieren,
 horcht der \IC{StreamBuilder} nun auf den \enquote{Stream} \IC{priorChoices} \LstZ{\ref{lst:Schritt4StreamBuilderpriorChoices}}{52}
@@ -227,36 +240,104 @@ so ist die Karte rot.
 Anderenfalls wird dem Parameter \IC{tileColor} \IC{null} übergeben \Z{70}.
 \IC{null} bedeutet, dass keine Farbe übergeben und damit die Standardfarbe verwendet wird.
 
-\begin{alexlisting}{Schritt 4}{XXXX}
+\begin{alexlisting}{Schritt 4}{Die \enquote{SelectionCard} reagiert auf Änderungen des Streams \enquote{priorChoices}}
   {Quellcode/Schritt-4/conditional_form/lib/widgets/selection_card.dart}
   {firstline=51, lastline=70, highlightlines={52, 55-57,69-70}}
   \label{lst:Schritt4StreamBuilderpriorChoices}
 \end{alexlisting} 
 
 
-
-\ifIncludeFigures \clearpage \fi
-
 \section{Reagieren des Auswahlbildschirms auf die ausgewählten Optionen}
 
 
 
 Der Auswahlbildschirm wird im Folgenden um zwei weitere Funktionalitäten erweitert \Lst{\ref{lst:Schritt4selectedAndSelectableChoices}}.
+
+\ifIncludeFigures
+\begin{listing}[htbp]
+  \renewcommand\theFancyVerbLine{%
+    \ifnum\value{FancyVerbLine}=121
+    \setcounter{FancyVerbLine}{131}
+    \tiny\ldots
+    \else
+    \tiny\arabic{FancyVerbLine}%
+    \fi
+  }
+  \begin{minted}[firstnumber=90, highlightlines={95-105, 108, 110-111, 118, 134-141}]{dart}
+body: StreamBuilder(
+stream: selectionViewModel,
+builder: (context, snapshot) {
+final selectedChoices = selectionViewModel.value;
+
+Set<ChoiceType> selectedAndSelectableChoices = {};
+Set<ChoiceType> unselectableChoices = {};
+
+for (ChoiceType c in allChoices) {
+  if (selectedChoices.contains(c) ||
+      c.conditionMatches(priorChoices.value)) {
+    selectedAndSelectableChoices.add(c);
+  } else {
+    unselectableChoices.add(c);
+  }
+}
+
+return ListView(children: [
+  ...selectedAndSelectableChoices.map((ChoiceType c) {
+    bool isSelected = selectedChoices.contains(c);
+    bool selectedButDoesNotMatch =
+        !c.conditionMatches(priorChoices.value);
+
+    return CheckboxListTile(
+        key: Key(
+            "valid choice ${allChoices.name} - ${c.abbreviation}"),
+        controlAffinity: ListTileControlAffinity.leading,
+        title: Text(c.description),
+        tileColor: selectedButDoesNotMatch ? Colors.red : null,
+        value: isSelected,
+        onChanged: (selected) {
+
+        });
+  }).toList(),
+  ...unselectableChoices.map((Choice c) {
+    return ListTile(
+        key: Key(
+            "invalid choice ${allChoices.name} - ${c.abbreviation}"),
+        title: Text(c.description),
+        leading: const Icon(Icons.close));
+  }).toList()
+]);
+\end{minted}
+  \alexlistingcaption{Schritt 1}{Der Selektionsbildschirm in Schritt 4} {Quellcode/Schritt-1/conditional_form/lib/screens/massnahmen_master.dart}
+  \label{lst:Schritt4selectedAndSelectableChoices}
+\end{listing}
+\fi
+
+
+
+
+
+
+
+
+
 Sollten durch neue Selektionen im Formular bereits selektierte Optionen im Auswahlbildschirm nun invalide sein,
 so werden diese rot gefärbt.
 Weiterhin erscheinen invalide Optionen,
 die nicht ausgewählt sind,
 am Ende der Liste ohne Checkbox zum Auswählen.
-Außerdem erhält die Option ein Kreuz-Icon als Indikator dafür, dass sie nicht angewählt werden kann.
+Außerdem erhält die Option ein Kreuz-Icon als Indikator dafür,
+dass sie nicht angewählt werden kann.
 
 Zu diesem Zweck konstruiert der \IC{StreamBuilder} vor der Rückgabe des \IC{ListView} zwei Mengen.
 Die Menge \IC{selectedAndSelectableChoices} \Z{95} beinhaltet alle Auswahloptionen,
 die entweder selektiert oder selektierbar sind.
-Dies beinhaltet auch Optionen, die invalide und trotzdem selektiert sind.
+Dies beinhaltet auch Optionen,
+die invalide und trotzdem selektiert sind.
 Die zweite Menge \IC{unselectableChoices} \Z{96} dagegen beinhaltet alle Optionen,
-die invalide sind, und nicht selektiert sind.
-
-Eine Schleife iteriert über alle verfügbaren Optionen, welche der Auswahl Bildschirm anzeigt  \Z{90-105}.
+die invalide sind,
+und nicht selektiert sind.
+Eine Schleife iteriert über alle verfügbaren Optionen,
+welche der Auswahl Bildschirm anzeigt  \Z{90-105}.
 Sollte die Option in den selektierten Optionen enthalten \Z{99},
 oder aber mit den Selektionen aller anderen Auswahlfelder kompatibel sein,
 so wird sie der Menge \IC{selectedAndSelectableChoices} hinzugefügt \Z{101}.
@@ -291,13 +372,6 @@ um zu signalisieren,
 dass diese Option nicht anwählbar ist. 
 
 
-\begin{alexlisting}{Schritt 4}{XXXX}
-  {Quellcode/Schritt-4/conditional_form/lib/widgets/selection_card.dart}
-  {firstline=88, lastline=141, highlightlines={95-105, 108, 110-111, 118, 134-141}}
-  \label{lst:Schritt4selectedAndSelectableChoices}
-\end{alexlisting}
-
-\ifIncludeFigures \clearpage \fi
 
 \subsection{Hinzufügen der Momentaufnahme zur Validierung}
 
@@ -309,6 +383,13 @@ so kann dies auch mit invaliden Optionen erfolgen.
 Um das zu verhindern,
 wird noch ein Vergleich zu der anonymen Funktion hinzugefügt,
 welche als Argument dem Parameter \IC{validator} des \IC{FormField} übergeben wird \Lst{\ref{lst:Schritt4validator}}.
+
+\begin{alexlisting}{Schritt 4}{Die \enquote{validator} Funktion von \enquote{FormField} in Schritt 4}
+  {Quellcode/Schritt-4/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
+  {firstline=121, lastline=140, highlightlines={131-136}}
+  \label{lst:Schritt4validator}
+\end{alexlisting}
+
 Sollte auch nur eine der selektierten Optionen \IC{choices} die ihr hinterlegte Bedingungen nicht erfüllen \Z{132},
 so speichert die lokale Variable \IC{atLeastOneValueInvalid} den Wert \IC{true} ab \Z{131}.
 
@@ -318,12 +399,8 @@ eine Maßnahme abzuspeichern,
 wenn sie invalide Auswahloptionen enthält.
 Erst wenn alle Auswahlfelder gefüllt sind
 und die gefüllten Optionen alle die jeweils hinterlegten Bedingungen erfüllen,
-so werden die \IC{validator}-Funktionen \IC{null} statt einer Fehlermeldung zurückgeben \Z{138}.
+so werden die \IC{validator}-Funktionen \IC{null} statt einer Fehlermeldung zurückgegeben \Z{138}.
 Nur dann kann eine Maßnahme mit dem Status \enquote{abgeschlossen} gespeichert werden.
 
 
-\begin{alexlisting}{Schritt 4}{Die Ausgabe der Formularfelder}
-  {Quellcode/Schritt-4/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
-  {firstline=121, lastline=140, highlightlines={131-136}}
-  \label{lst:Schritt4validator}
-\end{alexlisting}
+

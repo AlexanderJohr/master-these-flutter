@@ -3,17 +3,18 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
+  <component name="BranchesTreeState">
+    <expand />
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="b5c4b1aa-c178-4788-910d-f4b89b0854a6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Haupteinstiegspunkt.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Haupteinstiegspunkt.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Serialisierung.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Serialisierung.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Implementierung.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Implementierung.tex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Uebersichtsbildschirm.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Uebersichtsbildschirm.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Widget-SelectionCard.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Widget-SelectionCard.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Zielsetzung.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Zielsetzung.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Technologie-Auswahl/Trendanalyse.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Technologie-Auswahl/Trendanalyse.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Technologie-Auswahl/Vergleich-React-Native-und-Flutter.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Technologie-Auswahl/Vergleich-React-Native-und-Flutter.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-4/Schritt-4.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-4/Schritt-4.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/m27007_master_these_main.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/m27007_master_these_main.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/m27007_master_these_main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/m27007_master_these_main.tex" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,25 +48,56 @@
     </task>
     <servers />
   </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="1">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="402" y="-17" width="1736" height="856" maximized="true" key="DiffContextDialog" timestamp="1629505662183">
+    <state x="-497" y="566" width="1736" height="856" key="DiffContextDialog" timestamp="1629673963997">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="402" y="-17" width="1736" height="856" maximized="true" key="DiffContextDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629505662183" />
-    <state x="82" y="121" width="1530" height="869" key="MergeDialog" timestamp="1629496951261">
+    <state x="-497" y="566" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629673963997" />
+    <state x="337" y="150" width="1530" height="869" key="MergeDialog" timestamp="1629659623088">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="82" y="121" width="1530" height="869" key="MergeDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629496951261" />
-    <state x="598" y="281" key="MultipleFileMergeDialog" timestamp="1629496951270">
+    <state x="337" y="150" width="1530" height="869" key="MergeDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629659623088" />
+    <state x="598" y="281" key="MultipleFileMergeDialog" timestamp="1629659623097">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="598" y="281" key="MultipleFileMergeDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629496951270" />
-    <state x="619" y="253" key="VcsDiffUtil.ChangesDialog" timestamp="1629498967821">
+    <state x="598" y="281" key="MultipleFileMergeDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629659623097" />
+    <state x="92" y="92" width="1736" height="856" key="VCS.FileHistoryDialog" timestamp="1629686210746">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="619" y="253" key="VcsDiffUtil.ChangesDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629498967821" />
+    <state x="92" y="92" width="1736" height="856" key="VCS.FileHistoryDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629686210746" />
+    <state x="619" y="253" key="VcsDiffUtil.ChangesDialog" timestamp="1629654314127">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="619" y="253" key="VcsDiffUtil.ChangesDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629654314127" />
+    <state x="666" y="253" width="587" height="556" key="find.popup" timestamp="1629671473136">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="666" y="253" width="587" height="556" key="find.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629671473136" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1629660208912">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629660208912" />
   </component>
 </project>

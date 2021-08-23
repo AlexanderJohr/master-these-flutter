@@ -1,11 +1,25 @@
 \chapter{Schritt 7}
 \label{chap:Schritt-7}
 
+
+Nachdem im letzten Schritt nun die Mehrfachauswahl für die \enquote{Nebenziele} hinzugefügt wurde,
+soll in diesem Schritt die Möglichkeit geschaffen werden,
+benutzerdefinierte Abhängigkeiten für Auswahloptionen anzugeben.
+Denn die \enquote{Nebenziele} haben mehrere besondere Voraussetzungen:
+
+Sollte das \enquote{Hauptziel} nicht gesetzt sein oder die Option \enquote{keine Angabe/Vorgabe} oder \enquote{bitte um Unterstützung} enthalten,
+so ist es nicht sinnvoll, dass ein tatsächliches \enquote{Nebenziele} gewählt wird.
+In diesem Fall kommen wiederum nur die Werte \enquote{keine Angabe/Vorgabe} oder \enquote{bitte um Unterstützung} infragen.
+
+Sollte dagegen ein \enquote{Hauptziel} gesetzt sein, so darf das \enquote{Nebenziele} nicht die gleiche Option enthalten.
+Ist also beispielsweise für das \enquote{Hauptziel} \enquote{Biodiversität} ausgewählt \Abb{\ref{fig:Schritt4EingabemaskeDHBioDiv}},
+so darf die Option im Selektionsbildschirm für die \enquote{Nebenziele} nicht zur Verfügung stehen \Abb{\ref{fig:Schritt4EingabemaskeDNBiodiv}}.
+
 \begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-7/D H BioDiv.png}
   {Im Selektionsbildschirm für das \enquote{Hauptziel} ist \enquote{Biodiversität} ausgewählt}
   {Im Selektionsbildschirm für das \enquote{Hauptziel} ist \enquote{Biodiversität} ausgewählt}
 
-  \label{fig:Schritt4Eingabemaske}
+  \label{fig:Schritt4EingabemaskeDHBioDiv}
 
 \end{alexfigure}
 
@@ -13,29 +27,27 @@
   {Im Selektionsbildschirm für die \enquote{Nebenziele} kann \enquote{Biodiversität} nicht ausgewählt werden}
   {Im Selektionsbildschirm für die \enquote{Nebenziele} kann \enquote{Biodiversität} nicht ausgewählt werden}
 
-  \label{fig:Schritt4Eingabemaske}
+  \label{fig:Schritt4EingabemaskeDNBiodiv}
 
 \end{alexfigure}
 
+
+Das bedeutet auch,
+dass wenn für die \enquote{Nebenziele} bereits \enquote{Biodiversität} ausgewählt war
+und anschließend für das \enquote{Hauptziel} ebenfalls \enquote{Biodiversität} gewählt wird,
+so muss die invalide Auswahl im Selektionsbildschirm der \enquote{Nebenziele} rot gekennzeichnet werden \Abb{\ref{fig:Schritt4EingabemaskeDNBiodivRot}}. 
 
 \begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-7/D N Biodiv Rot.png}
   {Im Selektionsbildschirm für die \enquote{Nebenziele} wird die selektierte invalide Option \enquote{Biodiversität} rot gekennzeichnet}
   {Im Selektionsbildschirm für die \enquote{Nebenziele} wird die selektierte invalide Option \enquote{Biodiversität} rot gekennzeichnet}
 
-  \label{fig:Schritt4Eingabemaske}
+  \label{fig:Schritt4EingabemaskeDNBiodivRot}
 
 \end{alexfigure}
 
-Nachdem im letzten Schritt nun die Mehrfachauswahl für die Nebenziel hinzugefügt wurde,
-soll in diesem Schritt die Möglichkeit geschaffen werden,
-benutzerdefinierte Abhängigkeiten für Auswahloptionen anzugeben.
-Denn die Nebenziele haben mehrere besondere Voraussetzungen:
 
-Sollte das Hauptziel nicht gesetzt sein oder die Option \enquote{keine Angabe/Vorgabe} oder \enquote{bitte um Unterstützung} enthalten,
-so ist es nicht sinnvoll, dass ein tatsächliches Nebenziel gewählt wird.
-In diesem Fall kommen wiederum nur die Werte \enquote{keine Angabe/Vorgabe} oder \enquote{bitte um Unterstützung} infragen.
 
-Sollte dagegen ein Hauptziel gesetzt sein, so darf das Nebenziel nicht die gleiche Option enthalten.
+
 Diese Bedingungen lassen sich nicht mit Funktion \IC{condition} der Basisklasse \IC{Choice} lösen.
 
 Denn das Argument \IC{priorChoices},
@@ -46,7 +58,7 @@ gibt aber keine Auskunft darüber,
 von welchem Auswahlfeld sie stammen. 
 Sollte also die Auswahloptionen \enquote{Biodiversität} in der Menge der \IC{priorChoices} auftauchen,
 so ist unklar,
-ob sie im Auswahlfeld für das Hauptziel oder dem der Nebenziele gewählt wurde.
+ob sie im Auswahlfeld für das \enquote{Hauptziel} oder dem der \enquote{Nebenziele} gewählt wurde.
 
 Wenn der Selektionskarte aber eine benutzerdefinierte Funktion übergeben werden könnte,
 welche im aufrufenden Kontext auch Zugriff auf das \enquote{ViewModel} hat,
@@ -219,29 +231,29 @@ Außerdem erstellt \IC{MassnahmenDetailScreen} die konkrete Strategie \enquote{n
 
 Der Aufruf \IC{buildMultiSelectionCard} wird um die Übergabe einer anonymen Funktion für den Parameter \IC{choiceMatcher} erweitert \Z{224-239}.
 In der ersten Fallunterscheidung wird überprüft,
-ob die gewählte Option ein tatsächliches Nebenziel ist \Z{225}.
+ob die gewählte Option ein tatsächliches \enquote{Nebenziele} ist \Z{225}.
 Dies kann über die Getter-Methode \IC{hasRealValue} abgefragt werden.
 Ist dies nicht der Fall,
 so handelt es sich um die Auswahloptionen \enquote{keine Angabe/Vorgabe} bzw. \enquote{bitte um Unterstützung},
 weshalb \IC{true} zurückgegeben werden kann \Z{237},
 da diese Auswahloptionen immer erlaubt sind.
-Sollte sich dagegen um ein tatsächliches Nebenziel handeln,
+Sollte sich dagegen um ein tatsächliches \enquote{Nebenziele} handeln,
 so überprüft die nächste Fallunterscheidung,
-ob das Hauptziel entweder nicht gesetzt ist
-oder mit einem nicht tatsächlichen Hauptziel belegt ist \Z{226-228}.,
+ob das \enquote{Hauptziel} entweder nicht gesetzt ist
+oder mit einem nicht tatsächlichen \enquote{Hauptziel} belegt ist \Z{226-228}.,
 Dazu wird die Getter-Methode \IC{hasNoRealValue} benutzt,
 welche als Gegenteil zu \IC{hasRealValue} fungiert,
 und dementsprechend \IC{true} zurückgibt wenn die Auswahloption entweder \enquote{keine Angabe/Vorgabe} oder \enquote{bitte um Unterstützung} ist \Z{226-228}.
-Sollte das Hauptziel keinen tatsächlichen Wert einer Zielsetzung enthalten,
-dann ist die Wahl eines oder mehrerer Nebenziele nicht sinnvoll.
+Sollte das \enquote{Hauptziel} keinen tatsächlichen Wert einer Zielsetzung enthalten,
+dann ist die Wahl eines oder mehrerer \enquote{Nebenziele} nicht sinnvoll.
 Waren beide zuvorigen Bedingungen nicht wahr,
 so steht bereits fest,
-dass sowohl das Hauptziel,
-als auch den Nebenziel gesetzt sind
+dass sowohl das \enquote{Hauptziel},
+als auch den \enquote{Nebenziele} gesetzt sind
 und weder die Option \enquote{keine Angabe/Vorgabe}
 oder \enquote{bitte um Unterstützung} enthalten.
 Nun soll eine letzte Fallunterscheidung überprüfen,
-ob das Nebenziel bereits im Hauptziel gesetzt ist \Z{230-321}. 
+ob das \enquote{Nebenziele} bereits im \enquote{Hauptziel} gesetzt ist \Z{230-321}. 
 Das ist nicht erlaubt,
 weshalb \IC{false} zurückgegeben werden soll \Z{232}.
 Anderenfalls sind alle Bedingungen erfüllt und \IC{true} kann zurückgegeben werden.

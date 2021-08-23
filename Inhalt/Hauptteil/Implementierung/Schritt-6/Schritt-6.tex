@@ -1,41 +1,32 @@
 \chapter{Schritt 6}
 \label{chap:Schritt-6}
 
-
-\begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-6/Ü.png}
-  {Der Übersichtsbildschirm in Schritt 6}
-  {Der Übersichtsbildschirm in Schritt 6}
-
-  \label{fig:Schritt4Eingabemaske}
-
-\end{alexfigure}
-
+In diesem Schritt soll das Formular um Mehrfachauswahlfelder erweitert werden.
+Im Speziellen handelt es sich um das Auswahlfeld \enquote{Nebenziele} \Abb{\ref{fig:Schritt4EingabemaskeD}}.
 \begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-6/D.png}
   {Die Eingabemaske in Schritt 6}
   {Die Eingabemaske in Schritt 6}
 
-  \label{fig:Schritt4Eingabemaske}
+  \label{fig:Schritt4EingabemaskeD}
 
 \end{alexfigure}
 
 
+Es beinhaltet die gleichen Auswahloptionen wie das Auswahlfeld \enquote{Hauptzielsetzung} \Abb{\ref{fig:Schritt4EingabemaskeDZ}}.
 \begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-6/D Z.png}
   {Im Selektionsbildschirm für die \enquote{Nebenziele} können mehrere Optionen gewählt werden}
   {Im Selektionsbildschirm für die \enquote{Nebenziele} können mehrere Optionen gewählt werden}
 
-  \label{fig:Schritt4Eingabemaske}
+  \label{fig:Schritt4EingabemaskeDZ}
 
 \end{alexfigure}
 
-In diesem Schritt soll das Formular um Mehrfachauswahlfelder erweitert werden.
-Im Speziellen handelt es sich um das Auswahlfeld Nebenziele.
-Es beinhaltet die gleichen Auswahloptionen wie das Auswahlfeld Hauptzielsetzung.
 
 \section{Integrationstest erweitern}
 
 Zunächst wird der Integrationstest um die Auswahl der Nebenziele erweitert \Lst{\ref{lst:Schritt6tabSelectionCard}}.
 
-\begin{alexlisting}{Schritt 6}{XXXX}
+\begin{alexlisting}{Schritt 6}{Der Integrationstest klickt die Karte für die \enquote{Nebenziele} und selektiert darin 2 Optionen}
   {Quellcode/Schritt-6/conditional_form/integration_test/app_test.dart}
   {firstline=118, lastline=127, highlightlines={121-123}}
   \label{lst:Schritt6tabSelectionCard}
@@ -52,7 +43,7 @@ Anschließend erfolgt erneut das Speichern der Maßnahme \Z{125-126}.
 
 Anders als bei den bisherigen Schlüssel-Werte-Paaren innerhalb des Objektes \IC{'massnahmenCharakteristika'} kann der Wert der Nebenziele nicht als einzelner String gespeichert werden \Lst{\ref{lst:Schritt6expectedJson}}.
 
-\begin{alexlisting}{Schritt 6}{XXXX}
+\begin{alexlisting}{Schritt 6}{Der Integrationstest überprüft im \enquote{JSON}-Dokument den Schlussel \enquote{nebenziele}}
   {Quellcode/Schritt-6/conditional_form/integration_test/app_test.dart}
   {firstline=136, lastline=150, highlightlines={140-143}}
   \label{lst:Schritt6expectedJson}
@@ -69,7 +60,7 @@ Für die Menge der Nebenziele müssen keine weiteren Auswahloptionen hinzugefüg
 Es werden die gleichen Optionen verwendet,
 die auch bei der Menge  mit dem Namen \enquote{Hauptzielsetzung Land} zum Einsatz kommen \LstZ{\ref{lst:Schritt6nebenzielsetzungLandChoices}}{123-124}.
 
-\begin{alexlisting}{Schritt 6}{XXXX}
+\begin{alexlisting}{Schritt 6}{Die Menge \enquote{nebenzielsetzungLandChoices}}
   {Quellcode/Schritt-6/conditional_form/lib/choices/choices.dart}
   {firstline=219, lastline=224, highlightlines={223-224}}
   \label{lst:Schritt6nebenzielsetzungLandChoices}
@@ -79,7 +70,7 @@ die auch bei der Menge  mit dem Namen \enquote{Hauptzielsetzung Land} zum Einsat
 
 Um die Liste der Nebenziele im Wertetyp \IC{MassnahmenCharakteristika} einzufügen,
 kann der Datentyp \IC{BuiltSet} verwendet werden \LstZ{\ref{lst:Schritt6MassnahmenCharakteristika}}{77}.
-\begin{alexlisting}{Schritt 6}{XXXX}
+\begin{alexlisting}{Schritt 6}{Die Nebenziele werden dem Wertetyp \enquote{massnahmenCharakteristika} hinzugefügt}
   {Quellcode/Schritt-6/conditional_form/lib/data_model/massnahme.dart}
   {firstline=68, lastline=77, highlightlines={77}}
   \label{lst:Schritt6MassnahmenCharakteristika}
@@ -96,7 +87,7 @@ dass die Menge leer ist.
 Für das Einfügen der Überschrift in der Übersichtstabelle gibt es keine Unterschiede zum bisherigen Vorgehen.
 Die Überschrift wird nach der Spaltenüberschrift für die \enquote{Hauptzielsetzung} eingefügt \LstZ{\ref{lst:Schritt6buildColumnHeader}}{28}.
 
-\begin{alexlisting}{Schritt 6}{XXXXX}
+\begin{alexlisting}{Schritt 6}{Die \enquote{Nebenziele} werden dem Tabellenkopf hinzugefügt}
   {Quellcode/Schritt-6/conditional_form/lib/widgets/massnahmen_table.dart}
   {firstline=27, lastline=28, highlightlines={28}}
   \label{lst:Schritt6buildColumnHeader}
@@ -107,7 +98,7 @@ Dieses Mal handelt es sich um die Aufzählung von mehreren Werten,
 weshalb ein \IC{Column}-Widget die einzelnen Einträge untereinander auflistet \Z{46-49}.
 Jedes Element des \IC{BuiltSet} \IC{nebenziele} \Z{47} wird über die Methode \IC{map} jeweils in ein Element des Widgets \IC{Text} konvertiert \Z{48}.
 
-\begin{alexlisting}{Schritt 6}{XXXXX}
+\begin{alexlisting}{Schritt 6}{Die Nebenziele werden dem Tabellenkörper hinzugefügt}
   {Quellcode/Schritt-6/conditional_form/lib/widgets/massnahmen_table.dart}
   {firstline=42, lastline=50, highlightlines={44-50}}
   \label{lst:Schritt6buildSelectableCell}
@@ -116,7 +107,7 @@ Jedes Element des \IC{BuiltSet} \IC{nebenziele} \Z{47} wird über die Methode \I
 \section{Aktualisierung des \enquote{ViewModels}}
 
 Die Nebenziele werden -- erneut Mit dem Datentyp BuiltSet -- im \enquote{ViewModel} hinzugefügt \Lst{\ref{lst:Schritt6BehaviorSubjectNebenziele}}.
-\begin{alexlisting}{Schritt 6}{XXXX}
+\begin{alexlisting}{Schritt 6}{Die Nebenziele werden dem \enquote{ViewModel} hinzugefügt}
   {Quellcode/Schritt-6/conditional_form/lib/screens/massnahmen_detail/massnahmen_form_view_model.dart}
   {firstline=18, lastline=21, highlightlines={20-21}}
   \label{lst:Schritt6BehaviorSubjectNebenziele}
@@ -135,7 +126,7 @@ indem sie die ihr als Argument übergebene Funktion für jede Abkürzung in der 
 Die übergebene anonyme Funktion konvertiert die Abkürzung in die zugehörige Auswahloption.
 Die resultierende Menge kann dem Konstruktor von \IC{BuiltSet} übergeben werden \Z{64-65}.
 
-\begin{alexlisting}{Schritt 6}{XXXX}
+\begin{alexlisting}{Schritt 6}{Konvertierung des \enquote{Models} in das \enquote{ViewModel} für die \enquote{Nebenziele}}
   {Quellcode/Schritt-6/conditional_form/lib/screens/massnahmen_detail/massnahmen_form_view_model.dart}
   {firstline=46, lastline=67, highlightlines={64-65}}
   \label{lst:Schritt6setModel}
@@ -144,7 +135,7 @@ Die resultierende Menge kann dem Konstruktor von \IC{BuiltSet} übergeben werden
 
 Ähnlich verhält es sich bei der Umwandlung des \enquote{ViewModels} in das \enquote{Model} \Lst{\ref{lst:Schritt6nebenzieleSetBuilder}}.
 
-\begin{alexlisting}{Schritt 6}{XXXX}
+\begin{alexlisting}{Schritt 6}{Konvertierung des \enquote{ViewModels} in das \enquote{Model} für die \enquote{Nebenziele}}
   {Quellcode/Schritt-6/conditional_form/lib/screens/massnahmen_detail/massnahmen_form_view_model.dart}
   {firstline=69, lastline=81, highlightlines={80-81}}
   \label{lst:Schritt6nebenzieleSetBuilder}
@@ -181,7 +172,7 @@ um redundanten Code zu vermeiden.
 Innerhalb der bereits vorhandenen Methode \IC{buildSelectionCard} wird die Routine,
 welche für die Validierung das Formulares genutzt wird,
 in eine neue Methode namens \IC{validateChoices} \LstZ{\ref{lst:Schritt6buildSelectionCard}}{123-128} ausgelagert.
-\begin{alexlisting}{Schritt 6}{Die Methode \enquote{buildSelectionCard} in Schritt 6}
+\begin{alexlisting}{Schritt 6}{Die Methode \enquote{buildSelectionCard} mit dem Aufruf der ausgelagerten Funktion \enquote{validateChoices}}
   {Quellcode/Schritt-6/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
   {firstline=119, lastline=129, highlightlines={123-128}}
   \label{lst:Schritt6buildSelectionCard}
@@ -222,7 +213,7 @@ dessen Wert im Konstruktor übergeben wird \Z{27} aber auch ausgelassen werden k
 \end{alexlisting}
 
 
-Die Rückruffunktion \IC{onChanged} des CheckboxListTile unterscheidet schließlich zwischen Mehrfach- und Einzel-Selektion.
+Die Rückruffunktion \IC{onChanged} des CheckboxListTile unterscheidet schließlich zwischen Mehrfach- und Einzel-Selektion \Lst{\ref{lst:Schritt6CheckboxListTile}}.
 Sollte \IC{multiSelection} mit \IC{true} gesetzt sein \Z{133}, so erstellt die Methode \IC{rebuild} von \IC{BuiltSet} eine Kopie des aktuellen \enquote{ViewModels} der Selektionen.
 In der anonymen Funktion,
 welche für die Manipulationen an der Kopie genutzt wird,
@@ -233,8 +224,8 @@ so wird diese bereits selektierte Option, die nun erneut angewählt wurde, mit d
 Anderenfalls war die Option nicht selektiert, weshalb sie mit der Methode \IC{add} hinzugefügt wird. 
 
 
-\begin{alexlisting}{Schritt 6}{Die Mehrfachselektion wird dem \enquote{CheckboxListTile} hinzugefügt }
+\begin{alexlisting}{Schritt 6}{Dem \enquote{CheckboxListTile} wird die Mehrfachselektion hinzugefügt}
   {Quellcode/Schritt-6/conditional_form/lib/widgets/selection_card.dart}
   {firstline=124, lastline=154, highlightlines={133-142, 147}}
-  \label{lst:Schritt6XXXX}
+  \label{lst:Schritt6CheckboxListTile}
 \end{alexlisting}

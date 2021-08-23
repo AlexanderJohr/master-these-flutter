@@ -2,7 +2,8 @@
 \label{chap:Schritt-3}
 
 
-
+In diesem Schritt soll die grundlegende Validierungsfunktion hinzugefügt werden.
+Maßnahmen, die als abgeschlossen markiert sind, dürfen keine leeren Eingabefelder enthalten und der Maßnahmentitel darf nicht doppelt belegt sein. Auf Validierungsfehler wird in der Eingabemaske mit Benachrichtigungen in rot gefärbter Schrift hingewiesen \Abb{\ref{fig:Schritt3Eingabemaske}}.
   
   \begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-3/D M F Rot.png}
     {Die Eingabemaske in Schritt 3}
@@ -12,12 +13,10 @@
   
   \end{alexfigure}
 
-In diesem Schritt soll die grundlegende Validierungsfunktion hinzugefügt werden.
-Maßnahmen, die als abgeschlossen markiert sind, dürfen keine leeren Eingabefelder enthalten und der Maßnahmentitel darf nicht doppelt belegt sein.
-\IC{Flutter} stellt das Widget \IC{Form} für die Validierung von Eingabefeldern bereit.
+
 
 \section{Einfügen des \enquote{Form-Widgets}}
-
+\IC{Flutter} stellt das Widget \IC{Form} für die Validierung von Eingabefeldern bereit.
 Das Widget \IC{Form} ist ein Container, welcher die Validierung für alle Kinderelemente des Typs \IC{FormField} ausführt.
 Damit es alle Eingabefelder im Formular umgibt, wird es oberhalb des \IC{Stack} eingefügt \LstZ{\ref{lst:Schritt3Form}}{161}.
 Das \IC{Form}-Widget muss über einen \IC{key} registriert werden \Z{162}, damit auf die Validierungsfunktionen zurückgegriffen werden kann.
@@ -50,7 +49,7 @@ Die übergebene Funktion erhält im ersten Parameter den für das Textfeld einge
 Die Funktion soll \IC{null} zurückgeben, wenn keine Fehler in der Validierung geschehen sind.
 In jedem anderen Fall soll der Text zurückgegeben werden, der als Fehlermeldung angezeigt werden soll.
 
-\begin{alexlisting}{Schritt 3}{Die Funktion \enquote{createMassnahmenTitelTextFormField} in Schritt 3}
+\begin{alexlisting}{Schritt 3}{Die Funktion \enquote{createMassnahmenTitelTextFormField} mit Validierung}
     {Quellcode/Schritt-3/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
     {firstline=83, lastline=116, highlightlines={84,89, 93-109}}
     \label{lst:Schritt3createMassnahmenTitelTextFormFieldValidator}
@@ -74,7 +73,7 @@ Der Benutzer bekommt die entsprechende Fehlermeldung \IC{'Dieser Maßnahmentitel
 Wenn keine der beiden Fallunterscheidungen das \IC{return}-Statement \Z{96, 106} auslöst, so erfolgt schließlich die Rückgabe von \IC{null}.
 In dem Kontext der \IC{validator}-Funktion bedeutet die Rückgabe von \IC{null} \Z{108}, dass die Validierung erfolgreich war.
  
-
+\section{Validierung der Selektionskarten}
  
 Das \IC{Form}-Widget validiert lediglich Kindelemente vom Typ \IC{FormField}.
 Dementsprechend wird das Widget \IC{SelectionCard} nicht in die Validierung miteinbezogen.
@@ -86,7 +85,7 @@ Die Selektionskarte kann ebenso von einem \IC{FormField} umgeben werden \LstZ{\r
 Der erste Parameterder \IC{builder}-Funktion ist das \IC{State}-Objekt das \IC{FormField}.
 Es enthält die Getter-Methode \IC{errorText}, die bei gegebenenfalls fehlgeschlagener Validierung die zurückgegebene Fehlermeldung enthält.
 
-\begin{alexlisting}{Schritt 3}{Die Methode \enquote{buildSelectionCard} in Schritt 3}
+\begin{alexlisting}{Schritt 3}{Die Methode \enquote{buildSelectionCard} mit Validierung}
     {Quellcode/Schritt-3/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
     {firstline=118, lastline=145, highlightlines={121-133, 143-144}}
     \label{lst:Schritt3buildSelectionCardValidator}
@@ -101,7 +100,7 @@ Ist die Menge dagegen gefüllt, so gibt sie \IC{null} zurück, um mitzuteilen, d
 Der \IC{errorText} wird im Konstruktor der Klasse \IC{SelectionCard} übergeben \LstZ{\ref{lst:Schritt3errorText}}{29}.
 Da er \IC{null} sein darf, ist er mit dem Suffix \IC{?} als Typ mit Null-Zulässigkeit gekennzeichnet \Z{21}.
 
-\begin{alexlisting}{Schritt 3}{errorText wird der SelectionCard hinzugefügt}
+\begin{alexlisting}{Schritt 3}{\enquote{errorText} wird der \enquote{SelectionCard} hinzugefügt}
     {Quellcode/Schritt-3/conditional_form/lib/widgets/selection_card.dart}
     {firstline=19, lastline=30, highlightlines={21,29}}
     \label{lst:Schritt3errorText}
@@ -111,11 +110,14 @@ Durch Einfügen einer \IC{Column} zwischen der \IC{Card} \LstZ{\ref{lst:Schritt3
 Sollte der \IC{errorText} gesetzt sein \Z{65}, so erscheint unter dem Titel und dem Untertitel eine entsprechende Fehlermeldung \Z{66-71}.
  
 
-\begin{alexlisting}{Schritt 3}{errorText wird ausgegeben}
+\begin{alexlisting}{Schritt 3}{\enquote{errorText} wird ausgegeben}
     {Quellcode/Schritt-3/conditional_form/lib/widgets/selection_card.dart}
     {firstline=53, lastline=74, highlightlines={54-56,64-72}}
     \label{lst:Schritt3ColumnErrorText}
 \end{alexlisting}
+
+\section{Speichern der Eingaben im Entwurfsmodus}
+
 
 Oberhalb des vorhandenen \IC{FloatingActionButton} wird nun ein weiterer eingefügt, der zum Speichern des Entwurfs mit der Funktion \IC{saveDraftAndGoBackToOverviewScreen} genutzt werden soll \LstZ{\ref{lst:Schritt3FloatingActionButton}}{207-216}.
 Der ursprüngliche \IC{FloatingActionButton} speichert nun ausschließlich dann, wenn die Maßnahme als \enquote{in Bearbeitung} markiert ist oder alle Eingabefelder valide sind.
@@ -127,7 +129,7 @@ Sollte es allerdings zur Ausführung des \IC{else}-Blocks führen \Z{225-227},
 da die Maßnahme doch als \enquote{abgeschlossen} markiert und nicht alle Eingabefelder valide waren,
 so erhält der Benutzer eine Fehlermeldung. Die neu implementierte Hilfsfunktion \IC{showValidationError} wird dafür verwendet \Z{226}. 
    
-\begin{alexlisting}{Schritt 3}{Die Maßnahmencharakteristika Selektionskarten werden ergänzt}
+\begin{alexlisting}{Schritt 3}{Der \enquote{FloatingActionButton} zum Speichern der Maßnahmen im Entwurfsmodus}
     {Quellcode/Schritt-3/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
     {firstline=206, lastline=230, highlightlines={207-216, 222, 225-227}}
     \label{lst:Schritt3FloatingActionButton}
@@ -144,7 +146,7 @@ Auch der \IC{WillPopScope} erhält die gleiche Fehlerbehandlung \Lst{\ref{lst:Sc
 Die Funktion \IC{saveDraftAndGoBackToOverviewScreen} funktioniert ähnlich wie die nun ausgetauschte Funktion \IC{saveRecord}.
 Sie zeigt dem Benutzer an, dass die Maßnahme im Entwurfsmodus gespeichert wird \Z{23-26}, speichert sie im \enquote{Model} ab \Z{31}, und navigiert zur letzten Route zurück \Z{32}, welcher der Übersichtsbildschirm ist.  Einer der beiden Unterschiede ist, dass die Maßnahme zuvor umgebaut wird. Unerheblich dessen, welchen letzten Status sie aktuell besitzt, erhält sie den letzten Status \IC{"in Bearbeitung"} \Z{28-29}. Der zweite der beiden Unterschiede ist, dass die Funktion nun keinen Rückgabewert hat, während \IC{saveRecord} einen Wert vom Typ \IC{Future<bool>} zurückgeben musste. Der Grund dafür ist, dass die Funktion nur noch über den Aktionsbutton zum Speichern der Maßnahme im Entwurfsmodus ausgelöst wird. Der FloatingActionButton setzt keinen Rückgabewert der ausgelösten Funktion voraus.
 
-\begin{alexlisting}{Schritt 3}{Die Maßnahmencharakteristika Selektionskarten werden ergänzt}
+\begin{alexlisting}{Schritt 3}{Die Funktion \enquote{saveDraftAndGoBackToOverviewScreen}}
     {Quellcode/Schritt-3/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
     {firstline=22, lastline=33}
     \label{lst:Schritt3saveDraftAndGoBackToOverviewScreen}
@@ -153,7 +155,7 @@ Sie zeigt dem Benutzer an, dass die Maßnahme im Entwurfsmodus gespeichert wird 
 Die Hilfsfunktion \IC{inputsAreValidOrNotMarkedFinal} überprüft zunächst, ob der letzte Status ein anderer ist als \enquote{abgeschlossen} \LstZ{\ref{lst:Schritt3inputsAreValidOrNotMarkedFinal}}{71}. Da in diesem Fall keine weiteren Überprüfungen notwendig sind, gibt die Funktion direkt \IC{true} zurück \Z{73}.
 Andernfalls validiert das Formular die Eingabefelder \Z{76}. Dazu muss das Element vom Typ \IC{Form} in den Vaterelementen gefunden werden. Genauer gesagt wird dessen \IC{State}-Objekt benötigt. Der Zugriff auf das Element ist einfach, da es über einen \IC{GlobalKey} registriert wurde. Über \IC{formKey.currentState} kann das \IC{State}-Objekt des Elements abgerufen werden \Z{76}. Die Funktion \IC{validate()} führt dann alle Funktionen aus, die jeweils als Argument dem Parameter \IC{validator} aller Kindelemente des Typs \IC{FormField} übergeben wurden. Sollten alle \IC{validator}-Funktionen \IC{null} zurückgegeben haben -- was bedeutet, dass keine Fehler bei der Validierung geschehen sind -- so erfolgt die Rückgabe von \IC{true} \Z{77}. Anderenfalls bleibt nur die Rückgabe von \IC{false} übrig \Z{80}.
 
-\begin{alexlisting}{Schritt 3}{Die Maßnahmencharakteristika Selektionskarten werden ergänzt}
+\begin{alexlisting}{Schritt 3}{Die Funktion \enquote{inputsAreValidOrNotMarkedFinal}}
     {Quellcode/Schritt-3/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
     {firstline=71, lastline=81}
     \label{lst:Schritt3inputsAreValidOrNotMarkedFinal}
@@ -161,7 +163,7 @@ Andernfalls validiert das Formular die Eingabefelder \Z{76}. Dazu muss das Eleme
 
 Sollte es zu einem Fehler kommen, so zeigt die Hilfsfunktion \IC{showValidationError} dem Benutzer die entsprechende Fehlermeldung an \Lst{\ref{lst:Schritt3showValidationError}}. Sie bietet ihm darüber hinaus an, über einen Button die Maßnahme direkt als Entwurf zu speichern. Das ist möglich, da die \IC{SnackBar} \Z{45} nicht nur die Anzeige von gewöhnlichem Text erlaubt, sondern von jedem beliebigen Widget. Zunächst kommt dazu das Widget \IC{Row} zum Einsatz \Z{46}. Ähnlich wie das Widget \IC{Column} erlaubt es Kinderelemente in einer Reihe aufzulisten. Im Gegensatz zur \IC{Column} allerdings nun horizontal statt vertikal. Als letztes Element der \IC{Row} wird der  \IC{ElevatedButton} verwendet. Genauso wie bereits der \IC{FloatingActionButton} zum Speichern der Maßnahme im Entwurfsmodus verwendet nun auch dieser \IC{ElevatedButton} die Funktion \IC{saveDraftAndGoBackToOverviewScreen} \Z{52}.
 
-\begin{alexlisting}{Schritt 3}{Die Maßnahmencharakteristika Selektionskarten werden ergänzt}
+\begin{alexlisting}{Schritt 3}{Die Funktion \enquote{showValidationError}}
     {Quellcode/Schritt-3/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
     {firstline=44, lastline=69}
     \label{lst:Schritt3showValidationError}

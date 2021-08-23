@@ -1,5 +1,5 @@
 
-\ifIncludeFigures \clearpage \fi
+
 \section{Übersichtsbildschirm der Maßnahmen}
 
 Der erste Bildschirm -- die Übersicht der Maßnahmen -- kann auf das im letzten Schritt erstellte \enquote{Model} zugreifen.
@@ -85,19 +85,20 @@ class MassnahmenMasterScreen extends StatelessWidget {
   \end{listing}
 \fi
 
-\ifIncludeFigures \clearpage \fi
 \subsection{Auflistung der Maßnahmen im Übersichtsbildschirm}
 
 Der Inhalt der \IC{builder}-Methode ist in Listing \ref{lst:Schritt1DieAusgabeDerMassnahmen} dargestellt.
 Das erste Widget ist ein \IC{SingleChildScrollView} \Z{30}.
-Das Argument \IC{scrollDirection} ist nicht gefüllt, weshalb die Standardoption -- die vertikale Scrollrichtung -- gewählt wird.
-Sollte die Liste der Maßnahmen die Höhe des Fensters überschreiten, so kann der Benutzer vertikal über die Liste scrollen.
-
 \begin{alexlisting}{Schritt 1}{Die Ausgabe der Maßnahmen}
   {Quellcode/Schritt-1/conditional_form/lib/screens/massnahmen_master.dart}
   {firstline=30, lastline=86}
   \label{lst:Schritt1DieAusgabeDerMassnahmen}
 \end{alexlisting}
+
+Das Argument \IC{scrollDirection} ist nicht gefüllt, weshalb die Standardoption -- die vertikale Scrollrichtung -- gewählt wird.
+Sollte die Liste der Maßnahmen die Höhe des Fensters überschreiten, so kann der Benutzer vertikal über die Liste scrollen.
+
+
 
 Das Kind des Scrollbereichs ist ein \IC{Column}-Widget \Z{31}.
 Es zeichnet Widgets, die als Argument des Parameters \IC{children} gesetzt sind, von oben nach unten.
@@ -171,15 +172,12 @@ Hier erlaubt es eine Funktionssignatur als einen Typ zu deklarieren.
 Der \IC{MassnahmenMasterScreen} wiederum instanziiert ein anonymes Funktions-Objekt, welches der Schnittstelle und damit der Funktionssignatur entspricht \LstZ{\ref{lst:Schritt1DieAusgabeDerMassnahmen}}{75-82}.
 Weil es der Signatur der Typdefinition von \IC{OnSelectCallback}  entspricht, kann es der Tabelle als Argument für den Parameter \IC{onSelect} übergeben werden. 
 
-\ifIncludeFigures \clearpage \fi
-
 \begin{alexlisting}{Schritt 1}{Die Klasse MassnahmenTable}
   {Quellcode/Schritt-1/conditional_form/lib/widgets/massnahmen_table.dart}
   {firstline=4}
   \label{lst:Schritt1KlasseMassnahmenTable}
 \end{alexlisting}
 
-\ifIncludeFigures \clearpage \fi
 
 
 Das Inversion of Control Entwurfsmuster ist auch unter dem Namen \enquote{hollywood pattern} bekannt, da es ähnlich wie die typische Antwort auf eine Bewerbung für einen Hollywood Film -- don’t call us, we’ll call you -- funktioniert.\footcite[Vgl.][]{fowler2005InversionOfControl}

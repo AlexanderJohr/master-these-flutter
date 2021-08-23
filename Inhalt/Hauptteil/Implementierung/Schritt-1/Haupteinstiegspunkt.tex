@@ -1,5 +1,5 @@
 
-\ifIncludeFigures \clearpage \fi
+
 \section{Der Haupteinstiegspunkt}
 
 Das Listing \ref{lst:Schritt1DerHaupteinstiegspunkt} zeigt den Haupteinstiegspunkt des Programms.
@@ -166,7 +166,6 @@ Er enthält sowohl \enquote{ViewModel} als auch \enquote{Model}.
 \fi
 
 
-\ifIncludeFigures \clearpage \fi
 \section{Speichern der Maßnahmen in eine JSON-Datei}
 Das \enquote{Model} wird durch die Klasse \IC{MassnahmenJsonFile} in eine JSON-Datei gespeichert \Lst{\ref{lst:Schritt1KlasseMassnahmenJsonFile}}.
 Der Dateipfad wird dabei durch die Methode \IC{_localMassnahmenJsonFile} \Z{8-11} abgerufen.
@@ -199,7 +198,7 @@ Sollte die Dateien nicht existieren, führt das zu einer Ausnahme \Z{28}, welche
   \label{lst:Schritt1KlasseMassnahmenJsonFile}
 \end{alexlisting}
 
-\ifIncludeFigures \clearpage \fi
+
 \section{ Abhängigkeit zum Verwalten der Maßnahmen}
 
 Die Art und Weise, wie die Maßnahmen abgerufen werden, sollte nach Möglichkeit abstrahiert werden.
@@ -248,5 +247,3 @@ Durch Austauschen des gesamten Objekts mit der Zuweisung von \IC{storage.value} 
   {firstline=7}
   \label{lst:Schritt1KlasseMassnahmenModel}
 \end{alexlisting}
-
-\ifIncludeFigures \clearpage \fi
