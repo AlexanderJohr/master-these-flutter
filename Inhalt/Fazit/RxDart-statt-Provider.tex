@@ -110,7 +110,7 @@ Doch das Anbieten der Services durch ein eigens implementiertes \IC{InheritedWid
 der kürzer und expliziter ist.
 Durch die Umstellung konnte der Zugriff auf das \enquote{ViewModel} mithilfe des Ausdrucks \IC{Provider.of<MassnahmenFormViewModel>(context, listen: false)} durch \IC{AppState.of(context).viewModel} ersetzt werden.
 
-Eine ganz ähnliche, wenn auch deutlich kompliziertere Variante dieser Vorgehensweise, wurde auf der Google I/O 2018 von Filip Hracek und Matt Sulliivan vorgestellt. Doch anstatt lediglich das \IC{BehaviorSubject} für das \enquote{ViewModel} zu verwenden, sorgte die Präsentation durch den zusätzlichen -- jedoch überflüssigen -- Einsatz zwei weiterer \enquote{Stream}-Klassen für schweres Verständnis \Lst{\ref{lst:CartBloc}}\footcite[][TC: \href{https://youtu.be/RS36gBEp8OI?t=1657}{27:37}]{GoogleIO18}.
+Eine ganz ähnliche, wenn auch deutlich kompliziertere Variante dieser Vorgehensweise wurde auf der Google I/O 2018 von Filip Hracek und Matt Sullivan vorgestellt. Doch anstatt lediglich das \IC{BehaviorSubject} für das \enquote{ViewModel} zu verwenden, sorgte die Präsentation durch den zusätzlichen -- jedoch überflüssigen -- Einsatz zweier weiterer \enquote{Stream}-Klassen für schweres Verständnis \Lst{\ref{lst:CartBloc}}\footcite[][TC: \href{https://youtu.be/RS36gBEp8OI?t=1657}{27:37}]{GoogleIO18}.
 
 \ifIncludeFigures
   \begin{listing}[h]
