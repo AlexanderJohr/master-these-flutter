@@ -2,14 +2,13 @@
 \label{sec:Anzeige-von-fehlerhaften-Teilkomponenten-der-Bedingungen-von-deaktivierten-Auswahloptionen}
 
 
-Einen Wunschkriterium für die Formularapplikation war es,
-bei der Auswahl von deaktivierten Optionen einen Hinweise zu erhalten,
+Ein Wunschkriterium für die Formularapplikation war es,
+bei der Auswahl von einer deaktivierten Optionen einen Hinweis zu erhalten,
 warum diese deaktiviert ist.
 
 In Kapitel \ref{Schritt4} ist die Umsetzung der Deaktivierung von Optionen beschrieben.
-Eine Funktion zur Überprüfung der Bedingung einer Optionen wird der Option bei dessen Erstellung im Konstruktor übergeben.
-Sie wird bei Überprüfung der Kompatibilität der Auswahloption mit den restlichen im Formular ausgewählten Optionen ausgeführt.
-Die Konjunktion, Disjunktion und Negation wird mit den Operatoren für das logische Und und das logische Oder sowie das logische Nicht umgesetzt.
+Die Option validiert sich selbst und bekommt zu diesem Zweck eine Funktion übergeben. Diese Funktion überprüft die Kompatibilität mit allen anderen Feldern im Formular.
+Konjunktion, Disjunktion und Negation werden mit den Operatoren für das logische Und und das logische Oder sowie das logische Nicht umgesetzt.
 Doch auf diese Art und Weise ist es nicht möglich,
 herauszufinden,
 welche der einzelnen Abfragen zu einem Fehler führte.
@@ -18,8 +17,12 @@ Die Einzelkomponenten der Bedingung sind damit also nicht bekannt.
 Es ist daher nur möglich,
 auf die Komponenten der Bedingung zuzugreifen,
 wenn die gesamte Bedingung als eine Datenstruktur abgelegt ist.
-Diese Datenstruktur muss die Konjunktion, Disjunktion und Negation unterstützen.
+Diese Datenstruktur muss die Konjunktion, Disjunktion und Negation unterstützen. Eine Lösung könnte die Nutzung eines Und-Oder-Baums zusammen mit einem sogenannten Branch-and-Bound-Algorithmus -- deutsch Verzweigung und Schranke -- sein. Diese Vorgehensweise könnte erlauben, die Bedingung einer Option in mehrere Teil-Bedingungen zu verzweigen und durch den dadurch aufgespannten Baum zu traversieren. \HP{REF}
+% https://en.wikipedia.org/wiki/Branch_and_bound
+%https://www.jstor.org/stable/1910129?origin=crossref
+% An Automatic Method of Solving Discrete Programming Problems
 
-Die Konzeption und Implementierung einer solchen Datenstruktur und des dazugehörige Algorithmus zur Identifizierung der inkompatiblen Komponenten bedarf einer intensiven wissenschaftlichen Recherche und Ausarbeitung.
-Als Wunschkriterien steht diese Funktion somit nicht im Kosten-Nutzen-Verhältnis, weshalb sich gegen die Ausarbeitung in dieser wissenschaftlichen Arbeit entschieden wurde.
+
+Die Konzeption und Implementierung einer solchen Datenstruktur und des dazugehörigen Algorithmus zur Identifizierung der inkompatiblen Komponenten bedarf einer intensiven wissenschaftlichen Recherche und Ausarbeitung.
+Als Wunschkriterium steht diese Funktion somit nicht im Kosten-Nutzen-Verhältnis, weshalb sich gegen die Ausarbeitung in dieser wissenschaftlichen Arbeit entschieden wurde.
 

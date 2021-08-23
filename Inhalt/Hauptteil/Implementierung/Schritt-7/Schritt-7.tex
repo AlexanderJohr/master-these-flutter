@@ -267,7 +267,7 @@ Damit handelt es sich also auch bei dem ersten Parameter \IC{choice} der anonyme
 die dem Parameter \IC{choiceMatcher} übergeben wird \LstZ{\ref{lst:Schritt7buildMultiSelectionCardZielsetzungLandChoice}}{224} -- um den Typ \IC{ZielsetzungLandChoice}.
 Aus diesem Grund können die Methoden \IC{hasRealValue} \Z{225} und \IC{hasNoRealValue} \Z{228} auf dem Objekt \IC{choice} aufrufen werden,
 obwohl sie nur Teil der Klasse \IC{ZielsetzungLandChoice} aber nicht der Basisklasse \IC{Choice} sind.
-Ohne Parametrisierung über den Typ müsste das Objekt \IC{choice} in einen anderen Typen umgewandelt werden.
+Ohne Parametrisierung über den Typ müsste das Objekt \IC{choice} in einen anderen Typ umgewandelt werden.
 Doch nach dieser Typumwandlung könnte ein Laufzeitfehler geschehen, sollte es sich bei dem Objekt tatsächlich nicht um den gewünschten Typ handeln.
 Durch die Generalisierung der Klassen und die Angabe des Typparameters ist das Vorhandensein des richtigen Typs garantiert und keine Typumwandlung nötig.
 

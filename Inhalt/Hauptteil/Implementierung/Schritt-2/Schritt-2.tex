@@ -37,8 +37,8 @@ Noch vor der Implementierung der Änderungen soll zunächst der Integrationstest
   \label{lst:Schritt2IntegrationstestKlickt5WeitereKarten}
 \end{alexlisting}
 
-Nach der Auswahl und der anschließenden Serialisierung sollen die entsprechenden Werte auch in der Json-Datei auftauchen.
-Die Json-Datei erhält ein neues Schlüssel-Werte-Paar mit dem Schlüssel \IC{'massnahmenCharakteristika'} und einem Objekt für die fünf neuen Werte \LstZ{\ref{lst:Schritt2ExpectedJson}}{135-141}.
+Nach der Auswahl und der anschließenden Serialisierung sollen die entsprechenden Werte auch in der JSON-Datei auftauchen.
+Die JSON-Datei erhält ein neues Schlüssel-Werte-Paar mit dem Schlüssel \IC{'massnahmenCharakteristika'} und einem Objekt für die fünf neuen Werte \LstZ{\ref{lst:Schritt2ExpectedJson}}{135-141}.
 
 \begin{alexlisting}{Schritt 2}{Der Integrationstest überprüft im \enquote{JSON}-Dokument den Schlussel \enquote{massnahmenCharakteristika}}
   {Quellcode/Schritt-2/conditional_form/integration_test/app_test.dart}
@@ -75,7 +75,7 @@ Anschließend erfolgt die Weiterentwicklung des \enquote{Models}, \enquote{ViewM
 \subsection{Hinzufügen der Auswahloptionen}
 
 Der Integrationstest selektiert unter anderem die Förderklasse mit der Abkürzung \IC{aukm_ohne_vns}. Sie wird den Auswahloptionen hinzugefügt, wie in Listing \ref{lst:Schritt2KlasseFoerderklasseChoice} zu sehen ist.
-Die Liste aller hinzugefügten Auswahloptionen in diesem Schritt ist in Anhang \ref{appendix:Schritt2Anhang} auf den Seiten \pageref{lst:Schritt2FoerderklasseChoicesKategorieChoices} bis \pageref{lst:Schritt2hauptzielsetzungLandChoices} zu finden.
+Die Liste aller hinzugefügten Auswahloptionen in diesem Schritt ist im Anhang \ref{appendix:Schritt2Anhang} auf den Seiten \pageref{lst:Schritt2FoerderklasseChoicesKategorieChoices} bis \pageref{lst:Schritt2hauptzielsetzungLandChoices} zu finden.
 
 \begin{alexlisting}{Schritt 2}{Die Klassenvariable \enquote{aukm_ohne_vns} vom Typ \enquote{FoerderklasseChoice}}
   {Quellcode/Schritt-2/conditional_form/lib/choices/choices.dart}
@@ -86,7 +86,7 @@ Die Liste aller hinzugefügten Auswahloptionen in diesem Schritt ist in Anhang \
 \subsection{Aktualisierung des \enquote{Models}}
 
 Damit der Hash-Tabelle der Schlüssel \IC{'massnahmenCharakteristika'} hinzugefügt wird, muss der entsprechende Eintrag im Wertetyp \IC{Massnahme} hinzugefügt werden.
-Die Getter-Methode \IC{massnahmenCharakteristika}, die das Paket \enquote{built_value} dazu veranlaßt, den Quellcode für die Eigenschaft zu generieren, wird unterhalb der Getter-Methode \IC{identifikatoren} hinzugefügt \LstZ{\ref{lst:Schritt2massnahmenCharakteristikaWirdMMassnahmeHinzugefuegt}}{15}.
+Die Getter-Methode \IC{massnahmenCharakteristika}, die das Paket \enquote{built_value} dazu veranlasst, den Quellcode für die Eigenschaft zu generieren, wird unterhalb der Getter-Methode \IC{identifikatoren} hinzugefügt \LstZ{\ref{lst:Schritt2massnahmenCharakteristikaWirdMMassnahmeHinzugefuegt}}{15}.
 
 \begin{alexlisting}{Schritt 2}{\enquote{massnahmenCharakteristika} wird dem Wertetyp \enquote{Massnahme} hinzugefügt}
   {Quellcode/Schritt-2/conditional_form/lib/data_model/massnahme.dart}
@@ -96,7 +96,7 @@ Die Getter-Methode \IC{massnahmenCharakteristika}, die das Paket \enquote{built_
 
 Bei dem Datentyp handelt es sich um einen weiteren Wertetyp: \IC{MassnahmenCharakteristika}, welcher in Listing \ref{lst:Schritt2WerteTypMassnahmencharakteristika} zu sehen ist.
 Die darin enthaltenen Getter-Methoden sind dagegen lediglich gewöhnliche Zeichenketten, da sie die Abkürzungen der ausgewählten Optionen abspeichern.
-Da sie auch im Entwurfsmodus auch nicht gefüllt sein können, wird ihnen mit dem Suffix \IC{?} erlaubt, auch Null-Werte anzunehmen \Z{70-74}.
+Da sie auch im Entwurfsmodus nicht gefüllt sein können, wird ihnen mit dem Suffix \IC{?} erlaubt, Null-Werte anzunehmen \Z{70-74}.
 
 \begin{alexlisting}{Schritt 2}{Der Wertetyp \enquote{Massnahmencharakteristika}}
   {Quellcode/Schritt-2/conditional_form/lib/data_model/massnahme.dart}
@@ -130,7 +130,7 @@ Ist der dagegen nicht \IC{null}, so wird der Wert links vom Operator \IC{??} gen
 
 \subsection{Aktualisierung des \enquote{ViewModels}}
 
-Damit die Eingabefelder die neuen Werte eintragen können, muss das \enquote{ViewModel} oder die beobachtbaren Subjects bereitstellen \LstZ{\ref{lst:Schritt2MassnahmencharakteristikaWerdenDemViewModelHinzugefuegt}}{12-17}. \HP{Subjects und Observer in Schritt 1 erklären}
+Damit die Eingabefelder die neuen Werte eintragen können, muss das \enquote{ViewModel} die beobachtbaren \enquote{Subjects} bereitstellen \LstZ{\ref{lst:Schritt2MassnahmencharakteristikaWerdenDemViewModelHinzugefuegt}}{12-17}. \HP{Subjects und Observer in Schritt 1 erklären}
 
 \begin{alexlisting}{Schritt 2}{Die \enquote{Maßnahmencharakteristika} werden dem \enquote{ViewModel} hinzugefügt}
   {Quellcode/Schritt-2/conditional_form/lib/screens/massnahmen_detail/massnahmen_form_view_model.dart}
@@ -167,7 +167,7 @@ Das wäre für jede weitere Karte nun auch der Fall.
 Damit die Übersichtlichkeit darunter nicht leidet, soll nun zunächst eine Methode erstellt werden, welche die Erstellung der Selektionskarten abstrahiert und damit den Aufruf auf 3 Zeilen reduziert.
 Dies erlaubt auch die Konfiguration der Selektionskarten außerhalb der Klasse \IC{SelektionCard}.
 In den folgenden Schritten soll diese Konfigurationsmöglichkeit genutzt werden, um weitere Funktionalitäten hinzuzufügen, ohne die Klasse selbst zu manipulieren.
-Die Methode \IC{buildSelectionCard} bekommt dazu nur die Argumente für die Liste aller Auswahloptionen \IC{allChoices} \LstZ{\ref{lst:Schritt2MassnahmencharakteristikaSelektionskartenWerdenErgaenzt}}{49} und das Subject \IC{selectionViewModel} \Z{50} übergeben.
+Die Methode \IC{buildSelectionCard} bekommt dazu nur die Argumente für die Liste aller Auswahloptionen \IC{allChoices} \LstZ{\ref{lst:Schritt2MassnahmencharakteristikaSelektionskartenWerdenErgaenzt}}{49} und das \enquote{Subject} \IC{selectionViewModel} \Z{50} übergeben.
 Nun übernimmt die Methode die Übergabe der Argumente an den Konstruktor der \IC{SelectionCard}.
 Dazu verwendet die \IC{SelectionCard} wie zuvor den Namen der Menge der Auswahloptionen als Titel \Z{52}.
 Außerdem wird dieselbe Menge unverändert an die SelektionCard weitergegeben \Z{53}.
@@ -180,7 +180,7 @@ Außerdem wird dieselbe Menge unverändert an die SelektionCard weitergegeben \Z
 
 Der Grund, warum die Klasse \IC{SelectionCard} den Titel aus der Menge der Auswahloption nicht selbständig extrahiert ist, dass die Klasse auf diese Weise auch für mehrere Anwendungsgebiete genutzt werden kann.
 Es muss nicht immer der Fall sein, dass der Titel auf diese Art und Weise ausgelesen werden kann.
-Somit erlaubt die Methode \IC{buildSelectionCard} nun den Aufruf trotzdem zu vereinfachen und die Anwendbarkeit der Klasse \IC{SelectionCard} durch dessen direkte Veränderung nicht einzuschränken.
+Somit erlaubt die Methode \IC{buildSelectionCard} nun den Aufruf trotzdem zu vereinfachen und die Anwendbarkeit der Klasse \IC{SelectionCard} durch deren direkte Veränderung nicht einzuschränken.
 
 Das betrifft auch das \enquote{ViewModel}. Durch die Methode \IC{buildSelectionCard} muss lediglich das \IC{BehaviorSubject} übergeben werden. Die Methode kümmert sich bei Initialisierung der Selektionskarte um das Auslesen des aktuellen Wertes \Z{54-56} und die Aktualisierung dessen über die Methoden \IC{onSelect} \Z{57}  \IC{onDeselect} \Z{58}. Damit ist die Erstellung der Selektionskarte für den letzten Status mit 3 Zeilen \Lst{\ref{lst:Schritt2BuildSelectionCardLetzterStatusChoices}} nun deutlich kürzer als die ursprüngliche Variante mit 11 Zeilen (siehe Seite \pageref{lst:Schritt1AusgabeDerFormularfelder}).
 
@@ -198,9 +198,9 @@ Unterhalb des Eingabefeldes für den Maßnahmen-Titel können nun die weiteren S
   \label{lst:Schritt2MassnahmencharakteristikaSelektionskartenWerdenErgaenzt}
 \end{alexlisting}
 
-Auffällig hierbei sind Überschriften \Z{80, 82} und ine Zwischenüberschrift \Z{89} über den Selektionskarten. Sie sorgen für sichtbare Gruppierungen in der Oberfläche.
+Auffällig hierbei sind Überschriften \Z{80, 82} und eine Zwischenüberschrift \Z{89} über den Selektionskarten. Sie sorgen für sichtbare Gruppierungen in der Oberfläche.
 
-Die Hilfsfunktionen \IC{buildSectionHeadline} und \IC{buildSubSectionHeadline} bauen die Überschriften \LstZ{\ref{lst:Schritt2buildSectionHeadlineBuildSubSectionHeadline}}{131-134} bzw. Zwischenüberschriften \Z{136-139} mit unterschiedlichen Abständen zur Außenkante \Z{132, 137} und unterschiedlicher Schriftgröße \Z{133, 138}. Der benannte Konstruktor \IC{fromLTRB} der Klasse \IC{EdgeInsets} erlaubt die Abstände zur außenkante im Uhrzeigersinn für jede Seite festzulegen. Die Abkürzung \IC{LTRB} steht dabei für für left, top, right, bottom -- deutsch links, oben, rechts, unten.
+Die Hilfsfunktionen \IC{buildSectionHeadline} und \IC{buildSubSectionHeadline} bauen die Überschriften \LstZ{\ref{lst:Schritt2buildSectionHeadlineBuildSubSectionHeadline}}{131-134} bzw. Zwischenüberschriften \Z{136-139} mit unterschiedlichen Abständen zur Außenkante \Z{132, 137} und unterschiedlicher Schriftgröße \Z{133, 138}. Der benannte Konstruktor \IC{fromLTRB} der Klasse \IC{EdgeInsets} erlaubt, die Abstände zur Außenkante im Uhrzeigersinn für jede Seite festzulegen. Die Abkürzung \IC{LTRB} steht dabei für left, top, right, bottom -- deutsch links, oben, rechts, unten.
 
 \begin{alexlisting}{Schritt 2}{Die Hilfsfunktionen \enquote{buildSectionHeadline} und \enquote{buildSubSectionHeadline}}
   {Quellcode/Schritt-2/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
@@ -210,5 +210,5 @@ Die Hilfsfunktionen \IC{buildSectionHeadline} und \IC{buildSubSectionHeadline} b
 
 Damit ist die Implementierung für Schritt 2 beendet.
 
-Der Integrationstest kann nun verifizieren, dass die Eingaben erfolgen und in der Json-Datei auftauchen werden.
+Der Integrationstest kann nun verifizieren, dass die Eingaben erfolgen und in der JSON-Datei auftauchen werden.
 

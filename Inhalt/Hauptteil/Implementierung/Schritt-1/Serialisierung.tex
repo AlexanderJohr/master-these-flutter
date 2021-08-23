@@ -11,7 +11,8 @@ Beide haben gemeinsam, dass sie Quellcode generieren, welcher die Umwandlung der
 
 
 \enquote{built_value} bietet im Gegensatz zu \enquote{JSON Serializable} jedoch die Möglichkeit, unveränderbare Wertetypen -- sogenannte \enquote{immutable value types} -- zu erstellen.
-Da diese unveränderbaren Werte noch bei der Erstellung des sogenannten \enquote{ViewModels} --  mehr dazu im Kapitel \HP{Einfügen} -- hilfreich werden, wurde sich für diese Bibliothek entschieden.
+Da diese unveränderbaren Werte noch bei der Erstellung des sogenannten \enquote{ViewModels} --  mehr dazu im Kapitel \HP{Einfügen} -- hilfreich werden,
+fiel die Entscheidung auf diese Bibliothek.
 % todo high: Kapitel Referenz einfügen
 
 Ein Wertetyp für \enquote{built_value} erfordert einige Zeilen Boilerplate-Code, um den generierten Quellcode mit der selbstgeschriebenen Klasse zu verknüpfen.
@@ -72,7 +73,7 @@ Die Klassen-Methode \IC{_initializeBuilder} kann in jedem Wertetyp hinterlegt we
 % todo medium: Vgl. https://pub.dev/packages/built_value/changelog
 Die Methode wird intern von \enquote{built_value} aufgerufen.
 Bei dem Feld \enquote{guid} handelt es sich um einen String, der keine Null-Werte zulässt.
-Könnte das Feld auch Null-Werte annehmen, so wäre die Notation in \enquote{Dart} dafür stattdessen \IC{String? get guid;}. \enquote{built_value} erwartet also immer einen Wert für dieses Feld. Sollte die Datei gelesen werden, welche die Maßnahmen enthält, so enthält jede Maßnahme bei der Deserialisierung den abgespeicherten Wert für die \IC{guid} und somit wird das Feld gefüllt. Doch sollte eine leere Maßnahme über einen Konstruktor erstellt werden, so wäre das Feld \enquote{guid} leer und \enquote{built_value} würde einen Fehler auslösen. Aus diesem Grund wird in der Zeile 21 für das Feld \IC{guid} ein Standardwert festgelegt: nämlich eine zufällige generierte ID, die dem Standard Uuid der Version 4 entspricht.
+Könnte das Feld auch Null-Werte annehmen, so wäre die Notation in \enquote{Dart} dafür stattdessen \IC{String? get guid;}. \enquote{built_value} erwartet also immer einen Wert für dieses Feld. Sollte die Datei gelesen werden, welche die Maßnahmen enthält, so enthält jede Maßnahme bei der Deserialisierung den abgespeicherten Wert für die \IC{guid} und somit wird das Feld gefüllt. Doch sollte eine leere Maßnahme über einen Konstruktor erstellt werden, so wäre das Feld \enquote{guid} leer und \enquote{built_value} würde einen Fehler auslösen. Aus diesem Grund wird in der Zeile 21 für das Feld \IC{guid} ein Standardwert festgelegt: nämlich eine zufällig generierte ID, die dem Standard \enquote{Uuid} der Version 4 entspricht.
 % todo high:  https://www.ietf.org/rfc/rfc4122.txt
 Zu diesem Zweck wird das \enquote{Builder}-Objekt verwendet.
 Die Klasse \IC{MassnahmeBuilder} gehört dabei zu dem von \enquote{built_value} generierten Quellcode.
@@ -80,7 +81,7 @@ Der Parametername wird hier -- wie so häufig im \enquote{builder pattern} -- mi
 Die Syntax \IC{=>} leitet  einen sogenannten \enquote{arrow function body} ein.
 Dabei handelt es sich schlicht um einen Funktions-Körper, der genau eine Anweisung ausführt. Deshalb muss er nicht von geschweiften Klammern umgeben werden.\DartSpec{18f., 234}
 Auf dem \enquote{Builder}-Objekt können dann die Eigenschaften so gesetzt werden, als wären sie die Eigenschaften von dem Objekt \IC{Massnahme}.
-In Wahrheit werden sie aber nur auf den \enquote{Builder}-Objekt angewendet.  Ebenfalls auffällig ist die Syntax \IC{b..guid}.  Statt eines \IC{.} zum Zugriff auf Attribute des Objekts wird hier der sogenannte Kaskadierungs-Operator \IC{..} benutzt.
+In Wahrheit werden sie aber nur auf dem \enquote{Builder}-Objekt angewendet.  Ebenfalls auffällig ist die Syntax \IC{b..guid}.  Statt eines \IC{.} zum Zugriff auf Attribute des Objekts wird hier der sogenannte Kaskadierungs-Operator \IC{..} benutzt.
 
 \paragraph{Der Kaskadierungs-Operator}
 
@@ -115,7 +116,7 @@ Der initiale Wert wird in Zeile 54 auf einen konstanten Wert gesetzt, der dem Zu
 \end{alexlisting}
 
 Das Attribut \IC{letztesBearbeitungsDatum} ist dagegen nicht im Formular änderbar, sondern wird einmalig in Zeile 53 auf den aktuellen Zeitstempel gesetzt.
-Zugehörig zu diesem Attribut gibt es noch eine abgeleitete Eigenschaft namens \IC{formattedDate} \Z{45-48}.  Es ist eine Hilfsmethode, die das letzte Bearbeitungsdatum in ein für Menschen lesbares Datumsformat umwandelt. In dem Übersichts-Bildschirm Abbildung \ref{fig:Schritt1Uebersicht} ist das Datumsformat sichtbar.
+Zugehörig zu diesem Attribut gibt es noch eine abgeleitete Eigenschaft namens \IC{formattedDate} \Z{45-48}.  Es ist eine Hilfsmethode, die das letzte Bearbeitungsdatum in ein für Menschen lesbares Datumsformat umwandelt. In dem Übersichtsbildschirm Abbildung \ref{fig:Schritt1Uebersicht} ist das Datumsformat sichtbar.
 
 Da diese Getter-Methode eine Implementierung besitzt, wird für sie von \enquote{built_value} kein Quellcode für die Serialisierung generiert.
 
@@ -139,7 +140,7 @@ Wird nun der Befehl  \IC{flutter pub run build_runner build} ausgeführt, so wir
 \section{Test der Serialisierung einer Maßnahme}
 
 Das Ergebnis der Serialisierung wird im dazugehörigen Unit-Test ersichtlich \Lst{\ref{lst:SerialisierungEinerMassnahmeUnittest}}.
-In Zeile 8 wird ein Objekt der Klasse \IC{Massnahme} instanzieiert.
+In Zeile 8 wird ein Objekt der Klasse \IC{Massnahme} instanziiert.
 Anders als bei gewöhnlichen Datentypen lassen sich bei diesem unveränderlichen Datentyp keine Attribute nach der Erstellung anpassen.
 Die einzige Möglichkeit besteht darin, ein neues Objekt  mit dem gewünschten Attributwert zu erstellen und die restlichen Werte des alten Objekts zu übernehmen.
 Dies ist mit Hilfe des sogenannten \enquote{Builder}-Entwurfsmuster möglich, welches in \enquote{built_value} Anwendung findet.
@@ -154,7 +155,7 @@ Dies ist mit Hilfe des sogenannten \enquote{Builder}-Entwurfsmuster möglich, we
 Es gehört zu der Serie von Entwurfsmustern der Gang of Four. \footcite[Vgl.][S. 119]{gamma2009entwurfsmuster}. Im Fall von built_value trennt es die unveränderlichen Objekte von ihrer Konstruktion. Über den \enquote{Builder} lassen sich Änderungen an diesen unveränderlichen Objekten vornehmen, wodurch eine Kopie dieses unveränderlichen Objekts mit der gewünschten Änderung zurückgegeben wird.
 
 In den Zeilen 9 bis 10 wird so ein neues Objekt von der Klasse Maßnahme mit Hilfe der Methode \IC{rebuild} erzeugt und anschließend der Referenz \IC{massnahme} zugewiesen, wodurch sie ihren alten Wert verliert.
-Über die generiertet Methode \IC{serializers} \IC{.serializeWith} kann das Objekt in JSON übersetzt werden.
+Über die generierte Methode \IC{serializers} \IC{.serializeWith} kann das Objekt in JSON übersetzt werden.
 Der erste Parameter \IC{Massnahme.serializer} gibt dabei an, wie diese Serialisierung erfolgen soll. Auch das \IC{serializer}-Objekt wurde von \enquote{built_value} generiert.
 Der zweite Parameter ist die tatsächliche \IC{massnahme}, die in JSON umgewandelt werden soll.
 Die Zeilen 13 bis 21 erstellen das JSON-Dokument, mit dem das serialisierte Ergebnis am Ende verglichen werden soll. Dabei werden die gleichen Eigenschaften eingetragen.
@@ -168,8 +169,9 @@ Der zweite Parameter ist ein sogenannter \IC{Matcher} und die Variante mit dem N
 
 Analog zur Serialisierung testet der Unit-Test in Listing \ref{lst:DeserialisierungEinerMassnahmeUnittest} auch die Deserialisierung.
 Das JSON-Dokument ist dabei sehr ähnlich und unterscheidet sich lediglich in zwei Details.
-Der \IC{'guid'} wird auf einen festen Wert festgelegt \Z{38}, statt -- wie zuvor -- durch den in dem Initialisierungsprozess der Maßnahme zufällig generiert zu werden.?
-Außerdem wird auch das \IC{letztesBearbeitungsDatum} festgesetzt, nämlich auf die Microsekunde \IC{0} \Z{40}.
+Der \IC{'guid'} wird auf einen festen Wert festgelegt \Z{38}.
+Im Initialisierungsprozess der Maßnahme wird der er dagegen zufällig generiert.
+Außerdem wird auch das \IC{letztesBearbeitungsDatum} festgesetzt, nämlich auf die Mikrosekunde \IC{0} \Z{40}.
 
 \begin{alexlisting}{Schritt 1}{Deserialisierung einer Maßnahme Unittest}
   {Quellcode/Schritt-1/conditional_form/test/data_model/massnahme_test.dart}
@@ -181,7 +183,7 @@ Außerdem wird auch das \IC{letztesBearbeitungsDatum} festgesetzt, nämlich auf 
 Zum Vergleich wird in den Zeilen 46 bis 52 eine Maßnahme über das \enquote{Builder}-Entwurfsmuster generiert und die gleichen festen Werte werden für die Eigenschaften übergeben.
 Dabei ist darauf zu achten, dass die Instanzvariable \IC{letzteBearbeitung} keinen Wert über den Zuweisungs-Operator \IC{=} erhält, sondern stattdessen die Methode \IC{update} darauf aufgerufen wird.
 
-Da es sich bei der Instanzvariablen \IC{letzteBearbeitung} genauso um ein Objekt eines Wertetypen handelt, ist sie ebenso unveränderlich.
+Da es sich bei der Instanzvariablen \IC{letzteBearbeitung} genauso um ein Objekt eines Wertetyps handelt, ist sie ebenso unveränderlich.
 Deshalb kann sie nur über einen \enquote{Builder} manipuliert werden.
 Ein Blick in den generierten Quellcode offenbart, dass es sich in Wahrheit um einen \enquote{Builder} handelt \LstZ{\ref{lst:Schritt1InstanzvariableLetzteBearbeitungGibtEinenLetzteBearbeitungBuilderZurueck}}{224-225}.
 
@@ -191,7 +193,7 @@ Ein Blick in den generierten Quellcode offenbart, dass es sich in Wahrheit um ei
   \label{lst:Schritt1InstanzvariableLetzteBearbeitungGibtEinenLetzteBearbeitungBuilderZurueck}
 \end{alexlisting}
 
-Außerdem müssen die Microsekunden für das Datum zunächst in ein Objekt von \IC{DateTime} umgewandelt werden.
+Außerdem müssen die Mikrosekunden für das Datum zunächst in ein Objekt von \IC{DateTime} umgewandelt werden.
 Dafür wird der benannte Konstruktor \IC{fromMillisecondsSinceEpoch} von \IC{DateTime} \Z{51} aufgerufen.
 
 \paragraph{Benannte Konstruktoren} In Programmiersprachen wie beispielsweise Java können Methoden überladen werden, indem ihre Methodensignatur geändert wird.
@@ -224,7 +226,7 @@ Die Übergabe des Typarguments \IC{<Massnahme>} gewährleistet, dass keine ander
   \label{lst:Schritt1WerteTypStorage}
 \end{alexlisting}
 
-Der Befehl  \IC{flutter pub run build_runner build} stößt erneut die Quellcodegenerierung für den Wertetypen \IC{Storage} an.
+Der Befehl  \IC{flutter pub run build_runner build} stößt erneut die Quellcodegenerierung für den Wertetyp \IC{Storage} an.
 
 \section{Test der Serialisierung der Maßnahmenliste}
 
