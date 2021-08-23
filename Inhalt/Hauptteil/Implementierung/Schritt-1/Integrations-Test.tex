@@ -88,7 +88,7 @@ Um die Selektions-Karten zu finden, wird lediglich der Titel-Text benötigt.
 Angenommen der Test ruft \IC{tabSelectionCard} mit dem Argument \IC{letzterStatusChoices} auf, so entspricht \IC{choices.name} dem String \IC{"Status"}. Der Ausdruck \IC{find.text("Status")} lokalisiert den Titel innerhalb der Selektions-Karte \Z{50}.
 
 Die Funktion \IC{expect} erwartet als ersten Parameter einen \IC{Finder} und als zweiten einen sogenannten \enquote{Matcher} \Z{51}.
-Der Aufruf von \IC{expect} mit dem entsprechenden \IC{Finder}-Objekt und dem Matcher \IC{findsWidgets} verifiziert, dass mindestens ein entsprechendes Text Element gefunden wurde.
+Der Aufruf von \IC{expect} mit dem entsprechenden \IC{Finder}-Objekt und dem \enquote{Matcher} \IC{findsWidgets} verifiziert, dass mindestens ein entsprechendes Text Element gefunden wurde.
 
 Wurde das Text-Element gefunden, so muss noch der Vater gesucht werden, der vom Typ \IC{Card} ist \Z{53}.
 Das kann mit \IC{find.ancestor} erfolgen. Über den Parameter \IC{of} erhält er den \IC{Finder} des Kindelements und der Parameter \IC{matching} erhält als Argument die Voraussetzung, die vom Vater-Objekt erfüllt werden soll, als weiteren \IC{Finder}. \IC{find.byType(Card)} sucht also alle Elemente vom Typ \IC{Card}. \IC{find.ancestor} sucht anschließend alle Entsprechungen, in denen eine \IC{Card} ein Vater des \IC{Finder textLabel} ist. Wiederum überprüft die Funktion \IC{expect}, dass die Karte gefunden wurde. Doch dieses Mal muss es genau ein Widget sein, welches mit dem \enquote{Matcher} \IC{findsOneWidget} verifiziert werden kann \Z{54}. Sollte mehr als nur eine Karte gefunden werden, so wäre nicht klar, welche angeklickt werden soll.
