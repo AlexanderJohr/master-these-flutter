@@ -8,7 +8,7 @@ um den Zustand der Applikation zu verwalten
 und damit die Aktualisierung der Oberfläche auszulösen.
 Für simple Applikationen empfiehlt Google den integrierten Mechanismus der \enquote{StatefulWidgets} und deren Methode \enquote{setState} zu verwenden \footcite[Vgl.][]{AddingInteractivityToYourFlutterApp}.
 Doch durch die hohe Anzahl der Oberflächenelemente in der finalen Applikation ist diese Vorgehensweise nicht empfehlenswert.
-Sie setzt das Aktualisieren gesamter Widgets bei Anpassung des Zustandes voraus,
+Sie setzt das Aktualisieren gesamter \enquote{Widgets} bei Anpassung des Zustandes voraus,
 was für die Laufzeitgeschwindigkeit die intensivste Belastung darstellt.
 Stattdessen wurde versucht,
 einen Mechanismus zu verwenden,
@@ -74,7 +74,7 @@ MultiProvider(
   \end{listing}
 \fi
 
-Dann ist der \IC{ChangeNotifier} in dem Widget, welches dem Parameter \IC{child} übergeben wird, und darüber hinaus in allen Kinderelementen dieses Widgets verfügbar.
+Dann ist der \IC{ChangeNotifier} in dem \enquote{Widget}, welches dem Parameter \IC{child} übergeben wird, und darüber hinaus in allen Kinderelementen dieses \enquote{Widgets} verfügbar.
 Über einen \IC{Consumer} kann in der Oberfläche auf Änderungen des \IC{ChangeNotifier} reagiert werden \Lst{\ref{lst:Consumer}}.
 
 \ifIncludeFigures
@@ -92,7 +92,7 @@ Dann ist der \IC{ChangeNotifier} in dem Widget, welches dem Parameter \IC{child}
 
 
 Doch diese Vorgehensweise bietet im Vergleich zu den von \enquote{Flutter} mitgelieferten \enquote{Widgets} keine Vorteile.
-Das Äquivalent zum \IC{Consumer} ist das mitgelieferte Widget \IC{StreamBuilder},
+Das Äquivalent zum \IC{Consumer} ist das mitgelieferte \enquote{Widget} \IC{StreamBuilder},
 welches mit jeder Art von \enquote{Stream} verwendet werden kann.
 
 Damit unterstützt es ein breiteres Spektrum von Einsatzmöglichkeiten.
@@ -110,7 +110,9 @@ Doch das Anbieten der Services durch ein eigens implementiertes \IC{InheritedWid
 der kürzer und expliziter ist.
 Durch die Umstellung konnte der Zugriff auf das \enquote{ViewModel} mithilfe des Ausdrucks \IC{Provider.of<MassnahmenFormViewModel>(context, listen: false)} durch \IC{AppState.of(context).viewModel} ersetzt werden.
 
-Eine ganz ähnliche, wenn auch deutlich kompliziertere Variante dieser Vorgehensweise wurde auf der Google I/O 2018 von Filip Hracek und Matt Sullivan vorgestellt. Doch anstatt lediglich das \IC{BehaviorSubject} für das \enquote{ViewModel} zu verwenden, sorgte die Präsentation durch den zusätzlichen -- jedoch überflüssigen -- Einsatz zweier weiterer \enquote{Stream}-Klassen für schweres Verständnis \Lst{\ref{lst:CartBloc}}\footcite[][TC: \href{https://youtu.be/RS36gBEp8OI?t=1657}{27:37}]{GoogleIO18}.
+Eine ganz ähnliche, wenn auch deutlich kompliziertere Variante dieser Vorgehensweise wurde auf der Google I/O 2018 von Filip Hracek und Matt Sullivan vorgestellt.
+Doch anstatt lediglich das \IC{BehaviorSubject} für das \enquote{ViewModel} zu verwenden,
+sorgte die Präsentation durch den zusätzlichen -- jedoch überflüssigen -- Einsatz zweier weiterer \enquote{Stream}-Klassen für schweres Verständnis \Lst{\ref{lst:CartBloc}}\footcite[][TC: \href{https://youtu.be/RS36gBEp8OI?t=1657}{27:37}]{GoogleIO18}.
 
 \ifIncludeFigures
   \begin{listing}[h]
@@ -150,7 +152,7 @@ welchem die Nachrichten zugestellt werden.
 Die Methode \IC{add} erlaubt es,
 eine neue Nachricht zu senden.
 Ein \IC{StreamController} verwaltet sowohl den Übermittler also auch den Empfänger
-und stellt beide über die Getter-Methoden \IC{sink} und \IC{stream} zur Verfügung.
+und stellt beide über die \enquote{Getter}-Methoden \IC{sink} und \IC{stream} zur Verfügung.
 Durch den Einsatz von \IC{BehaviorSubject} kann jedoch auf die drei Klassen verzichtet werden.
 Ein Objekt der Klasse \IC{BehaviorSubject} vereint nicht nur das Senden und Empfangen von Nachrichten,
 sondern speichert überdies den zuletzt gesendeten Wert für neu dazukommende Zuhörer ab.
@@ -163,7 +165,7 @@ Es existiert außerdem ein weiterer \IC{Stream itemCount} \Z{8},
  welcher lediglich die transitive Eigenschaft der Anzahl der hinzugefügten Elemente bereitstellt \IC{18}.
 Er nutzt das \IC{BehaviorSubject} mit dem Namen \IC{_itemCountSubject} \IC{10},
 verwendet allerdings keine der für die Klasse einzigartigen Eigenschaften
--- wie zum Beispiel die Getter-Methode \IC{value} für den zuletzt übermittelten Wert.
+-- wie zum Beispiel die \enquote{Getter}-Methode \IC{value} für den zuletzt übermittelten Wert.
 Die Eigenschaften werden auch nicht anderen Klassen angeboten, da \IC{_itemCountSubject} nicht öffentlich ist.
 Der \enquote{Stream} \IC{itemCount} könnte genauso gut durch einen weiteren \IC{StreamController} ersetzt werden.
 
@@ -184,11 +186,11 @@ class CartBloc{
   \end{listing}
 \fi
 
-Durch Einsatz der für das \IC{BehaviorSubject} einzigartigen Getter-Methode \IC{value} kann dem \enquote{Stream} ein neues Objekt hinzugefügt werden,
+Durch Einsatz der für das \IC{BehaviorSubject} einzigartigen \enquote{Getter}-Methode \IC{value} kann dem \enquote{Stream} ein neues Objekt hinzugefügt werden,
 wodurch er gleichzeitig ein neues Ereignis sendet \Z{4}.
 Die Zuweisung hat zwar ansonsten keinen Zweck,
 da das Objekt vor und nach der Zuweisung das gleiche ist,
-denn es handelt sich um einen Referenztyp und nicht um einen Werttyp.
+denn es handelt sich um einen Referenztyp und nicht um einen Wertetyp.
 Die Erstellung weiterer \IC{StreamController} zum Senden der transitiven Eigenschaft \IC{itemCount} ist nicht nötig.
 Sendet das \IC{BehaviorSubject} \IC{_cart} ein neues Event \Z{4},
 so wird auch die Methode \IC{map} ausgelöst und ein transformiertes Ereignis gesendet \Z{6}.

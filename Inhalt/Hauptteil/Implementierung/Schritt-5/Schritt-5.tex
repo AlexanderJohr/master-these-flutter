@@ -14,7 +14,7 @@ Doch je zahlreicher die Auswahlfelder werden,
 desto länger dauert die Aktualisierung der Oberfläche.
 
 Das Problem kann folgendermaßen entschärft werden:
-Noch bevor das Widget \IC{SelectionCard} den \IC{StreamBuilder} in der \IC{build}-Methode zurückgibt,
+Noch bevor das \enquote{Widget} \IC{SelectionCard} den \IC{StreamBuilder} in der \IC{build}-Methode zurückgibt,
 wird ein neuer \enquote{Stream} namens \IC{validityChanged} erstellt \LstZ{\ref{lst:Schritt5needsRepaint}}{51-54}.
 
 Es handelt sich um eine sogenannte Transformation des \enquote{Streams} \IC{priorChoices}, welcher die Momentaufnahme aller ausgewählten Optionen im gesamten Formular übermittelt.
@@ -82,11 +82,11 @@ wenn sich die beinhaltenden Auswahloptionen oder aber dessen Validität ändert.
   \label{lst:Schritt5needsRepaint}
 \end{alexlisting} 
 
-Dieses Verhalten kann auch bei Ausführung der Applikation im Debugmodus in Android Studio beobachtet werden.
-Der \enquote{Flutter Performance}-Tab gibt eine Übersicht über die Anzahl der im letzten Frame neu gezeichneten Widgets \Abb{\ref{fig:Schritt51rebuild}}. 
+Dieses Verhalten kann auch bei Ausführung der Applikation im Debugmodus in \enquote{Android Studio} beobachtet werden.
+Der \enquote{Flutter Performance}-Tab gibt eine Übersicht über die Anzahl der im letzten \enquote{Frame} neu gezeichneten \enquote{Widgets} \Abb{\ref{fig:Schritt51rebuild}}. 
 \begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-5/1rebuild.png}
-  {XXX}
-  {XXXXX}
+  {Das \enquote{Card}-\enquote{Widget} wird einmal neu gezeichnet}
+  {Das \enquote{Card}-\enquote{Widget} wird einmal neu gezeichnet}
 
   \label{fig:Schritt51rebuild}
 
@@ -94,7 +94,7 @@ Der \enquote{Flutter Performance}-Tab gibt eine Übersicht über die Anzahl der 
 Angenommen für die \enquote{Förderklasse} ist \enquote{Agrarumwelt-(und Klima)Maßnahme: nur Vertragsnaturschutz} und für die \enquote{Kategorie} ist \enquote{Düngemanagement} ausgewählt.
 Wenn nun für die \IC{Förderklasse} die Option \enquote{Agrarumwelt-(und Klima)Maßnahmen, tw. auch mit Tierwohlaspekten, aber OHNE Vertragsnaturschutz}  selektiert wird,
 so ist im \enquote{Flutter Performance}-Tab zu beobachten,
-dass das Widget Card nur einmal neu gezeichnet wurde.
+dass das \enquote{Widget} \IC{Card} nur einmal neu gezeichnet wurde.
 
 
 
@@ -103,15 +103,15 @@ Lediglich die Selektionskarte für die Förderklasse muss neu gezeichnet werden,
 da sich seine Selektion angepasst hat.
 Wird nun aber die \enquote{Förderklasse} \enquote{Ökolandbau} ausgewählt,
 so ist zu beobachten,
-dass das \IC{Card} Widget zweimal gebaut wurde:
+dass das \IC{Card}-\enquote{Widget} zweimal gebaut wurde:
 Einmal für die Selektionskarte der \enquote{Förderklasse}, da sich dessen \enquote{ViewModel} änderte;
 Ein weiteres Mal für die Selektionskarte der \enquote{Kategorie},
 da die Auswahl \enquote{Düngemanagement} nicht länger valide ist
 und die Karte deshalb mit einem roten Hintergrund eingefärbt werden muss \Abb{\ref{fig:Schritt52rebuilds}}.
 
 \begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-5/2rebuilds.png}
-  {XXX}
-  {XXXXX}
+  {Das \enquote{Card}-\enquote{Widget} wird zweimal mal neu gezeichnet}
+  {Das \enquote{Card}-\enquote{Widget} wird zweimal mal neu gezeichnet}
 
   \label{fig:Schritt52rebuilds}
 
@@ -121,8 +121,8 @@ Ohne die Änderungen in diesem Schritt zeigt der \enquote{Flutter Performance}-T
 Das ist der Fall, weil es in Summe sechs Auswahlfelder gibt.
 
 \begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-5/6rebuilds.png}
-  {XXX}
-  {XXXXX}
+  {Das \enquote{Card}-\enquote{Widget} wird siebenmal neu gezeichnet}
+  {Das \enquote{Card}-\enquote{Widget} wird siebenmal neu gezeichnet}
 
   \label{fig:Schritt56rebuilds}
 
