@@ -43,14 +43,14 @@
 % was soll integriert werden?
 
 
-\IncludeAllChaptersfalse
+\IncludeAllChapterstrue
 \IncludeFiguresfalse
 \IncludeMiscellaneousfalse
 \IncludeTitlePagefalse
 \IncludeAppendixfalse
 
 
-\SimplyIncludeEverythingForSubmissiontrue
+\SimplyIncludeEverythingForSubmissionfalse
 
 % was soll integriert werden?
 
@@ -99,9 +99,9 @@
 % todo high: uncomment \include{Inhalt/Hauptteil/Anforderungen/Anforderungen}
 
 
-%\ifIncludeAllChapters
+\ifIncludeAllChapters
 \include{Inhalt/Einleitung-und-Gliederung/Einleitung-und-Gliederung}
-%\fi
+\fi
 
 \ifIncludeMiscellaneous
 \part{Vorbereitung}
@@ -116,13 +116,13 @@
 \input{Inhalt/Grundlagen/Grundlagen}
 \fi
 
-%\ifIncludeAllChapters
+\ifIncludeAllChapters
 \include{Inhalt/Hauptteil/Implementierung/Implementierung} 
-%\fi
+\fi
 
-%\ifIncludeAllChapters
+\ifIncludeAllChapters
 \include{Inhalt/Fazit/Fazit}  
-%\fi
+\fi
 
 
 \ifIncludeAppendix
