@@ -253,8 +253,9 @@ Anderenfalls wird dem Parameter \IC{tileColor} \IC{null} übergeben \Z{70}.
 
 Der Auswahlbildschirm wird im Folgenden um zwei weitere Funktionalitäten erweitert \Lst{\ref{lst:Schritt4selectedAndSelectableChoices}}.
 
-\ifIncludeFigures
+
 \begin{listing}[htbp]
+\ifIncludeFigures
   \renewcommand\theFancyVerbLine{%
     \ifnum\value{FancyVerbLine}=121
     \setcounter{FancyVerbLine}{131}
@@ -307,10 +308,10 @@ return ListView(children: [
   }).toList()
 ]);
 \end{minted}
+\fi
   \alexlistingcaption{Schritt 1}{Der Selektionsbildschirm in Schritt 4} {Quellcode/Schritt-1/conditional_form/lib/screens/massnahmen_master.dart}
   \label{lst:Schritt4selectedAndSelectableChoices}
 \end{listing}
-\fi
 
 
 
