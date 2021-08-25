@@ -50,7 +50,7 @@
 \IncludeAppendixtrue
 
 
-\SimplyIncludeEverythingForSubmissiontrue
+\SimplyIncludeEverythingForSubmissionfalse
 
 % was soll integriert werden?
 
@@ -166,12 +166,16 @@
 \include{Inhalt/Hauptteil/Implementierung/Schritt-4/Schritt-4}
 \fi
 
-\ifIncludeAllChapters
-\include{Inhalt/Hauptteil/Implementierung/Schritt-4/Schritt-4-Reagieren-des-Auswahlbildschirms}
-\fi
+%\ifIncludeAllChapters
+%\include{Inhalt/Hauptteil/Implementierung/Schritt-4/Schritt-4-Reagieren-des-Auswahlbildschirms}
+%\fi
 
 %\ifIncludeAllChapters
 \include{Inhalt/Hauptteil/Implementierung/Schritt-5/Schritt-5}
+%\fi
+
+%\ifIncludeAllChapters
+\include{Inhalt/Hauptteil/Implementierung/Schritt-5/Schritt-5-neu}
 %\fi
 
 \ifIncludeAllChapters
@@ -194,9 +198,9 @@
   \part{Anhang}
   \renewcommand{\thesection}{\Alph{section}}
 
-%\ifIncludeAllChapters
+\ifIncludeAllChapters
 \include{Inhalt/Hauptteil/Technologie-Auswahl/Technologie-Auswahl-Anhang}
-%\fi
+\fi
 
 \ifIncludeAllChapters
 \input{Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1-Anhang}
