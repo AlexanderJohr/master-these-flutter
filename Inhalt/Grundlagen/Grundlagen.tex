@@ -98,6 +98,7 @@ Die Eigenschaften können dann genutzt werden, um unveränderliche Wertetypen un
 \HP{Referenzen}
 
 \subsection{\enquote{Set}- und \enquote{Map}-Literale}
+\label{sec:SetUndMapLiterale}
 
 \enquote{Dart} erlaubt es Listen (\enquote{List}), Mengen (\enquote{Set}) und Hashtabellen (\enquote{Map}) als sogenannte Literale zu deklarieren.
 Ein Literal ist die textuelle Repräsentation eines Wertes eines speziellen Datentyps.
@@ -119,7 +120,7 @@ menge.add("Text");
 Es entfällt also die Instanziierung einer Liste, einer Menge oder einer Hashtabelle über den Klassennamen und der darauffolgenden Zuweisung der einzelnen Werte.
 Stattdessen startet das \enquote{Set}- und \enquote{Map}-Literal mit einer öffnenden geschweiften Klammer und endet mit einer schließenden geschweiften Klammer.
 Innerhalb der Klammern werden die Werte im Fall eines \enquote{Sets} mit \IC{,} getrennt nacheinander aufgeführt ( \IC{{1,2}} ).
-Im Fall einer \enquote{Map} werden der Schlüssel und der Wert durch einen \IC{:} voneinander getrennt und die Schlüssel-Wertepaare wiederum durch \IC{,} getrennt nacheinander aufgelistet (\IC{{1: "erster Wert",2:"zweiter Wert"}}).
+Im Fall einer \enquote{Map} werden der Schlüssel und der Wert durch einen \IC{:} voneinander getrennt und die Schlüssel-Wertepaare wiederum durch \IC{,} getrennt nacheinander aufgelistet (\IC{{1: "erster Wert", 2:"zweiter Wert"}}).
 Eine Liste wiederum wird mit eckigen Klammern geöffnet und geschlossen.
 Die Werte werden erneut mit \IC{,} getrennt voneinander angegeben (\IC{[1,2]}).
 
@@ -169,7 +170,7 @@ var celsiusUndFahrenheit = {
 \fi
 
  Für jede Schleifenvariable \IC{f} wird für das resultierende Schlüssel-Wörter-Paar das Ergebnis in Grad Celsius als Schlüssel und das Ergebnis als Wert eingetragen.
-Das Ergebnis von \IC{celsiusUndFahrenheit} ist dementsprechend eine \enquote{Map} mit dem Wert: \IC{{36.5: 97.7, 38.5: 101.3, 41: 105.8}}
+Das Ergebnis von \IC{celsiusUndFahrenheit} ist dementsprechend eine \enquote{Map} mit dem Wert: \\\IC{{36.5: 97.7, 38.5: 101.3, 41: 105.8}}
 
 
 

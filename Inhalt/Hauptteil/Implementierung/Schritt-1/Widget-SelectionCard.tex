@@ -1,5 +1,5 @@
 
-
+\clearpage
 \section{Das \enquote{SelectionCard}-\enquote{Widget}}
 
 Das Listing \ref{lst:Schritt1KlasseSelectionCard} zeigt die Struktur des \enquote{Widgets} \IC{SelectionCard}.
@@ -37,6 +37,11 @@ Wenn nun der Benutzer der \IC{SelectionCard} einen Typ wie etwa \IC{LetzterStatu
 Ohne eine Typumwandlung -- englisch \enquote{type casting} -- von \IC{Choice} in \IC{LetzterStatus}, können keine Operationen auf dem Objekt angewendet werden, die nur die Klasse \IC{LetzterStatus} unterstützt.
 
 Das erste Element, welches von der \IC{build}-Methode zurückgeben wird, ist ein \IC{StreamBuilder} \LstZ{\ref{lst:Schritt1BuildMethodeDerSelectionCard}}{47}.
+\begin{alexlisting}{Schritt 1}{Die \enquote{build}-Methode der Klasse \enquote{SelectionCard} in Schritt 1}
+  {Quellcode/Schritt-1/conditional_form/lib/widgets/selection_card.dart}
+  {firstline=34, lastline=62}
+  \label{lst:Schritt1BuildMethodeDerSelectionCard}
+\end{alexlisting}
 Er horcht auf das \IC{selectionViewModel} \Z{48}.
 Sobald also eine Selektion getätigt wurde, aktualisiert sich auch die dazugehörige Karte.
 Das Aussehen einer Karte wird durch das \enquote{Widget} \IC{Card} erzielt \Z{51}.
@@ -45,11 +50,7 @@ Ein \IC{ListTile}-\enquote{Widget} erlaubt es dann, den übergebenen \IC{titel} 
 Zu diesem Zweck wandelt die Methode \IC{map} alle Elemente von \IC{selectedChoices} in \IC{String}-Objekte um, indem es von dem \IC{Choice}-Objekt lediglich den Beschreibungstext \IC{description} verwendet.
 Anschließend sammelt der Befehl \IC{join} die resultierenden \IC{String}-Objekte ein, formt sie in einem gemeinsamen \IC{String} zusammen und trennt sie darin jeweils mit einem \IC{","} voneinander.
 
-\begin{alexlisting}{Schritt 1}{Die \enquote{build}-Methode der Klasse \enquote{SelectionCard} in Schritt 1}
-  {Quellcode/Schritt-1/conditional_form/lib/widgets/selection_card.dart}
-  {firstline=34, lastline=62}
-  \label{lst:Schritt1BuildMethodeDerSelectionCard}
-\end{alexlisting}
+
 
 Das \IC{ListTile} erhält ein \IC{FocusNode}-Objekt \Z{53}, damit der Benutzer beim Zurücknavigieren von der Unterseite im Formular wieder in der gleichen vertikalen Position der Karte landet, die er zuvor ausgewählt hat.
 Der Benutzer würde ansonsten im Formular wieder an der obersten Position ankommen.
@@ -71,11 +72,11 @@ Das dynamische Bauen der Seite hat einen besonderen Vorteil, der am Listing \ref
 
 
 
-
 \subsection{Bildschirm für die Auswahl der Optionen}
 
  
-Die Methode \IC{createMultipleChoiceSelectionScreen} \Lst{\ref{lst:Schritt1FunktionCreateMultipleChoiceSelectionScreen}} gibt einen \IC{Scaffold} zurück, der die gesamte Seite enthält \Z{65}.
+Die Methode \IC{createMultipleChoiceSelectionScreen} \LstS{lst:Schritt1FunktionCreateMultipleChoiceSelectionScreen} gibt einen \IC{Scaffold} zurück,
+der die gesamte Seite enthält \Z{65}.
 Das erste Kind des \IC{Scaffold} ist wiederum ein \IC{StreamBuilder} \Z{69}.
 Hier wird der Vorteil der dynamischen Erzeugung der Seite offensichtlich: die Unterseite kann das gleiche \enquote{ViewModel} wiederverwenden, welches auch von der \IC{SelectionCard} genutzt wird.
 Auch alle weiteren Instanzvariablen der \IC{SelectionCard} können wiederverwendet werden.

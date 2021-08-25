@@ -278,7 +278,7 @@
 % Eigener Befehl für Bilder
 \newenvironment{alexfigure}[4]
 {%
-    \begin{figure}[h]
+    \begin{figure}[ht]
       \centering
       \ifIncludeFigures
       \includegraphics[width=1.0\textwidth]{#1}
@@ -298,7 +298,7 @@
 % Eigener Befehl für Bilder
 \newenvironment{alexfigurewithnotebook}[5]
 {%
-    \begin{figure}[ht]
+    \begin{figure}[h]
       \centering
       \ifIncludeFigures
       \includegraphics[width=1.0\textwidth]{#1}
@@ -322,6 +322,10 @@
 % Eigener Befehl für Listingreferenz mit Zeilenreferenz
 \newcommand{\LstZ}[2]{(Listing #1, Z. #2)}
 
+% Eigener Befehl für Listingreferenz mit Zeilenreferenz
+\newcommand{\LstSZ}[2]{(Listing \ref{#1}, S. \pageref{#1}, Z. #2)}
+
+\newcommand{\LstS}[1]{(Listing \ref{#1}, S. \pageref{#1})}
 
 
 % Eigener Befehl für inline Code
@@ -371,4 +375,16 @@
 \usepackage{enumitem,amssymb}
 
 
+% pdf kommentare
+\usepackage[author={Alexander Johr}]{pdfcomment}
 
+% Tabellen, mit span
+\usepackage{multirow,tabularx}
+% Eigene Spalte
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\renewcommand{\arraystretch}{1.5}
+
+\usepackage{tabu}
+\usepackage{longtable}
+\usepackage{makecell}
+\usepackage{multirow}

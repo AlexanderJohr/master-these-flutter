@@ -1,5 +1,4 @@
-
-
+\clearpage
 \section{Serialisierung einer Maßnahme}
 
 Damit die Daten angezeigt und verändert werden können, müssen sie zunächst serialisierbar sein, sodass sie auf einen Datenträger geschrieben und von dort auch wieder gelesen werden können.
@@ -62,8 +61,6 @@ Zunächst soll die Maßnahme über die \IC{guid} eindeutig identifiziert werden 
 Ein GUID -- Kurzform von \enquote{Globally Unique IDentifier} -- ist  eine Folge von 128 Bits, die zur Identifikation genutzt werden kann.
 Eine solche GUID hat eine textuelle Repräsentation wie beispielsweise die folgende: \IC{'f81d4fae-7dec-11d0-a765-00a0c91e6bf6'}
 
-
-%  todo - guid General unique identifier erklären
 Die Attribute \IC{letzteBearbeitung} und \IC{identifikatoren} sind im Gegensatz zu dem \IC{String}-Attribut \IC{guid} zusammengesetzte Datentypen, die im Folgenden weiter beleuchtet werden.
 
 Auffällig ist, dass es sich hier um eine abstrakte Klasse handelt und die drei Attribute jeweils \enquote{Getter}-Methoden ohne Implementierung sind.
@@ -140,13 +137,9 @@ In diesem Fall wird das \IC{StandardJsonPlugin}verwendet.
   \label{lst:Schritt1Serialisierer}
 \end{alexlisting}
 
-
-% Storage Klasse zeigen und beschreiben
-% serializers Klasse zeigen und beschreiben
-% Korrigieren (Unten)
 Wird nun der Befehl  \IC{flutter pub run build_runner build} ausgeführt, so wird der Quellcode generiert und die Wertetypen können für die Serialisierung genutzt werden.
 
-\section{Test der Serialisierung einer Maßnahme}
+\subsection{Test der Serialisierung einer Maßnahme}
 
 Das Ergebnis der Serialisierung wird im dazugehörigen Unittest ersichtlich \Lst{\ref{lst:SerialisierungEinerMassnahmeUnittest}}.
 In Zeile 8 wird ein Objekt der Klasse \IC{Massnahme} instanziiert.
@@ -227,6 +220,7 @@ so werden die Tests in der Testdatei ausgeführt.
 Die Ausgabe \IC{00:01 +2: All tests passed!} teilt mit,
 dass beide Tests erfolgreich ausgeführt wurden und beide Ergebnisse mit den verglichenen Werten übereinstimmten.
 
+\clearpage
 \section{Serialisierung der Maßnahmenliste}
 
 Damit alle Maßnahmen -- statt nur einer einzigen -- in einer Datei zusammengefasst werden können, müssen die Maßnahmen zunächst zu einer Menge zusammengefasst werden, die ebenfalls serialisierbar ist.
@@ -244,7 +238,7 @@ Die Übergabe des Typarguments \IC{<Massnahme>} gewährleistet, dass keine ander
 
 Der Befehl  \IC{flutter pub run build_runner build} stößt erneut die Quellcodegenerierung für den Wertetyp \IC{Storage} an.
 
-\section{Test der Serialisierung der Maßnahmenliste}
+\subsection{Test der Serialisierung der Maßnahmenliste}
 
 Nun soll noch überprüft werden, ob die Menge von Maßnahmen mit genau einer eingetragenen Maßnahme korrekt serialisiert.
 Auch das wird von einem Unit Test überprüft \Lst{\ref{lst:Schritt1MassnahmenSerialisierenOhneFehlerUnitTest}}.

@@ -45,12 +45,12 @@
 
 \IncludeAllChaptersfalse
 \IncludeFigurestrue
-\IncludeMiscellaneousfalse
+\IncludeMiscellaneoustrue
 \IncludeTitlePagefalse
 \IncludeAppendixtrue
 
 
-\SimplyIncludeEverythingForSubmissionfalse
+\SimplyIncludeEverythingForSubmissiontrue
 
 % was soll integriert werden?
 
@@ -89,15 +89,10 @@
 
 %\include{Sonstiges/empty_page} 
 \include{Verzeichnisse/Inhaltsverzeichnis}
-\include{Verzeichnisse/Abbildungsverzeichnis} 
+\include{Verzeichnisse/Abbildungsverzeichnis}
+\listoftables 
 \include{Verzeichnisse/Listingverzeichnis}
 \fi
-
-
-
-% todo high: Löschen!
-% todo high: uncomment \include{Inhalt/Hauptteil/Anforderungen/Anforderungen}
-
  
 \ifIncludeAllChapters
 \include{Inhalt/Einleitung-und-Gliederung/Einleitung-und-Gliederung}
@@ -108,9 +103,9 @@
 \label{part:Vorbereitung}
 \fi
 
-%\ifIncludeAllChapters
+\ifIncludeAllChapters
 \include{Inhalt/Hauptteil/Technologie-Auswahl/Technologie-Auswahl}
-%\fi
+\fi
 
 \ifIncludeAllChapters
 \input{Inhalt/Grundlagen/Grundlagen}
@@ -120,6 +115,74 @@
 \include{Inhalt/Hauptteil/Implementierung/Implementierung} 
 \fi
 
+\ifIncludeMiscellaneous
+\part{Implementierung}
+\label{part:Implementierung}
+\fi
+
+
+
+\ifIncludeAllChapters
+\include{Inhalt/Hauptteil/Implementierung/Schritt-1/Zielsetzung}
+\fi
+
+\ifIncludeAllChapters
+\include{Inhalt/Hauptteil/Implementierung/Schritt-1/Auswahloptionen}
+\fi
+
+\ifIncludeAllChapters
+\include{Inhalt/Hauptteil/Implementierung/Schritt-1/Serialisierung}
+\fi
+
+\ifIncludeAllChapters
+\include{Inhalt/Hauptteil/Implementierung/Schritt-1/Haupteinstiegspunkt}
+\fi
+
+\ifIncludeAllChapters
+\include{Inhalt/Hauptteil/Implementierung/Schritt-1/Uebersichtsbildschirm}
+\fi
+
+\ifIncludeAllChapters
+\include{Inhalt/Hauptteil/Implementierung/Schritt-1/Eingabeformular}
+\fi
+
+\ifIncludeAllChapters
+\include{Inhalt/Hauptteil/Implementierung/Schritt-1/Widget-SelectionCard}
+\fi
+
+\ifIncludeAllChapters
+\include{Inhalt/Hauptteil/Implementierung/Schritt-1/Integrations-Test}
+\fi
+
+\ifIncludeAllChapters
+\include{Inhalt/Hauptteil/Implementierung/Schritt-2/Schritt-2}
+\fi
+
+\ifIncludeAllChapters
+\include{Inhalt/Hauptteil/Implementierung/Schritt-3/Schritt-3}
+\fi
+
+\ifIncludeAllChapters
+\include{Inhalt/Hauptteil/Implementierung/Schritt-4/Schritt-4}
+\fi
+
+\ifIncludeAllChapters
+\include{Inhalt/Hauptteil/Implementierung/Schritt-4/Schritt-4-Reagieren-des-Auswahlbildschirms}
+\fi
+
+%\ifIncludeAllChapters
+\include{Inhalt/Hauptteil/Implementierung/Schritt-5/Schritt-5}
+%\fi
+
+\ifIncludeAllChapters
+\include{Inhalt/Hauptteil/Implementierung/Schritt-6/Schritt-6}
+\fi
+
+\ifIncludeAllChapters
+\include{Inhalt/Hauptteil/Implementierung/Schritt-7/Schritt-7}
+\fi
+
+
 \ifIncludeAllChapters
 \include{Inhalt/Fazit/Fazit}  
 \fi
@@ -127,31 +190,47 @@
 
 \ifIncludeAppendix
 
-\begin{appendix} 
+\appendix
   \part{Anhang}
   \renewcommand{\thesection}{\Alph{section}}
 
-% todo high: uncomment 
+%\ifIncludeAllChapters
 \include{Inhalt/Hauptteil/Technologie-Auswahl/Technologie-Auswahl-Anhang}
+%\fi
 
-% todo high: uncomment
-\include{Inhalt/Hauptteil/Implementierung/Implementierung-Anhang} 
+\ifIncludeAllChapters
+\input{Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1-Anhang}
+\fi
 
-\end{appendix}  
+\ifIncludeAllChapters
+\input{Inhalt/Hauptteil/Implementierung/Schritt-2/Schritt-2-Anhang}
+\fi
+
+\ifIncludeAllChapters
+\input{Inhalt/Hauptteil/Implementierung/Schritt-3/Schritt-3-Anhang}
+\fi
+
+\ifIncludeAllChapters
+\input{Inhalt/Hauptteil/Implementierung/Schritt-4/Schritt-4-Anhang}
+\fi
+
+\ifIncludeAllChapters 
+\input{Inhalt/Hauptteil/Implementierung/Schritt-6/Schritt-6-Anhang}
+\fi
+
+\ifIncludeAllChapters
+\input{Inhalt/Hauptteil/Implementierung/Schritt-7/Schritt-7-Anhang}
+\fi
 
 \fi
 
 \ifIncludeMiscellaneous
-% todo high: uncomment 
 \include{Verzeichnisse/Literaturverzeichnis}
 \fi
 
-% todo high: uncomment 
 \include{Inhalt/Hauptteil/eidesstattliche_erklaerung}
-% todo high: uncomment 
-\include{Verzeichnisse/Eidesstattliche_Erklaerung.tex}
 
-
+\include{Verzeichnisse/Eidesstattliche_Erklaerung}
 
 \end{document}
 

@@ -1,4 +1,3 @@
-
 \section{Auswahloptionen hinzufügen}
 
 \enquote{Dart} verfügt -- anders als beispielsweise Java\footcite[Vgl.][S. 321]{TheJavaLanguageSpecificationJavaSE16Edition} -- nicht über Aufzählungstypen mit zusätzlichen Eigenschaften.
@@ -83,9 +82,9 @@ Dies dient einzig und allein dem Zweck, dem  Fehler vorzubeugen, dass aus Verseh
 
 
 Listing \ref{lst:Schritt1KlasseChoices} zeigt die Klasse \IC{Choices}.
-Sie erbt von \IC{UnmodifiableSetView} und erlaubt damit die Erstellung  einer eigenen Menge -- auch \enquote{Set} genannt\HP{Referenz}.
+Sie erbt von \IC{UnmodifiableSetView} und erlaubt damit die Erstellung  einer eigenen Menge -- auch \enquote{Set} genannt.
 Methoden, die man von einem \enquote{Set} erwartet,  lassen sich somit direkt auf  Instanzen der Klasse \IC{Choices} aufrufen.
-Darunter ist unter anderem die \IC{contains} Methode,  welche erlaubt, das Vorhandensein eines Objekts im \enquote{Set} zu überprüfen\HP{Referenz}.
+Darunter ist unter anderem die \IC{contains} Methode,  welche erlaubt, das Vorhandensein eines Objekts im \enquote{Set} zu überprüfen.
 
 \begin{alexlisting}{Schritt 1}{Die Klasse \enquote{Choices}}
   {Quellcode/Schritt-1/conditional_form/lib/choices/base/choice.dart}
@@ -120,7 +119,7 @@ Er ist in Zeile 10 deklariert und muss mindestens von der Klasse \IC{Choice} erb
 In \IC{choiceByAbbreviation} werden also die Auswahlmöglichkeiten über  ihre Abkürzung abgelegt und können über dieselbe wieder referenziert werden.
  Da es sich auch hier um eine unveränderliche Instanzvariable handelt, muss sie schon in der Initialisierungsliste initialisiert werden \Z{17-19}.
 Dabei wird zunächst mit der öffnenden geschweiften Klammer \Z{17} ein sogenanntes Literal einer \enquote{Map}  begonnen, welches mit einer schließenden geschweiften Klammer \Z{19} endet.
-Mehr zu \enquote{Map}-Literalen in dem Grundlagenkapitel \HP{Kapitel einfügen}.
+Mehr zu \enquote{Map}-Literalen in dem Grundlagenkapitel \ref{sec:SetUndMapLiterale}.
 
 
 
@@ -133,7 +132,7 @@ In Zeile 18 wird durch die  Menge aller Auswahloptionen \IC{choices} iteriert un
 Während des Schleifendurchlaufs wird dann ein Schlüssel-Werte-Paar gebildet, wobei \IC{choice.abbreviation} der Schlüssel ist und das Objekt \IC{choice} der Wert.
 
 Die \IC{Map} \IC{choiceByAbbreviation} erlaubt es nach der Initialisierung mit Hilfe der Methode \IC{fromAbbreviation} \Z{14} über die Abkürzung das dazugehörige \IC{Choice}-Objekt abzurufen.
-Beispielsweise gibt der Befehl \IC{letzterStatusChoices.fromAbbreviation(“fertig”)} das Objekt \IC{LetzterStatus("fertig", "abgeschlossen")} zurück.
+Beispielsweise gibt der Befehl \IC{letzterStatusChoices.fromAbbreviation("fertig")} das Objekt \IC{LetzterStatus("fertig", "abgeschlossen")} zurück.
 Auffällig dabei ist, dass der Parameter \IC{abbreviation} mit dem Typ \IC{String?} und der generische Rückgabetyp mit \IC{T?} gekennzeichnet ist. Der Suffix \IC{?} macht beide zu Typen mit Null-Zulässigkeit.
 
 

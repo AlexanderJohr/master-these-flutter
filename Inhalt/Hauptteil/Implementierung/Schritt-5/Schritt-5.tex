@@ -15,7 +15,7 @@ desto länger dauert die Aktualisierung der Oberfläche.
 
 Das Problem kann folgendermaßen entschärft werden:
 Noch bevor das \enquote{Widget} \IC{SelectionCard} den \IC{StreamBuilder} in der \IC{build}-Methode zurückgibt,
-wird ein neuer \enquote{Stream} namens \IC{validityChanged} erstellt \LstZ{\ref{lst:Schritt5needsRepaint}}{51-54}.
+wird ein neuer \enquote{Stream} namens \IC{validityChanged} erstellt \LstSZ{lst:Schritt5needsRepaint}{51-54}.
 
 Es handelt sich um eine sogenannte Transformation des \enquote{Streams} \IC{priorChoices}, welcher die Momentaufnahme aller ausgewählten Optionen im gesamten Formular übermittelt.
 Immer dann, wenn der \enquote{Stream} \IC{priorChoices} ein neues Ereignis sendet,

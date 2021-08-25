@@ -1,5 +1,3 @@
-
-
 \section{Eingabeformular}
   
 Das soeben erstellte \enquote{ViewModel} kann nun für die Eingabemaske verwendet werden.
@@ -26,10 +24,6 @@ Dabei stellt sich jedoch die Frage, was mit der bis zu diesem Zeitpunkt eingetra
 Für die Formularanwendung soll in diesem Fall die Maßnahme im aktuellen Zustand abgespeichert werden.
 Dazu wird dem Parameter \IC{onWillPop} als Argument die Funktion \IC{saveRecord} zugewiesen.
 
-
-% Wieder rein nehmen?
-% die einen Wahrheitswert in der Zukunft zurück gibt, also einen Future<bool>. Die verschachtelte Funktion saveRecordAndGoBackToOverviewScreen  sei dabei aufgerufen werden.
-
 Anders als im Übersichtsbildschirm erhält das \IC{Scaffold} kein Argument für den Parameter \IC{floatingActionButton}.
 Der Hintergrund dafür ist, dass auf diesem Bildschirm in den nächsten Schritten nicht nur ein, sondern zwei solcher Buttons zur Verfügung stehen sollen.
  Daher muss der Button manual angelegt werden.
@@ -44,11 +38,6 @@ Die Buttons sollen in Zukunft übereinander angeordnet sein, weshalb ein \IC{Col
 Zum ersten Mal taucht der Parameter \IC{mainAxisSize} auf.
 Mit dem Argument \IC{MainAxisSize.min} nimmt die \IC{Column} in der Höhe nur so viel Platz ein,
 wie durch die Kindelemente notwendig.
-Als bisher einziges Element in der \IC{Column}  taucht nun der \IC{FloatingActionButton} auf \Z{87-95}, der die aktuell eingetragenen Daten abspeichern \Z{92} und zur Übersicht zurückkehren soll \Z{93}.
-Wenn der Nutzer den Mauszeiger über diesen Button bewegt,
-wird ein Tooltip angezeigt: "Validiere und speichere Massnahme" \Z{88}. Der Tooltip ist als Konstante angelegt \Z{7}. Das hat vor allem den Grund,
-dass er auch für den folgenden Integrationstest genutzt wird. Elemente können darin über einen beinhaltenden Text oder Tooltip gefunden werden.
-
 
 
 \ifIncludeFigures
@@ -136,6 +125,15 @@ class MassnahmenDetailScreen extends StatelessWidget {
   \end{listing}
 \fi
 
+Als bisher einziges Element in der \IC{Column}  taucht nun der \IC{FloatingActionButton} auf \Z{87-95},
+der die aktuell eingetragenen Daten abspeichern \Z{92} und zur Übersicht zurückkehren soll \Z{93}.
+Wenn der Nutzer den Mauszeiger über diesen Button bewegt,
+wird ein Tooltip angezeigt: "Validiere und speichere Massnahme" \Z{88}.
+Der Tooltip ist als Konstante angelegt \Z{7}.
+Das hat vor allem den Grund,
+dass er auch für den folgenden Integrationstest genutzt wird. Elemente können darin über einen beinhaltenden Text oder Tooltip gefunden werden.
+
+
 
 
 \subsection{Ausgabe der Formularfelder}
@@ -169,7 +167,6 @@ Deshalb reicht es aus, den Wert bei Selektion zu ersetzen und ihn bei Deselektio
   \label{lst:Schritt1AusgabeDerFormularfelder}
 \end{alexlisting}
 
-
 \subsection{Eingabefeld für den Maßnahmentitel}
 
 
@@ -187,7 +184,6 @@ Listing \ref{lst:Schritt1DieFunktionCreateMassnahmenTitelTextFormField} zeigt di
 Hier wird klar, wovon die Selektionskarte inspiriert ist.
 Denn auch das \IC{TextFormField} erhält einen initialen Wert über den Parameter \IC{initialValue}.
 Sobald sich der Wert des Formularfelds ändert, kann der neue Wert im \enquote{ViewModel} über die anonyme Funktion aktualisiert werden, welche dem Parameter \IC{onChanged} übergeben wurde.
-
 
 \subsection{Speicher-Routine}
 

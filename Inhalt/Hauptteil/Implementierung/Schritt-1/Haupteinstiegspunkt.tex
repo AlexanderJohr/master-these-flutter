@@ -1,5 +1,4 @@
-
-
+\clearpage
 \section{Der Haupteinstiegspunkt}
 
 Das Listing \ref{lst:Schritt1DerHaupteinstiegspunkt} zeigt den Haupteinstiegspunkt des Programms.
@@ -16,7 +15,7 @@ Darin ist erkennbar, dass sich die Applikation in drei Rubriken einteilen lässt
   \label{lst:Schritt1DerHaupteinstiegspunkt}
 \end{alexlisting}
 
-\subsubsection{Model-View-ViewModel}
+\subsection{Model-View-ViewModel}
 Das \enquote{Model-View-ViewModel}-Entwurfsmuster -- kurs MVVM -- wurde zunächst von John Gossman für die Windows Presentation Foundation beschrieben.
 Das \enquote{Model} beschreibt die Datenzugriffs-Komponente, welche die Daten in relationalen Datenbanken oder hierarchischen Datenstrukturen wie \enquote{XML} oder \enquote{JSON} ablegt.
 Der \enquote{View} beschreibt die Oberflächenelemente wie Texteingabefelder und Buttons.
@@ -47,7 +46,7 @@ Die gesamte restliche Applikation ist als Kindelement hinterlegt \Z{26}.
 Damit können alle \enquote{Widgets} auf den Service zugreifen.
 
 
-\paragraph{Service Locator und Dependency Inection}
+\subsection{Service Locator und Dependency Inection}
 
 Das Service Locator Entwurfsmuster folgt dem Umsetzungsparadigma Inversion of Control -- deutsch Umkehrung der Steuerung.
 Frameworks folgen diesem Muster, indem sie als erweiterbare Skelett-Applikationen fungieren.
@@ -65,7 +64,6 @@ Damit hat die Applikation die Möglichkeit -- ähnlich wie bei einer Website -- 
 Hat der Benutzer die Arbeit in der Unterseite vollendet, so kann der Navigator gebeten werden, zur vorherigen Ansicht zurückzukehren.
  Mit dem Parameter \IC{routes} \Z{34-39} erfolgt die Angabe der Unterseiten, die besucht werden können.
 Über \IC{initialRoute} \Z{39} kann die Startseite angegeben werden.
-
 
 
 \subsection{Der Service für den applikationsübergreifenden Zustand}
@@ -159,13 +157,13 @@ Er enthält sowohl \enquote{ViewModel} als auch \enquote{Model}.
 
     \end{tikzpicture}
 
-    \caption[UML Diagramme]{UML Diagramme, Quelle: Eigene Abbildung}
+    \caption[UML-Diagramm der Beziehungen zwischen den Bildschirmen und dem \enquote{AppState}]{UML-Diagramm der Beziehungen zwischen den Bildschirmen und dem \enquote{AppState}, Quelle: Eigene Abbildung}
     \label{lst:UmlAppState}
 
   \end{figure}%
 \fi
 
-
+\clearpage
 \section{Speichern der Maßnahmen in eine \enquote{JSON}-Datei}
 Das \enquote{Model} wird durch die Klasse \IC{MassnahmenJsonFile} in eine \enquote{JSON}-Datei gespeichert \Lst{\ref{lst:Schritt1KlasseMassnahmenJsonFile}}.
 Der Dateipfad wird dabei durch die Methode \IC{_localMassnahmenJsonFile} \Z{8-11} abgerufen.
@@ -200,7 +198,7 @@ Sollte die Dateien nicht existieren, führt das zu einer Ausnahme \Z{28}, welche
   \label{lst:Schritt1KlasseMassnahmenJsonFile}
 \end{alexlisting}
 
-
+\clearpage
 \section{ Abhängigkeit zum Verwalten der Maßnahmen}
 
 Die Art und Weise, wie die Maßnahmen abgerufen werden, sollte nach Möglichkeit abstrahiert werden.
