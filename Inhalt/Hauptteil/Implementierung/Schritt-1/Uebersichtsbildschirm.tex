@@ -120,7 +120,7 @@ Sollten die Informationen der Maßnahmen die Breite des Fensters überschreiten,
 Die Informationen der Maßnahmen werden in einer Tabelle angezeigt.
 Dies übernimmt das selbstgeschriebene \enquote{Widget} \IC{MassnahmenTable} \Z{45}.
 Als erstes Argument erfolgt die Übergabe der anzuzeigenden Maßnahmen aus dem \enquote{Model}.
-\IC{storage.value.massnahmen} gibt den aktuellen Wert des \enquote{Streams} des \IC{storage}-Objekts zurück und greift auf die Liste der Maßnahmen zu.
+\IC{storage.value.massnahmen} gibt den aktuellen Wert des \enquote{Streams} des \IC{storage}-Objektes zurück und greift auf die Liste der Maßnahmen zu.
 Mit der Methode \IC{where} \Z{47} kann ein Filter auf die Liste angewendet werden.
 Die übergebene anonyme Funktion \Z{47-49} überprüft, ob der letzte Status auf \enquote{fertig} gesetzt ist.
 Dazu reicht der Vergleich der Abkürzung.
@@ -287,7 +287,7 @@ Im Gegensatz dazu speichert das \enquote{Model} die Optionen lediglich über die
 Mithilfe der Methode \IC{fromAbbreviation} kann anhand der Abkürzung das entsprechende Objekt wiedergefunden werden \Z{16}.
 
 Die \enquote{Getter}-Methode \IC{model} \Z{20-26} dagegen konvertiert in das exakte Gegenteil.
-Die aktuellen Werte von jedem \IC{BehaviorSubject} werden über die \enquote{Getter}-Methode \IC{value} ausgelesen und anschließend der entsprechenden Eigenschaft des Objekts vom Wertetyp \IC{Massnahme} zugewiesen.
+Die aktuellen Werte von jedem \IC{BehaviorSubject} werden über die \enquote{Getter}-Methode \IC{value} ausgelesen und anschließend der entsprechenden Eigenschaft des Objektes vom Wertetyp \IC{Massnahme} zugewiesen.
 Die Auswahloption, die für den letzten Status hinterlegt wurde, wird dabei wiederum nur als Abkürzung eingetragen.
 Dementsprechend ist bloß die Eigenschaft \IC{abbreviation} abzufragen \Z{22}.
 

@@ -88,7 +88,7 @@ Dabei handelt es sich schlicht um einen Funktions-Körper, der genau eine Anweis
 Auf dem \enquote{Builder}-Objekt können dann die Eigenschaften so gesetzt werden, als wären sie die Eigenschaften von dem Objekt \IC{Massnahme}.
 In Wahrheit werden sie aber nur auf dem \enquote{Builder}-Objekt angewendet.
 Ebenfalls auffällig ist die Syntax \IC{b..guid}.
-Statt eines \IC{.} zum Zugriff auf Attribute des Objekts wird hier der sogenannte Kaskadierungs-Operator \IC{..} benutzt.
+Statt eines \IC{.} zum Zugriff auf Attribute des Objektes wird hier der sogenannte Kaskadierungs-Operator \IC{..} benutzt.
 
 \paragraph{Der Kaskadierungs-Operator}
 
@@ -96,7 +96,7 @@ Durch Eingabe von zwei aufeinanderfolgenden Punkten \IC{..} können mehrere Oper
 ohne das Objekt zuvor einer Variablen zuzuweisen oder die Operationen über dessen Namen wiederholt aufzurufen.\DartSpec{149f.} Beispiel: die Aufrufe \IC{objekt.tueEtwas();} \IC{objekt.tueEtwasAnderes();} und \IC{objekt..tueEtwas()..tueEtwasAnderes();} sind äquivalent.
 
 Da der Kaskadierungs-Operator jedoch dazu verwendet wird, mehrere Operationen auf einem Objekt auszuführen, hat er in Zeile 16 keine Funktion.
-Doch bei Änderung eines Objekts über das \enquote{Builder Pattern} werden für gewöhnlich mehrere Operationen am gleichen \enquote{Builder}-Objekt ausgeführt, weshalb der Einheitlichkeit wegen der Kaskadierungs-Operator immer im Zusammenhang mit dem \enquote{Builder}-Objekt verwendet werden soll.
+Doch bei Änderung eines Objektes über das \enquote{builder pattern} werden für gewöhnlich mehrere Operationen am gleichen \enquote{Builder}-Objekt ausgeführt, weshalb der Einheitlichkeit wegen der Kaskadierungs-Operator immer im Zusammenhang mit dem \enquote{Builder}-Objekt verwendet werden soll.
 
 Die Attribute \IC{letzteBearbeitung} und \IC{identifikatoren} \Z{11, 13} erhalten dagegen ganz automatisch Standardwerte in Form von Instanzen der dazugehörigen Klassen.
 Diese wiederum konfigurieren ihre eigenen Felder und deren initiale Werte.
@@ -151,7 +151,7 @@ Wird nun der Befehl  \IC{flutter pub run build_runner build} ausgeführt, so wir
 Das Ergebnis der Serialisierung wird im dazugehörigen Unittest ersichtlich \Lst{\ref{lst:SerialisierungEinerMassnahmeUnittest}}.
 In Zeile 8 wird ein Objekt der Klasse \IC{Massnahme} instanziiert.
 Anders als bei gewöhnlichen Datentypen lassen sich bei diesem unveränderlichen Datentyp keine Attribute nach der Erstellung anpassen.
-Die einzige Möglichkeit besteht darin, ein neues Objekt  mit dem gewünschten Attributwert zu erstellen und die restlichen Werte des alten Objekts zu übernehmen.
+Die einzige Möglichkeit besteht darin, ein neues Objekt  mit dem gewünschten Attributwert zu erstellen und die restlichen Werte des alten Objektes zu übernehmen.
 Dies ist mit Hilfe des sogenannten \enquote{Builder}-Entwurfsmuster möglich, welches in \enquote{built_value} Anwendung findet.
 
 \begin{alexlisting}{Schritt 1}{Serialisierung einer Maßnahme Unittest}
@@ -163,7 +163,7 @@ Dies ist mit Hilfe des sogenannten \enquote{Builder}-Entwurfsmuster möglich, we
 \paragraph{Erbauer-Entwurfsmuster} Das \enquote{Erbauer}-Entwurfsmuster -- englisch \enquote{builder pattern} -- ist ein Erzeugungsmuster, welches die Konstruktion komplexer Objekte von ihrer Repräsentation trennt.
 Es gehört zu der Serie von Entwurfsmustern der Gang of Four. \footcite[Vgl.][S. 119]{gamma2009entwurfsmuster}.
 Im Fall von \enquote{built_value} trennt es die unveränderlichen Objekte von ihrer Konstruktion.
-Über den \enquote{Builder} lassen sich Änderungen an diesen unveränderlichen Objekten vornehmen, wodurch eine Kopie dieses unveränderlichen Objekts mit der gewünschten Änderung zurückgegeben wird.
+Über den \enquote{Builder} lassen sich Änderungen an diesen unveränderlichen Objekten vornehmen, wodurch eine Kopie dieses unveränderlichen Objektes mit der gewünschten Änderung zurückgegeben wird.
 
 In den Zeilen 9 bis 10 wird so ein neues Objekt von der Klasse Maßnahme mit Hilfe der Methode \IC{rebuild} erzeugt und anschließend der Referenz \IC{massnahme} zugewiesen, wodurch sie ihren alten Wert verliert.
 Über die generierte Methode \IC{serializers} \IC{.serializeWith} kann das Objekt in \enquote{JSON} übersetzt werden.
@@ -216,7 +216,7 @@ Wird also in \enquote{Dart} ein alternativer Konstruktor gewünscht, so muss er 
 Beim Aufruf des Konstruktors wird dieser Name dann mit einem \IC{.} nach dem Klassennamen angegeben, um den gewünschten Konstruktor zu benennen.
 
 
-Ganz ähnlich wie bei der Serialisierung wird nun mit dem Befehl \IC{serializers} \IC{.} \IC{deserializeWith} unter Angabe des Objekts,
+Ganz ähnlich wie bei der Serialisierung wird nun mit dem Befehl \IC{serializers} \IC{.} \IC{deserializeWith} unter Angabe des Objektes,
 welches die Deserialisierung übernehmen soll -- nämlich wiederum \IC{Massnahme.serializer} -- das \enquote{JSON}-Dokument in ein Objekt des Wertetyps \IC{Massnahme} deserialisiert \Z{53-54}.
 Schließlich wird in Zeile 56 das Ergebnis der Deserialisierung mit dem gewünschten Ergebnis verglichen.
 
@@ -277,7 +277,7 @@ Dazu wird dieses Mal die anonyme Funktion zum Konstruieren der Maßnahme gleich 
 
 Diesmal konstruiert die Methode \IC{serializers.serializeWith} mit dem Serialisierer \IC{Storage.serializer} ein weiteres \enquote{JSON}-Objekt \Z{12}.
 Genau wie zuvor wird ein \enquote{JSON}-Dokument vorbereitet \Z{14-30},
-welches der \IC{Matcher} \IC{equals} mit dem serialisierten Dokument des soeben konstruierten Objekts \IC{storage} vergleicht \Z{31}.
+welches der \IC{Matcher} \IC{equals} mit dem serialisierten Dokument des soeben konstruierten Objektes \IC{storage} vergleicht \Z{31}.
 Das \enquote{JSON}-Dokument unterscheidet sich nur darin,
 dass es einen Knoten namens \IC{'massnahmen'} enthält,
 der als Wert eine Liste hat.
@@ -287,7 +287,7 @@ Das ist mit dem Befehl \IC{first} möglich,
 der das erste Objekt -- und in diesem Fall einzige Objekt -- der Kollektion zurückgibt \Z{17, 21}.
 Darüber kann erneut die \IC{guid}  und  das \IC{letztesBearbeitungsDatum} abgerufen werden.
 
-Ein weiterer Unittest überprüft, ob auch die Deserialisierung eines \IC{storage}-Objekts erfolgreich ist.
+Ein weiterer Unittest überprüft, ob auch die Deserialisierung eines \IC{storage}-Objektes erfolgreich ist.
 Er ist in Listing {\ref{lst:Schritt1MassnahmenDeserialisierenOhneFehlerUnitTest} im Anhang \ref{appendix:Schritt1Anhang} zu finden.
-Auch dieser Test ist der Deserialisierung des Objekts des Typs \IC{Massnahme} sehr ähnlich. \HP{Weg?}
-Er unterscheidet sich nur darin, dass das \IC{Massnahme}-Objekt in der Liste \IC{massnahmen} des \IC{storage}-Objekts  enthalten ist.
+Auch dieser Test ist der Deserialisierung des Objektes des Typs \IC{Massnahme} sehr ähnlich. \HP{Weg?}
+Er unterscheidet sich nur darin, dass das \IC{Massnahme}-Objekt in der Liste \IC{massnahmen} des \IC{storage}-Objektes  enthalten ist.
