@@ -24,7 +24,7 @@ Es beinhaltet die gleichen Auswahloptionen wie das Auswahlfeld \enquote{Hauptzie
 
 \section{Integrationstest erweitern}
 
-Zunächst wird der Integrationstest um die Auswahl der Nebenziele erweitert \Lst{\ref{lst:Schritt6tabSelectionCard}}.
+Zunächst wird der Integrationstest um die Auswahl der \enquote{Nebenziele} erweitert \Lst{\ref{lst:Schritt6tabSelectionCard}}.
 
 \begin{alexlisting}{Schritt 6}{Der Integrationstest klickt die Karte für die \enquote{Nebenziele} und selektiert darin 2 Optionen}
   {Quellcode/Schritt-6/conditional_form/integration_test/app_test.dart}
@@ -34,16 +34,16 @@ Zunächst wird der Integrationstest um die Auswahl der Nebenziele erweitert \Lst
 
 Zu diesem Zweck löst der Test nach der Auswahl der Hauptzielsetzung \Z{118-119} nun einen Klick auf die Selektionskarte für die Nebenzielsetzung aus \Z{121}.
 Dadurch öffnet sich der Auswahlbildschirm,
-in welchem die Option \enquote{Bodenschutz} \Z{122} und anschließend die Option \enquote{Klima} \Z{123} gewählt wird.
+in welchem die Option \enquote{Bodenschutz} \Z{122} und anschließend die Option \enquote{Klima} \Z{123} gewählt werden.
 Mit Auswahl der letzten Option
 und durch die damit verbundene Übergabe des Arguments \IC{true} für den optionalen Parameter \IC{tabConfirm} wird der Auswahlbildschirm umgehend wieder geschlossen.
 Anschließend erfolgt erneut das Speichern der Maßnahme \Z{125-126}.
 
 
 
-Anders als bei den bisherigen Schlüssel-Werte-Paaren innerhalb des Objektes \IC{'massnahmenCharakteristika'} kann der Wert der Nebenziele nicht als einzelner \enquote{String} gespeichert werden \Lst{\ref{lst:Schritt6expectedJson}}.
+Anders als bei den bisherigen Schlüssel-Werte-Paaren innerhalb des Objektes \IC{'massnahmenCharakteristika'} kann der Wert der \enquote{Nebenziele} nicht als einzelner \enquote{String} gespeichert werden \Lst{\ref{lst:Schritt6expectedJson}}.
 
-\begin{alexlisting}{Schritt 6}{Der Integrationstest überprüft im \enquote{JSON}-Dokument den Schlussel \enquote{nebenziele}}
+\begin{alexlisting}{Schritt 6}{Der Integrationstest überprüft im \enquote{JSON}-Dokument den Schlüssel \enquote{nebenziele}}
   {Quellcode/Schritt-6/conditional_form/integration_test/app_test.dart}
   {firstline=136, lastline=150, highlightlines={140-143}}
   \label{lst:Schritt6expectedJson}
@@ -56,7 +56,7 @@ Sie wird im erwarteten \enquote{JSON}-Dokument als \enquote{Array}-Literal codie
 
 \section{Hinzufügen der Menge der Nebenziele}
 
-Für die Menge der Nebenziele müssen keine weiteren Auswahloptionen hinzugefügt werden.
+Für die Menge der \enquote{Nebenziele} müssen keine weiteren Auswahloptionen hinzugefügt werden.
 Es werden die gleichen Optionen verwendet,
 die auch bei der Menge  mit dem Namen \enquote{Hauptzielsetzung Land} zum Einsatz kommen \LstZ{\ref{lst:Schritt6nebenzielsetzungLandChoices}}{123-124}.
 
@@ -68,9 +68,9 @@ die auch bei der Menge  mit dem Namen \enquote{Hauptzielsetzung Land} zum Einsat
 
 \section{Aktualisierung des \enquote{Models}}
 
-Um die Liste der Nebenziele im Wertetyp \IC{MassnahmenCharakteristika} einzufügen,
+Um die Liste der \enquote{Nebenziele} im Wertetyp \IC{MassnahmenCharakteristika} einzufügen,
 kann der Datentyp \IC{BuiltSet} verwendet werden \LstZ{\ref{lst:Schritt6MassnahmenCharakteristika}}{77}.
-\begin{alexlisting}{Schritt 6}{Die Nebenziele werden dem Wertetyp \enquote{massnahmenCharakteristika} hinzugefügt}
+\begin{alexlisting}{Schritt 6}{Die \enquote{Nebenziele} werden dem Wertetyp \enquote{MassnahmenCharakteristika} hinzugefügt}
   {Quellcode/Schritt-6/conditional_form/lib/data_model/massnahme.dart}
   {firstline=68, lastline=77, highlightlines={77}}
   \label{lst:Schritt6MassnahmenCharakteristika}
@@ -84,7 +84,7 @@ dass die Menge leer ist.
 
 \section{Aktualisierung der Übersichtstabelle}
 
-Für das Einfügen der Überschrift in der Übersichtstabelle gibt es keine Unterschiede zum bisherigen Vorgehen.
+Für das Einfügen der Überschrift in die Übersichtstabelle gibt es keine Unterschiede zum bisherigen Vorgehen.
 Die Überschrift wird nach der Spaltenüberschrift für die \enquote{Hauptzielsetzung} eingefügt \LstZ{\ref{lst:Schritt6buildColumnHeader}}{28}.
 
 \begin{alexlisting}{Schritt 6}{Die \enquote{Nebenziele} werden dem Tabellenkopf hinzugefügt}
@@ -93,12 +93,12 @@ Die Überschrift wird nach der Spaltenüberschrift für die \enquote{Hauptzielse
   \label{lst:Schritt6buildColumnHeader}
 \end{alexlisting}
 
-Die Anzeige der Werte in den TabellenZellen ist dagegen unterschiedlich \Lst{\ref{lst:Schritt6buildSelectableCell}}.
+Die Anzeige der Werte in den Tabellenzellen ist dagegen unterschiedlich \Lst{\ref{lst:Schritt6buildSelectableCell}}.
 Dieses Mal handelt es sich um die Aufzählung von mehreren Werten,
 weshalb ein \IC{Column}-\enquote{Widget} die einzelnen Einträge untereinander auflistet \Z{46-49}.
 Jedes Element des \IC{BuiltSet} \IC{nebenziele} \Z{47} wird über die Methode \IC{map} jeweils in ein Element des \enquote{Widgets} \IC{Text} konvertiert \Z{48}.
 
-\begin{alexlisting}{Schritt 6}{Die Nebenziele werden dem Tabellenkörper hinzugefügt}
+\begin{alexlisting}{Schritt 6}{Die \enquote{Nebenziele} werden dem Tabellenkörper hinzugefügt}
   {Quellcode/Schritt-6/conditional_form/lib/widgets/massnahmen_table.dart}
   {firstline=42, lastline=50, highlightlines={44-50}}
   \label{lst:Schritt6buildSelectableCell}
@@ -106,8 +106,8 @@ Jedes Element des \IC{BuiltSet} \IC{nebenziele} \Z{47} wird über die Methode \I
 
 \section{Aktualisierung des \enquote{ViewModels}}
 
-Die Nebenziele werden -- erneut Mit dem Datentyp BuiltSet -- im \enquote{ViewModel} hinzugefügt \Lst{\ref{lst:Schritt6BehaviorSubjectNebenziele}}.
-\begin{alexlisting}{Schritt 6}{Die Nebenziele werden dem \enquote{ViewModel} hinzugefügt}
+Die \enquote{Nebenziele} werden -- erneut mit dem Datentyp BuiltSet -- dem \enquote{ViewModel} hinzugefügt \Lst{\ref{lst:Schritt6BehaviorSubjectNebenziele}}.
+\begin{alexlisting}{Schritt 6}{Die \enquote{Nebenziele} werden dem \enquote{ViewModel} hinzugefügt}
   {Quellcode/Schritt-6/conditional_form/lib/screens/massnahmen_detail/massnahmen_form_view_model.dart}
   {firstline=18, lastline=21, highlightlines={20-21}}
   \label{lst:Schritt6BehaviorSubjectNebenziele}
@@ -119,7 +119,7 @@ Dadurch unterscheidet sich das \IC{BehaviorSubject} von den anderen im \enquote{
 und muss dementsprechend bei der Konvertierung zwischen \enquote{Model} in \enquote{ViewModel} gesondert behandelt werden.
 
 Bei Konvertierung von \enquote{Model} in \enquote{ViewModel} sind für alle Auswahloptionen -- genau wie in den Schritten zuvor -- jeweils nur die Abkürzungen verfügbar.
-Die Liste der gespeicherten Abkürzungen der Nebenziele muss dementsprechend zuerst in eine Menge von Auswahloptionen konvertiert werden,
+Die Liste der gespeicherten Abkürzungen der \enquote{Nebenziele} muss dementsprechend zuerst in eine Menge von Auswahloptionen konvertiert werden,
 bevor sie dem \IC{BuiltSet} übergeben werden kann \Lst{\ref{lst:Schritt6setModel}}.
 Die Methode \IC{map} löst das Problem,
 indem sie die ihr als Argument übergebene Funktion für jede Abkürzung in der Menge \enquote{Nebenziele} aufruft \Z{65}.
@@ -143,8 +143,8 @@ Die resultierende Menge kann dem Konstruktor von \IC{BuiltSet} übergeben werden
 
 In diesem Fall muss die Menge der Auswahloptionen der \enquote{Nebenziele} in die entsprechenden Abkürzungen umgewandelt werden,
 bevor sie im \enquote{Model} gespeichert wird.
-Die Methode \IC{map} er hält zu diesem Zweck erneut eine anonyme Funktion,
-welche die Abkürzung der Auswahloptionen abfragt \Z{81}.
+Die Methode \IC{map} erhält zu diesem Zweck erneut eine anonyme Funktion,
+welche die Abkürzungen der Auswahloptionen abfragt \Z{81}.
 Die resultierende Menge wird als Parameter dem Konstruktor \IC{SetBuilder} übergeben \Z{80-81}.
 Der \IC{SetBuilder} wiederum kümmert sich um das Bauen des \IC{BuiltSet}, sobald ein Objekt des Typs Massnahme gebaut wird.
 
@@ -192,14 +192,14 @@ Für die Erstellung der Mehrfachauswahlfelder ist die Methode \IC{buildMultiSele
   \label{lst:Schritt6buildMultiSelectionCard}
 \end{alexlisting}
 
-Das übergebene \IC{selectionViewModel} unterstützt mit dem Typometer \IC{BuiltSet} die Auswahl von mehreren Auswahloption \Z{146}.
+Das übergebene \IC{selectionViewModel} unterstützt mit dem Typparameter \IC{BuiltSet} die Auswahl von mehreren Auswahloptionen \Z{146}.
 Bei \IC{selectionViewModel} handelt es sich bereits um eine Menge.
 Für die Validierung \IC{150} sowie für die Übergabe des initialen Wertes an den Konstruktor der \IC{SelectionCard} \Z{157} ist eine Umwandlung in eine Menge daher nicht mehr nötig.
-Dem Konstruktor \IC{SelectionCard} wird weiterhin über den Parameter \IC{multiSelection} mitgeteilt, dass mehr als eine Auswahl zum gewählt werden darf \Z{154}.
+Dem Konstruktor \IC{SelectionCard} wird weiterhin über den Parameter \IC{multiSelection} mitgeteilt, dass mehr als eine Auswahl gewählt werden darf \Z{154}.
 Die Methoden \IC{onSelect} und \IC{onDeselect} ersetzen nun nicht mehr den aktuell gespeicherten Wert über eine einfache Zuweisung.
 Sie nutzen stattdessen die Methode \IC{rebuild} des \IC{BuiltSet}, um ein Element mithilfe von \IC{add} hinzuzufügen \Z{160} bzw. um mit \IC{remove} Elemente zu entfernen \Z{163}.
 Der Methodenaufruf \IC{rebuild} sorgt jedoch nicht für das Hinzufügen oder Löschen am Original-Objekt, sondern erstellt eine Kopie der Liste mit den gewünschten Änderungen.
-Deshalb erfolgt eine Zuweisung der Kopie zum Wert des \IC{BehaviorSubject}-Objekts, was wiederum das Auslösen eines neuen Ereignisses bewirkt \Z{158,161}.
+Deshalb erfolgt eine Zuweisung der Kopie zum Wert des \IC{BehaviorSubject}-Objektes, was wiederum das Auslösen eines neuen Ereignisses bewirkt \Z{158,161}.
 
 \section{Aktualisierung der Selektionskarte}
 
@@ -221,7 +221,7 @@ welche für die Manipulationen an der Kopie genutzt wird,
 wird in einer Fallunterscheidung überprüft,
 ob das angewählte Element bereits selektiert ist \Z{136}.
 Sollte das der Fall sein,
-so wird diese bereits selektierte Option, die nun erneut angewählt wurde, mit der Methode \IC{remove} des \enquote{Builder}-Objekts aus dem \IC{BuiltSet} entfernt \Z{137}.
+so wird diese bereits selektierte Option, die nun erneut angewählt wurde, mit der Methode \IC{remove} des \enquote{Builder}-Objektes aus dem \IC{BuiltSet} entfernt \Z{137}.
 Anderenfalls war die Option nicht selektiert, weshalb sie mit der Methode \IC{add} hinzugefügt wird. 
 
 
