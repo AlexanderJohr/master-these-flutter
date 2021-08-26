@@ -19,7 +19,7 @@ wird ein neuer \enquote{Stream} namens \IC{validityChanged} erstellt \LstZ{\ref{
 
 Es handelt sich um eine sogenannte Transformation des \enquote{Streams} \IC{priorChoices}, welcher die Momentaufnahme aller ausgewählten Optionen im gesamten Formular übermittelt.
 Immer dann, wenn der \enquote{Stream} \IC{priorChoices} ein neues Ereignis sendet,
-geschieht für die Abwandlung dieses \enquote{Streams} folgendes:
+geschieht für die Abwandlung dieses \enquote{Streams} Folgendes:
 Die Methode \IC{map} wandelt jedes Ereignis in ein neues Objekt um \Z{52}.
 Die aktuelle Momentaufnahme der Auswahloptionen im Formular wird dazu im Parameter \IC{choices} gespeichert.
 Bei der Umwandlung des Ereignisses werden die ausgewählten Optionen der aktuellen Selektionskarte über \IC{selectionViewModel.value} abgerufen.
@@ -33,7 +33,7 @@ Die Methode \IC{map} wandelt also das neue Ereignis der Momentaufnahme aller Sel
 Ist der Wahrheitswert \IC{true},
 bedeutet dies,
 dass alle ausgewählten Optionen in der aktuellen Selektionskate valide sind.
-Ist er dagegen \IC{false}, so ist wenigstens eine der Auswahloption mit den restlichen Auswahloptionen der anderen Auswahlfelder im Formularen nicht kompatibel.
+Ist er dagegen \IC{false}, so ist wenigstens eine der Auswahloptionen mit den restlichen Auswahloptionen der anderen Auswahlfelder im Formular nicht kompatibel.
 
 Der resultierende \enquote{Stream} wird weiter transformiert: Durch die Funktion \IC{distinct} \Z{54} werden nur Ereignisse gesendet,
 sofern sie sich von dem letzten Ereignis unterscheiden.
@@ -42,7 +42,7 @@ Für die \enquote{Förderklasse} ist \enquote{Erschwernisausgleich} im letzten E
 \enquote{Düngemanagement} ist mit \enquote{Erschwernisausgleich} nicht kompatibel, weshalb das letzte Ereignis des durch \IC{map} transformierten \enquote{Streams} \IC{false} war.
 Nun wird für die \enquote{Förderklasse} eine weitere Selektion vorgenommen: \enquote{Ökolandbau} wird ausgewählt.
 Auch diese Option ist mit \enquote{Düngemanagement} nicht kompatibel.
-Der durch \IC{map} transformierten \enquote{Stream} wird also erneut ein Ereignis mit dem Wert \IC{false} senden.
+Der durch \IC{map} transformierte \enquote{Stream} wird also erneut ein Ereignis mit dem Wert \IC{false} senden.
 Doch bereits das letzte Ereignis war \IC{false}.
 Die Methode \IC{distinct} verhindert,
 dass dieses redundante Ereignis weitergeleitet wird.
@@ -52,7 +52,7 @@ Der aus der Methode \IC{map} resultierende \enquote{Stream} liefert dieses Mal d
 Das letzte Ereignis hatte den Wert \IC{false}.
 Die Werte der beiden letzten Ereignisse unterscheiden sich also,
 was dazu führt,
-dass die Methode \IC{distinct} das veränderte Ereignis nicht filtert sondern weiterleitet.
+dass die Methode \IC{distinct} das veränderte Ereignis nicht filtert, sondern weiterleitet.
 
 Der \enquote{Stream} \IC{validityChanged} sendet also immer genau dann Ereignisse,
 wenn sich etwas an der Validität der Auswahloptionen der aktuellen Selektionskarte ändert.
@@ -73,7 +73,7 @@ Jedes empfangene Ereignis wird dabei dem \IC{BehaviorSubject} \IC{needsRepaint} 
 Dadurch,
 dass \IC{needsRepaint} für den \IC{StreamBuilder} verwendet wird \Z{61},
 zeichnet sich die Selektionskarte immer dann neu,
-wenn sich die beinhaltenden Auswahloptionen oder aber dessen Validität ändert.
+wenn sich die beinhaltenden Auswahloptionen oder aber deren Validität ändert.
 
 
 \begin{alexlisting}{Schritt 5}{Der \enquote{Stream} \enquote{validityChanged} in Schritt 5}
@@ -92,26 +92,26 @@ Der \enquote{Flutter Performance}-Tab gibt eine Übersicht über die Anzahl der 
 
 \end{alexfigure}
 Angenommen für die \enquote{Förderklasse} ist \enquote{Agrarumwelt-(und Klima)Maßnahme: nur Vertragsnaturschutz} und für die \enquote{Kategorie} ist \enquote{Düngemanagement} ausgewählt.
-Wenn nun für die \IC{Förderklasse} die Option \enquote{Agrarumwelt-(und Klima)Maßnahmen, tw. auch mit Tierwohlaspekten, aber OHNE Vertragsnaturschutz}  selektiert wird,
+Wenn nun für die \enquote{Förderklasse} die Option \enquote{Agrarumwelt-(und Klima)Maßnahmen, tw. auch mit Tierwohlaspekten, aber OHNE Vertragsnaturschutz}  selektiert wird,
 so ist im \enquote{Flutter Performance}-Tab zu beobachten,
 dass das \enquote{Widget} \IC{Card} nur einmal neu gezeichnet wurde.
 
 
 
-Das ergibt Sinn, denn es hat sich nichts an der Validität eines anderen Auswahlfeld geändert.
+Das ergibt Sinn, denn es hat sich nichts an der Validität eines anderen Auswahlfeldes geändert.
 Lediglich die Selektionskarte für die Förderklasse muss neu gezeichnet werden,
-da sich seine Selektion angepasst hat.
+da sich ihre Selektion angepasst hat.
 Wird nun aber die \enquote{Förderklasse} \enquote{Ökolandbau} ausgewählt,
 so ist zu beobachten,
 dass das \IC{Card}-\enquote{Widget} zweimal gebaut wurde:
-Einmal für die Selektionskarte der \enquote{Förderklasse}, da sich dessen \enquote{ViewModel} änderte;
+Einmal für die Selektionskarte der \enquote{Förderklasse}, da sich deren \enquote{ViewModel} änderte:
 Ein weiteres Mal für die Selektionskarte der \enquote{Kategorie},
 da die Auswahl \enquote{Düngemanagement} nicht länger valide ist
 und die Karte deshalb mit einem roten Hintergrund eingefärbt werden muss \Abb{\ref{fig:Schritt52rebuilds}}.
 
 \begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-5/2rebuilds.png}
-  {Das \enquote{Card}-\enquote{Widget} wird zweimal mal neu gezeichnet}
-  {Das \enquote{Card}-\enquote{Widget} wird zweimal mal neu gezeichnet}
+  {Das \enquote{Card}-\enquote{Widget} wird zweimal neu gezeichnet}
+  {Das \enquote{Card}-\enquote{Widget} wird zweimal neu gezeichnet}
 
   \label{fig:Schritt52rebuilds}
 
