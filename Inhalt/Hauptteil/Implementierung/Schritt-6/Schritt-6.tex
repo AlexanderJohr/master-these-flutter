@@ -197,8 +197,8 @@ Bei \IC{selectionViewModel} handelt es sich bereits um eine Menge.
 Für die Validierung \IC{150} sowie für die Übergabe des initialen Wertes an den Konstruktor der \IC{SelectionCard} \Z{157} ist eine Umwandlung in eine Menge daher nicht mehr nötig.
 Dem Konstruktor \IC{SelectionCard} wird weiterhin über den Parameter \IC{multiSelection} mitgeteilt, dass mehr als eine Auswahl zum gewählt werden darf \Z{154}.
 Die Methoden \IC{onSelect} und \IC{onDeselect} ersetzen nun nicht mehr den aktuell gespeicherten Wert über eine einfache Zuweisung.
-Sie nutzen stattdessen die Methode \IC{rebuild} des \IC{BuiltSet} um ein Element mit Hilfe von \IC{add} hinzuzufügen \Z{160} bzw. mit \IC{remove} Elemente zu entfernen \Z{163}.
-Der Methodenaufruf \IC{rebuild} sorgt jedoch nicht für das Hinzufügen oder Löschen am Original-Objekt, sondern erstellt eine Kopie der Liste mit der gewünschten Änderungen.
+Sie nutzen stattdessen die Methode \IC{rebuild} des \IC{BuiltSet}, um ein Element mithilfe von \IC{add} hinzuzufügen \Z{160} bzw. um mit \IC{remove} Elemente zu entfernen \Z{163}.
+Der Methodenaufruf \IC{rebuild} sorgt jedoch nicht für das Hinzufügen oder Löschen am Original-Objekt, sondern erstellt eine Kopie der Liste mit den gewünschten Änderungen.
 Deshalb erfolgt eine Zuweisung der Kopie zum Wert des \IC{BehaviorSubject}-Objekts, was wiederum das Auslösen eines neuen Ereignisses bewirkt \Z{158,161}.
 
 \section{Aktualisierung der Selektionskarte}
