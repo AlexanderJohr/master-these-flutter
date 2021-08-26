@@ -45,7 +45,7 @@
 
 \IncludeAllChaptersfalse
 \IncludeFigurestrue
-\IncludeMiscellaneoustrue
+\IncludeMiscellaneousfalse
 \IncludeTitlePagefalse
 \IncludeAppendixtrue
 
@@ -111,6 +111,10 @@
 \input{Inhalt/Grundlagen/Grundlagen}
 \fi
 
+%\ifIncludeAllChapters
+\input{Konzeption/Konzeption.tex}
+%\fi
+
 \ifIncludeAllChapters
 \include{Inhalt/Hauptteil/Implementierung/Implementierung} 
 \fi
@@ -170,13 +174,13 @@
 %\include{Inhalt/Hauptteil/Implementierung/Schritt-4/Schritt-4-Reagieren-des-Auswahlbildschirms}
 %\fi
 
-%\ifIncludeAllChapters
+\ifIncludeAllChapters
 \include{Inhalt/Hauptteil/Implementierung/Schritt-5/Schritt-5}
-%\fi
+\fi
 
-%\ifIncludeAllChapters
+\ifIncludeAllChapters
 \include{Inhalt/Hauptteil/Implementierung/Schritt-5/Schritt-5-neu}
-%\fi
+\fi
 
 \ifIncludeAllChapters
 \include{Inhalt/Hauptteil/Implementierung/Schritt-6/Schritt-6}
