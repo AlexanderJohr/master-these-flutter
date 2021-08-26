@@ -9,7 +9,7 @@ Denn die \enquote{Nebenziele} haben mehrere besondere Voraussetzungen:
 
 Sollte das \enquote{Hauptziel} nicht gesetzt sein oder die Option \enquote{keine Angabe/Vorgabe} oder \enquote{bitte um Unterstützung} enthalten,
 so ist es nicht sinnvoll, dass ein tatsächliches \enquote{Nebenziele} gewählt wird.
-In diesem Fall kommen wiederum nur die Werte \enquote{keine Angabe/Vorgabe} oder \enquote{bitte um Unterstützung} infragen.
+In diesem Fall kommen wiederum nur die Werte \enquote{keine Angabe/Vorgabe} oder \enquote{bitte um Unterstützung} infrage.
 
 Sollte dagegen ein \enquote{Hauptziel} gesetzt sein, so darf das \enquote{Nebenziele} nicht die gleiche Option enthalten.
 Ist also beispielsweise für das \enquote{Hauptziel} \enquote{Biodiversität} ausgewählt \Abb{\ref{fig:Schritt4EingabemaskeDHBioDiv}},
@@ -56,7 +56,7 @@ enthält zwar alle Auswahloptionen,
 die im gesamten Formular gewählt worden,
 gibt aber keine Auskunft darüber,
 von welchem Auswahlfeld sie stammen. 
-Sollte also die Auswahloptionen \enquote{Biodiversität} in der Menge der \IC{priorChoices} auftauchen,
+Sollte also die Auswahloption \enquote{Biodiversität} in der Menge der \IC{priorChoices} auftauchen,
 so ist unklar,
 ob sie im Auswahlfeld für das \enquote{Hauptziel} oder dem der \enquote{Nebenziele} gewählt wurde.
 
@@ -66,8 +66,8 @@ so könnte direkt auf die Auswahlfelder zugegriffen werden.
 
 
 Zu diesem Zweck wird der Klasse \IC{SelectionCard} die Instanzvariable \IC{choiceMatcher} hinzugefügt \LstZ{\ref{lst:Schritt7SelectionCard}}{27}.
-Ein Parameter des gleichen Namens wird den Hilfsmethoden \IC{buildSelectionCard} und \IC{buildMultiSelectionCard} welche ihn unverändert an den Konstruktor der Klasse \IC{SelectionCard} weitergeleitet.
-Die entsprechenden Listing sind in Anhang \ref{appendix:Schritt7Anhang} auf den Seiten \pageref{lst:Schritt7AppendixbuildSelectionCard} und \pageref{lst:Schritt7buildMultiSelectionCard} zu finden. 
+Ein Parameter des gleichen Namens wird den Hilfsmethoden \IC{buildSelectionCard} und \IC{buildMultiSelectionCard} übergeben, welche ihn unverändert an den Konstruktor der Klasse \IC{SelectionCard} weiterleiten.
+Die entsprechenden Listings sind in Anhang \ref{appendix:Schritt7Anhang} auf den Seiten \pageref{lst:Schritt7AppendixbuildSelectionCard} und \pageref{lst:Schritt7buildMultiSelectionCard} zu finden.
 
 
 
@@ -85,15 +85,15 @@ aber auch ausgelassen werden,
 da er nicht mit dem \IC{required}-Schlüsselwort gekennzeichnet und damit nicht verpflichtend ist.
 Doch aus diesem Grund kann der Parameter den Wert \IC{null} annehmen,
 weshalb er mit dem Suffix \IC{?} gekennzeichnet werden muss.
-In der Initialisierungsliste erfolgt die Initialisierung der Instanzvariable \IC{choiceMatcher} \Z{46}.
+In der Initialisierungsliste erfolgt die Initialisierung der Instanzvariablen \IC{choiceMatcher} \Z{46}.
 Sollte der im Konstruktor übergebene Parameter nicht \IC{null} sein,
-so wird er der Instanzvariable zugewiesen.
+so wird er der Instanzvariablen zugewiesen.
 Ist der aber \IC{null},
 so sorgt die \enquote{if-null Expression} dafür,
 dass der Standardwert rechts von dem \IC{??} zugewiesen wird:
 die Funktion \IC{defaultChoiceMatcherStrategy} \IC{46}.
 Diese Funktion kapselt die Überprüfung der Abhängigkeiten
--- welche die Auswahloption und untereinander haben --
+-- welche die Auswahloptionen  untereinander haben --
 so wie sie in den letzten Schritten durchgeführt wurde \Z{16-18}.
 Ihr wird die zu überprüfende Auswahloption \IC{choice},
 sowie die Menge \IC{priorChoices} -- die mit allen bisher ausgewählten Auswahloptionen im Formular gefüllt ist --
@@ -162,17 +162,17 @@ der als erstes Argument eine Auswahloption
 -- der Parameterbezeichner lautet \IC{choice} --
 und als zweites Argument eine Menge von Auswahloptionen
 -- der Parameterbezeichner ist \IC{priorChoices} --
-übergeben wird.
+übergeben werden.
 Sollte der Parameter \IC{choiceMatcher} gesetzt sein,
-so tauscht er die standardmäßig genutztes Strategie \IC{defaultChoiceMatcherStrategy} durch die benutzerdefinierte Strategie aus \Z{46}.
+so tauscht er die standardmäßig genutzte Strategie \IC{defaultChoiceMatcherStrategy} durch die benutzerdefinierte Strategie aus \Z{46}.
 Beide werden nach dem \enquote{Strategie}-Entwurfsmuster als \enquote{konkrete Strategien} bezeichnet.
 Im Entwurfsmuster gibt es noch den Akteur \enquote{Kontext},
 wobei es sich um die aufrufende Klasse handelt,
 welche die Strategien verwendet.
 In diesem Fall ist das die \enquote{Klasse} \IC{SelectionCard}.
 Abbildung \ref{fig:UmlChoiceMatcherStrategyPattern} zeigt das UML-Diagramm der konkreten Implementierung des \enquote{Strategie}-Entwurfsmusters für die \enquote{Strategie} \IC{ChoiceMatcher}.
-Da sich bei der konkreten Strategie für das Auswahlfeld der \enquote{Nebenziele} um eine anonyme Funktion handelt,
-wurde sie zum besseren Verständnis im UML-Diagramm \enquote{nebenzieleChoiceMatcherStrategy} genannt.
+Da es sich bei der konkreten Strategie für das Auswahlfeld der \enquote{Nebenziele} um eine anonyme Funktion handelt,
+wurde sie zum besseren Verständnis im UML-Diagramm als \enquote{nebenzieleChoiceMatcherStrategy} benannt.
 \ifIncludeFigures
   \begin{figure}[h]
     \centering
@@ -230,43 +230,43 @@ Außerdem erstellt \IC{MassnahmenDetailScreen} die konkrete Strategie \enquote{n
 
 Der Aufruf \IC{buildMultiSelectionCard} wird um die Übergabe einer anonymen Funktion für den Parameter \IC{choiceMatcher} erweitert \Z{224-239}.
 In der ersten Fallunterscheidung wird überprüft,
-ob die gewählte Option ein tatsächliches \enquote{Nebenziele} ist \Z{225}.
-Dies kann über die \enquote{Getter}-Methode \IC{hasRealValue} abgefragt werden.
+ob die gewählte Option ein tatsächliches \enquote{Nebenziel} ist \Z{225}.
+Das kann über die \enquote{Getter}-Methode \IC{hasRealValue} abgefragt werden.
 Ist dies nicht der Fall,
 so handelt es sich um die Auswahloptionen \enquote{keine Angabe/Vorgabe} bzw. \enquote{bitte um Unterstützung},
 weshalb \IC{true} zurückgegeben werden kann \Z{237},
 da diese Auswahloptionen immer erlaubt sind.
-Sollte sich dagegen um ein tatsächliches \enquote{Nebenziele} handeln,
+Sollte es sich dagegen um ein tatsächliches \enquote{Nebenziel} handeln,
 so überprüft die nächste Fallunterscheidung,
 ob das \enquote{Hauptziel} entweder nicht gesetzt ist
-oder mit einem nicht tatsächlichen \enquote{Hauptziel} belegt ist \Z{226-228}.,
+oder mit einem nicht tatsächlichen \enquote{Hauptziel} belegt ist \Z{226-228}.
 Dazu wird die \enquote{Getter}-Methode \IC{hasNoRealValue} benutzt,
-welche als Gegenteil zu \IC{hasRealValue} fungiert,
-und dementsprechend \IC{true} zurückgibt wenn die Auswahloption entweder \enquote{keine Angabe/Vorgabe} oder \enquote{bitte um Unterstützung} ist \Z{226-228}.
+welche als Gegenteil zu \IC{hasRealValue} fungiert
+und dementsprechend \IC{true} zurückgibt, wenn die Auswahloption entweder \enquote{keine Angabe/Vorgabe} oder \enquote{bitte um Unterstützung} ist \Z{226-228}.
 Sollte das \enquote{Hauptziel} keinen tatsächlichen Wert einer Zielsetzung enthalten,
 dann ist die Wahl eines oder mehrerer \enquote{Nebenziele} nicht sinnvoll.
-Waren beide zuvorigen Bedingungen nicht wahr,
+Waren beide bisherigen Bedingungen nicht wahr,
 so steht bereits fest,
-dass sowohl das \enquote{Hauptziel},
-als auch den \enquote{Nebenziele} gesetzt sind
-und weder die Option \enquote{keine Angabe/Vorgabe}
-oder \enquote{bitte um Unterstützung} enthalten.
+dass sowohl das \enquote{Hauptziel}
+als auch die \enquote{Nebenziele} gesetzt sind.
+Beide enthalten weder \enquote{keine Angabe/Vorgabe}
+noch \enquote{bitte um Unterstützung} als Wert.
 Nun soll eine letzte Fallunterscheidung überprüfen,
-ob das \enquote{Nebenziele} bereits im \enquote{Hauptziel} gesetzt ist \Z{230-321}. 
+ob das \enquote{Nebenziel} bereits im \enquote{Hauptziel} gesetzt ist \Z{230-321}.
 Das ist nicht erlaubt,
 weshalb \IC{false} zurückgegeben werden soll \Z{232}.
 Anderenfalls sind alle Bedingungen erfüllt und \IC{true} kann zurückgegeben werden.
 
 An diesem Beispiel wird auch offensichtlich,
-welchen Nutzen die Generalisierung der Klasse \IC{SelectionCard} über den Typ Parameter \IC{ChoiceType} hat .
-Über eine Reihe von Methoden- und Konstruktoraufrufen gelangt das Typargument \IC{ZielsetzungLandChoice} in die Klasse \IC{SelectionCard} und somit auch zu der Instanzvariable \IC{choiceMatcher}. Zuerst wird es der Methode \IC{buildMultiSelectionCard} übergeben \Z{221}. 
+welchen Nutzen die Generalisierung der Klasse \IC{SelectionCard} über den Typ Parameter \IC{ChoiceType} hat.
+Über eine Reihe von Methoden- und Konstruktoraufrufen gelangt das Typargument \IC{ZielsetzungLandChoice} in die Klasse \IC{SelectionCard} und somit auch zu der Instanzvariablen \IC{choiceMatcher}. Zuerst wird es der Methode \IC{buildMultiSelectionCard} übergeben \Z{221}. 
 Mit dem Konstruktoraufruf \IC{SelectionCard<ChoiceType>} wird es an die Selektionskarte weitergereicht (Siehe Listing \ref{lst:Schritt7buildMultiSelectionCard} in Zeile 157 in Anhang \ref{appendix:Schritt7Anhang} auf Seite \pageref{lst:Schritt7buildMultiSelectionCard}.
 Schließlich erhält die Instanzvariable das Typargument über die Deklaration \IC{ChoiceMatcher<ChoiceType> choiceMatcher} \LstZ{\ref{lst:Schritt7SelectionCard}}{31}.
 Der Typparameter wird durch das Typargument ersetzt.
 Somit hat \IC{choiceMatcher} dann den Typ \IC{ChoiceMatcher<ZielsetzungLandChoice>}.
 Damit handelt es sich also auch bei dem ersten Parameter \IC{choice} der anonymen Funktion --
 die dem Parameter \IC{choiceMatcher} übergeben wird \LstZ{\ref{lst:Schritt7buildMultiSelectionCardZielsetzungLandChoice}}{224} -- um den Typ \IC{ZielsetzungLandChoice}.
-Aus diesem Grund können die Methoden \IC{hasRealValue} \Z{225} und \IC{hasNoRealValue} \Z{228} auf dem Objekt \IC{choice} aufrufen werden,
+Aus diesem Grund können die Methoden \IC{hasRealValue} \Z{225} und \IC{hasNoRealValue} \Z{228} auf dem Objekt \IC{choice} aufgerufen werden,
 obwohl sie nur Teil der Klasse \IC{ZielsetzungLandChoice} aber nicht der Basisklasse \IC{Choice} sind.
 Ohne Parametrisierung über den Typ müsste das Objekt \IC{choice} in einen anderen Typ umgewandelt werden.
 Doch nach dieser Typumwandlung könnte ein Laufzeitfehler geschehen, sollte es sich bei dem Objekt tatsächlich nicht um den gewünschten Typ handeln.
@@ -308,7 +308,7 @@ class ZielsetzungLandChoice extends Choice {
 
 
 \IC{hasRealValue} vergleicht, ob der aktuelle Wert weder \enquote{keine Angabe/Vorgabe} noch \enquote{bitte um Unterstützung} ist \Z{201}.
-\IC{hasNoRealValue} ruft dagegen intern \IC{hasRealValue} auf und negiert Wert \Z{203}.
+\IC{hasNoRealValue} ruft dagegen intern \IC{hasRealValue} auf und negiert den Wert \Z{203}.
 
 
 Überall dort, wo zuvor der Ausdruck \IC{choice.conditionMatches(priorChoices)} verwendet wurde, muss nun der Aufruf des \IC{choiceMatcher} erfolgen.

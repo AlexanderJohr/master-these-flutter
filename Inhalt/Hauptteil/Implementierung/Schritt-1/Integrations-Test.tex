@@ -81,7 +81,7 @@ Die Funktion \IC{tabSelectionCard} \Lst{\ref{lst:Schritt1HilfsmethodeTabSelectio
 \end{alexlisting}
 
 Um Objekte während des Testens in der Oberfläche zu finden, stellt die Klasse \IC{Finder} nützliche Funktionalitäten zur Verfügung.
-\IC{Finder}-Objekte können über Fabrikmethoden des Objekts \IC{find} abgerufen werden.
+\IC{Finder}-Objekte können über Fabrikmethoden des Objektes \IC{find} abgerufen werden.
 
 \paragraph{Fabrikmethoden}
 Bei der Fabrikmethode handelt es sich um ein klassenbasiertes Erzeugungsmuster.
@@ -135,7 +135,7 @@ Die Hilfsfunktion klickt auf den Button \Z{63} und wartet dann erneut auf Vollen
   \label{lst:Schritt1HilfsmethodeTabSelectionCard}
 \end{alexlisting}
 
-Ist der Integrationstest aktuell in dem Auswahlbildschirm, so sorgt \IC{tabOption} dafür, dass eine Auswahloption gewählt wird \Lst{\ref{lst:Schritt1HilfsmethodeTabOption}}.
+Ist der Integrationstest aktuell in dem Selektionsbildschirm, so sorgt \IC{tabOption} dafür, dass eine Auswahloption gewählt wird \Lst{\ref{lst:Schritt1HilfsmethodeTabOption}}.
 Dazu wird die gewünschte Option dem Parameter \IC{choice} übergeben.
 Um die Checkbox der Option zu finden, muss jedoch zunächst der Text der Auswahloption gefunden werden \Z{68}.
 Erst wenn verifiziert wurde, dass auch nur genau ein Label mit diesem Text existiert, läuft der Test weiter \Z{69}. 
@@ -149,7 +149,7 @@ Erst wenn verifiziert wurde, dass auch nur genau ein Label mit diesem Text exist
 Ein Klick auf das Text-Label reicht bereits aus,
 denn damit wird das Vaterelement -- das \IC{CheckboxListTile} -- ebenfalls getroffen.
 Der \IC{tester} holt es in den sichtbaren Bereich \IC{71}, klickt es \IC{72} an und wartet auf Abschluss aller Animationen \Z{73}.
-Sollte der optionale Parameter \IC{tabConfirm} auf \IC{true} gesetzt sein \Z{75}, so wird der Auswahlbildschirm anschließend direkt wieder geschlossen, nachdem die Option ausgewählt wurde  \Z{76}. 
+Sollte der optionale Parameter \IC{tabConfirm} auf \IC{true} gesetzt sein \Z{75}, so wird der Selektionsbildschirm anschließend direkt wieder geschlossen, nachdem die Option ausgewählt wurde  \Z{76}. 
   
 Schließlich kann mit der Hilfsfunktion \IC{fillTextFormField} ein Formularfeld über dessen Titel gefunden und der entsprechende übergebende Text eingetragen werden \Lst{\ref{lst:Schritt1HilfsmethodeFillTextFormField}}.
 Die Hilfsfunktion findet das \IC{TextFormField},
@@ -180,7 +180,7 @@ Angenommen der Test wartet nicht ab, so würden die Aktionen noch immer auf den 
   \label{lst:Schritt1ButtonKreierenMassnahmeAusgeloest}
 \end{alexlisting}
 
-Der Integrationstest öffnet nun den Auswahlbildschirm, in dem die Selektionskarte zum Setzen des letzten Status angewählt wird \LstZ{\ref{lst:Schritt1LetzterStatusWirdAusgewählt}}{98}.
+Der Integrationstest öffnet nun den Selektionsbildschirm, in dem die Selektionskarte zum Setzen des letzten Status angewählt wird \LstZ{\ref{lst:Schritt1LetzterStatusWirdAusgewählt}}{98}.
 Anschließend fällt die Wahl auf die Option für \enquote{abgeschlossen} \Z{98}.
 Dabei sorgt \IC{tabConfirm: true} für die sofortige Rückkehr zum Eingabeformular nach der Auswahl.
  

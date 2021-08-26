@@ -249,9 +249,9 @@ In Zukunft könnte es sinnvoll sein, innerhalb der Fehlerbehandlung eine Meldung
 Mit \IC{putMassnahmeIfAbsent} \Z{24-33} steht eine Methode bereit, um gleichzeitig  sowohl die Oberfläche,  als auch die \enquote{JSON}-Datei zu aktualisieren.
 Sollte die eingetragene Maßnahme schon existieren, wird sie zunächst gelöscht \Z{26}.
 In jedem Fall wird die neue Maßnahme dem \enquote{Stream} hinzugefügt \Z{27}.
-Durch Austauschen des gesamten Objekts mit der Zuweisung von \IC{storage.value} \Z{25} erhält der \enquote{Stream} erneut ein neues Ereignis, womit er die Oberfläche benachrichtigen kann,
+Durch Austauschen des gesamten Objektes mit der Zuweisung von \IC{storage.value} \Z{25} erhält der \enquote{Stream} erneut ein neues Ereignis, womit er die Oberfläche benachrichtigen kann,
 sich neu zu zeichnen.
-Außerdem wird die Serialisierung des \IC{Storage}-Objekts angestoßen \Z{29-30}.
+Außerdem wird die Serialisierung des \IC{Storage}-Objektes angestoßen \Z{29-30}.
 Die neue Liste von Maßnahmen wird im darauffolgenden Schritt zurück in die \enquote{JSON}-Datei gespeichert \Z{32}.
 
 \begin{alexlisting}{Schritt 1}{Die Klasse MassnahmenModel}

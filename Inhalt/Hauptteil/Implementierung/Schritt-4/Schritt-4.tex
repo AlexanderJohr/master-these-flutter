@@ -37,10 +37,10 @@ In der Eingabemaske wird dann das gesamte Eingabefeld rot eingefärbt \Abb{\ref{
 \section{Hinzufügen der Bedingungen zu den Auswahloptionen}
 
 Es gibt einfache Bedingungen wie beispielsweise die der Zielfläche \enquote{AL}.
-Dessen Auswahl kann nur dann erfolgen,
+Deren Auswahl kann nur dann erfolgen,
 wenn nicht die Kategorie \enquote{Anbau Zwischenfrucht/Untersaat} ausgewählt ist \Lst{\ref{lst:Schritt4al}}.
 
-\begin{alexlisting}{Schritt 4}{Der Klassenvariable \enquote{al} des Typs \enquote{ZielflaecheChoice} wird eine Bedingung hinzugefügt}
+\begin{alexlisting}{Schritt 4}{Der Klassenvariablen \enquote{al} des Typs \enquote{ZielflaecheChoice} wird eine Bedingung hinzugefügt}
   {Quellcode/Schritt-4/conditional_form/lib/choices/choices.dart}
   {firstline=79, lastline=80, highlightlines={80}}
   \label{lst:Schritt4al}
@@ -49,10 +49,10 @@ wenn nicht die Kategorie \enquote{Anbau Zwischenfrucht/Untersaat} ausgewählt is
 Doch es tauchen auch komplexe Bedingungen auf,
 wie etwa die Abhängigkeit der Zielfläche \enquote{Wald/Forst} \Lst{\ref{lst:Schritt4wald}}.
 Um sie auszuwählen,
-muss die Förderklasse eine von 3 Werten beinhalten:
+muss die Förderklasse eine von den 3 folgenden Werten beinhalten:
 \enquote{Erschwernisausgleich} \Z{97},
 \enquote{Agrarumwelt-(und Klima)Maßnahme: nur Vertragsnaturschutz} \Z{98} oder
-\enquote{Agrarumwelt-(und Klima)Maßnahmen, tw. auch mit Tierwohlaspekten , aber OHNE Vertragsnaturschutz} \Z{99}.
+\enquote{Agrarumwelt-(und Klima)Maßnahmen, tw. auch mit Tierwohlaspekten, aber OHNE Vertragsnaturschutz} \Z{99}.
 
 Gleichzeitig darf für die \enquote{Kategorie} weder
 \enquote{Anbau Zwischenfrucht/Untersaat} \Z{100}
@@ -66,18 +66,18 @@ Das logische Und würde hier keinen Sinn ergeben,
 da es unmöglich ist,
 in einem Einfachauswahlfeld gleichzeitig zwei Optionen ausgewählt zu haben.
 Um Bedingungen unterschiedlichen Typs miteinander zu verknüpfen,
-ist dagegen das logische und \IC{&&} zu benutzen \Z{99},
+ist dagegen das logische Und \IC{&&} zu benutzen \Z{99},
 denn die Bedingungen der \enquote{Förderklasse} und der \enquote{Kategorie} müssen gleichzeitig erfüllt sein.
 Hier ist wiederum das Nutzen des logischen Oders nicht angemessen,
 denn es wäre nicht ausreichend,
-wenn nur die Bedingungen eines der beiden Typen erfüllt wäre.
-Wäre also beispielsweise für die \enquote{Förderklasse} die Option \enquote{Erschwernisausgleich} gewählt,
+wenn nur die Bedingung eines der beiden Typen erfüllt wäre.
+Sollte also beispielsweise für die \enquote{Förderklasse} die Option \enquote{Erschwernisausgleich} gewählt sein,
 so wäre es völlig unerheblich,
-welche Auswahl für die \enquote{Kategorie} selektiert wurde.
+welche Auswahl für die \enquote{Kategorie} selektiert ist.
 Die Bedingung wäre trotzdem erfüllt,
 auch wenn für die \enquote{Kategorie} die nicht erlaubte Option \enquote{Anbau Zwischenfrucht/Untersaat} gewählt ist.
 
-\begin{alexlisting}{Schritt 4}{Der Klassenvariable \enquote{wald} des Typs \enquote{ZielflaecheChoice} wird eine Bedingung hinzugefügt}
+\begin{alexlisting}{Schritt 4}{Der Klassenvariablen \enquote{wald} des Typs \enquote{ZielflaecheChoice} wird eine Bedingung hinzugefügt}
   {Quellcode/Schritt-4/conditional_form/lib/choices/choices.dart}
   {firstline=95, lastline=101, highlightlines={96-101}}
   \label{lst:Schritt4wald}
@@ -92,7 +92,7 @@ Die Signatur dieser Funktion wird als Typdefinition mit dem Namen \IC{Condition}
 Der Konstruktor erhält einen weiteren Parameter für die Bedingung \Z{12}.
 
 Er ist optional,
-da es Auswahloption gibt,
+da es Auswahloptionen gibt,
 die keine Bedingung haben.
 Deshalb wird mit der Notation \IC{Condition?} erreicht,
 dass die Bedingung auch ausgelassen werden kann und in diesem Fall \IC{null} ist.
@@ -105,22 +105,22 @@ gibt diese Funktion immer \IC{true} zurück.
 Denn eine Auswahloption,
 die keine Bedingung hat,
 ist immer auswählbar.
-Sollte die übergebene Bedingungen ausgelassen worden und damit \IC{null} sein,
+Sollte die übergebene Bedingung ausgelassen worden und damit \IC{null} sein,
 so wählt die \enquote{if-null Expression} den Ausdruck rechts von dem \IC{??} und damit die Standardfunktion \IC{_conditionIsAlwaysMet} aus,
 welche der Instanzvariablen \IC{condition} zugewiesen wird \Z{13}.
 Ansonsten speichert der Konstruktor die übergebene Funktion.
 Aus diesem Grund ist es nicht möglich,
-dass die condition in der Instanzvariablen nur sein kann,
-weshalb sie ohne den Suffix? Als variable ohne zu null Zulässigkeit deklariert werden kann.
+dass die Instanzvariable \IC{condition} den Wert \IC{null} erhält,
+weshalb sie ohne den Suffix \IC{?} als eine Variable ohne Null-Zulässigkeit deklariert werden kann.
 Da der Ausdruck rechts von dem \IC{??} nicht \IC{null} sein kann,
 so kann auch der gesamte Ausdruck der vorliegenden \enquote{if-null Expression} nicht \IC{null} sein.
 Damit ist es möglich,
 die Instanzvariable \IC{condition} ohne den Suffix \IC{?} als Variable ohne Null-Zulässigkeit zu deklarieren.
 Die Instanzmethode \IC{conditionMatches} ruft die übergebene Funktion für die Bedingung über die Methode \IC{call} auf \Z{10}.
-Das erlaubt den Ausdruck  durch vereinfacht darzustellen.
-Der Ausdruck \IC{wald.condition(priorChoices)} kann dadurch durch die explizitere Schreibweise \IC{wald.conditionMatches(priorChoices)} ersetzt werden.
+Das erlaubt es, den Ausdruck vereinfacht darzustellen.
+Der Ausdruck \IC{wald.condition(priorChoices)} kann daraufhin durch die explizitere Schreibweise \IC{wald.conditionMatches(priorChoices)} ersetzt werden.
 
-\begin{alexlisting}{Schritt 4}{Die Klasse \enquote{Choices} wird die Instanzvariable \enquote{condition} hinzugefügt}
+\begin{alexlisting}{Schritt 4}{Der Klasse \enquote{Choices} wird die Instanzvariable \enquote{condition} hinzugefügt}
   {Quellcode/Schritt-4/conditional_form/lib/choices/base/choice.dart}
   {firstline=3, lastline=16, highlightlines={3,8,10,12-13,15 }}
   \label{lst:Schritt4Choice}
@@ -168,9 +168,9 @@ Sollte ein Auswahlfeld nicht gewählt und damit der Wert des \IC{BehaviorSubject
 so taucht diese Option einfach nicht in der Menge auf.
 Sind alle Auswahlfelder nicht belegt und damit \IC{null},
 so ist die Menge leer.
-Doch der kombinierte \enquote{Stream} \IC{choicesStream} liefert immer nur die neuen Ereignisse und speichert nicht den zuletzt übermittelten Wert.
+Doch der kombinierte \enquote{Stream} \IC{choicesStream} liefert immer nur die neuen Ereignisse und speichert nicht den zuletzt übermittelten Wert zwischen.
 Deshalb wird das \IC{BehaviorSubject} \IC{priorChoices} verwendet.
-Die Methode \IC{listen} horcht auf Änderungen des \IC{choicesStream}-Objekts und fügt das übertragene Ereignis immer \IC{priorChoices} hinzu. 
+Die Methode \IC{listen} horcht auf Änderungen des \IC{choicesStream}-Objektes und fügt das übertragene Ereignis immer \IC{priorChoices} hinzu. 
 Damit existiert immer ein Wert für die Momentaufnahme der aktuell ausgewählten Auswahloptionen.
 Sie ist ursprünglich die leere Menge \IC{{}} und nachfolgend immer das zuletzt übermittelte Ereignis des \IC{choicesStream}.
 
@@ -180,7 +180,7 @@ Dadurch
 , dass \IC{priorChoices} nun im \enquote{ViewModel} verfügbar ist
 , kann es im Eingabeformular bei der Konstruktion der \IC{SelectionCard} als Argument übergeben werden \LstZ{\ref{lst:Schritt4builderSelectionCard}}{143}.
 
-\begin{alexlisting}{Schritt 4}{Dem Konstruktor der \enquote{SelectionCard} wird das \enquote{BehaviorSubject} \enquote{priorChoices}}
+\begin{alexlisting}{Schritt 4}{Dem Konstruktor der \enquote{SelectionCard} wird das \enquote{BehaviorSubject} \enquote{priorChoices} übergeben}
   {Quellcode/Schritt-4/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
   {firstline=140, lastline=143, highlightlines={143}}
   \label{lst:Schritt4builderSelectionCard}
@@ -228,11 +228,11 @@ Anstatt ausschließlich auf die Änderungen der eigenen Auswahloptionen zu reagi
 horcht der \IC{StreamBuilder} nun auf den \enquote{Stream} \IC{priorChoices} \LstZ{\ref{lst:Schritt4StreamBuilderpriorChoices}}{52}
 und damit auf die Änderungen aller Auswahlfelder.
 Vor der Konstruktion der Karte wird nun überprüft,
-ob einer der ausgewählten Auswahloptionen in \IC{selectedChoices} eine invalide Auswahl enthält \Z{55-56}.
-Das kann über die Funktion any herausgefunden werden,
+ob eine der ausgewählten Auswahloptionen in \IC{selectedChoices} eine invalide Auswahl enthält \Z{55-56}.
+Das kann über die Funktion \IC{any} herausgefunden werden,
 indem  für jede ausgewählte Option die Methode \IC{conditionMatches} mit der Menge aller ausgewählten Optionen im gesamten Formular aufgerufen wird \Z{56}. 
 Die rote Farbe der Selektionskarte wurde bereits bei der Validierung im letzten Schritt verwendet,
-wenn der dem Konstruktor ein \IC{errorText} übergeben wurde.
+wenn dem Konstruktor ein \IC{errorText} übergeben wurde.
 Nun wird diese Bedingung erweitert.
 Sollte es auch nur eine falsche Selektion geben
 oder aber der \IC{errorText} gesetzt sein,
@@ -335,10 +335,10 @@ die entweder selektiert oder selektierbar sind.
 Dies beinhaltet auch Optionen,
 die invalide und trotzdem selektiert sind.
 Die zweite Menge \IC{unselectableChoices} \Z{96} dagegen beinhaltet alle Optionen,
-die invalide sind,
+die invalide
 und nicht selektiert sind.
 Eine Schleife iteriert über alle verfügbaren Optionen,
-welche der Auswahl Bildschirm anzeigt  \Z{90-105}.
+welche der Selektionsbildschirm anzeigt  \Z{90-105}.
 Sollte die Option in den selektierten Optionen enthalten \Z{99},
 oder aber mit den Selektionen aller anderen Auswahlfelder kompatibel sein,
 so wird sie der Menge \IC{selectedAndSelectableChoices} hinzugefügt \Z{101}.
@@ -349,15 +349,15 @@ Nun wird stattdessen nur die Menge der selektierbaren und selektierten Auswahlop
 Neben dem Vergleich,
 ob die Option selektiert ist \Z{109},
 erfolgt nur noch ein weiterer Vergleich,
-ob die Option inkompatibel mit den ausgewählten Optionen aller anderen Auswahlfelder ist \Z{111}.
-Das Ergebnis des Vergleiches wird in der lokalen Variable \IC{selectedButDoesNotMatch} gespeichert.
+ob die Option mit den ausgewählten Optionen aller anderen Auswahlfelder inkompatibel ist \Z{111}.
+Das Ergebnis des Vergleiches wird in der lokalen Variablen \IC{selectedButDoesNotMatch} gespeichert.
 
 Sollte diese Variable \IC{true} sein,
-so erscheint das \IC{CheckboxListTile}-Element mit einem rot eingefärbten im Hintergrund.
+so erscheint das \IC{CheckboxListTile}-Element mit einem rot eingefärbten Hintergrund.
 Der Benutzer hat über die Checkbox dann die Möglichkeit,
 diese Auswahl zu deselektieren.
 Da das hinterlegte \enquote{ViewModel} durch diese Deselektion direkt aktualisiert wird \Z{122-123},
-so baut der \IC{StreamBuilder} auch den \IC{ListView} neu.
+baut der \IC{StreamBuilder} auch den \IC{ListView} neu.
 Die deselektierte Option wird dann Teil von der Menge \IC{unselectableChoices} \Z{103} sein.
 So erscheint sie dann
 -- ganz genau wie alle anderen unselektierbaren Auswahloptionen --
@@ -379,7 +379,7 @@ dass diese Option nicht anwählbar ist.
 Alle bisher eingefügten Vergleiche hatten lediglich den Zweck,
 die invaliden Optionen einzufärben und von der Selektion durch den Benutzer auszuschließen.
 Doch noch sind sie nicht Teil der Validierung des Formulars.
-Sollte der Benutzer die aktuell eingetragene Maßnahmen im abgeschlossenen Status abspeichern wollen,
+Sollte der Benutzer die aktuell eingetragene Maßnahme im abgeschlossenen Status abspeichern wollen,
 so kann dies auch mit invaliden Optionen erfolgen.
 Um das zu verhindern,
 wird noch ein Vergleich zu der anonymen Funktion hinzugefügt,
@@ -391,15 +391,15 @@ welche als Argument dem Parameter \IC{validator} des \IC{FormField} übergeben w
   \label{lst:Schritt4validator}
 \end{alexlisting}
 
-Sollte auch nur eine der selektierten Optionen \IC{choices} die ihr hinterlegte Bedingungen nicht erfüllen \Z{132},
+Sollte auch nur eine der selektierten Optionen \IC{choices} die ihr hinterlegte Bedingung nicht erfüllen \Z{132},
 so speichert die lokale Variable \IC{atLeastOneValueInvalid} den Wert \IC{true} ab \Z{131}.
 
-In dem Fall gibt die Funktion die entsprechende Fehlermeldung an den Benutzer zurück \Z{135}.
+In diesem Fall gibt die Funktion die entsprechende Fehlermeldung an den Benutzer zurück \Z{135}.
 Somit ist es nun auch nicht mehr möglich,
 eine Maßnahme abzuspeichern,
 wenn sie invalide Auswahloptionen enthält.
 Erst wenn alle Auswahlfelder gefüllt sind
-und die gefüllten Optionen alle die jeweils hinterlegten Bedingungen erfüllen,
+und die gewählten Optionen die jeweils hinterlegten Bedingungen erfüllen,
 so werden die \IC{validator}-Funktionen \IC{null} statt einer Fehlermeldung zurückgegeben \Z{138}.
 Nur dann kann eine Maßnahme mit dem Status \enquote{abgeschlossen} gespeichert werden.
 

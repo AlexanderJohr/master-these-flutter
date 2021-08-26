@@ -17,7 +17,7 @@ Alle Instanzvariablen werden über diesen Typparameter generalisiert \Z{17-20}, 
 Mit dem \enquote{Stream} \IC{selectionViewModel} verwaltet die \IC{SelectionCard} ihren eigenen Zustand.
 Der \enquote{Stream} ist mit dem generischen Typ \IC{BuiltSet<ChoiceType>} konfiguriert.
 Das macht es unmöglich, den aktuell hinterlegten Wert anzupassen, ohne das Gesamtobjekt auszutauschen.
-Der Tausch des Objekts wiederum bewirkt, dass ein Ereignis über den \enquote{Stream} ausgelöst wird. Über dieses Ereignis zeichnet die SelectionCard Teile seiner Oberfläche neu.
+Der Tausch des Objektes wiederum bewirkt, dass ein Ereignis über den \enquote{Stream} ausgelöst wird. Über dieses Ereignis zeichnet die SelectionCard Teile seiner Oberfläche neu.
 Allerdings erhält der Konstruktor kein Argument des Typs \IC{BehaviorSubject}, sondern stattdessen vom \IC{Iterable<ChoiceType>} \Z{24}.
 Damit wird der Benutzer nicht darauf eingeschränkt, einen \enquote{Stream} zu übergeben.
 Er kann auch eine gewöhnliche Liste oder Menge setzen.
@@ -62,7 +62,7 @@ Klickt der Benutzer die Karte an, navigiert er schließlich zur Unterseite, wo e
 Die verschachtelte Funktion \IC{navigateToSelectionScreen} kommt dafür zum Einsatz \Z{37-45}.
 Da das Wechseln zur Unterseite bevorsteht, fordert der \IC{focusNode} den Fokus für das angeklickte \IC{ListTile} an \Z{38}.
 Schließlich navigiert der Benutzer mit \IC{Navigator.push} zur Unterseite.
-Es handelt sich um den Auswahlbildschirm, auf dem der Benutzer die gewünschte Option anwählen kann.
+Es handelt sich um den Selektionsbildschirm, auf dem der Benutzer die gewünschte Option anwählen kann.
 Die Besonderheit dieses Mal ist: Die Route ist nicht als \enquote{Widget} deklariert und wird nicht über einen Namen aufgerufen, so wie es bei dem Übersichtsbildschirm und der Eingabemaske war.
 Stattdessen baut eine Funktion bei jedem Aufruf die Seite neu.
 Das dynamische Bauen der Seite hat einen besonderen Vorteil, der am Listing \ref{lst:Schritt1FunktionCreateMultipleChoiceSelectionScreen} erklärt wird.
@@ -82,10 +82,10 @@ Hier wird der Vorteil der dynamischen Erzeugung der Seite offensichtlich: die Un
 Auch alle weiteren Instanzvariablen der \IC{SelectionCard} können wiederverwendet werden.
 Würde es sich stattdessen um eine weitere Route handeln, so müssten alle diese Informationen über den Navigator zur neuen Unterseite übergeben werden.
 Sollte der Nutzer die Auswahl beenden, so müsste auch ein Mechanismus für das Zurückgeben der selektierten Daten implementiert werden.
-Dadurch, dass die \IC{SelectionCard} und der Auswahlbildschirm sich das gleiche \enquote{ViewModel} teilen,
+Dadurch, dass die \IC{SelectionCard} und der Selektionsbildschirm sich das gleiche \enquote{ViewModel} teilen,
 kann sogar ein weiterer Vorteil in Zukunft genutzt werden:
 In einem zweispaltigen Layout könnte auf der linken Seite die Eingabemaske und auf der rechten Seite der Bildschirm der Auswahloptionen eingeblendet werden.
-Sobald sich Auswahloptionen im rechten Auswahlbildschirm verändern, so würden sich die Änderungen auf der linken Seite für den Benutzer direkt widerspiegeln.
+Sobald sich Auswahloptionen im rechten Selektionsbildschirm verändern, so würden sich die Änderungen auf der linken Seite für den Benutzer direkt widerspiegeln.
 
 Innerhalb des \IC{StreamBuilder} werden die Auswahloptionen gebaut.
 Dazu speichert die lokale Variable \IC{selectedChoices} die aktuellen Selektionen des \enquote{Streams} zunächst zwischen \Z{72}.
@@ -95,7 +95,7 @@ Die Funktion \IC{map} konvertiert alle Objekte in der Liste aller möglichen Opt
 In der Standard-Variante sind die Checkboxen rechtsbündig.
 Der Parameter \IC{controlAffinity} kann genutzt werden, um dieses Verhalten zu überschreiben \Z{80}.
 
-Das \IC{CheckboxListTile} erhält einen Titel, der aus dem Beschreibungstext \IC{description} des \IC{Choice}-Objekts gebildet wird \Z{81}.
+Das \IC{CheckboxListTile} erhält einen Titel, der aus dem Beschreibungstext \IC{description} des \IC{Choice}-Objektes gebildet wird \Z{81}.
 Ob eine Option aktuell bereits ausgewählt ist, kann mit dem Parameter \IC{value} gekennzeichnet werden \Z{82}.
 Sollte sich die Selektion ändern, erfolgt die Mitteilung über die Rückruffunktion \IC{onChanged} \Z{83-94}.
 Der erste Parameter der anonymen Funktion gibt dabei die ausgewählte Selektion an.
@@ -104,15 +104,15 @@ Durch die Typ-Beförderung ist \IC{selected} innerhalb des Körpers der Fallunte
 
 
 Darin wird zunächst der Zustand des \enquote{ViewModels} der \IC{SelectionCard} aktualisiert.
-Die \IC{replace}-Methode des \enquote{Builder}-Objekts kann die gesamte Kollektion im \IC{BuiltSet} austauschen, ungeachtet dessen, dass es sich beim Argument selbst nicht um ein \IC{BuiltSet} handelt.
+Die \IC{replace}-Methode des \enquote{Builder}-Objektes kann die gesamte Kollektion im \IC{BuiltSet} austauschen, ungeachtet dessen, dass es sich beim Argument selbst nicht um ein \IC{BuiltSet} handelt.
 Die \IC{replace}-Methode wandelt das Argument dafür automatisch um.
 Durch Zuweisung des neuen Wertes erhält das \enquote{ViewModel} der \IC{SelectionCard} ein neues Ereignis.
-Damit werden die \IC{SelectionCard} und der dazugehörige Auswahlbildschirm aktualisiert.
+Damit werden die \IC{SelectionCard} und der dazugehörige Selektionsbildschirm aktualisiert.
 Während der Erstellung dieser Arbeit wurde versucht, die \IC{SelectionCard} als ein \IC{StatefulWidget} zu erstellen.
-Mittels \IC{setState} sollte dafür gesorgt werden, dass sowohl \IC{SelectionCard} als auch der Auswahlbildschirm aktualisiert werden.
+Mittels \IC{setState} sollte dafür gesorgt werden, dass sowohl \IC{SelectionCard} als auch der Selektionsbildschirm aktualisiert werden.
 Doch bei diesem Vorgehen zeichnet sich nur die \IC{SelectionCard} neu.
-Der Auswahlbildschirm bleibt unverändert, denn er wird zwar von der \IC{SelectionCard} gebaut, doch ist er nicht tatsächlich Kind der \IC{SelectionCard}.
-In Wahrheit ist der Auswahlbildschirm ein Kind von \IC{MaterialApp} -- genau wie \IC{MassnahmenMasterScreen} und \IC{MassnahmenDetailScreen}.
+Der Selektionsbildschirm bleibt unverändert, denn er wird zwar von der \IC{SelectionCard} gebaut, doch ist er nicht tatsächlich Kind der \IC{SelectionCard}.
+In Wahrheit ist der Selektionsbildschirm ein Kind von \IC{MaterialApp} -- genau wie \IC{MassnahmenMasterScreen} und \IC{MassnahmenDetailScreen}.
 
 Neben dem \enquote{ViewModel} der \IC{SelectionCard} muss jedoch auch das \enquote{ViewModel} der Eingabemaske aktualisiert werden.
 Mit den Rückruffunktionen \IC{onSelect} \Z{90} und \IC{onDeselect} \Z{92} hat die aufrufende Ansicht die Möglichkeit, auf Selektionen zu reagieren.
