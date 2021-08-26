@@ -28,15 +28,15 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:zoom="1.1474186"
-     inkscape:cx="544.26519"
-     inkscape:cy="295.01003"
+     inkscape:zoom="1"
+     inkscape:cx="463.5"
+     inkscape:cy="212.5"
      inkscape:window-width="2560"
      inkscape:window-height="1377"
      inkscape:window-x="1912"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer22"
+     inkscape:current-layer="layer17"
      units="px"
      inkscape:snap-bbox="true"
      inkscape:bbox-paths="true"
@@ -1778,26 +1778,8 @@
        y="0"
        inkscape:tiled-clone-of="#use9975-0"
        xlink:href="#use9975-0"
-       transform="translate(19.868542,99.342922)"
-       id="use9445"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use9975-0"
-       xlink:href="#use9975-0"
        transform="translate(19.868542,105.96578)"
        id="use9447"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use9975-0"
-       xlink:href="#use9975-0"
-       transform="translate(26.491389,99.342922)"
-       id="use9485"
        width="100%"
        height="100%" />
     <use
@@ -1814,26 +1796,8 @@
        y="0"
        inkscape:tiled-clone-of="#use9975-0"
        xlink:href="#use9975-0"
-       transform="translate(33.114236,99.342922)"
-       id="use9525"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use9975-0"
-       xlink:href="#use9975-0"
        transform="translate(33.114236,105.96578)"
        id="use9527"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use9975-0"
-       xlink:href="#use9975-0"
-       transform="translate(39.737083,99.342922)"
-       id="use9565"
        width="100%"
        height="100%" />
     <use
@@ -1850,26 +1814,8 @@
        y="0"
        inkscape:tiled-clone-of="#use9975-0"
        xlink:href="#use9975-0"
-       transform="translate(46.35993,99.342922)"
-       id="use9605"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use9975-0"
-       xlink:href="#use9975-0"
        transform="translate(46.35993,105.96578)"
        id="use9607"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use9975-0"
-       xlink:href="#use9975-0"
-       transform="translate(52.982778,99.342922)"
-       id="use9645"
        width="100%"
        height="100%" />
     <use
@@ -1886,26 +1832,8 @@
        y="0"
        inkscape:tiled-clone-of="#use9975-0"
        xlink:href="#use9975-0"
-       transform="translate(59.605625,99.342922)"
-       id="use9685"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use9975-0"
-       xlink:href="#use9975-0"
        transform="translate(59.605625,105.96578)"
        id="use9687"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use9975-0"
-       xlink:href="#use9975-0"
-       transform="translate(66.228472,99.342922)"
-       id="use9725"
        width="100%"
        height="100%" />
     <use
@@ -1922,26 +1850,8 @@
        y="0"
        inkscape:tiled-clone-of="#use9975-0"
        xlink:href="#use9975-0"
-       transform="translate(72.851319,99.342922)"
-       id="use9765"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use9975-0"
-       xlink:href="#use9975-0"
        transform="translate(72.851319,105.96578)"
        id="use9767"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use9975-0"
-       xlink:href="#use9975-0"
-       transform="translate(79.474166,99.342922)"
-       id="use9805"
        width="100%"
        height="100%" />
     <use
@@ -1958,26 +1868,8 @@
        y="0"
        inkscape:tiled-clone-of="#use9975-0"
        xlink:href="#use9975-0"
-       transform="translate(86.097014,99.342922)"
-       id="use9845"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use9975-0"
-       xlink:href="#use9975-0"
        transform="translate(86.097014,105.96578)"
        id="use9847"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use9975-0"
-       xlink:href="#use9975-0"
-       transform="translate(92.719861,99.342922)"
-       id="use9885"
        width="100%"
        height="100%" />
     <use
@@ -1994,26 +1886,8 @@
        y="0"
        inkscape:tiled-clone-of="#use9975-0"
        xlink:href="#use9975-0"
-       transform="translate(99.342708,99.342922)"
-       id="use9925"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use9975-0"
-       xlink:href="#use9975-0"
        transform="translate(99.342708,105.96578)"
        id="use9927"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use9975-0"
-       xlink:href="#use9975-0"
-       transform="translate(105.96556,99.342922)"
-       id="use9965"
        width="100%"
        height="100%" />
     <use
@@ -2030,26 +1904,8 @@
        y="0"
        inkscape:tiled-clone-of="#use9975-0"
        xlink:href="#use9975-0"
-       transform="translate(112.5884,99.342922)"
-       id="use10005"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use9975-0"
-       xlink:href="#use9975-0"
        transform="translate(112.5884,105.96578)"
        id="use10007"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use9975-0"
-       xlink:href="#use9975-0"
-       transform="translate(119.21125,99.342922)"
-       id="use10045"
        width="100%"
        height="100%" />
     <use
@@ -2066,26 +1922,8 @@
        y="0"
        inkscape:tiled-clone-of="#use9975-0"
        xlink:href="#use9975-0"
-       transform="translate(125.8341,99.342922)"
-       id="use10085"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use9975-0"
-       xlink:href="#use9975-0"
        transform="translate(125.8341,105.96578)"
        id="use10087"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use9975-0"
-       xlink:href="#use9975-0"
-       transform="translate(132.45694,99.342922)"
-       id="use10125"
        width="100%"
        height="100%" />
     <use
@@ -2102,26 +1940,8 @@
        y="0"
        inkscape:tiled-clone-of="#use9975-0"
        xlink:href="#use9975-0"
-       transform="translate(139.07979,99.342922)"
-       id="use10165"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use9975-0"
-       xlink:href="#use9975-0"
        transform="translate(139.07979,105.96578)"
        id="use10167"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use9975-0"
-       xlink:href="#use9975-0"
-       transform="translate(145.70264,99.342922)"
-       id="use10205"
        width="100%"
        height="100%" />
     <use
@@ -2138,26 +1958,8 @@
        y="0"
        inkscape:tiled-clone-of="#use9975-0"
        xlink:href="#use9975-0"
-       transform="translate(152.32549,99.342922)"
-       id="use10245"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use9975-0"
-       xlink:href="#use9975-0"
        transform="translate(152.32549,105.96578)"
        id="use10247"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use9975-0"
-       xlink:href="#use9975-0"
-       transform="translate(158.94833,99.342922)"
-       id="use10285"
        width="100%"
        height="100%" />
     <use
@@ -2174,26 +1976,8 @@
        y="0"
        inkscape:tiled-clone-of="#use9975-0"
        xlink:href="#use9975-0"
-       transform="translate(165.57118,99.342922)"
-       id="use10325"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use9975-0"
-       xlink:href="#use9975-0"
        transform="translate(165.57118,105.96578)"
        id="use10327"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use9975-0"
-       xlink:href="#use9975-0"
-       transform="translate(172.19403,99.342922)"
-       id="use10365"
        width="100%"
        height="100%" />
     <use
@@ -2210,26 +1994,8 @@
        y="0"
        inkscape:tiled-clone-of="#use9975-0"
        xlink:href="#use9975-0"
-       transform="translate(178.81687,99.342922)"
-       id="use10405"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use9975-0"
-       xlink:href="#use9975-0"
        transform="translate(178.81687,105.96578)"
        id="use10407"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use9975-0"
-       xlink:href="#use9975-0"
-       transform="translate(185.43972,99.342922)"
-       id="use10445"
        width="100%"
        height="100%" />
     <use
@@ -2246,26 +2012,8 @@
        y="0"
        inkscape:tiled-clone-of="#use9975-0"
        xlink:href="#use9975-0"
-       transform="translate(192.06257,99.342922)"
-       id="use10485"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use9975-0"
-       xlink:href="#use9975-0"
        transform="translate(192.06257,105.96578)"
        id="use10487"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use9975-0"
-       xlink:href="#use9975-0"
-       transform="translate(198.68542,99.342922)"
-       id="use10525"
        width="100%"
        height="100%" />
     <use
@@ -2282,26 +2030,8 @@
        y="0"
        inkscape:tiled-clone-of="#use9975-0"
        xlink:href="#use9975-0"
-       transform="translate(205.30826,99.342922)"
-       id="use10565"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use9975-0"
-       xlink:href="#use9975-0"
        transform="translate(205.30826,105.96578)"
        id="use10567"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use9975-0"
-       xlink:href="#use9975-0"
-       transform="translate(211.93111,99.342922)"
-       id="use10605"
        width="100%"
        height="100%" />
     <use
@@ -2318,15 +2048,6 @@
        y="0"
        inkscape:tiled-clone-of="#use9975-0"
        xlink:href="#use9975-0"
-       transform="translate(218.55396,99.342922)"
-       id="use10645"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use9975-0"
-       xlink:href="#use9975-0"
        transform="translate(218.55396,105.96578)"
        id="use10647"
        width="100%"
@@ -2336,26 +2057,8 @@
        y="0"
        inkscape:tiled-clone-of="#use9975-0"
        xlink:href="#use9975-0"
-       transform="translate(225.1768,99.342922)"
-       id="use10685"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use9975-0"
-       xlink:href="#use9975-0"
        transform="translate(225.1768,105.96578)"
        id="use10687"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use9975-0"
-       xlink:href="#use9975-0"
-       transform="translate(231.79965,99.342922)"
-       id="use10725"
        width="100%"
        height="100%" />
     <use
@@ -2888,7 +2591,7 @@
        style="font-size:24px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect2211-8);display:inline"><tspan
          x="257.69336"
          y="50.121022"
-         id="tspan5067">Übersichtsbildschirm</tspan></text>
+         id="tspan14956">Übersichtsbildschirm</tspan></text>
     <rect
        style="display:inline;fill:#8bc34a;fill-opacity:1;stroke:#000000;stroke-width:0.249584;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect12061-5-3-5"
@@ -2914,7 +2617,7 @@
          style="font-size:24px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect2211-6-8);display:inline"><tspan
            x="257.69336"
            y="50.121022"
-           id="tspan5069">Abgeschlossen</tspan></text>
+           id="tspan14958">Abgeschlossen</tspan></text>
       <text
          xml:space="preserve"
          transform="matrix(0.26458333,0,0,0.26458333,-44.152574,54.552085)"
@@ -2922,7 +2625,7 @@
          style="font-size:24px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect2211-6-4-4);display:inline"><tspan
            x="257.69336"
            y="50.121022"
-           id="tspan5071">In Bearbeitung</tspan></text>
+           id="tspan14960">In Bearbeitung</tspan></text>
     </g>
     <text
        xml:space="preserve"
@@ -2931,8 +2634,12 @@
        style="font-size:24px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect2211-8-6);display:inline"><tspan
          x="257.69336"
          y="50.121022"
-         id="tspan5073">Eingabemaske</tspan></text>
+         id="tspan14962">Eingabemaske</tspan></text>
   </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="UI BG Dos" />
   <g
      inkscape:groupmode="layer"
      id="layer18"

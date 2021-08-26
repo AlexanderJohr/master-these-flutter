@@ -1,28 +1,94 @@
 \chapter{Konzeption}
 \label{chap:Konzeption}
 
+In diesem Kapitel soll die grafische Benutzeroberfläche konzipiert werden.
+Dazu gehören der Übersichtbildschirm,
+die Eingabemaske und der Selektionsbildschirm.
+
+\section{Der Übersichtsbildschirm}
+
+Bei Programmstart wird der Benutzer mit dem Übersichtsbildschirm begrüßt \Abb{\ref{fig:KonzeptionÜbersichtsbildschirm}} .
+Er listet die bisher eingegebenen Maßnahmen auf. Sie werden in zwei Rubriken gruppiert.
+Maßnahmen, in welchen bereits alle Eingabefelder gefüllt und valide sind, werden in der Gruppe \enquote{Abgeschlossen} eingeblendet.
+Maßnahmen, welche sich noch im Bearbeitungsmodus befinden,
+da ihnen Inhalte in den Eingabefeldern fehlen oder die Eingaben nicht valide sind,
+erscheinen in der Rubrik \enquote{in Bearbeitung}. 
+
 
 
 \begin{alexfigure}{Konzeption/Übersichtsbildschirm.pdf}
-    {Konzeption des Übersichtsbildschirms}
-    {Konzeption des Übersichtsbildschirms}
-  
-    \label{fig:Schritt4EingabemaskeDNBiodiv}
-  
-  \end{alexfigure}
+  {Konzeption des Übersichtsbildschirms}
+  {Konzeption des Übersichtsbildschirms}
 
-  \begin{alexfigure}{Konzeption/Eingabemaske.pdf}
-    {Konzeption der Eingabemaske}
-    {Konzeption der Eingabemaske}
-  
-    \label{fig:Schritt4EingabemaskeDNBiodiv}
-  
-  \end{alexfigure}
+  \label{fig:KonzeptionÜbersichtsbildschirm}
 
-  \begin{alexfigure}{Konzeption/Selektionsbildschirm.pdf}
-    {Konzeption des Selektionsbildschirms}
-    {Konzeption des Selektionsbildschirms}
-  
-    \label{fig:Schritt4EingabemaskeDNBiodiv}
-  
-  \end{alexfigure}
+\end{alexfigure}
+
+Klickt der Benutzer auf den Aktionsbutton unten rechts, so gelangt er auf den zweiten Bildschirm: die Eingabemaske.
+
+\section{Die Eingabemaske}
+
+Die Eingabemaske \Abb{\ref{fig:KonzeptionEingabemaske}} listet die Eingabefelder für die  Eigenschaften der Maßnahme.
+Bedeutsam sind hierbei vor allem die Einfach- und Mehrfachauswahlfelder.
+Sie werden als Karten dargestellt.
+Unterhalb des Titels der Eigenschaft,
+dessen Wert mit der Selektionskarte ausgewählt werden soll,
+erscheint auch die Anzeige des bisher ausgewählten Wertes
+-- für Einfachauswahlfelder --
+bzw. der aktuell ausgewählten Werte
+-- für Mehrfachauswahlfelder.
+Selektionskarten, welche invalide Werte enthalten, werden rot eingefärbt.
+Die Selektionskarten können über Überschriften in Gruppen zusammengefasst werden,
+um die Übersichtlichkeit zu erhöhen.
+Auch Zwischenüberschriften sollen möglich sein.
+
+Die zwei Aktionsbuttons unten rechts ermöglichen das Speichern der Maßnahme.
+Der untere der beiden wird dazu verwendet,
+die Maßnahme vor dem Speichern zu validieren.
+Nur wenn die Validierung erfolgreich ist,
+wird die Maßnahme auch gespeichert und der Benutzer gelangt zurück zum Übersichtsbildschirm.
+Anderenfalls erhält er eine Fehlermeldung.
+Mit dem Button darüber wird die Maßnahme dagegen direkt im Entwurfsmodus abgespeichert,
+ohne eine Validierung durchzuführen.
+Auch nach Anklicken dieses Buttons gelangt der Nutzer zurück zum Übersichtsbildschirm.
+Klickt der Benutzer auf den Zurück-Button oben links im Bildschirm,
+so wird versucht,
+die Eingabemaske wieder zu verlassen,
+sofern dies möglich ist.
+Ist die Maßnahme im Entwurfsmodus,
+so gelangt der Benutzer mit diesem Button direkt zurück zum Übersichtsbildschirm,
+ist die Maßnahme dagegen im Modus \enquote{Abgeschlossen},
+so wird zunächst eine Validierung ausgeführt.
+
+\begin{alexfigure}{Konzeption/Eingabemaske.pdf}
+  {Konzeption der Eingabemaske}
+  {Konzeption der Eingabemaske}
+
+  \label{fig:KonzeptionEingabemaske}
+
+\end{alexfigure}
+
+Mit einem Klick auf die Selektionskarten wird der Benutzer auf den Selektionsbildschirm weitergeleitet, 
+um Auswahloptionen für das angeklickte Auswahlfeld auszuwählen.
+
+\section{Der Selektionsbildschirm}
+
+Auf dem Selektionsbildschirm \Abb{\ref{fig:KonzeptionSelektionsbildschirm}} werden alle möglichen Auswahloptionen aufgelistet.
+Mit einem Klick darauf kann der Benutzer die Optionen aktivieren und deaktivieren.
+
+Auswahloptionen, welche mit den in anderen Auswahlfeldern ausgewählten Werten nicht kompatibel sind,
+erscheinen am Ende der Liste. Sie sind mit einem Kreuz-Symbol gekennzeichnet.
+Optionen, welche zuvor angewählt waren und durch eine neue Selektion nun invalide geworden sind,
+erscheinen mit einem roten Hintergrund.
+
+
+Klickt der Benutzer auf den Aktionsbutton unten rechts im Bild oder auf den Zurück-Button oben links im Bild,
+so gelangt er zurück zur Eingabemaske.
+
+\begin{alexfigure}{Konzeption/Selektionsbildschirm.pdf}
+  {Konzeption des Selektionsbildschirms}
+  {Konzeption des Selektionsbildschirms}
+
+  \label{fig:KonzeptionSelektionsbildschirm}
+
+\end{alexfigure}

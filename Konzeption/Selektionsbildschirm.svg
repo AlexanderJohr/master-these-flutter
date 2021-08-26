@@ -29,15 +29,15 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:zoom="0.81134747"
-     inkscape:cx="862.14603"
-     inkscape:cy="383.92922"
+     inkscape:zoom="1.6226949"
+     inkscape:cx="476.67616"
+     inkscape:cy="314.60011"
      inkscape:window-width="2560"
      inkscape:window-height="1377"
      inkscape:window-x="1912"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:current-layer="use12637-5-3-6"
+     inkscape:current-layer="layer2"
      inkscape:snap-bbox="true"
      inkscape:bbox-paths="true"
      inkscape:bbox-nodes="true"
@@ -606,35 +606,8 @@
        y="0"
        inkscape:tiled-clone-of="#use12637-5-3-6"
        xlink:href="#use12637-5-3-6"
-       transform="translate(19.86854,13.245722)"
-       id="use6544"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
        transform="translate(19.86854,19.868584)"
        id="use6546"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(19.86854,125.83436)"
-       id="use6578"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(26.491387,13.245722)"
-       id="use6584"
        width="100%"
        height="100%" />
     <use
@@ -651,44 +624,8 @@
        y="0"
        inkscape:tiled-clone-of="#use12637-5-3-6"
        xlink:href="#use12637-5-3-6"
-       transform="translate(26.491387,125.83436)"
-       id="use6618"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(33.114234,13.245722)"
-       id="use6624"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
        transform="translate(33.114234,19.868584)"
        id="use6626"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(33.114234,125.83436)"
-       id="use6658"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(39.737081,13.245722)"
-       id="use6664"
        width="100%"
        height="100%" />
     <use
@@ -705,44 +642,8 @@
        y="0"
        inkscape:tiled-clone-of="#use12637-5-3-6"
        xlink:href="#use12637-5-3-6"
-       transform="translate(39.737081,125.83436)"
-       id="use6698"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(46.359928,13.245722)"
-       id="use6704"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
        transform="translate(46.359928,19.868584)"
        id="use6706"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(46.359928,125.83436)"
-       id="use6738"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(52.982774,13.245722)"
-       id="use6744"
        width="100%"
        height="100%" />
     <use
@@ -759,44 +660,8 @@
        y="0"
        inkscape:tiled-clone-of="#use12637-5-3-6"
        xlink:href="#use12637-5-3-6"
-       transform="translate(52.982774,125.83436)"
-       id="use6778"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(59.605621,13.245722)"
-       id="use6784"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
        transform="translate(59.605621,19.868584)"
        id="use6786"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(59.605621,125.83436)"
-       id="use6818"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(66.228468,13.245722)"
-       id="use6824"
        width="100%"
        height="100%" />
     <use
@@ -813,44 +678,8 @@
        y="0"
        inkscape:tiled-clone-of="#use12637-5-3-6"
        xlink:href="#use12637-5-3-6"
-       transform="translate(66.228468,125.83436)"
-       id="use6858"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(72.851315,13.245722)"
-       id="use6864"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
        transform="translate(72.851315,19.868584)"
        id="use6866"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(72.851315,125.83436)"
-       id="use6898"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(79.474162,13.245722)"
-       id="use6904"
        width="100%"
        height="100%" />
     <use
@@ -867,44 +696,8 @@
        y="0"
        inkscape:tiled-clone-of="#use12637-5-3-6"
        xlink:href="#use12637-5-3-6"
-       transform="translate(79.474162,125.83436)"
-       id="use6938"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(86.097008,13.245722)"
-       id="use6944"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
        transform="translate(86.097008,19.868584)"
        id="use6946"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(86.097008,125.83436)"
-       id="use6978"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(92.719855,13.245722)"
-       id="use6984"
        width="100%"
        height="100%" />
     <use
@@ -921,44 +714,8 @@
        y="0"
        inkscape:tiled-clone-of="#use12637-5-3-6"
        xlink:href="#use12637-5-3-6"
-       transform="translate(92.719855,125.83436)"
-       id="use7018"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(99.342702,13.245722)"
-       id="use7024"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
        transform="translate(99.342702,19.868584)"
        id="use7026"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(99.342702,125.83436)"
-       id="use7058"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(105.96555,13.245722)"
-       id="use7064"
        width="100%"
        height="100%" />
     <use
@@ -975,44 +732,8 @@
        y="0"
        inkscape:tiled-clone-of="#use12637-5-3-6"
        xlink:href="#use12637-5-3-6"
-       transform="translate(105.96555,125.83436)"
-       id="use7098"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(112.5884,13.245722)"
-       id="use7104"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
        transform="translate(112.5884,19.868584)"
        id="use7106"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(112.5884,125.83436)"
-       id="use7138"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(119.21124,13.245722)"
-       id="use7144"
        width="100%"
        height="100%" />
     <use
@@ -1029,44 +750,8 @@
        y="0"
        inkscape:tiled-clone-of="#use12637-5-3-6"
        xlink:href="#use12637-5-3-6"
-       transform="translate(119.21124,125.83436)"
-       id="use7178"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(125.83409,13.245722)"
-       id="use7184"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
        transform="translate(125.83409,19.868584)"
        id="use7186"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(125.83409,125.83436)"
-       id="use7218"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(132.45694,13.245722)"
-       id="use7224"
        width="100%"
        height="100%" />
     <use
@@ -1083,44 +768,8 @@
        y="0"
        inkscape:tiled-clone-of="#use12637-5-3-6"
        xlink:href="#use12637-5-3-6"
-       transform="translate(132.45694,125.83436)"
-       id="use7258"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(139.07978,13.245722)"
-       id="use7264"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
        transform="translate(139.07978,19.868584)"
        id="use7266"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(139.07978,125.83436)"
-       id="use7298"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(145.70263,13.245722)"
-       id="use7304"
        width="100%"
        height="100%" />
     <use
@@ -1137,44 +786,8 @@
        y="0"
        inkscape:tiled-clone-of="#use12637-5-3-6"
        xlink:href="#use12637-5-3-6"
-       transform="translate(145.70263,125.83436)"
-       id="use7338"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(152.32548,13.245722)"
-       id="use7344"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
        transform="translate(152.32548,19.868584)"
        id="use7346"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(152.32548,125.83436)"
-       id="use7378"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(158.94832,13.245722)"
-       id="use7384"
        width="100%"
        height="100%" />
     <use
@@ -1191,44 +804,8 @@
        y="0"
        inkscape:tiled-clone-of="#use12637-5-3-6"
        xlink:href="#use12637-5-3-6"
-       transform="translate(158.94832,125.83436)"
-       id="use7418"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(165.57117,13.245722)"
-       id="use7424"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
        transform="translate(165.57117,19.868584)"
        id="use7426"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(165.57117,125.83436)"
-       id="use7458"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(172.19402,13.245722)"
-       id="use7464"
        width="100%"
        height="100%" />
     <use
@@ -1245,44 +822,8 @@
        y="0"
        inkscape:tiled-clone-of="#use12637-5-3-6"
        xlink:href="#use12637-5-3-6"
-       transform="translate(172.19402,125.83436)"
-       id="use7498"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(178.81686,13.245722)"
-       id="use7504"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
        transform="translate(178.81686,19.868584)"
        id="use7506"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(178.81686,125.83436)"
-       id="use7538"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(185.43971,13.245722)"
-       id="use7544"
        width="100%"
        height="100%" />
     <use
@@ -1299,44 +840,8 @@
        y="0"
        inkscape:tiled-clone-of="#use12637-5-3-6"
        xlink:href="#use12637-5-3-6"
-       transform="translate(185.43971,125.83436)"
-       id="use7578"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(192.06256,13.245722)"
-       id="use7584"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
        transform="translate(192.06256,19.868584)"
        id="use7586"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(192.06256,125.83436)"
-       id="use7618"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(198.6854,13.245722)"
-       id="use7624"
        width="100%"
        height="100%" />
     <use
@@ -1353,44 +858,8 @@
        y="0"
        inkscape:tiled-clone-of="#use12637-5-3-6"
        xlink:href="#use12637-5-3-6"
-       transform="translate(198.6854,125.83436)"
-       id="use7658"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(205.30825,13.245722)"
-       id="use7664"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
        transform="translate(205.30825,19.868584)"
        id="use7666"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(205.30825,125.83436)"
-       id="use7698"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(211.9311,13.245722)"
-       id="use7704"
        width="100%"
        height="100%" />
     <use
@@ -1407,44 +876,8 @@
        y="0"
        inkscape:tiled-clone-of="#use12637-5-3-6"
        xlink:href="#use12637-5-3-6"
-       transform="translate(211.9311,125.83436)"
-       id="use7738"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(218.55394,13.245722)"
-       id="use7744"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
        transform="translate(218.55394,19.868584)"
        id="use7746"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(218.55394,125.83436)"
-       id="use7778"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(225.17679,13.245722)"
-       id="use7784"
        width="100%"
        height="100%" />
     <use
@@ -1461,188 +894,8 @@
        y="0"
        inkscape:tiled-clone-of="#use12637-5-3-6"
        xlink:href="#use12637-5-3-6"
-       transform="translate(225.17679,125.83436)"
-       id="use7818"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(231.79964)"
-       id="use7820"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(231.79964,6.6228612)"
-       id="use7822"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(231.79964,13.245722)"
-       id="use7824"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
        transform="translate(231.79964,19.868584)"
        id="use7826"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(231.79964,26.491445)"
-       id="use7828"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(231.79964,33.114306)"
-       id="use7830"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(231.79964,39.737167)"
-       id="use7832"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(231.79964,46.360028)"
-       id="use7834"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(231.79964,52.98289)"
-       id="use7836"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(231.79964,59.605751)"
-       id="use7838"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(231.79964,66.228612)"
-       id="use7840"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(231.79964,72.851473)"
-       id="use7842"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(231.79964,79.474334)"
-       id="use7844"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(231.79964,86.097196)"
-       id="use7846"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(231.79964,92.720057)"
-       id="use7848"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(231.79964,99.342918)"
-       id="use7850"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(231.79964,105.96578)"
-       id="use7852"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(231.79964,112.58864)"
-       id="use7854"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(231.79964,119.2115)"
-       id="use7856"
-       width="100%"
-       height="100%" />
-    <use
-       x="0"
-       y="0"
-       inkscape:tiled-clone-of="#use12637-5-3-6"
-       xlink:href="#use12637-5-3-6"
-       transform="translate(231.79964,125.83436)"
-       id="use7858"
        width="100%"
        height="100%" />
     <use
@@ -2057,7 +1310,7 @@
          style="font-size:24px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect2211-9-0-4);display:inline"><tspan
            x="257.69336"
            y="50.121022"
-           id="tspan10352">Selektionsbildschirm</tspan></text>
+           id="tspan23847">Selektionsbildschirm</tspan></text>
       <path
          d="m 97.014605,-137.3416 h -3.45123 l 1.58524,-1.58524 -0.40269,-0.39986 -2.26867,2.26868 2.26867,2.26868 0.39986,-0.39986 -1.58241,-1.58524 h 3.45123 z"
          id="path99124-6-4-3"
@@ -2079,7 +1332,7 @@
          style="font-size:24px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect2211-8-35-2);display:inline"><tspan
            x="257.69336"
            y="50.121022"
-           id="tspan10354">Übersichtsbildschirm</tspan></text>
+           id="tspan23849">Übersichtsbildschirm</tspan></text>
     </g>
     <path
        sodipodi:type="star"
@@ -2123,114 +1376,123 @@
        d="m 4.96613,-1.7378 h -16.44021 v -26.83036 h 8.19764"
        sodipodi:nodetypes="cccc"
        transform="translate(18.229215,35.323314)" />
-    <g
-       id="g65211"
-       transform="translate(35.345386,-332.51058)"
-       style="display:inline">
-      <rect
-         style="display:inline;fill:#fafafa;fill-opacity:1;stroke:#000000;stroke-width:0.262725;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         id="rect12061-1-3-2-2"
-         width="211.93109"
-         height="84.439369"
-         x="-15.34455"
-         y="374.03787" />
-      <text
-         xml:space="preserve"
-         transform="matrix(0.31894026,0,0,0.31894026,-79.869326,407.53841)"
-         id="text2209-6-4-2-7-8"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:0px;word-spacing:0px;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect2211-6-0-5-6-31);shape-padding:0;shape-margin:0;inline-size:0;display:inline;vector-effect:none;fill:#3a3a3a;fill-opacity:1;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000"><tspan
-           x="257.69336"
-           y="40.436996"
-           id="tspan10358"><tspan
-             style="baseline-shift:baseline;shape-inside:url(#rect2211-6-0-5-6-31);vector-effect:none;stop-color:#000000;stop-opacity:1"
-             id="tspan10356">Auswahloption 4</tspan></tspan></text>
-      <text
-         xml:space="preserve"
-         transform="matrix(0.31894026,0,0,0.31894026,-79.869326,394.71504)"
-         id="text2209-6-4-2-7-70-2"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:0px;word-spacing:0px;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect2211-6-0-5-6-31);shape-padding:0;shape-margin:0;inline-size:0;display:inline;vector-effect:none;fill:#3a3a3a;fill-opacity:1;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000"><tspan
-           x="257.69336"
-           y="40.436996"
-           id="tspan10362"><tspan
-             style="baseline-shift:baseline;shape-inside:url(#rect2211-6-0-5-6-31);vector-effect:none;stop-color:#000000;stop-opacity:1"
-             id="tspan10360">Auswahloption 3</tspan></tspan></text>
-      <text
-         xml:space="preserve"
-         transform="matrix(0.31894026,0,0,0.31894026,-79.869326,420.36178)"
-         id="text2209-6-4-2-7-4-3"
-         style="font-size:13.3333px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect2211-6-0-5-6-7-6);display:inline;fill:#3a3a3a;fill-opacity:1"><tspan
-           x="257.69336"
-           y="40.436996"
-           id="tspan10364">Auswahloption 5</tspan></text>
-      <text
-         xml:space="preserve"
-         transform="matrix(0.31894026,0,0,0.31894026,-79.869326,382.00906)"
-         id="text2209-6-4-2-7-70-9-1"
-         style="font-size:13.3333px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect2211-6-0-5-6-4-4-09);display:inline;fill:#3a3a3a;fill-opacity:1"><tspan
-           x="257.69336"
-           y="40.436996"
-           id="tspan10366">Auswahloption 2</tspan></text>
-      <text
-         xml:space="preserve"
-         transform="matrix(0.31894026,0,0,0.31894026,-79.869326,369.40992)"
-         id="text2209-6-4-2-7-70-9-0-0"
-         style="font-size:13.3333px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect2211-6-0-5-6-4-4-5-25);display:inline;fill:#3a3a3a;fill-opacity:1"><tspan
-           x="257.69336"
-           y="40.436996"
-           id="tspan10368">Auswahloption 1</tspan></text>
-      <text
-         xml:space="preserve"
-         transform="matrix(0.31894026,0,0,0.31894026,-79.869326,433.23927)"
-         id="text2209-6-4-2-7-70-9-0-7-6-8"
-         style="font-size:13.3333px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect2211-6-0-5-6-4-4-5-2-4-7);display:inline;fill:#3a3a3a;fill-opacity:1"><tspan
-           x="257.69336"
-           y="40.436996"
-           id="tspan10370">Auswahloption 6</tspan></text>
-      <path
-         d="m -5.0300284,378.45477 v 3.70416 h -3.7041667 v -3.70416 h 3.7041667 m 0,-0.52917 h -3.7041667 c -0.291042,0 -0.529167,0.23812 -0.529167,0.52917 v 3.70416 c 0,0.29104 0.238125,0.52917 0.529167,0.52917 h 3.7041667 c 0.291042,0 0.529167,-0.23813 0.529167,-0.52917 v -3.70416 c 0,-0.29105 -0.238125,-0.52917 -0.529167,-0.52917 z"
-         id="path100957-77"
-         style="display:inline;fill:#737373;fill-opacity:1;stroke-width:0.264583" />
-      <path
-         d="m -5.0300284,391.22357 v 3.70416 h -3.7041667 v -3.70416 h 3.7041667 m 0,-0.52917 h -3.7041667 c -0.291042,0 -0.529167,0.23812 -0.529167,0.52917 v 3.70416 c 0,0.29104 0.238125,0.52917 0.529167,0.52917 h 3.7041667 c 0.291042,0 0.529167,-0.23813 0.529167,-0.52917 v -3.70416 c 0,-0.29105 -0.238125,-0.52917 -0.529167,-0.52917 z"
-         id="path100957-4-9"
-         style="display:inline;fill:#737373;fill-opacity:1;stroke-width:0.264583" />
-      <path
-         d="m -5.0300284,403.87131 v 3.70416 h -3.7041668 v -3.70416 h 3.7041668 m 0,-0.52917 h -3.7041668 c -0.291042,0 -0.529167,0.23812 -0.529167,0.52917 v 3.70416 c 0,0.29104 0.238125,0.52917 0.529167,0.52917 h 3.7041668 c 0.291042,0 0.529167,-0.23813 0.529167,-0.52917 v -3.70416 c 0,-0.29105 -0.238125,-0.52917 -0.529167,-0.52917 z"
-         id="path100957-7-6"
-         style="display:inline;fill:#737373;fill-opacity:1;stroke-width:0.264583" />
-      <path
-         d="m -5.0300284,429.53861 v 3.70416 h -3.7041667 v -3.70416 h 3.7041667 m 0,-0.52917 h -3.7041667 c -0.291042,0 -0.529167,0.23812 -0.529167,0.52917 v 3.70416 c 0,0.29104 0.238125,0.52917 0.529167,0.52917 h 3.7041667 c 0.291042,0 0.529167,-0.23813 0.529167,-0.52917 v -3.70416 c 0,-0.29105 -0.238125,-0.52917 -0.529167,-0.52917 z"
-         id="path100957-4-1-5"
-         style="display:inline;fill:#737373;fill-opacity:1;stroke-width:0.264583" />
-      <path
-         d="m -5.0300284,442.18635 v 3.70416 h -3.7041668 v -3.70416 h 3.7041668 m 0,-0.52917 h -3.7041668 c -0.291042,0 -0.529167,0.23812 -0.529167,0.52917 v 3.70416 c 0,0.29104 0.238125,0.52917 0.529167,0.52917 h 3.7041668 c 0.291042,0 0.529167,-0.23813 0.529167,-0.52917 v -3.70416 c 0,-0.29105 -0.238125,-0.52917 -0.529167,-0.52917 z"
-         id="path100957-7-5-0"
-         style="display:inline;fill:#737373;fill-opacity:1;stroke-width:0.264583" />
-      <path
-         d="m -5.0300284,416.11094 h -3.7041658 c -0.291042,0 -0.529167,0.23812 -0.529167,0.52917 v 3.70416 c 0,0.29104 0.238125,0.52917 0.529167,0.52917 h 3.7041658 c 0.291042,0 0.529167,-0.23813 0.529167,-0.52917 v -3.70416 c 0,-0.29105 -0.238125,-0.52917 -0.529167,-0.52917 z"
-         id="path100957-6-9"
-         style="display:inline;fill:#4caf50;fill-opacity:1;stroke-width:0.264583"
-         sodipodi:nodetypes="sssssssss" />
-      <path
-         d="m -5.2946114,417.62171 -0.3730624,-0.37571 -1.7436044,1.74361 -0.682625,-0.67998 -0.375708,0.37306 1.058333,1.05569 z"
-         style="display:inline;fill:#f0f8f0;fill-opacity:1;stroke-width:0.264583"
-         id="path107905-2" />
-      <circle
-         style="display:inline;fill:#4caf50;fill-opacity:1;stroke:#fafafa;stroke-width:0.79375;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         id="path16909-0-9-2"
-         cx="184.99579"
-         cy="448.59464"
-         r="7.429462" />
-      <path
-         d="m 184.16021,449.82347 -1.19785,-1.19785 -0.4079,0.40503 1.60575,1.60575 3.44705,-3.44705 -0.40502,-0.40502 z"
-         id="path125052-4-3"
-         style="display:inline;fill:#ffffff;fill-opacity:1;stroke-width:0.287254" />
-    </g>
+    <rect
+       style="display:inline;fill:#fafafa;fill-opacity:1;stroke:#000000;stroke-width:0.262725;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect12061-1-3-2-2"
+       width="211.93109"
+       height="84.439369"
+       x="20.000835"
+       y="41.527294" />
+    <rect
+       style="display:inline;fill:#f44336;fill-opacity:1;stroke:none;stroke-width:2.54509;stroke-linejoin:round;stop-color:#000000"
+       id="rect1142-9-0-8-0"
+       width="211.66058"
+       height="12.768796"
+       x="20.132946"
+       y="79.597214"
+       rx="503.71591"
+       ry="6.7999162e-07" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.31894026,0,0,0.31894026,-44.52394,74.795481)"
+       id="text2209-6-4-2-7-8"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:0px;word-spacing:0px;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect2211-6-0-5-6-31);shape-padding:0;shape-margin:0;inline-size:0;display:inline;vector-effect:none;fill:#3a3a3a;fill-opacity:1;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000"><tspan
+         x="257.69336"
+         y="40.436996"
+         id="tspan23853"><tspan
+           style="baseline-shift:baseline;shape-inside:url(#rect2211-6-0-5-6-31);vector-effect:none;fill:#ffffff;stop-color:#000000;stop-opacity:1"
+           id="tspan23851">Auswahloption 5</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.31894026,0,0,0.31894026,-44.52394,62.170672)"
+       id="text2209-6-4-2-7-70-2"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:0px;word-spacing:0px;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect2211-6-0-5-6-31);shape-padding:0;shape-margin:0;inline-size:0;display:inline;vector-effect:none;fill:#3a3a3a;fill-opacity:1;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000"><tspan
+         x="257.69336"
+         y="40.436996"
+         id="tspan23857"><tspan
+           style="baseline-shift:baseline;shape-inside:url(#rect2211-6-0-5-6-31);vector-effect:none;stop-color:#000000;stop-opacity:1"
+           id="tspan23855">Auswahloption 4</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.31894026,0,0,0.31894026,-44.52394,87.837168)"
+       id="text2209-6-4-2-7-4-3"
+       style="font-size:13.3333px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect2211-6-0-5-6-7-6);display:inline;fill:#3a3a3a;fill-opacity:1"><tspan
+         x="257.69336"
+         y="40.436996"
+         id="tspan23859">Auswahloption 6</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.31894026,0,0,0.31894026,-44.52394,49.344359)"
+       id="text2209-6-4-2-7-70-9-1"
+       style="font-size:13.3333px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect2211-6-0-5-6-4-4-09);display:inline;fill:#3a3a3a;fill-opacity:1"><tspan
+         x="257.69336"
+         y="40.436996"
+         id="tspan23861">Auswahloption 3</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.31894026,0,0,0.31894026,-44.52394,36.769995)"
+       id="text2209-6-4-2-7-70-9-0-0"
+       style="font-size:13.3333px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect2211-6-0-5-6-4-4-5-25);display:inline;fill:#3a3a3a;fill-opacity:1"><tspan
+         x="257.69336"
+         y="40.436996"
+         id="tspan23863">Auswahloption 1</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.31894026,0,0,0.31894026,-44.52394,100.46198)"
+       id="text2209-6-4-2-7-70-9-0-7-6-8"
+       style="font-size:13.3333px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic';letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect2211-6-0-5-6-4-4-5-2-4-7);display:inline;fill:#3a3a3a;fill-opacity:1"><tspan
+         x="257.69336"
+         y="40.436996"
+         id="tspan23865">Auswahloption 2</tspan></text>
+    <path
+       d="m 30.315358,45.94419 v 3.70416 h -3.704167 v -3.70416 h 3.704167 m 0,-0.52917 h -3.704167 c -0.291042,0 -0.529167,0.23812 -0.529167,0.52917 v 3.70416 c 0,0.29104 0.238125,0.52917 0.529167,0.52917 h 3.704167 c 0.291042,0 0.529167,-0.23813 0.529167,-0.52917 v -3.70416 c 0,-0.29105 -0.238125,-0.52917 -0.529167,-0.52917 z"
+       id="path100957-77"
+       style="display:inline;fill:#737373;fill-opacity:1;stroke-width:0.264583" />
+    <path
+       d="m 30.315358,58.18382 h -3.704166 c -0.291042,0 -0.529167,0.23812 -0.529167,0.52917 v 3.70416 c 0,0.29104 0.238125,0.52917 0.529167,0.52917 h 3.704166 c 0.291042,0 0.529167,-0.23813 0.529167,-0.52917 v -3.70416 c 0,-0.29105 -0.238125,-0.52917 -0.529167,-0.52917 z"
+       id="path100957-6-9-7"
+       style="display:inline;fill:#4caf50;fill-opacity:1;stroke-width:0.264583"
+       sodipodi:nodetypes="sssssssss" />
+    <path
+       d="m 30.315358,71.36073 v 3.70416 h -3.704167 v -3.70416 h 3.704167 m 0,-0.52917 h -3.704167 c -0.291042,0 -0.529167,0.23812 -0.529167,0.52917 v 3.70416 c 0,0.29104 0.238125,0.52917 0.529167,0.52917 h 3.704167 c 0.291042,0 0.529167,-0.23813 0.529167,-0.52917 v -3.70416 c 0,-0.29105 -0.238125,-0.52917 -0.529167,-0.52917 z"
+       id="path100957-7-6"
+       style="display:inline;fill:#737373;fill-opacity:1;stroke-width:0.264583" />
+    <path
+       d="m 30.315358,97.02803 v 3.70416 h -3.704167 v -3.70416 h 3.704167 m 0,-0.52917 h -3.704167 c -0.291042,0 -0.529167,0.23812 -0.529167,0.52917 v 3.70416 c 0,0.29104 0.238125,0.52917 0.529167,0.52917 h 3.704167 c 0.291042,0 0.529167,-0.23813 0.529167,-0.52917 v -3.70416 c 0,-0.29105 -0.238125,-0.52917 -0.529167,-0.52917 z"
+       id="path100957-4-1-5"
+       style="display:inline;fill:#737373;fill-opacity:1;stroke-width:0.264583" />
+    <path
+       d="m 30.315358,83.60036 h -3.704166 c -0.291042,0 -0.529167,0.23812 -0.529167,0.52917 v 3.70416 c 0,0.29104 0.238125,0.52917 0.529167,0.52917 h 3.704166 c 0.291042,0 0.529167,-0.23813 0.529167,-0.52917 v -3.70416 c 0,-0.29105 -0.238125,-0.52917 -0.529167,-0.52917 z"
+       id="path100957-6-9"
+       style="display:inline;fill:#4caf50;fill-opacity:1;stroke-width:0.264583"
+       sodipodi:nodetypes="sssssssss" />
+    <path
+       d="m 30.050775,85.11113 -0.373063,-0.37571 -1.743604,1.74361 -0.682625,-0.67998 -0.375708,0.37306 1.058333,1.05569 z"
+       style="display:inline;fill:#f0f8f0;fill-opacity:1;stroke-width:0.264583"
+       id="path107905-2" />
+    <path
+       d="m 30.050775,59.69459 -0.373063,-0.37571 -1.743604,1.74361 -0.682625,-0.67998 -0.375708,0.37306 1.058333,1.05569 z"
+       style="display:inline;fill:#f0f8f0;fill-opacity:1;stroke-width:0.264583"
+       id="path107905-2-8" />
+    <circle
+       style="display:inline;fill:#4caf50;fill-opacity:1;stroke:#fafafa;stroke-width:0.79375;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path16909-0-9-2"
+       cx="220.34117"
+       cy="116.08405"
+       r="7.429462" />
+    <path
+       d="m 219.5056,117.31289 -1.19785,-1.19785 -0.4079,0.40503 1.60575,1.60575 3.44705,-3.44705 -0.40502,-0.40502 z"
+       id="path125052-4-3"
+       style="display:inline;fill:#ffffff;fill-opacity:1;stroke-width:0.287254" />
     <path
        id="rect29814-9-6-8"
        style="display:inline;fill:none;fill-opacity:1;stroke:#8bc34a;stroke-width:1.05833;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;stop-color:#000000"
        d="m 209.52877,80.76073 h 17.41289 l 0.007,-109.32889 h -8.34027"
        sodipodi:nodetypes="cccc"
        transform="translate(18.229215,35.323314)" />
+    <path
+       d="m 30.315358,110.04884 -0.373063,-0.37307 -1.47902,1.47902 -1.479021,-1.47902 -0.373063,0.37307 1.479021,1.47902 -1.479021,1.47902 0.373063,0.37306 1.479021,-1.47902 1.47902,1.47902 0.373063,-0.37306 -1.479021,-1.47902 z"
+       id="path5597"
+       style="display:inline;fill:#737373;fill-opacity:1;stroke-width:0.264583" />
   </g>
 </svg>

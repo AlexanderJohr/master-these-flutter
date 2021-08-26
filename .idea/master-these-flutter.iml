@@ -19,6 +19,8 @@
       <excludeFolder url="file://$MODULE_DIR$/Quellcode/Schritt-6/conditional_form/build" />
       <excludeFolder url="file://$MODULE_DIR$/Quellcode/Schritt-7/conditional_form/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/Quellcode/Schritt-7/conditional_form/build" />
+      <excludeFolder url="file://$MODULE_DIR$/Quellcode/Vergleich/form-in-flutter/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/Quellcode/Vergleich/form-in-flutter/build" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

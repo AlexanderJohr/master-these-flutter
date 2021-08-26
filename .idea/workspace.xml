@@ -9,22 +9,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b5c4b1aa-c178-4788-910d-f4b89b0854a6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/master-these-flutter.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/master-these-flutter.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Implementierung.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Implementierung.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Auswahloptionen.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Auswahloptionen.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Anforderungen/Anforderungen.tex" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Eingabeformular.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Eingabeformular.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Haupteinstiegspunkt.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Haupteinstiegspunkt.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Integrations-Test.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Integrations-Test.tex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Serialisierung.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Serialisierung.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Uebersichtsbildschirm.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Uebersichtsbildschirm.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Widget-SelectionCard.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Widget-SelectionCard.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-2/Schritt-2.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-2/Schritt-2.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-3/Schritt-3.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-3/Schritt-3.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-4/Schritt-4.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-4/Schritt-4.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-5/Schritt-5.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-5/Schritt-5.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-6/Schritt-6.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-6/Schritt-6.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-6/Ü.png" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-6/Ue.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Zielsetzung.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Zielsetzung.tex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-7/Schritt-7.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-7/Schritt-7.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Technologie-Auswahl/Technologie-Auswahl-Anhang.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Technologie-Auswahl/Technologie-Auswahl-Anhang.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Quellcode/Vergleich/form-in-flutter" beforeDir="false" afterPath="$PROJECT_DIR$/Quellcode/Vergleich/form-in-flutter" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Verzeichnisse/Eidesstattliche_Erklaerung.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Verzeichnisse/Eidesstattliche_Erklaerung.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/m27007_master_these_main.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/m27007_master_these_main.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/m27007_master_these_main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/m27007_master_these_main.tex" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,15 +73,21 @@
             <State />
           </value>
         </entry>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="-497" y="566" width="1736" height="856" key="DiffContextDialog" timestamp="1629673963997">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="1670" y="-9" width="2315" height="1153" maximized="true" key="DiffContextDialog" timestamp="1629824841196">
+      <screen x="1920" y="0" width="2560" height="1400" />
     </state>
     <state x="-497" y="566" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629673963997" />
+    <state x="1670" y="-9" width="2315" height="1153" maximized="true" key="DiffContextDialog/1920.0.2560.1400/0.0.1920.1040@1920.0.2560.1400" timestamp="1629824841196" />
     <state x="176" y="85" width="1530" height="869" key="MergeDialog" timestamp="1629686387268">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -101,13 +104,15 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="619" y="253" key="VcsDiffUtil.ChangesDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629654314127" />
-    <state x="666" y="253" width="587" height="556" key="find.popup" timestamp="1629671473136">
+    <state x="816" y="237" width="783" height="749" key="find.popup" timestamp="1629824431254">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="666" y="253" width="587" height="556" key="find.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629671473136" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1629686238967">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="816" y="237" width="783" height="749" key="find.popup/1920.0.2560.1400/0.0.1920.1040@1920.0.2560.1400" timestamp="1629824431254" />
+    <state x="2751" y="303" width="896" height="913" key="search.everywhere.popup" timestamp="1629823881057">
+      <screen x="1920" y="0" width="2560" height="1400" />
     </state>
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629686238967" />
+    <state x="2751" y="303" width="896" height="913" key="search.everywhere.popup/1920.0.2560.1400/0.0.1920.1040@1920.0.2560.1400" timestamp="1629823881057" />
   </component>
 </project>
