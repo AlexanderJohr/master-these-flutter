@@ -309,7 +309,7 @@ class ZielsetzungLandChoice extends Choice {
 
 
 \IC{hasRealValue} vergleicht, ob der aktuelle Wert weder \enquote{keine Angabe/Vorgabe} noch \enquote{bitte um Unterstützung} ist \Z{201}.
-\IC{hasNoRealValue} ruft dagegen intern \IC{hasRealValue} auf und negiert Wert \Z{203}.
+\IC{hasNoRealValue} ruft dagegen intern \IC{hasRealValue} auf und negiert den Wert \Z{203}.
 
 
 Überall dort, wo zuvor der Ausdruck \IC{choice.conditionMatches(priorChoices)} verwendet wurde, muss nun der Aufruf des \IC{choiceMatcher} erfolgen.
