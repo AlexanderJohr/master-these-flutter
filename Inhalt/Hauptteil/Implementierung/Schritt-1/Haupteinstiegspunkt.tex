@@ -9,11 +9,7 @@ Darin ist erkennbar, dass sich die Applikation in drei Rubriken einteilen lässt
   \item das \enquote{ViewModel}. \Z{25-26}
 \end{itemize}
 
-\begin{alexlisting}{Schritt 1}{Der Haupteinstiegspunkt}
-  {Quellcode/Schritt-1/conditional_form/lib/main.dart}
-  {firstline=18}
-  \label{lst:Schritt1DerHaupteinstiegspunkt}
-\end{alexlisting}
+
 
 \subsection{Model-View-ViewModel}
 Das \enquote{Model-View-ViewModel}-Entwurfsmuster -- kurs MVVM -- wurde zunächst von John Gossman für die Windows Presentation Foundation beschrieben.
@@ -45,7 +41,13 @@ Die Abhängigkeit zum Schreiben des \enquote{Models} in eine \enquote{JSON}-Date
 Die gesamte restliche Applikation ist als Kindelement hinterlegt \Z{26}.
 Damit können alle \enquote{Widgets} auf den Service zugreifen.
 
+\begin{alexlisting}{Schritt 1}{Der Haupteinstiegspunkt \enquote{MassnahmenFormApp}}
+  {Quellcode/Schritt-1/conditional_form/lib/main.dart}
+  {firstline=18}
+  \label{lst:Schritt1DerHaupteinstiegspunkt}
+\end{alexlisting}
 
+\clearpage
 \subsection{Service Locator und Dependency Inection}
 
 Das Service Locator Entwurfsmuster folgt dem Umsetzungsparadigma Inversion of Control -- deutsch Umkehrung der Steuerung.
@@ -100,6 +102,13 @@ Damit der Aufruf leichter lesbar und kürzer ist, empfiehlt das \enquote{Flutter
 Auch eine Fehlermeldung kann bei dieser Auslagerung geworfen werden, sollte im Kontext kein Objekt des gewünschten Typs vorhanden sein \Z{18}.
 Das \enquote{Widget}, welches den \IC{AppState} benötigt, kann dann über die vereinfachte Schreibweise \IC{AppState.of(context)} darauf zugreifen.
 
+\begin{alexlisting}{Schritt 1}{Der Service \enquote{AppState} für den applikationsübergreifenden Zustand}
+  {Quellcode/Schritt-1/conditional_form/lib/widgets/app_state.dart}
+  {firstline=5}
+  \label{lst:Schritt1DerServiceAppState}
+\end{alexlisting}
+
+
 Abbildung \ref{lst:UmlAppState} zeigt die Beziehung zwischen den Bildschirmen und dem \IC{AppState} auf.
 Sowohl \IC{MassnahmenMasterScreen} und \IC{MassnahmenDetailScreen} müssen auf \IC{MassnahmenModel} und \IC{MassnahmenFormViewModel} zugreifen können.
 Zu diesem Zweck erstellt \IC{MassnahmenFormApp} den \IC{AppState}.
@@ -108,11 +117,6 @@ Er enthält sowohl \enquote{ViewModel} als auch \enquote{Model}.
 
 
 
-\begin{alexlisting}{Schritt 1}{Der Service AppState}
-  {Quellcode/Schritt-1/conditional_form/lib/widgets/app_state.dart}
-  {firstline=5}
-  \label{lst:Schritt1DerServiceAppState}
-\end{alexlisting}
 
 
 \ifIncludeFigures

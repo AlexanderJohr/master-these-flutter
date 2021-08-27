@@ -143,7 +143,7 @@ Genau darum kümmert sich das \IC{BehaviorSubject} \IC{priorChoices} im \enquote
 
 Es wird mit dem Typparameter \IC{Set<Choice>} deklariert \Z{20} und mit einer Momentaufnahme initialisiert: einer leeren Menge) \Z{21}.
 Im Konstruktor des \enquote{ViewModels} wird dann auf Änderung aller \IC{BehaviorSubject}-Objekte im \enquote{ViewModel} gehorcht.
-Dies wird durch die Funktion \IC{combineLatest} des Pakets \IC{rx.dart} ermöglicht \IC{24}.
+Dies wird durch die Funktion \IC{combineLatest} des Pakets \IC{rx.dart} ermöglicht \Z{24}.
 Sie erlaubt die Übergabe einer Kollektion von \enquote{Streams}.
 In diesem Fall alle \IC{BehaviorSubject}-Objekte des \enquote{ViewModels} \Z{25-29}.
 Wenn auch nur einer dieser \enquote{Streams} ein neues Ereignis sendet,

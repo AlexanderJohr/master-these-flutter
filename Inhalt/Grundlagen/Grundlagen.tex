@@ -199,7 +199,7 @@ Das Ergebnis der Liste \IC{fieberTemperaturen} ergibt also \IC{[38.5, 41]}.
 
 
 \subsection{Typen ohne Null-Zulässigkeit} Im Vergleich zu vielen anderen Programmiersprachen -- wie beispielsweise Java -- wird in \enquote{Dart} zwischen gewöhnlichen Typen und nullable Typen unterschieden.
-In Java ist es nur bei atomaren Datentypen wie \IC{int} und \IC{float} vorgeschrieben einen Wert anzugeben.
+In Java ist es nur bei atomaren Datentypen wie \IC{int} und \IC{float} verpflichtend einen Wert anzugeben.
 \IC{null} ist bei diesen primitiven Datentypen nicht als Wert erlaubt.
 Doch nicht atomare Datentypen erlauben immer die Angabe von \IC{null} als Wert.
 \IC{null} drückt dabei immer das Nicht-Vorhandensein von Daten aus.
@@ -324,9 +324,9 @@ class UnusualPatient extends Patient {
   \end{listing}
 \fi
 
-Beim ersten Aufruf von \IC{temperature} wird die Zählvariable \IC{counter} von \IC{0} auf \IC{1} erhöht.
+Beim ersten Aufruf von \IC{temperature} wird die Zählvariable \IC{counter} von \enquote{0} auf \enquote{1} erhöht.
 Die Abfrage, ob es sich bei dem Wert von \IC{counter} um eine ungerade Zahl handelt, ist erfolgreich \Z{6}, weshalb mit \IC{97,7} ein valider Wert zurückgegeben wird.
-Beim zweiten Aufruf erhöht sich \IC{counter} allerdings auf \IC{2}.
+Beim zweiten Aufruf erhöht sich \IC{counter} allerdings auf \enquote{2}.
 Die gleiche Abfrage schlägt dieses Mal fehl.
 Deshalb liefert die \enquote{Getter}-Methode nun \IC{null} \Z{9}.
 Ein solches Szenario ist schon sehr unwahrscheinlich, doch die Typ-Überprüfung des Compilers arbeitet mit Beweisen.

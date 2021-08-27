@@ -34,7 +34,7 @@ Der Konstruktor selbst \Z{9-10} deklariert sie als sogenannte \enquote{positiona
 
 Im Vergleich zu den benannten Parametern ist bei den positionalen Parametern nur ihre Reihenfolge in der Parameterliste ausschlaggebend.
 Das Argument für die \IC{abbreviation} steht dabei also immer an erster Stelle und das Argument für \IC{description} immer an der zweiten \Z{6-7}.
-Positionale Parameter sind vorgeschrieben.
+Positionale Parameter sind verpflichtend.
 Werden sie ausgelassen, so gibt es einen Compilerfehler.
 \DartSpec{74f.}
 
@@ -73,7 +73,7 @@ Dies dient einzig und allein dem Zweck, dem  Fehler vorzubeugen, dass aus Verseh
 Über den Parameter \IC{name} ist es möglich, dieser Menge die Beschriftung \IC{"Status"} hinzuzufügen.
  Es handelt sich hier um einen  benannten Parameter.
 
-\begin{alexlisting}{Schritt 1}{Die Menge letzterStatusChoices}
+\begin{alexlisting}{Schritt 1}{Die Menge \enquote{letzterStatusChoices}}
   {Quellcode/Schritt-1/conditional_form/lib/choices/choices.dart}
   {firstline=13}
   \label{lst:Schritt1DieMengeLetzterStatusChoices}
@@ -94,11 +94,11 @@ Darunter ist unter anderem die \IC{contains} Methode,  welche erlaubt, das Vorha
 
 %   todo Referenz contains einfügen
 %    todo Referenz UnmodifiableSetView
-Instanzvariable \IC{name} \Z{11} wird im Konstruktor \IC{16} zugewiesen.
+Instanzvariable \IC{name} \Z{11} wird im Konstruktor \Z{16} zugewiesen.
 Auffällig hierbei ist, dass der Parameter in geschweiften Klammern geschrieben steht und das Schlüsselwort \IC{required}  vorangestellt ist.
-Das macht den Parameter zu einem vorgeschriebenen benannten Parameter.
+Das macht den Parameter zu einem verpflichtenden benannten Parameter.
 
-\paragraph{Vorgeschriebene benannte Parameter}
+\paragraph{Verpflichtende benannte Parameter}
 
 Gewöhnliche benannte Parameter sind optional.
 Wird ihnen das Schlüsselwort \IC{required} vorangestellt, so müssen sie gesetz werden,

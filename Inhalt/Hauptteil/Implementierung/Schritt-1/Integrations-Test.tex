@@ -58,7 +58,7 @@ Im darauffolgenden Aufruf \IC{thenAnswer} kann angegeben werden, welche Rückgab
 Über den \IC{tester} kann mit Hilfe der Methode \IC{pumpWidget} ein beliebiges \enquote{Widget} in der Test-Ausführung konstruiert werden.
 In diesem Fall ist es die gesamte Applikation, die getestet werden soll.
 Dementsprechend ist  hier erneut der komplette Haupteinstiegspunkt angegeben \Lst{\ref{lst:Schritt1IntegrationsTestWidgetInitialisierung}}.
-Doch der Konstruktor von \Z{MassnahmenModel} erhält dieses Mal nicht das \IC{MassnahmenJsonFile}, sondern den entsprechenden \enquote{Mock} \Z{31}. 
+Doch der Konstruktor von \IC{MassnahmenModel} erhält dieses Mal nicht das \IC{MassnahmenJsonFile}, sondern den entsprechenden \enquote{Mock} \Z{31}. 
 
 \begin{alexlisting}{Schritt 1}{Initialisierung des \enquote{Widgets} für den Integrationstest}
   {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
@@ -148,10 +148,10 @@ Erst wenn verifiziert wurde, dass auch nur genau ein Label mit diesem Text exist
 
 Ein Klick auf das Text-Label reicht bereits aus,
 denn damit wird das Vaterelement -- das \IC{CheckboxListTile} -- ebenfalls getroffen.
-Der \IC{tester} holt es in den sichtbaren Bereich \IC{71}, klickt es \IC{72} an und wartet auf Abschluss aller Animationen \Z{73}.
+Der \IC{tester} holt es in den sichtbaren Bereich \Z{71}, klickt es an \Z{72} und wartet auf Abschluss aller Animationen \Z{73}.
 Sollte der optionale Parameter \IC{tabConfirm} auf \IC{true} gesetzt sein \Z{75}, so wird der Selektionsbildschirm anschließend direkt wieder geschlossen, nachdem die Option ausgewählt wurde  \Z{76}. 
   
-Schließlich kann mit der Hilfsfunktion \IC{fillTextFormField} ein Formularfeld über dessen Titel gefunden und der entsprechende übergebende Text eingetragen werden \Lst{\ref{lst:Schritt1HilfsmethodeFillTextFormField}}.
+Schließlich kann mit der Hilfsfunktion \IC{fillTextFormField} ein Formularfeld über dessen Titel gefunden und der übergebene Text eingetragen werden \Lst{\ref{lst:Schritt1HilfsmethodeFillTextFormField}}.
 Die Hilfsfunktion findet das \IC{TextFormField},
 indem sie zunächst nach dem Titel mit \IC{find.text(title)} und anschließend nach dessen Vaterelement vom Typ \IC{TextFormField} sucht \Z{83}.
 Sollte sowohl der Hinweistext als auch der Titel den gleichen Text enthalten,
@@ -203,7 +203,7 @@ Der erstellte Text dient als Eingabe für das Eingabefeld \Z{104}.
 Die nötigen Eingaben sind erfolgt.
 Daher kann der Test nun den Klick auf den Button zum Speichern simulieren \LstZ{\ref{lst:Schritt1ButtonZumSpeichernWirdAusgelöst}}{106-108}.
 Dadurch würde in der Anwendung nun das Speichern der Maßnahmen in der \enquote{JSON}-Datei erfolgen.
-Doch da stattdessen ein \enquote{Mock} verwendet wurde, passiert dies nicht.
+Da stattdessen ein \enquote{Mock} verwendet wurde, passiert dies nicht.
 Das \enquote{Model} ruft aber dennoch die entsprechenden Methoden -- wie zum Beispiel \IC{saveMassnahmen} -- auf.
 Die Methoden haben nur nicht die ursprüngliche Funktion.
 Stattdessen protokollieren sie sowohl die Aufrufe, als auch die übergebenen Argumente.
