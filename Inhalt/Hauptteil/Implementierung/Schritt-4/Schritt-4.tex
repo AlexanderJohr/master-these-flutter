@@ -36,9 +36,9 @@ In der Eingabemaske wird dann das gesamte Eingabefeld rot eingefärbt \Abb{\ref{
 
 \section{Hinzufügen der Bedingungen zu den Auswahloptionen}
 
-Es gibt einfache Bedingungen wie beispielsweise die der Zielfläche \enquote{AL}.
-Deren Auswahl kann nur dann erfolgen,
-wenn nicht die Kategorie \enquote{Anbau Zwischenfrucht/Untersaat} ausgewählt ist \Lst{\ref{lst:Schritt4al}}.
+Es gibt einfache Bedingungen wie beispielsweise die der Zielfläche \enquote{AL},
+deren Auswahl nur dann erfolgen kann,
+wenn die \enquote{Kategorie} \enquote{Anbau Zwischenfrucht/Untersaat} nicht ausgewählt ist \Lst{\ref{lst:Schritt4al}}. \pdfcomment[icon=Note,color=yellow]{27.08.2021 Dieser Satz wurde umformuliert}
 
 \begin{alexlisting}{Schritt 4}{Der Klassenvariablen \enquote{al} des Typs \enquote{ZielflaecheChoice} wird eine Bedingung hinzugefügt}
   {Quellcode/Schritt-4/conditional_form/lib/choices/choices.dart}
@@ -49,15 +49,15 @@ wenn nicht die Kategorie \enquote{Anbau Zwischenfrucht/Untersaat} ausgewählt is
 Doch es tauchen auch komplexe Bedingungen auf,
 wie etwa die Abhängigkeit der Zielfläche \enquote{Wald/Forst} \Lst{\ref{lst:Schritt4wald}}.
 Um sie auszuwählen,
-muss die Förderklasse eine von den 3 folgenden Werten beinhalten:
+muss die \enquote{Förderklasse} einen der drei folgenden Werte beinhalten:
 \enquote{Erschwernisausgleich} \Z{97},
 \enquote{Agrarumwelt-(und Klima)Maßnahme: nur Vertragsnaturschutz} \Z{98} oder
-\enquote{Agrarumwelt-(und Klima)Maßnahmen, tw. auch mit Tierwohlaspekten, aber OHNE Vertragsnaturschutz} \Z{99}.
+\enquote{Agrarumwelt-(und Klima)Maßnahmen, tw. auch mit Tierwohlaspekten, aber OHNE Vertragsnaturschutz} \Z{99}.  \pdfcomment[icon=Note,color=yellow]{27.08.2021 Dieser Satz wurde umformuliert}
 
 Gleichzeitig darf für die \enquote{Kategorie} weder
 \enquote{Anbau Zwischenfrucht/Untersaat} \Z{100}
 noch
-\enquote{Förderung bestimmter Rassen / Sorten / Kulturen} \Z{101}
+\enquote{Förderung bestimmter Rassen/Sorten/Kulturen} \Z{101}
 gewählt sein.
 
 Äußerst wichtig ist hier die Auswahl der richtigen logischen Operatoren.
@@ -141,7 +141,7 @@ Genau darum kümmert sich das \IC{BehaviorSubject} \IC{priorChoices} im \enquote
   \label{lst:Schritt4priorChoices}
 \end{alexlisting}
 
-Es wird mit dem Typparameter \IC{Set<Choice>} deklariert \Z{20} und mit einer Momentaufnahme initialisiert: einer leeren Menge) \Z{21}.
+Es wird mit dem Typparameter \IC{Set<Choice>} deklariert \Z{20} und mit einer Momentaufnahme initialisiert: einer leeren Menge \Z{21}.
 Im Konstruktor des \enquote{ViewModels} wird dann auf Änderung aller \IC{BehaviorSubject}-Objekte im \enquote{ViewModel} gehorcht.
 Dies wird durch die Funktion \IC{combineLatest} des Pakets \IC{rx.dart} ermöglicht \Z{24}.
 Sie erlaubt die Übergabe einer Kollektion von \enquote{Streams}.
@@ -176,9 +176,9 @@ Sie ist ursprünglich die leere Menge \IC{{}} und nachfolgend immer das zuletzt 
 
 \section{Reagieren der Selektionskarte auf die ausgewählten Optionen}
 
-Dadurch
-, dass \IC{priorChoices} nun im \enquote{ViewModel} verfügbar ist
-, kann es im Eingabeformular bei der Konstruktion der \IC{SelectionCard} als Argument übergeben werden \LstZ{\ref{lst:Schritt4builderSelectionCard}}{143}.
+Dadurch,
+dass \IC{priorChoices} nun im \enquote{ViewModel} verfügbar ist,
+kann es im Eingabeformular bei der Konstruktion der \IC{SelectionCard} als Argument übergeben werden \LstZ{\ref{lst:Schritt4builderSelectionCard}}{143}.
 
 \begin{alexlisting}{Schritt 4}{Dem Konstruktor der \enquote{SelectionCard} wird das \enquote{BehaviorSubject} \enquote{priorChoices} übergeben}
   {Quellcode/Schritt-4/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
@@ -363,13 +363,13 @@ So erscheint sie dann
 -- ganz genau wie alle anderen unselektierbaren Auswahloptionen --
 ohne roten Hintergrund aber auch ohne anklickbare Checkbox am Ende der Liste \Z{134-142}.
 
-Solche unselektierbaren Optionen werden schlicht als \IC{ListTile}-Element statt als \IC{CheckCoxListTile} gezeichnet \Z{135-139}.
+Solche unselektierbaren Auswahloptionen werden schlicht als \IC{ListTile}-Element statt als \IC{CheckBoxListTile} gezeichnet \Z{135-139}.\pdfcomment[icon=Note,color=yellow]{27.08.2021 2. Einschub bis hier}
 Damit fehlt ihnen die Checkbox zum Selektieren.
-Über den Parameter \IC{leading} kann jedoch anstelle der Checkbox ein beliebiges Widget
--- in diesem Fall ein Icon --
+Über den Parameter \IC{leading} kann jedoch anstelle der Checkbox ein beliebiges \enquote{Widget}
+-- in diesem Fall ein \IC{Icon} --
 eingefügt werden.
 \IC{Icons.close} zeichnet ein Kreuz-Symbol,
-um zu signalisieren,
+um zu signalisieren,Es ist unerheblich,
 dass diese Option nicht anwählbar ist. 
 
 

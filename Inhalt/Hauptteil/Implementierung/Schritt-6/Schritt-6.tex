@@ -106,7 +106,7 @@ Jedes Element des \IC{BuiltSet} \IC{nebenziele} \Z{47} wird über die Methode \I
 
 \section{Aktualisierung des \enquote{ViewModels}}
 
-Die \enquote{Nebenziele} werden -- erneut mit dem Datentyp BuiltSet -- dem \enquote{ViewModel} hinzugefügt \Lst{\ref{lst:Schritt6BehaviorSubjectNebenziele}}.
+Die \enquote{Nebenziele} werden -- erneut mit dem Datentyp \IC{BuiltSet} -- dem \enquote{ViewModel} hinzugefügt \Lst{\ref{lst:Schritt6BehaviorSubjectNebenziele}}.
 \begin{alexlisting}{Schritt 6}{Die \enquote{Nebenziele} werden dem \enquote{ViewModel} hinzugefügt}
   {Quellcode/Schritt-6/conditional_form/lib/screens/massnahmen_detail/massnahmen_form_view_model.dart}
   {firstline=18, lastline=21, highlightlines={20-21}}
@@ -152,7 +152,7 @@ Der \IC{SetBuilder} wiederum kümmert sich um das Bauen des \IC{BuiltSet}, sobal
 
 \section{Aktualisierung der Eingabemaske}
 
-Unterhalb des Auswahlfeldes für das Hauptziel wird die Selektionkarte für die Nebenziele eingefügt \Lst{\ref{lst:Schritt6buildMultiSelectionCardnebenzielsetzungLandChoices}}.
+Unterhalb des Auswahlfeldes für das Hauptziel wird die Selektionskarte für die Nebenziele eingefügt \Lst{\ref{lst:Schritt6buildMultiSelectionCardnebenzielsetzungLandChoices}}.
 \begin{alexlisting}{Schritt 6}{Der Aufruf von \enquote{buildMultiSelectionCard} für die Menge \enquote{nebenzielsetzungLandChoices}}
   {Quellcode/Schritt-6/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
   {firstline=212, lastline=217, highlightlines={215-217}}
@@ -214,7 +214,7 @@ deren Wert im Konstruktor übergeben wird \Z{27}, aber auch ausgelassen werden k
 \end{alexlisting}
 
 
-Die Rückruffunktion \IC{onChanged} des CheckboxListTile unterscheidet schließlich zwischen Mehrfach- und Einzel-Selektion \Lst{\ref{lst:Schritt6CheckboxListTile}}.
+Die Rückruffunktion \IC{onChanged} des \IC{CheckboxListTile} unterscheidet schließlich zwischen Mehrfach- und Einzel-Selektion \Lst{\ref{lst:Schritt6CheckboxListTile}}.
 Sollte \IC{multiSelection} mit \IC{true} gesetzt sein \Z{133}, so erstellt die Methode \IC{rebuild} von \IC{BuiltSet} eine Kopie des aktuellen \enquote{ViewModels} der Selektionen.
 In der anonymen Funktion,
 welche für die Manipulationen an der Kopie genutzt wird,

@@ -50,7 +50,7 @@
 \IncludeAppendixtrue
 
 
-\SimplyIncludeEverythingForSubmissiontrue
+\SimplyIncludeEverythingForSubmissionfalse
 
 % was soll integriert werden?
 
@@ -112,7 +112,7 @@
 \fi
 
 %\ifIncludeAllChapters
-\input{Konzeption/Konzeption.tex}
+\input{Konzeption/Konzeption}
 %\fi
 
 \ifIncludeAllChapters
@@ -179,10 +179,6 @@
 \fi
 
 \ifIncludeAllChapters
-\include{Inhalt/Hauptteil/Implementierung/Schritt-5/Schritt-5-neu}
-\fi
-
-\ifIncludeAllChapters
 \include{Inhalt/Hauptteil/Implementierung/Schritt-6/Schritt-6}
 \fi
 
@@ -232,13 +228,15 @@
 
 \fi
 
-\ifIncludeMiscellaneous
 \include{Verzeichnisse/Literaturverzeichnis}
-\fi
+
+\ifIncludeMiscellaneous
+
 
 \include{Inhalt/Hauptteil/eidesstattliche_erklaerung}
 
 \include{Verzeichnisse/Eidesstattliche_Erklaerung}
+\fi
 
 \end{document}
 

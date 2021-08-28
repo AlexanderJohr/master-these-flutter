@@ -3,7 +3,6 @@
 
 Für die Formularanwendung wurde die Programmiersprache \enquote{Dart} und das Frontend-Framework \enquote{Flutter} gewählt.
 Kapitel \ref{chap:Technologie-Auswahl} erläutert die Entscheidungsgrundlage dafür.
-
 Nachfolgend soll auf die Grundlagen der beiden Technologien eingegangen werden.
 
 \section{Flutter}
@@ -16,7 +15,7 @@ Es unterstützt eine breite Anzahl an Zielsystemen.
 \begin{itemize}[topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex]
   \item Desktop:\footcite[Vgl.][]{DesktopSupportForFlutter}
         \begin{itemize}
-          \item Windows:
+          \item \enquote{Windows}:
                 \begin{itemize}
                   \item \enquote{Win32},
                   \item \enquote{Universal Windows Platform},
@@ -33,25 +32,90 @@ Es unterstützt eine breite Anzahl an Zielsystemen.
 \end{itemize}
 
 \enquote{Flutter} ist inspiriert durch das Webframework \enquote{React} und deren Oberflächenelemente, die \enquote{Components} genannt werden \footcite[Vgl.][]{IntroductionToWidgets}.
-Die visuellen Oberflächenelemente in \enquote{Flutter} werden dagegen \enquote{Widgets} genannt.
-\enquote{react} \enquote{Components} verfügen über einen Zustand -- \enquote{State} genannt -- der bei Veränderung das Neuzeichnen der visuellen Repräsentation erwirkt.
+Die visuellen Oberflächenelemente in \enquote{Flutter} werden dagegen \enquote{Widgets} \pdfcomment[icon=Note,color=yellow]{27.08.2021 4. Einschub im nächsten Satz}genannt.
+Bei \enquote{Flutter} und \enquote{React} handelt es sich um deklarative Frontend-Frameworks.
+Dem stehen die imperativen Frameworks gegenüber.
+
+\clearpage
+In imperativen Frameworks werden Befehle genutzt, um Änderungen direkt in an Oberfläche vorzunehmen,
+wie am \enquote{Java Swing}-Beispiel in Listing \ref{lst:HelloWorldJavaSpring} zu sehen ist.
+Es wird ein Button erstellt, welcher die Anzahl der auf ihn angewendeten Klicks anzeigt.
+Die bei jedem Klick wird die \enquote{Setter}-Methode \IC{setText} genutzt, um den Text direkt zu manipulieren.
+
+\ifIncludeFigures
+  \begin{listing}[h]
+    \begin{minted}[]{java}
+final JButton button = new JButton("Anzahl der Klicks auf diesen Button: 0");
+
+button.addActionListener(new ActionListener() {
+   @Override
+   public void actionPerformed(ActionEvent e) {
+      timesClicked = timesClicked + 1;
+      button.setText("Anzahl der Klicks auf diesen Button: " + timesClicked);
+   }
+});
+\end{minted}
+    \caption[\enquote{Java Swing}-Beispiel: Ein Button, welcher die Anzahl der Klicks anzeigt]{\enquote{Java Swing}-Beispiel: Ein Button, welcher die Anzahl der Klicks anzeigt, Quelle: Eigenes Listing}
+    \label{lst:HelloWorldJavaSpring}
+  \end{listing}
+\fi
+
+In deklarieren Frontend-Frameworks wie \enquote{Flutter} existieren solche \enquote{Setter}-Methoden nicht.
+Stattdessen wird die Oberfläche einmal deklariert und darauf vorbereitet, auf Änderungen eines Zustands zu reagieren.
+Das \enquote{Flutter}-Beispiel in Listing \ref{lst:ClickExampleFlutter} zeigt dieses Verhalten.
+Beim Klick auf den Button modifiziert die Methode \IC{setState} den Zustand und löst damit die Aktualisierung der Oberfläche aus.
+
+\ifIncludeFigures
+  \begin{listing}[h]
+    \begin{minted}[]{java}
+return ElevatedButton(
+  onPressed: () {
+    setState(() {
+      timesClicked = timesClicked + 1;
+    });
+  },
+  child: Text("Anzahl der Klicks auf diesen Button: $timesClicked")
+)
+\end{minted}
+    \caption[\enquote{Flutter}-Beispiel: Ein Button, welcher die Anzahl der Klicks anzeigt]{\enquote{Flutter}-Beispiel: Ein Button, welcher die Anzahl der Klicks anzeigt, Quelle: Eigenes Listing}
+    \label{lst:ClickExampleFlutter}
+  \end{listing}
+\fi
+
+\pdfcomment[icon=Note,color=yellow]{27.08.2021 4. Einschub bis hier}
+In \enquote{react} \enquote{Components} wird dieser Zustand \enquote{State} genannt.
 \enquote{Flutter} unterscheidet allerdings zwischen zwei Arten von \enquote{Widgets}: denen, die einen Zustand pflegen -- den \enquote{Stateful Widgets} -- und solchen, die keinen Zustand haben -- den \enquote{Stateless Widgets}.
 
-\enquote{Stateful Widgets} pflegen einen Zustand, der mittels der Methode \IC{setstate} gesetzt werden kann.
+\subsection{\enquote{Stateful Widgets}}
+
+\enquote{Stateful Widgets} pflegen einen Zustand, der mittels der Methode \IC{setState} gesetzt werden kann.
 Beim Aufrufen der Methode wird das gesamte \enquote{Widget} neu gezeichnet.
 Der Zustand selbst ist dabei im visuellen Baum als Vater der visuellen Elemente des \enquote{Widgets} verankert und bleibt erhalten, während die dazugehörigen Oberflächenelemente ausgetauscht werden.
 
-\enquote{Stateless Widgets} haben dagegen keinen solchen Mechanismus.
+\subsection{\enquote{Stateless Widgets}}
+
+
+\enquote{Stateless Widgets} haben dagegen keinen solchen Mechanismus. \pdfcomment[icon=Note,color=yellow]{27.08.2021 3. Einschub von hier}
 Wie alle \enquote{Widgets} werden sie neu gezeichnet, wenn es durch das Framework angeordnet wurde.
-Das kann unter anderem der Fall sein, wenn das \enquote{Widget} zum ersten Mal in der Oberfläche auftaucht, oder das Vaterelement und damit alle Kinderelemente neu gezeichnet werden.
-\HP{oder es von Inherited \enquote{Widget} abhängt?}
+Das ist der Fall,
+\begin{itemize}[topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex]
+  \item wenn das \enquote{Widget} zum ersten Mal in der Oberfläche auftaucht,
+  \item das Vaterelement und damit alle Kinderelemente neu gezeichnet werden
+  \item oder wenn das \enquote{Widget} von einem \enquote{InheritedWidget} abhängig ist und dieses aktualisiert wird.\footcite[Vgl.][]{StatelessWidget}
+\end{itemize}\pdfcomment[icon=Note,color=yellow]{27.08.2021 3. Einschub bis hier}
+
 
 \enquote{StatefulWidgets} sind nur eine von vielen Möglichkeiten den Zustand des Programms zu verwalten.
-Die Formularanwendung verwendet ausschließlich \IC{StatelessWidget}s, da die Verwaltung des Zustands über das sogenannte BloC Pattern umgesetzt wird.
-Mehr dazu im Kapitel \HP{Kapitel einfügen}.
-\HP{BLoC Pattern erklären? Oder einfach bei BehaviourSubject verweisen, dass MVVM bei Google BloC genannt wird (einfacher)}
+Die Formularanwendung verwendet ausschließlich \enquote{StatelessWidgets}, da die Verwaltung des Zustands über das sogenannte \enquote{Model-View-ViewModel}-Entwurfsmuster umgesetzt wird.
+Mehr dazu im Kapitel \ref{sec:ModelViewViewModel}.
 
-\HP{Inherited \enquote{Widgets}?}
+\subsection{\enquote{Inherited Widgets}\pdfcomment[icon=Note,color=yellow]{27.08.2021 4. Einschub von hier}}
+
+Neben den zwei Basisklassen \enquote{StatelessWidget} und \enquote{StatefulWidget} sei noch das \enquote{InheritedWidget} zu nennen.
+Es wird in der Regel nicht für eine visuelle Repräsentation genutzt. Stattdessen zeichnet es das ihm übergebene Kindelement unverändert.
+Die Hauptaufgabe eines \enquote{InheritedWidget} ist es dagegen, dem \enquote{Widget}-Baum Informationen bzw. Services verfügbar zu machen.\footcite[Vgl.][]{InheritedWidget}
+Mehr dazu im Kapitel \ref{sec:ServiceFuerDenApplikationsuebergreifendenZustand}. 
+\pdfcomment[icon=Note,color=yellow]{27.08.2021 4. Einschub bis hier}
 
 \section{\enquote{Dart} Grundlagen}
 \label{sec:Dart-Grundlagen}
@@ -64,11 +128,11 @@ Nachfolgend soll auf eine Reihe von Besonderheiten von \enquote{Dart} im Verglei
 Ein Hauptaspekt bei dem Design der Sprache ist die Produktivität des Entwicklers.
 Mechanismen wie das \enquote{hot reload} verkürzen die Entwicklungszyklen erheblich.
 Das \enquote{hot reload} ermöglicht es, während eine Anwendung im Debugmodus ausgeführt wird, Änderungen an deren Quellcode vorzunehmen.
-Daraufhin werden nur die Teile der laufenden Applikation aktualisiert, die tatsächlich verändert wurden.
+Daraufhin werden nur die Teile der laufenden Applikation aktualisiert, die tatsächlich verändert wurden.\footcite[Vgl.][]{HotReload}
  Währenddessen bleibt die Anwendung in der gleichen Ansicht, anstatt zum Hauptbildschirm zurückgesetzt zu werden, von der aus der Entwickler erneut zur gewünschten Ansicht zurücknavigieren müsste.
 
 \subsection{\enquote{AOT} und \enquote{JIT}}
-Nicht nur für die reibungslose Entwicklung sondern auch für das Laufzeitverhalten der finalen Applikation wurde die Sprache optimiert.
+Nicht nur für die reibungslose Entwicklung, sondern auch für das Laufzeitverhalten der finalen Applikation wurde die Sprache optimiert.
 Für die Zielarchitekturen \enquote{ARM32}, \enquote{ARM64} und \enquote{x86_64} wird \enquote{Dart} in Maschinencode kompiliert \footcite[Vgl.][]{DartThePlatforms}.
 
 Dementsprechend kommt während der Entwicklung eine virtuelle Maschine -- die \enquote{Dart VM} -- über \enquote{Just-in-time}-Kompilierung (JIT) zum Einsatz.
@@ -76,8 +140,8 @@ Für die Kompilierung in Maschinencode wird dagegen \enquote{Ahead-of-time}-Komp
 
 \subsubsection{tree shaking}
 Für die Minimierung der Dateigröße des resultierenden Kompilats wird das sogenannte \enquote{tree shaking} eingesetzt.
-Das Hauptprogramm importiert über das Schlüsselwort \IC{import} Funktionalitäten aus  weiteren \enquote{Dart}-Dateien oder sogar ganzen Bibliotheken.
-Diese Dateien importieren wieder Weitere.
+Das Hauptprogramm importiert über das Schlüsselwort \enquote{import} Funktionalitäten aus  weiteren \enquote{Dart}-Dateien oder sogar ganzen Bibliotheken.
+Diese Dateien importieren wieder weitere.
 Dadurch wird ein Baum aufgespannt.
 Das \enquote{tree shaking} identifiziert, welche Funktionalitäten tatsächlich vom Programm verwendet werden und welche nicht.
 Dies bringt aber eine wichtige Einschränkung mit sich.
@@ -91,11 +155,10 @@ Da die Eigenschaften aber nicht mehr verfügbar sind, ist \enquote{Reflexion} ni
 \enquote{Dart} greift daher auf eine andere Variante der Metaprogrammierung zurück: die Codegenerierung.
 
 \subsubsection{Codegenerierung}
-Das Package \enquote{source_gen} erlaubt das Auslesen der Metainformationen und ermöglicht das Generieren von Quellcode, der von diesen Eigenschaften abgeleitet werden kann.
-So verwendet beispielsweise das Package \enquote{built_value} die Codegenerierung.
+Das Package \enquote{source_gen} erlaubt das Auslesen der Metainformationen und ermöglicht das Generieren von Quellcode, der von diesen Eigenschaften abgeleitet werden kann.\footcite[Vgl.][]{SourceGen}
+So verwendet beispielsweise das Package \enquote{built_value} die Codegenerierung.\footcite[Vgl.][]{BuiltValueGenerator}
 Zunächst werden Eigenschaften wie Klassennamen und Instanzvariablen mit ihren Bezeichnern und Datentypen gelesen.
 Die Eigenschaften können dann genutzt werden, um unveränderliche Wertetypen und dazugehörige sogenannte \enquote{Builder}-Objekte des \enquote{Erbauer}-Entwurfsmusters, sowie Funktionen zum Serialisieren und Deserialisieren von Objekten zu generieren.
-\HP{Referenzen}
 
 \subsection{\enquote{Set}- und \enquote{Map}-Literale}
 \label{sec:SetUndMapLiterale}
@@ -120,7 +183,7 @@ menge.add("Text");
 Es entfällt also die Instanziierung einer Liste, einer Menge oder einer Hashtabelle über den Klassennamen und der darauffolgenden Zuweisung der einzelnen Werte.
 Stattdessen startet das \enquote{Set}- und \enquote{Map}-Literal mit einer öffnenden geschweiften Klammer und endet mit einer schließenden geschweiften Klammer.
 Innerhalb der Klammern werden die Werte im Fall eines \enquote{Sets} mit \IC{,} getrennt nacheinander aufgeführt ( \IC{{1,2}} ).
-Im Fall einer \enquote{Map} werden der Schlüssel und der Wert durch einen \IC{:} voneinander getrennt und die Schlüssel-Wertepaare wiederum durch \IC{,} getrennt nacheinander aufgelistet (\IC{{1: "erster Wert", 2:"zweiter Wert"}}).
+Im Fall einer \enquote{Map} werden der Schlüssel und der Wert durch einen \IC{:} voneinander getrennt und die Schlüssel-Wertepaare wiederum durch \IC{,} getrennt nacheinander aufgelistet (\IC{{1: "Wert 1", 2:"Wert 2"}}).
 Eine Liste wiederum wird mit eckigen Klammern geöffnet und geschlossen.
 Die Werte werden erneut mit \IC{,} getrennt voneinander angegeben (\IC{[1,2]}).
 
@@ -169,8 +232,8 @@ var celsiusUndFahrenheit = {
   \end{listing}
 \fi
 
- Für jede Schleifenvariable \IC{f} wird für das resultierende Schlüssel-Wörter-Paar das Ergebnis in Grad Celsius als Schlüssel und das Ergebnis als Wert eingetragen.
-Das Ergebnis von \IC{celsiusUndFahrenheit} ist dementsprechend eine \enquote{Map} mit dem Wert: \\\IC{{36.5: 97.7, 38.5: 101.3, 41: 105.8}}
+Für jede Schleifenvariable \IC{f} wird für das resultierende Schlüssel-Werte-Paar das Ergebnis in Grad Celsius als Schlüssel und die ursprüngliche Temperatur in Fahrenheit als Wert eingetragen. \pdfcomment[icon=Note,color=yellow]{27.08.2021 Fehler behoben}
+Das Ergebnis von \IC{celsiusUndFahrenheit} ist dementsprechend eine \enquote{Map} mit dem Wert: \IC{{36.5: 97.7, 38.5: 101.3, 41: 105.8}}
 
 
 
@@ -194,29 +257,29 @@ var fieberTemperaturen = [
   \end{listing}
 \fi
 
-Nur in dem Fall, dass die Temperatur der Schleifenvariable \IC{c} größer oder gleich 38,5 ist, wird die Temperatur der Liste zugefügt.
+Nur in dem Fall, dass die Temperatur der Schleifenvariable \IC{c} größer oder gleich \IC{38,5} ist, wird die Temperatur der Liste hinzugefügt.\pdfcomment[icon=Note,color=yellow]{27.08.2021 \enquote{hinzugefügt}}
 Das Ergebnis der Liste \IC{fieberTemperaturen} ergibt also \IC{[38.5, 41]}.
 
 
-\subsection{Typen ohne Null-Zulässigkeit} Im Vergleich zu vielen anderen Programmiersprachen -- wie beispielsweise Java -- wird in \enquote{Dart} zwischen gewöhnlichen Typen und nullable Typen unterschieden.
-In Java ist es nur bei atomaren Datentypen wie \IC{int} und \IC{float} verpflichtend einen Wert anzugeben.
-\IC{null} ist bei diesen primitiven Datentypen nicht als Wert erlaubt.
-Doch nicht atomare Datentypen erlauben immer die Angabe von \IC{null} als Wert.
-\IC{null} drückt dabei immer das Nicht-Vorhandensein von Daten aus.
-Ab \enquote{Dart} 2.12   kann allen Datentypen standardmäßig kein Null-Wert zugewiesen werden. 
+\subsection{Typen ohne Null-Zulässigkeit} Im Vergleich zu vielen anderen Programmiersprachen -- wie beispielsweise Java -- wird in \enquote{Dart} zwischen Typen mit und ohne Null-Zulässigkeit unterschieden.\pdfcomment[icon=Note,color=yellow]{27.08.2021 Satz angepasst}
+In Java ist es nur bei atomaren Datentypen wie \enquote{int} und \enquote{float} verpflichtend einen Wert anzugeben.
+\enquote{null} ist bei diesen primitiven Datentypen nicht als Wert erlaubt.
+Doch nicht atomare Datentypen erlauben immer die Angabe von \enquote{null} als Wert.
+\enquote{null} drückt dabei immer das Nicht-Vorhandensein von Daten aus.
+Ab \enquote{Dart} 2.12   kann allen Datentypen standardmäßig kein Null-Wert zugewiesen werden. \footcite[Vgl.][]{AnnouncingDartTwoDotTwelve}
 Das hat den Vorteil, dass der Compiler sich darauf verlassen kann, 
-dass eine Variable niemals den Wert \IC{null} haben kann. 
+dass eine Variable niemals den Wert \enquote{null} haben kann. 
 Das ist besonders dann nützlich, 
 wenn auf einem Objekt eine Methode aufgerufen wird. 
-Ist das Objekt in Wahrheit \IC{null}, 
+Ist das Objekt in Wahrheit \enquote{null}, 
 so gibt es erst zur Laufzeit einen Fehler, 
-da die Methode auf der Referenz \IC{null} nicht aufgerufen werden kann. 
+da die Methode auf der Referenz \enquote{null} nicht aufgerufen werden kann. 
 Damit ein Laufzeitfehler geworfen werden kann, 
-muss vor jedem Aufruf einer Methode auf einer Referenz überprüft werden, ob die Referenzen nicht \IC{null} sind. 
+muss vor jedem Aufruf einer Methode auf einer Referenz überprüft werden, ob die Referenzen nicht \enquote{null} sind. 
 Würde diese Überprüfung nicht stattfinden, 
 so könnte kein Laufzeitfehler geworfen werden und das Programm würde ohne Fehlermeldung abstürzen. 
 Handelt es sich allerdings um eine Referenz, 
-die niemals den Wert \IC{null} annehmen kann, 
+die niemals den Wert \enquote{null} annehmen kann, 
 so kann der Compiler die Überprüfung auf Null-Werte für diese Referenzen überspringen. 
 Damit erhört sich zusätzlich die Ausführungsgeschwindigkeit, 
 da die Überprüfung Zeit in Anspruch nimmt. 
@@ -234,7 +297,7 @@ Allerdings gelten besondere Regeln für diese Typen.
 
 Wird in \enquote{Dart} hinter einem Typ ein \IC{?} angegeben, 
 so kann die Variable nicht nur  Werte annehmen, die dieser Datentyp zulässt,
-sondern zusätzlich auch noch den Wert \IC{null}.
+sondern zusätzlich auch noch den Wert \enquote{null}.
 Methoden auf Objekten mit Null-Zulässigkeit aufzurufen ist nicht ohne Weiteres möglich.
 
 Im Listing \ref{lst:printTemperatureInCelsius}
@@ -253,11 +316,11 @@ wird versucht, auf die Variable \IC{fahrenheitTemperature} den Operator \IC{-} a
   \end{listing}
 \fi
 
-Der Compiler liefert jedoch einen Fehler, da der Wert der Variablen \IC{null} sein kann, wie die Notation \IC{int?} anzeigt.
-Solange nicht feststeht, dass die Variable zur Laufzeit tatsächlich nicht \IC{null} ist, kann das Programm nicht kompiliert werden.
+Der Compiler liefert jedoch einen Fehler, da der Wert der Variablen \enquote{null} sein kann, wie die Notation \IC{int?} anzeigt.
+Solange nicht feststeht, dass die Variable zur Laufzeit tatsächlich nicht \enquote{null} ist, kann das Programm nicht kompiliert werden.
 
 
-Zu diesem Zweck macht \enquote{Dart} von der sogenannten \enquote{type promotion} -- deutsch Typ Beförderung oder Typeinschränkung -- Gebrauch.
+Zu diesem Zweck macht \enquote{Dart} von der sogenannten \enquote{type promotion} -- deutsch Typ-Beförderung -- Gebrauch.
 Mithilfe einer Fallunterscheidung kann vor dem Anwenden der Operation nachgesehen werden, ob der Wert der Variablen nicht \IC{null} ist.
 Innerhalb des Körpers der Fallunterscheidung wird der Typ der Variablen automatisch in einen Typ ohne Null-Zulässigkeit befördert.\footcite[Vgl.][]{TypePromotionOnNullChecks}
 Der Code in Listing \ref{lst:printTemperatureInCelsiusWithIf} lässt sich damit wieder kompilieren.
@@ -301,7 +364,8 @@ class Patient {
 \fi
 
 Genauso könnte es aber auch sein, dass eine Klasse von \IC{Patient} erbt und das Feld \IC{temperature} mit einer gleichnamigen \enquote{Getter}-Methode überschreibt.
-Auch wenn es sehr unwahrscheinlich ist, könnte es trotzdem vorkommen, dass der Aufruf von \IC{temperature} in Zeile 6 einen Wert zurückgibt, der nicht \IC{null} ist und der darauffolgende Aufruf in Zeile 7 \IC{null} liefert.
+Auch wenn es sehr unwahrscheinlich ist, könnte es trotzdem vorkommen, dass der Aufruf von \IC{temperature} in Zeile 6 einen Wert zurückgibt,
+der nicht \enquote{null} ist und der darauffolgende Aufruf in Zeile 7 \enquote{null} liefert.
 So provoziert es die Klasse \IC{UnusualPatient} im Listing \ref{lst:UnusualPatient}.
 \ifIncludeFigures
   \begin{listing}[ht]
@@ -339,7 +403,10 @@ Im Fall von Instanzvariablen kann nicht bewiesen werden, dass zur Laufzeit ein s
 
 
 
-Sollte sich der Entwickler sicher sein, dass die Variable nicht \IC{null} sein kann, so kann er mit einem nachgestellten \IC{!} erzwingen, dass die Variable als nicht \IC{null} angesehen wird \LstZ{\ref{lst:printTemperatureInCelsiusLocalVariableForceNullCheck}}{3}.
+Sollte sich der Entwickler sicher sein,
+dass die Variable nicht \enquote{null} sein kann,
+so kann er mit einem nachgestellten \IC{!} erzwingen,
+dass die Variable als nicht \enquote{null} angesehen wird \LstZ{\ref{lst:printTemperatureInCelsiusLocalVariableForceNullCheck}}{3}.
 
 \ifIncludeFigures
   \begin{listing}[ht]
@@ -355,7 +422,7 @@ Sollte sich der Entwickler sicher sein, dass die Variable nicht \IC{null} sein k
   \end{listing}
 \fi
 
-Sollte es dann dennoch passieren, dass die Variable \IC{null} ist, so wird eine Fehlermeldung beim Aufruf der Variablen geworfen.
+Sollte es dann dennoch passieren, dass die Variable \enquote{null} ist, so wird eine Fehlermeldung beim Aufruf der Variablen geworfen.
 
 
 
@@ -387,11 +454,11 @@ Somit kann auch das Suffix \IC{!} weggelassen werden \Z{4}.
 Wird auf eine externe Ressource zugegriffen -- wie zum Beispiel das Abrufen einer Information von einem Webserver, oder das Lesen einer Datei im lokalen Dateisystem -- so handelt es sich um asynchrone Operationen.
 
 Im Sprachkern stellt \enquote{Dart} Schlüsselwörter und Datentypen für die asynchrone Programmierung bereit.
-Das sind unter anderem die Datentypen \IC{Future} und \IC{Stream} sowie die Schlüsselwörter \IC{async} und \IC{await}.
+Das sind unter anderem die Datentypen \enquote{Future} und \enquote{Stream} sowie die Schlüsselwörter \enquote{async} und \enquote{await}.
 
 \subsubsection{Future}
-Ein \IC{Future}-Objekt repräsentiert einen potenziellen einmaligen Wert, der erst in der Zukunft bereit steht.
-Er gleicht damit dem sogenannten \IC{Promise} -- deutsch Versprechen -- in \enquote{JavaScript}  \footcite[Vgl.][]{PromiseJavaScriptMDN}.
+Ein \enquote{Future}-Objekt repräsentiert einen potenziellen einmaligen Wert, der erst in der Zukunft bereit steht.
+Er gleicht damit dem sogenannten \enquote{Promise} -- deutsch Versprechen -- in \enquote{JavaScript}  \footcite[Vgl.][]{PromiseJavaScriptMDN}.
 
 Das Listing \ref{lst:fileReadAsString} zeigt mit dem Lesen einer Datei ein Beispiel für den Aufruf einer asynchronen Operation.
 
@@ -406,7 +473,9 @@ var fileContent = file.readAsString();
 \fi
 
 Anders als erwartet, befindet sich in der Variablen \IC{fileContent} in Wahrheit kein Text mit dem Inhalt der Datei.
-Stattdessen hat die Variable den Datentyp \IC{Future<String>} und ist lediglich ein sogenannter \enquote{Handle} -- deutsch Referenzwert -- für das potenzielle und zukünftige Ergebnis der Operation.
+Stattdessen hat die Variable den Datentyp \enquote{Future<String>} und ist lediglich ein sogenannter \enquote{Handle}
+-- deutsch Referenzwert --
+für das potenzielle und zukünftige Ergebnis der Operation.
 
 Mit der Übergabe einer Funktion, die bei Vollendung der Operation aufgerufen wird, kann der Wert ausgewertet werden.
 Man nennt diese Operation auch \enquote{Callback}-Funktion -- deutsch Rückruffunktion.
@@ -431,7 +500,8 @@ In diesem Parameter wird der Text der gelesenen Datei bei Vollendung der Operati
 Der Einsatz von \enquote{Callback}-Funktionen kann den Quellcode stark verkomplizieren.
  Man spricht von der sogenannten \enquote{callback hell} -- deutsch Rückruffunktionen-Hölle --, wenn solche \enquote{Callback}-Funktionen über etliche Level hinweg ineinander verschachtelt sind.
 
-Um genau das zu verhindern, existieren in \enquote{Dart} die Schlüsselwörter \IC{async} und \IC{await}.
+ \clearpage
+Um genau das zu verhindern, existieren in \enquote{Dart} die Schlüsselwörter \enquote{async} und \enquote{await}.
 Genauso heißen sie auch in anderen Sprachen wie etwa \enquote{C\#} ab Version 4.5 und \enquote{JavaScript} ab Version ES2017
 \footcite[Vgl.][]{asyncfunctionJavaScriptMDN}
 \footcite[Vgl.][]{Asynchronousprogrammingwithasyncandawait}.
@@ -440,8 +510,12 @@ Genauso heißen sie auch in anderen Sprachen wie etwa \enquote{C\#} ab Version 4
 
 
 
-Listing \ref{lst:awaitFileReadAsString}
-zeigt, dass das Anwenden des Schlüsselwortes \IC{await} vor der Operation \IC{file.readAsString} dafür sorgt, dass der zukünftige Wert direkt in \IC{fileContent} gespeichert wird.
+Listing \ref{lst:awaitFileReadAsString} zeigt,
+dass das Anwenden des Schlüsselwortes \IC{await} vor der asynchronen Operation \IC{file.readAsString} dafür sorgt,
+dass der zukünftige Wert direkt in \IC{fileContent} gespeichert wird.
+Ganz ohne \enquote{Callback}-Funktion kann der Dateiinhalt in der darauffolgenden Zeile ausgegeben werden.
+Doch jede Funktion, die auf andere Funktionsaufrufe wartet, muss selbst als asynchron gekennzeichnet werden.
+Dazu dient das \IC{async} Schlüsselwort vor Beginn des Methoden-Körpers.
 
 \ifIncludeFigures
   \begin{listing}[ht]
@@ -456,19 +530,12 @@ printFileContent() async {
   \end{listing}
 \fi
 
-Ganz ohne \enquote{Callback}-Funktion kann der Dateiinhalt in der darauffolgenden Zeile ausgegeben werden.
 
-
-
-
-
-Doch jede Funktion, die auf andere Funktionsaufrufe wartet, muss selbst als asynchron gekennzeichnet werden.
-Dazu dient das \IC{async} Schlüsselwort vor Beginn des Methoden-Körpers.
 
 \subsubsection{Streams}
 
-\enquote{Streams} liefern nicht nur einen Wert -- wie im Fall eines \IC{Future} -- sondern eine Serie von Werten, die in der Zukunft geliefert werden.
-Listing \ref{lst:countStream} zeigt wie auf einen solchen \enquote{Stream} gehorcht werden kann.
+\enquote{Streams} liefern nicht nur einen Wert -- wie im Fall eines \enquote{Future}-Objektes -- sondern eine Serie von Werten, die in der Zukunft geliefert werden.
+Listing \ref{lst:countStream} zeigt wie auf einen solchen \IC{Stream} gehorcht werden kann.
 \ifIncludeFigures
   \begin{listing}[ht]
     \begin{minted}[]{dart}
@@ -485,9 +552,9 @@ var countStream = Stream<num>.periodic(const Duration(seconds: 1), (count) {
   \end{listing}
 \fi
 
-\IC{countStream} liefert jede Sekunde einen neuen Wert, nämlich die aktuelle Sekunde -- von 0 beginnend.
+Der \IC{countStream} liefert jede Sekunde einen neuen Wert, nämlich die aktuelle Sekunde -- von \enquote{0} beginnend.
 Mit \IC{countStream.listen} kann eine Funktion übergeben werden, die immer dann ausgeführt wird, wenn dem \IC{countStream} ein neuer Wert hinzugefügt wurde.
-Der erste Parameter ist dabei der hinzugefügte Wert.
+Der erste Parameter \IC{count} ist dabei der hinzugefügte Wert.
 
 
 

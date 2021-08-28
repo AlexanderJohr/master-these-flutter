@@ -48,7 +48,7 @@ so muss die invalide Auswahl im Selektionsbildschirm der \enquote{Nebenziele} ro
 
 
 
-Diese Bedingungen lassen sich nicht mit Funktion \IC{condition} der Basisklasse \IC{Choice} lösen.
+Diese Bedingungen lassen sich nicht mit der Funktion \IC{condition} der Basisklasse \IC{Choice} lösen.
 
 Denn das Argument \IC{priorChoices},
 welches der Funktion \IC{condition} übergeben wird,
@@ -88,7 +88,7 @@ weshalb er mit dem Suffix \IC{?} gekennzeichnet werden muss.
 In der Initialisierungsliste erfolgt die Initialisierung der Instanzvariablen \IC{choiceMatcher} \Z{46}.
 Sollte der im Konstruktor übergebene Parameter nicht \IC{null} sein,
 so wird er der Instanzvariablen zugewiesen.
-Ist der aber \IC{null},
+Ist er aber \IC{null},
 so sorgt die \enquote{if-null Expression} dafür,
 dass der Standardwert rechts von dem \IC{??} zugewiesen wird:
 die Funktion \IC{defaultChoiceMatcherStrategy} \Z{46}.
@@ -260,7 +260,7 @@ Anderenfalls sind alle Bedingungen erfüllt und \IC{true} kann zurückgegeben we
 An diesem Beispiel wird auch offensichtlich,
 welchen Nutzen die Generalisierung der Klasse \IC{SelectionCard} über den Typ Parameter \IC{ChoiceType} hat.
 Über eine Reihe von Methoden- und Konstruktoraufrufen gelangt das Typargument \IC{ZielsetzungLandChoice} in die Klasse \IC{SelectionCard} und somit auch zu der Instanzvariablen \IC{choiceMatcher}. Zuerst wird es der Methode \IC{buildMultiSelectionCard} übergeben \Z{221}. 
-Mit dem Konstruktoraufruf \IC{SelectionCard<ChoiceType>} wird es an die Selektionskarte weitergereicht (Siehe Listing \ref{lst:Schritt7buildMultiSelectionCard} in Zeile 157 in Anhang \ref{appendix:Schritt7Anhang} auf Seite \pageref{lst:Schritt7buildMultiSelectionCard}.
+Mit dem Konstruktoraufruf \IC{SelectionCard<ChoiceType>} wird es an die Selektionskarte weitergereicht (Siehe Listing \ref{lst:Schritt7buildMultiSelectionCard} in Zeile 157 in Anhang \ref{appendix:Schritt7Anhang} auf Seite \pageref{lst:Schritt7buildMultiSelectionCard}).
 Schließlich erhält die Instanzvariable das Typargument über die Deklaration \IC{ChoiceMatcher<ChoiceType> choiceMatcher} \LstZ{\ref{lst:Schritt7SelectionCard}}{31}.
 Der Typparameter wird durch das Typargument ersetzt.
 Somit hat \IC{choiceMatcher} dann den Typ \IC{ChoiceMatcher<ZielsetzungLandChoice>}.

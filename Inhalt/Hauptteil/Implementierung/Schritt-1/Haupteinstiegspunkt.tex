@@ -1,5 +1,6 @@
 \clearpage
 \section{Der Haupteinstiegspunkt}
+\label{sec:Haupteinstiegspunkt}
 
 Das Listing \ref{lst:Schritt1DerHaupteinstiegspunkt} zeigt den Haupteinstiegspunkt des Programms.
 Darin ist erkennbar, dass sich die Applikation in drei Rubriken einteilen lässt:
@@ -12,6 +13,7 @@ Darin ist erkennbar, dass sich die Applikation in drei Rubriken einteilen lässt
 
 
 \subsection{Model-View-ViewModel}
+\label{sec:ModelViewViewModel}
 Das \enquote{Model-View-ViewModel}-Entwurfsmuster -- kurs MVVM -- wurde zunächst von John Gossman für die Windows Presentation Foundation beschrieben.
 Das \enquote{Model} beschreibt die Datenzugriffs-Komponente, welche die Daten in relationalen Datenbanken oder hierarchischen Datenstrukturen wie \enquote{XML} oder \enquote{JSON} ablegt.
 Der \enquote{View} beschreibt die Oberflächenelemente wie Texteingabefelder und Buttons.
@@ -48,13 +50,13 @@ Damit können alle \enquote{Widgets} auf den Service zugreifen.
 \end{alexlisting}
 
 \clearpage
-\subsection{Service Locator und Dependency Inection}
+\subsection{\enquote{Service Locator} und \enquote{Dependency Inection}}
 
-Das Service Locator Entwurfsmuster folgt dem Umsetzungsparadigma Inversion of Control -- deutsch Umkehrung der Steuerung.
+Das \enquote{service locator pattern} folgt dem Umsetzungsparadigma \enquote{inversion of control} -- deutsch Umkehrung der Steuerung.
 Frameworks folgen diesem Muster, indem sie als erweiterbare Skelett-Applikationen fungieren.
 Anstatt, dass die Applikation den Programmfluss steuert und dabei selbst Funktionen aufruft, wird die Programmflusssteuerung an das Framework abgegeben und mit Hilfe von Ereignissen ermöglicht, dass das Framework Funktionen des Nutzers aufruft.
 \footcite[Vgl.][]{johnson1988designing}
-Im Service Locator Entwurfsmuster werden Komponenten darüber hinaus zentral registriert und über dieses Register anderen Komponenten zur Interaktion zur Verfügung gestellt.\footcite[Vgl.][]{fowler2004DependencyInjection}
+Im \enquote{service locator pattern} werden Komponenten darüber hinaus zentral registriert und über dieses Register anderen Komponenten zur Interaktion zur Verfügung gestellt.\footcite[Vgl.][]{fowler2004DependencyInjection}
 Damit ist es möglich, die Komponenten nicht direkt miteinander verknüpfen zu müssen.
 Vor allem für automatisierte Tests ist dies von Vorteil, da solche Abhängigkeiten ausgetauscht werden können, um ganz spezielle Teilfunktionalitäten eines Programms zu testen.
  Mehr dazu im Kapitel \HP{Kapitel einfügen}.
@@ -69,6 +71,7 @@ Hat der Benutzer die Arbeit in der Unterseite vollendet, so kann der Navigator g
 
 
 \subsection{Der Service für den applikationsübergreifenden Zustand}
+\label{sec:ServiceFuerDenApplikationsuebergreifendenZustand}
 
 Um Daten für alle Kindelementen zugreifbar zu machen, werden die sogenannten \enquote{InheritedWidgets} genutzt.
 Der Service \IC{AppState} \Lst{\ref{lst:Schritt1DerServiceAppState}} ist ein solches \enquote{InheritedWidget}.

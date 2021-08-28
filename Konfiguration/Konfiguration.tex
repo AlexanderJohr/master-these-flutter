@@ -202,9 +202,9 @@
 % Kopieren nach texlive\texlive\2021\texmf-dist\tex\latex
 % texhash ausführen
 % uml diagramme mit tikz
-%\ifIncludeFigures
+\ifIncludeFigures
 \usepackage{tikz-uml}
-%\fi
+\fi
 
 % Blindtext einfügen
 \usepackage{blindtext}
@@ -223,8 +223,6 @@
 \newtcolorbox{codeFrame}{colback=inlineCodetXColor,
   colframe=inlineCodetXColor,on line,arc=4pt,boxrule=0pt,boxsep=0pt,left=4pt,right=4pt,top=4pt,bottom=4pt}
 
-\newtcolorbox{newText}{colback=yellow,on line,boxrule=0pt,boxsep=0pt,left=0pt,right=0pt,top=0pt,bottom=0pt}
-
 \BeforeBeginEnvironment{minted}{\begin{codeFrame}}
     \AfterEndEnvironment{minted}{\end{codeFrame}}
 
@@ -237,11 +235,11 @@
 \newenvironment{alexlisting}[4]
 {%
   \begin{listing}[ht]%
+    \ifIncludeFigures
     \begin{codeFrame}
-      \ifIncludeFigures
         \inputminted[#4]{dart}{#3}%
-      \fi
     \end{codeFrame}
+    \fi
     %\vspace{-18pt}
     \alexlistingcaption{#1}{#2}{#3}%
     }%
@@ -253,11 +251,12 @@
 \newenvironment{alexyamllisting}[4]
 {%
   \begin{listing}[ht]%
+    \ifIncludeFigures
+
     \begin{codeFrame}
-      \ifIncludeFigures
         \inputminted[#4]{yaml}{#3}%
-      \fi
     \end{codeFrame}
+    \fi
 
     %\vspace{-18pt}
     \alexlistingcaption{#1}{#2}{#3}%
@@ -272,11 +271,13 @@
 \newenvironment{fremdeslisting}[6]
 {%
     \begin{listing}[ht]%
-      \begin{codeFrame}
       \ifIncludeFigures
+      \begin{codeFrame}
+
       \inputminted[#4]{#6}{#3}%
-      \fi
+
     \end{codeFrame}
+    \fi
       %\vspace{-18pt}
 
       \ifIncludeFigures
@@ -312,12 +313,12 @@
 % Eigener Befehl für Bilder
 \newenvironment{alexfigurewithnotebook}[5]
 {%
-    \begin{figure}[h]
+    \begin{figure}[ht]
       \centering
       \ifIncludeFigures
       \includegraphics[width=1.0\textwidth]{#1}
       \fi
-      \caption[#2]{#3, Quelle: Eigene Abbildung, Notebook: \url{#4}, Daten-Quelle: #5}
+      \caption[#2]{#3, Quelle: Eigene Abbildung, Notebook:\url{#4}, Daten-Quelle:#5}
       }%
       {%
     \end{figure}
@@ -402,3 +403,11 @@
 \usepackage{longtable}
 \usepackage{makecell}
 \usepackage{multirow}
+
+
+\ifIncludeFigures
+
+\else
+  \renewcommand{\cleardoublepage}{}
+  \renewcommand{\clearpage}{}
+\fi
