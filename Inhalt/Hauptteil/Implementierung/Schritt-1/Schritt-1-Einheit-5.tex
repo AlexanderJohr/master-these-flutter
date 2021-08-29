@@ -1,0 +1,37 @@
+
+\ifodd\value{page}\hbox{}\newpage\fi
+\section{Speichern der Maßnahmen in eine \enquote{JSON}-Datei}
+Das \enquote{Model} wird durch die Klasse \IC{MassnahmenJsonFile} in eine \enquote{JSON}-Datei gespeichert \Lst{\ref{lst:Schritt1KlasseMassnahmenJsonFile}}.
+Der Dateipfad wird dabei durch die Methode \IC{_localMassnahmenJsonFile} \Z{8-11} abgerufen.
+Die Hilfsmethode \IC{getApplicationSupportDirectory} \Z{9} gibt aus dem Nutzerverzeichnis des aktuellen Nutzers den zur Applikation zugeordneten Dateiordner zurück.
+Auf Windows-Betriebssystemen wäre das beispielsweise \url{C:\\Users\\AktuellerNutzer\\AppData\\Roaming\\com.example\\conditional_form}.
+
+Dadurch, dass dem Methoden-Bezeichner \IC{_localMassnahmenJsonFile} ein Unterstrich vorangestellt ist, ist die Methode privat und kann nur innerhalb der Klasse aufgerufen werden.
+\enquote{Dart} hat damit eine Konvention zum Standard werden lassen.
+In Programmiersprachen wie beispielsweise C++ wurde der Unterstrich zusätzlich den Bezeichnern von Instanzattributen vorangestellt,
+die mit dem \enquote{private} Schlüsselwort gekennzeichnet sind,
+damit sie überall im Quellcode als private Attribute identifizierbar sind, ohne dazu die Klassendefinition ansehen zu müssen.
+In \enquote{Dart} gibt es dagegen das \enquote{private} Schlüsselwort nicht.
+Stattdessen wird der Unterstrich vor dem Bezeichner verwendet, um ein Instanzattribut privat zu deklarieren.
+
+Die \enquote{Getter}-Methode \IC{_localMassnahmenJsonFile} hat den Rückgabetyp \IC{Future<File>}
+und ist zudem mit dem Schlüsselwort \IC{async} gekennzeichnet \Z{8}.
+Asynchron muss die Methode deshalb sein, weil sie auf den Aufruf \IC{getApplicationSupportDirectory} warten muss,
+der ebenfalls asynchron abläuft \Z{9}.
+
+Der Funktion \IC{saveMassnahmen} \Z{13-16} wird ein \enquote{JSON}-Objekt in Form einer Hashtabelle übergeben.
+Sie ruft die Hilfs-\enquote{Getter}-Methode \IC{_localMassnahmenJsonFile} \Z{14} auf und schreibt den Dateiinhalt in die Datei des abgefragten Pfades \Z{15}.
+Zuvor wird dazu das \enquote{JSON}-Objekt in eine textuelle Repräsentation überführt.
+Dazu dient die Funktion \IC{jsonEncode}.
+
+Das Äquivalent dazu stellt die Methode \IC{readMassnahmen} \Z{18-30} dar.
+Auch sie ruft den Dateipfad ab \Z{19}, überprüft allerdings im nächsten Schritt, ob die Datei bereits existiert \Z{21}.
+Sollte das der Fall sein, so wird die Datei eingelesen \Z{23}.
+Die textuelle Repräsentation aus der Datei wird mittels der Methode \IC{jsonDecode} in ein \enquote{JSON}-Objekt in Form einer Hashtabelle gespeichert \Z{24} und schließlich zurückgegeben \Z{26}.
+Sollte die Dateien nicht existieren, führt das zu einer Ausnahme \Z{28}, welche von der aufrufenden Funktion behandelt werden kann.
+
+\begin{alexlisting}{Schritt 1}{Die Klasse \enquote{MassnahmenJsonFile}}
+  {Quellcode/Schritt-1/conditional_form/lib/persistence/massnahmen_json_file.dart}
+  {firstline=7, lastline=31}
+  \label{lst:Schritt1KlasseMassnahmenJsonFile}
+\end{alexlisting}

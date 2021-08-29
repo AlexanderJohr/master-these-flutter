@@ -256,12 +256,13 @@ Der Auswahlbildschirm wird im Folgenden um zwei weitere Funktionalitäten erweit
 
 \begin{listing}[htbp]
 \ifIncludeFigures
+\let\oldtheFancyVerbLine\theFancyVerbLine
   \renewcommand\theFancyVerbLine{%
     \ifnum\value{FancyVerbLine}=121
     \setcounter{FancyVerbLine}{131}
-    \tiny\ldots
+    %\scriptsize\ldots
     \else
-    \tiny\arabic{FancyVerbLine}%
+    \oldtheFancyVerbLine%
     \fi
   }
   \begin{minted}[firstnumber=90, highlightlines={95-105, 108, 110-111, 118, 134-141}]{dart}
@@ -296,7 +297,7 @@ return ListView(children: [
         tileColor: selectedButDoesNotMatch ? Colors.red : null,
         value: isSelected,
         onChanged: (selected) {
-
+          /* ... */
         });
   }).toList(),
   ...unselectableChoices.map((Choice c) {

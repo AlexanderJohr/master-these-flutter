@@ -73,6 +73,7 @@
 
 \usepackage{etoolbox}
 
+% Kann das Weg? Habe ich im Anhang anders gelöst denke ich
 \makeatletter
 \AtBeginEnvironment{minted}{\dontdofcolorbox}
 \def\dontdofcolorbox{\renewcommand\fcolorbox[4][]{##4}}
@@ -328,6 +329,9 @@
 % Eigener Befehl für Abbbildungsreferenz
 \newcommand{\Abb}[1]{(Abb. #1)}
 
+% Eigener Befehl für Abbbildungsreferenz mit Seite
+\newcommand{\AbbS}[1]{(Abb. \ref{#1}, S. \pageref{#1})}
+
 % Eigener Befehl für Listingreferenz
 \newcommand{\Lst}[1]{(Listing #1)}
 
@@ -411,3 +415,8 @@
   \renewcommand{\cleardoublepage}{}
   \renewcommand{\clearpage}{}
 \fi
+
+\usepackage[all]{nowidow}
+
+
+\usepackage{dirtytalk}

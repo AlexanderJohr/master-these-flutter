@@ -277,12 +277,13 @@ Die beiden neuen Methoden sind in Listing \ref{lst:Schritt7ZielsetzungLandChoice
 
 \ifIncludeFigures
   \begin{listing}[htbp]
+    \let\oldtheFancyVerbLine\theFancyVerbLine
     \renewcommand\theFancyVerbLine{%
       \ifnum\value{FancyVerbLine}=187
       \setcounter{FancyVerbLine}{197}
-      \tiny\ldots
+      %\scriptsize\ldots
       \else
-      \tiny\arabic{FancyVerbLine}%
+      \oldtheFancyVerbLine%
       \fi
     }
     \begin{minted}[firstnumber=185, highlightlines={201,203}]{dart}

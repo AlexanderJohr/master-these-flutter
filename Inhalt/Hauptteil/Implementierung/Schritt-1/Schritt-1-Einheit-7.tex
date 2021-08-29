@@ -1,0 +1,151 @@
+\ifodd\value{page}\hbox{}\newpage\fi
+\section{Übersichtsbildschirm der Maßnahmen}
+
+Der erste Bildschirm -- für die Übersicht der Maßnahmen -- kann auf das im letzten Schritt erstellte \enquote{Model} zugreifen.\pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
+In Listing \ref{lst:Schritt1KlasseMassnahmenMasterScreenStruktur}  ist die Struktur des Übersichtsbildschirms zu sehen.
+Über die Route \url{/massnahmen_master} ist der Bildschirm erreichbar \Z{14}. Die \IC{build}-Methode zeichnet die Oberfläche \Z{19-99}.
+
+Mittels \IC{AppState.of(context)} ist nun der Zugriff auf sowohl \enquote{Model} als auch \enquote{ViewModel} möglich. Zur einfacheren Verwendung sind sie als lokale Variablen zwischengespeichert \Z{20-21}.
+
+Das \enquote{Widget} \IC{Scaffold} -- deutsch Gerüst --  stell  ein grundlegendes Layout mit einer Überschrift und einem Bereich für den Inhalt bereit \Z{23}.
+Das \IC{Scaffold} kann auch Mitteilungen an den Benutzer am unteren Bildschirmrand einblenden.
+
+Die Überschrift wird in der sogenannten \IC{AppBar} hinterlegt \Z{24}.
+Sie unterstützt weitere Funktionalitäten.
+Sollte es sich bei der aktuell besuchten Route  um eine Unterseite handeln, taucht links von der Titel-Überschrift ein Button zum Zurücknavigieren auf. \pdfcomment[icon=Note,color=red]{29.08.2021 Fehler: einen -> ein}
+Weiterhin können rechts von der Titelleiste Aktionsbuttons hinzugefügt werden. Das ist für die Formularanwendung allerdings nicht nötig.
+
+Zusätzlich kann dem \IC{Scaffold} ein Button für die primäre Aktion auf diesem Bildschirm hinzugefügt werden: der sogenannte \IC{FloatingActionButton} \Z{88-97}.
+Bei Aktivierung dieses Buttons navigiert die Applikation zur Eingabemaske, um eine neue Maßnahme anzulegen \Z{96}.
+
+Das Eingabeformular sollte den Benutzer auffordern, tatsächlich leere Eingabefelder zu füllen.
+Deshalb muss die Aktivierung des Buttons auch das \enquote{ViewModel} neu initialisieren.
+Dies geschieht durch Zuweisung einer leeren Maßnahme zur \enquote{Setter}-Methode \IC{vm.model} \Z{95}.
+Ohne die Neuinitialisierung würde die Eingabemaske immer die zuletzt eingetragene Maßnahme enthalten, was zu einer großen Verwirrung beim Benutzer führen würde.
+
+Der \IC{FloatingActionButton} erhält den Schlüssel \IC{createNewMassnahmeButtonKey} \Z{89}.
+Er ist als \IC{GlobalKey} deklariert \Z{11}.
+Er findet beim Integrationstest Anwendung, um den Button zu finden (Siehe \ref{sec:TestDesUebersichtsbildschirms} \enquote{\nameref{sec:TestDesUebersichtsbildschirms}} auf Seite \pageref{sec:TestDesUebersichtsbildschirms}).
+
+Der Inhaltsbereich des \IC{Scaffold} beinhaltet das \enquote{Widget} \IC{StreamBuilder} \Z{27}.
+Er kann auf \enquote{Streams} horchen, welche die Ereignisse des Typs \IC{Storage} übermitteln.
+Er horcht auf Änderungen im \enquote{Model}, um genau zu sein auf Änderungen des \enquote{Streams} \IC{model.storage} \Z{28}.
+Sobald der \IC{StreamBuilder} ein Ereignis erhält, so führt er die Methode aus, die als Argument des Parameters \IC{builder} hinterlegt ist.
+Alle \enquote{Widgets} außerhalb davon, wie etwa das \IC{Scaffold}, erhalten dabei keine Aufforderung zum Neuzeichnen, sobald eine Maßnahme hinzugefügt wird.
+Das wirkt sich positiv auf die Laufzeitgeschwindigkeit aus.
+
+
+\ifIncludeFigures
+  \begin{listing}[htbp]
+    \let\oldtheFancyVerbLine\theFancyVerbLine
+    \renewcommand\theFancyVerbLine{%
+      \ifnum\value{FancyVerbLine}=31
+      \setcounter{FancyVerbLine}{85}
+      %\scriptsize\ldots
+      \else
+      \oldtheFancyVerbLine%
+      \fi
+    }
+    \begin{minted}[firstnumber=11]{dart}
+final createNewMassnahmeButtonKey = GlobalKey();
+
+class MassnahmenMasterScreen extends StatelessWidget {
+  static const routeName = '/massnahmen_master';
+
+  const MassnahmenMasterScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final model = AppState.of(context).model;
+    final vm = AppState.of(context).viewModel;
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Maßnahmen Master'),
+      ),
+      body: StreamBuilder<Storage>(
+          stream: model.storage,
+          builder: (context, _) {
+            return SingleChildScrollView(
+              /* ... */
+            );
+          }),
+      floatingActionButton: FloatingActionButton(
+          key: createNewMassnahmeButtonKey,
+          child: const Icon(
+            Icons.post_add_outlined,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            vm.model = Massnahme();
+            Navigator.of(context).pushNamed(MassnahmenDetailScreen.routeName);
+          }),
+    );
+  }
+}
+\end{minted}
+    \alexlistingcaption{Schritt 1}{Die Struktur der Klasse \enquote{MassnahmenMasterScreen}} {Quellcode/Schritt-1/conditional_form/lib/screens/massnahmen_master.dart}
+    \label{lst:Schritt1KlasseMassnahmenMasterScreenStruktur}
+  \end{listing}
+\fi
+
+\subsection{Auflistung der Maßnahmen im Übersichtsbildschirm}
+
+Der Inhalt der \IC{builder}-Methode ist in Listing \ref{lst:Schritt1DieAusgabeDerMassnahmen} auf Seite \pageref{lst:Schritt1DieAusgabeDerMassnahmen} dargestellt.
+Das erste \enquote{Widget} ist ein \IC{SingleChildScrollView} \Z{30}.
+\begin{alexlisting}{Schritt 1}{Die Ausgabe der Maßnahmen}
+  {Quellcode/Schritt-1/conditional_form/lib/screens/massnahmen_master.dart}
+  {firstline=30, lastline=86}
+  \label{lst:Schritt1DieAusgabeDerMassnahmen}
+\end{alexlisting}
+
+Das Argument \enquote{scrollDirection} ist nicht gefüllt, weshalb die Standardoption -- die vertikale Scrollrichtung -- gewählt wird.
+Sollte die Liste der Maßnahmen die Höhe des Fensters überschreiten, so kann der Benutzer vertikal über die Liste scrollen.
+
+
+
+Das Kind des Scrollbereichs ist ein \IC{Column}-\enquote{Widget} \Z{31}.
+Es zeichnet \enquote{Widgets}, die als Argument des Parameters \IC{children} gesetzt sind, von oben nach unten \Z{33}.
+Der Parameter \IC{crossAxisAlignment} gibt an, wie die Kindelemente ausgerichtet sein sollen \Z{32}.
+\enquote{crossAxis} bedeutet dabei die entgegengesetzte Achse zur Anzeigerichtung.
+Da die \IC{Column} vertikal zeichnet, ist mit \enquote{crossAxis} die horizontale Achse gemeint.
+\IC{CrossAxisAlignment.start} beschreibt, dass Elemente entlang der horizontalen Achse an dessen Startpunkt auszurichten sind. Dadurch sind alle Elemente der Liste linksbündig.
+
+Zuerst kommt die Auflistung der Maßnahmen, welche als abgeschlossen markiert sind.\pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
+Die Überschrift \IC{"Abgeschlossen"} \Z{37} soll einen Abstand von jeweils 16 Pixel in alle Richtungen haben.
+Das ermöglicht das \IC{Padding}-\enquote{Widget}  \Z{34-40} mit dem Argument \IC{EdgeInsets.all(16.0)}.
+Nach der Überschrift erscheint als zweites Element in der \IC{Column} ein weiterer \IC{SingleChildScrollView} \Z{41-58},
+allerdings dieses Mal mit horizontaler Scroll-Richtung \Z{42}.
+Sollten die Informationen der Maßnahmen die Breite des Fensters überschreiten, kann der Nutzer von links nach rechts scrollen.
+
+Die Informationen der Maßnahmen werden in einer Tabelle angezeigt.
+Dies übernimmt das selbstgeschriebene \enquote{Widget} \IC{MassnahmenTable} \Z{45}.
+Als erstes Argument erfolgt die Übergabe der anzuzeigenden Maßnahmen aus dem \enquote{Model}.
+\IC{storage.value.massnahmen} gibt den aktuellen Wert des \enquote{Streams} des \IC{storage}-Objektes zurück und greift auf die Liste der Maßnahmen zu \Z{46}.
+Mit der Methode \IC{where} \Z{47} kann ein Filter auf die Liste angewendet werden.
+Die übergebene anonyme Funktion \Z{47-49} überprüft, ob der letzte Status auf \enquote{fertig} gesetzt ist.
+Dazu reicht der Vergleich der Abkürzung.
+Nur wenn diese Bedingung erfüllt ist,
+bleibt die Maßnahme in der gefilterten Kollektion zurück.
+Ein solcher Filter gibt ein sogenanntes \enquote{lazy} \enquote{Iterable} zurück.\footcite[Vgl.][]{FlutterWhereMethod}
+Erst beim Zugriff auf das Ergebnis findet der Filter Anwendung.
+Da es keinen Zwischenspeicher für die gefilterten Elemente gibt,
+filtert jeder Zugriff die Elemente neu.
+Der Aufruf \IC{toSet} bewirkt allerdings das Speichern der Ergebnisse in einer Menge \Z{50}.
+Das \enquote{Widget} \IC{MassnahmenTable} erhält das Resultat,
+um es in einer Tabelle anzuzeigen.\pdfcomment[icon=Note,color=yellow]{29.08.2021 Komma hat gefehlt}
+
+Ein weiterer Parameter ist \IC{onSelect} \Z{50}.
+Als Argument kann eine Funktion mit genau einem Parameter gesetzt werden.
+Sollte der Benutzer in der Tabelle eine Maßnahme auswählen, so löst er damit die Funktion aus.
+Der erste Parameter enthält dann die ausgewählte Maßnahme.
+Daraufhin soll sich wieder die Eingabemaske öffnen \Z{55-56}.
+Dann beinhalten die Eingabefelder jedoch die Werte der ausgewählten Maßnahme.
+Um das zu erreichen, reicht eine Zuweisung der Maßnahme an das \enquote{ViewModel} \Z{51}.
+Allerdings soll die Maßnahme zuvor ein neues letztes Bearbeitungsdatum mit dem aktuellen Zeitstempel erhalten \Z{51-53}.
+
+Unterhalb der Rubrik der finalen Maßnahmen listet die Übersicht die Maßnahmen, welche sich noch im Entwurf befinden \Z{59-83}.
+Daher ist das dritte Element der \IC{Column} wiederum eine Überschrift: \IC{"In Bearbeitung"} \Z{62}, gefolgt von einem weiteren horizontalen Scrollbereich \Z{66-83} mit einer Tabelle von Maßnahmen \Z{70-82}.
+Der einzige Unterschied ist hier die Bedingung der Filterfunktion.
+Dieses Mal filtert die Kollektion auf Maßnahmen in Bearbeitung \Z{73-74}.
+

@@ -1,0 +1,68 @@
+
+\ifodd\value{page}\hbox{}\newpage\fi
+\section{Serialisierung der Maßnahmenliste}
+
+Damit alle Maßnahmen -- statt nur einer einzigen -- in einer Datei zusammengefasst werden können, müssen die Maßnahmen zunächst zu einer Menge zusammengefasst werden, die ebenfalls serialisierbar ist.
+Der Wertetyp \IC{Storage} ist dafür vorgesehen \Lst{\ref{lst:Schritt1WerteTypStorage}}.
+Er deklariert allein das \IC{BuiltSet massnahmen} \Z{10}.
+Ein \IC{BuiltSet} ist die Abwandlung eines gewöhnlichen \enquote{Sets}, jedoch unter anderem mit der Möglichkeit, es mit einem \enquote{Builder} zu erstellen und das \enquote{Set} zu serialisieren.
+% todo high Referenz einfügen
+Die Übergabe des Typarguments \IC{<Massnahme>} gewährleistet, dass keine anderen Objekte eingefügt werden können, die weder eine Instanz der Klasse \IC{Massnahme} sind, oder einer Klasse, die von \IC{Massnahmen} erbt.
+
+\begin{alexlisting}{Schritt 1}{Der Wertetyp \enquote{Storage}}
+  {Quellcode/Schritt-1/conditional_form/lib/data_model/storage.dart}
+  {firstline=9, lastline=10}
+  \label{lst:Schritt1WerteTypStorage}
+\end{alexlisting}
+
+Der Befehl  \IC{flutter pub run build_runner build} stößt erneut die Quellcodegenerierung für den Wertetyp \IC{Storage} an.
+
+\subsection{Unittest der Serialisierung der Maßnahmenliste}
+
+Nun soll noch überprüft werden, ob die Menge von Maßnahmen mit genau einer eingetragenen Maßnahme korrekt serialisiert.
+Auch das wird von einem Unittest überprüft \Lst{\ref{lst:Schritt1MassnahmenSerialisierenOhneFehlerUnitTest}}.
+In Zeile 8 wird das leere Objekt \IC{storage} erstellt.
+In Zeile 9 wird es dann wiederverwendet, um aufbauend auf der Kopie Änderungen mithilfe der \IC{rebuild}-Methode durchzuführen.
+
+\begin{alexlisting}{Schritt 1}{Unittest der Serialisierung der Maßnahmenliste}
+  {Quellcode/Schritt-1/conditional_form/test/data_model/storage_test.dart}
+  {firstline=7, lastline=31}
+  \label{lst:Schritt1MassnahmenSerialisierenOhneFehlerUnitTest}
+\end{alexlisting}
+
+Bei der Instanzvariablen \IC{massnahmen} der Klasse \IC{Storage} handelt es sich um ein \IC{BuiltSet}.
+ Der Aufruf von \IC{b.massnahmen}  gibt allerdings nicht dieses \IC{BuiltSet} zurück.
+ Wäre es so, so könnte die Operation \IC{add} nicht  darauf angewendet werden.
+ Ein \IC{BuiltSet} stellt keine Methoden zur Manipulation des \enquote{Sets} zur Verfügung.
+ In Wahrheit gibt der Ausdruck \IC{b.massnahmen} einen \IC{SetBuilder} zurück.
+ Das kann im generierten Quellcode nachgesehen werden \LstZ{\ref{lst:Schritt1InstanzvariableMassnahmenGibtEinenSetBuilderZurueck}}{95-96}.
+
+\begin{alexlisting}{Schritt 1}{Instanzvariable \IC{massnahmen} gibt einen \IC{SetBuilder} zurück}
+  {Quellcode/Schritt-1/conditional_form/lib/data_model/storage.g.dart}
+  {firstline=91, lastline=96}
+  \label{lst:Schritt1InstanzvariableMassnahmenGibtEinenSetBuilderZurueck}
+\end{alexlisting}
+
+Der \IC{SetBuilder} wiederum erlaubt es, Änderungen am \enquote{Set} vorzunehmen und stellt dafür die -- für ein \enquote{Set} übliche -- Methode \IC{add} bereit.
+Im Aufruf von \IC{add} wird dann ein Objekt des Wertetyps \IC{Massnahme} konstruiert \LstZ{\ref{lst:Schritt1MassnahmenSerialisierenOhneFehlerUnitTest}}{10}.
+Dazu wird dieses Mal die anonyme Funktion zum Konstruieren der Maßnahme gleich dem Konstruktor übergeben.
+
+
+Diesmal konstruiert die Methode \IC{serializers.serializeWith}
+mit dem generierten Serialisierer \IC{Storage.serializer} ein weiteres \enquote{JSON}-Objekt \Z{12}.\pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
+Genau wie zuvor wird ein \enquote{JSON}-Dokument vorbereitet \Z{14-30},
+welches der \enquote{Matcher} \IC{equals} mit dem serialisierten Dokument des soeben konstruierten Objektes \IC{storage} vergleicht \Z{31}.
+Das \enquote{JSON}-Dokument unterscheidet sich nur darin,
+dass es einen Knoten namens \IC{'massnahmen'} enthält,
+der als Wert eine Liste hat.
+Die Liste hat nur ein Element.
+Weil dieses Mal das Objekt des Typs \IC{Massnahme} nicht direkt zugreifbar ist, muss es zunächst über die Liste der Maßnahmen aus dem \IC{storage}-Objekt abgerufen werden.
+Das ist mit dem Befehl \IC{first} möglich,
+der das erste Objekt -- und in diesem Fall einzige Objekt -- der Kollektion zurückgibt \Z{17, 21}.
+Darüber kann erneut der \IC{guid}  und  das \IC{letztesBearbeitungsDatum} abgerufen werden.
+
+Ein weiterer Unittest überprüft, ob auch die Deserialisierung eines \IC{storage}-Objektes erfolgreich ist.
+Er ist in Listing {\ref{lst:Schritt1MassnahmenDeserialisierenOhneFehlerUnitTest} im Anhang \ref{appendix:Schritt1Anhang} auf Seite \pageref{appendix:Schritt1Anhang} zu finden.\pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
+Auch dieser Test ist der Deserialisierung des Objektes des Typs \IC{Massnahme} sehr ähnlich.
+Er unterscheidet sich nur darin, dass das \IC{Massnahme}-Objekt in der Liste \IC{massnahmen} des \IC{storage}-Objektes  enthalten ist.
+

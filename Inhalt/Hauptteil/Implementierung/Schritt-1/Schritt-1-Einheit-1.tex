@@ -1,0 +1,382 @@
+\chapter{Schritt 1 -- Grundstruktur des Formulars}
+\label{chap:Schritt-1}
+
+Im ersten Schritt soll die Formularanwendung in ihrer Grundstruktur entwickelt werden.
+ Das beinhaltet alle drei Oberflächen, welche in den darauf folgenden sechs Schritten erweitert werden.
+ Das Formular erhält noch keine  Validierung.
+ Somit sind alle Eingaben oder nicht kompatible Selektionen erlaubt.
+ Die erste Ansicht, welche der Benutzer sieht, soll die Übersicht der bereits eingetragenen Maßnahmen sein \Abb{\ref{fig:Schritt1Uebersicht}}.
+ 
+\begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-1/Ue.png}
+  {Der Übersichtsbildschirm in Schritt 1}
+  {Der Übersichtsbildschirm in Schritt 1}
+
+  \label{fig:Schritt1Uebersicht}
+
+\end{alexfigure}
+
+Die Auflistung der Maßnahmen erfolgt in den Kategorien \enquote{In Bearbeitung} und \enquote{Abgeschlossen}.
+Innerhalb dieser Rubriken werden die Maßnahmen in einer Tabelle angezeigt.
+Mit einem Klick auf den Button unten rechts im Bild wird der Benutzer auf die die Eingabemaske weitergeleitet \Abb{\ref{fig:Schritt1Eingabemaske}}.
+
+\begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-1/D.png}
+  {Die Eingabemaske in Schritt 1}
+  {Die Eingabemaske in Schritt 1}
+
+  \label{fig:Schritt1Eingabemaske}
+
+\end{alexfigure}
+
+Sie ermöglicht die Eingabe des Maßnahmentitel über ein simples Eingabefeld.
+Außerdem ist die Selektionskarte für den Status zu sehen.
+Mit einem Klick auf diese Karte öffnet sich der Selektionsbildschirm.
+Er ermöglicht die Auswahl der Auswahloptionen, in diesem Fall die Optionen \enquote{in Bearbeitung} und \enquote{abgeschlossen}
+\Abb{\ref{fig:Schritt1SelektionsBildschirmStatus}}.
+
+\begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-1/D D.png}
+  {Der Selektionsbildschirm in Schritt 1}
+  {Der Selektionsbildschirm in Schritt 1}
+
+  \label{fig:Schritt1SelektionsBildschirmStatus}
+
+\end{alexfigure}
+
+\section{Auswahloptionen hinzufügen}
+
+\enquote{Dart} verfügt -- anders als beispielsweise \enquote{Java}\footcite[Vgl.][S. 321]{TheJavaLanguageSpecificationJavaSE16Edition} -- nicht über Aufzählungstypen mit zusätzlichen Eigenschaften.
+Das Schlüsselwort \mintinline{dart}{enum} in \enquote{Dart} erlaubt lediglich die Auflistung konstanter Symbole\footcite[Vgl.][S. 74f.]{DartProgrammingLanguageSpecification5thedition}.
+Für die Auswahloptionen ist es jedoch notwendig, dass es zwei Eigenschaften gibt:
+\begin{itemize}
+  \parsep 0pt
+  \topsep 0pt
+  \itemsep 0pt
+
+  \item die Abkürzung, die in der resultierenden Datei gespeichert werden soll
+  \item und der Beschreibungstext, welcher in der Oberfläche angezeigt wird.
+\end{itemize}
+Das hat den Hintergrund, dass die Abkürzungen weniger Speicherplatz einnehmen und die Beschreibung sich in Zukunft auch ändern darf.
+Würde anstatt der Abkürzung die Beschreibung als Schlüssel verwendet werden, so würde eine Datei, die mit einer älteren Version des Formulars erstellt wurde, nicht mehr von neueren Versionen der Applikation eingelesen werden können.
+Der alte Beschreibungstext würde nicht mehr mit dem Text übereinstimmen, der als Schlüssel in der Anwendung verwendet wird.
+
+
+Die beiden Zustände \enquote{in Bearbeitung} und \enquote{abgeschlossen} werden daher in Listing \ref{lst:Schritt1KlasseLetzterStatus} als statische Klassenvariablen deklariert \Z{6-7}.
+Die beiden Konstruktoraufrufe übergeben dabei als erstes Argument die Abkürzung und als zweites Argument die Beschreibung.
+Der Konstruktor selbst \Z{9-10} deklariert sie als sogenannte \enquote{positionale Parameter}.
+
+
+
+\begin{alexlisting}{Schritt 1}{Die Klasse LetzterStatus}
+  {Quellcode/Schritt-1/conditional_form/lib/choices/choices.dart}
+  {firstline=5, lastline=11}
+  \label{lst:Schritt1KlasseLetzterStatus}
+\end{alexlisting}
+
+
+
+\paragraph{Positionale Parameter}
+
+Im Vergleich zu den benannten Parametern ist bei den positionalen Parametern nur ihre Reihenfolge in der Parameterliste ausschlaggebend.
+Das Argument für die \IC{abbreviation} steht dabei also immer an erster Stelle und das Argument für \IC{description} immer an der zweiten \Z{6-7}.
+Positionale Parameter sind verpflichtend.
+Werden sie ausgelassen, so gibt es einen Compilerfehler.
+\DartSpec{74f.}
+
+Die Klasse \IC{LetzterStatus} erbt von der Basisklasse \IC{Choice} \Z{5}.
+Der Konstruktor der Klasse \Z{9} übergibt beide Parameter als Argumente an den Konstruktor der Klasse \IC{Choice}.
+Genau wie in \enquote{Java} wird mithilfe des Schlüsselwortes \IC{super}\Z{10} der Konstruktor der Basisklasse aufgerufen.
+Doch anders als in \enquote{Java} erfolgt der Aufruf des super Konstruktors nicht in der ersten Zeile des Konstruktor-Körpers \JavaSpec{310}.
+Weil das Aufrufen des Konstruktors der Basisklasse zum statischen Teil der Objekt-Instanziierung gehört, muss der Aufruf von \IC{super} in der Initialisierungsliste erfolgen.
+Die Initialisierungsliste wird mit dem \IC{:} nach der Parameterliste eingeleitet \Z{10}\DartSpec{42}.
+
+Die Basisklasse \IC{Choice} \Lst{\ref{lst:Schritt1KlasseChoice}} deklariert lediglich die beiden Felder \IC{description} und \IC{abbreviation} jeweils als \IC{String} \Z{4-5}.
+Beide sind mit \IC{final} gekennzeichnet, was sie zu unveränderlichen Instanzvariablen macht.
+Nach der Initialisierung können sie keine anderen Werte annehmen.
+\DartSpec{S16} Die Initialisierung der beiden Variablen muss im statischen Kontext der Instanziierung erfolgen.
+Mit der abgekürzten Schreibweise \IC{this.abbreviation} und \IC{this} \IC{.description} im Konstruktor \Z{7} werden die Parameter den Feldern zugewiesen.
+
+\begin{alexlisting}{Schritt 1}{Die Klasse Choice}
+  {Quellcode/Schritt-1/conditional_form/lib/choices/base/choice.dart}
+  {firstline=3, lastline=7}
+  \label{lst:Schritt1KlasseChoice}
+\end{alexlisting}
+
+%Dies erübrigt die Angabe des Parametertyps mittels \IC{(String abbreviation, String description)},
+%denn der Typ des Parameters kann bereits durch Angabe des Typs in der Instanzvariablen-Deklaration \Z{4-5} abgeleitet werden.
+Die Angabe des Parametertyps mittels \IC{(String abbreviation, String description)} ist daher nicht nötig,
+denn der Typ des Parameters kann bereits durch Angabe des Typs in der Instanzvariablen-Deklaration \Z{4-5} abgeleitet werden.
+Außerdem entfällt die Zuweisung in der Form \IC{this.abbreviation = abbreviation} und
+\IC{this.description = description}.\DartSpec{40f} \pdfcomment[icon=Note,color=yellow]{28.08.2021 2. Der ganze Absatz wurde neu formuiert}
+% Auch String description wird gespart
+
+\clearpage
+Die Variable \IC{letzterStatusChoices} \LstZ{\ref{lst:Schritt1DieMengeLetzterStatusChoices}}{13} fasst die beiden statischen Klassenvariablen als eine Kollektion zusammen.
+Da es sich um eine solche Kollektion handelt, in der jedes Element nur ein einziges Mal vorkommen darf, ist hier von einer Menge zu sprechen.
+Auffällig hierbei ist, dass das Schlüsselwort \enquote{new} fehlt.
+In \enquote{Dart} ist das Schlüsselwort für die Konstruktion von Instanzen optional.
+Die Klasse, die zur Konstruktion dieser Menge verwendet wird, ist die selbst erstellte Klasse \IC{Choices}.
+Über das Typargument \IC{LetzterStatus} wird erreicht, dass ausschließlich Variablen  dieses Typs in der Menge eingefügt werden dürfen.
+Wird stattdessen eine Variable eingefügt, die weder vom selben Typ ist, noch von einem Typ, der von \IC{LetzterStatus} erbt, so gibt es einen Compilerfehler.
+Dies dient einzig und allein dem Zweck, dem  Fehler vorzubeugen, dass aus Versehen falsche Optionen in der Menge eingetragen werden.
+Über den Parameter \IC{name} ist es möglich, dieser Menge die Beschriftung \IC{"Status"} hinzuzufügen.
+ Es handelt sich hier um einen  benannten Parameter.
+
+\begin{alexlisting}{Schritt 1}{Die Menge \enquote{letzterStatusChoices}}
+  {Quellcode/Schritt-1/conditional_form/lib/choices/choices.dart}
+  {firstline=13}
+  \label{lst:Schritt1DieMengeLetzterStatusChoices}
+\end{alexlisting}
+
+Listing \ref{lst:Schritt1KlasseChoices} zeigt die Klasse \IC{Choices}.
+Sie erbt von \IC{UnmodifiableSetView} und erlaubt damit die Erstellung  einer eigenen Menge -- auch \enquote{Set} genannt.
+Methoden, die man von einem \enquote{Set} erwartet,  lassen sich somit direkt auf  Instanzen der Klasse \IC{Choices} aufrufen.
+Darunter ist unter anderem die \enquote{contains}-Methode,  welche erlaubt, das Vorhandensein eines Objektes im \enquote{Set} zu überprüfen.
+
+\begin{alexlisting}{Schritt 1}{Die Klasse \enquote{Choices}}
+  {Quellcode/Schritt-1/conditional_form/lib/choices/base/choice.dart}
+  {firstline=10}
+  \label{lst:Schritt1KlasseChoices}
+\end{alexlisting}
+
+%   todo Referenz contains einfügen
+%    todo Referenz UnmodifiableSetView
+Die Instanzvariable \IC{name} \Z{11} wird im Konstruktor \Z{16} zugewiesen.
+Auffällig hierbei ist, dass der Parameter in geschweiften Klammern geschrieben steht und das Schlüsselwort \IC{required}  vorangestellt ist.
+Das macht den Parameter zu einem verpflichtenden benannten Parameter.
+
+\paragraph{Verpflichtende benannte Parameter}
+
+Gewöhnliche benannte Parameter sind optional.
+Wird ihnen das Schlüsselwort \IC{required} vorangestellt, so müssen sie gesetz werden,
+da sonst ein Compilerfehler ausgelöst wird.
+Der Ausdruck \IC{{required this.name}} ist im Konstruktor nötig, denn es handelt sich bei \IC{name} um eine Variable vom Datentyp \IC{String},
+der den Wert \enquote{null} nicht annehmen kann.
+Würde der Parameter aber optional sein, so wäre es nicht möglich, das Programm zu kompilieren,
+denn bei Aufrufen des Konstruktors wäre es möglich, das Argument für den Parameter auszulassen.
+Doch in diesem Fall gäbe es keinen Initialwert für \IC{name} und somit müsste der Instanzvariablen der Wert \enquote{null} zugewiesen werden.
+Der Datentyp \IC{String} erlaubt jedoch keine Null-Werte.
+Dürfte \IC{name} den Wert \enquote{null} annehmen, so würde es sich um den Datentyp \IC{String} mit Null-Zulässigkeit -- also mit der Notation \IC{String?} -- handeln.
+In der statischen Analyse muss daher sichergestellt werden,
+dass solche Instanzvariablen mit absoluter Sicherheit initialisiert werden.
+Zu diesem Zweck kann der benannte Parameter durch das \IC{required}-Schlüsselwort als verpflichtend gekennzeichnet werden.
+Somit kann er nicht ausgelassen werden.
+Damit ist garantiert, dass die Instanzvariable \IC{name} einen Wert erhält,  der nicht \enquote{null} ist.  \pdfcomment[icon=Note,color=yellow]{28.08.2021 Ganzer Absatz umformuliert}
+
+Neben \IC{name} wird mit \IC{choiceByAbbreviation} eine weitere Instanzvariable deklariert \Z{12}.
+Es handelt sich um den Datentyp \IC{Map} -- eine Kollektion, welche Daten mittels Schlüssel-Werte-Paaren ablegen kann. \pdfcomment[icon=Note,color=yellow]{28.08.2021 , welche}
+Als Schlüssel wird die Abkürzung mit dem Datentyp \IC{String} verwendet.
+Als Wert ist der generische Typparameter \IC{T} angegeben.
+Er ist in Zeile 10 deklariert und muss mindestens von der Klasse \IC{Choice} erben.
+In \IC{choiceByAbbreviation} werden also die Auswahloptionen über  ihre Abkürzung abgelegt und können über dieselbe wieder referenziert werden.
+ Da es sich auch hier um eine unveränderliche Instanzvariable handelt, muss sie schon in der Initialisierungsliste initialisiert werden \Z{17-19}.
+Dabei wird zunächst mit der öffnenden geschweiften Klammer \Z{17} ein sogenanntes Literal einer \enquote{Map}  begonnen, welches mit einer schließenden geschweiften Klammer \Z{19} endet.
+Mehr zu \enquote{Map}-Literalen in dem Grundlagenkapitel \ref{sec:SetUndMapLiterale} \enquote{\nameref{sec:SetUndMapLiterale}} auf Seite \pageref{sec:SetUndMapLiterale}.
+
+
+
+Auffällig ist jedoch, dass in Zeile 18 dem \enquote{Set}-Literal keine einfache Auflistung von Werten übergeben wird.
+Stattdessen wird mit dem sogenannten \enquote{collection for} eine Wiederholung verwendet.
+
+
+
+In Zeile 18 wird durch die  Menge aller Auswahloptionen \IC{choices} iteriert und dabei in jedem Schleifendurchlauf die Auswahloption in der Variablen \IC{choice} gespeichert.
+Während des Schleifendurchlaufs wird dann ein Schlüssel-Werte-Paar gebildet, wobei \IC{choice.abbreviation} der Schlüssel ist und das Objekt \IC{choice} der Wert.
+
+Die \IC{Map} \IC{choiceByAbbreviation} erlaubt es nach der Initialisierung mithilfe der Methode \IC{fromAbbreviation} \Z{14} über die Abkürzung das dazugehörige \IC{Choice}-Objekt abzurufen.
+Beispielsweise gibt der Befehl \IC{letzterStatusChoices.fromAbbreviation("fertig")} das Objekt \IC{LetzterStatus("fertig", "abgeschlossen")} zurück.
+Auffällig dabei ist, dass der Parameter \IC{abbreviation} mit dem Typ \IC{String?} und der generische Rückgabetyp mit \IC{T?} gekennzeichnet ist. Der Suffix \IC{?} macht beide zu Typen mit Null-Zulässigkeit.
+
+
+
+Die Methode \IC{fromAbbreviation} soll für die Deserialisierung genutzt werden.
+ Sollten im Formular Auswahlfelder leer gelassen worden sein, so haben  entsprechende Variablen den Wert \enquote{null}.
+Wenn nun das Formular abgespeichert wird, so tauchen auch in der abgespeicherten \enquote{JSON}-Datei keine Werte für das Feld auf.
+Aus der \enquote{JSON}-Datei werden ausschließlich die Abkürzungen der Auswahloptionen gelesen.
+Die Methode \IC{fromAbbreviation} wandelt sie wieder in die entsprechenden Objekte des Datentyps \IC{Choice} um.
+Sollte jedoch kein Wert hinterlegt sein, so wird \IC{letzterStatusChoices.fromAbbreviation(null)} aufgerufen. Dadurch wird klar,
+dass der Parameter Null-Werte zulassen muss.
+Es impliziert auch,
+dass potenziell \enquote{null} zurückgeben werden kann, da für den Schlüssel \enquote{null} kein Wert in der \IC{Map} hinterlegt sein kann.
+Deshalb  erlaubt auch der Rückgabetyp \IC{T?} Null-Werte.
+
+
+\section{Serialisierung einer Maßnahme}
+
+Damit die Daten angezeigt und verändert werden können, müssen sie zunächst serialisierbar sein, sodass sie auf einen Datenträger geschrieben und von dort auch wieder gelesen werden können.
+Die zwei bekanntesten Bibliotheken zum Serialisieren in \enquote{Dart} heißen \enquote{json_serializable} und \enquote{built_value}.\footcite[Vgl.][]{JSONAndSerialization}
+Beide haben gemeinsam, dass sie Quellcode generieren, welcher die Umwandlung der Objekte in \enquote{JSON} übernimmt.
+
+
+Das Paket \enquote{built_value} bietet im Gegensatz zu \enquote{json-serializable} jedoch die Möglichkeit, unveränderbare Wertetypen -- sogenannte \enquote{immutable value types} -- zu erstellen.
+Da diese unveränderbaren Werte noch bei der Erstellung des sogenannten \enquote{ViewModels}
+-- mehr dazu im Kapitel \ref{sec:ViewModel} \enquote{\nameref{sec:ViewModel}} auf Seite \pageref{sec:ViewModel} -- hilfreich werden,
+fiel die Entscheidung auf diese Bibliothek.
+% todo high: Kapitel Referenz einfügen
+
+Ein Wertetyp für \enquote{built_value} erfordert einige Zeilen Boilerplate-Code, um den generierten Quellcode mit der selbstgeschriebenen Klasse zu verknüpfen.
+Entwicklungsumgebungen wie \enquote{Visual Studio Code} und \enquote{Android Studio} erlauben,
+solchen Boilerplate-Code generieren zu lassen und dabei nur die erforderlichen Platzhalter auszutauschen.
+In \enquote{Visual Studio Code} werden diese Templates \enquote{Snippets} genannt, in \enquote{Android Studio} heißen sie \enquote{Live Templates}.
+Listing \ref{lst:BuiltValueLiveTemplate} zeigt, wie das \enquote{Live Template} für das Generieren eines Wertetyps  für \enquote{built_value} aussieht.
+Templates für \enquote{built_value} wie dieses und weitere müssen nicht vom Nutzer eingegeben werden,
+sondern existieren bereits als Plugin für die beiden Entwicklungsumgebungen\footnoteL{https://plugins.jetbrains.com/plugin/13786-built-value-snippets}\textsuperscript{,}\footnoteL{https://marketplace.visualstudio.com/items?itemName=GiancarloCode.built-value-snippets}.
+
+
+% todo ask medium: Kein Autor, nur git Name
+% todo ask medium: Quelle nötig?
+\ifIncludeFigures
+  \begin{listing}[h]
+    \begin{minted}[firstnumber=6]{dart}
+part '$file_name$.g.dart';
+
+abstract class $ClassName$ implements Built<$ClassName$, $ClassName$Builder> {
+    $todo$
+    
+    $ClassName$._();
+    factory $ClassName$([void Function($ClassName$Builder) updates]) = _$$$ClassName$;
+
+    static Serializer<$ClassName$> get serializer => _$$$className$Serializer;
+}
+\end{minted}
+    \caption[Abgeändertes \enquote{Live Template} für die Erstellung von \enquote{built_value} Boilerplate-Code in \enquote{Android Studio}]{Abgeändertes \enquote{Live Template} für die Erstellung von \enquote{built_value} Boilerplate-Code in \enquote{Android Studio}, Quelle: Vgl. \enquote{Jetbrains Marketplace Built Value Snippets Plugin}}
+    \label{lst:BuiltValueLiveTemplate}
+  \end{listing}
+\fi
+
+\IC{$ClassName$} Wird dabei jeweils durch den gewünschten Klassennamen ersetzt.
+\enquote{Android Studio} erlaubt, dass beim Einfügen des \enquote{Live Templates} der Klassenname nur einmalig eingegeben werden muss.
+Anschließend wird mithilfe des \enquote{Live Templates} der Boilerplate-Code generiert.
+
+In Listing \ref{lst:Schritt1WerteTypMassnahme} ist der Wertetyp \IC{Massnahme} zu sehen.
+Die Zeilen 6 bis 8, sowie 18 bis 23 wurden dabei automatisch erstellt.
+Die Zeilen 9 bis 16 wurden hinzugefügt.
+Zunächst soll die Maßnahme über den \IC{guid} eindeutig identifiziert werden können \Z{9}.
+Ein GUID -- Kurzform von \enquote{Globally Unique IDentifier} -- ist  eine Folge von 128 Bits, die zur Identifikation genutzt werden kann. \footcite[Vgl.][S. 1]{rfc4122}
+Eine solche GUID hat eine textuelle Repräsentation wie beispielsweise die folgende: \enquote{'f81d4fae-7dec-11d0-a765-00a0c91e6bf6'}
+
+\begin{alexlisting}{Schritt 1}{Der Wertetyp \enquote{Massnahme}}
+  {Quellcode/Schritt-1/conditional_form/lib/data_model/massnahme.dart}
+  {firstline=6, lastline=23}
+  \label{lst:Schritt1WerteTypMassnahme}
+\end{alexlisting}
+
+Die Attribute \IC{letzteBearbeitung} \Z{11} und \IC{identifikatoren} \Z{13} sind im Gegensatz zu dem \IC{String}-Attribut \IC{guid} zusammengesetzte Datentypen,
+die im Folgenden weiter beleuchtet werden.
+
+Auffällig ist, dass es sich hier um eine abstrakte Klasse handelt und die drei Attribute jeweils \enquote{Getter}-Methoden ohne Implementierung sind.
+Eine solche \enquote{Getter}-Methode speichert keinen Wert, sondern gibt lediglich den Wert eines Feldes zurück.
+Die dazugehörigen Felder, \enquote{Setter}-Methoden,
+die konkrete Klasse und der restliche generierte Code sind in der gleichnamigen Datei mit der Endung \enquote{.g.dart} \Z{6} zu finden.
+Diese Datei wird von \enquote{built_value} gefüllt.
+
+Die Klassen-Methode \IC{_initializeBuilder} kann in jedem Wertetyp hinterlegt werden, um Standardwerte für Felder festzulegen.\footcite[Vgl.][]{BuiltValueChangelog}
+Die Methode wird intern von \enquote{built_value} aufgerufen.
+Bei dem Feld \IC{guid} handelt es sich um einen \IC{String}, der keine Null-Werte zulässt.
+Könnte das Feld auch Null-Werte annehmen, so wäre die Notation in \enquote{Dart} dafür stattdessen \IC{String? get guid;}. \enquote{built_value} erwartet also immer einen Wert für dieses Feld.
+Sollte die Datei gelesen werden,
+welche die Maßnahmen enthält, so enthält jede Maßnahme bei der Deserialisierung den abgespeicherten Wert für die \IC{guid} und somit wird das Feld gefüllt.
+Doch sollte eine leere Maßnahme über einen Konstruktor erstellt werden, so wäre das Feld \enquote{guid} leer und \enquote{built_value} würde einen Fehler auslösen.
+Aus diesem Grund wird in der Methode \IC{_initializeBuilder} für das Feld \IC{guid} ein Standardwert festgelegt: nämlich eine zufällig generierte ID,
+die dem Standard \enquote{Uuid} der Version 4 entspricht \Z{16}.
+Zu diesem Zweck wird das \enquote{Builder}-Objekt verwendet.
+Die Klasse \IC{MassnahmeBuilder} gehört dabei zu dem von \enquote{built_value} generierten Quellcode.
+Der Parametername wird hier -- wie so häufig im \enquote{builder pattern} -- mit einem \IC{b} für \enquote{Builder} abgekürzt.
+Die Syntax \IC{=>} leitet  einen sogenannten \enquote{arrow function body} ein.
+Dabei handelt es sich schlicht um einen Funktions-Körper, der aus genau einer Anweisung besteht. \pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
+Deshalb muss er nicht von geschweiften Klammern umgeben werden.\DartSpec{18f., 234}
+Auf dem \enquote{Builder}-Objekt können dann die Eigenschaften so gesetzt werden, als wären sie die Eigenschaften von dem Objekt \IC{Massnahme}.
+In Wahrheit werden sie aber nur auf dem \enquote{Builder}-Objekt angewendet.
+Ebenfalls auffällig ist die Syntax \IC{b..guid}.
+Statt eines \IC{.} zum Zugriff auf Attribute des Objektes wird hier der sogenannte Kaskadierungs-Operator \IC{..} benutzt.
+
+\paragraph{Der Kaskadierungs-Operator}
+
+Durch Eingabe von zwei aufeinanderfolgenden Punkten \IC{..} können mehrere Operationen an einem Objekt ausgeführt werden,
+ohne das Objekt zuvor einer Variablen zuzuweisen oder die Operationen über dessen Namen wiederholt aufzurufen.\DartSpec{149f.}
+Beispiel: Die zwei Aufrufe \IC{objekt.tueEtwas();} und \IC{objekt.tueEtwasAnderes();} sind äquivalent mit dem Einzeiler \IC{objekt..tueEtwas()..tueEtwasAnderes();}. \pdfcomment[icon=Note,color=yellow]{28.08.2021 Satz umformuliert}
+
+Da der Kaskadierungs-Operator jedoch dazu verwendet wird, mehrere Operationen auf einem Objekt auszuführen, hat er in Zeile 16 keine Funktion.
+Doch bei Änderung eines Objektes über das \enquote{builder pattern} werden für gewöhnlich mehrere Operationen am gleichen \enquote{Builder}-Objekt ausgeführt, weshalb der Einheitlichkeit wegen der Kaskadierungs-Operator immer im Zusammenhang mit dem \enquote{Builder}-Objekt verwendet werden soll.
+
+Die Attribute \IC{letzteBearbeitung} und \IC{identifikatoren} \Z{11, 13} erhalten dagegen ganz automatisch Standardwerte in Form von Instanzen der dazugehörigen Klassen.
+Diese wiederum konfigurieren ihre eigenen Felder und deren initiale Werte.
+
+
+
+Der Wertetyp \IC{Identifikatoren} enthält das Attribut \IC{massnahmenTitel} \LstZ{\ref{lst:Schritt1WerteTypIdentifikatoren}}{27},
+welches im Eingabeformular durch das Texteingabefeld gefüllt wird.\pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
+
+\begin{alexlisting}{Schritt 1}{Der Wertetyp \enquote{Identifikatoren}}
+  {Quellcode/Schritt-1/conditional_form/lib/data_model/massnahme.dart}
+  {firstline=25, lastline=30}
+  \label{lst:Schritt1WerteTypIdentifikatoren}
+\end{alexlisting}
+
+Zusätzlich enthält der Wertetyp \IC{LetzteBearbeitung} die Attribute
+\IC{letztesBearbeitungsDatum} \LstZ{\ref{lst:Schritt1WerteTypLetzteBearbeitung}}{43}
+und \IC{letzterStatus} \Z{50}.
+Im Eingabeformular wird der Selektionsbildschirm den Inhalt des Feldes \IC{letzterStatus} bestimmen.
+Der initiale Wert wird auf einen konstanten Wert gesetzt, der dem Zustand \IC{'in Bearbeitung'} entspricht \Z{54}. \pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
+% todo high: Kapitel Choices einfügen
+
+\begin{alexlisting}{Schritt 1}{Der Wertetyp \enquote{LetzteBearbeitung}}
+  {Quellcode/Schritt-1/conditional_form/lib/data_model/massnahme.dart}
+  {firstline=41, lastline=54}
+  \label{lst:Schritt1WerteTypLetzteBearbeitung}
+\end{alexlisting}
+
+Das Attribut \IC{letztesBearbeitungsDatum} ist dagegen nicht im Formular änderbar,
+sondern wird einmalig auf den aktuellen Zeitstempel gesetzt \Z{53}. \pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
+Zugehörig zu diesem Attribut gibt es noch eine abgeleitete Eigenschaft namens \IC{formattedDate} \Z{45-48}.
+Es ist eine Hilfsmethode, die das letzte Bearbeitungsdatum in ein für Menschen lesbares Datumsformat umwandelt.
+In dem Übersichtsbildschirm \AbbS{fig:Schritt1Uebersicht} ist das Datumsformat sichtbar.
+Die Spalte \enquote{Zuletzt bearbeitet am} enthält die Datumsangaben \enquote{2021-8-4 13:20} und \enquote{2021-8-4 13:17}. \pdfcomment[icon=Note,color=yellow]{28.08.2021 Satz hinzugefügt}
+Da diese \enquote{Getter}-Methode eine Implementierung besitzt, wird für sie von \enquote{built_value} kein Quellcode für die Serialisierung generiert. 
+
+\clearpage
+Bevor die Wertetypen serialisiert werden können, muss \enquote{built_value} jedoch noch mitgeteilt werden, für welche Wertetypen Serialisierungs-Funktionen generiert werden sollen.
+Dazu werden über die Annotation \IC{@SerializersFor} die gewünschten Klassen aufgelistet \LstZ{\ref{lst:Schritt1Serialisierer}}{10}.
+Die Zeilen 11 und 12 sind dabei immer gleich, es sei denn, es ist ein anderer Serialisierungs-Algorithmus gewünscht.
+In diesem Fall wird das \IC{StandardJsonPlugin} verwendet.
+
+\begin{alexlisting}{Schritt 1}{Der Serialisierer für die Wertetypen \enquote{Massnahme} und \enquote{Storage}}
+  {Quellcode/Schritt-1/conditional_form/lib/data_model/serializers.dart}
+  {firstline=10, lastline=12}
+  \label{lst:Schritt1Serialisierer}
+\end{alexlisting}
+
+Wird nun der Befehl  \IC{flutter pub run build_runner build} ausgeführt, so wird der Quellcode generiert und die Wertetypen können für die Serialisierung genutzt werden.
+
+\subsection{Unittest der Serialisierung einer Maßnahme}
+
+Das Ergebnis der Serialisierung wird im dazugehörigen Unittest ersichtlich \Lst{\ref{lst:SerialisierungEinerMassnahmeUnittest}}.
+In Zeile 7 wird ein Objekt der Klasse \IC{Massnahme} instanziiert.
+Anders als bei gewöhnlichen Datentypen lassen sich bei diesem unveränderlichen Datentyp keine Attribute nach der Erstellung anpassen.
+Die einzige Möglichkeit besteht darin, ein neues Objekt  mit dem gewünschten Attributwert zu erstellen und die restlichen Werte des alten Objektes zu übernehmen.
+Dies ist mithilfe des sogenannten \enquote{Builder}-Entwurfsmuster möglich, welches in \enquote{built_value} Anwendung findet.
+
+\paragraph{\enquote{Erbauer}-Entwurfsmuster} Das \enquote{Erbauer}-Entwurfsmuster -- englisch \enquote{builder pattern} -- ist ein Erzeugungsmuster, welches die Konstruktion komplexer Objekte von ihrer Repräsentation trennt.
+Es gehört zu der Serie von Entwurfsmustern der Gang of Four. \footcite[Vgl.][S. 119]{gamma2009entwurfsmuster}.
+Im Fall von \enquote{built_value} trennt es die unveränderlichen Objekte von ihrer Konstruktion.
+Über den \enquote{Builder} lassen sich Änderungen an diesen unveränderlichen Objekten vornehmen, wodurch eine Kopie dieses unveränderlichen Objektes mit der gewünschten Änderung zurückgegeben wird.
+
+In den Zeilen 8 bis 9 wird so ein neues Objekt von der Klasse \IC{Massnahme} mithilfe der Methode \IC{rebuild} erzeugt und anschließend der Referenz \IC{massnahme} zugewiesen, wodurch sie ihren alten Wert verliert.
+Über die generierte Methode \IC{serializers.serializeWith} kann das Objekt in \enquote{JSON} übersetzt werden \Z{11}.
+Der erste Parameter \IC{Massnahme.serializer} gibt dabei an, wie diese Serialisierung erfolgen soll. Auch das \IC{serializer}-Objekt wurde von \enquote{built_value} generiert.
+Der zweite Parameter ist die tatsächliche \IC{massnahme}, die in \enquote{JSON} umgewandelt werden soll.
+Die Zeilen 13 bis 21 erstellen das \enquote{JSON}-Dokument, mit dem das serialisierte Ergebnis am Ende verglichen werden soll. Dabei werden die gleichen Eigenschaften eingetragen.
+So etwa die \IC{guid}\Z{14}, welche bei der Initialisierung der Maßnahme automatisch und zufällig erstellt wurde.
+Außerdem das letzte Bearbeitungsdatum, welches den Zeitstempel erhält, zu dem die Maßnahme generiert wurde \Z{16-17}.
+Da \enquote{built_value} bei der Serialisierung die Datumswerte in Mikrosekunden umwandelt,
+muss für das erwartete \enquote{JSON}-Dokument das Gleiche passieren.
+Der Wert des Schlüssels \IC{'letzterStatus'} \Z{18} wird hierbei auf den Standardwert \IC{'bearb'} gesetzt
+und der Wert des Schlüssels \IC{'massnahmenTitel'} \Z{20} auf den gleichen Wert,
+der in Zeile 9 übergeben wurde.\pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
+Schließlich vergleicht die Methode \IC{expect} das tatsächlich serialisierte \enquote{JSON}-Dokument mit dem,
+welches zuvor zum Vergleich aufgebaut wurde \Z{23}.
+Der zweite Parameter ist ein sogenannter \enquote{Matcher} und die Variante mit dem Namen \IC{equals} überprüft auf absolute Gleichheit.
+
+\begin{alexlisting}{Schritt 1}{Unittest der Serialisierung einer Maßnahme}
+  {Quellcode/Schritt-1/conditional_form/test/data_model/massnahme_test.dart}
+  {firstline=6, lastline=23}
+  \label{lst:SerialisierungEinerMassnahmeUnittest}
+\end{alexlisting}

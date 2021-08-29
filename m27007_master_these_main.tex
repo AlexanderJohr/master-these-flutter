@@ -50,7 +50,7 @@
 \IncludeAppendixtrue
 
 
-\SimplyIncludeEverythingForSubmissionfalse
+\SimplyIncludeEverythingForSubmissiontrue
 
 % was soll integriert werden?
 
@@ -107,16 +107,12 @@
 \include{Inhalt/Hauptteil/Technologie-Auswahl/Technologie-Auswahl}
 \fi
 
-\ifIncludeAllChapters
-\input{Inhalt/Grundlagen/Grundlagen}
-\fi
-
 %\ifIncludeAllChapters
-\input{Konzeption/Konzeption}
+\input{Inhalt/Grundlagen/Grundlagen}
 %\fi
 
 \ifIncludeAllChapters
-\include{Inhalt/Hauptteil/Implementierung/Implementierung} 
+\input{Konzeption/Konzeption}
 \fi
 
 \ifIncludeMiscellaneous
@@ -124,39 +120,85 @@
 \label{part:Implementierung}
 \fi
 
-
-
 \ifIncludeAllChapters
-\include{Inhalt/Hauptteil/Implementierung/Schritt-1/Zielsetzung}
+\include{Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1-Einheit-1}
 \fi
 
 \ifIncludeAllChapters
-\include{Inhalt/Hauptteil/Implementierung/Schritt-1/Auswahloptionen}
+\include{Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1-Einheit-2}
 \fi
 
 \ifIncludeAllChapters
-\include{Inhalt/Hauptteil/Implementierung/Schritt-1/Serialisierung}
+\include{Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1-Einheit-3}
 \fi
 
 \ifIncludeAllChapters
-\include{Inhalt/Hauptteil/Implementierung/Schritt-1/Haupteinstiegspunkt}
+\include{Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1-Einheit-4}
 \fi
 
 \ifIncludeAllChapters
-\include{Inhalt/Hauptteil/Implementierung/Schritt-1/Uebersichtsbildschirm}
+\include{Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1-Einheit-5}
 \fi
 
 \ifIncludeAllChapters
-\include{Inhalt/Hauptteil/Implementierung/Schritt-1/Eingabeformular}
+\include{Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1-Einheit-6}
 \fi
 
 \ifIncludeAllChapters
-\include{Inhalt/Hauptteil/Implementierung/Schritt-1/Widget-SelectionCard}
+\include{Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1-Einheit-7}
+\fi
+
+%\ifIncludeAllChapters
+\include{Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1-Einheit-8}
+%\fi
+
+\ifIncludeAllChapters
+\include{Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1-Einheit-9}
 \fi
 
 \ifIncludeAllChapters
-\include{Inhalt/Hauptteil/Implementierung/Schritt-1/Integrations-Test}
+\include{Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1-Einheit-10}
 \fi
+
+\ifIncludeAllChapters
+\include{Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1-Einheit-11}
+\fi
+
+\ifIncludeAllChapters
+\include{Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1-Einheit-12}
+\fi
+
+%\ifIncludeAllChapters
+%\include{Inhalt/Hauptteil/Implementierung/Schritt-1/Zielsetzung}
+%\fi
+
+%\ifIncludeAllChapters
+%\include{Inhalt/Hauptteil/Implementierung/Schritt-1/Auswahloptionen}
+%\fi
+
+%\ifIncludeAllChapters
+%\include{Inhalt/Hauptteil/Implementierung/Schritt-1/Serialisierung}
+%\fi
+
+%\ifIncludeAllChapters
+%\include{Inhalt/Hauptteil/Implementierung/Schritt-1/Haupteinstiegspunkt}
+%\fi
+
+%\ifIncludeAllChapters
+%\include{Inhalt/Hauptteil/Implementierung/Schritt-1/Uebersichtsbildschirm}
+%\fi
+
+%\ifIncludeAllChapters
+%\include{Inhalt/Hauptteil/Implementierung/Schritt-1/Eingabeformular}
+%\fi
+
+%\ifIncludeAllChapters
+%\include{Inhalt/Hauptteil/Implementierung/Schritt-1/Widget-SelectionCard}
+%\fi
+
+%\ifIncludeAllChapters
+%\include{Inhalt/Hauptteil/Implementierung/Schritt-1/Integrations-Test}
+%\fi
 
 \ifIncludeAllChapters
 \include{Inhalt/Hauptteil/Implementierung/Schritt-2/Schritt-2}
@@ -202,9 +244,9 @@
 \include{Inhalt/Hauptteil/Technologie-Auswahl/Technologie-Auswahl-Anhang}
 \fi
 
-\ifIncludeAllChapters
+%\ifIncludeAllChapters
 \input{Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1-Anhang}
-\fi
+%\fi
 
 \ifIncludeAllChapters
 \input{Inhalt/Hauptteil/Implementierung/Schritt-2/Schritt-2-Anhang}
@@ -240,4 +282,6 @@
 
 \end{document}
 
+
+% \pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
 % Indessen sprach ein Türke -- in dessen dichtem Bart alte Dönerreste klebten -- eine Frau an, in deren Tasche sich noch alte verklebte Drops fanden.%-da die Maßnahme doch als

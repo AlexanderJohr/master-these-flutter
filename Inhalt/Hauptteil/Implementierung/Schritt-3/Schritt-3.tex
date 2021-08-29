@@ -127,7 +127,7 @@ Der ursprüngliche \IC{FloatingActionButton} speichert fortan ausschließlich da
 Dazu nutzt er die Hilfsfunktion \IC{inputsAreValidOrNotMarkedFinal} \Z{222}.
 Ist das der Fall, so folgt die Speicherung der Maßnahme mithilfe der bereits implementierten Funktion \IC{saveRecord} \Z{223}.
 Diese funktioniert wie in den letzten Schritten, nur dass sie keinen Rückgabewert mehr hat (siehe Listing \ref{lst:Schritt3saveRecord} in Anhang \ref{appendix:Schritt3Anhang} auf Seite \pageref{appendix:Schritt3Anhang}).
-Anschließend wird der Navigator erneut aufgefordert, zum Übersichtsbildschirm zurückzukehren \Z{224}.
+Anschließend wird der \enquote{Navigator} erneut aufgefordert, zum Übersichtsbildschirm zurückzukehren \Z{224}.
 Sollte es allerdings zur Ausführung des \IC{else}-Blocks führen \Z{225-227},
 da die Maßnahme doch als \enquote{abgeschlossen} markiert wurde und nicht alle Eingabefelder valide waren,
 so erhält der Benutzer eine Fehlermeldung. Die neu implementierte Hilfsfunktion \IC{showValidationError} wird dafür verwendet \Z{226}. 

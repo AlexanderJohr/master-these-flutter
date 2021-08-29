@@ -37,10 +37,10 @@ Bei \enquote{Flutter} und \enquote{React} handelt es sich um deklarative Fronten
 Dem stehen die imperativen Frameworks gegenüber.
 
 \clearpage
-In imperativen Frameworks werden Befehle genutzt, um Änderungen direkt in an Oberfläche vorzunehmen,
+In imperativen Frameworks werden Befehle genutzt, um Änderungen direkt an der Oberfläche vorzunehmen,
 wie am \enquote{Java Swing}-Beispiel in Listing \ref{lst:HelloWorldJavaSpring} zu sehen ist.
 Es wird ein Button erstellt, welcher die Anzahl der auf ihn angewendeten Klicks anzeigt.
-Die bei jedem Klick wird die \enquote{Setter}-Methode \IC{setText} genutzt, um den Text direkt zu manipulieren.
+Bei jedem Klick wird die \enquote{Setter}-Methode \IC{setText} genutzt, um den Text direkt zu manipulieren.
 
 \ifIncludeFigures
   \begin{listing}[h]
@@ -60,7 +60,7 @@ button.addActionListener(new ActionListener() {
   \end{listing}
 \fi
 
-In deklarieren Frontend-Frameworks wie \enquote{Flutter} existieren solche \enquote{Setter}-Methoden nicht.
+In deklarativen Frontend-Frameworks wie \enquote{Flutter} existieren solche \enquote{Setter}-Methoden nicht.
 Stattdessen wird die Oberfläche einmal deklariert und darauf vorbereitet, auf Änderungen eines Zustands zu reagieren.
 Das \enquote{Flutter}-Beispiel in Listing \ref{lst:ClickExampleFlutter} zeigt dieses Verhalten.
 Beim Klick auf den Button modifiziert die Methode \IC{setState} den Zustand und löst damit die Aktualisierung der Oberfläche aus.
@@ -107,7 +107,7 @@ Das ist der Fall,
 
 \enquote{StatefulWidgets} sind nur eine von vielen Möglichkeiten den Zustand des Programms zu verwalten.
 Die Formularanwendung verwendet ausschließlich \enquote{StatelessWidgets}, da die Verwaltung des Zustands über das sogenannte \enquote{Model-View-ViewModel}-Entwurfsmuster umgesetzt wird.
-Mehr dazu im Kapitel \ref{sec:ModelViewViewModel}.
+Mehr dazu im Kapitel \ref{sec:ModelViewViewModel} \enquote{\nameref{sec:ModelViewViewModel}} auf Seite \pageref{sec:ModelViewViewModel}.
 
 \subsection{\enquote{Inherited Widgets}\pdfcomment[icon=Note,color=yellow]{27.08.2021 4. Einschub von hier}}
 
@@ -261,8 +261,8 @@ Nur in dem Fall, dass die Temperatur der Schleifenvariable \IC{c} größer oder 
 Das Ergebnis der Liste \IC{fieberTemperaturen} ergibt also \IC{[38.5, 41]}.
 
 
-\subsection{Typen ohne Null-Zulässigkeit} Im Vergleich zu vielen anderen Programmiersprachen -- wie beispielsweise Java -- wird in \enquote{Dart} zwischen Typen mit und ohne Null-Zulässigkeit unterschieden.\pdfcomment[icon=Note,color=yellow]{27.08.2021 Satz angepasst}
-In Java ist es nur bei atomaren Datentypen wie \enquote{int} und \enquote{float} verpflichtend einen Wert anzugeben.
+\subsection{Typen ohne Null-Zulässigkeit} Im Vergleich zu vielen anderen Programmiersprachen -- wie beispielsweise \enquote{Java} -- wird in \enquote{Dart} zwischen Typen mit und ohne Null-Zulässigkeit unterschieden.\pdfcomment[icon=Note,color=yellow]{27.08.2021 Satz angepasst}
+In \enquote{Java} ist es nur bei atomaren Datentypen wie \enquote{int} und \enquote{float} verpflichtend einen Wert anzugeben.
 \enquote{null} ist bei diesen primitiven Datentypen nicht als Wert erlaubt.
 Doch nicht atomare Datentypen erlauben immer die Angabe von \enquote{null} als Wert.
 \enquote{null} drückt dabei immer das Nicht-Vorhandensein von Daten aus.
