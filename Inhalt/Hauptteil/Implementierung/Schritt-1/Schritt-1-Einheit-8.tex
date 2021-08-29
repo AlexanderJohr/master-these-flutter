@@ -1,0 +1,160 @@
+
+\ifodd\value{page}\hbox{}\newpage\fi
+\section{Das \enquote{MassnahmenTable}-\enquote{Widget}}
+
+Die \IC{MassnahmenTable} ist ein  \IC{StatelessWidget} \LstZ{\ref{lst:Schritt1KlasseMassnahmenTable}}{6}.
+Zur Anzeige eignet sich das \enquote{Widget} \IC{Table} \Z{15-31}. Im Verlauf der Erstellung der Arbeit wurde versucht das \enquote{Widget} \IC{DataTable} zu verwenden.
+Doch im Gegensatz zur \IC{DataTable} erlaubt es das \enquote{Widget} \IC{Table}, unterschiedlich hohe Zeilen zu zeichnen.
+Die Höhe der Zeile wird dazu in Abhängigkeit von dem benötigten Platz des Inhalts der Zellen berechnet.\pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
+Die Breite und Ausrichtung der Spalten kann konfiguriert werden.
+Die Eigenschaft \IC{IntrinsicColumnWidth} sorgt dafür,
+dass die Spalten immer genau so groß sind,
+wie der Inhalt es benötigt \Z{17}. 
+Zeilenumbrüche für die Texte in den Spalten sind somit nicht notwendig.
+\IC{TableCellVerticalAlignment.middle} lässt die  Tabelle die Inhalte zentriert darstellen \Z{18}.
+
+
+\begin{alexlisting}{Schritt 1}{Die Klasse \enquote{MassnahmenTable}}
+    {Quellcode/Schritt-1/conditional_form/lib/widgets/massnahmen_table.dart}
+    {firstline=4, lastline=32}
+    \label{lst:Schritt1KlasseMassnahmenTable}
+  \end{alexlisting}
+
+Der Parameter \IC{children} erhält als Argument eine Liste von \IC{TableRow} Elementen \Z{19-30}.
+Die erste Tabellenzeile beinhaltet die Spaltenbezeichnungen \Z{20-23}.
+Jede \IC{TableRow} hat wiederum den Parameter \IC{children}.
+Das Argument bezieht sich hier auf die Zellen in der Zeile.
+Dabei ist wichtig, dass jede \IC{TableRow} die gleiche Anzahl von Zellen hat.
+Weicht nur eine Zeile davon ab, zeichnet sich die gesamte Tabelle nicht und eine Ausnahme wird ausgelöst.
+
+\clearpage
+Nach den Spaltenbezeichnungen folgen die Zeilen für die Daten der Maßnahmen \Z{24-29}.
+Die Methode \IC{map} \Z{24} ermöglicht es dazu durch die Liste der Maßnahmen zu iterieren und für jede Maßnahme ein Element eines völlig anderen Typs -- in diesem Fall \IC{TableRow} -- zurückzugeben.
+Bei den vorangestellten Punkten \IC{...} in Zeile 24 handelt es sich um den \enquote{spread operator}.\pdfcomment[icon=Note,color=yellow]{29.08.2021 Fehler: es hat gefehlt}
+Die Filtermethode \IC{map} und die darauffolgende Methode \IC{toList} liefern eine Liste von \IC{TableRow}-Elementen.
+Die umgebende Liste der Zeilen \IC{children} \Z{19-30} erwartet jedoch Elemente des Typs \IC{TableRow} und keine Elemente des Typs \IC{List}.
+Der \enquote{spread operator} ermöglicht,
+alle Elemente der inneren Liste in die äußere Liste einzufügen. \footcite[Vgl.][]{SpreadOperator}
+
+
+
+  Für die Spaltenbezeichnungen wurde eine Hilfsmethode kreiert: \IC{_buildColumnHeader} \Lst{\ref{lst:Schritt1buildColumnHeader}}.
+  Sie zeichnet die Spalten mit einem Abstand von \IC{8} Pixeln in alle Richtungen.
+
+  \begin{alexlisting}{Schritt 1}{Die Hilfsmethode \enquote{_buildColumnHeader}}
+    {Quellcode/Schritt-1/conditional_form/lib/widgets/massnahmen_table.dart}
+    {firstline=34, lastline=37}
+    \label{lst:Schritt1buildColumnHeader}
+  \end{alexlisting}
+
+  Eine weitere Hilfsmethode \IC{_buildSelectableCell} erstellt Zellen, die anklickbar sind \Lst{\ref{lst:Schritt1buildSelectableCell}}.
+  Das \enquote{Widget} \IC{TableRowInkWell} \Z{41-51} kann in Tabellen verwendet werden, um einen anklickbaren Bereich zu erstellen.
+  Beim  Anklicken breitet sich ausgehend von der Position des Klicks ein Tintenklecks  aus.
+  Dabei überschreitet der Tintenklecks nicht den Bereich, der von der umgebenden Zeile begrenzt ist.
+  Beim Auslösen des Ereignisses \IC{onTap} erfolgt die Ausführung der Rückruffunktion \IC{onSelect} \Z{44} mit der ausgewählten Maßnahme.
+  Doch zuvor muss überprüft werden,
+  ob die Rückruffunktion auch initialisiert wurde \Z{43}.
+  Wie hier zu sehen ist, reicht es nicht aus, abzufragen, ob \IC{onSelect}  gesetzt ist.
+  Es erfolgt keine Typ-Beförderung zu einem Typ ohne Null-Zulässigkeit, denn es handelt sich um eine Instanzvariable.
+  Deshalb muss der Suffix \IC{!} gesetz sein \Z{44} (Siehe Grundlagenkapitel \ref{sec:TypenMitNullZulaessigkeit} \enquote{\nameref{sec:TypenMitNullZulaessigkeit}} auf Seite \pageref{sec:TypenMitNullZulaessigkeit}).
+  
+  \begin{alexlisting}{Schritt 1}{Die Hilfsmethode \enquote{_buildSelectableCell}}
+    {Quellcode/Schritt-1/conditional_form/lib/widgets/massnahmen_table.dart}
+    {firstline=39, lastline=51}
+    \label{lst:Schritt1buildSelectableCell}
+  \end{alexlisting}
+
+  \clearpage
+  Bei \IC{onSelect} handelt es sich um eine Rückruffunktion.
+  An diesem Beispiel kann das \enquote{inversion of control pattern} visualisiert werden.
+  Abbildung \ref{lst:UmlOnSelet} zeigt, wie die Akteure zusammenarbeiten.\pdfcomment[icon=Note,color=yellow]{29.08.2021 Fehler komma hat gefehlt}
+  Der \enquote{MassnahmenMasterScreen} verwendet die \enquote{MassnahmenTable}.
+  Die Tabelle enthält ein Objekt namens \enquote{onSelect}.
+  Dabei handelt es sich um ein Funktionsobjekt.
+  Anstatt eine neue Klasse mit einer beinhaltenden Funktion zu deklarieren, kann das Gleiche über eine Abkürzung erreicht werden:
+  dem Schlüsselwort \IC{typedef} \Lst{\ref{lst:Schritt1TypedefOnSelectCallback}}.
+  
+  \begin{alexlisting}{Schritt 1}{Die Klasse \enquote{MassnahmenTable}}
+    {Quellcode/Schritt-1/conditional_form/lib/widgets/massnahmen_table.dart}
+    {firstline=4, lastline=4}
+    \label{lst:Schritt1TypedefOnSelectCallback}
+  \end{alexlisting}
+  
+  Hier erlaubt es eine Funktionssignatur als einen Typ zu deklarieren.
+  Der \enquote{MassnahmenMasterScreen} wiederum instanziiert ein anonymes Funktionsobjekt,
+  welches der Schnittstelle -- und damit der Funktionssignatur -- entspricht.
+
+
+
+  Weil es der Signatur der Typdefinition von \IC{OnSelectCallback} entspricht,
+  kann es der Tabelle als Argument für den Parameter \IC{onSelect} übergeben werden \LstZ{\ref{lst:Schritt1MassnahmenTableOnSelect}}{75-82}. 
+  
+
+  
+
+
+
+Das \enquote{inversion of control pattern} ist auch unter dem Namen \enquote{hollywood pattern} bekannt,
+da es ähnlich wie die typische Antwort auf eine Bewerbung für einen Hollywood Film
+-- don’t call us, we’ll call you --
+funktioniert.\footcite[Vgl.][]{fowler2005InversionOfControl}
+
+Genauso arbeiten der Übersichtsbildschirm und die Tabelle zusammen.
+Der Übersichtsbildschirm verwendet die Tabelle, welche nicht wissen muss, wofür sie eingesetzt wird.
+Sobald die Tabelle eine Selektion des Benutzers bemerkt, kommuniziert sie wieder mit dem Übersichtsbildschirm, worauf dieser über den \enquote{Service Locator} auf das \enquote{ViewModel} zugreift, um die selektierte Maßnahme zu übergeben.
+
+\clearpage
+
+
+\begin{alexlisting}{Schritt 1}{Die Ausgabe der Maßnahmen}
+    {Quellcode/Schritt-1/conditional_form/lib/screens/massnahmen_master.dart}
+    {firstline=70, lastline=82}
+    \label{lst:Schritt1MassnahmenTableOnSelect}
+  \end{alexlisting}
+
+\vspace{21mm}
+
+\ifIncludeFigures
+  \begin{figure}[h]
+    \centering
+
+    \begin{tikzpicture}
+      \begin{umlseqdiag}
+    
+        \umlsimpleclass[x=0, y=-2.7]{MassnahmenMasterScreen}{
+        }{
+        }
+    
+        \umlsimpleclass[x=8,y=-2.7]{MassnahmenTable}{
+        }{
+        }
+    
+        \umlsimpleclass[x=8.0,y=0,type=typedef]{OnSelectCallback}{
+        }{
+        }
+    
+    
+        \umlobject[x=0,y=0, class=OnSelectCallback]{onSelect}{
+        }{
+        }
+    
+    
+    
+    
+        \umldep[arg=<<instance of>>, pos=0.5]{onSelect}{OnSelectCallback}
+        \umldep[arg=<<instantiate>>, pos=0.5]{MassnahmenMasterScreen}{onSelect}
+    
+    
+        \umluniassoc[]{MassnahmenMasterScreen}{MassnahmenTable}
+        \umluniaggreg[arg=onSelect, pos=0.5]{MassnahmenTable}{OnSelectCallback}
+      \end{umlseqdiag}
+    \end{tikzpicture}
+
+    \caption[\enquote{UML}-Diagramm des \enquote{inversion of control pattern} für \enquote{MassnahmenMasterScreen} und \enquote{MassnahmenTable}]
+    {\enquote{UML}-Diagramm des \enquote{inversion of control pattern} für \enquote{MassnahmenMasterScreen} und \enquote{MassnahmenTable}, Quelle: Eigene Abbildung}
+    \label{lst:UmlOnSelet}
+
+  \end{figure}%
+\fi
+
+

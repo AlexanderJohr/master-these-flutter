@@ -68,7 +68,7 @@ Die Funktion \IC{any} akzeptiert als Argument eine Funktion, die für alle Eleme
 Wenn die Rückgabe der Funktion auch nur in einem Fall \IC{true} ist, so evaluiert auch \IC{any} mit \IC{true}.
 Andernfalls ist die Rückgabe \IC{false}. 
 Die anonyme Funktion schließt zunächst den Vergleich mit derselben Maßnahme aus, welche sich gerade in Bearbeitung befindet.
-Der Vergleich der guid ist dafür ausreichend.
+Der Vergleich der \IC{guid} ist dafür ausreichend \Z{100}.
 Sollte es eine andere Maßnahme geben, welche den gleichen Titel hat \Z{101-102}, so wird die lokale Variable \IC{massnahmeTitleDoesAlreadyExists} auf \IC{true} gesetzt.
 Der Benutzer bekommt die entsprechende Fehlermeldung \IC{'Dieser Maßnahmentitel ist bereits vergeben'} zu lesen \Z{106}.
 Wenn keine der beiden Fallunterscheidungen das \IC{return}-Statement \Z{96, 106} auslöst, so erfolgt schließlich die Rückgabe von \IC{null}.
@@ -127,7 +127,7 @@ Der ursprüngliche \IC{FloatingActionButton} speichert fortan ausschließlich da
 Dazu nutzt er die Hilfsfunktion \IC{inputsAreValidOrNotMarkedFinal} \Z{222}.
 Ist das der Fall, so folgt die Speicherung der Maßnahme mithilfe der bereits implementierten Funktion \IC{saveRecord} \Z{223}.
 Diese funktioniert wie in den letzten Schritten, nur dass sie keinen Rückgabewert mehr hat (siehe Listing \ref{lst:Schritt3saveRecord} in Anhang \ref{appendix:Schritt3Anhang} auf Seite \pageref{appendix:Schritt3Anhang}).
-Anschließend wird der Navigator erneut aufgefordert, zum Übersichtsbildschirm zurückzukehren \Z{224}.
+Anschließend wird der \enquote{Navigator} erneut aufgefordert, zum Übersichtsbildschirm zurückzukehren \Z{224}.
 Sollte es allerdings zur Ausführung des \IC{else}-Blocks führen \Z{225-227},
 da die Maßnahme doch als \enquote{abgeschlossen} markiert wurde und nicht alle Eingabefelder valide waren,
 so erhält der Benutzer eine Fehlermeldung. Die neu implementierte Hilfsfunktion \IC{showValidationError} wird dafür verwendet \Z{226}. 
@@ -142,9 +142,9 @@ Auch der \IC{WillPopScope} erhält die gleiche Fehlerbehandlung \Lst{\ref{lst:Sc
 Hier wird ebenfalls überprüft, ob die Maßnahme als \enquote{abgeschlossen} markiert wurde und ob alle Eingabefelder valide sind \Z{153}.
 Falls ja, wird die Maßnahme direkt gespeichert und ein Objekt des asynchronen Typs \IC{Future} zurückgegeben, welches direkt zu \IC{true} evaluiert \Z{155}.
 Das führt dazu, dass dem Zurücknavigieren zum Übersichtsbildschirm zugestimmt wird.
-Sollte allerdings der \IC{else}-Block ausgeführt werden, so erscheint erneut die entsprechende Fehlermeldung \Z{157} und dieses Mal evaluiert das \IC{Future}-Objekt zu \IC{false}, um die Navigation zu unterbinden \IC{158}.
+Sollte allerdings der \IC{else}-Block ausgeführt werden, so erscheint erneut die entsprechende Fehlermeldung \Z{157} und dieses Mal evaluiert das \IC{Future}-Objekt zu \IC{false}, um die Navigation zu unterbinden \Z{158}.
 
-\begin{alexlisting}{Schritt 3}{Die Maßnahmencharakteristika Selektionskarten werden ergänzt}
+\begin{alexlisting}{Schritt 3}{Die \enquote{Maßnahmencharakteristika} Selektionskarten werden ergänzt}
     {Quellcode/Schritt-3/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
     {firstline=151, lastline=160, highlightlines={151-153, 155-160}}
     \label{lst:Schritt3onWillPop}

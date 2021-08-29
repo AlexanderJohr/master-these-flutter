@@ -1,0 +1,42 @@
+
+
+\ifodd\value{page}\hbox{}\newpage\fi
+\section{Das \enquote{ViewModel}}
+\label{sec:ViewModel}
+
+Listing \ref{lst:Schritt1KlasseMassnahmenFormViewModel} zeigt das \enquote{ViewModel}.
+Im ersten Schritt enthält es nur drei \enquote{Streams} vom Typ \IC{BehaviorSubject}.
+Eines für den letzten Status \Z{6}, eines für die \enquote{guid} \Z{8} und eines für den Titel der Maßnahme \Z{10}.
+Anhand dessen wird offensichtlich, warum ein \enquote{ViewModel} nötig ist.
+Die Daten, die in der Oberfläche angezeigt werden, entstammen \enquote{Streams}, die neue Werte annehmen können.\pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
+Wann immer sich ein Wert ändert, löst der \enquote{Stream} ein neues Ereignis aus.
+Auf dieses Ereignis kann der \enquote{View} reagieren.
+Das \enquote{Model} bietet die Eigenschaften der Maßnahmen dagegen nicht als \enquote{Streams} an.
+
+Da sich \enquote{Model} und \enquote{ViewModel} in ihrer Struktur unterscheiden, gibt es zwei Methoden, welche die Konvertierung in beide Richtungen vornehmen.\pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
+Die \enquote{Setter}-Methode \IC{model} \Z{12-18} erhält ein Objekt des Wertetyps \IC{Massnahme}.
+Die einzelnen Eigenschaften werden dann in das Format des \enquote{ViewModels} umgewandelt: in \enquote{Streams}.
+Dafür wird der \enquote{Setter}-Methode \IC{value} von jedem \IC{BehaviorSubject} der entsprechende Wert aus dem \enquote{Model} zugewiesen.\pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert} 
+Besonders ist auch, wie die Auswahloptionen sich im \enquote{Model} und \enquote{ViewModel} unterscheiden.
+Im \enquote{ViewModel} sind es abgeleitete Objekte der Basisklasse \enquote{Choice}, wie beispielsweise \IC{LetzterStatus} \Z{6}. \pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert} 
+Im Gegensatz dazu speichert das \enquote{Model} die Auswahloptionen lediglich über die Abkürzung als \enquote{String} ab.
+Mithilfe der Methode \IC{fromAbbreviation} kann anhand der Abkürzung das entsprechende Objekt wiedergefunden werden \Z{16}.
+
+Die \enquote{Getter}-Methode \IC{model} \Z{20-26} dagegen konvertiert in das exakte Gegenteil.
+Die aktuellen Werte von jedem \IC{BehaviorSubject} werden über die \enquote{Getter}-Methode \IC{value} ausgelesen und anschließend der entsprechenden Eigenschaft des Objektes vom Wertetyp \IC{Massnahme} zugewiesen.
+Die Auswahloption, die für den letzten Status hinterlegt wurde, wird dabei wiederum nur als Abkürzung eingetragen.
+Dementsprechend ist bloß die Eigenschaft \IC{abbreviation} abzufragen \Z{22}.
+
+Allerdings kann bei Auswahlfeldern auch keine Option gewählt sein.
+Die \enquote{Getter}-Methode \IC{value} kann daher also auch \enquote{null} zurückgeben. \pdfcomment[icon=Note,color=yellow]{29.08.2021 zurück geben -> zurückgeben} 
+Der Compiler gibt einen Fehler aus, wenn versucht wird, auf \IC{value} eine Operation auszuführen, sollte es sich um einen Typ mit Null-Zulässigkeit handeln.
+So ist es bei dem Aufruf von \IC{abbreviation} der Fall \Z{22}.
+Der Fehler kann nur damit behoben werden, indem das Prefix \IC{?}  der Operation vorangestellt wird.
+In diesem Fall wird die \enquote{Getter}-Methode \IC{abbreviation} aufgerufen, sollte \IC{value} nicht \enquote{null} sein. \pdfcomment[icon=Note,color=yellow]{29.08.2021 zurück geben -> zurückgeben} 
+Ist \IC{value} dagegen \enquote{null}, so wird die Operation nicht ausgeführt und der gesamte Ausdruck gibt direkt \enquote{null} zurück.
+
+\begin{alexlisting}{Schritt 1}{Die Klasse \enquote{MassnahmenFormViewModel}}
+  {Quellcode/Schritt-1/conditional_form/lib/screens/massnahmen_detail/massnahmen_form_view_model.dart}
+  {firstline=5}
+  \label{lst:Schritt1KlasseMassnahmenFormViewModel}
+\end{alexlisting}

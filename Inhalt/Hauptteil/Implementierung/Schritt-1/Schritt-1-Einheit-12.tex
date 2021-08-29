@@ -1,6 +1,6 @@
-
-\section{Integrations-Test zum Test der Oberfläche}
-
+\ifodd\value{page}\hbox{}\newpage\fi
+\section{Integrationstest zum Test der Oberfläche}
+\label{sec:Integrations}
 
 Ein automatisierter Integrationstest soll verifizieren, dass die Oberfläche wie vorgesehen funktioniert.
 Der Integrationstest simuliert einen Benutzer, der die Applikation verwendet, um eine Maßnahme einzutragen.
@@ -16,6 +16,9 @@ Das würde die Gefahr bergen, dass vergangene Eingaben manipuliert werden.
 Stattdessen soll der Test in einer Umgebung stattfinden, die keine Auswirkung auf die Hauptapplikation oder zukünftige Tests haben soll.
 Zu diesem Zweck können sogenannte \enquote{Mocks} genutzt werden.
 Das Paket \enquote{mockito} erlaubt über Annotationen solche \enquote{Mocks} für die gewünschten Klassen  über Codegenerierung zu erstellen.
+
+\subsection{Generierung des \enquote{Mocks} \pdfcomment[icon=Note,color=yellow]{29.08.2021 neue Überschrift}}
+\label{sec:GenerierungDesMocks}
 
 Integrationstests werden im Ordner \enquote{integration_test} angelegt.
 Während des Zeitpunkts der Erstellung dieser Arbeit war es in der Standardkonfiguration der Codegenerierung und dem Paket \enquote{mockito} nicht möglich, \enquote{Mocks} auch im \enquote{integration_test}-Ordner zu generieren.
@@ -36,7 +39,7 @@ Zusätzlich dazu muss die Rubrik \IC{generate_for} von dem \IC{mockBuilder} des 
 \end{alexyamllisting}
 
 Anschließend kann mit der Annotation \IC{@GenerateMocks} \LstZ{\ref{lst:Schritt1IntegrationsTestInitialisierung}}{20} ein \enquote{Mock} für \IC{MassnahmenJsonFile} angefordert werden.
-In der Kommandozeile ist \IC{flutter pub run build_runner build} einzugeben, damit der entsprechende Quellcode generiert wird.
+In der Kommandozeile ist -- genau wie bei der Generierung der Wertetypen -- der Befehl \IC{flutter pub run build_runner build} einzugeben, damit der entsprechende Quellcode generiert wird. \pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
 Mit dem \enquote{Mock} kann der Integrationstest ausgeführt werden, ohne dass befürchtet werden muss, dass die \enquote{JSON}-Datei tatsächlich beschrieben wird.
 Stattdessen kann darauf gehorcht werden, wenn Operationen auf dem Objekt ausgeführt werden. 
 
@@ -55,10 +58,11 @@ Dazu wird die entsprechende Methode \IC{when} verwendet.
 Als erster Parameter wird die Methode \IC{readMassnahmen} des \enquote{Mocks} übergeben.
 Im darauffolgenden Aufruf \IC{thenAnswer} kann angegeben werden, welche Rückgabe die Methode liefern soll.
 
-Über den \IC{tester} kann mit Hilfe der Methode \IC{pumpWidget} ein beliebiges \enquote{Widget} in der Test-Ausführung konstruiert werden.
+\clearpage
+Über den \IC{tester} kann mithilfe der Methode \IC{pumpWidget} ein beliebiges \enquote{Widget} in der Test-Ausführung konstruiert werden.
 In diesem Fall ist es die gesamte Applikation, die getestet werden soll.
 Dementsprechend ist  hier erneut der komplette Haupteinstiegspunkt angegeben \Lst{\ref{lst:Schritt1IntegrationsTestWidgetInitialisierung}}.
-Doch der Konstruktor von \Z{MassnahmenModel} erhält dieses Mal nicht das \IC{MassnahmenJsonFile}, sondern den entsprechenden \enquote{Mock} \Z{31}. 
+Doch der Konstruktor von \IC{MassnahmenModel} erhält dieses Mal nicht das \IC{MassnahmenJsonFile}, sondern den entsprechenden \enquote{Mock} \Z{31}. 
 
 \begin{alexlisting}{Schritt 1}{Initialisierung des \enquote{Widgets} für den Integrationstest}
   {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
@@ -67,8 +71,14 @@ Doch der Konstruktor von \Z{MassnahmenModel} erhält dieses Mal nicht das \IC{Ma
 \end{alexlisting}
 
 
+Weil während des Integrationstests immer wieder die gleichen Operationen wie das Selektieren einer Selektionskarte,
+das Auswählen einer Option,
+das Anklicken des Buttons zum Akzeptieren der Auswahl und das Füllen eines Eingabefeldes auftauchen,
+wurden entsprechende Hilfsfunktionen erstellt.
 
-Weil während des Integrationstests immer wieder die gleichen Operationen wie das Selektieren einer Selektionskarte, das Auswählen einer Option, das Anklicken des Buttons zum Akzeptieren der Auswahl und das Füllen eines Eingabefeldes auftauchen, wurden entsprechende Hilfsfunktionen erstellt.
+\subsection{Hilfsfunktionen für den Integrationstest\pdfcomment[icon=Note,color=yellow]{29.08.2021 neue Überschrift}}
+\label{sec:HilfsfunktionenIntegrationstest}
+
 
 
 Die Funktion \IC{tabSelectionCard} \Lst{\ref{lst:Schritt1HilfsmethodeTabSelectionCard}} benötigt lediglich die Liste der Auswahloptionen \IC{choices}, die ihr hinterlegt ist.
@@ -124,15 +134,15 @@ die nach jeder Aktion durchgeführt werden muss. Sie sorgt dafür,
 dass der Test so lange pausiert,
 bis alle Aktionen in der Oberfläche und damit auch alle angestoßenen Animationen vorüber sind. Zusätzlich kann eine Dauer angegeben werden, die darüber hinaus gewartet werden soll. 
 
-\IC{tabConfirmButton} funktioniert ähnlich \Lst{\ref{lst:Schritt1HilfsmethodeTabSelectionCard}}.
+Die Hilfsmethode \IC{tabConfirmButton} funktioniert ähnlich \Lst{\ref{lst:Schritt1HilfsmethodeTabConfirmButton}}.
 Das Finden des Buttons ist jedoch einfacher, da es nur einen Button zum Akzeptieren auf jeder Oberfläche gibt.
 Der Button enthält keinen Text, lässt sich aber auch über seinen Tooltip lokalisieren \Z{62}.
 Die Hilfsfunktion klickt auf den Button \Z{63} und wartet dann erneut auf Vollendung aller angestoßenen Animationen \Z{64}.
 
-\begin{alexlisting}{Schritt 1}{Die Hilfsmethode tabConfirmButton}
+\begin{alexlisting}{Schritt 1}{Die Hilfsmethode \enquote{tabConfirmButton}}
   {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
   {firstline=61, lastline=65}
-  \label{lst:Schritt1HilfsmethodeTabSelectionCard}
+  \label{lst:Schritt1HilfsmethodeTabConfirmButton}
 \end{alexlisting}
 
 Ist der Integrationstest aktuell in dem Selektionsbildschirm, so sorgt \IC{tabOption} dafür, dass eine Auswahloption gewählt wird \Lst{\ref{lst:Schritt1HilfsmethodeTabOption}}.
@@ -140,7 +150,7 @@ Dazu wird die gewünschte Option dem Parameter \IC{choice} übergeben.
 Um die Checkbox der Option zu finden, muss jedoch zunächst der Text der Auswahloption gefunden werden \Z{68}.
 Erst wenn verifiziert wurde, dass auch nur genau ein Label mit diesem Text existiert, läuft der Test weiter \Z{69}. 
 
-\begin{alexlisting}{Schritt 1}{Die Hilfsmethode tabOption}
+\begin{alexlisting}{Schritt 1}{Die Hilfsmethode \enquote{tabOption}}
   {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
   {firstline=67, lastline=78}
   \label{lst:Schritt1HilfsmethodeTabOption}
@@ -148,10 +158,10 @@ Erst wenn verifiziert wurde, dass auch nur genau ein Label mit diesem Text exist
 
 Ein Klick auf das Text-Label reicht bereits aus,
 denn damit wird das Vaterelement -- das \IC{CheckboxListTile} -- ebenfalls getroffen.
-Der \IC{tester} holt es in den sichtbaren Bereich \IC{71}, klickt es \IC{72} an und wartet auf Abschluss aller Animationen \Z{73}.
+Der \IC{tester} holt es in den sichtbaren Bereich \Z{71}, klickt es an \Z{72} und wartet auf Abschluss aller Animationen \Z{73}.
 Sollte der optionale Parameter \IC{tabConfirm} auf \IC{true} gesetzt sein \Z{75}, so wird der Selektionsbildschirm anschließend direkt wieder geschlossen, nachdem die Option ausgewählt wurde  \Z{76}. 
   
-Schließlich kann mit der Hilfsfunktion \IC{fillTextFormField} ein Formularfeld über dessen Titel gefunden und der entsprechende übergebende Text eingetragen werden \Lst{\ref{lst:Schritt1HilfsmethodeFillTextFormField}}.
+Schließlich kann mit der Hilfsfunktion \IC{fillTextFormField} ein Formularfeld über dessen Titel gefunden und der übergebene Text eingetragen werden \Lst{\ref{lst:Schritt1HilfsmethodeFillTextFormField}}.
 Die Hilfsfunktion findet das \IC{TextFormField},
 indem sie zunächst nach dem Titel mit \IC{find.text(title)} und anschließend nach dessen Vaterelement vom Typ \IC{TextFormField} sucht \Z{83}.
 Sollte sowohl der Hinweistext als auch der Titel den gleichen Text enthalten,
@@ -161,13 +171,16 @@ Mit \IC{.first} wird lediglich das erste Element geliefert \Z{85}.
 Nachdem feststeht, dass das Element existiert \Z{85} und es in den sichtbaren Bereich gescrollt wurde \Z{87}, gibt der Integrationstest den gewünschten Text in das Eingabefeld ein \Z{88}.
 Anschließend wird erneut auf Abschluss aller Animationen gewartet \Z{89}.
 
-\begin{alexlisting}{Schritt 1}{Die Hilfsmethode fillTextFormField}
+\begin{alexlisting}{Schritt 1}{Die Hilfsmethode \enquote{fillTextFormField}}
   {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
   {firstline=80, lastline=90}
   \label{lst:Schritt1HilfsmethodeFillTextFormField}
 \end{alexlisting}
 
-Während der Integrationstest startet, öffnet sich als Erstes der Übersichtsbildschirm.
+\subsection{Test des Übersichtsbildschirms}
+\label{sec:TestDesUebersichtsbildschirms}
+
+\pdfcomment[icon=Note,color=yellow]{29.08.2021 neue Überschrift}Während der Integrationstest startet, öffnet sich als Erstes der Übersichtsbildschirm.
 Zunächst wird gewartet, dass alle \enquote{Widgets} korrekt initialisiert wurden \LstZ{\ref{lst:Schritt1ButtonKreierenMassnahmeAusgeloest}}{92}.
 Es folgt der Klick auf den Button zum Erstellen einer neuen Maßnahme \Z{95}.
 Dazu wird der Button über den entsprechenden \IC{Key} gefunden \Z{94}.
@@ -180,6 +193,12 @@ Angenommen der Test wartet nicht ab, so würden die Aktionen noch immer auf den 
   \label{lst:Schritt1ButtonKreierenMassnahmeAusgeloest}
 \end{alexlisting}
 
+
+\clearpage
+
+\subsection{Test des Selektionsbildschirms\pdfcomment[icon=Note,color=yellow]{29.08.2021 neue Überschrift}}
+\label{sec:TestDesSelektionsbildschirms}
+
 Der Integrationstest öffnet nun den Selektionsbildschirm, in dem die Selektionskarte zum Setzen des letzten Status angewählt wird \LstZ{\ref{lst:Schritt1LetzterStatusWirdAusgewählt}}{98}.
 Anschließend fällt die Wahl auf die Option für \enquote{abgeschlossen} \Z{98}.
 Dabei sorgt \IC{tabConfirm: true} für die sofortige Rückkehr zum Eingabeformular nach der Auswahl.
@@ -189,6 +208,11 @@ Dabei sorgt \IC{tabConfirm: true} für die sofortige Rückkehr zum Eingabeformul
   {firstline=98, lastline=99}
   \label{lst:Schritt1LetzterStatusWirdAusgewählt}
 \end{alexlisting}
+
+
+
+\subsection{Test der Eingabemaske\pdfcomment[icon=Note,color=yellow]{29.08.2021 neue Überschrift}}
+\label{sec:TestDerEingabemaske}
 
 Nachfolgend soll der Test das Eingabefeld für den Maßnahmentitel überprüfen \Lst{\ref{lst:Schritt1MassnahmentitelWirdEingegeben}}.
 Es erfolgt die Erstellung eines beispielhaften Titels anhand des aktuellen Datums und der aktuellen Uhrzeit \Z{101, 102}.
@@ -200,10 +224,13 @@ Der erstellte Text dient als Eingabe für das Eingabefeld \Z{104}.
   \label{lst:Schritt1MassnahmentitelWirdEingegeben}
 \end{alexlisting}
 
+\subsection{Test der Speicherung\pdfcomment[icon=Note,color=yellow]{29.08.2021 neue Überschrift}}
+\label{sec:TestDerSpeicherung}
+
 Die nötigen Eingaben sind erfolgt.
 Daher kann der Test nun den Klick auf den Button zum Speichern simulieren \LstZ{\ref{lst:Schritt1ButtonZumSpeichernWirdAusgelöst}}{106-108}.
 Dadurch würde in der Anwendung nun das Speichern der Maßnahmen in der \enquote{JSON}-Datei erfolgen.
-Doch da stattdessen ein \enquote{Mock} verwendet wurde, passiert dies nicht.
+Da stattdessen ein \enquote{Mock} verwendet wurde, passiert dies nicht.
 Das \enquote{Model} ruft aber dennoch die entsprechenden Methoden -- wie zum Beispiel \IC{saveMassnahmen} -- auf.
 Die Methoden haben nur nicht die ursprüngliche Funktion.
 Stattdessen protokollieren sie sowohl die Aufrufe, als auch die übergebenen Argumente.

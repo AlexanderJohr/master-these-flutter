@@ -1,0 +1,58 @@
+
+\ifodd\value{page}\hbox{}\newpage\fi
+\subsection{Unittest der Deserialisierung einer Maßnahme}
+
+Analog zur Serialisierung testet der Unittest in Listing \ref{lst:DeserialisierungEinerMassnahmeUnittest} auch die Deserialisierung.
+Das \enquote{JSON}-Dokument ist dabei sehr ähnlich und unterscheidet sich lediglich in zwei Details.
+Der \IC{'guid'} wird auf einen festen Wert festgelegt \Z{38}.
+Im Initialisierungsprozess der Maßnahme wird der er dagegen zufällig generiert.
+Außerdem wird auch das \IC{letztesBearbeitungsDatum} festgesetzt, nämlich auf die Mikrosekunde \IC{0} \Z{40}.
+
+\begin{alexlisting}{Schritt 1}{Unittest der Deserialisierung einer Maßnahme}
+  {Quellcode/Schritt-1/conditional_form/test/data_model/massnahme_test.dart}
+  {firstline=36, lastline=56}
+  \label{lst:DeserialisierungEinerMassnahmeUnittest}
+\end{alexlisting}
+
+
+Zum Vergleich wird in den Zeilen 46 bis 52 eine Maßnahme über das \enquote{Builder}-Entwurfsmuster generiert
+und die gleichen festen Werte werden für die Eigenschaften übergeben.
+Dabei ist darauf zu achten, dass die Instanzvariable \IC{letzteBearbeitung} keinen Wert über den Zuweisungs-Operator \IC{=} erhält,
+sondern stattdessen die Methode \IC{update} darauf aufgerufen wird \Z{49}.
+
+Da es sich bei der Instanzvariablen \IC{letzteBearbeitung} genauso um ein Objekt eines Wertetyps handelt, ist sie ebenso unveränderlich.
+Deshalb kann sie nur über einen \enquote{Builder} manipuliert werden.
+Ein Blick in den generierten Quellcode offenbart,
+dass es sich bei dem Attribut \IC{letzteBearbeitung} in Zeile 49 nicht um die \enquote{Getter}-Methode des Wertetypen \IC{Massnahme},
+sondern in Wahrheit um einen \enquote{Builder} des Typs
+\IC{LetzteBearbeitungBuilder} handelt
+\LstZ{\ref{lst:Schritt1InstanzvariableLetzteBearbeitungGibtEinenLetzteBearbeitungBuilderZurueck}}{224-225}.\pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
+
+\begin{alexlisting}{Schritt 1}{Instanzvariable \IC{letzteBearbeitung} gibt einen \IC{LetzteBearbeitungBuilder} zurück}
+  {Quellcode/Schritt-1/conditional_form/lib/data_model/massnahme.g.dart}
+  {firstline=216, lastline=227}
+  \label{lst:Schritt1InstanzvariableLetzteBearbeitungGibtEinenLetzteBearbeitungBuilderZurueck}
+\end{alexlisting}
+
+Die Mikrosekunden für das Datum müssen zunächst in ein Objekt von \IC{DateTime} umgewandelt werden. \pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
+Dafür wird der benannte Konstruktor \IC{fromMillisecondsSinceEpoch} von \IC{DateTime} \Z{51} aufgerufen.
+
+\paragraph{Benannte Konstruktoren} In Programmiersprachen wie beispielsweise \enquote{Java} können Methoden überladen werden, indem ihre Methodensignatur geändert wird.
+Beim Aufruf der Methode kann über die Anzahl und die Typen der übergebenen Argumente die gewünschte Methode gewählt werden.
+Das Gleiche gilt für Konstruktoren.
+Wird ein weiterer Konstruktor für eine Klasse in \enquote{Java} benötigt, so besteht einzig und allein die Möglichkeit darin, den Konstruktor zu überladen.
+Sowohl überladene Methoden als auch überladene Konstruktoren existieren in \enquote{Dart} nicht.
+Wird also in \enquote{Dart} ein alternativer Konstruktor gewünscht, so muss er einen Namen bekommen.
+Beim Aufruf des Konstruktors wird dieser Name dann mit einem \IC{.} nach dem Klassennamen angegeben, um den gewünschten Konstruktor zu benennen.\footcite[Vgl.][]{NamedConstructors}
+
+
+Ganz ähnlich wie bei der Serialisierung wird nun mit \IC{serializers.deserializeWith} unter Angabe des Objektes,
+welches die Deserialisierung übernehmen soll -- nämlich wiederum \IC{Massnahme.serializer} -- das \enquote{JSON}-Dokument in ein Objekt des Wertetyps \IC{Massnahme} deserialisiert \Z{53-54}.
+Schließlich wird in Zeile 56 das Ergebnis der Deserialisierung mit dem gewünschten Ergebnis verglichen.
+
+
+
+Durch Eingabe des Befehls \IC{flutter test test/data_model/massnahme_test.dart} in der Kommandozeile
+startet die Ausführung aller Tests in der Testdatei.
+Wenn alle Tests erfolgreich ausgeführt wurden und beide Ergebnisse mit den verglichenen Werten übereinstimmen,
+erfolgt die Ausgabe: \IC{All tests passed!}.\pdfcomment[icon=Note,color=yellow]{28.08.2021 Absatz umformuliert}

@@ -73,6 +73,7 @@
 
 \usepackage{etoolbox}
 
+% Kann das Weg? Habe ich im Anhang anders gelöst denke ich
 \makeatletter
 \AtBeginEnvironment{minted}{\dontdofcolorbox}
 \def\dontdofcolorbox{\renewcommand\fcolorbox[4][]{##4}}
@@ -163,6 +164,20 @@
 % enables a break point after /, +, (, ) and -
 % use hyphens option to break url
 \usepackage{url}
+\def\UrlBreaks{%
+  \do\/%
+  %\do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j\do\k\do\l%
+  %   \do\m\do\n\do\o\do\p\do\q\do\r\do\s\do\t\do\u\do\v\do\w\do\x\do\y\do\z%
+  %\do\A\do\B\do\C\do\D\do\E\do\F\do\G\do\H\do\I\do\J\do\K\do\L%
+  %   \do\M\do\N\do\O\do\P\do\Q\do\R\do\S\do\T\do\U\do\V\do\W\do\X\do\Y\do\Z%
+ \do\*\do\-\do\~\do\'\do\"\do\-\do\\%
+ \do\_
+ \do\l
+ \do\n
+ \do0\do1\do2\do3\do4\do5\do6\do7\do8\do9\do=\do/\do.\do:%
+}
+
+
 
 % Links mit Sprungmarken
 % hyperref muss nach \usepackage[hyphens]{url} kommen, sonst gibt es einen Option clash, denn hyperref läd url ohne hyphens option
@@ -188,9 +203,9 @@
 % Kopieren nach texlive\texlive\2021\texmf-dist\tex\latex
 % texhash ausführen
 % uml diagramme mit tikz
-%\ifIncludeFigures
+\ifIncludeFigures
 \usepackage{tikz-uml}
-%\fi
+\fi
 
 % Blindtext einfügen
 \usepackage{blindtext}
@@ -209,8 +224,6 @@
 \newtcolorbox{codeFrame}{colback=inlineCodetXColor,
   colframe=inlineCodetXColor,on line,arc=4pt,boxrule=0pt,boxsep=0pt,left=4pt,right=4pt,top=4pt,bottom=4pt}
 
-\newtcolorbox{newText}{colback=yellow,on line,boxrule=0pt,boxsep=0pt,left=0pt,right=0pt,top=0pt,bottom=0pt}
-
 \BeforeBeginEnvironment{minted}{\begin{codeFrame}}
     \AfterEndEnvironment{minted}{\end{codeFrame}}
 
@@ -223,11 +236,11 @@
 \newenvironment{alexlisting}[4]
 {%
   \begin{listing}[ht]%
+    \ifIncludeFigures
     \begin{codeFrame}
-      \ifIncludeFigures
         \inputminted[#4]{dart}{#3}%
-      \fi
     \end{codeFrame}
+    \fi
     %\vspace{-18pt}
     \alexlistingcaption{#1}{#2}{#3}%
     }%
@@ -239,11 +252,12 @@
 \newenvironment{alexyamllisting}[4]
 {%
   \begin{listing}[ht]%
+    \ifIncludeFigures
+
     \begin{codeFrame}
-      \ifIncludeFigures
         \inputminted[#4]{yaml}{#3}%
-      \fi
     \end{codeFrame}
+    \fi
 
     %\vspace{-18pt}
     \alexlistingcaption{#1}{#2}{#3}%
@@ -258,11 +272,13 @@
 \newenvironment{fremdeslisting}[6]
 {%
     \begin{listing}[ht]%
-      \begin{codeFrame}
       \ifIncludeFigures
+      \begin{codeFrame}
+
       \inputminted[#4]{#6}{#3}%
-      \fi
+
     \end{codeFrame}
+    \fi
       %\vspace{-18pt}
 
       \ifIncludeFigures
@@ -298,12 +314,12 @@
 % Eigener Befehl für Bilder
 \newenvironment{alexfigurewithnotebook}[5]
 {%
-    \begin{figure}[h]
+    \begin{figure}[ht]
       \centering
       \ifIncludeFigures
       \includegraphics[width=1.0\textwidth]{#1}
       \fi
-      \caption[#2]{#3, Quelle: Eigene Abbildung, Notebook: \url{#4}, Daten-Quelle: #5}
+      \caption[#2]{#3, Quelle: Eigene Abbildung, Notebook:\url{#4}, Daten-Quelle:#5}
       }%
       {%
     \end{figure}
@@ -312,6 +328,9 @@
 
 % Eigener Befehl für Abbbildungsreferenz
 \newcommand{\Abb}[1]{(Abb. #1)}
+
+% Eigener Befehl für Abbbildungsreferenz mit Seite
+\newcommand{\AbbS}[1]{(Abb. \ref{#1}, S. \pageref{#1})}
 
 % Eigener Befehl für Listingreferenz
 \newcommand{\Lst}[1]{(Listing #1)}
@@ -388,3 +407,16 @@
 \usepackage{longtable}
 \usepackage{makecell}
 \usepackage{multirow}
+
+
+\ifIncludeFigures
+
+\else
+  \renewcommand{\cleardoublepage}{}
+  \renewcommand{\clearpage}{}
+\fi
+
+\usepackage[all]{nowidow}
+
+
+\usepackage{dirtytalk}

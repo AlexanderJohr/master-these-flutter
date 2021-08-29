@@ -1,0 +1,169 @@
+\ifodd\value{page}\hbox{}\newpage\fi
+
+\section{Der Haupteinstiegspunkt}
+\label{sec:Haupteinstiegspunkt}
+
+Das Listing \ref{lst:Schritt1DerHaupteinstiegspunkt} zeigt den Haupteinstiegspunkt des Programms.
+Darin ist erkennbar, dass sich die Applikation in drei Rubriken einteilen lässt:
+\begin{itemize}
+  \item das \enquote{Model} \Z{24}
+  \item der \enquote{View} \Z{35-38}
+  \item das \enquote{ViewModel}. \Z{25}
+\end{itemize}
+
+
+
+\subsection{Das \enquote{Model-View-ViewModel}-Entwurfsmuster}
+\label{sec:ModelViewViewModel}
+Das \enquote{Model-View-ViewModel}-Entwurfsmuster -- kurs \enquote{MVVM} -- wurde zunächst von John Gossman für die Windows Presentation Foundation beschrieben.
+Das \enquote{Model} beschreibt die Datenzugriffs-Komponente, welche die Daten in relationalen Datenbanken oder hierarchischen Datenstrukturen wie \enquote{XML} oder \enquote{JSON} ablegt.
+Der \enquote{View} beschreibt die Oberflächenelemente wie Texteingabefelder und Buttons.
+Diese beiden Komponenten sind auch aus dem \enquote{Model-View-Controller}-Entwurfsmuster bekannt.
+Das \enquote{Model-View-ViewModel}-Entwurfsmuster ist eine Weiterentwicklung davon und integriert das sogenannte \enquote{ViewModel}.
+Es ist dafür zuständig, als Schnittstelle zwischen \enquote{View} und \enquote{Model} zu fungieren.
+Die Daten des \enquote{Models} lassen sich in der Regel nicht direkt mit Oberflächenelementen verknüpfen.
+Denn es kann notwendig sein, dass die Oberfläche weitere temporäre Daten benötigt, die aber nicht mit den Daten des \enquote{Models} gespeichert werden sollen.
+Das \enquote{ViewModel} übernimmt diese Arbeit, indem es die Daten des \enquote{Models} abruft und sie in veränderter Form den Oberflächenelementen zur Verfügung stellt.
+Andersherum formt es die Eingaben in der Nutzeroberfläche so um, dass sie im strikten Datenmodell des \enquote{Models} Platz finden.
+\footcite[Vgl.][]{IntroductionToModelViewViewModelPatternForBuildingWPFApps}
+
+\IC{MassnahmenModel} \Z{24} verwaltet die eingegebenen Daten der Maßnahmen
+und nutzt die Abhängigkeit \IC{MassnahmenJsonFile},
+um die Daten auf einem Datenträger als eine \enquote{JSON}-Datei zu speichern.
+Somit gehören diese beiden Klassen dem \enquote{Model} an.
+
+\IC{MassnahmenFormViewModel} \Z{25} greift die Daten des \enquote{Models} ab und formt diese um,
+sodass sie von dem \enquote{View} \IC{MassnahmenDetailScreen} \Z{38} verändert werden können.
+Sollen die Daten gespeichert werden, so stellt \IC{MassnahmenFormViewModel} ebenfalls Methoden zur Verfügung,
+um die Daten wieder in das Format des \enquote{Models} einpflegen zu können.
+
+\IC{MassnahmenMasterScreen} \Z{36} stellt eine Ausnahme dar,
+denn dieser \enquote{View} präsentiert die Daten aus dem \enquote{Model} ohne eine Schnittstelle über ein \enquote{ViewModel}.
+Das ist möglich,
+weil die Daten nicht manipuliert,
+sondern nur angezeigt werden müssen.
+
+Damit sowohl \enquote{ViewModel} als auch \enquote{Model} von jedem \enquote{View} heraus abrufbar sind,
+werden sie in eine Art Service eingefügt \Z{23-25}.
+Das \enquote{Widget} \IC{AppState} ist dieser Service.
+ Es erhält das \enquote{Model} \Z{24} und das \enquote{ViewModel} \Z{25}  im Konstruktor.
+Die Abhängigkeit zum Schreiben des \enquote{Models} in eine \enquote{JSON}-Datei \IC{MassnahmenJsonFile} bekommt das \enquote{Model} ebenfalls im Konstruktor übergeben \Z{24}.
+\IC{AppState} ist das erste Element, welches im \enquote{Widget}-Baum auftaucht.
+Die gesamte restliche Applikation ist als Kindelement hinterlegt \Z{26}.
+Damit können alle \enquote{Widgets} auf den Service zugreifen.
+
+\begin{alexlisting}{Schritt 1}{Der Haupteinstiegspunkt \enquote{MassnahmenFormApp}}
+  {Quellcode/Schritt-1/conditional_form/lib/main.dart}
+  {firstline=18}
+  \label{lst:Schritt1DerHaupteinstiegspunkt}
+\end{alexlisting}
+
+\subsection{\enquote{Service Locator} und \enquote{Dependency Inection}}
+
+Das \enquote{service locator pattern} folgt dem Umsetzungsparadigma \enquote{inversion of control} -- deutsch Umkehrung der Steuerung.
+Frameworks folgen diesem Muster, indem sie als erweiterbare Skelett-Applikationen fungieren.
+Anstatt, dass die Applikation den Programmfluss steuert und dabei selbst Funktionen aufruft, wird die Programmflusssteuerung an das Framework abgegeben und mithilfe von Ereignissen ermöglicht, dass das Framework Funktionen des Nutzers aufruft.
+\footcite[Vgl.][]{johnson1988designing}
+Im \enquote{service locator pattern} werden Komponenten darüber hinaus zentral registriert und über dieses Register anderen Komponenten zur Interaktion zur Verfügung gestellt.\footcite[Vgl.][]{fowler2004DependencyInjection}
+Damit ist es möglich, die Komponenten nicht direkt miteinander verknüpfen zu müssen.
+Vor allem für automatisierte Tests ist dies von Vorteil, da solche Abhängigkeiten ausgetauscht werden können, um ganz spezielle Teilfunktionalitäten eines Programms zu testen.
+ Mehr dazu im Kapitel \ref{sec:Integrations} \enquote{\nameref{sec:Integrations}} auf Seite \pageref{sec:Integrations}.
+
+
+Anders als der Name vermuten lässt, steuert \IC{MaterialApp} \Z{26} nicht nur das Aussehen der Applikation im \enquote{Material Design}-Look,
+sondern das \enquote{Widget} stellt auch Grundfunktionalitäten einer App wie etwa den \enquote{Navigator} bereit.
+Damit hat die Applikation die Möglichkeit -- ähnlich wie bei einer Website -- auf Unterseiten zu navigieren.
+Hat der Benutzer die Arbeit in der Unterseite vollendet, so kann der \enquote{Navigator} gebeten werden, zur vorherigen Ansicht zurückzukehren.
+ Mit dem Parameter \IC{routes} \Z{34-39} erfolgt die Angabe der Unterseiten, die besucht werden können.
+Über \IC{initialRoute} \Z{33} kann die Startseite angegeben werden.
+
+
+\subsection{Der Service für den applikationsübergreifenden Zustand}
+\label{sec:ServiceFuerDenApplikationsuebergreifendenZustand}
+
+Um Daten für alle Kindelementen zugreifbar zu machen, werden die sogenannten \enquote{InheritedWidgets} genutzt.
+Der Service \IC{AppState} \Lst{\ref{lst:Schritt1DerServiceAppState}} ist ein solches \enquote{InheritedWidget}.
+Im Konstruktor erhält es zunächst den Parameter des Typs \IC{Key} \Z{7}.
+Es ist gängige Praxis in \enquote{Flutter}, jedem \enquote{Widget} im Konstruktor zu ermöglichen, einen solchen Schlüssel zu übergeben.
+Es ist jedoch optional.
+ Ein solcher Schlüssel kann genutzt werden, um das \enquote{Widget} eindeutig zu identifizieren und es unter anderem über den Schlüssel wiederzufinden.
+In den Zeilen 8 und 9 werden das \enquote{Model} und das \enquote{ViewModel} dem Objekt im Konstruktor übergeben.
+In den Zeilen 13 und 14 sind sie deklariert.
+Der letzte Parameter im Konstruktor ist \IC{child} \Z{10}.
+Ihm wird der \enquote{Widget}-Baum übergeben, der Zugriff auf das \enquote{InheritedWidget} haben soll.
+
+Der Aufruf des Basiskonstruktors mit den Argumenten \IC{key} und \IC{child} ist in Zeile 11 zu sehen.
+Die Basisklasse von \enquote{InheritedWidget} ist \enquote{ProxyWidget} und erhält exakt dieselben Argumente.
+ Das \enquote{ProxyWidget} verwendet das Kindelement, um es im \enquote{Widget}-Baum unterhalb von sich selbst zu zeichnen.
+ Eine eigene Methode zum Zeichnen muss also nicht für das \enquote{InheritedWidget} implementiert werden.
+Die einzige Methode, welche implementiert werden muss, ist \IC{updateShouldNotify} \Z{23}.
+Immer dann, wenn das \enquote{InheritedWidget} selbst aktualisiert wird,
+kann es alle \enquote{Widgets}, die davon abhängig sind, benachrichtigen.
+ In dem Fall werden diese  \enquote{Widgets} ebenfalls neu gezeichnet.
+Für die Formularapplikation ist das allerdings nicht gewünscht.
+Die Aktualisierung der Oberfläche soll in den nachfolgenden Schritten selbst kontrolliert werden.
+Deshalb erfolgt die Rückgabe \IC{false}, da in Zukunft nicht gewünscht ist, den Applikationszustand komplett auszutauschen.
+ Um die  Aktualisierung  der Oberfläche  kümmern sich sowohl \enquote{Model} als auch \enquote{ViewModel}.
+
+Damit ein \enquote{Widget} eine Abhängigkeit von dem \IC{AppState} anmelden kann,
+verwendet es in seiner eigenen \enquote{build}-Methode den Ausdruck \IC{dependOnInheritedWidgetOfExactType<AppState>()}.
+Der Aufruf der Methode erfolgt auf dem Objekt vom Typ \enquote{BuildContext}.
+Weil dieser Kontext bei jedem Zeichnen allen Kindern übergeben wird, kann jedes Kind darüber die Vaterelemente wiederfinden.
+
+Damit der Aufruf leichter lesbar und kürzer ist, empfiehlt das \enquote{Flutter}-Team, eine eigene Klassenmethode zu erstellen, welche die Methode für den Benutzer aufruft \Z{16-17}.
+Auch eine Fehlermeldung kann bei dieser Auslagerung geworfen werden, sollte im Kontext kein Objekt des gewünschten Typs vorhanden sein \Z{18}.
+Das \enquote{Widget}, welches den \IC{AppState} benötigt, kann dann über die vereinfachte Schreibweise \IC{AppState.of(context)} darauf zugreifen.
+
+\begin{alexlisting}{Schritt 1}{Der Service \enquote{AppState} für den applikationsübergreifenden Zustand}
+  {Quellcode/Schritt-1/conditional_form/lib/widgets/app_state.dart}
+  {firstline=5}
+  \label{lst:Schritt1DerServiceAppState}
+\end{alexlisting}
+
+Abbildung \ref{lst:UmlAppState} zeigt die Beziehung zwischen den Bildschirmen und dem \enquote{AppState} auf.
+Sowohl \enquote{MassnahmenMasterScreen} und \enquote{MassnahmenDetailScreen} müssen auf \enquote{MassnahmenModel}
+und \enquote{MassnahmenFormViewModel} zugreifen können.
+Zu diesem Zweck erstellt \enquote{MassnahmenFormApp} den \enquote{AppState}.
+Er enthält sowohl \enquote{ViewModel} als auch \enquote{Model}.
+Über ihn können beide Bildschirme auf \enquote{Model} und \enquote{ViewModel} zugreifen.
+
+
+
+
+
+\ifIncludeFigures
+  \begin{figure}[h]
+    \centering
+
+    \begin{tikzpicture}
+
+      \umlsimpleclass[x=0, y=-2.7]{MassnahmenFormApp}
+
+      \umlsimpleclass[x=6,y=-2.7]{AppState}
+
+      \umlclass[x=7,y=0.22]{MassnahmenModel}{
+        jsonFile : MassnahmenJsonFile
+      }{
+      }
+      \umlsimpleclass[x=0,y=-0.5]{MassnahmenFormViewModel}
+
+      \umlsimpleclass[x=0,y=-4.9]{MassnahmenMasterScreen}
+      \umlsimpleclass[x=7.0,y=-4.9]{MassnahmenDetailScreen}
+      \umluniassoc[]{MassnahmenFormApp}{AppState}
+
+      \umldep[geometry=|-|, anchors=60 and -60]{MassnahmenDetailScreen}{AppState}
+
+      \umldep[geometry=|-|, anchors=90 and -120]{MassnahmenMasterScreen}{AppState}
+
+      \umluniassoc[]{MassnahmenMasterScreen}{MassnahmenDetailScreen}
+
+      \umlaggreg[anchors=60 and 241]{AppState}{MassnahmenModel}
+      \umlaggreg[geometry=|-|, anchors=120 and -50]{AppState}{MassnahmenFormViewModel}
+
+    \end{tikzpicture}
+
+    \caption[UML-Diagramm der Beziehungen zwischen den Bildschirmen und dem \enquote{AppState}]{UML-Diagramm der Beziehungen zwischen den Bildschirmen und dem \enquote{AppState}, Quelle: Eigene Abbildung}
+    \label{lst:UmlAppState}
+
+  \end{figure}%
+\fi
