@@ -111,11 +111,11 @@ welche der Instanzvariablen \IC{condition} zugewiesen wird \Z{13}.
 Ansonsten speichert der Konstruktor die übergebene Funktion.
 Aus diesem Grund ist es nicht möglich,
 dass die Instanzvariable \IC{condition} den Wert \IC{null} erhält,
-weshalb sie ohne den Suffix \IC{?} als eine Variable ohne Null-Zulässigkeit deklariert werden kann.
+weshalb sie ohne das Suffix \IC{?} als eine Variable ohne Null-Zulässigkeit deklariert werden kann.
 Da der Ausdruck rechts von dem \IC{??} nicht \IC{null} sein kann,
 so kann auch der gesamte Ausdruck der vorliegenden \enquote{if-null Expression} nicht \IC{null} sein.
 Damit ist es möglich,
-die Instanzvariable \IC{condition} ohne den Suffix \IC{?} als Variable ohne Null-Zulässigkeit zu deklarieren.
+die Instanzvariable \IC{condition} ohne das Suffix \IC{?} als Variable ohne Null-Zulässigkeit zu deklarieren.
 Die Instanzmethode \IC{conditionMatches} ruft die übergebene Funktion für die Bedingung über die Methode \IC{call} auf \Z{10}.
 Das erlaubt es, den Ausdruck vereinfacht darzustellen.
 Der Ausdruck \IC{wald.condition(priorChoices)} kann daraufhin durch die explizitere Schreibweise \IC{wald.conditionMatches(priorChoices)} ersetzt werden.
@@ -128,7 +128,7 @@ Der Ausdruck \IC{wald.condition(priorChoices)} kann daraufhin durch die explizit
 
 \section{Hinzufügen der Momentaufnahme aller ausgewählten Optionen im gesamten Formular}
 
-Die Menge der bisherigen Ausfülloptionen setzt sich aus den aktuellen Inhalten der Auswahlfelder zusammen.
+Die Menge der bisherigen Auswahloptionen setzt sich aus den aktuellen Inhalten der Auswahlfelder zusammen.
 Sie ist also die Momentaufnahme aller Werte,
 die jeweils über die \enquote{Getter}-Methode \IC{value} von allen \IC{BehaviorSubject}-Objekten im \enquote{ViewModel} abgerufen werden kann.
 Doch genau diese Momentaufnahme muss immer dann neu erstellt werden,
@@ -340,7 +340,7 @@ die invalide
 und nicht selektiert sind.
 Eine Schleife iteriert über alle verfügbaren Optionen,
 welche der Selektionsbildschirm anzeigt  \Z{90-105}.
-Sollte die Option in den selektierten Optionen enthalten \Z{99},
+Sollte die Option in den selektierten Optionen enthalten \Z{99}
 oder aber mit den Selektionen aller anderen Auswahlfelder kompatibel sein,
 so wird sie der Menge \IC{selectedAndSelectableChoices} hinzugefügt \Z{101}.
 In jedem anderen Fall wird die Option Teil der Menge \IC{unselectableChoices} \Z{103}.
@@ -362,7 +362,7 @@ baut der \IC{StreamBuilder} auch den \IC{ListView} neu.
 Die deselektierte Option wird dann Teil von der Menge \IC{unselectableChoices} \Z{103} sein.
 So erscheint sie dann
 -- ganz genau wie alle anderen unselektierbaren Auswahloptionen --
-ohne roten Hintergrund aber auch ohne anklickbare Checkbox am Ende der Liste \Z{134-142}.
+ohne roten Hintergrund, aber auch ohne anklickbare Checkbox am Ende der Liste \Z{134-142}.
 
 Solche unselektierbaren Auswahloptionen werden schlicht als \IC{ListTile}-Element statt als \IC{CheckBoxListTile} gezeichnet \Z{135-139}.\pdfcomment[icon=Note,color=yellow]{27.08.2021 2. Einschub bis hier}
 Damit fehlt ihnen die Checkbox zum Selektieren.
@@ -370,7 +370,7 @@ Damit fehlt ihnen die Checkbox zum Selektieren.
 -- in diesem Fall ein \IC{Icon} --
 eingefügt werden.
 \IC{Icons.close} zeichnet ein Kreuz-Symbol,
-um zu signalisieren,Es ist unerheblich,
+um zu signalisieren,
 dass diese Option nicht anwählbar ist. 
 
 

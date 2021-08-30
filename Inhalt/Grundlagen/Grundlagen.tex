@@ -32,7 +32,7 @@ Es unterstützt eine breite Anzahl an Zielsystemen.
 \end{itemize}
 
 \enquote{Flutter} ist inspiriert durch das Webframework \enquote{React} und deren Oberflächenelemente, die \enquote{Components} genannt werden \footcite[Vgl.][]{IntroductionToWidgets}.
-Die visuellen Oberflächenelemente in \enquote{Flutter} werden dagegen \enquote{Widgets} \pdfcomment[icon=Note,color=yellow]{27.08.2021 4. Einschub im nächsten Satz}genannt.
+Die visuellen Oberflächenelemente in \enquote{Flutter} werden dagegen \enquote{Widgets} \pdfcomment[icon=Note,color=yellow]{27.08.2021 4. Einschub im nächsten Satz} genannt.
 Bei \enquote{Flutter} und \enquote{React} handelt es sich um deklarative Frontend-Frameworks.
 Dem stehen die imperativen Frameworks gegenüber.
 
@@ -105,7 +105,7 @@ Das ist der Fall,
 \end{itemize}\pdfcomment[icon=Note,color=yellow]{27.08.2021 3. Einschub bis hier}
 
 
-\enquote{StatefulWidgets} sind nur eine von vielen Möglichkeiten den Zustand des Programms zu verwalten.
+\enquote{StatefulWidgets} sind nur eine von vielen Möglichkeiten, den Zustand des Programms zu verwalten.
 Die Formularanwendung verwendet ausschließlich \enquote{StatelessWidgets}, da die Verwaltung des Zustands über das sogenannte \enquote{Model-View-ViewModel}-Entwurfsmuster umgesetzt wird.
 Mehr dazu im Kapitel \ref{sec:ModelViewViewModel} \enquote{\nameref{sec:ModelViewViewModel}} auf Seite \pageref{sec:ModelViewViewModel}.
 
@@ -135,7 +135,7 @@ Daraufhin werden nur die Teile der laufenden Applikation aktualisiert, die tats�
 Nicht nur für die reibungslose Entwicklung, sondern auch für das Laufzeitverhalten der finalen Applikation wurde die Sprache optimiert.
 Für die Zielarchitekturen \enquote{ARM32}, \enquote{ARM64} und \enquote{x86_64} wird \enquote{Dart} in Maschinencode kompiliert \footcite[Vgl.][]{DartThePlatforms}.
 
-Dementsprechend kommt während der Entwicklung eine virtuelle Maschine -- die \enquote{Dart VM} -- über \enquote{Just-in-time}-Kompilierung (JIT) zum Einsatz.
+Dementsprechend kommt während der Entwicklung eine virtuelle Maschine -- die \enquote{Dart VM} -- über \enquote{Just-in-time}-Kompilierung (\enquote{JIT}) zum Einsatz.
 Für die Kompilierung in Maschinencode wird dagegen \enquote{Ahead-of-time}-Kompilierung (\enquote{AOT}) eingesetzt.
 
 \subsubsection{tree shaking}
@@ -145,7 +145,7 @@ Diese Dateien importieren wieder weitere.
 Dadurch wird ein Baum aufgespannt.
 Das \enquote{tree shaking} identifiziert, welche Funktionalitäten tatsächlich vom Programm verwendet werden und welche nicht.
 Dies bringt aber eine wichtige Einschränkung mit sich.
-Die Metaprogrammierung (der Zugriff auf sprachinterne Eigenschaften, wie etwa Klassen und ihre Attribute) ist damit stark eingeschränkt.
+Die Metaprogrammierung (der Zugriff auf sprachinterne Eigenschaften wie etwa Klassen und ihre Attribute) ist damit stark eingeschränkt.
 
 \subsubsection{Metaprogrammierung}
 Bei der Kompilierung werden die Original-Bezeichner durch Symbole ersetzt, welche minimalen Speicherbedarf haben.
@@ -158,7 +158,7 @@ Da die Eigenschaften aber nicht mehr verfügbar sind, ist \enquote{Reflexion} ni
 Das Package \enquote{source_gen} erlaubt das Auslesen der Metainformationen und ermöglicht das Generieren von Quellcode, der von diesen Eigenschaften abgeleitet werden kann.\footcite[Vgl.][]{SourceGen}
 So verwendet beispielsweise das Package \enquote{built_value} die Codegenerierung.\footcite[Vgl.][]{BuiltValueGenerator}
 Zunächst werden Eigenschaften wie Klassennamen und Instanzvariablen mit ihren Bezeichnern und Datentypen gelesen.
-Die Eigenschaften können dann genutzt werden, um unveränderliche Wertetypen und dazugehörige sogenannte \enquote{Builder}-Objekte des \enquote{Erbauer}-Entwurfsmusters, sowie Funktionen zum Serialisieren und Deserialisieren von Objekten zu generieren.
+Die Eigenschaften können dann genutzt werden, um unveränderliche Wertetypen und dazugehörige sogenannte \enquote{Builder}-Objekte des \enquote{Erbauer}-Entwurfsmusters sowie Funktionen zum Serialisieren und Deserialisieren von Objekten zu generieren.
 
 \subsection{\enquote{Set}- und \enquote{Map}-Literale}
 \label{sec:SetUndMapLiterale}
@@ -187,7 +187,7 @@ Im Fall einer \enquote{Map} werden der Schlüssel und der Wert durch einen \IC{:
 Eine Liste wiederum wird mit eckigen Klammern geöffnet und geschlossen.
 Die Werte werden erneut mit \IC{,} getrennt voneinander angegeben (\IC{[1,2]}).
 
-\subsubsection{\enquote{Collection for}} \enquote{Dart} erlaubt es Schleifen innerhalb von Listen-, Mengen- und Hashtabellen-Literalen zu verwenden.
+\subsubsection{\enquote{Collection for}} \enquote{Dart} erlaubt es, Schleifen innerhalb von Listen-, Mengen- und Hashtabellen-Literalen zu verwenden.
 Dabei darf die Schleife jedoch keinen Schleifen-Körper besitzen.
 Lediglich der Schleifen-Kopf wird dazu im Literal geschrieben.
 Darauf folgt der Wert, der bei jedem Schleifendurchlauf hinzugefügt werden soll.
@@ -262,7 +262,7 @@ Das Ergebnis der Liste \IC{fieberTemperaturen} ergibt also \IC{[38.5, 41]}.
 
 
 \subsection{Typen ohne Null-Zulässigkeit} Im Vergleich zu vielen anderen Programmiersprachen -- wie beispielsweise \enquote{Java} -- wird in \enquote{Dart} zwischen Typen mit und ohne Null-Zulässigkeit unterschieden.\pdfcomment[icon=Note,color=yellow]{27.08.2021 Satz angepasst}
-In \enquote{Java} ist es nur bei atomaren Datentypen wie \enquote{int} und \enquote{float} verpflichtend einen Wert anzugeben.
+In \enquote{Java} ist es nur bei atomaren Datentypen wie \enquote{int} und \enquote{float} verpflichtend, einen Wert anzugeben.
 \enquote{null} ist bei diesen primitiven Datentypen nicht als Wert erlaubt.
 Doch nicht atomare Datentypen erlauben immer die Angabe von \enquote{null} als Wert.
 \enquote{null} drückt dabei immer das Nicht-Vorhandensein von Daten aus.
@@ -444,20 +444,20 @@ Eine noch sicherere Variante ist es, die Instanzvariable zuvor in eine lokale Va
   \end{listing}
 \fi
 
-Die lokale Variable hat keine Möglichkeit zwischen den zwei Aufrufen einen unterschiedlichen Wert anzunehmen.
+Die lokale Variable hat keine Möglichkeit, zwischen den zwei Aufrufen einen unterschiedlichen Wert anzunehmen.
 Somit kann auch das Suffix \IC{!} weggelassen werden \Z{4}.
 
 
 
 \subsection{Asynchrone Programmierung}
 
-Wird auf eine externe Ressource zugegriffen -- wie zum Beispiel das Abrufen einer Information von einem Webserver, oder das Lesen einer Datei im lokalen Dateisystem -- so handelt es sich um asynchrone Operationen.
+Wird auf eine externe Ressource zugegriffen -- wie zum Beispiel das Abrufen einer Information von einem Webserver oder das Lesen einer Datei im lokalen Dateisystem -- so handelt es sich um asynchrone Operationen.
 
 Im Sprachkern stellt \enquote{Dart} Schlüsselwörter und Datentypen für die asynchrone Programmierung bereit.
 Das sind unter anderem die Datentypen \enquote{Future} und \enquote{Stream} sowie die Schlüsselwörter \enquote{async} und \enquote{await}.
 
 \subsubsection{Future}
-Ein \enquote{Future}-Objekt repräsentiert einen potenziellen einmaligen Wert, der erst in der Zukunft bereit steht.
+Ein \enquote{Future}-Objekt repräsentiert einen potenziellen einmaligen Wert, der erst in der Zukunft bereitsteht.
 Er gleicht damit dem sogenannten \enquote{Promise} -- deutsch Versprechen -- in \enquote{JavaScript}  \footcite[Vgl.][]{PromiseJavaScriptMDN}.
 
 Das Listing \ref{lst:fileReadAsString} zeigt mit dem Lesen einer Datei ein Beispiel für den Aufruf einer asynchronen Operation.
@@ -472,7 +472,7 @@ var fileContent = file.readAsString();
   \end{listing}
 \fi
 
-Anders als erwartet, befindet sich in der Variablen \IC{fileContent} in Wahrheit kein Text mit dem Inhalt der Datei.
+Anders als erwartet befindet sich in der Variablen \IC{fileContent} in Wahrheit kein Text mit dem Inhalt der Datei.
 Stattdessen hat die Variable den Datentyp \enquote{Future<String>} und ist lediglich ein sogenannter \enquote{Handle}
 -- deutsch Referenzwert --
 für das potenzielle und zukünftige Ergebnis der Operation.
@@ -535,7 +535,7 @@ printFileContent() async {
 \subsubsection{Streams}
 
 \enquote{Streams} liefern nicht nur einen Wert -- wie im Fall eines \enquote{Future}-Objektes -- sondern eine Serie von Werten, die in der Zukunft geliefert werden.
-Listing \ref{lst:countStream} zeigt wie auf einen solchen \IC{Stream} gehorcht werden kann.
+Listing \ref{lst:countStream} zeigt, wie auf einen solchen \IC{Stream} gehorcht werden kann.
 \ifIncludeFigures
   \begin{listing}[ht]
     \begin{minted}[]{dart}

@@ -32,7 +32,7 @@ Damit das Paket \enquote{source_gen} die entsprechenden Dateien analysiert, müs
 Wird der Ordner \enquote{integration_test} darin eingefügt \Z{8}, bezieht \enquote{source_gen} den Ordner in der Codegenerierung mit ein.
 Zusätzlich dazu muss die Rubrik \IC{generate_for} von dem \IC{mockBuilder} des \enquote{mockito}-Pakets \Z{11-13} um die gleiche Angabe des Ordners ergänzt werden \Z{13}.
 
-\begin{alexyamllisting}{Schritt 1}{Initialisierung des Integrations Tests}
+\begin{alexyamllisting}{Schritt 1}{Initialisierung des Integrationstests}
   {Quellcode/Schritt-1/conditional_form/build.yaml}
   {firstline=0}
   \label{lst:Schritt1IntegrationsTestInitialisierung}
@@ -43,7 +43,7 @@ In der Kommandozeile ist -- genau wie bei der Generierung der Wertetypen -- der 
 Mit dem \enquote{Mock} kann der Integrationstest ausgeführt werden, ohne dass befürchtet werden muss, dass die \enquote{JSON}-Datei tatsächlich beschrieben wird.
 Stattdessen kann darauf gehorcht werden, wenn Operationen auf dem Objekt ausgeführt werden. 
 
-\begin{alexlisting}{Schritt 1}{Initialisierung des Integrations Tests}
+\begin{alexlisting}{Schritt 1}{Initialisierung des Integrationstests}
   {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
   {firstline=18, lastline=28}
   \label{lst:Schritt1IntegrationsTestInitialisierung}
@@ -84,7 +84,7 @@ wurden entsprechende Hilfsfunktionen erstellt.
 Die Funktion \IC{tabSelectionCard} \Lst{\ref{lst:Schritt1HilfsmethodeTabSelectionCard}} benötigt lediglich die Liste der Auswahloptionen \IC{choices}, die ihr hinterlegt ist.
  
 
-\begin{alexlisting}{Schritt 1}{Die Hilfsmethode tabSelectionCard}
+\begin{alexlisting}{Schritt 1}{Die Hilfsmethode \enquote{tabSelectionCard}}
   {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
   {firstline=49, lastline=59}
   \label{lst:Schritt1HilfsmethodeTabSelectionCard}
@@ -95,7 +95,8 @@ Um Objekte während des Testens in der Oberfläche zu finden, stellt die Klasse 
 
 \paragraph{Fabrikmethoden}
 Bei der Fabrikmethode handelt es sich um ein klassenbasiertes Erzeugungsmuster.
-Anstatt ein Objekt einer Klasse direkt über einen Konstruktor zu erstellen, erlaubt ein Erzeuger das Objekt zu konstruieren.
+Anstatt ein Objekt einer Klasse direkt über einen Konstruktor zu erstellen,
+erlaubt ein Erzeuger, das Objekt zu konstruieren.
 Dabei entscheidet der Erzeuger darüber,
 welche Implementierung der Klasse zurückgegeben wird.
 Der aufrufende Kontext muss die konkrete Klasse dazu nicht kennen.\footcite[Vgl.][107-116]{gamma2009entwurfsmuster} Er arbeitet lediglich mit der Schnittstelle.
@@ -110,7 +111,7 @@ Anstatt \IC{Finder titel = new _TextFinder("Maßnahmentitel")} ist \IC{Finder ti
 
 
 Um die Selektionskarten zu finden, wird lediglich der Titel-Text benötigt.
-Angenommen der Test ruft \IC{tabSelectionCard} mit dem Argument \IC{letzterStatusChoices} auf, so entspricht \IC{choices.name} dem \IC{String} \IC{"Status"}. Der Ausdruck \IC{find.text("Status")} lokalisiert den Titel innerhalb der Selektionskarte \Z{50}.
+Angenommen, der Test ruft \IC{tabSelectionCard} mit dem Argument \IC{letzterStatusChoices} auf, so entspricht \IC{choices.name} dem \IC{String} \IC{"Status"}. Der Ausdruck \IC{find.text("Status")} lokalisiert den Titel innerhalb der Selektionskarte \Z{50}.
 
 Die Funktion \IC{expect} erwartet als ersten Parameter einen \IC{Finder} und als zweiten einen sogenannten \enquote{Matcher} \Z{51}.
 Der Aufruf von \IC{expect} mit dem entsprechenden \IC{Finder}-Objekt und dem \enquote{Matcher} \IC{findsWidgets} verifiziert, dass mindestens ein entsprechendes \IC{Text}-Element gefunden wurde.
@@ -126,7 +127,7 @@ dass die Karte gefunden wurde.
 Doch dieses Mal muss es genau ein \enquote{Widget} sein, welches mit dem \enquote{Matcher} \IC{findsOneWidget} verifiziert werden kann \Z{54}.
 Sollte mehr als nur eine Karte gefunden werden, so wäre nicht klar, welche angeklickt werden soll.
 
-Um eine Karte tatsächlich anzuwählen muss sie im sichtbaren Bereich sein.
+Um eine Karte tatsächlich anzuwählen, muss sie im sichtbaren Bereich sein.
 Die Methode \enquote{ensureVisible} scrollt den Bildschirm zur entsprechenden Position, damit die Karte sichtbar ist \Z{56}.
 Schließlich sorgt \IC{tab} mit dem \IC{Finder} \IC{card} dafür,
 dass die Karte ausgewählt wird. \IC{pumpAndSettle} \Z{58} ist eine obligatorische Methode,
@@ -136,7 +137,7 @@ bis alle Aktionen in der Oberfläche und damit auch alle angestoßenen Animation
 
 Die Hilfsmethode \IC{tabConfirmButton} funktioniert ähnlich \Lst{\ref{lst:Schritt1HilfsmethodeTabConfirmButton}}.
 Das Finden des Buttons ist jedoch einfacher, da es nur einen Button zum Akzeptieren auf jeder Oberfläche gibt.
-Der Button enthält keinen Text, lässt sich aber auch über seinen Tooltip lokalisieren \Z{62}.
+Der Button enthält keinen Text, lässt sich aber auch über seinen Tooltipp lokalisieren \Z{62}.
 Die Hilfsfunktion klickt auf den Button \Z{63} und wartet dann erneut auf Vollendung aller angestoßenen Animationen \Z{64}.
 
 \begin{alexlisting}{Schritt 1}{Die Hilfsmethode \enquote{tabConfirmButton}}
@@ -185,7 +186,7 @@ Zunächst wird gewartet, dass alle \enquote{Widgets} korrekt initialisiert wurde
 Es folgt der Klick auf den Button zum Erstellen einer neuen Maßnahme \Z{95}.
 Dazu wird der Button über den entsprechenden \IC{Key} gefunden \Z{94}.
 Vor allem jetzt ist das Abwarten mittels \IC{pumpAndSettle} \Z{96} unablässig, denn es wird auf einen anderen Bildschirm navigiert.
-Angenommen der Test wartet nicht ab, so würden die Aktionen noch immer auf den Elementen des alten Bildschirms Anwendung finden. 
+Angenommen, der Test wartet nicht ab, so würden die Aktionen noch immer auf den Elementen des alten Bildschirms Anwendung finden. 
 
 \begin{alexlisting}{Schritt 1}{Der Button zum Kreieren einer Maßnahme wird ausgelöst}
   {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
@@ -233,7 +234,7 @@ Dadurch würde in der Anwendung nun das Speichern der Maßnahmen in der \enquote
 Da stattdessen ein \enquote{Mock} verwendet wurde, passiert dies nicht.
 Das \enquote{Model} ruft aber dennoch die entsprechenden Methoden -- wie zum Beispiel \IC{saveMassnahmen} -- auf.
 Die Methoden haben nur nicht die ursprüngliche Funktion.
-Stattdessen protokollieren sie sowohl die Aufrufe, als auch die übergebenen Argumente.
+Stattdessen protokollieren sie sowohl die Aufrufe als auch die übergebenen Argumente.
 Durch die Methode \IC{verify} \Z{111} kann überprüft werden, ob die entsprechende Methode \IC{saveMassnahmen} ausgeführt wurde.
 Der \enquote{Matcher} \IC{captureAny} ermöglicht die Überprüfung auf irgendeine Übergabe und stellt die übergebenen Argumente über den Rückgabewert bereit.
 

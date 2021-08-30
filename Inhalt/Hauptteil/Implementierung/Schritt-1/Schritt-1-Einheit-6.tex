@@ -23,7 +23,7 @@ Daraufhin ruft der Konstruktor gleich die \IC{init}-Methode auf \Z{12}, welche i
 Darin wird der \enquote{Stream} \IC{storage} \Z{19} initialisiert.
 Es handelt sich um eine Erweiterung eines \enquote{broadcast streams} mit dem Namen \IC{BehaviorSubject} \Z{9}.
 Es entstammt dem Paket \enquote{rx.dart},
-welches die \enquote{Streams} in \enquote{Dart} um eine Reihe von weiteren Funktionalitäten \pdfcomment[icon=Note,color=yellow]{29.08.2021 Einschub am nächstem Satz}erweitert.
+welches die \enquote{Streams} in \enquote{Dart} um eine Reihe von weiteren Funktionalitäten \pdfcomment[icon=Note,color=yellow]{29.08.2021 Einschub am nächstem Satz} erweitert.
 Der Begriff \enquote{Behaviour} stammt aus der funktionalen reaktiven Programmierung:
 \say{Behaviors are time-varying, reactive values}\footcite[][S. 1]{ElliottHudak97:Fran}
 Das \enquote{Subject}
@@ -48,12 +48,12 @@ bevor der \enquote{Stream} initialisiert wurde,
 so  existieren ebenfalls keine Daten.
 Hier kommt das \IC{BehaviorSubject} ins Spiel.
 Sobald die Oberfläche gezeichnet wird und der \enquote{Stream} bereits initialisiert ist,
-kann dennnoch auf den zuletzt übertragenen Wert zurückgegriffen werden.
+kann dennoch auf den zuletzt übertragenen Wert zurückgegriffen werden.
 Anschließend überträgt der \enquote{Stream} die folgenden Aktualisierungen für die Oberfläche mit jedem neuen Ereignis,
 so wie es für \enquote{Streams} üblich ist.
 
 Der \enquote{Stream} kann nicht bereits in der Initialisierungsliste des Konstruktors mit den Daten aus der \enquote{JSON}-Datei gefüllt werden.
-Das liegt daran, dass die \enquote{JSON}-Daten dazu zunächst gelesen werden müssen, was nur durch eine Reihe von asynchronen Operation möglich ist.
+Das liegt daran, dass die \enquote{JSON}-Daten dazu zunächst gelesen werden müssen, was nur durch eine Reihe von asynchronen Operationen möglich ist.
 In einer Initialisierungsliste können allerdings keine asynchronen Operationen ausgeführt werden.
 Deshalb wird \IC{init} erst im Konstruktor-Körper aufgerufen \Z{12}.
 Damit der \enquote{Stream} anfangs nicht leer ist, füllt ihn der benannte Konstruktor \IC{seeded} mit einem leeren Objekt des Typs \IC{Storage} \Z{9}.
@@ -64,7 +64,7 @@ Diese ist leer, da sich im \enquote{Stream} bereits ein leeres \IC{Storage}-Obje
 Mit diesem leeren Objekt kann die Oberfläche weiterarbeiten.
 In Zukunft könnte es sinnvoll sein, innerhalb der Fehlerbehandlung eine Meldung an den Benutzer zu geben, um darüber zu informieren, dass eine neue Datei angelegt wurde.
 
-Mit \IC{putMassnahmeIfAbsent} \Z{24-33} steht eine Methode bereit, um gleichzeitig  sowohl die Oberfläche,  als auch die \enquote{JSON}-Datei zu aktualisieren.
+Mit \IC{putMassnahmeIfAbsent} \Z{24-33} steht eine Methode bereit, um gleichzeitig sowohl die Oberfläche als auch die \enquote{JSON}-Datei zu aktualisieren.
 Sollte die eingetragene Maßnahme schon existieren, wird sie zunächst gelöscht \Z{26}.
 In jedem Fall wird die neue Maßnahme der Menge \IC{massnahmen} hinzugefügt \Z{27}.\pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
 Durch Austauschen des gesamten Objektes mit der Zuweisung zu \IC{storage.value} \Z{25} erhält der \enquote{Stream} erneut ein neues Ereignis, womit er die Oberfläche benachrichtigen kann,

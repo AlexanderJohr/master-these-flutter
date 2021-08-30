@@ -6,7 +6,7 @@
 
 Listing \ref{lst:Schritt1KlasseMassnahmenFormViewModel} zeigt das \enquote{ViewModel}.
 Im ersten Schritt enthält es nur drei \enquote{Streams} vom Typ \IC{BehaviorSubject}.
-Eines für den letzten Status \Z{6}, eines für die \enquote{guid} \Z{8} und eines für den Titel der Maßnahme \Z{10}.
+Eines für den letzten Status \Z{6}, eines für den \enquote{guid} \Z{8} und eines für den Titel der Maßnahme \Z{10}.
 Anhand dessen wird offensichtlich, warum ein \enquote{ViewModel} nötig ist.
 Die Daten, die in der Oberfläche angezeigt werden, entstammen \enquote{Streams}, die neue Werte annehmen können.\pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
 Wann immer sich ein Wert ändert, löst der \enquote{Stream} ein neues Ereignis aus.
@@ -31,7 +31,7 @@ Allerdings kann bei Auswahlfeldern auch keine Option gewählt sein.
 Die \enquote{Getter}-Methode \IC{value} kann daher also auch \enquote{null} zurückgeben. \pdfcomment[icon=Note,color=yellow]{29.08.2021 zurück geben -> zurückgeben} 
 Der Compiler gibt einen Fehler aus, wenn versucht wird, auf \IC{value} eine Operation auszuführen, sollte es sich um einen Typ mit Null-Zulässigkeit handeln.
 So ist es bei dem Aufruf von \IC{abbreviation} der Fall \Z{22}.
-Der Fehler kann nur damit behoben werden, indem das Prefix \IC{?}  der Operation vorangestellt wird.
+Der Fehler kann nur damit behoben werden, indem das Präfix \IC{?}  der Operation vorangestellt wird.
 In diesem Fall wird die \enquote{Getter}-Methode \IC{abbreviation} aufgerufen, sollte \IC{value} nicht \enquote{null} sein. \pdfcomment[icon=Note,color=yellow]{29.08.2021 zurück geben -> zurückgeben} 
 Ist \IC{value} dagegen \enquote{null}, so wird die Operation nicht ausgeführt und der gesamte Ausdruck gibt direkt \enquote{null} zurück.
 

@@ -4,41 +4,44 @@
 Das soeben erstellte \enquote{ViewModel} kann nun für die Eingabemaske verwendet werden.
 Listing \ref{lst:Schritt1KlasseMassnahmenDetailScreenStruktur} zeigt die grundlegende Struktur der Klasse \IC{MassnahmenDetailScreen}.
 Wiederum werden das \enquote{ViewModel} und das \enquote{Model} über das \enquote{InheritedWidget} \IC{AppState} abgerufen
-und in die jeweiligen lokalen Variablen gespeichert \Z{16, 17}.
-Nachfolgend werden zwei Hilfsfunktionen innerhalb der \IC{build}-Methode deklariert.
-Solche sogenannten \enquote{nested functions} -- deutsch
-verschachtelten Funktionen -- sind in \enquote{Dart} erlaubt, was zu einer weiteren Besonderheit führt.
+und in die jeweiligen lokalen Variablen \IC{vm} und \IC{model} gespeichert \Z{16, 17}.
+
+Nachfolgend werden zwei Funktionen innerhalb der \IC{build}-Methode deklariert:
+\IC{saveRecord} \Z{19-28} und \IC{createMassnahmenTitelTextFormField} \Z{30-44}.
+Solche sogenannte \enquote{nested functions} -- deutsch
+verschachtelte Funktionen -- sind in \enquote{Dart} erlaubt, was zu einer weiteren Besonderheit führt.
 Der Sichtbarkeitsbereich von Variablen ist in \enquote{Dart} lexikalisch.
 Die Bindung der Variablen ist also durch den umgebenden Quelltext bestimmt.
 Die lokalen Variablen \IC{model} und \IC{vm} sind also im gesamten Bereich sichtbar,
 der durch die öffnenden und schließenden geschweiften Klammern der Methode \IC{build} aufgespannt wird \Z{15-103}.
 Damit sind sie auch innerhalb der beiden verschachtelten Funktionen verfügbar.
-Innerhalb der Funktionen kann auf model und vm zugegriffen werden, ohne sie über einen Parameter übergeben zu müssen.
+Innerhalb der Funktionen kann auf \IC{model} und \IC{vm} zugegriffen werden, ohne sie über einen Parameter übergeben zu müssen.
 
 
-Das erste \enquote{Widget} im Inhaltsbereich des \IC{Scaffold}-Elements ist ein \IC{WillPopScope}.
+Das erste \enquote{Widget} im Inhaltsbereich des \IC{Scaffold}-Elements ist ein \IC{WillPopScope} \Z{50}.
 Es erlaubt das Verlassen einer Route an eine Abhängigkeit zu knüpfen.
 Bei dem Eingabeformular handelt es sich um eine Unterseite.
 % Meine Formulierung wäre:
-Dadurch erscheint in der \IC{AppBar} \Z{47-48} links von der Überschrift ein Button, der es ermöglicht, zur letzten Ansicht zurück zu navigieren \Abb{\ref{fig:Schritt1Eingabemaske}}.
+Dadurch erscheint in der \IC{AppBar} \Z{47-48} links von der Überschrift ein Button, der es ermöglicht,
+zur letzten Ansicht zurück zu navigieren.
 Dabei stellt sich jedoch die Frage, was mit der bis zu diesem Zeitpunkt eingetragenen Maßnahme passieren soll.
 Für die Formularanwendung soll in diesem Fall die Maßnahme im aktuellen Zustand abgespeichert werden.
 Dazu wird dem Parameter \IC{onWillPop} als Argument die Funktion \IC{saveRecord} zugewiesen.
 
 Anders als im Übersichtsbildschirm erhält das \IC{Scaffold} kein Argument für den Parameter \IC{floatingActionButton}.
 Der Hintergrund dafür ist, dass auf diesem Bildschirm in den nächsten Schritten nicht nur ein, sondern zwei solcher Buttons zur Verfügung stehen sollen.
- Daher muss der Button manual angelegt werden.
+Daher muss der Button manuell angelegt werden. \pdfcomment[icon=Note,color=red]{29.08.2021 Hier stand manual}
 Das ist nur mithilfe eines \IC{Stack}-\enquote{Widgets} möglich, welcher als Kind des \IC{WillPopScope} eingetragen ist.
-Ein \IC{Stack} erlaubt es mehrere Ebenen in der Tiefe anzulegen.
+Ein \IC{Stack} erlaubt es, mehrere Ebenen in der Tiefe anzulegen.
 Das unterste Element soll die Auflistung der Eingabefelder sein.
 Der \IC{SingleChildScrollView} \Z{54-79} bietet einen vertikalen Scrollbereich an, in dem die Eingabefelder in einer \IC{Column} \Z{58-76} untereinander aufgelistet sind.
-Die Ebene, die  über den Eingabefeldern eingeblendet wird, soll die beiden Aktions-Buttons zeichnen.
+Die Ebene, die  über den Eingabefeldern eingeblendet wird, soll die beiden Aktionsbuttons zeichnen.
 Das \enquote{Widget} \IC{Align} erlaubt es, in dieser Ebene festzulegen, wo die Elemente angeordnet sein sollen \Z{80-99}.
 Wie für den \IC{FloatingActionButton} üblich wurde die untere rechte Bildschirmecke gewählt \Z{81}.
-Die Buttons sollen in Zukunft übereinander angeordnet sein, weshalb ein \IC{Column}-\enquote{Widget} zum Einsatz kommt.
-Zum ersten Mal taucht der Parameter \IC{mainAxisSize} auf.
+Die Buttons sollen in Zukunft übereinander angeordnet sein, weshalb ein \IC{Column}-\enquote{Widget} zum Einsatz kommt \Z{84-97}.
+Zum ersten Mal taucht der Parameter \IC{mainAxisSize} auf \Z{85}.
 Mit dem Argument \IC{MainAxisSize.min} nimmt die \IC{Column} in der Höhe nur so viel Platz ein,
-wie durch die Kindelemente notwendig.
+wie durch die Kindelemente notwendig ist.
 
 
 \ifIncludeFigures
@@ -131,10 +134,10 @@ class MassnahmenDetailScreen extends StatelessWidget {
 Als bisher einziges Element in der \IC{Column}  taucht nun der \IC{FloatingActionButton} auf \Z{87-95},
 der die aktuell eingetragenen Daten abspeichern \Z{92} und zur Übersicht zurückkehren soll \Z{93}.
 Wenn der Nutzer den Mauszeiger über diesen Button bewegt,
-wird ein Tooltip angezeigt: "Validiere und speichere Massnahme" \Z{88}.
-Der Tooltip ist als Konstante angelegt \Z{7}.
+wird ein Tooltipp angezeigt: "Validiere und speichere Massnahme" \Z{88}.
+Der Tooltipp ist als Konstante angelegt \Z{7}.
 Das hat vor allem den Grund,
-dass er auch für den folgenden Integrationstest genutzt wird. Elemente können darin über einen beinhaltenden Text oder Tooltip gefunden werden.
+dass er auch für den folgenden Integrationstest genutzt wird. Elemente können darin über einen beinhaltenden Text oder Tooltipp gefunden werden.
 
 
 
@@ -142,7 +145,7 @@ dass er auch für den folgenden Integrationstest genutzt wird. Elemente können 
 \subsection{Ausgabe der Formularfelder}
 
 Listing \ref{lst:Schritt1AusgabeDerFormularfelder} zeigt die Ausgabe der Formularfelder in einer \IC{Column} \Z{58}.
-Das Auswahlfeld für den letzten Status verwendet ein selbstgeschriebenes \IC{Widget} namens \IC{SelectionCard} \Z{61-72}.
+Das Auswahlfeld für den letzten Status verwendet ein selbst geschriebenes \IC{Widget} namens \IC{SelectionCard} \Z{61-72}.
 Da die Menge der Auswahloptionen auch den Namen der Liste enthält, kann er als Titel der Selektionskarte verwendet werden \Z{62}. In diesem Fall ist das der Text \enquote{Status}.
 Die Auswahloptionen, welche der Selektionsbildschirm anzeigen soll, sind dem Parameter \IC{allChoices} hinterlegt \Z{63}.
 

@@ -60,7 +60,9 @@ Die Liste aller Auswahloptionen \IC{allChoices} \Z{18} gewährleistet über den 
 Die Rückruffunktionen \Z{19, 20}, die bei Selektion und Deselektion von Optionen ausgelöst werden, bieten einen besonderen Vorteil dadurch, dass sie mit dem generischen Typ konfiguriert sind.
 Die Signaturen der Rückruffunktionen \Z{7-8, 10-11} geben nämlich vor, dass der erste Parameter vom Typ \IC{ChoiceType} sein muss.
 Wenn nun der Benutzer der \IC{SelectionCard} einen Typ wie etwa \IC{LetzterStatus} für den Typparameter übergibt, so erhält er auch eine Rückruffunktion, deren erster Parameter vom Typ \IC{LetzterStatus} ist.
-Ohne eine Typumwandlung -- englisch \enquote{type casting} -- von \IC{Choice} in \IC{LetzterStatus}, können keine Operationen auf dem Objekt angewendet werden, die nur die Klasse \IC{LetzterStatus} unterstützt.
+Ohne eine Typumwandlung
+-- englisch \enquote{type casting} --
+von \IC{Choice} in \IC{LetzterStatus} können keine Operationen auf dem Objekt angewendet werden, die nur die Klasse \IC{LetzterStatus} unterstützt.
 
 Das erste Element, welches von der \IC{build}-Methode zurückgeben wird, ist ein \IC{StreamBuilder} \LstZ{\ref{lst:Schritt1BuildMethodeDerSelectionCard}}{47}.
 Er horcht auf das \IC{selectionViewModel} \Z{48}.
@@ -104,7 +106,7 @@ Das dynamische Bauen der Seite hat einen besonderen Vorteil, der am Listing \ref
 Die Methode \IC{createMultipleChoiceSelectionScreen} \LstS{lst:Schritt1FunktionCreateMultipleChoiceSelectionScreen} gibt einen \IC{Scaffold} zurück,
 der die gesamte Seite enthält \Z{65}.
 Das erste Kind des \IC{Scaffold} ist wiederum ein \IC{StreamBuilder} \Z{69}.
-Hier wird der Vorteil der dynamischen Erzeugung der Seite offensichtlich: die Unterseite kann das gleiche \enquote{ViewModel} wiederverwenden, welches auch von der \IC{SelectionCard} genutzt wird.
+Hier wird der Vorteil der dynamischen Erzeugung der Seite offensichtlich: Die Unterseite kann das gleiche \enquote{ViewModel} wiederverwenden, welches auch von der \IC{SelectionCard} genutzt wird.
 Auch alle weiteren Instanzvariablen der \IC{SelectionCard} können wiederverwendet werden.
 Würde es sich stattdessen um eine weitere Route handeln, so müssten alle diese Informationen über den \enquote{Navigator} zur neuen Unterseite übergeben werden.
 Sollte der Nutzer die Auswahl beenden, so müsste auch ein Mechanismus für das Zurückgeben der selektierten Daten implementiert werden.
@@ -115,7 +117,7 @@ Sobald sich Auswahloptionen im rechten Selektionsbildschirm verändern, so würd
 
 Innerhalb des \IC{StreamBuilder} werden die Auswahloptionen gebaut.
 Dazu speichert die lokale Variable \IC{selectedChoices} die aktuellen Selektionen des \enquote{Streams} zunächst zwischen \Z{72}.
-Die Optionen werden in einem ListView präsentiert \Z{73}.
+Die Optionen werden in einem \enquote{ListView} präsentiert \Z{73}.
 Er ermöglicht es, Listen-Elemente in einem vertikalen Scrollbereich darzustellen.
 Die Funktion \IC{map} konvertiert alle Objekte in der Liste aller möglichen Optionen \IC{choices} in Elemente des Typs \IC{CheckboxListTile} \Z{74-98}.
 In der Standard-Variante sind die Checkboxen rechtsbündig.

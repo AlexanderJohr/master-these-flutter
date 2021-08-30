@@ -23,7 +23,7 @@ Die Formular-Validierungs-Bibliotheken bieten in der Regel Funktionen an, welche
 Doch solche mitgelieferten Validierungs-Funktionen reichen nicht aus, um die Komplexität der Bedingungen abzubilden.
 Stattdessen müssen benutzerdefinierte Funktionen zum Einsatz kommen.
 
-Keiner der drei oben genannten Validierungs-Bibliotheken ist in dieser Hinsicht limitiert.
+Keine der drei oben genannten Validierungs-Bibliotheken ist in dieser Hinsicht limitiert.
 Sie alle bieten die Möglichkeit, eine \enquote{JavaScript}-Funktion für die Validierung zu übergeben.
 Diese Funktion gibt einen Wahrheitswert zurück -- wahr, wenn das Feld oder die Felder valide sind, falsch, falls nicht.
 In \enquote{React Hook Form} ist es die Funktion \enquote{register}, die ein Parameterobjekt namens \enquote{RegisterOptions} erhält.
@@ -35,12 +35,12 @@ Auch in \enquote{Formic} ist der Bezeichner \enquote{validate}, und ist als Attr
 Es ist also absehbar, dass die Formularanwendung in \enquote{React Native} entwickelt werden kann.
 Die nötigen Funktionen werden von den Bibliotheken bereitgestellt.
 Einziger Nachteil hierbei ist, dass es sich um Drittanbieter-Bibliotheken handelt, welche im Verlauf der Zeit an Beliebtheit gewinnen und verlieren können.
-Möglicherweise geht die Beliebtheit einer der Bibliotheken mit der Zeit zurück, weshalb es weniger Kontributionen wie etwa neue Funktionalitäten oder Fehlerbehebungen,
+Möglicherweise geht die Beliebtheit einer der Bibliotheken mit der Zeit zurück, weshalb es weniger Kontributionen wie etwa neue Funktionalitäten oder Fehlerbehebungen 
 sowie Fragen, Antworten und Anleitungen zu diesen Bibliotheken geben wird, da die Entwickler sich für andere Bibliotheken entscheiden.
 Die Wahl der Bibliothek kann also schwerwiegende Folgen wie Mangel an Dokumentation oder Limitationen im Vergleich zu anderen Bibliotheken mit sich bringen.
 Eine Migration von der einen Bibliothek zu einer anderen könnte in Zukunft notwendig werden, wenn diese Limitationen während der Entwicklung auffallen.
 Aus dem Grund ist es in der Regel von Vorteil, wenn solche Funktionalitäten bereits im Kern der Frontend-Technologie integriert sind.
-Der Fall, dass die Kernkomponenten an Relevanz verlieren und empfohlen wird, auf externe Bibliotheken zuzugreifen, ist zwar nicht ausgeschlossen, geschieht aber im Wesentlichen \pdfcomment[icon=Note,color=blue]{Einschub ab nächstem Satz}seltener.
+Der Fall, dass die Kernkomponenten an Relevanz verlieren und empfohlen wird, auf externe Bibliotheken zuzugreifen, ist zwar nicht ausgeschlossen, geschieht aber im Wesentlichen \pdfcomment[icon=Note,color=blue]{Einschub ab nächstem Satz} seltener.
 
 Für den Vergleich wurde eine Schritt-für-Schritt-Anleitung zum Erstellen eines Formulars mit \enquote{React Hook Form} ausgewählt. \footnoteL{\url{https://dev.to/elaziziyoussouf/forms-in-react-native-the-right-way-4d46}} 
 \pdfcomment[icon=Note,color=blue]{Einschub bis hier}
@@ -151,7 +151,7 @@ Im Folgenden sollen die Frameworks \enquote{Flutter} und \enquote{React Native} 
 Dabei wird das Konzept von Unittests, \enquote{Mocking}, Integrationstests, Komponententests und \enquote{Snapshot}-Tests kurz erläutert, jedoch ohne ein Beispiel zu geben oder zu verlinken.
 Vier Quellcodeschnipsel sind auf der Seite zu finden: Ein Schnipsel zeigt den minimalen Aufbau eines Tests; zwei weitere Schnipsel veranschaulichen beispielhaft, wie Nutzerinteraktionen getestet werden können.
 Letzteres zeigt die textuelle Repräsentation der Ausgabe einer Komponente, die für einen \enquote{Snapshot}-Test verwendet wird.
-Weiterhin wird auf die \enquote{Jest}-API-Dokumentation verwiesen, sowie auf ein Beispiel für einen \enquote{Snapshot}-Test in der \enquote{Jest}-Dokumentation.\footnoteL{\url{https://jestjs.io/docs/snapshot-testing}}\pdfcomment[icon=Note,color=blue]{Snapshot-Test kursiv gemacht}
+Weiterhin wird auf die \enquote{Jest}-API-Dokumentation verwiesen sowie auf ein Beispiel für einen \enquote{Snapshot}-Test in der \enquote{Jest}-Dokumentation.\footnoteL{\url{https://jestjs.io/docs/snapshot-testing}}\pdfcomment[icon=Note,color=blue]{Snapshot-Test kursiv gemacht}
 
 Um die notwendigen Anleitungen für das Erstellen der jeweiligen Tests ausfindig zu machen, ist es notwendig, die Dokumentation von \enquote{React Native} zu verlassen.
 
@@ -164,7 +164,7 @@ Anders als der Name vermuten lässt, handelt es sich nicht um eine von \enquote{
 Im Unterschied zur \enquote{React Testing Library}, von der sie inspiriert ist, läuft sie -- so wie \enquote{React Native} auch -- nicht in einer Browser-Umgebung.\footcite[Vgl.][]{NativeTestingLibraryIntroduction}
 \pdfcomment[icon=Note,color=blue]{<- Dieser Satz wurde aktualisiert} Herausgegeben wird die \enquote{React Native Testing Library} vom Drittanbieter \enquote{Callstack} -- einem Partner im \enquote{React Native}-Ökosystem.\footcite[Vgl.][]{TheReactNativeEcosystem}
 
-Sie verwendet im Hintergrund den \enquote{React Test Renderer}\footnoteL{\url{https://reactjs.org/docs/test-renderer.html}}, welcher wiederum vom React Team angeboten wird und auch zum Testen von \enquote{react.js} Anwendungen geeignet ist.
+Sie verwendet im Hintergrund den \enquote{React Test Renderer}\footnoteL{\url{https://reactjs.org/docs/test-renderer.html}}, welcher wiederum vom \enquote{React}-Team angeboten wird und auch zum Testen von \enquote{react.js} Anwendungen geeignet ist.
 Der \enquote{React Test Renderer} wird ebenfalls empfohlen, um Komponententests zu kreieren, die keine \enquote{React Native} spezifischen Funktionalitäten nutzen.
 
 Um Integrationstests zu entwickeln -- welche die Applikation auf einem physischen Gerät oder auf einem Emulator testen -- wird auf zwei weitere Drittanbieter-Bibliotheken verlinkt:
@@ -175,7 +175,7 @@ Es wird darauf hingewiesen, dass \enquote{Detox} speziell für die Entwicklung v
 Es lässt sich damit zusammenfassen, dass der Aufwand der Einarbeitung für automatisiertes Testen in \enquote{React Native} vergleichsweise hoch ist.
 Die Dokumentation ist auf die Seiten der jeweiligen Anbieter verteilt.
 Der Entwickler muss sich den Überblick selbst verschaffen und zusätzlich die für das Framework \enquote{React Native} relevanten Inhalte identifizieren.
-Notwendig ist auch das Erlernen von mehreren APIs um alle Testarten abzudecken.
+Notwendig ist auch das Erlernen von mehreren APIs, um alle Testarten abzudecken.
 Für einen Anfänger kommt erschwerend hinzu, dass eine Entscheidung für die eine oder andere Bibliothek notwendig wird.
 Um diese Entscheidung treffen zu können, ist eine Auseinandersetzung mit den Vor- und Nachteilen der Technologien im Vorfeld vom Entwickler zu leisten.
 
@@ -209,7 +209,7 @@ Im sogenannten Kochbuch tauchen folgende Rezepte auf:
     \begin{itemize} 
         \item Eine grundlegende Anleitung zum Erstellen eines Integrationstests \footnoteL{\url{https://flutter.dev/docs/cookbook/testing/integration/introduction}}
         \item eine Anleitung zum Simulieren des Scrollens in der Anwendung während der Laufzeit eines Integrationstests \footnoteL{\url{https://flutter.dev/docs/cookbook/testing/integration/scrolling}}
-        \item eine Anleitung zum Performance Profiling \footnoteL{\url{https://flutter.dev/docs/cookbook/testing/integration/profiling}}
+        \item eine Anleitung zum Performance-Profiling \footnoteL{\url{https://flutter.dev/docs/cookbook/testing/integration/profiling}}
      \end{itemize}
 \end{itemize}
 

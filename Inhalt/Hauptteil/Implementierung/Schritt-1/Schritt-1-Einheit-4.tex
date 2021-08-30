@@ -15,7 +15,7 @@ Darin ist erkennbar, dass sich die Applikation in drei Rubriken einteilen lässt
 
 \subsection{Das \enquote{Model-View-ViewModel}-Entwurfsmuster}
 \label{sec:ModelViewViewModel}
-Das \enquote{Model-View-ViewModel}-Entwurfsmuster -- kurs \enquote{MVVM} -- wurde zunächst von John Gossman für die Windows Presentation Foundation beschrieben.
+Das \enquote{Model-View-ViewModel}-Entwurfsmuster -- kurz \enquote{MVVM} -- wurde zunächst von John Gossman für die \enquote{Windows Presentation Foundation} beschrieben.
 Das \enquote{Model} beschreibt die Datenzugriffs-Komponente, welche die Daten in relationalen Datenbanken oder hierarchischen Datenstrukturen wie \enquote{XML} oder \enquote{JSON} ablegt.
 Der \enquote{View} beschreibt die Oberflächenelemente wie Texteingabefelder und Buttons.
 Diese beiden Komponenten sind auch aus dem \enquote{Model-View-Controller}-Entwurfsmuster bekannt.
@@ -81,10 +81,10 @@ Hat der Benutzer die Arbeit in der Unterseite vollendet, so kann der \enquote{Na
 \subsection{Der Service für den applikationsübergreifenden Zustand}
 \label{sec:ServiceFuerDenApplikationsuebergreifendenZustand}
 
-Um Daten für alle Kindelementen zugreifbar zu machen, werden die sogenannten \enquote{InheritedWidgets} genutzt.
+Um Daten für alle Kindelemente zugreifbar zu machen, werden die sogenannten \enquote{InheritedWidgets} genutzt.
 Der Service \IC{AppState} \Lst{\ref{lst:Schritt1DerServiceAppState}} ist ein solches \enquote{InheritedWidget}.
 Im Konstruktor erhält es zunächst den Parameter des Typs \IC{Key} \Z{7}.
-Es ist gängige Praxis in \enquote{Flutter}, jedem \enquote{Widget} im Konstruktor zu ermöglichen, einen solchen Schlüssel zu übergeben.
+Es ist gängige Praxis, in \enquote{Flutter}, jedem \enquote{Widget} im Konstruktor zu ermöglichen, einen solchen Schlüssel zu übergeben.
 Es ist jedoch optional.
  Ein solcher Schlüssel kann genutzt werden, um das \enquote{Widget} eindeutig zu identifizieren und es unter anderem über den Schlüssel wiederzufinden.
 In den Zeilen 8 und 9 werden das \enquote{Model} und das \enquote{ViewModel} dem Objekt im Konstruktor übergeben.

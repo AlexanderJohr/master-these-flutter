@@ -33,7 +33,7 @@ Der \IC{GlobalKey} identifiziert ein Element, welches durch ein \enquote{Widget}
 Es erlaubt darüber hinaus auf das \IC{State}-Objekt zuzugreifen, welches mit dem \IC{StatefulWidget} verknüpft ist.
 Ohne Angabe eines Typparameters kann nur Zugriff auf Funktionen des Typs \IC{State} gewährt werden.
 Doch die gewünschte Methode \IC{validate} ist nur Teil des Typs \IC{FormState}.
-Damit das Element, welches über den \IC{GlobalKey} registriert wurde, auch den \IC{FormState} liefert, kann der entsprechende Typparameter \IC{<FormState>} bei der Erstellung des GlobalKey übergeben werden.
+Damit das Element, welches über den \IC{GlobalKey} registriert wurde, auch den \IC{FormState} liefert, kann der entsprechende Typparameter \IC{<FormState>} bei der Erstellung des \enquote{GlobalKey} übergeben werden.
 
 \begin{alexlisting}{Schritt 3}{Der \enquote{formKey} wird erstellt}
     {Quellcode/Schritt-3/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
@@ -155,7 +155,7 @@ Sie zeigt dem Benutzer an, dass die Maßnahme im Entwurfsmodus gespeichert wird 
 Einer der beiden Unterschiede ist, dass die Maßnahme zuvor umgebaut wird.
 Unerheblich dessen, welchen letzten Status sie aktuell besitzt, erhält sie den letzten Status \IC{"in Bearbeitung"} \Z{28-29}.
 Der zweite der beiden Unterschiede ist, dass die Funktion nun keinen Rückgabewert hat, während \IC{saveRecord} einen Wert vom Typ \IC{Future<bool>} zurückgeben musste.
-Der Grund dafür ist, dass die Funktion nur noch über den Aktionsbutton zum Speichern der Maßnahme im Entwurfsmodus ausgelöst wird. Der FloatingActionButton setzt keinen Rückgabewert der ausgelösten Funktion voraus.
+Der Grund dafür ist, dass die Funktion nur noch über den Aktionsbutton zum Speichern der Maßnahme im Entwurfsmodus ausgelöst wird. Der \enquote{FloatingActionButton} setzt keinen Rückgabewert der ausgelösten Funktion voraus.
 
 \begin{alexlisting}{Schritt 3}{Die Funktion \enquote{saveDraftAndGoBackToOverviewScreen}}
     {Quellcode/Schritt-3/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}

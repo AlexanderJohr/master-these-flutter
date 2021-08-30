@@ -127,8 +127,15 @@
 \usepackage{pdfpages}
 
 % Seitenränder
+\ifInfinitePaperLength
+\usepackage[paperwidth=500cm,paperheight=21cm,margin=1in]{geometry}
+\else
 \usepackage{geometry}
 \geometry{a4paper, top=20mm, inner=40mm, outer=20mm, bottom=20mm, headsep=12mm, footskip=12mm}
+\fi
+
+
+
 
 % Absatzformat
 %\parskip2ex		% Absatzabsstand	
@@ -327,30 +334,81 @@
 
 
 % Eigener Befehl für Abbbildungsreferenz
-\newcommand{\Abb}[1]{(Abb. #1)}
+\newcommand{\Abb}[1]{%
+\ifForDuden%
+%
+\else%
+(Abb. #1)%
+\fi%
+}
 
 % Eigener Befehl für Abbbildungsreferenz mit Seite
-\newcommand{\AbbS}[1]{(Abb. \ref{#1}, S. \pageref{#1})}
+\newcommand{\AbbS}[1]{%
+\ifForDuden%
+%
+\else%
+(Abb. \ref{#1}, S. \pageref{#1})%
+\fi%
+}
 
 % Eigener Befehl für Listingreferenz
-\newcommand{\Lst}[1]{(Listing #1)}
+\newcommand{\Lst}[1]{%
+\ifForDuden%
+%
+\else%
+(Listing #1)%
+\fi%
+}
 
 % Eigener Befehl für Zeilenreferenz
-\newcommand{\Z}[1]{(Z. #1)}
+\newcommand{\Z}[1]{%
+\ifIncludeLineNumbers%
+(Z. #1)%
+\else%
+\fi%
+}
+% Eigener Befehl für Listingreferenz mit Zeilenreferenz
+\newcommand{\LstZ}[2]{%
+\ifForDuden%
+%
+\else%
+(Listing #1, Z. #2)%
+\fi%
+}
 
 % Eigener Befehl für Listingreferenz mit Zeilenreferenz
-\newcommand{\LstZ}[2]{(Listing #1, Z. #2)}
+\newcommand{\LstSZ}[2]{%
+\ifForDuden%
+%
+\else%
+(Listing \ref{#1}, S. \pageref{#1}, Z. #2)
+\fi%
+}
 
-% Eigener Befehl für Listingreferenz mit Zeilenreferenz
-\newcommand{\LstSZ}[2]{(Listing \ref{#1}, S. \pageref{#1}, Z. #2)}
+\newcommand{\LstS}[1]{%
+\ifForDuden%
+%
+\else%
+(Listing \ref{#1}, S. \pageref{#1})%
+\fi%
+}
 
-\newcommand{\LstS}[1]{(Listing \ref{#1}, S. \pageref{#1})}
+\ifForDuden%
+\renewcommand{\footcite}{}%
+\else%
+\fi%
+
 
 
 % Eigener Befehl für inline Code
 
-
-\newcommand{\IC}[1]{\inlineCodetcbox{\mintinline[breaklines, breakafter=_/.]{dart}{#1}}}
+\newcommand{\IC}[1]{%
+\ifDingsInsteadOfInlineCode%
+Dings%
+\else%
+\inlineCodetcbox{\mintinline[breaklines, breakafter=_/.]{dart}{#1}}%
+\fi%
+}
 \newcommand{\C}[1]{\mintinline{dart}{#1}}
 
 \newcommand{\HP}[1]{\mintinline[breaklines, breakafter=_/.,bgcolor=highPrioColor]{dart}{#1}}
@@ -359,8 +417,20 @@
 
 
 
-\newcommand{\DartSpec}[1]{\footcite[Vgl.][S. #1]{DartProgrammingLanguageSpecification5thedition}}
-\newcommand{\JavaSpec}[1]{\footcite[Vgl.][S. #1]{TheJavaLanguageSpecificationJavaSE16Edition}}
+\newcommand{\DartSpec}[1]{%
+\ifForDuden%
+%
+\else%
+\footcite[Vgl.][S. #1]{DartProgrammingLanguageSpecification5thedition}%
+\fi%
+}
+\newcommand{\JavaSpec}[1]{%
+\ifForDuden%
+%
+\else%
+\footcite[Vgl.][S. #1]{TheJavaLanguageSpecificationJavaSE16Edition}%
+\fi%
+}
 % Abstand zwischen itemize Punkten verringern
 % https://stackoverflow.com/questions/2180567/change-parskip-only-inside-enumerate-itemize-environment
 
@@ -373,7 +443,14 @@
 % enquote wird auch immer kursiv gesetzt
 \let\oldenquote\enquote
 % \renewcommand{\enquote}[1]{\textit{\oldenquote{#1}}} % <--  mit Anfügrungsstrichen
-\renewcommand{\enquote}[1]{\textit{#1}}
+\renewcommand{\enquote}[1]{%
+\ifDingsInsteadOfEnqoute%
+Dings%
+\else%
+\textit{#1}%
+\fi%
+}
+
 
 
 % Anleitung zum Styling vom Kapitel Titel
