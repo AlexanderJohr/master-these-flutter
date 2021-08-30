@@ -53,7 +53,7 @@ Diese Bedingungen lassen sich nicht mit der Funktion \IC{condition} der Basiskla
 Denn das Argument \IC{priorChoices},
 welches der Funktion \IC{condition} übergeben wird,
 enthält zwar alle Auswahloptionen,
-die im gesamten Formular gewählt worden,
+die im gesamten Formular gewählt wurden,
 gibt aber keine Auskunft darüber,
 von welchem Auswahlfeld sie stammen. 
 Sollte also die Auswahloption \enquote{Biodiversität} in der Menge der \IC{priorChoices} auftauchen,
@@ -95,7 +95,7 @@ die Funktion \IC{defaultChoiceMatcherStrategy} \Z{46}.
 Diese Funktion kapselt die Überprüfung der Abhängigkeiten
 -- welche die Auswahloptionen  untereinander haben --
 so wie sie in den letzten Schritten durchgeführt wurde \Z{16-18}.
-Ihr wird die zu überprüfende Auswahloption \IC{choice},
+Ihr wird die zu überprüfende Auswahloption \IC{choice}
 sowie die Menge \IC{priorChoices} -- die mit allen bisher ausgewählten Auswahloptionen im Formular gefüllt ist --
 übergeben \Z{16}.
 Die Auswahloption \IC{choice} ruft
@@ -267,7 +267,7 @@ Somit hat \IC{choiceMatcher} dann den Typ \IC{ChoiceMatcher<ZielsetzungLandChoic
 Damit handelt es sich also auch bei dem ersten Parameter \IC{choice} der anonymen Funktion --
 die dem Parameter \IC{choiceMatcher} übergeben wird \LstZ{\ref{lst:Schritt7buildMultiSelectionCardZielsetzungLandChoice}}{224} -- um den Typ \IC{ZielsetzungLandChoice}.
 Aus diesem Grund können die Methoden \IC{hasRealValue} \Z{225} und \IC{hasNoRealValue} \Z{228} auf dem Objekt \IC{choice} aufgerufen werden,
-obwohl sie nur Teil der Klasse \IC{ZielsetzungLandChoice} aber nicht der Basisklasse \IC{Choice} sind.
+obwohl sie nur Teil der Klasse \IC{ZielsetzungLandChoice}, aber nicht der Basisklasse \IC{Choice} sind.
 Ohne Parametrisierung über den Typ müsste das Objekt \IC{choice} in einen anderen Typ umgewandelt werden.
 Doch nach dieser Typumwandlung könnte ein Laufzeitfehler geschehen, sollte es sich bei dem Objekt tatsächlich nicht um den gewünschten Typ handeln.
 Durch die Generalisierung der Klassen und die Angabe des Typparameters ist das Vorhandensein des richtigen Typs garantiert und keine Typumwandlung nötig.

@@ -6,14 +6,14 @@
 Während der Implementierung wurde eine passende Vorgehensweise gesucht,
 um den Zustand der Applikation zu verwalten
 und damit die Aktualisierung der Oberfläche auszulösen.
-Für simple Applikationen empfiehlt Google den integrierten Mechanismus der \enquote{StatefulWidgets} und deren Methode \enquote{setState} zu verwenden \footcite[Vgl.][]{AddingInteractivityToYourFlutterApp}.
+Für simple Applikationen empfiehlt Google, den integrierten Mechanismus der \enquote{StatefulWidgets} und deren Methode \enquote{setState} zu verwenden \footcite[Vgl.][]{AddingInteractivityToYourFlutterApp}.
 Doch durch die hohe Anzahl der Oberflächenelemente in der finalen Applikation ist diese Vorgehensweise nicht empfehlenswert.
 Sie setzt das Aktualisieren gesamter \enquote{Widgets} bei Anpassung des Zustandes voraus,
 was für die Laufzeitgeschwindigkeit die intensivste Belastung darstellt.
 Stattdessen wurde versucht,
 einen Mechanismus zu verwenden,
 der es erlaubt,
-nur Teile der Oberfläche neuzuzeichen,
+nur Teile der Oberfläche neu zu zeichnen,
 die wirklich eine Aktualisierung benötigen.
 
 Zu diesem Zweck empfiehlt Google das Nutzen des Pakets \enquote{provider} der \enquote{Flutter}-Community \footcite[Vgl.][]{ProviderARecommendedApproach}.

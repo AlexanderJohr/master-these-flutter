@@ -28,6 +28,10 @@
 
 \newif\ifSimplyIncludeEverythingForSubmission
 
+\newif\ifSimplyIncludeEverythingForWordCount
+
+\newif\ifSimplyIncludeForDuden
+
 \newif\ifIncludeFigures
 
 \newif\ifIncludeAllChapters
@@ -38,28 +42,80 @@
 
 \newif\ifIncludeAppendix
 
+\newif\ifDingsInsteadOfInlineCode
+
+\newif\ifDingsInsteadOfEnqoute
+
+\newif\ifIncludeLineNumbers
+
+\newif\ifInfinitePaperLength
+
+\newif\ifForDuden
 
 
 % was soll integriert werden?
 
 
-\IncludeAllChaptersfalse
-\IncludeFigurestrue
+\IncludeAllChapterstrue
+\IncludeFiguresfalse
 \IncludeMiscellaneousfalse
 \IncludeTitlePagefalse
 \IncludeAppendixtrue
+\DingsInsteadOfInlineCodetrue
+\DingsInsteadOfEnqoutetrue
+\IncludeLineNumbersfalse
+\InfinitePaperLengthtrue
+
+\ForDudentrue
+
+
+
+% was soll integriert werden?
+
+\SimplyIncludeForDudenfalse
+
+\ifSimplyIncludeForDuden
+  \ForDudentrue
+  \IncludeAllChaptersfalse
+  \IncludeFiguresfalse
+  \IncludeMiscellaneousfalse
+  \IncludeTitlePagefalse
+  \IncludeAppendixfalse
+  \DingsInsteadOfInlineCodetrue
+  \DingsInsteadOfEnqoutetrue
+  \IncludeLineNumbersfalse
+  \InfinitePaperLengthtrue
+\fi
+
+\SimplyIncludeEverythingForWordCountfalse
+
+\ifSimplyIncludeEverythingForWordCount
+  \ForDudenfalse
+  \IncludeAllChapterstrue
+  \IncludeFiguresfalse
+  \IncludeMiscellaneousfalse
+  \IncludeTitlePagetrue
+  \IncludeAppendixfalse
+  \DingsInsteadOfInlineCodefalse
+  \DingsInsteadOfEnqoutefalse
+  \IncludeLineNumberstrue
+  \InfinitePaperLengthfalse
+\fi
 
 
 \SimplyIncludeEverythingForSubmissiontrue
 
-% was soll integriert werden?
-
 \ifSimplyIncludeEverythingForSubmission
+  \ForDudenfalse
   \IncludeAllChapterstrue
   \IncludeFigurestrue
   \IncludeMiscellaneoustrue
   \IncludeTitlePagetrue
   \IncludeAppendixtrue
+  \DingsInsteadOfInlineCodefalse
+  \DingsInsteadOfEnqoutefalse
+  \IncludeLineNumberstrue
+  \InfinitePaperLengthfalse
 \fi
 
 
@@ -107,9 +163,9 @@
 \include{Inhalt/Hauptteil/Technologie-Auswahl/Technologie-Auswahl}
 \fi
 
-%\ifIncludeAllChapters
+\ifIncludeAllChapters
 \input{Inhalt/Grundlagen/Grundlagen}
-%\fi
+\fi
 
 \ifIncludeAllChapters
 \input{Konzeption/Konzeption}
@@ -148,17 +204,17 @@
 \include{Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1-Einheit-7}
 \fi
 
-%\ifIncludeAllChapters
+\ifIncludeAllChapters
 \include{Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1-Einheit-8}
-%\fi
+\fi
 
 \ifIncludeAllChapters
 \include{Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1-Einheit-9}
 \fi
 
-\ifIncludeAllChapters
+%\ifIncludeAllChapters
 \include{Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1-Einheit-10}
-\fi
+%\fi
 
 \ifIncludeAllChapters
 \include{Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1-Einheit-11}

@@ -27,7 +27,7 @@ Mit einem Klick auf den Button unten rechts im Bild wird der Benutzer auf die di
 
 \end{alexfigure}
 
-Sie ermöglicht die Eingabe des Maßnahmentitel über ein simples Eingabefeld.
+Sie ermöglicht die Eingabe des Maßnahmentitels über ein simples Eingabefeld.
 Außerdem ist die Selektionskarte für den Status zu sehen.
 Mit einem Klick auf diese Karte öffnet sich der Selektionsbildschirm.
 Er ermöglicht die Auswahl der Auswahloptionen, in diesem Fall die Optionen \enquote{in Bearbeitung} und \enquote{abgeschlossen}
@@ -44,7 +44,7 @@ Er ermöglicht die Auswahl der Auswahloptionen, in diesem Fall die Optionen \enq
 \section{Auswahloptionen hinzufügen}
 
 \enquote{Dart} verfügt -- anders als beispielsweise \enquote{Java}\footcite[Vgl.][S. 321]{TheJavaLanguageSpecificationJavaSE16Edition} -- nicht über Aufzählungstypen mit zusätzlichen Eigenschaften.
-Das Schlüsselwort \mintinline{dart}{enum} in \enquote{Dart} erlaubt lediglich die Auflistung konstanter Symbole\footcite[Vgl.][S. 74f.]{DartProgrammingLanguageSpecification5thedition}.
+Das Schlüsselwort \IC{enum} in \enquote{Dart} erlaubt lediglich die Auflistung konstanter Symbole\footcite[Vgl.][S. 74f.]{DartProgrammingLanguageSpecification5thedition}.
 Für die Auswahloptionen ist es jedoch notwendig, dass es zwei Eigenschaften gibt:
 \begin{itemize}
   \parsep 0pt
@@ -65,7 +65,7 @@ Der Konstruktor selbst \Z{9-10} deklariert sie als sogenannte \enquote{positiona
 
 
 
-\begin{alexlisting}{Schritt 1}{Die Klasse LetzterStatus}
+\begin{alexlisting}{Schritt 1}{Die Klasse \enquote{LetzterStatus}}
   {Quellcode/Schritt-1/conditional_form/lib/choices/choices.dart}
   {firstline=5, lastline=11}
   \label{lst:Schritt1KlasseLetzterStatus}
@@ -94,7 +94,7 @@ Nach der Initialisierung können sie keine anderen Werte annehmen.
 \DartSpec{S16} Die Initialisierung der beiden Variablen muss im statischen Kontext der Instanziierung erfolgen.
 Mit der abgekürzten Schreibweise \IC{this.abbreviation} und \IC{this} \IC{.description} im Konstruktor \Z{7} werden die Parameter den Feldern zugewiesen.
 
-\begin{alexlisting}{Schritt 1}{Die Klasse Choice}
+\begin{alexlisting}{Schritt 1}{Die Klasse \enquote{Choice}}
   {Quellcode/Schritt-1/conditional_form/lib/choices/base/choice.dart}
   {firstline=3, lastline=7}
   \label{lst:Schritt1KlasseChoice}
@@ -183,7 +183,7 @@ Während des Schleifendurchlaufs wird dann ein Schlüssel-Werte-Paar gebildet, w
 
 Die \IC{Map} \IC{choiceByAbbreviation} erlaubt es nach der Initialisierung mithilfe der Methode \IC{fromAbbreviation} \Z{14} über die Abkürzung das dazugehörige \IC{Choice}-Objekt abzurufen.
 Beispielsweise gibt der Befehl \IC{letzterStatusChoices.fromAbbreviation("fertig")} das Objekt \IC{LetzterStatus("fertig", "abgeschlossen")} zurück.
-Auffällig dabei ist, dass der Parameter \IC{abbreviation} mit dem Typ \IC{String?} und der generische Rückgabetyp mit \IC{T?} gekennzeichnet ist. Der Suffix \IC{?} macht beide zu Typen mit Null-Zulässigkeit.
+Auffällig dabei ist, dass der Parameter \IC{abbreviation} mit dem Typ \IC{String?} und der generische Rückgabetyp mit \IC{T?} gekennzeichnet ist. Das Suffix \IC{?} macht beide zu Typen mit Null-Zulässigkeit.
 
 
 
@@ -212,13 +212,13 @@ Da diese unveränderbaren Werte noch bei der Erstellung des sogenannten \enquote
 fiel die Entscheidung auf diese Bibliothek.
 % todo high: Kapitel Referenz einfügen
 
-Ein Wertetyp für \enquote{built_value} erfordert einige Zeilen Boilerplate-Code, um den generierten Quellcode mit der selbstgeschriebenen Klasse zu verknüpfen.
+Ein Wertetyp für \enquote{built_value} erfordert einige Zeilen Boilerplate-Code, um den generierten Quellcode mit der selbst geschriebenen Klasse zu verknüpfen.
 Entwicklungsumgebungen wie \enquote{Visual Studio Code} und \enquote{Android Studio} erlauben,
 solchen Boilerplate-Code generieren zu lassen und dabei nur die erforderlichen Platzhalter auszutauschen.
 In \enquote{Visual Studio Code} werden diese Templates \enquote{Snippets} genannt, in \enquote{Android Studio} heißen sie \enquote{Live Templates}.
 Listing \ref{lst:BuiltValueLiveTemplate} zeigt, wie das \enquote{Live Template} für das Generieren eines Wertetyps  für \enquote{built_value} aussieht.
 Templates für \enquote{built_value} wie dieses und weitere müssen nicht vom Nutzer eingegeben werden,
-sondern existieren bereits als Plugin für die beiden Entwicklungsumgebungen\footnoteL{https://plugins.jetbrains.com/plugin/13786-built-value-snippets}\textsuperscript{,}\footnoteL{https://marketplace.visualstudio.com/items?itemName=GiancarloCode.built-value-snippets}.
+sondern existieren bereits als Plug-in für die beiden Entwicklungsumgebungen\footnoteL{https://plugins.jetbrains.com/plugin/13786-built-value-snippets}\textsuperscript{,}\footnoteL{https://marketplace.visualstudio.com/items?itemName=GiancarloCode.built-value-snippets}.
 
 
 % todo ask medium: Kein Autor, nur git Name
@@ -242,12 +242,12 @@ abstract class $ClassName$ implements Built<$ClassName$, $ClassName$Builder> {
   \end{listing}
 \fi
 
-\IC{$ClassName$} Wird dabei jeweils durch den gewünschten Klassennamen ersetzt.
+\IC{$ClassName$} wird dabei jeweils durch den gewünschten Klassennamen ersetzt.
 \enquote{Android Studio} erlaubt, dass beim Einfügen des \enquote{Live Templates} der Klassenname nur einmalig eingegeben werden muss.
 Anschließend wird mithilfe des \enquote{Live Templates} der Boilerplate-Code generiert.
 
 In Listing \ref{lst:Schritt1WerteTypMassnahme} ist der Wertetyp \IC{Massnahme} zu sehen.
-Die Zeilen 6 bis 8, sowie 18 bis 23 wurden dabei automatisch erstellt.
+Die Zeilen 6 bis 8 sowie 18 bis 23 wurden dabei automatisch erstellt.
 Die Zeilen 9 bis 16 wurden hinzugefügt.
 Zunächst soll die Maßnahme über den \IC{guid} eindeutig identifiziert werden können \Z{9}.
 Ein GUID -- Kurzform von \enquote{Globally Unique IDentifier} -- ist  eine Folge von 128 Bits, die zur Identifikation genutzt werden kann. \footcite[Vgl.][S. 1]{rfc4122}

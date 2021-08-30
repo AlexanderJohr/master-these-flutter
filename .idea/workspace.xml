@@ -12,14 +12,29 @@
       <change beforePath="$PROJECT_DIR$/.idea/master-these-flutter.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/master-these-flutter.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Anforderungen/Anforderungen.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Eingabeformular.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Eingabeformular.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Serialisierung.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Serialisierung.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Zielsetzung.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Zielsetzung.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Einleitung-und-Gliederung/Einleitung.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Einleitung-und-Gliederung/Einleitung.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Fazit/RxDart-statt-Provider.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Fazit/RxDart-statt-Provider.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Fazit/Schlussfolgerung.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Fazit/Schlussfolgerung.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Grundlagen/Grundlagen.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Grundlagen/Grundlagen.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1-Einheit-1.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1-Einheit-1.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1-Einheit-10.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1-Einheit-10.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1-Einheit-11.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1-Einheit-11.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1-Einheit-12.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1-Einheit-12.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1-Einheit-4.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1-Einheit-4.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1-Einheit-6.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1-Einheit-6.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1-Einheit-7.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1-Einheit-7.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1-Einheit-8.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1-Einheit-8.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1-Einheit-9.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1-Einheit-9.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-2/Schritt-2.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-2/Schritt-2.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-3/Schritt-3.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-3/Schritt-3.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-4/Schritt-4.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-4/Schritt-4.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-5/Schritt-5.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-5/Schritt-5.tex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-7/Schritt-7.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Implementierung/Schritt-7/Schritt-7.tex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Technologie-Auswahl/Technologie-Auswahl-Anhang.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Technologie-Auswahl/Technologie-Auswahl-Anhang.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Quellcode/Vergleich/form-in-flutter" beforeDir="false" afterPath="$PROJECT_DIR$/Quellcode/Vergleich/form-in-flutter" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Verzeichnisse/Eidesstattliche_Erklaerung.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Verzeichnisse/Eidesstattliche_Erklaerung.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Technologie-Auswahl/Trendanalyse.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Technologie-Auswahl/Trendanalyse.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inhalt/Hauptteil/Technologie-Auswahl/Vergleich-React-Native-und-Flutter.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Inhalt/Hauptteil/Technologie-Auswahl/Vergleich-React-Native-und-Flutter.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Konfiguration/Konfiguration.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Konfiguration/Konfiguration.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Konzeption/Konzeption.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Konzeption/Konzeption.tex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/m27007_master_these_main.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/m27007_master_these_main.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/m27007_master_these_main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/m27007_master_these_main.tex" afterDir="false" />
     </list>
@@ -83,7 +98,7 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1670" y="-9" width="2315" height="1153" maximized="true" key="DiffContextDialog" timestamp="1629824841196">
+    <state x="1670" y="-9" width="2315" height="1153" maximized="true" key="DiffContextDialog" timestamp="1630287453143">
       <screen x="1920" y="0" width="2560" height="1400" />
     </state>
     <state x="-497" y="566" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629673963997" />
@@ -96,18 +111,20 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="598" y="281" key="MultipleFileMergeDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629686387276" />
-    <state x="92" y="92" width="1736" height="856" key="VCS.FileHistoryDialog" timestamp="1629686210746">
+    <state x="79" y="84" width="1736" height="856" key="VCS.FileHistoryDialog" timestamp="1630287453143">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="92" y="92" width="1736" height="856" key="VCS.FileHistoryDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629686210746" />
+    <state x="79" y="84" width="1736" height="856" key="VCS.FileHistoryDialog/1920.0.2560.1400/0.0.1920.1040@0.0.1920.1040" timestamp="1630287453143" />
     <state x="619" y="253" key="VcsDiffUtil.ChangesDialog" timestamp="1629654314127">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="619" y="253" key="VcsDiffUtil.ChangesDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629654314127" />
-    <state x="816" y="237" width="783" height="749" key="find.popup" timestamp="1629824431254">
+    <state x="816" y="237" width="783" height="749" key="find.popup" timestamp="1630287349656">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="666" y="253" width="587" height="556" key="find.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1629671473136" />
+    <state x="816" y="237" width="783" height="749" key="find.popup/1920.0.2560.1400/0.0.1920.1040@0.0.1920.1040" timestamp="1630287349656" />
     <state x="816" y="237" width="783" height="749" key="find.popup/1920.0.2560.1400/0.0.1920.1040@1920.0.2560.1400" timestamp="1629824431254" />
     <state x="2751" y="303" width="896" height="913" key="search.everywhere.popup" timestamp="1629823881057">
       <screen x="1920" y="0" width="2560" height="1400" />
