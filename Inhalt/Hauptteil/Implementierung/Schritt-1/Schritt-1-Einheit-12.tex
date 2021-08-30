@@ -17,7 +17,7 @@ Stattdessen soll der Test in einer Umgebung stattfinden, die keine Auswirkung au
 Zu diesem Zweck können sogenannte \enquote{Mocks} genutzt werden.
 Das Paket \enquote{mockito} erlaubt über Annotationen solche \enquote{Mocks} für die gewünschten Klassen  über Codegenerierung zu erstellen.
 
-\subsection{Generierung des \enquote{Mocks} \pdfcomment[icon=Note,color=yellow]{29.08.2021 neue Überschrift}}
+\subsection{Generierung des \enquote{Mocks}}
 \label{sec:GenerierungDesMocks}
 
 Integrationstests werden im Ordner \enquote{integration_test} angelegt.
@@ -39,7 +39,7 @@ Zusätzlich dazu muss die Rubrik \IC{generate_for} von dem \IC{mockBuilder} des 
 \end{alexyamllisting}
 
 Anschließend kann mit der Annotation \IC{@GenerateMocks} \LstZ{\ref{lst:Schritt1IntegrationsTestInitialisierung}}{20} ein \enquote{Mock} für \IC{MassnahmenJsonFile} angefordert werden.
-In der Kommandozeile ist -- genau wie bei der Generierung der Wertetypen -- der Befehl \IC{flutter pub run build_runner build} einzugeben, damit der entsprechende Quellcode generiert wird. \pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
+In der Kommandozeile ist -- genau wie bei der Generierung der Wertetypen -- der Befehl \IC{flutter pub run build_runner build} einzugeben, damit der entsprechende Quellcode generiert wird.
 Mit dem \enquote{Mock} kann der Integrationstest ausgeführt werden, ohne dass befürchtet werden muss, dass die \enquote{JSON}-Datei tatsächlich beschrieben wird.
 Stattdessen kann darauf gehorcht werden, wenn Operationen auf dem Objekt ausgeführt werden. 
 
@@ -76,7 +76,7 @@ das Auswählen einer Option,
 das Anklicken des Buttons zum Akzeptieren der Auswahl und das Füllen eines Eingabefeldes auftauchen,
 wurden entsprechende Hilfsfunktionen erstellt.
 
-\subsection{Hilfsfunktionen für den Integrationstest\pdfcomment[icon=Note,color=yellow]{29.08.2021 neue Überschrift}}
+\subsection{Hilfsfunktionen für den Integrationstest}
 \label{sec:HilfsfunktionenIntegrationstest}
 
 
@@ -181,7 +181,7 @@ Anschließend wird erneut auf Abschluss aller Animationen gewartet \Z{89}.
 \subsection{Test des Übersichtsbildschirms}
 \label{sec:TestDesUebersichtsbildschirms}
 
-\pdfcomment[icon=Note,color=yellow]{29.08.2021 neue Überschrift}Während der Integrationstest startet, öffnet sich als Erstes der Übersichtsbildschirm.
+Während der Integrationstest startet, öffnet sich als Erstes der Übersichtsbildschirm.
 Zunächst wird gewartet, dass alle \enquote{Widgets} korrekt initialisiert wurden \LstZ{\ref{lst:Schritt1ButtonKreierenMassnahmeAusgeloest}}{92}.
 Es folgt der Klick auf den Button zum Erstellen einer neuen Maßnahme \Z{95}.
 Dazu wird der Button über den entsprechenden \IC{Key} gefunden \Z{94}.
@@ -197,7 +197,7 @@ Angenommen, der Test wartet nicht ab, so würden die Aktionen noch immer auf den
 
 \clearpage
 
-\subsection{Test des Selektionsbildschirms\pdfcomment[icon=Note,color=yellow]{29.08.2021 neue Überschrift}}
+\subsection{Test des Selektionsbildschirms}
 \label{sec:TestDesSelektionsbildschirms}
 
 Der Integrationstest öffnet nun den Selektionsbildschirm, in dem die Selektionskarte zum Setzen des letzten Status angewählt wird \LstZ{\ref{lst:Schritt1LetzterStatusWirdAusgewählt}}{98}.
@@ -212,7 +212,7 @@ Dabei sorgt \IC{tabConfirm: true} für die sofortige Rückkehr zum Eingabeformul
 
 
 
-\subsection{Test der Eingabemaske\pdfcomment[icon=Note,color=yellow]{29.08.2021 neue Überschrift}}
+\subsection{Test der Eingabemaske}
 \label{sec:TestDerEingabemaske}
 
 Nachfolgend soll der Test das Eingabefeld für den Maßnahmentitel überprüfen \Lst{\ref{lst:Schritt1MassnahmentitelWirdEingegeben}}.
@@ -225,7 +225,7 @@ Der erstellte Text dient als Eingabe für das Eingabefeld \Z{104}.
   \label{lst:Schritt1MassnahmentitelWirdEingegeben}
 \end{alexlisting}
 
-\subsection{Test der Speicherung\pdfcomment[icon=Note,color=yellow]{29.08.2021 neue Überschrift}}
+\subsection{Test der Speicherung}
 \label{sec:TestDerSpeicherung}
 
 Die nötigen Eingaben sind erfolgt.

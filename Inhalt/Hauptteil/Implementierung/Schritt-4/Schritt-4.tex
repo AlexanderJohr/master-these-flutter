@@ -38,7 +38,7 @@ In der Eingabemaske wird dann das gesamte Eingabefeld rot eingefärbt \Abb{\ref{
 
 Es gibt einfache Bedingungen wie beispielsweise die der Zielfläche \enquote{AL},
 deren Auswahl nur dann erfolgen kann,
-wenn die \enquote{Kategorie} \enquote{Anbau Zwischenfrucht/Untersaat} nicht ausgewählt ist \Lst{\ref{lst:Schritt4al}}. \pdfcomment[icon=Note,color=yellow]{27.08.2021 Dieser Satz wurde umformuliert}
+wenn die \enquote{Kategorie} \enquote{Anbau Zwischenfrucht/Untersaat} nicht ausgewählt ist \Lst{\ref{lst:Schritt4al}}. 
 
 \begin{alexlisting}{Schritt 4}{Der Klassenvariablen \enquote{al} des Typs \enquote{ZielflaecheChoice} wird eine Bedingung hinzugefügt}
   {Quellcode/Schritt-4/conditional_form/lib/choices/choices.dart}
@@ -52,7 +52,7 @@ Um sie auszuwählen,
 muss die \enquote{Förderklasse} einen der drei folgenden Werte beinhalten:
 \enquote{Erschwernisausgleich} \Z{97},
 \enquote{Agrarumwelt-(und Klima)Maßnahme: nur Vertragsnaturschutz} \Z{98} oder
-\enquote{Agrarumwelt-(und Klima)Maßnahmen, tw. auch mit Tierwohlaspekten, aber OHNE Vertragsnaturschutz} \Z{99}.  \pdfcomment[icon=Note,color=yellow]{27.08.2021 Dieser Satz wurde umformuliert}
+\enquote{Agrarumwelt-(und Klima)Maßnahmen, tw. auch mit Tierwohlaspekten, aber OHNE Vertragsnaturschutz} \Z{99}.
 
 Gleichzeitig darf für die \enquote{Kategorie} weder
 \enquote{Anbau Zwischenfrucht/Untersaat} \Z{100}
@@ -364,7 +364,7 @@ So erscheint sie dann
 -- ganz genau wie alle anderen unselektierbaren Auswahloptionen --
 ohne roten Hintergrund, aber auch ohne anklickbare Checkbox am Ende der Liste \Z{134-142}.
 
-Solche unselektierbaren Auswahloptionen werden schlicht als \IC{ListTile}-Element statt als \IC{CheckBoxListTile} gezeichnet \Z{135-139}.\pdfcomment[icon=Note,color=yellow]{27.08.2021 2. Einschub bis hier}
+Solche unselektierbaren Auswahloptionen werden schlicht als \IC{ListTile}-Element statt als \IC{CheckBoxListTile} gezeichnet \Z{135-139}.
 Damit fehlt ihnen die Checkbox zum Selektieren.
 Über den Parameter \IC{leading} kann jedoch anstelle der Checkbox ein beliebiges \enquote{Widget}
 -- in diesem Fall ein \IC{Icon} --

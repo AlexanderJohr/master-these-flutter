@@ -105,7 +105,7 @@ Mit der abgekürzten Schreibweise \IC{this.abbreviation} und \IC{this} \IC{.desc
 Die Angabe des Parametertyps mittels \IC{(String abbreviation, String description)} ist daher nicht nötig,
 denn der Typ des Parameters kann bereits durch Angabe des Typs in der Instanzvariablen-Deklaration \Z{4-5} abgeleitet werden.
 Außerdem entfällt die Zuweisung in der Form \IC{this.abbreviation = abbreviation} und
-\IC{this.description = description}.\DartSpec{40f} \pdfcomment[icon=Note,color=yellow]{28.08.2021 2. Der ganze Absatz wurde neu formuiert}
+\IC{this.description = description}.\DartSpec{40f}
 % Auch String description wird gespart
 
 \clearpage
@@ -159,10 +159,10 @@ In der statischen Analyse muss daher sichergestellt werden,
 dass solche Instanzvariablen mit absoluter Sicherheit initialisiert werden.
 Zu diesem Zweck kann der benannte Parameter durch das \IC{required}-Schlüsselwort als verpflichtend gekennzeichnet werden.
 Somit kann er nicht ausgelassen werden.
-Damit ist garantiert, dass die Instanzvariable \IC{name} einen Wert erhält,  der nicht \enquote{null} ist.  \pdfcomment[icon=Note,color=yellow]{28.08.2021 Ganzer Absatz umformuliert}
+Damit ist garantiert, dass die Instanzvariable \IC{name} einen Wert erhält,  der nicht \enquote{null} ist.  
 
 Neben \IC{name} wird mit \IC{choiceByAbbreviation} eine weitere Instanzvariable deklariert \Z{12}.
-Es handelt sich um den Datentyp \IC{Map} -- eine Kollektion, welche Daten mittels Schlüssel-Werte-Paaren ablegen kann. \pdfcomment[icon=Note,color=yellow]{28.08.2021 , welche}
+Es handelt sich um den Datentyp \IC{Map} -- eine Kollektion, welche Daten mittels Schlüssel-Werte-Paaren ablegen kann.
 Als Schlüssel wird die Abkürzung mit dem Datentyp \IC{String} verwendet.
 Als Wert ist der generische Typparameter \IC{T} angegeben.
 Er ist in Zeile 10 deklariert und muss mindestens von der Klasse \IC{Choice} erben.
@@ -281,7 +281,7 @@ Zu diesem Zweck wird das \enquote{Builder}-Objekt verwendet.
 Die Klasse \IC{MassnahmeBuilder} gehört dabei zu dem von \enquote{built_value} generierten Quellcode.
 Der Parametername wird hier -- wie so häufig im \enquote{builder pattern} -- mit einem \IC{b} für \enquote{Builder} abgekürzt.
 Die Syntax \IC{=>} leitet  einen sogenannten \enquote{arrow function body} ein.
-Dabei handelt es sich schlicht um einen Funktions-Körper, der aus genau einer Anweisung besteht. \pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
+Dabei handelt es sich schlicht um einen Funktions-Körper, der aus genau einer Anweisung besteht.
 Deshalb muss er nicht von geschweiften Klammern umgeben werden.\DartSpec{18f., 234}
 Auf dem \enquote{Builder}-Objekt können dann die Eigenschaften so gesetzt werden, als wären sie die Eigenschaften von dem Objekt \IC{Massnahme}.
 In Wahrheit werden sie aber nur auf dem \enquote{Builder}-Objekt angewendet.
@@ -292,7 +292,7 @@ Statt eines \IC{.} zum Zugriff auf Attribute des Objektes wird hier der sogenann
 
 Durch Eingabe von zwei aufeinanderfolgenden Punkten \IC{..} können mehrere Operationen an einem Objekt ausgeführt werden,
 ohne das Objekt zuvor einer Variablen zuzuweisen oder die Operationen über dessen Namen wiederholt aufzurufen.\DartSpec{149f.}
-Beispiel: Die zwei Aufrufe \IC{objekt.tueEtwas();} und \IC{objekt.tueEtwasAnderes();} sind äquivalent mit dem Einzeiler \IC{objekt..tueEtwas()..tueEtwasAnderes();}. \pdfcomment[icon=Note,color=yellow]{28.08.2021 Satz umformuliert}
+Beispiel: Die zwei Aufrufe \IC{objekt.tueEtwas();} und \IC{objekt.tueEtwasAnderes();} sind äquivalent mit dem Einzeiler \IC{objekt..tueEtwas()..tueEtwasAnderes();}.
 
 Da der Kaskadierungs-Operator jedoch dazu verwendet wird, mehrere Operationen auf einem Objekt auszuführen, hat er in Zeile 16 keine Funktion.
 Doch bei Änderung eines Objektes über das \enquote{builder pattern} werden für gewöhnlich mehrere Operationen am gleichen \enquote{Builder}-Objekt ausgeführt, weshalb der Einheitlichkeit wegen der Kaskadierungs-Operator immer im Zusammenhang mit dem \enquote{Builder}-Objekt verwendet werden soll.
@@ -303,7 +303,7 @@ Diese wiederum konfigurieren ihre eigenen Felder und deren initiale Werte.
 
 
 Der Wertetyp \IC{Identifikatoren} enthält das Attribut \IC{massnahmenTitel} \LstZ{\ref{lst:Schritt1WerteTypIdentifikatoren}}{27},
-welches im Eingabeformular durch das Texteingabefeld gefüllt wird.\pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
+welches im Eingabeformular durch das Texteingabefeld gefüllt wird.
 
 \begin{alexlisting}{Schritt 1}{Der Wertetyp \enquote{Identifikatoren}}
   {Quellcode/Schritt-1/conditional_form/lib/data_model/massnahme.dart}
@@ -315,7 +315,7 @@ Zusätzlich enthält der Wertetyp \IC{LetzteBearbeitung} die Attribute
 \IC{letztesBearbeitungsDatum} \LstZ{\ref{lst:Schritt1WerteTypLetzteBearbeitung}}{43}
 und \IC{letzterStatus} \Z{50}.
 Im Eingabeformular wird der Selektionsbildschirm den Inhalt des Feldes \IC{letzterStatus} bestimmen.
-Der initiale Wert wird auf einen konstanten Wert gesetzt, der dem Zustand \IC{'in Bearbeitung'} entspricht \Z{54}. \pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
+Der initiale Wert wird auf einen konstanten Wert gesetzt, der dem Zustand \IC{'in Bearbeitung'} entspricht \Z{54}.
 % todo high: Kapitel Choices einfügen
 
 \begin{alexlisting}{Schritt 1}{Der Wertetyp \enquote{LetzteBearbeitung}}
@@ -325,11 +325,11 @@ Der initiale Wert wird auf einen konstanten Wert gesetzt, der dem Zustand \IC{'i
 \end{alexlisting}
 
 Das Attribut \IC{letztesBearbeitungsDatum} ist dagegen nicht im Formular änderbar,
-sondern wird einmalig auf den aktuellen Zeitstempel gesetzt \Z{53}. \pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
+sondern wird einmalig auf den aktuellen Zeitstempel gesetzt \Z{53}.
 Zugehörig zu diesem Attribut gibt es noch eine abgeleitete Eigenschaft namens \IC{formattedDate} \Z{45-48}.
 Es ist eine Hilfsmethode, die das letzte Bearbeitungsdatum in ein für Menschen lesbares Datumsformat umwandelt.
 In dem Übersichtsbildschirm \AbbS{fig:Schritt1Uebersicht} ist das Datumsformat sichtbar.
-Die Spalte \enquote{Zuletzt bearbeitet am} enthält die Datumsangaben \enquote{2021-8-4 13:20} und \enquote{2021-8-4 13:17}. \pdfcomment[icon=Note,color=yellow]{28.08.2021 Satz hinzugefügt}
+Die Spalte \enquote{Zuletzt bearbeitet am} enthält die Datumsangaben \enquote{2021-8-4 13:20} und \enquote{2021-8-4 13:17}. 
 Da diese \enquote{Getter}-Methode eine Implementierung besitzt, wird für sie von \enquote{built_value} kein Quellcode für die Serialisierung generiert. 
 
 \clearpage
@@ -370,7 +370,7 @@ Da \enquote{built_value} bei der Serialisierung die Datumswerte in Mikrosekunden
 muss für das erwartete \enquote{JSON}-Dokument das Gleiche passieren.
 Der Wert des Schlüssels \IC{'letzterStatus'} \Z{18} wird hierbei auf den Standardwert \IC{'bearb'} gesetzt
 und der Wert des Schlüssels \IC{'massnahmenTitel'} \Z{20} auf den gleichen Wert,
-der in Zeile 9 übergeben wurde.\pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
+der in Zeile 9 übergeben wurde.
 Schließlich vergleicht die Methode \IC{expect} das tatsächlich serialisierte \enquote{JSON}-Dokument mit dem,
 welches zuvor zum Vergleich aufgebaut wurde \Z{23}.
 Der zweite Parameter ist ein sogenannter \enquote{Matcher} und die Variante mit dem Namen \IC{equals} überprüft auf absolute Gleichheit.

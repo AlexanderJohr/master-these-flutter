@@ -26,7 +26,7 @@ Ein Blick in den generierten Quellcode offenbart,
 dass es sich bei dem Attribut \IC{letzteBearbeitung} in Zeile 49 nicht um die \enquote{Getter}-Methode des Wertetypen \IC{Massnahme},
 sondern in Wahrheit um einen \enquote{Builder} des Typs
 \IC{LetzteBearbeitungBuilder} handelt
-\LstZ{\ref{lst:Schritt1InstanzvariableLetzteBearbeitungGibtEinenLetzteBearbeitungBuilderZurueck}}{224-225}.\pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
+\LstZ{\ref{lst:Schritt1InstanzvariableLetzteBearbeitungGibtEinenLetzteBearbeitungBuilderZurueck}}{224-225}.
 
 \begin{alexlisting}{Schritt 1}{Instanzvariable \IC{letzteBearbeitung} gibt einen \IC{LetzteBearbeitungBuilder} zurück}
   {Quellcode/Schritt-1/conditional_form/lib/data_model/massnahme.g.dart}
@@ -34,7 +34,7 @@ sondern in Wahrheit um einen \enquote{Builder} des Typs
   \label{lst:Schritt1InstanzvariableLetzteBearbeitungGibtEinenLetzteBearbeitungBuilderZurueck}
 \end{alexlisting}
 
-Die Mikrosekunden für das Datum müssen zunächst in ein Objekt von \IC{DateTime} umgewandelt werden. \pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
+Die Mikrosekunden für das Datum müssen zunächst in ein Objekt von \IC{DateTime} umgewandelt werden.
 Dafür wird der benannte Konstruktor \IC{fromMillisecondsSinceEpoch} von \IC{DateTime} \Z{51} aufgerufen.
 
 \paragraph{Benannte Konstruktoren} In Programmiersprachen wie beispielsweise \enquote{Java} können Methoden überladen werden, indem ihre Methodensignatur geändert wird.
@@ -55,4 +55,4 @@ Schließlich wird in Zeile 56 das Ergebnis der Deserialisierung mit dem gewünsc
 Durch Eingabe des Befehls \IC{flutter test test/data_model/massnahme_test.dart} in der Kommandozeile
 startet die Ausführung aller Tests in der Testdatei.
 Wenn alle Tests erfolgreich ausgeführt wurden und beide Ergebnisse mit den verglichenen Werten übereinstimmen,
-erfolgt die Ausgabe: \IC{All tests passed!}.\pdfcomment[icon=Note,color=yellow]{28.08.2021 Absatz umformuliert}
+erfolgt die Ausgabe: \IC{All tests passed!}.

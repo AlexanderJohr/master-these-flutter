@@ -6,7 +6,7 @@ Die Art und Weise, wie die Maßnahmen abgerufen werden, sollte nach Möglichkeit
 Das erlaubt, den Mechanismus in Zukunft auszutauschen, ohne dabei den Rest der Applikation verändern zu müssen.
 So wäre es beispielsweise denkbar, statt zu einer \enquote{JSON}-Datei eine direkte Verbindung zu einer relationalen Datenbank herzustellen.
 Auch das Austauschen der Abhängigkeit mit einem Platzhalter, der lediglich die Aufrufe der Methoden zählt, ist damit möglich.
-Ein solches Platzhalterobjekt wird \enquote{Mock} genannt und für automatisiertes Testen eingesetzt (siehe Kapitel \ref{sec:Integrations} \enquote{\nameref{sec:Integrations}} auf Seite \pageref{sec:Integrations}). \pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert (wird)}
+Ein solches Platzhalterobjekt wird \enquote{Mock} genannt und für automatisiertes Testen eingesetzt (siehe Kapitel \ref{sec:Integrations} \enquote{\nameref{sec:Integrations}} auf Seite \pageref{sec:Integrations}).
 Ebenso abstrahiert werden soll der Umgang mit Ausnahmen.
 Sollte die Datei nicht verfügbar sein, so muss die Oberfläche davon nicht zwingend betroffen sein.
 Stattdessen kann der Service sich entscheiden, eine leere Liste von Maßnahmen zurückzugeben.
@@ -23,14 +23,14 @@ Daraufhin ruft der Konstruktor gleich die \IC{init}-Methode auf \Z{12}, welche i
 Darin wird der \enquote{Stream} \IC{storage} \Z{19} initialisiert.
 Es handelt sich um eine Erweiterung eines \enquote{broadcast streams} mit dem Namen \IC{BehaviorSubject} \Z{9}.
 Es entstammt dem Paket \enquote{rx.dart},
-welches die \enquote{Streams} in \enquote{Dart} um eine Reihe von weiteren Funktionalitäten \pdfcomment[icon=Note,color=yellow]{29.08.2021 Einschub am nächstem Satz} erweitert.
+welches die \enquote{Streams} in \enquote{Dart} um eine Reihe von weiteren Funktionalitäten erweitert.
 Der Begriff \enquote{Behaviour} stammt aus der funktionalen reaktiven Programmierung:
 \say{Behaviors are time-varying, reactive values}\footcite[][S. 1]{ElliottHudak97:Fran}
 Das \enquote{Subject}
 -- deutsch \enquote{Subjekt} --
 gehört wiederum neben dem \enquote{Beobachter} zu den Akteuren des \enquote{Beobachter}-Entwurfsmusters
 und ist dafür zuständig, die \enquote{Beobachter} über Änderungen zu benachrichtigen.
-\footcite[Vgl.][S. 288]{gamma2009entwurfsmuster} \pdfcomment[icon=Note,color=yellow]{29.08.2021 Einschub bis hier}
+\footcite[Vgl.][S. 288]{gamma2009entwurfsmuster}
 Ein \IC{BehaviorSubject} hat im Gegensatz zu gewöhnlichen \enquote{Streams} die Besonderheit,
 dass es den Wert des letzten Ereignisses zwischenspeichert.
 Die \enquote{broadcast streams} haben für gewöhnlich den Nachteil,
@@ -57,7 +57,7 @@ Das liegt daran, dass die \enquote{JSON}-Daten dazu zunächst gelesen werden mü
 In einer Initialisierungsliste können allerdings keine asynchronen Operationen ausgeführt werden.
 Deshalb wird \IC{init} erst im Konstruktor-Körper aufgerufen \Z{12}.
 Damit der \enquote{Stream} anfangs nicht leer ist, füllt ihn der benannte Konstruktor \IC{seeded} mit einem leeren Objekt des Typs \IC{Storage} \Z{9}.
-Sobald die Datei gelesen \Z{17} und deserialisiert wurde \Z{20}, erhält der \enquote{Stream} über die \enquote{Setter}-Methode \IC{value} ein neues Ereignis mit dem gelesenen Wert \Z{19}.\pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
+Sobald die Datei gelesen \Z{17} und deserialisiert wurde \Z{20}, erhält der \enquote{Stream} über die \enquote{Setter}-Methode \IC{value} ein neues Ereignis mit dem gelesenen Wert \Z{19}.
 Die Initialisierung ist von einem \IC{try}-Block umgeben.
 Sollte die Initialisierung fehlschlagen, weil die \enquote{JSON}-Datei nicht existiert, wird die entsprechende Fehlerbehandlung ausgeführt \Z{21}.
 Diese ist leer, da sich im \enquote{Stream} bereits ein leeres \IC{Storage}-Objekt  befindet.
@@ -66,9 +66,9 @@ In Zukunft könnte es sinnvoll sein, innerhalb der Fehlerbehandlung eine Meldung
 
 Mit \IC{putMassnahmeIfAbsent} \Z{24-33} steht eine Methode bereit, um gleichzeitig sowohl die Oberfläche als auch die \enquote{JSON}-Datei zu aktualisieren.
 Sollte die eingetragene Maßnahme schon existieren, wird sie zunächst gelöscht \Z{26}.
-In jedem Fall wird die neue Maßnahme der Menge \IC{massnahmen} hinzugefügt \Z{27}.\pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
+In jedem Fall wird die neue Maßnahme der Menge \IC{massnahmen} hinzugefügt \Z{27}.
 Durch Austauschen des gesamten Objektes mit der Zuweisung zu \IC{storage.value} \Z{25} erhält der \enquote{Stream} erneut ein neues Ereignis, womit er die Oberfläche benachrichtigen kann,
-sich neu zu zeichnen.\pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
+sich neu zu zeichnen.
 Außerdem wird die Serialisierung des \IC{Storage}-Objektes angestoßen \Z{29-30}.
 Die neue Liste von Maßnahmen wird im darauffolgenden Schritt zurück in die \enquote{JSON}-Datei gespeichert \Z{32}.
 

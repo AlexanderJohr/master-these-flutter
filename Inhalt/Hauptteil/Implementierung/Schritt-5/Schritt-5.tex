@@ -96,7 +96,7 @@ Es muss aber eine Aktualisierung stattfinden, damit der neue Wert in der Selekti
 Deshalb ist eine Kombination der \enquote{Streams} \IC{validityChanged} und \IC{selectionViewModel} erforderlich.
 Das \IC{BehaviorSubject} \IC{needsRepaint} soll als diese Kombination fungieren \Z{56}.
 Es wird mit dem Wert \IC{true} initialisiert.
-Dafür ist unerheblich, welcher Wert in dem \enquote{Stream} aktuell gespeichert ist. \pdfcomment[icon=Note,color=yellow]{27.08.2021 Dieser Satz wurde angepasst}
+Dafür ist unerheblich, welcher Wert in dem \enquote{Stream} aktuell gespeichert ist.
 Lediglich dass ein neues Ereignis hinzugefügt wird,
 um die Aktualisierung der Oberfläche auszulösen,
 ist wesentlich.
@@ -105,7 +105,7 @@ Jedes empfangene Ereignis wird dabei dem \IC{BehaviorSubject} \IC{needsRepaint} 
 Dadurch,
 dass \IC{needsRepaint} für den \IC{StreamBuilder} verwendet wird \Z{61},
 zeichnet sich die Selektionskarte immer dann neu,
-wenn sich die beinhaltenden Auswahloptionen oder aber deren Validität ändern.\pdfcomment[icon=Note,color=yellow]{27.08.2021 Dieser Satz wurde angepasst}
+wenn sich die beinhaltenden Auswahloptionen oder aber deren Validität ändern.
 
 
 Ein Beispiel:

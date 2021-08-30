@@ -32,7 +32,7 @@ Es unterstützt eine breite Anzahl an Zielsystemen.
 \end{itemize}
 
 \enquote{Flutter} ist inspiriert durch das Webframework \enquote{React} und deren Oberflächenelemente, die \enquote{Components} genannt werden \footcite[Vgl.][]{IntroductionToWidgets}.
-Die visuellen Oberflächenelemente in \enquote{Flutter} werden dagegen \enquote{Widgets} \pdfcomment[icon=Note,color=yellow]{27.08.2021 4. Einschub im nächsten Satz} genannt.
+Die visuellen Oberflächenelemente in \enquote{Flutter} werden dagegen \enquote{Widgets} genannt.
 Bei \enquote{Flutter} und \enquote{React} handelt es sich um deklarative Frontend-Frameworks.
 Dem stehen die imperativen Frameworks gegenüber.
 
@@ -82,7 +82,6 @@ return ElevatedButton(
   \end{listing}
 \fi
 
-\pdfcomment[icon=Note,color=yellow]{27.08.2021 4. Einschub bis hier}
 In \enquote{react} \enquote{Components} wird dieser Zustand \enquote{State} genannt.
 \enquote{Flutter} unterscheidet allerdings zwischen zwei Arten von \enquote{Widgets}: denen, die einen Zustand pflegen -- den \enquote{Stateful Widgets} -- und solchen, die keinen Zustand haben -- den \enquote{Stateless Widgets}.
 
@@ -95,27 +94,27 @@ Der Zustand selbst ist dabei im visuellen Baum als Vater der visuellen Elemente 
 \subsection{\enquote{Stateless Widgets}}
 
 
-\enquote{Stateless Widgets} haben dagegen keinen solchen Mechanismus. \pdfcomment[icon=Note,color=yellow]{27.08.2021 3. Einschub von hier}
+\enquote{Stateless Widgets} haben dagegen keinen solchen Mechanismus.
 Wie alle \enquote{Widgets} werden sie neu gezeichnet, wenn es durch das Framework angeordnet wurde.
 Das ist der Fall,
 \begin{itemize}[topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex]
   \item wenn das \enquote{Widget} zum ersten Mal in der Oberfläche auftaucht,
   \item das Vaterelement und damit alle Kinderelemente neu gezeichnet werden
   \item oder wenn das \enquote{Widget} von einem \enquote{InheritedWidget} abhängig ist und dieses aktualisiert wird.\footcite[Vgl.][]{StatelessWidget}
-\end{itemize}\pdfcomment[icon=Note,color=yellow]{27.08.2021 3. Einschub bis hier}
+\end{itemize}
 
 
 \enquote{StatefulWidgets} sind nur eine von vielen Möglichkeiten, den Zustand des Programms zu verwalten.
 Die Formularanwendung verwendet ausschließlich \enquote{StatelessWidgets}, da die Verwaltung des Zustands über das sogenannte \enquote{Model-View-ViewModel}-Entwurfsmuster umgesetzt wird.
 Mehr dazu im Kapitel \ref{sec:ModelViewViewModel} \enquote{\nameref{sec:ModelViewViewModel}} auf Seite \pageref{sec:ModelViewViewModel}.
 
-\subsection{\enquote{Inherited Widgets}\pdfcomment[icon=Note,color=yellow]{27.08.2021 4. Einschub von hier}}
+\subsection{\enquote{Inherited Widgets}}
 
 Neben den zwei Basisklassen \enquote{StatelessWidget} und \enquote{StatefulWidget} sei noch das \enquote{InheritedWidget} zu nennen.
 Es wird in der Regel nicht für eine visuelle Repräsentation genutzt. Stattdessen zeichnet es das ihm übergebene Kindelement unverändert.
 Die Hauptaufgabe eines \enquote{InheritedWidget} ist es dagegen, dem \enquote{Widget}-Baum Informationen bzw. Services verfügbar zu machen.\footcite[Vgl.][]{InheritedWidget}
 Mehr dazu im Kapitel \ref{sec:ServiceFuerDenApplikationsuebergreifendenZustand}. 
-\pdfcomment[icon=Note,color=yellow]{27.08.2021 4. Einschub bis hier}
+
 
 \section{\enquote{Dart} Grundlagen}
 \label{sec:Dart-Grundlagen}
@@ -232,7 +231,7 @@ var celsiusUndFahrenheit = {
   \end{listing}
 \fi
 
-Für jede Schleifenvariable \IC{f} wird für das resultierende Schlüssel-Werte-Paar das Ergebnis in Grad Celsius als Schlüssel und die ursprüngliche Temperatur in Fahrenheit als Wert eingetragen. \pdfcomment[icon=Note,color=yellow]{27.08.2021 Fehler behoben}
+Für jede Schleifenvariable \IC{f} wird für das resultierende Schlüssel-Werte-Paar das Ergebnis in Grad Celsius als Schlüssel und die ursprüngliche Temperatur in Fahrenheit als Wert eingetragen. 
 Das Ergebnis von \IC{celsiusUndFahrenheit} ist dementsprechend eine \enquote{Map} mit dem Wert: \IC{{36.5: 97.7, 38.5: 101.3, 41: 105.8}}
 
 
@@ -257,11 +256,11 @@ var fieberTemperaturen = [
   \end{listing}
 \fi
 
-Nur in dem Fall, dass die Temperatur der Schleifenvariable \IC{c} größer oder gleich \IC{38,5} ist, wird die Temperatur der Liste hinzugefügt.\pdfcomment[icon=Note,color=yellow]{27.08.2021 \enquote{hinzugefügt}}
+Nur in dem Fall, dass die Temperatur der Schleifenvariable \IC{c} größer oder gleich \IC{38,5} ist, wird die Temperatur der Liste hinzugefügt.
 Das Ergebnis der Liste \IC{fieberTemperaturen} ergibt also \IC{[38.5, 41]}.
 
 
-\subsection{Typen ohne Null-Zulässigkeit} Im Vergleich zu vielen anderen Programmiersprachen -- wie beispielsweise \enquote{Java} -- wird in \enquote{Dart} zwischen Typen mit und ohne Null-Zulässigkeit unterschieden.\pdfcomment[icon=Note,color=yellow]{27.08.2021 Satz angepasst}
+\subsection{Typen ohne Null-Zulässigkeit} Im Vergleich zu vielen anderen Programmiersprachen -- wie beispielsweise \enquote{Java} -- wird in \enquote{Dart} zwischen Typen mit und ohne Null-Zulässigkeit unterschieden.
 In \enquote{Java} ist es nur bei atomaren Datentypen wie \enquote{int} und \enquote{float} verpflichtend, einen Wert anzugeben.
 \enquote{null} ist bei diesen primitiven Datentypen nicht als Wert erlaubt.
 Doch nicht atomare Datentypen erlauben immer die Angabe von \enquote{null} als Wert.
