@@ -100,7 +100,7 @@ Beispielsweise kann ein transformierter \enquote{Stream} übergeben werden, wie 
 
 Die einzige fehlende Komponente dafür ist ein \enquote{Stream},
 der den zuletzt übermittelten Wert speichert und allen neuen zuhörenden \IC{StreamBuilder}-Elementen übermittelt.
-Deshalb wurde sich für das Package \enquote{rx.dart} entschieden,
+Deshalb wurde sich für das Package \enquote{RxDart} entschieden,
 welches genau dieses Verhalten mit dem \enquote{BehaviorSubject} abdeckt.
 Durch dessen Verwendung kann sowohl auf das Registrieren des \IC{ChangeNotifierProvider} verzichtet werden
 und es muss keine weitere Klasse für die einzelnen beobachtbaren Objekte erstellt werden.
@@ -138,7 +138,7 @@ class CartBloc{
     }
 }
 \end{minted}
-    \caption[Die Klasse CartBloc]{Die Klasse CartBloc, Quelle: \cite{GoogleIO18} TC: \href{https://youtu.be/RS36gBEp8OI?t=1657}{27:37}}
+    \caption[Die Klasse \enquote{CartBloc}]{Die Klasse \enquote{CartBloc}, Quelle: \cite{GoogleIO18} TC: \href{https://youtu.be/RS36gBEp8OI?t=1657}{27:37}}
     \label{lst:CartBloc}
   \end{listing}
 \fi
@@ -187,14 +187,14 @@ class CartBloc{
 \fi
 
 Durch Einsatz der für das \IC{BehaviorSubject} einzigartigen \enquote{Getter}-Methode \IC{value} kann dem \enquote{Stream} ein neues Objekt hinzugefügt werden,
-wodurch er gleichzeitig ein neues Ereignis sendet \pdfcomment[icon=Note,color=yellow]{27.08.2021 1. Einschub von hier} \Z{4}.
+wodurch er gleichzeitig ein neues Ereignis sendet \Z{4}.
 Die Zuweisung hat auf den Wert, welcher durch das \IC{BehaviorSubject} verwaltet wird, keinen Effekt, denn \IC{Cart} ist ein Referenztyp und kein Wertetyp.
 Die Änderung an dem Wert war mit dem Methodenaufruf \IC{..add(product)} bereits abgeschlossen,
 denn sie wurde am Original-Objekt durchgeführt, anstatt -- wie im Falle eines Wertetypen -- an einer Kopie des Objektes.
 Mit der Zuweisung \IC{_cart.value = _cart.value} wird der \enquote{Getter}-Methode dieselbe Referenz zugewiesen,
 welche zuvor bereits gespeichert war.
 In diesem Fall wird sich zunutze gemacht, dass jede Zuweisung zur \enquote{Getter}-Methode \IC{value} ein neues Ereignis auslöst,
-ungeachtet dessen, ob der Wert derselbe ist.  \pdfcomment[icon=Note,color=yellow]{27.08.2021 1. Einschub bis hier} 
+ungeachtet dessen, ob der Wert derselbe ist.
 Die Erstellung weiterer \IC{StreamController} zum Senden der transitiven Eigenschaft \IC{itemCount} ist nicht nötig.
 Sendet das \IC{BehaviorSubject} \IC{_cart} ein neues Event \Z{4},
 so wird auch die Methode \IC{map} ausgelöst und ein transformiertes Ereignis gesendet \Z{6}.

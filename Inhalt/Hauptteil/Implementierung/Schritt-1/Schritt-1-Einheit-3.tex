@@ -37,7 +37,7 @@ Bei der Instanzvariablen \IC{massnahmen} der Klasse \IC{Storage} handelt es sich
  In Wahrheit gibt der Ausdruck \IC{b.massnahmen} einen \IC{SetBuilder} zurück.
  Das kann im generierten Quellcode nachgesehen werden \LstZ{\ref{lst:Schritt1InstanzvariableMassnahmenGibtEinenSetBuilderZurueck}}{95-96}.
 
-\begin{alexlisting}{Schritt 1}{Instanzvariable \IC{massnahmen} gibt einen \IC{SetBuilder} zurück}
+\begin{alexlisting}{Schritt 1}{Instanzvariable \enquote{massnahmen} gibt einen \enquote{SetBuilder} zurück}
   {Quellcode/Schritt-1/conditional_form/lib/data_model/storage.g.dart}
   {firstline=91, lastline=96}
   \label{lst:Schritt1InstanzvariableMassnahmenGibtEinenSetBuilderZurueck}
@@ -49,7 +49,7 @@ Dazu wird dieses Mal die anonyme Funktion zum Konstruieren der Maßnahme gleich 
 
 
 Diesmal konstruiert die Methode \IC{serializers.serializeWith}
-mit dem generierten Serialisierer \IC{Storage.serializer} ein weiteres \enquote{JSON}-Objekt \Z{12}.\pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
+mit dem generierten Serialisierer \IC{Storage.serializer} ein weiteres \enquote{JSON}-Objekt \Z{12}.
 Genau wie zuvor wird ein \enquote{JSON}-Dokument vorbereitet \Z{14-30},
 welches der \enquote{Matcher} \IC{equals} mit dem serialisierten Dokument des soeben konstruierten Objektes \IC{storage} vergleicht \Z{31}.
 Das \enquote{JSON}-Dokument unterscheidet sich nur darin,
@@ -62,7 +62,7 @@ der das erste Objekt -- und in diesem Fall einzige Objekt -- der Kollektion zur�
 Darüber kann erneut der \IC{guid}  und  das \IC{letztesBearbeitungsDatum} abgerufen werden.
 
 Ein weiterer Unittest überprüft, ob auch die Deserialisierung eines \IC{storage}-Objektes erfolgreich ist.
-Er ist in Listing {\ref{lst:Schritt1MassnahmenDeserialisierenOhneFehlerUnitTest} im Anhang \ref{appendix:Schritt1Anhang} auf Seite \pageref{appendix:Schritt1Anhang} zu finden.\pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
+Er ist in Listing {\ref{lst:Schritt1MassnahmenDeserialisierenOhneFehlerUnitTest} im Anhang \ref{appendix:Schritt1Anhang} auf Seite \pageref{appendix:Schritt1Anhang} zu finden.
 Auch dieser Test ist der Deserialisierung des Objektes des Typs \IC{Massnahme} sehr ähnlich.
 Er unterscheidet sich nur darin, dass das \IC{Massnahme}-Objekt in der Liste \IC{massnahmen} des \IC{storage}-Objektes  enthalten ist.
 

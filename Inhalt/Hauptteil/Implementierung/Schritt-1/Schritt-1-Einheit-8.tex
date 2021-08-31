@@ -5,7 +5,7 @@
 Die \IC{MassnahmenTable} ist ein  \IC{StatelessWidget} \LstZ{\ref{lst:Schritt1KlasseMassnahmenTable}}{6}.
 Zur Anzeige eignet sich das \enquote{Widget} \IC{Table} \Z{15-31}. Im Verlauf der Erstellung der Arbeit wurde versucht, das \enquote{Widget} \IC{DataTable} zu verwenden.
 Doch im Gegensatz zur \IC{DataTable} erlaubt es das \enquote{Widget} \IC{Table}, unterschiedlich hohe Zeilen zu zeichnen.
-Die Höhe der Zeile wird dazu in Abhängigkeit von dem benötigten Platz des Inhalts der Zellen berechnet.\pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
+Die Höhe der Zeile wird dazu in Abhängigkeit von dem benötigten Platz des Inhalts der Zellen berechnet.
 Die Breite und Ausrichtung der Spalten kann konfiguriert werden.
 Die Eigenschaft \IC{IntrinsicColumnWidth} sorgt dafür,
 dass die Spalten immer genau so groß sind,
@@ -30,7 +30,7 @@ Weicht nur eine Zeile davon ab, zeichnet sich die gesamte Tabelle nicht und eine
 \clearpage
 Nach den Spaltenbezeichnungen folgen die Zeilen für die Daten der Maßnahmen \Z{24-29}.
 Die Methode \IC{map} \Z{24} ermöglicht es dazu, durch die Liste der Maßnahmen zu iterieren und für jede Maßnahme ein Element eines völlig anderen Typs -- in diesem Fall \IC{TableRow} -- zurückzugeben.
-Bei den vorangestellten Punkten \IC{...} in Zeile 24 handelt es sich um den \enquote{spread operator}.\pdfcomment[icon=Note,color=yellow]{29.08.2021 Fehler: es hat gefehlt}
+Bei den vorangestellten Punkten \IC{...} in Zeile 24 handelt es sich um den \enquote{spread operator}.
 Die Filtermethode \IC{map} und die darauffolgende Methode \IC{toList} liefern eine Liste von \IC{TableRow}-Elementen.
 Die umgebende Liste der Zeilen \IC{children} \Z{19-30} erwartet jedoch Elemente des Typs \IC{TableRow} und keine Elemente des Typs \IC{List}.
 Der \enquote{spread operator} ermöglicht,
@@ -67,7 +67,7 @@ alle Elemente der inneren Liste in die äußere Liste einzufügen. \footcite[Vgl
   \clearpage
   Bei \IC{onSelect} handelt es sich um eine Rückruffunktion.
   An diesem Beispiel kann das \enquote{inversion of control pattern} visualisiert werden.
-  Abbildung \ref{lst:UmlOnSelet} zeigt, wie die Akteure zusammenarbeiten.\pdfcomment[icon=Note,color=yellow]{29.08.2021 Fehler komma hat gefehlt}
+  Abbildung \ref{lst:UmlOnSelet} zeigt, wie die Akteure zusammenarbeiten.
   Der \enquote{MassnahmenMasterScreen} verwendet die \enquote{MassnahmenTable}.
   Die Tabelle enthält ein Objekt namens \enquote{onSelect}.
   Dabei handelt es sich um ein Funktionsobjekt.

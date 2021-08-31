@@ -1,4 +1,4 @@
-\chapter{Schritt 3}
+\chapter{Schritt 3 - Implementierung der grundlegenden Validierungsfunktion}
 \label{chap:Schritt-3}
 
 
@@ -15,7 +15,6 @@ Auf Validierungsfehler wird in der Eingabemaske mit Benachrichtigungen in rot ge
   \end{alexfigure}
 
 
-
 \section{Einfügen des \enquote{Form-Widgets}}
 \IC{Flutter} stellt das \enquote{Widget} \IC{Form} für die Validierung von Eingabefeldern bereit.
 Das \enquote{Widget} \IC{Form} ist ein Container, welcher die Validierung für alle Kinderelemente des Typs \IC{FormField} ausführt.
@@ -24,16 +23,20 @@ Das \IC{Form}-\enquote{Widget} muss über einen \IC{key} registriert werden \Z{1
 
 \begin{alexlisting}{Schritt 3}{Einfügen des \enquote{Form-Widgets}}
     {Quellcode/Schritt-3/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
-    {firstline=161, lastline=166, highlightlines={161-162}}
+    {firstline=161, lastline=163, highlightlines={161-162}}
     \label{lst:Schritt3Form}
 \end{alexlisting}
+
+
+
   
 Die Erstellung des \IC{formKey} findet zu Beginn der \IC{build}-Methode des Eingabeformulars statt \LstZ{\ref{lst:Schritt3FormState}}{20}.
 Der \IC{GlobalKey} identifiziert ein Element, welches durch ein \enquote{Widget} gebaut wurde, über die gesamte Applikation hinweg.
-Es erlaubt darüber hinaus auf das \IC{State}-Objekt zuzugreifen, welches mit dem \IC{StatefulWidget} verknüpft ist.
-Ohne Angabe eines Typparameters kann nur Zugriff auf Funktionen des Typs \IC{State} gewährt werden.
-Doch die gewünschte Methode \IC{validate} ist nur Teil des Typs \IC{FormState}.
-Damit das Element, welches über den \IC{GlobalKey} registriert wurde, auch den \IC{FormState} liefert, kann der entsprechende Typparameter \IC{<FormState>} bei der Erstellung des \enquote{GlobalKey} übergeben werden.
+Es erlaubt darüber hinaus auf das \enquote{State}-Objekt zuzugreifen, welches mit dem \enquote{StatefulWidget} verknüpft ist.
+Ohne Angabe eines Typparameters kann nur Zugriff auf Funktionen des Typs \enquote{State} gewährt werden.
+Doch die gewünschte Methode \enquote{validate} ist nur Teil des Typs \IC{FormState}.
+Damit das Element, welches über den \IC{GlobalKey} registriert wurde, auch den \IC{FormState} liefert,
+kann das entsprechende Typargument \IC{<FormState>} bei der Erstellung des \enquote{GlobalKey} übergeben werden.
 
 \begin{alexlisting}{Schritt 3}{Der \enquote{formKey} wird erstellt}
     {Quellcode/Schritt-3/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
@@ -44,8 +47,8 @@ Damit das Element, welches über den \IC{GlobalKey} registriert wurde, auch den 
 \section{Validierung des Maßnahmentitels}
 
 Das Eingabefeld für den Maßnahmentitel ist ein \IC{TextFormField} \LstZ{\ref{lst:Schritt3createMassnahmenTitelTextFormFieldValidator}}{88}.
-Es erbt vom Typ \IC{FormField} und wird daher mit dem Vaterelement \IC{Form} verknüpft.
-Es beinhaltet bereits einen Parameter für die Validierungsfunktion namens \IC{validator} \Z{93}.
+Es erbt vom Typ \enquote{FormField} und wird daher mit dem Vaterelement \enquote{Form} verknüpft.
+Es beinhaltet bereits einen Parameter für die Validierungsfunktion namens \IC{validator} \Z{93-109}.
 Die übergebene Funktion erhält im ersten Parameter den für das Textfeld eingetragenen Wert.
 Die Funktion soll \IC{null} zurückgeben, wenn keine Fehler in der Validierung geschehen sind.
 In jedem anderen Fall soll der Text zurückgegeben werden, der als Fehlermeldung angezeigt werden soll.
@@ -64,28 +67,31 @@ Das sorgt auch dafür, dass das Eingabefeld in den sichtbaren Bereich gerückt w
 
 Sollte das Textfeld nicht leer sein, so soll noch überprüft werden, ob der Maßnahmentitel bereits vergeben ist.
 Über das \enquote{Model} kann die Liste der Maßnahmen angefordert werden \Z{99}.
-Die Funktion \IC{any} akzeptiert als Argument eine Funktion, die für alle Elemente der Liste ausgeführt wird \Z{99-102}.
-Wenn die Rückgabe der Funktion auch nur in einem Fall \IC{true} ist, so evaluiert auch \IC{any} mit \IC{true}.
-Andernfalls ist die Rückgabe \IC{false}. 
+Die Filterfunktion \IC{any} akzeptiert als Argument eine Funktion, die für alle Elemente der Liste ausgeführt wird \Z{99-102}.
+Wenn die Rückgabe der Funktion auch nur in einem Fall \enquote{true} ist, so evaluiert auch \IC{any} mit \enquote{true}.
+Andernfalls ist die Rückgabe \enquote{false}. 
 Die anonyme Funktion schließt zunächst den Vergleich mit derselben Maßnahme aus, welche sich gerade in Bearbeitung befindet.
-Der Vergleich der \IC{guid} ist dafür ausreichend \Z{100}.
-Sollte es eine andere Maßnahme geben, welche den gleichen Titel hat \Z{101-102}, so wird die lokale Variable \IC{massnahmeTitleDoesAlreadyExists} auf \IC{true} gesetzt.
+Der Vergleich des \IC{guid} ist dafür ausreichend \Z{100}.
+
+Sollte es eine andere Maßnahme geben, welche den gleichen Titel hat \Z{101-102},
+so wird die lokale Variable \IC{massnahmeTitleDoesAlreadyExists} auf \enquote{true} gesetzt.
 Der Benutzer bekommt die entsprechende Fehlermeldung \IC{'Dieser Maßnahmentitel ist bereits vergeben'} zu lesen \Z{106}.
-Wenn keine der beiden Fallunterscheidungen das \IC{return}-Statement \Z{96, 106} auslöst, so erfolgt schließlich die Rückgabe von \IC{null}.
-In dem Kontext der \IC{validator}-Funktion bedeutet die Rückgabe von \IC{null} \Z{108}, dass die Validierung erfolgreich war.
+Wenn keine der beiden Fallunterscheidungen das \IC{return}-Statement \Z{96, 106} auslöst, so erfolgt schließlich die Rückgabe von \IC{null} \Z{108}.
+In dem Kontext der \IC{validator}-Funktion bedeutet die Rückgabe von \IC{null}, dass die Validierung erfolgreich war.
  
+\clearpage
 \section{Validierung der Selektionskarten}
  
-Das \IC{Form}-\enquote{Widget} validiert lediglich Kindelemente vom Typ \IC{FormField}.
+Das \enquote{Form}-\enquote{Widget} validiert lediglich Kindelemente vom Typ \IC{FormField}.
 Dementsprechend wird das \enquote{Widget} \IC{SelectionCard} nicht in die Validierung miteinbezogen.
 Es erbt nicht von \IC{FormField}.
 Es wäre möglich, eine weitere Klasse zu erstellen, die von \IC{FormField} erbt und alle Parameter für die Erstellung einer Selektionskarte wiederverwendet.
 Doch das würde bedeuten, dass für alle folgenden Schritte jeder weitere Parameter in beiden Konstruktoren der Klassen gepflegt werden müsste.
 Um der Arbeit leichter folgen zu können, wurde sich für einen anderen, simpleren Weg entschieden: 
-Die Selektionskarte kann ebenso von einem \IC{FormField} umgeben werden \LstZ{\ref{lst:Schritt3buildSelectionCardValidator}}{121-148},
+Die Selektionskarte kann ebenso von einem \IC{FormField} umgeben werden \LstZ{\ref{lst:Schritt3buildSelectionCardValidator}}{121},
 welches die Selektionskarte in der \IC{builder}-Funktion erstellt und an den Parametern nichts ändert,
-außer einen weiteren hinzuzufügen: der Text für die Fehlermeldung \Z{147}.
-Der erste Parameter der \IC{builder}-Funktion ist das \IC{State}-Objekt \IC{FormField}.
+außer einen weiteren hinzuzufügen: der Text für die Fehlermeldung \Z{143}.
+Der erste Parameter der \IC{builder}-Funktion ist das \enquote{FormFieldState}-Objekt von \IC{FormField}.
 Es enthält die \enquote{Getter}-Methode \IC{errorText}, die bei gegebenenfalls fehlgeschlagener Validierung die zurückgegebene Fehlermeldung enthält.
 
 \begin{alexlisting}{Schritt 3}{Die Methode \enquote{buildSelectionCard} mit Validierung}
@@ -94,7 +100,9 @@ Es enthält die \enquote{Getter}-Methode \IC{errorText}, die bei gegebenenfalls 
     \label{lst:Schritt3buildSelectionCardValidator}
 \end{alexlisting}
 
-Die anonyme Funktion, die als Argument dem Parameter \IC{validator} übergeben wird \Z{122-132}, erstellt eine temporäre Menge, die den Wert des \IC{selectionViewModel} enthält, wenn dieser nicht \IC{null} ist, andernfalls ist sie eine leere Menge \Z{123-125}.
+Die anonyme Funktion, die als Argument dem Parameter \IC{validator} übergeben wird \Z{122-132}, erstellt eine temporäre Menge,
+die den Wert des \IC{selectionViewModel} enthält, wenn dieser nicht \IC{null} ist.
+Andernfalls ist sie eine leere Menge \Z{123-125}.
 Die \IC{validator}-Funktion gibt eine Fehlermeldung zurück, sollte die Menge leer sein \Z{127-129}.
 Ist die Menge dagegen gefüllt, so gibt sie \IC{null} zurück, um mitzuteilen, dass die Validierung erfolgreich war \Z{131}.
 
@@ -122,7 +130,8 @@ Sollte der \IC{errorText} gesetzt sein \Z{65}, so erscheint unter dem Titel und 
 \section{Speichern der Eingaben im Entwurfsmodus}
 
 
-Oberhalb des vorhandenen \IC{FloatingActionButton} wird nun ein weiterer eingefügt, der zum Speichern des Entwurfs mit der Funktion \IC{saveDraftAndGoBackToOverviewScreen} genutzt werden soll \LstZ{\ref{lst:Schritt3FloatingActionButton}}{207-216}.
+Oberhalb des vorhandenen \IC{FloatingActionButton} wird nun ein weiterer eingefügt,
+der zum Speichern des Entwurfs mit der Funktion \IC{saveDraftAndGoBackToOverviewScreen} genutzt werden soll \LstZ{\ref{lst:Schritt3FloatingActionButton}}{207-213}.
 Der ursprüngliche \IC{FloatingActionButton} speichert fortan ausschließlich dann, wenn die Maßnahme als \enquote{in Bearbeitung} markiert ist oder alle Eingabefelder valide sind.
 Dazu nutzt er die Hilfsfunktion \IC{inputsAreValidOrNotMarkedFinal} \Z{222}.
 Ist das der Fall, so folgt die Speicherung der Maßnahme mithilfe der bereits implementierten Funktion \IC{saveRecord} \Z{223}.
@@ -150,11 +159,11 @@ Sollte allerdings der \IC{else}-Block ausgeführt werden, so erscheint erneut di
     \label{lst:Schritt3onWillPop}
 \end{alexlisting}
 
-Die Funktion \IC{saveDraftAndGoBackToOverviewScreen} funktioniert ähnlich wie die nun ausgetauschte Funktion \IC{saveRecord}.
+Die Funktion \IC{saveDraftAndGoBackToOverviewScreen} funktioniert ähnlich wie die nun ausgetauschte Funktion \enquote{saveRecord}.
 Sie zeigt dem Benutzer an, dass die Maßnahme im Entwurfsmodus gespeichert wird \Z{23-26}, speichert sie anschließend im \enquote{Model} ab \Z{31} und navigiert zur letzten Route zurück \Z{32}, welche der Übersichtsbildschirm ist.
 Einer der beiden Unterschiede ist, dass die Maßnahme zuvor umgebaut wird.
-Unerheblich dessen, welchen letzten Status sie aktuell besitzt, erhält sie den letzten Status \IC{"in Bearbeitung"} \Z{28-29}.
-Der zweite der beiden Unterschiede ist, dass die Funktion nun keinen Rückgabewert hat, während \IC{saveRecord} einen Wert vom Typ \IC{Future<bool>} zurückgeben musste.
+Unerheblich dessen, welchen letzten Status sie aktuell besitzt, erhält sie den letzten Status \enquote{in Bearbeitung} \Z{28-29}.
+Der zweite der beiden Unterschiede ist, dass die Funktion nun keinen Rückgabewert hat, während \enquote{saveRecord} einen Wert vom Typ \enquote{Future<bool>} zurückgeben musste.
 Der Grund dafür ist, dass die Funktion nur noch über den Aktionsbutton zum Speichern der Maßnahme im Entwurfsmodus ausgelöst wird. Der \enquote{FloatingActionButton} setzt keinen Rückgabewert der ausgelösten Funktion voraus.
 
 \begin{alexlisting}{Schritt 3}{Die Funktion \enquote{saveDraftAndGoBackToOverviewScreen}}
@@ -163,16 +172,17 @@ Der Grund dafür ist, dass die Funktion nur noch über den Aktionsbutton zum Spe
     \label{lst:Schritt3saveDraftAndGoBackToOverviewScreen}
 \end{alexlisting}
 
-Die Hilfsfunktion \IC{inputsAreValidOrNotMarkedFinal} überprüft zunächst, ob der letzte Status ein anderer ist als \enquote{abgeschlossen} \LstZ{\ref{lst:Schritt3inputsAreValidOrNotMarkedFinal}}{71}.
+\clearpage
+Die Hilfsfunktion \IC{inputsAreValidOrNotMarkedFinal} überprüft zunächst, ob der letzte Status ein anderer ist als \enquote{abgeschlossen} \LstZ{\ref{lst:Schritt3inputsAreValidOrNotMarkedFinal}}{72}.
 Da in diesem Fall keine weiteren Überprüfungen notwendig sind, gibt die Funktion direkt \IC{true} zurück \Z{73}.
 Andernfalls validiert das Formular die Eingabefelder \Z{76}.
-Dazu muss das Element vom Typ \IC{Form} in den Vaterelementen gefunden werden.
-Genauer gesagt wird dessen \IC{State}-Objekt benötigt.
-Der Zugriff auf das Element ist einfach, da es über einen \IC{GlobalKey} registriert wurde.
-Über \IC{formKey.currentState} kann das \IC{State}-Objekt des Elements abgerufen werden \Z{76}.
-Die Funktion \IC{validate()} führt dann alle Funktionen aus, die jeweils als Argument dem Parameter \IC{validator} aller Kindelemente des Typs \IC{FormField} übergeben wurden.
-Sollten alle \IC{validator}-Funktionen \IC{null} zurückgegeben haben -- was bedeutet, dass keine Fehler bei der Validierung geschehen sind -- so erfolgt die Rückgabe von \IC{true} \Z{77}.
-Anderenfalls bleibt nur die Rückgabe von \IC{false} übrig \Z{80}.
+Dazu muss das Element vom Typ \enquote{Form} in den Vaterelementen gefunden werden.
+Genauer gesagt wird dessen \enquote{FormFieldState}-Objekt benötigt.
+Der Zugriff darauf ist einfach, da es über einen \enquote{GlobalKey} registriert wurde.\pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
+Über \IC{formKey.currentState} kann das \enquote{FormFieldState}-Objekt des Elements abgerufen werden \Z{76}.
+Die Funktion \IC{validate()} führt dann alle Funktionen aus, die jeweils als Argument dem Parameter \enquote{validator} aller Kindelemente des Typs \enquote{FormField} übergeben wurden.
+Sollten alle \enquote{validator}-Funktionen \enquote{null} zurückgegeben haben -- was bedeutet, dass keine Fehler bei der Validierung geschehen sind -- so erfolgt die Rückgabe von \IC{true} \Z{77}.
+Anderenfalls war mindestens ein Formularfeld invalide und damit bleibt nur die Rückgabe von \IC{false} übrig \Z{80}. \pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
 
 \begin{alexlisting}{Schritt 3}{Die Funktion \enquote{inputsAreValidOrNotMarkedFinal}}
     {Quellcode/Schritt-3/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
@@ -184,10 +194,10 @@ Sollte es zu einem Fehler kommen, so zeigt die Hilfsfunktion \IC{showValidationE
 Sie bietet ihm darüber hinaus an, über einen Button die Maßnahme direkt als Entwurf zu speichern.
 Das ist möglich, da die \IC{SnackBar} \Z{45} nicht nur die Anzeige von gewöhnlichem Text erlaubt, sondern auch von jedem beliebigen \enquote{Widget}.
 Zunächst kommt dazu das \enquote{Widget} \IC{Row} zum Einsatz \Z{46}.
-Ähnlich wie das \enquote{Widget} \IC{Column} erlaubt es Kinderelemente in einer Reihe aufzulisten.
-Im Gegensatz zur \IC{Column} allerdings nun horizontal statt vertikal.
-Als letztes Element der \IC{Row} wird der  \IC{ElevatedButton} verwendet.
-Genauso wie bereits der \IC{FloatingActionButton} zum Speichern der Maßnahme im Entwurfsmodus verwendet nun auch dieser \IC{ElevatedButton} die Funktion \IC{saveDraftAndGoBackToOverviewScreen} \Z{52}.
+Ähnlich wie das \enquote{Widget} \enquote{Column} erlaubt es Kinderelemente in einer Reihe aufzulisten.
+Im Gegensatz zur \enquote{Column} allerdings nun horizontal statt vertikal.
+Als letztes Element der \IC{Row} wird der  \IC{ElevatedButton} verwendet \Z{51}.
+Genauso wie bereits der \enquote{FloatingActionButton} zum Speichern der Maßnahme im Entwurfsmodus verwendet nun auch dieser \IC{ElevatedButton} die Funktion \IC{saveDraftAndGoBackToOverviewScreen} \Z{52}.
 
 \begin{alexlisting}{Schritt 3}{Die Funktion \enquote{showValidationError}}
     {Quellcode/Schritt-3/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}

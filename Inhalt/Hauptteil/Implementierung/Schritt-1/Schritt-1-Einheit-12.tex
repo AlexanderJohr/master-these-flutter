@@ -11,21 +11,21 @@ Dabei wird die Applikation zur Ausführung gebracht und jeder Schritt so visuali
 Der Entwickler hat damit die Möglichkeit, die Eingaben und Interaktionen zu beobachten und gegebenenfalls zu bemerken, warum ein Testfall nicht korrekt ausgeführt wird.
 
 Das Ergebnis des Integrationstests soll allerdings nicht mit der tatsächlich geschriebenen \enquote{JSON}-Datei überprüft werden.
-Der Test soll nicht tatsächlich Daten auf der Festplatte speichern.
-Das würde die Gefahr bergen, dass vergangene Eingaben manipuliert werden.
-Stattdessen soll der Test in einer Umgebung stattfinden, die keine Auswirkung auf die Hauptapplikation oder zukünftige Tests haben soll.
+Der Test soll keine Daten auf der Festplatte speichern,
+denn das würde die Gefahr bergen, dass vergangene Eingaben manipuliert werden.
+Stattdessen soll der Test in einer Umgebung stattfinden, die keine Auswirkungen auf die Hauptapplikation oder zukünftige Tests haben soll.
 Zu diesem Zweck können sogenannte \enquote{Mocks} genutzt werden.
 Das Paket \enquote{mockito} erlaubt über Annotationen solche \enquote{Mocks} für die gewünschten Klassen  über Codegenerierung zu erstellen.
 
-\subsection{Generierung des \enquote{Mocks} \pdfcomment[icon=Note,color=yellow]{29.08.2021 neue Überschrift}}
+\subsection{Generierung des \enquote{Mocks}}
 \label{sec:GenerierungDesMocks}
 
 Integrationstests werden im Ordner \enquote{integration_test} angelegt.
 Während des Zeitpunkts der Erstellung dieser Arbeit war es in der Standardkonfiguration der Codegenerierung und dem Paket \enquote{mockito} nicht möglich, \enquote{Mocks} auch im \enquote{integration_test}-Ordner zu generieren.
-Lediglich innerhalb des \enquote{test}-Ordners, der für die Unittests vorgesehen ist, hat die Annotation \IC{@GenerateMocks} funktioniert.
-Zu diesem Fehlverhalten existiert ein entsprechendes \enquote{Issue} im \enquote{GitHub} Repositorium  des \enquote{mockito} Pakets.
-\HP{Ref} Um das Generieren von \enquote{Mocks} auch für Integrationstests verfügbar zu machen,
-hat der Autor dieser Arbeit einen entsprechenden Lösungsansatz recherchiert und im Issue beschrieben. \HP{Ref}
+Lediglich innerhalb des \enquote{test}-Ordners, der für die Unittests vorgesehen ist, hat die Annotation \enquote{@GenerateMocks} funktioniert.
+Zu diesem Fehlverhalten existiert ein entsprechendes \enquote{Issue} im \enquote{GitHub} Repositorium  des \enquote{mockito} Pakets.\footcite[Vgl.][]{MocksAreNotGeneratedNotInTestFolder}
+Um das Generieren von \enquote{Mocks} auch für Integrationstests verfügbar zu machen,
+hat der Autor dieser Arbeit einen entsprechenden Lösungsansatz recherchiert und im Issue beschrieben.\footcite[Vgl.][]{MocksAreNotGeneratedNotInTestFolderAntwort}
 
 Damit der \enquote{integration_test} Ordner für die Codegenerierung der \enquote{Mocks} integriert wird, muss ein entsprechender Eintrag in der \enquote{Build}-Konfiguration vorgenommen werden.
 Damit das Paket \enquote{source_gen} die entsprechenden Dateien analysiert, müssen sie in der Rubrik \IC{sources} angegeben werden \LstZ{\ref{lst:Schritt1IntegrationsTestInitialisierung}}{3-8}.
@@ -39,7 +39,7 @@ Zusätzlich dazu muss die Rubrik \IC{generate_for} von dem \IC{mockBuilder} des 
 \end{alexyamllisting}
 
 Anschließend kann mit der Annotation \IC{@GenerateMocks} \LstZ{\ref{lst:Schritt1IntegrationsTestInitialisierung}}{20} ein \enquote{Mock} für \IC{MassnahmenJsonFile} angefordert werden.
-In der Kommandozeile ist -- genau wie bei der Generierung der Wertetypen -- der Befehl \IC{flutter pub run build_runner build} einzugeben, damit der entsprechende Quellcode generiert wird. \pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
+In der Kommandozeile ist -- genau wie bei der Generierung der Wertetypen -- der Befehl \IC{flutter pub run build_runner build} einzugeben, damit der entsprechende Quellcode generiert wird.
 Mit dem \enquote{Mock} kann der Integrationstest ausgeführt werden, ohne dass befürchtet werden muss, dass die \enquote{JSON}-Datei tatsächlich beschrieben wird.
 Stattdessen kann darauf gehorcht werden, wenn Operationen auf dem Objekt ausgeführt werden. 
 
@@ -51,8 +51,8 @@ Stattdessen kann darauf gehorcht werden, wenn Operationen auf dem Objekt ausgef�
 
 Die Funktion \IC{testWidgets} startet den Test und erhält als ersten Parameter das \IC{tester}-Objekt \Z{22}.
 Darüber ist die Interaktion mit der Oberfläche während des Tests möglich.
-In den Zeilen 22 bis 25 wird der Testtreiber initialisiert. \HP{Ref}.
-Anschließend wird ein Objekt der generierten Klasse \IC{MockMassnahmenJsonFile} erstellt.
+In den Zeilen 23 bis 25 wird der Testtreiber initialisiert.
+Anschließend wird ein Objekt der generierten Klasse \IC{MockMassnahmenJsonFile} erstellt \Z{27}.
 Wenn das \enquote{Model} nun während der Applikation versucht, aus der \enquote{JSON}-Datei zu lesen, soll der \enquote{Mock} eine leere Liste von Maßnahmen zurückgeben \Z{28}.
 Dazu wird die entsprechende Methode \IC{when} verwendet.
 Als erster Parameter wird die Methode \IC{readMassnahmen} des \enquote{Mocks} übergeben.
@@ -62,7 +62,7 @@ Im darauffolgenden Aufruf \IC{thenAnswer} kann angegeben werden, welche Rückgab
 Über den \IC{tester} kann mithilfe der Methode \IC{pumpWidget} ein beliebiges \enquote{Widget} in der Test-Ausführung konstruiert werden.
 In diesem Fall ist es die gesamte Applikation, die getestet werden soll.
 Dementsprechend ist  hier erneut der komplette Haupteinstiegspunkt angegeben \Lst{\ref{lst:Schritt1IntegrationsTestWidgetInitialisierung}}.
-Doch der Konstruktor von \IC{MassnahmenModel} erhält dieses Mal nicht das \IC{MassnahmenJsonFile}, sondern den entsprechenden \enquote{Mock} \Z{31}. 
+Doch der Konstruktor von \IC{MassnahmenModel} erhält dieses Mal nicht das \enquote{MassnahmenJsonFile}, sondern den entsprechenden \enquote{Mock} \Z{31}. 
 
 \begin{alexlisting}{Schritt 1}{Initialisierung des \enquote{Widgets} für den Integrationstest}
   {Quellcode/Schritt-1/conditional_form/integration_test/app_test.dart}
@@ -76,7 +76,7 @@ das Auswählen einer Option,
 das Anklicken des Buttons zum Akzeptieren der Auswahl und das Füllen eines Eingabefeldes auftauchen,
 wurden entsprechende Hilfsfunktionen erstellt.
 
-\subsection{Hilfsfunktionen für den Integrationstest\pdfcomment[icon=Note,color=yellow]{29.08.2021 neue Überschrift}}
+\subsection{Hilfsfunktionen für den Integrationstest}
 \label{sec:HilfsfunktionenIntegrationstest}
 
 
@@ -101,22 +101,25 @@ Dabei entscheidet der Erzeuger darüber,
 welche Implementierung der Klasse zurückgegeben wird.
 Der aufrufende Kontext muss die konkrete Klasse dazu nicht kennen.\footcite[Vgl.][107-116]{gamma2009entwurfsmuster} Er arbeitet lediglich mit der Schnittstelle.
 In diesem Fall ist \IC{find} dieser Erzeuger.
-Über die Fabrikmethode \IC{text} wird ein \IC{_TextFinder} konstruiert, jedoch über die Schnittstelle \IC{Finder} zurückgegeben.
+Über die Fabrikmethode \IC{text} wird ein \enquote{_TextFinder} konstruiert.
 Eine weitere Fabrikmethode ist \IC{ancestor}.
-Sie gibt einen \IC{_AncestorFinder} zurück,
-welcher ebenso hinter der Schnittstelle \IC{Finder} versteckt wird. \HP{Ref}.
-Die Fabrikmethoden werden hier deshalb verwendet, weil sie die Lesbarkeit verbessern.
-Anstatt \IC{Finder titel = new _TextFinder("Maßnahmentitel")} ist \IC{Finder titel = find.text("Maßnahmentitel")} deutlich leichter zu erfassen.
+Sie gibt einen \enquote{_AncestorFinder} zurück.
+Die Fabrikmethoden werden hier deshalb verwendet, weil sie die Lesbarkeit verbessern,
+denn \IC{Finder titel = find.text("Maßnahmentitel")} ist  deutlich leichter zu erfassen als
+\IC{Finder titel = new _TextFinder("Maßnahmentitel")}.
 
 
 
 Um die Selektionskarten zu finden, wird lediglich der Titel-Text benötigt.
-Angenommen, der Test ruft \IC{tabSelectionCard} mit dem Argument \IC{letzterStatusChoices} auf, so entspricht \IC{choices.name} dem \IC{String} \IC{"Status"}. Der Ausdruck \IC{find.text("Status")} lokalisiert den Titel innerhalb der Selektionskarte \Z{50}.
+Angenommen, der Test ruft \IC{tabSelectionCard} mit dem Argument \enquote{letzterStatusChoices} auf,
+so entspricht \IC{choices.name} dem \enquote{String} \enquote{``Status''}.
+Der Ausdruck \IC{find.text(choices.name)} lokalisiert den Titel innerhalb der Selektionskarte \Z{50}.
 
 Die Funktion \IC{expect} erwartet als ersten Parameter einen \IC{Finder} und als zweiten einen sogenannten \enquote{Matcher} \Z{51}.
-Der Aufruf von \IC{expect} mit dem entsprechenden \IC{Finder}-Objekt und dem \enquote{Matcher} \IC{findsWidgets} verifiziert, dass mindestens ein entsprechendes \IC{Text}-Element gefunden wurde.
+Der Aufruf von \IC{expect} mit dem entsprechenden \IC{Finder}-Objekt und dem \enquote{Matcher} \IC{findsWidgets} verifiziert,
+dass mindestens ein entsprechendes \enquote{Text}-Element gefunden wurde.
 
-Wurde das \IC{Text}-Element gefunden, so muss noch der Vater gesucht werden, der vom Typ \IC{Card} ist \Z{53}.
+Wurde das \enquote{Text}-Element gefunden, so muss noch der Vater gesucht werden, der vom Typ \IC{Card} ist \Z{53}.
 Das kann mit \IC{find.ancestor} erfolgen.
 Über den Parameter \IC{of} erhält er den \IC{Finder} des Kindelements und der Parameter \IC{matching} erhält als Argument die Voraussetzung, die vom Vaterobjekt erfüllt werden soll,
 als weiteren \IC{Finder}.
@@ -128,7 +131,7 @@ Doch dieses Mal muss es genau ein \enquote{Widget} sein, welches mit dem \enquot
 Sollte mehr als nur eine Karte gefunden werden, so wäre nicht klar, welche angeklickt werden soll.
 
 Um eine Karte tatsächlich anzuwählen, muss sie im sichtbaren Bereich sein.
-Die Methode \enquote{ensureVisible} scrollt den Bildschirm zur entsprechenden Position, damit die Karte sichtbar ist \Z{56}.
+Die Methode \IC{ensureVisible} scrollt den Bildschirm zur entsprechenden Position, damit die Karte sichtbar ist \Z{56}.
 Schließlich sorgt \IC{tab} mit dem \IC{Finder} \IC{card} dafür,
 dass die Karte ausgewählt wird. \IC{pumpAndSettle} \Z{58} ist eine obligatorische Methode,
 die nach jeder Aktion durchgeführt werden muss. Sie sorgt dafür,
@@ -158,9 +161,9 @@ Erst wenn verifiziert wurde, dass auch nur genau ein Label mit diesem Text exist
 \end{alexlisting}
 
 Ein Klick auf das Text-Label reicht bereits aus,
-denn damit wird das Vaterelement -- das \IC{CheckboxListTile} -- ebenfalls getroffen.
+denn damit wird das Vaterelement -- das \enquote{CheckboxListTile} -- ebenfalls getroffen.
 Der \IC{tester} holt es in den sichtbaren Bereich \Z{71}, klickt es an \Z{72} und wartet auf Abschluss aller Animationen \Z{73}.
-Sollte der optionale Parameter \IC{tabConfirm} auf \IC{true} gesetzt sein \Z{75}, so wird der Selektionsbildschirm anschließend direkt wieder geschlossen, nachdem die Option ausgewählt wurde  \Z{76}. 
+Sollte der optionale Parameter \IC{tabConfirm} auf \enquote{true} gesetzt sein \Z{75}, so wird der Selektionsbildschirm anschließend direkt wieder geschlossen, nachdem die Option ausgewählt wurde  \Z{76}. 
   
 Schließlich kann mit der Hilfsfunktion \IC{fillTextFormField} ein Formularfeld über dessen Titel gefunden und der übergebene Text eingetragen werden \Lst{\ref{lst:Schritt1HilfsmethodeFillTextFormField}}.
 Die Hilfsfunktion findet das \IC{TextFormField},
@@ -168,7 +171,7 @@ indem sie zunächst nach dem Titel mit \IC{find.text(title)} und anschließend n
 Sollte sowohl der Hinweistext als auch der Titel den gleichen Text enthalten,
 so kann es sein, dass zwei solche Elemente gefunden werden.
 In Wahrheit ist es aber zweimal dasselbe \IC{TextFormField}.
-Mit \IC{.first} wird lediglich das erste Element geliefert \Z{85}.
+Mit \IC{.first} wird lediglich das erste Element geliefert \Z{84}.
 Nachdem feststeht, dass das Element existiert \Z{85} und es in den sichtbaren Bereich gescrollt wurde \Z{87}, gibt der Integrationstest den gewünschten Text in das Eingabefeld ein \Z{88}.
 Anschließend wird erneut auf Abschluss aller Animationen gewartet \Z{89}.
 
@@ -181,7 +184,7 @@ Anschließend wird erneut auf Abschluss aller Animationen gewartet \Z{89}.
 \subsection{Test des Übersichtsbildschirms}
 \label{sec:TestDesUebersichtsbildschirms}
 
-\pdfcomment[icon=Note,color=yellow]{29.08.2021 neue Überschrift}Während der Integrationstest startet, öffnet sich als Erstes der Übersichtsbildschirm.
+Während der Integrationstest startet, öffnet sich als Erstes der Übersichtsbildschirm.
 Zunächst wird gewartet, dass alle \enquote{Widgets} korrekt initialisiert wurden \LstZ{\ref{lst:Schritt1ButtonKreierenMassnahmeAusgeloest}}{92}.
 Es folgt der Klick auf den Button zum Erstellen einer neuen Maßnahme \Z{95}.
 Dazu wird der Button über den entsprechenden \IC{Key} gefunden \Z{94}.
@@ -197,11 +200,11 @@ Angenommen, der Test wartet nicht ab, so würden die Aktionen noch immer auf den
 
 \clearpage
 
-\subsection{Test des Selektionsbildschirms\pdfcomment[icon=Note,color=yellow]{29.08.2021 neue Überschrift}}
-\label{sec:TestDesSelektionsbildschirms}
+\subsection{Test der Eingabemaske}
+\label{sec:TestDerEingabemaske}
 
-Der Integrationstest öffnet nun den Selektionsbildschirm, in dem die Selektionskarte zum Setzen des letzten Status angewählt wird \LstZ{\ref{lst:Schritt1LetzterStatusWirdAusgewählt}}{98}.
-Anschließend fällt die Wahl auf die Option für \enquote{abgeschlossen} \Z{98}.
+Der Integrationstest öffnet nun die Eingabemaske, in dem die Selektionskarte zum Setzen des letzten Status angewählt wird \LstZ{\ref{lst:Schritt1LetzterStatusWirdAusgewählt}}{98}.
+Anschließend fällt die Wahl auf die Option für \enquote{abgeschlossen} \Z{99}.
 Dabei sorgt \IC{tabConfirm: true} für die sofortige Rückkehr zum Eingabeformular nach der Auswahl.
  
 \begin{alexlisting}{Schritt 1}{Der letzte Status wird ausgewählt}
@@ -212,11 +215,10 @@ Dabei sorgt \IC{tabConfirm: true} für die sofortige Rückkehr zum Eingabeformul
 
 
 
-\subsection{Test der Eingabemaske\pdfcomment[icon=Note,color=yellow]{29.08.2021 neue Überschrift}}
-\label{sec:TestDerEingabemaske}
+
 
 Nachfolgend soll der Test das Eingabefeld für den Maßnahmentitel überprüfen \Lst{\ref{lst:Schritt1MassnahmentitelWirdEingegeben}}.
-Es erfolgt die Erstellung eines beispielhaften Titels anhand des aktuellen Datums und der aktuellen Uhrzeit \Z{101, 102}.
+Es erfolgt die Erstellung eines beispielhaften Titels anhand des aktuellen Datums und der aktuellen Uhrzeit \Z{101-103}.
 Der erstellte Text dient als Eingabe für das Eingabefeld \Z{104}. 
 
 \begin{alexlisting}{Schritt 1}{Der Maßnahmentitel wird eingegeben}
@@ -225,7 +227,7 @@ Der erstellte Text dient als Eingabe für das Eingabefeld \Z{104}.
   \label{lst:Schritt1MassnahmentitelWirdEingegeben}
 \end{alexlisting}
 
-\subsection{Test der Speicherung\pdfcomment[icon=Note,color=yellow]{29.08.2021 neue Überschrift}}
+\subsection{Test der Speicherung}
 \label{sec:TestDerSpeicherung}
 
 Die nötigen Eingaben sind erfolgt.
@@ -245,7 +247,7 @@ Der \enquote{Matcher} \IC{captureAny} ermöglicht die Überprüfung auf irgendei
   \label{lst:Schritt1ButtonZumSpeichernWirdAusgelöst}
 \end{alexlisting}
 
-Die Rückgabe ist vom Typ \IC{VerificationResult} und enthält eine \enquote{Getter}-Methode mit dem Namen \IC{captured}.
+Die Rückgabe ist vom Typ \enquote{VerificationResult} und enthält eine \enquote{Getter}-Methode mit dem Namen \IC{captured}.
 Dabei handelt es sich um eine Liste aller Argumente, die in den vergangenen Aufrufen übergeben wurden.
 Mit \IC{last} lässt sich auf das Argument des letzten Aufrufes zurückgreifen.
 
@@ -254,11 +256,14 @@ Weil das Ergebnis eine Liste mit lediglich einer Maßnahme ist, soll auch aussch
 Der Schlüssel \IC{'massnahmen'} greift auf die Liste zurück und der Schlüssel \IC{0} auf die erste und einzige Maßnahme.
 Die lokale Variable \IC{actualMassnahme} speichert sie zwischen \Z{113}.
 
-Es ist unklar, welche zufällige \IC{guid} bei der Erstellung der Maßnahme generiert wurde.
+Es ist unklar, welcher zufällige \enquote{guid} bei der Erstellung der Maßnahme generiert wurde.
 Auch der Zeitstempel hinter dem Schlüssel \IC{"letzteBearbeitung"} ist unbekannt.
-Eine mögliche Lösung wären weitere \enquote{Mocks}, welche die Erstellung der \IC{guid} und des Datums überwachen. Anstatt einer zufälligen \IC{guid} könnte beispielsweise immer die gleiche Zeichenkette zurückgegeben werden.
-Es ist jedoch auch möglich, die Vergleiche der \IC{guid} und des Zeitstempels auszuschließen.
-Dazu reicht es, die entsprechenden Schlüssel-Werte-Paare über die Schlüssel \IC{"guid"} und \IC{"letztesBearbeitungsDatum"} aus der Ergebnis-Hashtabelle zu entfernen \Z{114-115}.
+Eine mögliche Lösung wären weitere \enquote{Mocks}, welche die Erstellung des \enquote{guid} und des Datums überwachen.
+Anstatt eines zufälligen \enquote{guid} könnte beispielsweise immer die gleiche Zeichenkette zurückgegeben werden.
+Es ist jedoch auch möglich, die Vergleiche des \enquote{guid} und des Zeitstempels auszuschließen.
+Dazu reicht es,
+die entsprechenden Schlüssel-Werte-Paare über die Schlüssel \IC{"guid"} und
+\IC{"letztesBearbeitungsDatum"} aus der Ergebnis-Hashtabelle zu entfernen \Z{114-115}.
 
 Die lokale Variable \IC{expectedJson} speichert das erwartete Ergebnis der eingegebenen Maßnahme \Z{117-120}.
 Die Methode \IC{expect} und der \enquote{Matcher} \IC{equals} überprüfen beide Objekte auf Gleichheit \Z{122}.

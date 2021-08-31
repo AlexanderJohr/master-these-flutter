@@ -40,15 +40,15 @@ sowie Fragen, Antworten und Anleitungen zu diesen Bibliotheken geben wird, da di
 Die Wahl der Bibliothek kann also schwerwiegende Folgen wie Mangel an Dokumentation oder Limitationen im Vergleich zu anderen Bibliotheken mit sich bringen.
 Eine Migration von der einen Bibliothek zu einer anderen könnte in Zukunft notwendig werden, wenn diese Limitationen während der Entwicklung auffallen.
 Aus dem Grund ist es in der Regel von Vorteil, wenn solche Funktionalitäten bereits im Kern der Frontend-Technologie integriert sind.
-Der Fall, dass die Kernkomponenten an Relevanz verlieren und empfohlen wird, auf externe Bibliotheken zuzugreifen, ist zwar nicht ausgeschlossen, geschieht aber im Wesentlichen \pdfcomment[icon=Note,color=blue]{Einschub ab nächstem Satz} seltener.
+Der Fall, dass die Kernkomponenten an Relevanz verlieren und empfohlen wird, auf externe Bibliotheken zuzugreifen, ist zwar nicht ausgeschlossen, geschieht aber im Wesentlichen seltener.
 
 Für den Vergleich wurde eine Schritt-für-Schritt-Anleitung zum Erstellen eines Formulars mit \enquote{React Hook Form} ausgewählt. \footnoteL{\url{https://dev.to/elaziziyoussouf/forms-in-react-native-the-right-way-4d46}} 
-\pdfcomment[icon=Note,color=blue]{Einschub bis hier}
+
 
 \subsubsection{Formulare in \enquote{Flutter}}
 Die \enquote{Flutter}-Dokumentation stellt in ihrer \enquote{cookbook}-Sektion ein Beispiel einer minimalistischen Formularanwendung mit Validierung bereit.\footcite[Vgl.][]{BuildAFormWithValidation}
 Das Rezept ist Teil einer Serie von insgesamt fünf Anleitungen, welche Formulare in \enquote{Flutter} behandeln.\footcite[Vgl.][]{FormsFlutter}
-\pdfcomment[icon=Note,color=blue]{Einschub von hier}
+
 Die Rezepte wurden genutzt,
 um eine Formularanwendung zu implementieren,
 welche dem Ergebnis der \enquote{React Hook Form}-Applikation in Funktionalität und Layout ähnlich ist.
@@ -70,21 +70,21 @@ Abbildung \ref{fig:Vergleich} zeigt die \enquote{Flutter}-Anwendung (links) und 
 
  Die Listings \ref{lst:VergleichFlutterValidation} und \ref{lst:VergleichFlutterMain}
  des \enquote{Flutter}-Formulars sind in Anhang \ref{chap:VergleichFlutter}
- auf den Seiten \pageref{lst:VergleichFlutterValidation} und \pageref{lst:VergleichFlutterMain} zu \pdfcomment[icon=Note,color=blue]{27.08.2021 Einschub (nächster Satz))}finden.
+ auf den Seiten \pageref{lst:VergleichFlutterValidation} und \pageref{lst:VergleichFlutterMain} zu finden.
  Anhang \ref{chap:VergleichReactNatveApp} beinhaltet die Listings
  \ref{lst:VergleichReactNatveApp}, \ref{lst:VergleichReactNatveHero}, \ref{lst:VergleichReactNatveValidation},
  \ref{lst:VergleichReactNatveForm},  \ref{lst:VergleichReactNatveForm2} und \ref{lst:VergleichReactNatveInput} 
  der \enquote{React Hook Form}-Anwendung auf den Seiten \pageref{lst:VergleichReactNatveApp} bis \pageref{lst:VergleichReactNatveInput}.
- \pdfcomment[icon=Note,color=blue]{27.08.2021 Einschub bis hier}
+
 
 Folgende Unterschiede waren bei der Untersuchung beider Applikationen auffällig:
 \begin{itemize}[topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex]
    \item Die Anzahl der benötigten Quelltextzeilen unterscheidet sich stark.
-   \item \enquote{Flutter}-\enquote{Widgets} bringen ohne zusätzliche Konfiguration bereits ein ansprechendes Aussehen mit. \enquote{React Native} Anwendungen müssen dafür mit zusätzlichen Stylesheets ausgestattet werden.\pdfcomment[icon=Note,color=blue]{27.08.2021 Einschub (nächster Satz))} 
+   \item \enquote{Flutter}-\enquote{Widgets} bringen ohne zusätzliche Konfiguration bereits ein ansprechendes Aussehen mit. \enquote{React Native} Anwendungen müssen dafür mit zusätzlichen Stylesheets ausgestattet werden. 
 \end{itemize}
 
 Tabelle \ref{table:Vergleich} auf Seite \pageref{table:Vergleich} stellt die Anzahl der Quelltextzeilen der unterschiedlichen Anwendungen auf Dateiebene gegenüber. 
-\pdfcomment[icon=Note,color=blue]{27.08.2021 Einschub bis hier}
+
 \begin{table}
    \ifIncludeFigures
 
@@ -122,11 +122,11 @@ Tabelle \ref{table:Vergleich} auf Seite \pageref{table:Vergleich} stellt die Anz
    \end{table} 
 
 
-Kommentare, leere Zeilen und \enquote{import}-Anweisungen wurden bei der Untersuchung ignoriert.\pdfcomment[icon=Note,color=blue]{27.08.2021 "\enquote{import}-Anweisungen" hinzugefügt}
+Kommentare, leere Zeilen und \enquote{import}-Anweisungen wurden bei der Untersuchung ignoriert.
 Es wurde kein Versuch unternommen,
 den Quellcode der \enquote{React Native}-Applikation zu refaktorisieren,
 sodass auch dieser die minimal nötige Anzahl von Zeilen aufweist.
-Die allgemeine Anzahl der Quelltext-Zeilen ist für die Evaluierung der Technologie deshalb zweitrangig. \pdfcomment[icon=Note,color=blue]{27.08.2021 Dieser Satz ist neu}
+Die allgemeine Anzahl der Quelltext-Zeilen ist für die Evaluierung der Technologie deshalb zweitrangig.
 
 Vor dem Hintergrund,
 dass die Wissenschaftler und Wissenschaftlerinnen des Thünen-Instituts keine Anforderungen an das Aussehen der Oberfläche stellen,
@@ -135,23 +135,23 @@ welche den Aufwand für das Gestalten der Oberfläche gering hält.
 In diesem Fall ist das \enquote{Flutter},
 da es in der Standardkonfiguration bereits ein ansprechendes Design mitbringt.
 Die \enquote{React Native}-Applikation benötigte dagegen mit 55 Zeilen in den \enquote{Stylesheets} bereits 73 \% der Zeilenanzahl,
-die insgesamt für die Entwicklung des Formulars in \enquote{Flutter} nötig waren. \pdfcomment[icon=Note,color=blue]{27.08.2021 Wort "Zeilenanzahl" eingefügt}
+die insgesamt für die Entwicklung des Formulars in \enquote{Flutter} nötig waren.
 
  
 
 
-\subsection{Automatisiertes Testen}\pdfcomment[icon=Note,color=blue]{Einschub von hier}
+\subsection{Automatisiertes Testen}
 
 Um die Codequalität zu gewährleisten,
 sollen bei der Entwicklung Unit- und Integrationstests zum Einsatz kommen.
 Im Folgenden sollen die Frameworks \enquote{Flutter} und \enquote{React Native} in Hinblick auf die Dokumentation zu diesen Themen untersucht werden. 
-\pdfcomment[icon=Note,color=blue]{Einschub bis hier}
+
 
 \subsubsection{Automatisierte Tests in \enquote{React Native}} Die \enquote{React Native}-Dokumentation führt genau eine Seite mit einem Überblick über die unterschiedlichen Testarten.
 Dabei wird das Konzept von Unittests, \enquote{Mocking}, Integrationstests, Komponententests und \enquote{Snapshot}-Tests kurz erläutert, jedoch ohne ein Beispiel zu geben oder zu verlinken.
 Vier Quellcodeschnipsel sind auf der Seite zu finden: Ein Schnipsel zeigt den minimalen Aufbau eines Tests; zwei weitere Schnipsel veranschaulichen beispielhaft, wie Nutzerinteraktionen getestet werden können.
 Letzteres zeigt die textuelle Repräsentation der Ausgabe einer Komponente, die für einen \enquote{Snapshot}-Test verwendet wird.
-Weiterhin wird auf die \enquote{Jest}-API-Dokumentation verwiesen sowie auf ein Beispiel für einen \enquote{Snapshot}-Test in der \enquote{Jest}-Dokumentation.\footnoteL{\url{https://jestjs.io/docs/snapshot-testing}}\pdfcomment[icon=Note,color=blue]{Snapshot-Test kursiv gemacht}
+Weiterhin wird auf die \enquote{Jest}-API-Dokumentation verwiesen sowie auf ein Beispiel für einen \enquote{Snapshot}-Test in der \enquote{Jest}-Dokumentation.\footnoteL{\url{https://jestjs.io/docs/snapshot-testing}}
 
 Um die notwendigen Anleitungen für das Erstellen der jeweiligen Tests ausfindig zu machen, ist es notwendig, die Dokumentation von \enquote{React Native} zu verlassen.
 
@@ -162,7 +162,7 @@ Somit muss zum Erstellen der Unittests immerhin nur dieses Framework studiert we
 Zum Entwickeln von Tests für \enquote{React Native}-Komponenten wird unter anderem auf die Bibliothek \enquote{React Native Testing Library} verwiesen.
 Anders als der Name vermuten lässt, handelt es sich nicht um eine von \enquote{React Native} bereitgestellte Bibliothek.
 Im Unterschied zur \enquote{React Testing Library}, von der sie inspiriert ist, läuft sie -- so wie \enquote{React Native} auch -- nicht in einer Browser-Umgebung.\footcite[Vgl.][]{NativeTestingLibraryIntroduction}
-\pdfcomment[icon=Note,color=blue]{<- Dieser Satz wurde aktualisiert} Herausgegeben wird die \enquote{React Native Testing Library} vom Drittanbieter \enquote{Callstack} -- einem Partner im \enquote{React Native}-Ökosystem.\footcite[Vgl.][]{TheReactNativeEcosystem}
+Herausgegeben wird die \enquote{React Native Testing Library} vom Drittanbieter \enquote{Callstack} -- einem Partner im \enquote{React Native}-Ökosystem.\footcite[Vgl.][]{TheReactNativeEcosystem}
 
 Sie verwendet im Hintergrund den \enquote{React Test Renderer}\footnoteL{\url{https://reactjs.org/docs/test-renderer.html}}, welcher wiederum vom \enquote{React}-Team angeboten wird und auch zum Testen von \enquote{react.js} Anwendungen geeignet ist.
 Der \enquote{React Test Renderer} wird ebenfalls empfohlen, um Komponententests zu kreieren, die keine \enquote{React Native} spezifischen Funktionalitäten nutzen.
@@ -182,7 +182,7 @@ Um diese Entscheidung treffen zu können, ist eine Auseinandersetzung mit den Vo
 \subsubsection{Automatisierte Tests in \enquote{Flutter}}
 Die \enquote{Flutter}-Dokumentation erklärt sehr umfangreich auf 11 Unterseiten die unterschiedlichen Testarten mit Quellcodebeispielen
 und verlinkt für jede Testart auf eine oder mehrere detaillierte Schritt-für-Schritt-Anleitungen,
-wie ein solcher Test erstellt wird. \pdfcomment[icon=Note,color=blue]{\enquote{eine bis mehrere} ersetzt durch \enquote{auf eine oder mehrere}}
+wie ein solcher Test erstellt wird.
 
 
 Eine Seite erklärt den Unterschied zwischen Unittests, \enquote{Widget}-Tests und Integrationstests\footnoteL{\url{https://flutter.dev/docs/testing}}.
