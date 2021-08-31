@@ -36,7 +36,7 @@ wird der \enquote{Stream} \IC{validityChanged} erstellt \LstZ{\ref{lst:Schritt5n
 
 Es handelt sich um eine sogenannte Transformation des \enquote{Streams} \IC{priorChoices}, welcher die Momentaufnahme aller ausgewählten Optionen im gesamten Formular übermittelt.
 Immer dann, wenn der \enquote{Stream} \IC{priorChoices} ein neues Ereignis sendet,
-geschieht für die Abwandlung dieses \enquote{Streams} folgendes:
+geschieht für die Abwandlung dieses \enquote{Streams} Folgendes:
 Die Methode \IC{map} wandelt jedes Ereignis in ein neues Objekt um \Z{52}.
 Die aktuelle Momentaufnahme der Auswahloptionen im Formular wird dazu im Parameter \IC{choices} gespeichert.
 Bei der Umwandlung des Ereignisses werden die ausgewählten Optionen der aktuellen Selektionskarte über \IC{selectionViewModel.value} abgerufen \Z{53}.
@@ -48,7 +48,7 @@ Mit dem Aufruf \IC{.any((c) => !c.conditionMatches(choices))} wird nun überprü
 oder die ausgewählten Werte
 -- bei einem Mehrfachauswahlfeld --
 mit der neuen Momentaufnahme der Selektionen im Formular kompatibel sind.
-Für die \enquote{Zieleinheit} \enquote{ha} gelten folgenden Bedingungen:
+Für die \enquote{Zieleinheit} \enquote{ha} gelten folgende Bedingungen:
 Für die \enquote{Zielfläche} dürfen die Option \enquote{keine Angabe/Vorgabe} und
 \enquote{bitte um Unterstützung} nicht gewählt sein \LstZ{\ref{lst:Schritt5ha}}{166-167}.
 Das bedeutet im Umkehrschluss,
@@ -111,7 +111,7 @@ wenn sich die beinhaltenden Auswahloptionen oder aber deren Validität ändern.
 Ein Beispiel:
 Für die \enquote{Zielfläche} ist \enquote{AL} und für die \enquote{Zieleinheit} ist \enquote{ha} ausgewählt.
 Beide Optionen sind miteinander kompatibel.
-Nun erfolg eine weitere Selektion:
+Nun erfolgt eine weitere Selektion:
 Für \enquote{Zielfläche} wird nun die Option \enquote{GL} gewählt.
 Auch sie ist mit der \enquote{Zieleinheit} \enquote{ha} kompatibel.
 Durch die Selektion hat sich der Wert der Selektionskarte der \enquote{Zielfläche} geändert, weshalb sie neu gezeichnet werden muss.
@@ -130,7 +130,7 @@ dass das \enquote{Widget} \enquote{Card} nur einmal neu gezeichnet wurde \Abb{\r
   \label{fig:Schritt5_1rebuild}
 \end{figure}%
 
-Durch eine weitere Selektion für \enquote{Zielfläche} soll nun provoziert werden, dass die Auswahl der  \enquote{Zieleinheit} invalide wird.
+Durch eine weitere Selektion für die \enquote{Zielfläche} soll nun provoziert werden, dass die Auswahl der  \enquote{Zieleinheit} invalide wird.
 Deshalb wird für die \enquote{Zielfläche} nun \enquote{keine Angabe/Vorgabe} selektiert.
 Die \enquote{Zieleinheit} \enquote{ha} ist damit nicht kompatibel.
 Deshalb müssen sich nun zwei Auswahlfelder aktualisieren:
