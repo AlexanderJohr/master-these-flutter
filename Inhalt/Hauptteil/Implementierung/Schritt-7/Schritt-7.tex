@@ -1,4 +1,4 @@
-\chapter{Schritt 7}
+\chapter{Schritt 7 - Benutzerdefinierte Validierungsfunktionen}
 \label{chap:Schritt-7}
 
 
@@ -8,12 +8,17 @@ benutzerdefinierte Abhängigkeiten für Auswahloptionen anzugeben.
 Denn die \enquote{Nebenziele} haben mehrere besondere Voraussetzungen:
 
 Sollte das \enquote{Hauptziel} nicht gesetzt sein oder die Option \enquote{keine Angabe/Vorgabe} oder \enquote{bitte um Unterstützung} enthalten,
-so ist es nicht sinnvoll, dass ein tatsächliches \enquote{Nebenziele} gewählt wird.
-In diesem Fall kommen wiederum nur die Werte \enquote{keine Angabe/Vorgabe} oder \enquote{bitte um Unterstützung} infrage.
+  so ist es nicht sinnvoll, dass ein tatsächliches \enquote{Nebenziel} gewählt wird.
+  In diesem Fall kommen wiederum nur die Werte \enquote{keine Angabe/Vorgabe} oder \enquote{bitte um Unterstützung} infrage.
 
-Sollte dagegen ein \enquote{Hauptziel} gesetzt sein, so darf das \enquote{Nebenziele} nicht die gleiche Option enthalten.
-Ist also beispielsweise für das \enquote{Hauptziel} \enquote{Biodiversität} ausgewählt \Abb{\ref{fig:Schritt4EingabemaskeDHBioDiv}},
-so darf die Option im Selektionsbildschirm für die \enquote{Nebenziele} nicht zur Verfügung stehen \Abb{\ref{fig:Schritt4EingabemaskeDNBiodiv}}.
+Sollte dagegen ein \enquote{Hauptziel} gesetzt sein, so darf das \enquote{Nebenziel} nicht die gleiche Option enthalten.
+  Ist also beispielsweise für das \enquote{Hauptziel} \enquote{Biodiversität} ausgewählt \Abb{\ref{fig:Schritt4EingabemaskeDHBioDiv}},
+  so darf die Option im Selektionsbildschirm für die \enquote{Nebenziele} nicht zur Verfügung stehen \Abb{\ref{fig:Schritt4EingabemaskeDNBiodiv}}.
+
+
+
+
+
 
 \begin{alexfigure}{Inhalt/Hauptteil/Implementierung/Schritt-7/D H BioDiv.png}
   {Im Selektionsbildschirm für das \enquote{Hauptziel} ist \enquote{Biodiversität} ausgewählt}
@@ -31,7 +36,7 @@ so darf die Option im Selektionsbildschirm für die \enquote{Nebenziele} nicht z
 
 \end{alexfigure}
 
-
+\clearpage
 Das bedeutet auch,
 dass wenn für die \enquote{Nebenziele} bereits \enquote{Biodiversität} ausgewählt war
 und anschließend für das \enquote{Hauptziel} ebenfalls \enquote{Biodiversität} gewählt wird,
@@ -46,26 +51,23 @@ so muss die invalide Auswahl im Selektionsbildschirm der \enquote{Nebenziele} ro
 \end{alexfigure}
 
 
+\section{Aktualisierung der Selektionskarte}
 
-
-Diese Bedingungen lassen sich nicht mit der Funktion \IC{condition} der Basisklasse \IC{Choice} lösen.
-
-Denn das Argument \IC{priorChoices},
-welches der Funktion \IC{condition} übergeben wird,
+Diese Bedingungen lassen sich nicht mit der Funktion \enquote{condition} der Basisklasse \enquote{Choice} lösen.
+Denn das Argument \enquote{priorChoices},
+welches der Funktion \enquote{condition} übergeben wird,
 enthält zwar alle Auswahloptionen,
 die im gesamten Formular gewählt wurden,
 gibt aber keine Auskunft darüber,
 von welchem Auswahlfeld sie stammen. 
-Sollte also die Auswahloption \enquote{Biodiversität} in der Menge der \IC{priorChoices} auftauchen,
+Sollte also die Auswahloption \enquote{Biodiversität} in der Menge der \enquote{priorChoices} auftauchen,
 so ist unklar,
 ob sie im Auswahlfeld für das \enquote{Hauptziel} oder dem der \enquote{Nebenziele} gewählt wurde.
 
 Wenn der Selektionskarte aber eine benutzerdefinierte Funktion übergeben werden könnte,
 welche im aufrufenden Kontext auch Zugriff auf das \enquote{ViewModel} hat,
 so könnte direkt auf die Auswahlfelder zugegriffen werden.
-
-
-Zu diesem Zweck wird der Klasse \IC{SelectionCard} die Instanzvariable \IC{choiceMatcher} hinzugefügt \LstZ{\ref{lst:Schritt7SelectionCard}}{27}.
+Zu diesem Zweck wird der Klasse \IC{SelectionCard} die Instanzvariable \IC{choiceMatcher} hinzugefügt \LstZ{\ref{lst:Schritt7SelectionCard}}{31}.
 Ein Parameter des gleichen Namens wird den Hilfsmethoden \IC{buildSelectionCard} und \IC{buildMultiSelectionCard} übergeben, welche ihn unverändert an den Konstruktor der Klasse \IC{SelectionCard} weiterleiten.
 Die entsprechenden Listings sind in Anhang \ref{appendix:Schritt7Anhang} auf den Seiten \pageref{lst:Schritt7AppendixbuildSelectionCard} und \pageref{lst:Schritt7buildMultiSelectionCard} zu finden.
 
@@ -80,18 +82,67 @@ Die entsprechenden Listings sind in Anhang \ref{appendix:Schritt7Anhang} auf den
   \label{lst:Schritt7SelectionCard}
 \end{alexlisting}
 
+
+% \ifIncludeFigures
+%   \begin{listing}[htbp]
+%     \let\oldtheFancyVerbLine\theFancyVerbLine
+%   \renewcommand\theFancyVerbLine{%
+% \ifnum\value{FancyVerbLine}=23 
+%   \setcounter{FancyVerbLine}{30}%\scriptsize\ldots
+% \else\ifnum\value{FancyVerbLine}=35
+%   \setcounter{FancyVerbLine}{40}%\scriptsize\ldots
+% \else\ifnum\value{FancyVerbLine}=59
+%   \setcounter{FancyVerbLine}{75}%\scriptsize\ldots
+% \else
+% \oldtheFancyVerbLine%
+% \fi
+% \fi
+% \fi
+% }
+%     \begin{minted}[firstnumber=13, highlightlines={13-14, 16-18, 31, 41, 46}]{dart}
+% typedef ChoiceMatcher<ChoiceType extends Choice> = bool Function(
+%     ChoiceType choice, Set<Choice> priorChoices);
+
+% bool defaultChoiceMatcherStrategy(Choice choice, Set<Choice> priorChoices) {
+%   return choice.conditionMatches(priorChoices);
+% }
+
+% const confirmButtonTooltip = 'Auswahl übernehmen';
+
+% class SelectionCard<ChoiceType extends Choice> extends StatelessWidget {
+%   /* ... */
+%   final ChoiceMatcher<ChoiceType> choiceMatcher;
+
+%   SelectionCard(
+%       {required this.title,
+%       /* ... */
+%       ChoiceMatcher<ChoiceType>? choiceMatcher,
+%       this.errorText,
+%       Key? key})
+%       : selectionViewModel = BehaviorSubject<BuiltSet<ChoiceType>>.seeded(
+%             BuiltSet.from(initialValue)),
+%         this.choiceMatcher = choiceMatcher ?? defaultChoiceMatcherStrategy,
+%         super(key: key);
+% \end{minted}
+%     \alexlistingcaption{Schritt 1}{Der \enquote{choiceMatcher} wird der Klasse \enquote{SelectionCard} hinzugefügt} {Quellcode/Schritt-7/conditional_form/lib/widgets/selection_card.dart}
+    
+%     \label{lst:Schritt7SelectionCard}
+%   \end{listing}
+% \fi
+
+
 Der initialisierende Wert kann im Konstruktor gesetzt \Z{41},
 aber auch ausgelassen werden,
-da er nicht mit dem \IC{required}-Schlüsselwort gekennzeichnet und damit nicht verpflichtend ist.
-Doch aus diesem Grund kann der Parameter den Wert \IC{null} annehmen,
+da er nicht mit dem \enquote{required}-Schlüsselwort gekennzeichnet und damit nicht verpflichtend ist.
+Doch aus diesem Grund kann der Parameter den Wert \enquote{null} annehmen,
 weshalb er mit dem Suffix \IC{?} gekennzeichnet werden muss.
 In der Initialisierungsliste erfolgt die Initialisierung der Instanzvariablen \IC{choiceMatcher} \Z{46}.
-Sollte der im Konstruktor übergebene Parameter nicht \IC{null} sein,
+Sollte der im Konstruktor übergebene Parameter nicht \enquote{null} sein,
 so wird er der Instanzvariablen zugewiesen.
-Ist er aber \IC{null},
+Ist er aber \enquote{null},
 so sorgt die \enquote{if-null Expression} dafür,
 dass der Standardwert rechts von dem \IC{??} zugewiesen wird:
-die Funktion \IC{defaultChoiceMatcherStrategy} \Z{46}.
+die Funktion \IC{defaultChoiceMatcherStrategy}.
 Diese Funktion kapselt die Überprüfung der Abhängigkeiten
 -- welche die Auswahloptionen  untereinander haben --
 so wie sie in den letzten Schritten durchgeführt wurde \Z{16-18}.
@@ -106,8 +157,10 @@ Diese Implementierung soll immer dann verwendet werden,
 wenn kein benutzerdefinierter \IC{choiceMatcher} übergeben wurde.
 An dem Namen \IC{defaultChoiceMatcherStrategy} wird offensichtlich, um welches Entwurfsmuster es sich hierbei handelt: das \enquote{Strategie}-Entwurfsmuster. 
 
+\clearpage
+\subsection{Strategie-Entwurfsmuster}
 
-\paragraph{Strategie-Entwurfsmuster} Das \enquote{Strategie}-Entwurfsmuster ist ein Verhaltensmuster der Gang of Four.
+Das \enquote{Strategie}-Entwurfsmuster ist ein Verhaltensmuster der \enquote{Gang of Four}.
 Es erlaubt Algorithmen zu kapseln und auszutauschen \footcite[Vgl.][S. 373]{gamma2009entwurfsmuster}.
 Abbildung \ref{fig:UmlStrategie} zeigt das \enquote{UML}-Diagramm des \enquote{Strategie}-Entwurfsmusters. 
 
@@ -126,15 +179,15 @@ Abbildung \ref{fig:UmlStrategie} zeigt das \enquote{UML}-Diagramm des \enquote{S
         }{
         \umlvirt{AlgorithmusSchnittstelle()}
         }
-      \umlclass[x=0,y=-3]{KonkreteStrategieA}{
+      \umlclass[x=0,y=-4]{KonkreteStrategieA}{
         }{
         AlgorithmusSchnittstelle()
         }
-      \umlclass[x=5.0,y=-3]{KonkreteStrategieB}{
+      \umlclass[x=5.0,y=-4]{KonkreteStrategieB}{
         }{
         AlgorithmusSchnittstelle()
         }
-      \umlclass[x=10,y=-3]{KonkreteStrategieC}{
+      \umlclass[x=10,y=-4]{KonkreteStrategieC}{
         }{
         AlgorithmusSchnittstelle()
         }
@@ -149,13 +202,13 @@ Abbildung \ref{fig:UmlStrategie} zeigt das \enquote{UML}-Diagramm des \enquote{S
       
   \end{tikzpicture}
 
-    \caption[\enquote{UML}-Diagramm des \enquote{Strategie}-Entwurfsmusters]{\enquote{UML}-Diagramm des \enquote{Strategie}-Entwurfsmusters, Quelle: Eigene Abbildung}
-    \label{fig:UmlStrategie}
+    \caption[\enquote{UML}-Diagramm des \enquote{Strategie}-Entwurfsmusters]{\enquote{UML}-Diagramm des \enquote{Strategie}-Entwurfsmusters, Quelle: In Anlehnung an \citet[S. 374]{gamma2009entwurfsmuster}}
+    \label{fig:UmlStrategie} 
 
   \end{figure}%
 \fi
 
-Die Typdefinition \IC{ChoiceMatcher} \Z{13} kann nach dem \enquote{Strategie}-Entwurfsmuster als die Schnittstelle namens \enquote{Strategie} interpretiert werden.
+Die Typdefinition \IC{ChoiceMatcher} \Z{13-14} kann nach dem \enquote{Strategie}-Entwurfsmuster als die Schnittstelle namens \enquote{Strategie} interpretiert werden.
 Sie definiert, welche Voraussetzung an die Schnittstelle gegeben ist.
 In diesem Fall ist die Voraussetzung, dass es sich um eine Funktion mit dem Rückgabewert \IC{bool} handelt,
 der als erstes Argument eine Auswahloption
@@ -170,9 +223,9 @@ Im Entwurfsmuster gibt es noch den Akteur \enquote{Kontext},
 wobei es sich um die aufrufende Klasse handelt,
 welche die \enquote{Strategien} verwendet.
 In diesem Fall ist das die \enquote{Klasse} \IC{SelectionCard}.
-Abbildung \ref{fig:UmlChoiceMatcherStrategyPattern} zeigt das \enquote{UML}-Diagramm der konkreten Implementierung des \enquote{Strategie}-Entwurfsmusters für die \enquote{Strategie} \IC{ChoiceMatcher}.
-Da es sich bei der konkreten \enquote{Strategie} für das Auswahlfeld der \enquote{Nebenziele} um eine anonyme Funktion handelt,
-wurde sie zum besseren Verständnis im \enquote{UML}-Diagramm als \enquote{nebenzieleChoiceMatcherStrategy} benannt.
+
+Abbildung \ref{fig:UmlChoiceMatcherStrategyPattern} zeigt das \enquote{UML}-Diagramm der konkreten Implementierung des \enquote{Strategie}-Entwurfsmusters für die \enquote{Strategie} \enquote{ChoiceMatcher}.
+
 \ifIncludeFigures
   \begin{figure}[h]
     \centering
@@ -182,10 +235,10 @@ wurde sie zum besseren Verständnis im \enquote{UML}-Diagramm als \enquote{neben
       \umlsimpleclass[x=-1, y=0]{SelectionCard}{}{}
       
       \umlsimpleclass[x=7,y=0]{ChoiceMatcher}{}{}
-      \umlsimpleclass[x=0,y=-1.5]{nebenzieleChoiceMatcherStrategy}{}{}
-      \umlsimpleclass[x=7,y=-1.5]{defaultChoiceMatcherStrategy}{}{}
+      \umlsimpleclass[x=0,y=-2.5]{nebenzieleChoiceMatcherStrategy}{}{}
+      \umlsimpleclass[x=7,y=-2.5]{defaultChoiceMatcherStrategy}{}{}
 
-      \umlsimpleclass[x=3.5, y=-3.0]{MassnahmenDetailScreen}{}{}
+      \umlsimpleclass[x=3.5, y=-4.5]{MassnahmenDetailScreen}{}{}
            
       \umlinherit[geometry=|-|]{nebenzieleChoiceMatcherStrategy}{ChoiceMatcher}
       \umlinherit[geometry=-|]{defaultChoiceMatcherStrategy}{ChoiceMatcher}
@@ -205,30 +258,26 @@ wurde sie zum besseren Verständnis im \enquote{UML}-Diagramm als \enquote{neben
   \end{figure}%
 \fi
 
-Im Diagramm ist ebenfalls der \enquote{View} \IC{MassnahmenDetailScreen} enthalten,
+\section{Aktualisierung der Eingabemaske}
+
+Im Diagramm ist ebenfalls der \enquote{View} \enquote{MassnahmenDetailScreen} enthalten,
 denn er verwendet die \enquote{konkrete Strategie} \IC{defaultChoiceMatcherStrategy} für die Validierung \Lst{\ref{lst:Schritt7buildSelectionCard}}.
-
-\begin{alexlisting}{Schritt 7}{Die Methode \enquote{buildSelectionCard} in Schritt 7}
-  {Quellcode/Schritt-7/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
-  {firstline=119, lastline=130, highlightlines={122,130}}
-  \label{lst:Schritt7buildSelectionCard}
-\end{alexlisting}
-
 Sollte nämlich ein Argument für den Parameter \IC{choiceMatcher} übergeben werden \Z{122},
 so wird es auch für die Validierung verwendet \Z{130}.
-Ist das Argument aber nicht gesetzt und damit \IC{null},
+Ist das Argument aber nicht gesetzt und damit \enquote{null},
 so sorgt die \enquote{if-null Expression} dafür,
 dass die \IC{defaultChoiceMatcherStrategy} für die Validierung verwendet wird.
 
-Außerdem erstellt \IC{MassnahmenDetailScreen} die \enquote{konkrete Strategie} \enquote{nebenzieleChoiceMatcherStrategy}, wie in Listing \ref{lst:Schritt7buildMultiSelectionCardZielsetzungLandChoice} zu sehen ist.
-
-\begin{alexlisting}{Schritt 7}{Dem Aufruf von \enquote{buildMultiSelectionCard} für die Menge \enquote{nebenzielsetzungLandChoices} wird ein benutzerdefinierter \enquote{choiceMatcher} übergeben}
+\begin{alexlisting}{Schritt 7}{Die Methode \enquote{buildSelectionCard} mit dem Parameter \enquote{choiceMatcher}}
   {Quellcode/Schritt-7/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
-  {firstline=221, lastline=239, highlightlines={224-239}}
-  \label{lst:Schritt7buildMultiSelectionCardZielsetzungLandChoice}
+  {firstline=119, lastline=140, highlightlines={122,130}}
+  \label{lst:Schritt7buildSelectionCard}
 \end{alexlisting}
 
-Der Aufruf \IC{buildMultiSelectionCard} wird um die Übergabe einer anonymen Funktion für den Parameter \IC{choiceMatcher} erweitert \Z{224-239}.
+\clearpage
+
+Außerdem erstellt \enquote{MassnahmenDetailScreen} die \enquote{konkrete Strategie} für die benutzerdefinierte Validierung der \enquote{Nebenziele}. Im \enquote{UML}-Diagramm wurde sie zum besseren Verständnis \enquote{nebenzieleChoiceMatcherStrategy} genannt. Im Listing \ref{lst:Schritt7buildMultiSelectionCardZielsetzungLandChoice} ist sie als anonyme Funktion zu sehen.
+Im Aufruf \IC{buildMultiSelectionCard} für die \enquote{Nebenziele} wird sie dem Parameter \IC{choiceMatcher} übergeben \Z{224-238}.
 In der ersten Fallunterscheidung wird überprüft,
 ob die gewählte Option ein tatsächliches \enquote{Nebenziel} ist \Z{225}.
 Das kann über die \enquote{Getter}-Methode \IC{hasRealValue} abgefragt werden.
@@ -242,7 +291,7 @@ ob das \enquote{Hauptziel} entweder nicht gesetzt ist
 oder mit einem nicht tatsächlichen \enquote{Hauptziel} belegt ist \Z{226-228}.
 Dazu wird die \enquote{Getter}-Methode \IC{hasNoRealValue} benutzt,
 welche als Gegenteil zu \IC{hasRealValue} fungiert
-und dementsprechend \IC{true} zurückgibt, wenn die Auswahloption entweder \enquote{keine Angabe/Vorgabe} oder \enquote{bitte um Unterstützung} ist \Z{226-228}.
+und dementsprechend \enquote{true} zurückgibt, wenn die Auswahloption entweder \enquote{keine Angabe/Vorgabe} oder \enquote{bitte um Unterstützung} ist.
 Sollte das \enquote{Hauptziel} keinen tatsächlichen Wert einer Zielsetzung enthalten,
 dann ist die Wahl eines oder mehrerer \enquote{Nebenziele} nicht sinnvoll.
 Waren beide bisherigen Bedingungen nicht wahr,
@@ -252,27 +301,34 @@ als auch die \enquote{Nebenziele} gesetzt sind.
 Beide enthalten weder \enquote{keine Angabe/Vorgabe}
 noch \enquote{bitte um Unterstützung} als Wert.
 Nun soll eine letzte Fallunterscheidung überprüfen,
-ob das \enquote{Nebenziel} bereits im \enquote{Hauptziel} gesetzt ist \Z{230-321}.
+ob das \enquote{Nebenziel} bereits im \enquote{Hauptziel} gesetzt ist \Z{230-231}.
 Das ist nicht erlaubt,
 weshalb \IC{false} zurückgegeben werden soll \Z{232}.
-Anderenfalls sind alle Bedingungen erfüllt und \IC{true} kann zurückgegeben werden.
+Anderenfalls sind alle Bedingungen erfüllt und \IC{true} kann zurückgegeben werden \Z{234}.
 
 An diesem Beispiel wird auch offensichtlich,
-welchen Nutzen die Generalisierung der Klasse \IC{SelectionCard} über den Typ Parameter \IC{ChoiceType} hat.
-Über eine Reihe von Methoden- und Konstruktoraufrufen gelangt das Typargument \IC{ZielsetzungLandChoice} in die Klasse \IC{SelectionCard} und somit auch zu der Instanzvariablen \IC{choiceMatcher}. Zuerst wird es der Methode \IC{buildMultiSelectionCard} übergeben \Z{221}. 
+welchen Nutzen die Generalisierung der Klasse \enquote{SelectionCard} über den Typparameter \enquote{ChoiceType} hat.
+Über eine Reihe von Methoden- und Konstruktoraufrufen gelangt das Typargument \IC{ZielsetzungLandChoice} in die Klasse \enquote{SelectionCard} und somit auch zu der Instanzvariablen \enquote{choiceMatcher}. Zuerst wird es der Methode \IC{buildMultiSelectionCard} übergeben \Z{221}. 
 Mit dem Konstruktoraufruf \IC{SelectionCard<ChoiceType>} wird es an die Selektionskarte weitergereicht (Siehe Listing \ref{lst:Schritt7buildMultiSelectionCard} in Zeile 157 in Anhang \ref{appendix:Schritt7Anhang} auf Seite \pageref{lst:Schritt7buildMultiSelectionCard}).
-Schließlich erhält die Instanzvariable das Typargument über die Deklaration \IC{ChoiceMatcher<ChoiceType> choiceMatcher} \LstZ{\ref{lst:Schritt7SelectionCard}}{31}.
+Schließlich erhält die Instanzvariable das Typargument über die Deklaration \IC{ChoiceMatcher<ChoiceType> choiceMatcher} \LstSZ{lst:Schritt7SelectionCard}{31}.
 Der Typparameter wird durch das Typargument ersetzt.
-Somit hat \IC{choiceMatcher} dann den Typ \IC{ChoiceMatcher<ZielsetzungLandChoice>}.
+Somit hat \IC{choiceMatcher} dann den Typ \enquote{ChoiceMatcher<ZielsetzungLandChoice>}.
 Damit handelt es sich also auch bei dem ersten Parameter \IC{choice} der anonymen Funktion --
 die dem Parameter \IC{choiceMatcher} übergeben wird \LstZ{\ref{lst:Schritt7buildMultiSelectionCardZielsetzungLandChoice}}{224} -- um den Typ \IC{ZielsetzungLandChoice}.
 Aus diesem Grund können die Methoden \IC{hasRealValue} \Z{225} und \IC{hasNoRealValue} \Z{228} auf dem Objekt \IC{choice} aufgerufen werden,
-obwohl sie nur Teil der Klasse \IC{ZielsetzungLandChoice}, aber nicht der Basisklasse \IC{Choice} sind.
+obwohl sie nur Teil der Klasse \IC{ZielsetzungLandChoice}, aber nicht der Basisklasse \enquote{Choice} sind.
 Ohne Parametrisierung über den Typ müsste das Objekt \IC{choice} in einen anderen Typ umgewandelt werden.
 Doch nach dieser Typumwandlung könnte ein Laufzeitfehler geschehen, sollte es sich bei dem Objekt tatsächlich nicht um den gewünschten Typ handeln.
-Durch die Generalisierung der Klassen und die Angabe des Typparameters ist das Vorhandensein des richtigen Typs garantiert und keine Typumwandlung nötig.
+Durch die Generalisierung der Klassen und die Angabe des Typarguments ist das Vorhandensein des richtigen Typs garantiert und keine Typumwandlung nötig.
 
-Die beiden neuen Methoden sind in Listing \ref{lst:Schritt7ZielsetzungLandChoice} zu sehen.
+\begin{alexlisting}{Schritt 7}{Der benutzerdefinierte \enquote{choiceMatcher} für die Menge \enquote{nebenzielsetzungLandChoices}}
+  {Quellcode/Schritt-7/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
+  {firstline=221, lastline=239, highlightlines={224-239}}
+  \label{lst:Schritt7buildMultiSelectionCardZielsetzungLandChoice}
+\end{alexlisting}
+
+Die beiden neuen Methoden sind in Listing \ref{lst:Schritt7ZielsetzungLandChoice} zu sehen. \IC{hasRealValue} vergleicht, ob der aktuelle Wert weder \enquote{keine Angabe/Vorgabe} noch \enquote{bitte um Unterstützung} ist \Z{201}.
+\IC{hasNoRealValue} ruft dagegen intern \IC{hasRealValue} auf und negiert den Wert \Z{203}.
 
 
 \ifIncludeFigures
@@ -289,7 +345,7 @@ Die beiden neuen Methoden sind in Listing \ref{lst:Schritt7ZielsetzungLandChoice
     \begin{minted}[firstnumber=185, highlightlines={201,203}]{dart}
 class ZielsetzungLandChoice extends Choice {
   static final ka = ZielsetzungLandChoice("ka", "keine Angabe/Vorgabe");
-
+  /* ... */
   static final contact =
       ZielsetzungLandChoice("contact", "bitte um Unterstützung");
 
@@ -301,6 +357,8 @@ class ZielsetzungLandChoice extends Choice {
     \label{lst:Schritt7ZielsetzungLandChoice}
   \end{listing}
 \fi
+
+
 %\begin{alexlisting}{Schritt 7}{XXX}
 %  {Quellcode/Schritt-7/conditional_form/lib/choices/choices.dart}
 %  {firstline=185, lastline=203, highlightlines={201,203}}
@@ -308,8 +366,7 @@ class ZielsetzungLandChoice extends Choice {
 %\end{alexlisting}
 
 
-\IC{hasRealValue} vergleicht, ob der aktuelle Wert weder \enquote{keine Angabe/Vorgabe} noch \enquote{bitte um Unterstützung} ist \Z{201}.
-\IC{hasNoRealValue} ruft dagegen intern \IC{hasRealValue} auf und negiert den Wert \Z{203}.
+
 
 
 Überall dort, wo zuvor der Ausdruck \IC{choice.conditionMatches(priorChoices)} verwendet wurde, muss nun der Aufruf des \IC{choiceMatcher} erfolgen.

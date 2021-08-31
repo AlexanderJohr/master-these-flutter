@@ -149,6 +149,9 @@
 \include{Verzeichnisse/Listingverzeichnis}
 \fi
  
+
+
+
 \ifIncludeAllChapters
 \include{Inhalt/Einleitung-und-Gliederung/Einleitung-und-Gliederung}
 \fi
@@ -288,6 +291,7 @@
 \include{Inhalt/Fazit/Fazit}  
 \fi
 
+\include{Verzeichnisse/Literaturverzeichnis}
 
 \ifIncludeAppendix
 
@@ -299,9 +303,9 @@
 \include{Inhalt/Hauptteil/Technologie-Auswahl/Technologie-Auswahl-Anhang}
 \fi
 
-%\ifIncludeAllChapters
+\ifIncludeAllChapters
 \input{Inhalt/Hauptteil/Implementierung/Schritt-1/Schritt-1-Anhang}
-%\fi
+\fi
 
 \ifIncludeAllChapters
 \input{Inhalt/Hauptteil/Implementierung/Schritt-2/Schritt-2-Anhang}
@@ -325,14 +329,17 @@
 
 \fi
 
-\include{Verzeichnisse/Literaturverzeichnis}
 
-\ifIncludeMiscellaneous
+
 
 
 \include{Inhalt/Hauptteil/eidesstattliche_erklaerung}
 
 \include{Verzeichnisse/Eidesstattliche_Erklaerung}
+\ifIncludeMiscellaneous
+
+
+
 \fi
 
 \end{document}
