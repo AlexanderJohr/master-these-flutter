@@ -109,7 +109,7 @@ An dem Namen \IC{defaultChoiceMatcherStrategy} wird offensichtlich, um welches E
 
 \paragraph{Strategie-Entwurfsmuster} Das \enquote{Strategie}-Entwurfsmuster ist ein Verhaltensmuster der Gang of Four.
 Es erlaubt Algorithmen zu kapseln und auszutauschen \footcite[Vgl.][S. 373]{gamma2009entwurfsmuster}.
-Abbildung \ref{fig:UmlStrategie} zeigt das UML-Diagramm des \enquote{Strategie}-Entwurfsmusters. 
+Abbildung \ref{fig:UmlStrategie} zeigt das \enquote{UML}-Diagramm des \enquote{Strategie}-Entwurfsmusters. 
 
 \ifIncludeFigures
   \begin{figure}[h]
@@ -149,7 +149,7 @@ Abbildung \ref{fig:UmlStrategie} zeigt das UML-Diagramm des \enquote{Strategie}-
       
   \end{tikzpicture}
 
-    \caption[UML-Diagramm des Strategie-Entwurfsmusters]{UML-Diagramm des Strategie-Entwurfsmusters, Quelle: Eigene Abbildung}
+    \caption[\enquote{UML}-Diagramm des \enquote{Strategie}-Entwurfsmusters]{\enquote{UML}-Diagramm des \enquote{Strategie}-Entwurfsmusters, Quelle: Eigene Abbildung}
     \label{fig:UmlStrategie}
 
   \end{figure}%
@@ -164,15 +164,15 @@ und als zweites Argument eine Menge von Auswahloptionen
 -- der Parameterbezeichner ist \IC{priorChoices} --
 übergeben werden.
 Sollte der Parameter \IC{choiceMatcher} gesetzt sein,
-so tauscht er die standardmäßig genutzte Strategie \IC{defaultChoiceMatcherStrategy} durch die benutzerdefinierte Strategie aus \Z{46}.
+so tauscht er die standardmäßig genutzte \enquote{Strategie} \IC{defaultChoiceMatcherStrategy} durch die benutzerdefinierte \enquote{Strategie} aus \Z{46}.
 Beide werden nach dem \enquote{Strategie}-Entwurfsmuster als \enquote{konkrete Strategien} bezeichnet.
 Im Entwurfsmuster gibt es noch den Akteur \enquote{Kontext},
 wobei es sich um die aufrufende Klasse handelt,
-welche die Strategien verwendet.
+welche die \enquote{Strategien} verwendet.
 In diesem Fall ist das die \enquote{Klasse} \IC{SelectionCard}.
-Abbildung \ref{fig:UmlChoiceMatcherStrategyPattern} zeigt das UML-Diagramm der konkreten Implementierung des \enquote{Strategie}-Entwurfsmusters für die \enquote{Strategie} \IC{ChoiceMatcher}.
-Da es sich bei der konkreten Strategie für das Auswahlfeld der \enquote{Nebenziele} um eine anonyme Funktion handelt,
-wurde sie zum besseren Verständnis im UML-Diagramm als \enquote{nebenzieleChoiceMatcherStrategy} benannt.
+Abbildung \ref{fig:UmlChoiceMatcherStrategyPattern} zeigt das \enquote{UML}-Diagramm der konkreten Implementierung des \enquote{Strategie}-Entwurfsmusters für die \enquote{Strategie} \IC{ChoiceMatcher}.
+Da es sich bei der konkreten \enquote{Strategie} für das Auswahlfeld der \enquote{Nebenziele} um eine anonyme Funktion handelt,
+wurde sie zum besseren Verständnis im \enquote{UML}-Diagramm als \enquote{nebenzieleChoiceMatcherStrategy} benannt.
 \ifIncludeFigures
   \begin{figure}[h]
     \centering
@@ -199,14 +199,14 @@ wurde sie zum besseren Verständnis im UML-Diagramm als \enquote{nebenzieleChoic
 
   \end{tikzpicture}
 
-    \caption[UML-Diagramm des Strategie-Entwurfsmusters für den \enquote{ChoiceMatcher}]{UML-Diagramm des Strategie-Entwurfsmusters für den \enquote{ChoiceMatcher}, Quelle: Eigene Abbildung}
+    \caption[\enquote{UML}-Diagramm des \enquote{Strategie}-Entwurfsmusters für den \enquote{ChoiceMatcher}]{\enquote{UML}-Diagramm des \enquote{Strategie}-Entwurfsmusters für den \enquote{ChoiceMatcher}, Quelle: Eigene Abbildung}
     \label{fig:UmlChoiceMatcherStrategyPattern}
 
   \end{figure}%
 \fi
 
 Im Diagramm ist ebenfalls der \enquote{View} \IC{MassnahmenDetailScreen} enthalten,
-denn er verwendet die konkrete Strategie \IC{defaultChoiceMatcherStrategy} für die Validierung \Lst{\ref{lst:Schritt7buildSelectionCard}}.
+denn er verwendet die \enquote{konkrete Strategie} \IC{defaultChoiceMatcherStrategy} für die Validierung \Lst{\ref{lst:Schritt7buildSelectionCard}}.
 
 \begin{alexlisting}{Schritt 7}{Die Methode \enquote{buildSelectionCard} in Schritt 7}
   {Quellcode/Schritt-7/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
@@ -220,7 +220,7 @@ Ist das Argument aber nicht gesetzt und damit \IC{null},
 so sorgt die \enquote{if-null Expression} dafür,
 dass die \IC{defaultChoiceMatcherStrategy} für die Validierung verwendet wird.
 
-Außerdem erstellt \IC{MassnahmenDetailScreen} die konkrete Strategie \enquote{nebenzieleChoiceMatcherStrategy}, wie in Listing \ref{lst:Schritt7buildMultiSelectionCardZielsetzungLandChoice} zu sehen ist.
+Außerdem erstellt \IC{MassnahmenDetailScreen} die \enquote{konkrete Strategie} \enquote{nebenzieleChoiceMatcherStrategy}, wie in Listing \ref{lst:Schritt7buildMultiSelectionCardZielsetzungLandChoice} zu sehen ist.
 
 \begin{alexlisting}{Schritt 7}{Dem Aufruf von \enquote{buildMultiSelectionCard} für die Menge \enquote{nebenzielsetzungLandChoices} wird ein benutzerdefinierter \enquote{choiceMatcher} übergeben}
   {Quellcode/Schritt-7/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}

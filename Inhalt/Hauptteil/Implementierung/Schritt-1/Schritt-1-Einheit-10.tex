@@ -28,10 +28,10 @@ Dabei stellt sich jedoch die Frage, was mit der bis zu diesem Zeitpunkt eingetra
 Für die Formularanwendung soll in diesem Fall die Maßnahme im aktuellen Zustand abgespeichert werden.
 Dazu wird dem Parameter \IC{onWillPop} als Argument die Funktion \IC{saveRecord} zugewiesen.
 
-Anders als im Übersichtsbildschirm erhält das \IC{Scaffold} kein Argument für den Parameter \IC{floatingActionButton}.
+Anders als im Übersichtsbildschirm erhält das \IC{Scaffold} kein Argument für den Parameter \enquote{floatingActionButton}.
 Der Hintergrund dafür ist, dass auf diesem Bildschirm in den nächsten Schritten nicht nur ein, sondern zwei solcher Buttons zur Verfügung stehen sollen.
 Daher muss der Button manuell angelegt werden.
-Das ist nur mithilfe eines \IC{Stack}-\enquote{Widgets} möglich, welcher als Kind des \IC{WillPopScope} eingetragen ist.
+Das ist nur mithilfe eines \IC{Stack}-\enquote{Widgets} möglich \Z{52}.
 Ein \IC{Stack} erlaubt es, mehrere Ebenen in der Tiefe anzulegen.
 Das unterste Element soll die Auflistung der Eingabefelder sein.
 Der \IC{SingleChildScrollView} \Z{54-79} bietet einen vertikalen Scrollbereich an, in dem die Eingabefelder in einer \IC{Column} \Z{58-76} untereinander aufgelistet sind.
@@ -145,7 +145,7 @@ dass er auch für den folgenden Integrationstest genutzt wird. Elemente können 
 \subsection{Ausgabe der Formularfelder}
 
 Listing \ref{lst:Schritt1AusgabeDerFormularfelder} zeigt die Ausgabe der Formularfelder in einer \IC{Column} \Z{58}.
-Das Auswahlfeld für den letzten Status verwendet ein selbst geschriebenes \IC{Widget} namens \IC{SelectionCard} \Z{61-72}.
+Das Auswahlfeld für den letzten Status verwendet ein selbst geschriebenes \enquote{Widget} namens \IC{SelectionCard} \Z{61-72}.
 Da die Menge der Auswahloptionen auch den Namen der Liste enthält, kann er als Titel der Selektionskarte verwendet werden \Z{62}. In diesem Fall ist das der Text \enquote{Status}.
 Die Auswahloptionen, welche der Selektionsbildschirm anzeigen soll, sind dem Parameter \IC{allChoices} hinterlegt \Z{63}.
 
@@ -155,16 +155,16 @@ Bei allen Änderungen, die innerhalb der Selektionskarte erfolgen, sollen die gl
 Sollte also der Wert des letzten Status im \enquote{ViewModel} verfügbar sein \Z{65}, so wird er als Startwert dem Parameter \IC{initialValue} \Z{64-67} übergeben.
 Dabei ist zu beachten, dass das Argument eine Menge ist.
 Sie wird mit den  öffnenden und schließenden geschweiften Klammern erstellt.
-Das \enquote{collection if} wird hier verwendet, um genau ein Element diesem \enquote{Set}-Literal hinzuzufügen, sollte es nicht \IC{null} sein.
-Ist das Element allerdings \IC{null}, so bleibt das \enquote{Set}-Literal einfach leer.
-Für mehr Informationen zum \enquote{Set}-Literal und dem \enquote{collection if} siehe \HP{Kapitel einfügen}.
+Das \enquote{collection if} wird hier verwendet, um genau ein Element diesem \enquote{Set}-Literal hinzuzufügen, sollte es nicht \IC{null} sein \Z{65}.
+Ist das Element allerdings \enquote{null}, so bleibt das \enquote{Set}-Literal einfach leer.
+% TODO: Wieder rein? Für mehr Informationen zum \enquote{Set}-Literal und dem \enquote{collection if} siehe \HP{Kapitel einfügen}.
 
 
 Wenn der Benutzer eine Auswahloption selektiert, so  wird die dementsprechende anonyme Funktion aufgerufen.
 Sie ist für den Parameter \IC{onSelect} hinterlegt \Z{68-69}.
 Das Gleiche gilt für Auswahloptionen, welche deselektiert werden \Z{70-71}.
 Das Auswahlfeld erlaubt nur einen Wert.
-Deshalb reicht es aus, den Wert bei Selektion zu ersetzen und ihn bei Deselektion zu leeren, also ihn auf \IC{null} zu setzen.
+Deshalb reicht es aus, den Wert bei Selektion zu ersetzen und ihn bei Deselektion zu leeren, also ihn auf \IC{null} zu setzen \Z{71}.
 
 \clearpage
 
@@ -189,5 +189,6 @@ Listing \ref{lst:Schritt1DieFunktionCreateMassnahmenTitelTextFormField} zeigt di
 \end{alexlisting}
 
 Hier wird klar, wovon die Selektionskarte inspiriert ist.
-Denn auch das \IC{TextFormField} erhält einen initialen Wert über den Parameter \IC{initialValue}.
-Sobald sich der Wert des Formularfelds ändert, kann der neue Wert im \enquote{ViewModel} über die anonyme Funktion aktualisiert werden, welche dem Parameter \IC{onChanged} übergeben wurde.
+Denn auch das \IC{TextFormField} erhält einen initialen Wert über den Parameter \IC{initialValue} \Z{35}.
+Sobald sich der Wert des Formularfelds ändert, kann der neue Wert im \enquote{ViewModel} über die anonyme Funktion aktualisiert werden,
+welche dem Parameter \IC{onChanged} übergeben wurde \Z{38-40}.
