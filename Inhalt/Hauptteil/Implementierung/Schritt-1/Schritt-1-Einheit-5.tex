@@ -28,7 +28,7 @@ Das Äquivalent dazu stellt die Methode \IC{readMassnahmen} \Z{18-30} dar.
 Auch sie ruft den Dateipfad ab \Z{19}, überprüft allerdings im nächsten Schritt, ob die Datei bereits existiert \Z{21}.
 Sollte das der Fall sein, so wird die Datei eingelesen \Z{23}.
 Die textuelle Repräsentation aus der Datei wird mittels der Methode \IC{jsonDecode} in ein \enquote{JSON}-Objekt in Form einer Hashtabelle gespeichert \Z{24} und schließlich zurückgegeben \Z{26}.
-Sollte die Dateien nicht existieren, führt das zu einer Ausnahme \Z{28}, welche von der aufrufenden Funktion behandelt werden kann.
+Sollte die Datei nicht existieren, führt das zu einer Ausnahme \Z{28}, welche von der aufrufenden Funktion behandelt werden kann.
 
 \begin{alexlisting}{Schritt 1}{Die Klasse \enquote{MassnahmenJsonFile}}
   {Quellcode/Schritt-1/conditional_form/lib/persistence/massnahmen_json_file.dart}
