@@ -94,10 +94,10 @@ Die Überschrift wird nach der Spaltenüberschrift für die \enquote{Hauptzielse
   \label{lst:Schritt6buildColumnHeader}
 \end{alexlisting}
 
-Die Anzeige der Werte in den Tabellenzellen ist dagegen unterschiedlich \Lst{\ref{lst:Schritt6buildSelectableCell}}.
+Die Anzeige der Werte in den Tabellenzellen ist dagegen unterschiedlich \LstZ{\ref{lst:Schritt6buildSelectableCell}}{44-50}.
 Dieses Mal handelt es sich um die Aufzählung von mehreren Werten,
 weshalb ein \IC{Column}-\enquote{Widget} die einzelnen Einträge untereinander auflistet \Z{46-50}.
-Jedes Element des \IC{BuiltSet} \IC{nebenziele} \Z{47} wird über die Methode \IC{map} jeweils in ein Element des \enquote{Widgets} \IC{Text} konvertiert \Z{48}.
+Jedes Element des \enquote{BuiltSet} \IC{nebenziele} \Z{47} wird über die Methode \IC{map} jeweils in ein Element des \enquote{Widgets} \IC{Text} konvertiert \Z{48}.
 
 \begin{alexlisting}{Schritt 6}{Die \enquote{Nebenziele} werden dem Tabellenkörper hinzugefügt}
   {Quellcode/Schritt-6/conditional_form/lib/widgets/massnahmen_table.dart}
@@ -172,10 +172,10 @@ so erstellt die Methode \IC{rebuild} des \enquote{BuiltSet} eine Kopie des aktue
 In der anonymen Funktion,
 welche für die Manipulationen an der Kopie genutzt wird,
 wird in einer Fallunterscheidung überprüft,
-ob das angeklickte Element bereits selektiert ist \Z{136}.\pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
+ob das angeklickte Element bereits selektiert ist \Z{136}.
 Sollte das der Fall sein,
 so wird diese bereits selektierte Option, die nun abgewählt wurde,
-mit der Methode \IC{remove} des \enquote{Builder}-Objektes aus dem \enquote{BuiltSet} entfernt \Z{137}.\pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
+mit der Methode \IC{remove} des \enquote{Builder}-Objektes aus dem \enquote{BuiltSet} entfernt \Z{137}.
 Anderenfalls war die Option nicht selektiert, weshalb sie mit der Methode \IC{add} hinzugefügt wird \Z{139}. 
 
 
@@ -226,7 +226,7 @@ Die ausgelagerte Funktion ist in Anhang \ref{appendix:Schritt6Anhang} in Listing
 
 
 Für die Erstellung der Mehrfachauswahlfelder ist die Methode \IC{buildMultiSelectionCard} zuständig \Lst{\ref{lst:Schritt6buildMultiSelectionCard}}.
-Das übergebene \IC{selectionViewModel} unterstützt mit dem Typparameter \IC{BuiltSet} die Auswahl von mehreren Auswahloptionen \Z{146}.
+Das übergebene \IC{selectionViewModel} unterstützt mit dem Typargument \IC{BuiltSet} die Auswahl von mehreren Optionen \Z{146}.
 Bei \IC{selectionViewModel} handelt es sich bereits um eine Menge.
 Für die Validierung \Z{150} sowie für die Übergabe des initialen Wertes an den Konstruktor der \IC{SelectionCard} \Z{157} ist eine Umwandlung in eine Menge daher nicht mehr nötig.
 Dem Konstruktor \IC{SelectionCard} wird weiterhin über den Parameter \IC{multiSelection} mitgeteilt, dass mehr als eine Auswahl gewählt werden darf \Z{154}.

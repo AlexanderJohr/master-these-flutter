@@ -1,7 +1,7 @@
 \chapter{Grundlagen}
 \label{chap:Grundlagen}
 
-Für die Formularanwendung wurde die Programmiersprache \enquote{Dart} und das Frontend-Framework \enquote{Flutter} gewählt.
+Für die Formularanwendung wurde die Programmiersprache \enquote{Dart} und das Frontend-Frame\-work \enquote{Flutter} gewählt.
 Kapitel \ref{chap:Technologie-Auswahl} erläutert die Entscheidungsgrundlage dafür.
 Nachfolgend soll auf die Grundlagen der beiden Technologien eingegangen werden.
 
@@ -319,7 +319,7 @@ Der Compiler liefert jedoch einen Fehler, da der Wert der Variablen \enquote{nul
 Solange nicht feststeht, dass die Variable zur Laufzeit tatsächlich nicht \enquote{null} ist, kann das Programm nicht kompiliert werden.
 
 
-Zu diesem Zweck macht \enquote{Dart} von der sogenannten \enquote{type promotion} -- deutsch Typ-Beförderung -- Gebrauch.
+Zu diesem Zweck macht \enquote{Dart} von der sogenannten \enquote{type promotion} -- deutsch Typ-Beförde\-rung -- Gebrauch.
 Mithilfe einer Fallunterscheidung kann vor dem Anwenden der Operation nachgesehen werden, ob der Wert der Variablen nicht \IC{null} ist.
 Innerhalb des Körpers der Fallunterscheidung wird der Typ der Variablen automatisch in einen Typ ohne Null-Zulässigkeit befördert.\footcite[Vgl.][]{TypePromotionOnNullChecks}
 Der Code in Listing \ref{lst:printTemperatureInCelsiusWithIf} lässt sich damit wieder kompilieren.

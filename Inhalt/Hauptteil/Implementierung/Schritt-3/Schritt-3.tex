@@ -178,11 +178,11 @@ Da in diesem Fall keine weiteren Überprüfungen notwendig sind, gibt die Funkti
 Andernfalls validiert das Formular die Eingabefelder \Z{76}.
 Dazu muss das Element vom Typ \enquote{Form} in den Vaterelementen gefunden werden.
 Genauer gesagt wird dessen \enquote{FormFieldState}-Objekt benötigt.
-Der Zugriff darauf ist einfach, da es über einen \enquote{GlobalKey} registriert wurde.\pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
+Der Zugriff darauf ist einfach, da es über einen \enquote{GlobalKey} registriert wurde.
 Über \IC{formKey.currentState} kann das \enquote{FormFieldState}-Objekt des Elements abgerufen werden \Z{76}.
 Die Funktion \IC{validate()} führt dann alle Funktionen aus, die jeweils als Argument dem Parameter \enquote{validator} aller Kindelemente des Typs \enquote{FormField} übergeben wurden.
 Sollten alle \enquote{validator}-Funktionen \enquote{null} zurückgegeben haben -- was bedeutet, dass keine Fehler bei der Validierung geschehen sind -- so erfolgt die Rückgabe von \IC{true} \Z{77}.
-Anderenfalls war mindestens ein Formularfeld invalide und damit bleibt nur die Rückgabe von \IC{false} übrig \Z{80}. \pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
+Anderenfalls war mindestens ein Formularfeld invalide und damit bleibt nur die Rückgabe von \IC{false} übrig \Z{80}.
 
 \begin{alexlisting}{Schritt 3}{Die Funktion \enquote{inputsAreValidOrNotMarkedFinal}}
     {Quellcode/Schritt-3/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}

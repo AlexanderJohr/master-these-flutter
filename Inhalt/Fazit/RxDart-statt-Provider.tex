@@ -16,7 +16,7 @@ der es erlaubt,
 nur Teile der Oberfläche neu zu zeichnen,
 die wirklich eine Aktualisierung benötigen.
 
-Zu diesem Zweck empfiehlt Google das Nutzen des Pakets \enquote{provider} der \enquote{Flutter}-Community \footcite[Vgl.][]{ProviderARecommendedApproach}.
+Zu diesem Zweck empfiehlt Google das Paket \enquote{provider} der \enquote{Flutter}-Community \footcite[Vgl.][]{ProviderARecommendedApproach}.
 Dieser Ansatz wurde in der Implementierung ursprünglich verwendet.
 Das Paket hat den Nachteil,
 dass für jeden Zustand,
@@ -50,7 +50,7 @@ class LetzterStatusViewModel extends ChoiceChangeNotifier {}
 Bei Aktualisierung des Wertes erhalten alle \enquote{Listener} eine Benachrichtigung \Z{8}.
 \IC{LetzterStatusViewModel} erbt dieses Verhalten, doch hat die Klasse darüber hinaus keine Implementierung.
 
-Anschließend muss jeder \IC{ChangeNotifier} als ein \IC{ChangeNotifierProvider} registriert werden \LstZ{\ref{lst:MultiProvider}}{7}. 
+Anschließend muss jeder \enquote{ChangeNotifier} als ein \IC{ChangeNotifierProvider} registriert werden \LstZ{\ref{lst:MultiProvider}}{7}. 
 Der \IC{MultiProvider} kann genutzt werden, um mehrere Provider in einer Liste zu übergeben.
 Dort werden auch andere Services wie etwa \IC{MassnahmenFormViewModel} \Z{3} und \IC{MassnahmenModel} \Z{6} hinterlegt.
 
@@ -74,8 +74,8 @@ MultiProvider(
   \end{listing}
 \fi
 
-Dann ist der \IC{ChangeNotifier} in dem \enquote{Widget}, welches dem Parameter \IC{child} übergeben wird, und darüber hinaus in allen Kindelementen dieses \enquote{Widgets} verfügbar.
-Über einen \IC{Consumer} kann in der Oberfläche auf Änderungen des \IC{ChangeNotifier} reagiert werden \Lst{\ref{lst:Consumer}}.
+Dann ist der \enquote{ChangeNotifier} in dem \enquote{Widget}, welches dem Parameter \IC{child} übergeben wird, und darüber hinaus in allen Kindelementen dieses \enquote{Widgets} verfügbar.
+Über einen \IC{Consumer} kann in der Oberfläche auf Änderungen des \enquote{ChangeNotifier} reagiert werden \Lst{\ref{lst:Consumer}}.
 
 \ifIncludeFigures
   \begin{listing}[h]
@@ -196,7 +196,7 @@ welche zuvor bereits gespeichert war.
 In diesem Fall wird sich zunutze gemacht, dass jede Zuweisung zur \enquote{Getter}-Methode \IC{value} ein neues Ereignis auslöst,
 ungeachtet dessen, ob der Wert derselbe ist.
 Die Erstellung weiterer \IC{StreamController} zum Senden der transitiven Eigenschaft \IC{itemCount} ist nicht nötig.
-Sendet das \IC{BehaviorSubject} \IC{_cart} ein neues Event \Z{4},
+Sendet das \IC{BehaviorSubject} \IC{_cart} ein neues Ereignis \Z{4},
 so wird auch die Methode \IC{map} ausgelöst und ein transformiertes Ereignis gesendet \Z{6}.
 
 Durch eine Anleitung mit diesem Ergebnis könnten gegebenenfalls weitere Entwickler das \enquote{BloC-Pattern} dem Paket \enquote{provider} vorziehen.

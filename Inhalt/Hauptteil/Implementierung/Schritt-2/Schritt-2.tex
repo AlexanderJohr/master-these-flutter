@@ -103,7 +103,7 @@ den Quellcode für die Eigenschaft zu generieren, wird unterhalb der \enquote{Ge
 
 Bei dem Datentyp handelt es sich um einen weiteren Wertetyp: \IC{MassnahmenCharakteristika}, welcher in Listing \ref{lst:Schritt2WerteTypMassnahmencharakteristika} zu sehen ist.
 Die darin enthaltenen \enquote{Getter}-Methoden sind dagegen lediglich gewöhnliche Zeichenketten, da sie die Abkürzungen der ausgewählten Optionen abspeichern.
-Da sie im Entwurfsmodus nicht gefüllt sein müssen, wird ihnen mit dem Suffix \IC{?} erlaubt, Null-Werte anzunehmen \Z{70-74}. \pdfcomment[icon=Note,color=yellow]{30.08.2021 Satz umformuliert}
+Da sie im Entwurfsmodus nicht gefüllt sein müssen, wird ihnen mit dem Suffix \IC{?} erlaubt, Null-Werte anzunehmen \Z{70-74}.
 
 \begin{alexlisting}{Schritt 2}{Der Wertetyp \enquote{Massnahmencharakteristika}}
   {Quellcode/Schritt-2/conditional_form/lib/data_model/massnahme.dart}
@@ -126,12 +126,12 @@ Der Tabellenkopf listet die Überschriften der hinzugefügten Werte auf \LstZ{\r
 \end{alexlisting}
 
 Für jede Zeile der Tabelle werden weitere selektierbare Zellen generiert \LstZ{\ref{lst:Schritt2MassnahmencharakteristikaWerdenDemTabellenkoerperHinzugefuegt}}{33-42}.
-Im Unterschied zur Zelle des Maßnahmentitels können die \enquote{Getter}-Methoden des Wertetyps \IC{massnahmenCharakteristika} jedoch Null-Werte enthalten.\pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
+Im Unterschied zur Zelle des Maßnahmentitels können die \enquote{Getter}-Methoden des Wertetyps \IC{massnahmenCharakteristika} jedoch Null-Werte enthalten.
 Doch das \IC{Text}-\enquote{Widget} akzeptiert keine Null-Werte als Argument.
 Deshalb wird der Operator \IC{??} verwendet. Dabei handelt es sich um die \enquote{if-null Expression}. 
 Sie überprüft den Ausdruck links vom Operator \IC{??}. Ist er \enquote{null}, so wird der Wert rechts vom Operator verwendet.
 Ist der dagegen nicht \enquote{null}, so wird der Wert links vom Operator \IC{??} genutzt.
-\DartSpec{165} Ist der Wert also nicht gefüllt, so wird der leere \enquote{String} \IC{""} als Argument übergeben.\pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
+\DartSpec{165} Ist der Wert also nicht gefüllt, so wird der leere \enquote{String} \IC{""} als Argument übergeben.
 
 \begin{alexlisting}{Schritt 2}{Die \enquote{Maßnahmencharakteristika} werden dem Tabellenkörper hinzugefügt}
   {Quellcode/Schritt-2/conditional_form/lib/widgets/massnahmen_table.dart}
@@ -157,7 +157,7 @@ muss das \enquote{ViewModel} die beobachtbaren \enquote{Subjekte} bereitstellen 
 
 Die Konvertierung des \enquote{Models} in das \enquote{ViewModel} erfolgt wie gewohnt
 über das Heraussuchen des korrekten Objektes aus der Menge der Auswahloptionen
-über dessen Abkürzung \LstZ{\ref{lst:Schritt2KonvertierungDesModelsInDasViewModel}}{29-36}. \pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
+über dessen Abkürzung \LstZ{\ref{lst:Schritt2KonvertierungDesModelsInDasViewModel}}{29-36}.
 
 \begin{alexlisting}{Schritt 2}{Konvertierung des \enquote{Models} in das \enquote{ViewModel} für die \enquote{Maßnahmencharakteristika}}
   {Quellcode/Schritt-2/conditional_form/lib/screens/massnahmen_detail/massnahmen_form_view_model.dart}

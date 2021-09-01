@@ -87,7 +87,7 @@ auch wenn für die \enquote{Kategorie} die nicht erlaubte Option \enquote{Anbau 
 Für die Liste aller hinzugefügten Bedingungen siehe Anhang \ref{appendix:Schritt4Anhang} auf den Seiten \pageref{lst:Schritt4KategorieChoice} bis  \pageref{lst:Schritt4ZieleinheitChoice}.
 
 Bei der Bedingung handelt es sich um eine Funktion,
-die einen Wahrheitswert \IC{bool} zurückgibt und als Parameter die Menge aller bisher ausgewählten Auswahloptionen vom Typ \IC{Set<Choice>} übergeben bekommt. \pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
+die einen Wahrheitswert \IC{bool} zurückgibt und als Parameter die Menge aller bisher ausgewählten Auswahloptionen vom Typ \IC{Set<Choice>} übergeben bekommt.
 Die Signatur dieser Funktion wird als Typdefinition mit dem Namen \IC{Condition} deklariert \LstZ{\ref{lst:Schritt4Choice}}{3}.
 Über diese Typdefinition kann sie als Instanzvariable in der Klasse \IC{Choice} deklariert werden \Z{8}.
 Der Konstruktor erhält einen weiteren Parameter für die Bedingung \Z{12}.
@@ -143,7 +143,7 @@ Es wird mit dem Typparameter \IC{Set<Choice>} deklariert \Z{20} und mit einer Mo
 Im Konstruktor des \enquote{ViewModels} wird dann auf Änderung aller \enquote{Subjekte} gehorcht.
 Dies wird durch die Funktion \IC{combineLatest} des Pakets \IC{RxDart} ermöglicht \Z{24}.
 Sie erlaubt die Übergabe einer Kollektion von \enquote{Streams}.
-In diesem Fall sind das alle \enquote{Subjekte} des \enquote{ViewModels} \Z{25-29}.\pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
+In diesem Fall sind das alle \enquote{Subjekte} des \enquote{ViewModels} \Z{25-29}.
 Wenn auch nur einer dieser \enquote{Streams} ein neues Ereignis sendet,
 so emittiert auch der kombinierte \enquote{Stream} ein neues Ereignis.
 Dem zweiten Parameter der Funktion \IC{combineLatest} kann als Argument eine Funktion übergeben werden,
@@ -160,7 +160,7 @@ In \enquote{Kotlin} und \enquote{Dart} wurde diese Praxis zur Konvention gemacht
 Die anonyme Funktion gibt eine Menge zurück,
 in welcher alle Werte der \enquote{Subjekte} integriert werden \Z{31-37}.
 Das \enquote{collection if} Statement schließt dabei jeweils den Wert \IC{null} aus \Z{32-36}.
-Somit tauchen keine Null-Werte in der Menge auf und damit kann der \enquote{Stream} mit dem Typargument \IC{Set<Choice>} ohne Null-Zulässigkeit deklariert werden \Z{24}. \pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
+Somit tauchen keine Null-Werte in der Menge auf und damit kann der \enquote{Stream} mit dem Typargument \IC{Set<Choice>} ohne Null-Zulässigkeit deklariert werden \Z{24}.
 Sind alle Auswahlfelder nicht belegt,
 so ist die Menge leer.
 Doch der kombinierte \enquote{Stream} \IC{choicesStream} liefert immer nur die neuen Ereignisse und speichert nicht den zuletzt übermittelten Wert zwischen.
@@ -197,7 +197,7 @@ die sich an \IC{priorChoices} vollziehen,
 obwohl diese Änderungen außerhalb der Klasse geschehen.
 Würde stattdessen eine Liste der bisherigen Auswahloption übergeben werden,
 so wäre diese eine Kopie.
-Diese Kopie hätte den Zustand einer Momentaufnahme aller bisherigen Auswahloptionen zum Zeitpunkt der Konstruktion der Selektionskarte.\pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
+Diese Kopie hätte den Zustand einer Momentaufnahme aller bisherigen Auswahloptionen zum Zeitpunkt der Konstruktion der Selektionskarte.
 Alle Änderungen,
 die nach diesem Zeitpunkt an den Auswahloptionen geschehen sind,
 würden sich nicht darin widerspiegeln.
@@ -343,7 +343,7 @@ eine Maßnahme abzuspeichern,
 wenn sie invalide Auswahloptionen enthält.
 Erst wenn alle Auswahlfelder gefüllt sind
 und die gewählten Optionen die jeweils hinterlegten Bedingungen erfüllen,
-so wird die \IC{validator}-Funktion jeweils \IC{null} statt einer Fehlermeldung zurückgeben \Z{138}. \pdfcomment[icon=Note,color=yellow]{29.08.2021 Satz umformuliert}
+so wird die \IC{validator}-Funktion jeweils \IC{null} statt einer Fehlermeldung zurückgeben \Z{138}.
 Nur dann kann eine Maßnahme mit dem Status \enquote{abgeschlossen} gespeichert werden.
 
 
