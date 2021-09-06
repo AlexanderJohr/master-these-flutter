@@ -28,14 +28,14 @@ Um das Generieren von \enquote{Mocks} auch für Integrationstests verfügbar zu 
 hat der Autor dieser Arbeit einen entsprechenden Lösungsansatz recherchiert und im Issue beschrieben.\footcite[Vgl.][]{MocksAreNotGeneratedNotInTestFolderAntwort}
 
 Damit der \enquote{integration_test} Ordner für die Codegenerierung der \enquote{Mocks} integriert wird, muss ein entsprechender Eintrag in der \enquote{Build}-Konfiguration vorgenommen werden.
-Damit das Paket \enquote{source_gen} die entsprechenden Dateien analysiert, müssen sie in der Rubrik \IC{sources} angegeben werden \LstZ{\ref{lst:Schritt1IntegrationsTestInitialisierung}}{3-8}.
+Damit das Paket \enquote{source_gen} die entsprechenden Dateien analysiert, müssen sie in der Rubrik \IC{sources} angegeben werden \LstZ{\ref{lst:Schritt1IntegrationsTestBuildYaml}}{3-8}.
 Wird der Ordner \enquote{integration_test} darin eingefügt \Z{8}, bezieht \enquote{source_gen} den Ordner in die Codegenerierung mit ein.
 Zusätzlich dazu muss die Rubrik \IC{generate_for} von dem \IC{mockBuilder} des \enquote{mockito}-Pakets \Z{11-13} um die gleiche Angabe des Ordners ergänzt werden \Z{13}.
 
 \begin{alexyamllisting}{Schritt 1}{Initialisierung des Integrationstests}
   {Quellcode/Schritt-1/conditional_form/build.yaml}
   {firstline=0}
-  \label{lst:Schritt1IntegrationsTestInitialisierung}
+  \label{lst:Schritt1IntegrationsTestBuildYaml}
 \end{alexyamllisting}
 
 Anschließend kann mit der Annotation \IC{@GenerateMocks} \LstZ{\ref{lst:Schritt1IntegrationsTestInitialisierung}}{20} ein \enquote{Mock} für \IC{MassnahmenJsonFile} angefordert werden.

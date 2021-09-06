@@ -194,7 +194,7 @@ In den folgenden Schritten soll diese Konfigurationsmöglichkeit genutzt werden,
 
 \clearpage
 Die Methode \IC{buildSelectionCard} bekommt dazu nur die Argumente für die Liste aller Auswahloptionen \IC{allChoices}
-\LstZ{\ref{lst:Schritt2MassnahmencharakteristikaSelektionskartenWerdenErgaenzt}}{49}
+\LstZ{\ref{lst:Schritt2DieMethodeBuildSelectionCard}}{49}
 und das \enquote{Subjekt} \IC{selectionViewModel} \Z{50} übergeben.
 Nun übernimmt die Methode die Übergabe der Argumente an den Konstruktor der \IC{SelectionCard} \Z{51}.
 Dazu verwendet die \IC{SelectionCard} wie zuvor den Namen der Menge der Auswahloptionen als Titel \Z{52}.
@@ -203,7 +203,7 @@ Außerdem wird dieselbe Menge unverändert an die \IC{SelektionCard} weitergegeb
 \begin{alexlisting}{Schritt 2}{Die Methode \enquote{buildSelectionCard}}
   {Quellcode/Schritt-2/conditional_form/lib/screens/massnahmen_detail/massnahmen_detail.dart}
   {firstline=48, lastline=60, highlightlines={77-89, 82-99}}
-  \label{lst:Schritt2MassnahmencharakteristikaSelektionskartenWerdenErgaenzt}
+  \label{lst:Schritt2DieMethodeBuildSelectionCard}
 \end{alexlisting}
 
 Der Grund, warum die Klasse \IC{SelectionCard} den Titel aus der Menge der Auswahloptionen nicht selbstständig extrahiert, ist, dass die Klasse auf diese Weise auch für mehrere Anwendungsgebiete genutzt werden kann.
