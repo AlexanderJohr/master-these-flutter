@@ -60,8 +60,8 @@
 \IncludeAllChaptersfalse
 \IncludeFigurestrue
 \IncludeMiscellaneousfalse
-\IncludeTitlePagefalse
-\IncludeAppendixtrue
+\IncludeTitlePagetrue
+\IncludeAppendixfalse
 \DingsInsteadOfInlineCodefalse
 \DingsInsteadOfEnqoutefalse
 \IncludeLineNumberstrue
@@ -102,7 +102,7 @@
 \fi
 
 
-\SimplyIncludeEverythingForSubmissiontrue
+\SimplyIncludeEverythingForSubmissionfalse
 
 \ifSimplyIncludeEverythingForSubmission
   \ForDudenfalse
@@ -282,9 +282,9 @@
 \include{Inhalt/Hauptteil/Implementierung/Schritt-6/Schritt-6}
 \fi
 
-%\ifIncludeAllChapters
+\ifIncludeAllChapters
 \include{Inhalt/Hauptteil/Implementierung/Schritt-7/Schritt-7}
-%\fi
+\fi
 
 
 \ifIncludeAllChapters
@@ -323,21 +323,21 @@
 \input{Inhalt/Hauptteil/Implementierung/Schritt-6/Schritt-6-Anhang}
 \fi
 
-%\ifIncludeAllChapters
+\ifIncludeAllChapters
 \input{Inhalt/Hauptteil/Implementierung/Schritt-7/Schritt-7-Anhang}
-%\fi
+\fi
 
 \fi
 
-\include{Sonstiges/empty_page}
+%\include{Sonstiges/empty_page}
 
 %\newpage\null\thispagestyle{empty}\newpage
 
 
 %\include{Eidesstattliche-Erklaerung/unterschriebene_eidesstattliche_erklaerung}
 
-\include{Verzeichnisse/Eidesstattliche_Erklaerung}
-\ifIncludeMiscellaneous
+%\include{Verzeichnisse/Eidesstattliche_Erklaerung}
+\ifIncludeMiscellaneous 
 
 
 
