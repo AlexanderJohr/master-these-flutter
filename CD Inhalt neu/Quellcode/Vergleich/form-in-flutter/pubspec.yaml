@@ -1,0 +1,35 @@
+name: conditional_form
+description: A new Flutter project.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.13.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  uuid: any
+  path_provider: any
+  built_value: any
+  provider: any
+  rxdart: any
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+  test: any
+  mockito: any
+  build_resolvers: any
+  build_runner: any
+  built_value_generator: any
+  flutter_lints: any
+
+flutter:
+  assets:
+    - assets/logo_flutter.png
+  uses-material-design: true
