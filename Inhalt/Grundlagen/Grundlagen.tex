@@ -49,7 +49,7 @@ final JButton button = new JButton("Anzahl der Klicks auf diesen Button: 0");
 
 button.addActionListener(new ActionListener() {
    @Override
-   public void actionPerformed(ActionEvent e) {
+   public void actionPerformed(ActionEvent e) { 
       timesClicked = timesClicked + 1;
       button.setText("Anzahl der Klicks auf diesen Button: " + timesClicked);
    }
@@ -499,7 +499,6 @@ In diesem Parameter wird der Text der gelesenen Datei bei Vollendung der Operati
 Der Einsatz von \enquote{Callback}-Funktionen kann den Quellcode stark verkomplizieren.
  Man spricht von der sogenannten \enquote{callback hell} -- deutsch Rückruffunktionen-Hölle --, wenn solche \enquote{Callback}-Funktionen über etliche Level hinweg ineinander verschachtelt sind.
 
- \clearpage
 Um genau das zu verhindern, existieren in \enquote{Dart} die Schlüsselwörter \enquote{async} und \enquote{await}.
 Genauso heißen sie auch in anderen Sprachen wie etwa \enquote{C\#} ab Version 4.5 und \enquote{JavaScript} ab Version ES2017
 \footcite[Vgl.][]{asyncfunctionJavaScriptMDN}\textsuperscript{,}\footcite[Vgl.][]{Asynchronousprogrammingwithasyncandawait}.
